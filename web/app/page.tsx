@@ -3,6 +3,7 @@ import path from "node:path";
 import Link from "next/link";
 import { artifact } from "../lib/data";
 import PathwayChart from "../components/PathwayChart";
+import PremiumFan from "../components/PremiumFan";
 import ReformSwitch from "../components/ReformSwitch";
 import tokens from "../tokens.json";
 
@@ -18,8 +19,10 @@ export default function Home() {
     fs.readFileSync(path.join(process.cwd(), "content", "sample_petchem.json"), "utf-8")
   );
 
+  const inv = artifact("lambda_invariance");
   const sigmaBase = cal.sigmas.find((s: any) => s.driver === "carbon_diffusion").value;
   const sigmaReform = cal.derived.sigma_carbon_reform;
+  const poscoGrid = inv.grid.filter((g: any) => g.firm_id === "POSCO");
   const firms = shares.firms.map((f: any) => ({
     ...f,
     ...levels.firms.find((l: any) => l.firm_id === f.firm_id),
@@ -41,9 +44,10 @@ export default function Home() {
               <em>taken apart.</em>
             </h1>
             <p className="hero__sub">
-              Every net-zero scenario says heavy industry must move. CAP prices what happens while it
-              waits — and decomposes that premium into four drivers, each one hedgeable with a real
-              contract. Steel first: 11 blast furnaces, Korea and Japan.
+              How big is the transition-risk premium? Honest answer: it depends on how dearly the
+              market prices the risk — nobody agrees. What it is <em>made of</em> does not depend on
+              that at all. CAP proves the mix, prices the range, and names the contract that hedges
+              each slice. Steel first: 11 blast furnaces, Korea and Japan.
             </p>
             <div className="hero__stats">
               <div className="stat-chip">
@@ -62,7 +66,16 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <PathwayChart pathway={pathway} />
+          <PremiumFan
+            grid={poscoGrid}
+            shares={posco.shares}
+            firm="POSCO"
+            baseCase={{
+              lambda: cal.pricing.lambda.value,
+              p_bind: cal.pricing.p_bind.value,
+              premium_bps: posco.premium_bps,
+            }}
+          />
         </div>
       </section>
 
@@ -96,25 +109,22 @@ export default function Home() {
 
       {/* ── Wedge teaser ── */}
       <section className="band band--ink">
-        <div className="band__inner">
-          <p className="eyebrow">Why a premium exists</p>
-          <h2 className="section-title">Rational today. Exposed tomorrow.</h2>
-          <p className="section-lede">
-            Real-options logic says waiting is privately optimal — and our least-squares Monte Carlo
-            confirms it, asset by asset. But a finite carbon budget means the option gets exercised
-            for you. The gap between each furnace's private optimum τ* and its required date is the
-            exposure this model prices.
-          </p>
-          <Link
-            href="/wedge"
-            style={{
-              color: "#f59e0b",
-              fontFamily: "var(--font-mono)",
-              fontSize: 14,
-            }}
-          >
-            → See the wedge, furnace by furnace
-          </Link>
+        <div className="band__inner" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
+          <div>
+            <p className="eyebrow">Why a premium exists</p>
+            <h2 className="section-title">Rational today. Exposed tomorrow.</h2>
+            <p className="section-lede">
+              Real-options logic says waiting is privately optimal — and our least-squares Monte
+              Carlo confirms it, asset by asset. But a finite carbon budget means the option gets
+              exercised for you: the required pathway below bends down whether or not the firm
+              moves. The gap between each furnace's private optimum τ* and its required date is the
+              exposure this model prices.
+            </p>
+            <Link href="/wedge" style={{ color: "#f59e0b", fontFamily: "var(--font-mono)", fontSize: 14 }}>
+              → See the wedge, furnace by furnace
+            </Link>
+          </div>
+          <PathwayChart pathway={pathway} />
         </div>
       </section>
 

@@ -75,6 +75,12 @@ h1, h2, h3 { font-family: var(--font-display), Georgia, serif; font-weight: 500;
 .stat-chip span { font-size: 11.5px; color: var(--slate-light); letter-spacing: 0.04em; }
 .stat-chip--accent b { color: var(--molten-soft); }
 
+/* premium fan animation — reveal left→right, annotations after */
+.fan .fan-reveal { clip-path: inset(0 100% 0 0); animation: fan-open 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards; }
+.fan .fan-late { opacity: 0; animation: fadein 0.8s ease-out 1.7s forwards; }
+.fan text { font-family: var(--font-mono), monospace; }
+@keyframes fan-open { to { clip-path: inset(0 0 0 0); } }
+
 /* pathway svg animation */
 .pathway path.draw {
   stroke-dasharray: 1;
@@ -192,6 +198,8 @@ a { color: var(--steel); }
   .band { padding: 64px 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .fan .fan-reveal { animation: none; clip-path: inset(0 0 0 0); }
+  .fan .fan-late { animation: none; opacity: 1; }
   .pathway path.draw { animation: none; stroke-dashoffset: 0; }
   .pathway .wedge-fill { animation: none; opacity: 1; }
   .firm-bar__seg { transition: none; }
