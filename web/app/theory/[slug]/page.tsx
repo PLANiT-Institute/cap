@@ -10,7 +10,7 @@ export default async function TheoryPage({ params }: { params: Promise<{ slug: s
   const { slug } = await params;
   const md = theoryDoc(slug);
   return (
-    <article style={{ lineHeight: 1.75, maxWidth: 760 }}>
+    <article className="page" style={{ lineHeight: 1.75 }}>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{md}</ReactMarkdown>
     </article>
   );

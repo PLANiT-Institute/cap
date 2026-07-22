@@ -246,8 +246,47 @@ def reference_prices() -> dict:
     return out
 
 
+def emission_pathway(cal: CalibrationSet) -> dict:
+    """부문 배출 궤적 (지수, base_year=100) — BAU vs 요구 경로. 웹 hero 애니메이션 입력.
+
+    NZ 경로: GCAM 배치곡선(현재 surrogate)의 H2-DRI 누적 배치 × route 평균 감축심도.
+    BAU: 현행 강도 유지 (지수 100 평탄). 계산기 원칙 — 전부 config·surrogate 유래.
+    """
+    import yaml as _yaml
+
+    legacy = _yaml.safe_load((RAW / "legacy_config" / "model_parameters.yaml").read_text())
+    g = legacy["gcam_nz2050"]
+    s = g["surrogate"]
+    base_year = int(cal.lsm["base_year"])
+    years = np.arange(base_year, base_year + int(cal.lsm["horizon_years"]) + 1)
+    q = s["L_Mt"] / (1.0 + np.exp(-s["k_steepness"] * (years - s["t0_inflection_yr"])))
+    total_cap = float(cal.firms["crude_steel_mt_yr"].sum())
+    intensity = cal.firms.set_index("route")["emission_intensity_tco2_t"]
+    depth = 1.0 - float(cal.routes["residual_intensity_tco2_t"].mean()) / float(
+        cal.firms["emission_intensity_tco2_t"].mean()
+    )
+    deployed_share = np.clip(q / total_cap, 0.0, 1.0)
+    nz_index = 100.0 * (1.0 - deployed_share * depth)
+    return {
+        "base_year": base_year,
+        "years": years.tolist(),
+        "bau_index": [100.0] * len(years),
+        "nz_index": nz_index.tolist(),
+        "deployed_share": deployed_share.tolist(),
+        "avg_abatement_depth": depth,
+        "source": cal.t_gcam_source,
+    }
+
+
 def main() -> int:
     cal = load_calibration()
+    write_artifact(
+        "emission_pathway",
+        emission_pathway(cal),
+        cal.param_status,
+        uses=["firms_registry", "routes_sensitivity"],
+        note="부문 배출지수 BAU vs GCAM 요구 경로 (surrogate) — Fig 1 애니메이션 입력",
+    )
     write_artifact(
         "reference_prices",
         reference_prices(),

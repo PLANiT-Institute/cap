@@ -7,8 +7,8 @@ export default function WedgeView({ rows }: { rows: any[] }) {
   return (
     <>
       <label style={{ fontSize: 14 }}>
-        <input type="checkbox" checked={eq} onChange={(e) => setEq(e.target.checked)} />{" "}
-        WACC-equalized (R4 순환성 부분 대응)
+        <input type="checkbox" checked={eq} onChange={(e) => setEq(e.target.checked)} /> Equalize
+        WACC across firms (answers the discount-rate circularity critique, R4)
       </label>
       <WedgeDumbbell rows={rows} equalized={eq} />
     </>

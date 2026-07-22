@@ -18,10 +18,10 @@ import tokens from "../tokens.json";
 
 const DRIVERS = ["carbon", "h2", "elec", "capex"] as const;
 const DRIVER_KO: Record<string, string> = {
-  carbon: "탄소",
-  h2: "수소",
-  elec: "전력",
-  capex: "자본",
+  carbon: "Carbon",
+  h2: "Hydrogen",
+  elec: "Electricity",
+  capex: "Capital",
 };
 const pct = (v: number) => `${(v * 100).toFixed(1)}%`;
 
@@ -71,8 +71,8 @@ export function WedgeDumbbell({
         <YAxis type="category" dataKey="y" width={110} tick={{ fontSize: 11 }} allowDuplicatedCategory={false} />
         <Tooltip formatter={(v: number) => v?.toFixed?.(1)} />
         <Legend />
-        <Scatter name="T_GCAM (요구)" data={gcamPts} fill={tokens.palette.accent} isAnimationActive={false} />
-        <Scatter name="τ* (사적 최적)" data={tauPts} fill={tokens.palette.navy} isAnimationActive={false} />
+        <Scatter name="T_GCAM (required)" data={gcamPts} fill={tokens.palette.accent} isAnimationActive={false} />
+        <Scatter name="τ* (private optimum)" data={tauPts} fill={tokens.palette.navy} isAnimationActive={false} />
       </ScatterChart>
     </ResponsiveContainer>
   );

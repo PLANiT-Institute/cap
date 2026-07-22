@@ -3,53 +3,62 @@ import remarkGfm from "remark-gfm";
 import { artifact, provenanceMd } from "../../lib/data";
 import StatusBadge from "../../components/StatusBadge";
 
-// /data — 연단위 레퍼런스 가격 + provenance 테이블
+// /data — annual reference prices + provenance table
 export default function DataPage() {
   const ref = artifact("reference_prices");
   return (
-    <>
-      <h1>레퍼런스 가격 (연단위)</h1>
-      <p style={{ maxWidth: 720, fontSize: 14 }}>
-        모델 파라미터가 아니다 — CAP은 계산기이고, 가격 수준·경로는 시나리오(config)가
-        구동한다. 아래는 대조용 실측 레퍼런스.
+    <main className="page">
+      <h1>Reference prices (annual)</h1>
+      <p style={{ maxWidth: 680, fontSize: 14, color: "#475569" }}>
+        These are not model parameters — CAP is a calculator, and price levels and paths are driven
+        by scenarios in config. The series below are measured references for comparison.
       </p>
-      <h2 style={{ fontSize: 16 }}>
-        KAU (탄소, KR) <StatusBadge status="measured" />
+      <h2 style={{ fontSize: 18 }}>
+        KAU — Korean allowance (carbon) <StatusBadge status="measured" />
       </h2>
-      <table style={{ borderCollapse: "collapse", fontSize: 13 }}>
+      <table>
         <thead>
           <tr>
-            {["연도", "평균 KRW/t", "평균 USD/t", "관측"].map((h) => (
-              <th key={h} style={{ textAlign: "right", padding: "3px 12px", borderBottom: "1px solid #cbd5e1" }}>{h}</th>
-            ))}
+            <th style={{ textAlign: "right" }}>Year</th>
+            <th style={{ textAlign: "right" }}>Mean KRW/t</th>
+            <th style={{ textAlign: "right" }}>Mean USD/t</th>
+            <th style={{ textAlign: "right" }}>Obs</th>
           </tr>
         </thead>
         <tbody>
           {ref.carbon_kr_annual.map((r: any) => (
-            <tr key={r.year}>
-              <td style={{ textAlign: "right", padding: "2px 12px" }}>{r.year}</td>
-              <td style={{ textAlign: "right", padding: "2px 12px" }}>{r.mean_krw.toLocaleString()}</td>
-              <td style={{ textAlign: "right", padding: "2px 12px" }}>{r.mean_usd}</td>
-              <td style={{ textAlign: "right", padding: "2px 12px" }}>{r.n_obs}</td>
+            <tr key={r.year} className="mono" style={{ fontSize: 13 }}>
+              <td style={{ textAlign: "right" }}>{r.year}</td>
+              <td style={{ textAlign: "right" }}>{r.mean_krw.toLocaleString()}</td>
+              <td style={{ textAlign: "right" }}>{r.mean_usd}</td>
+              <td style={{ textAlign: "right" }}>{r.n_obs}</td>
             </tr>
           ))}
         </tbody>
       </table>
       <p style={{ fontSize: 12, color: "#64748b" }}>{ref.carbon_source}</p>
-      <h2 style={{ fontSize: 16 }}>
-        전력 (기준 수준) <StatusBadge status="banded" />
+      <h2 style={{ fontSize: 18 }}>
+        Electricity — base levels <StatusBadge status="banded" />
       </h2>
-      <ul style={{ fontSize: 13 }}>
+      <ul style={{ fontSize: 13.5 }}>
         {ref.elec_base.map((e: any) => (
           <li key={e.series}>
-            {e.series}: {e.base_2026_usd_mwh} USD/MWh — {e.source} <em>({e.note})</em>
+            {e.series}: {e.base_2026_usd_mwh} USD/MWh — {e.source}{" "}
+            <em style={{ color: "#64748b" }}>
+              (annual series will replace this once SMP/JEPX data lands)
+            </em>
           </li>
         ))}
       </ul>
-      <hr style={{ margin: "24px 0", border: "none", borderTop: "1px solid #cbd5e1" }} />
+      <hr style={{ margin: "32px 0", border: "none", borderTop: "1px solid #e2e8f0" }} />
+      <h2 style={{ fontSize: 18 }}>Provenance</h2>
+      <p style={{ fontSize: 13, color: "#64748b" }}>
+        Every raw file is registered with source, collection date, and SHA256 — the build fails on
+        unregistered files. Table is machine-generated (Korean annex).
+      </p>
       <article style={{ lineHeight: 1.7, fontSize: 13, overflowX: "auto" }}>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{provenanceMd()}</ReactMarkdown>
       </article>
-    </>
+    </main>
   );
 }
