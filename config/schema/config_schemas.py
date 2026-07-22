@@ -60,13 +60,19 @@ lsm_schema = pa.DataFrameSchema(
 scenarios_schema = pa.DataFrameSchema(
     coerce=True,
     columns={
-        "scenario": Column(str, unique=True),
+        "driver": Column(str, Check.isin(["carbon", "elec_kr", "elec_jp"])),
+        "scenario": Column(str),
         "level_usd": Column(float, Check.gt(0)),
         "prob": Column(float, Check.in_range(0, 1)),
         "binds": Column(int, Check.isin([0, 1])),
         "anchor_note": Column(str),
     },
-    checks=[Check(lambda df: abs(df["prob"].sum() - 1.0) < 1e-9, error="prob 합 ≠ 1")],
+    checks=[
+        Check(
+            lambda df: (df.groupby("driver")["prob"].sum() - 1.0).abs().max() < 1e-9,
+            error="driver별 prob 합 ≠ 1",
+        )
+    ],
 )
 
 firms_schema = pa.DataFrameSchema(

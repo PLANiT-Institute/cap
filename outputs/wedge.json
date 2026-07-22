@@ -16,10 +16,10 @@
       "country": "KR",
       "category": "priced_route",
       "t_gcam": 2053.0,
-      "tau_star_year": 2043.8165467626,
-      "wedge_years": -9.1834532374,
-      "tau_star_year_wacc_eq": 2043.6909018673,
-      "wedge_years_wacc_eq": -9.3090981327
+      "tau_star_year": 2043.8400160385,
+      "wedge_years": -9.1599839615,
+      "tau_star_year_wacc_eq": 2043.6963788301,
+      "wedge_years_wacc_eq": -9.3036211699
     },
     {
       "asset_id": "A02",
@@ -27,10 +27,10 @@
       "country": "KR",
       "category": "priced_route",
       "t_gcam": 2038.0,
-      "tau_star_year": 2044.9979641694,
-      "wedge_years": 6.9979641694,
-      "tau_star_year_wacc_eq": 2045.0348460292,
-      "wedge_years_wacc_eq": 7.0348460292
+      "tau_star_year": 2044.8966080915,
+      "wedge_years": 6.8966080915,
+      "tau_star_year_wacc_eq": 2045.1864337937,
+      "wedge_years_wacc_eq": 7.1864337937
     },
     {
       "asset_id": "A06",
@@ -38,10 +38,10 @@
       "country": "KR",
       "category": "priced_route",
       "t_gcam": 2035.0,
-      "tau_star_year": 2044.0279747833,
-      "wedge_years": 9.0279747833,
-      "tau_star_year_wacc_eq": 2044.0500582072,
-      "wedge_years_wacc_eq": 9.0500582072
+      "tau_star_year": 2043.9857876036,
+      "wedge_years": 8.9857876036,
+      "tau_star_year_wacc_eq": 2044.0359094457,
+      "wedge_years_wacc_eq": 9.0359094457
     },
     {
       "asset_id": "A07",
@@ -49,10 +49,10 @@
       "country": "KR",
       "category": "priced_route",
       "t_gcam": 2044.0,
-      "tau_star_year": 2043.6285482563,
-      "wedge_years": -0.3714517437,
-      "tau_star_year_wacc_eq": 2043.5421201129,
-      "wedge_years_wacc_eq": -0.4578798871
+      "tau_star_year": 2043.6794141579,
+      "wedge_years": -0.3205858421,
+      "tau_star_year_wacc_eq": 2043.5780113177,
+      "wedge_years_wacc_eq": -0.4219886823
     },
     {
       "asset_id": "A03",
@@ -60,10 +60,10 @@
       "country": "KR",
       "category": "no_feasible_route",
       "t_gcam": 2061.0,
-      "tau_star_year": 2045.5979988228,
-      "wedge_years": -15.4020011772,
-      "tau_star_year_wacc_eq": 2045.8837884951,
-      "wedge_years_wacc_eq": -15.1162115049
+      "tau_star_year": 2045.6285032797,
+      "wedge_years": -15.3714967203,
+      "tau_star_year_wacc_eq": 2045.8929198362,
+      "wedge_years_wacc_eq": -15.1070801638
     },
     {
       "asset_id": "A08",
@@ -71,10 +71,10 @@
       "country": "KR",
       "category": "no_feasible_route",
       "t_gcam": 2033.0,
-      "tau_star_year": 2044.2146892655,
-      "wedge_years": 11.2146892655,
-      "tau_star_year_wacc_eq": 2043.9988938053,
-      "wedge_years_wacc_eq": 10.9988938053
+      "tau_star_year": 2044.2272209567,
+      "wedge_years": 11.2272209567,
+      "tau_star_year_wacc_eq": 2043.9763380282,
+      "wedge_years_wacc_eq": 10.9763380282
     },
     {
       "asset_id": "A04",
@@ -82,10 +82,10 @@
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2041.0,
-      "tau_star_year": 2047.2182617188,
-      "wedge_years": 6.2182617188,
-      "tau_star_year_wacc_eq": 2047.4007092199,
-      "wedge_years_wacc_eq": 6.4007092199
+      "tau_star_year": 2047.2081094284,
+      "wedge_years": 6.2081094284,
+      "tau_star_year_wacc_eq": 2047.3765243902,
+      "wedge_years_wacc_eq": 6.3765243902
     },
     {
       "asset_id": "A09",
@@ -93,10 +93,10 @@
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2037.0,
-      "tau_star_year": 2046.31555334,
-      "wedge_years": 9.31555334,
-      "tau_star_year_wacc_eq": 2046.7079181961,
-      "wedge_years_wacc_eq": 9.7079181961
+      "tau_star_year": 2046.2993981946,
+      "wedge_years": 9.2993981946,
+      "tau_star_year_wacc_eq": 2046.710982659,
+      "wedge_years_wacc_eq": 9.710982659
     },
     {
       "asset_id": "A05",
@@ -104,10 +104,10 @@
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2047.0,
-      "tau_star_year": 2050.4059753954,
-      "wedge_years": 3.4059753954,
-      "tau_star_year_wacc_eq": 2050.2059859155,
-      "wedge_years_wacc_eq": 3.2059859155
+      "tau_star_year": 2050.3433628319,
+      "wedge_years": 3.3433628319,
+      "tau_star_year_wacc_eq": 2050.2064631957,
+      "wedge_years_wacc_eq": 3.2064631957
     },
     {
       "asset_id": "A10",
@@ -115,10 +115,10 @@
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2043.0,
-      "tau_star_year": 2050.7675276753,
-      "wedge_years": 7.7675276753,
-      "tau_star_year_wacc_eq": 2050.8544776119,
-      "wedge_years_wacc_eq": 7.8544776119
+      "tau_star_year": 2050.7388059701,
+      "wedge_years": 7.7388059701,
+      "tau_star_year_wacc_eq": 2050.9087452471,
+      "wedge_years_wacc_eq": 7.9087452471
     },
     {
       "asset_id": "A11",
@@ -126,10 +126,10 @@
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2039.0,
-      "tau_star_year": 2050.7485822306,
-      "wedge_years": 11.7485822306,
-      "tau_star_year_wacc_eq": 2050.8294573643,
-      "wedge_years_wacc_eq": 11.8294573643
+      "tau_star_year": 2050.7567567568,
+      "wedge_years": 11.7567567568,
+      "tau_star_year_wacc_eq": 2050.9200779727,
+      "wedge_years_wacc_eq": 11.9200779727
     }
   ]
 }

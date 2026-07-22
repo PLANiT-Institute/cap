@@ -878,289 +878,289 @@
       "firm_id": "POSCO",
       "lambda": 0.15,
       "p_bind": 0.25,
-      "premium_bps": 2.4018121857
+      "premium_bps": 2.4004862236
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.15,
       "p_bind": 0.35,
-      "premium_bps": 3.3625370599
+      "premium_bps": 3.360680713
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.15,
       "p_bind": 0.45,
-      "premium_bps": 4.3232619342
+      "premium_bps": 4.3208752025
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.15,
       "p_bind": 0.55,
-      "premium_bps": 5.2839868084
+      "premium_bps": 5.2810696919
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.15,
       "p_bind": 0.65,
-      "premium_bps": 6.2447116827
+      "premium_bps": 6.2412641813
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.15,
       "p_bind": 0.75,
-      "premium_bps": 7.205436557
+      "premium_bps": 7.2014586708
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.15,
       "p_bind": 0.85,
-      "premium_bps": 8.1661614312
+      "premium_bps": 8.1616531602
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.15,
       "p_bind": 0.95,
-      "premium_bps": 9.1268863055
+      "premium_bps": 9.1218476497
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.25,
       "p_bind": 0.25,
-      "premium_bps": 4.0030203094
+      "premium_bps": 4.0008103727
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.25,
       "p_bind": 0.35,
-      "premium_bps": 5.6042284332
+      "premium_bps": 5.6011345217
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.25,
       "p_bind": 0.45,
-      "premium_bps": 7.205436557
+      "premium_bps": 7.2014586708
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.25,
       "p_bind": 0.55,
-      "premium_bps": 8.8066446807
+      "premium_bps": 8.8017828198
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.25,
       "p_bind": 0.65,
-      "premium_bps": 10.4078528045
+      "premium_bps": 10.4021069689
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.25,
       "p_bind": 0.75,
-      "premium_bps": 12.0090609283
+      "premium_bps": 12.002431118
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.25,
       "p_bind": 0.85,
-      "premium_bps": 13.610269052
+      "premium_bps": 13.602755267
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.25,
       "p_bind": 0.95,
-      "premium_bps": 15.2114771758
+      "premium_bps": 15.2030794161
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.35,
       "p_bind": 0.25,
-      "premium_bps": 5.6042284332
+      "premium_bps": 5.6011345217
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.35,
       "p_bind": 0.35,
-      "premium_bps": 7.8459198065
+      "premium_bps": 7.8415883304
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.35,
       "p_bind": 0.45,
-      "premium_bps": 10.0876111797
+      "premium_bps": 10.0820421391
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.35,
       "p_bind": 0.55,
-      "premium_bps": 12.329302553
+      "premium_bps": 12.3224959478
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.35,
       "p_bind": 0.65,
-      "premium_bps": 14.5709939263
+      "premium_bps": 14.5629497565
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.35,
       "p_bind": 0.75,
-      "premium_bps": 16.8126852996
+      "premium_bps": 16.8034035652
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.35,
       "p_bind": 0.85,
-      "premium_bps": 19.0543766729
+      "premium_bps": 19.0438573738
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.35,
       "p_bind": 0.95,
-      "premium_bps": 21.2960680461
+      "premium_bps": 21.2843111825
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.45,
       "p_bind": 0.25,
-      "premium_bps": 7.205436557
+      "premium_bps": 7.2014586708
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.45,
       "p_bind": 0.35,
-      "premium_bps": 10.0876111797
+      "premium_bps": 10.0820421391
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.45,
       "p_bind": 0.45,
-      "premium_bps": 12.9697858025
+      "premium_bps": 12.9626256074
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.45,
       "p_bind": 0.55,
-      "premium_bps": 15.8519604253
+      "premium_bps": 15.8432090757
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.45,
       "p_bind": 0.65,
-      "premium_bps": 18.7341350481
+      "premium_bps": 18.723792544
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.45,
       "p_bind": 0.75,
-      "premium_bps": 21.6163096709
+      "premium_bps": 21.6043760123
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.45,
       "p_bind": 0.85,
-      "premium_bps": 24.4984842937
+      "premium_bps": 24.4849594807
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.45,
       "p_bind": 0.95,
-      "premium_bps": 27.3806589165
+      "premium_bps": 27.365542949
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.55,
       "p_bind": 0.25,
-      "premium_bps": 8.8066446807
+      "premium_bps": 8.8017828198
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.55,
       "p_bind": 0.35,
-      "premium_bps": 12.329302553
+      "premium_bps": 12.3224959478
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.55,
       "p_bind": 0.45,
-      "premium_bps": 15.8519604253
+      "premium_bps": 15.8432090757
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.55,
       "p_bind": 0.55,
-      "premium_bps": 19.3746182976
+      "premium_bps": 19.3639222037
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.55,
       "p_bind": 0.65,
-      "premium_bps": 22.8972761699
+      "premium_bps": 22.8846353316
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.55,
       "p_bind": 0.75,
-      "premium_bps": 26.4199340422
+      "premium_bps": 26.4053484595
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.55,
       "p_bind": 0.85,
-      "premium_bps": 29.9425919145
+      "premium_bps": 29.9260615875
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.55,
       "p_bind": 0.95,
-      "premium_bps": 33.4652497868
+      "premium_bps": 33.4467747154
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.65,
       "p_bind": 0.25,
-      "premium_bps": 10.4078528045
+      "premium_bps": 10.4021069689
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.65,
       "p_bind": 0.35,
-      "premium_bps": 14.5709939263
+      "premium_bps": 14.5629497565
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.65,
       "p_bind": 0.45,
-      "premium_bps": 18.7341350481
+      "premium_bps": 18.723792544
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.65,
       "p_bind": 0.55,
-      "premium_bps": 22.8972761699
+      "premium_bps": 22.8846353316
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.65,
       "p_bind": 0.65,
-      "premium_bps": 27.0604172917
+      "premium_bps": 27.0454781192
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.65,
       "p_bind": 0.75,
-      "premium_bps": 31.2235584135
+      "premium_bps": 31.2063209067
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.65,
       "p_bind": 0.85,
-      "premium_bps": 35.3866995353
+      "premium_bps": 35.3671636943
     },
     {
       "firm_id": "POSCO",
       "lambda": 0.65,
       "p_bind": 0.95,
-      "premium_bps": 39.5498406571
+      "premium_bps": 39.5280064819
     }
   ],
   "level_min_bps": 1.5901634091,

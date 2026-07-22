@@ -43,10 +43,10 @@
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
-      "premium_bps": 16.6525644872,
-      "premium_reform_bps": 28.3969955985,
-      "sigma_b_usd_bn": 7.8603379854,
-      "sigma_b_reform_usd_bn": 13.4039404769
+      "premium_bps": 16.6433711503,
+      "premium_reform_bps": 28.4044167505,
+      "sigma_b_usd_bn": 7.8559985495,
+      "sigma_b_reform_usd_bn": 13.4074434066
     }
   ]
 }

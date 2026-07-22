@@ -38,6 +38,23 @@ anatomy(driver share·클러스터·서열)는 **proven** — λ·p_bind에 1차
 (Prop 1, `outputs/lambda_invariance.json`이 살아있는 데모). 절대 bps는 **conditional** —
 status=assumed 파라미터가 들어간 artifact엔 `conditional_on`이 자동으로 붙는다.
 
+## 계산기 (툴 원칙)
+
+CAP은 계산기다 — 시나리오·파라미터 in, anatomy·수준 out. 가격 수준·경로는
+시나리오(config)가 구동하고, 실측 시계열은 σ·ρ 캘리브레이션과 연단위 레퍼런스
+(`outputs/reference_prices.json`, 웹 /data)에만 쓴다. `config/scenarios.csv`는
+driver 컬럼으로 탄소 외 전력(elec_kr/elec_jp) 시나리오도 받는다.
+
+프로그램 진입점 (향후 MCP 서버가 감쌀 시임):
+
+```python
+from model.api import compute
+compute({"pricing": {"lambda": 0.6},
+         "carbon_scenarios": [{"scenario": "REFORM", "level_usd": 60, "prob": 1.0, "binds": 1}]})
+```
+
+파일 불변 — config·outputs 안 건드리고 메모리에서 계산 (τ*는 최근 `make model` 고정).
+
 ## 미확보 데이터 (도착 시 자동 승격)
 
 `data/raw/{kau,smp,jepx,gcam}/MISSING.md` — 파일을 해당 폴더에 넣고 provenance 등록 후

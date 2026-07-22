@@ -5,12 +5,12 @@
   "status_of_inputs": {},
   "h2_route_carbon_share": {
     "lo": 0.1221859702,
-    "hi": 0.6607819738
+    "hi": 0.6618304662
   },
   "grid_route_carbon_share": {
     "lo": 0.8034044998,
     "hi": 0.9903118192
   },
   "separated": true,
-  "gap": 0.142622526
+  "gap": 0.1415740335
 }

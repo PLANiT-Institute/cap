@@ -4,11 +4,15 @@
 API(`/api/systems`, Korean ETS id=8, secondary 시장)가 KAU 일별 [USD, EUR, KRW]
 2015-01-12~현재를 제공 — `icap_systems_20260722.json`으로 저장.
 
+**역할 (계산기 원칙)**: 시계열은 모델을 구동하지 않는다.
+- σ_carbon-diffusion만 **measured** 승격 (로그수익률 연율화 — s02)
+- 가격 수준·추세는 시나리오(config)가 구동. 시계열은 `outputs/reference_prices.json`
+  연단위 레퍼런스로만 나감 (웹 /data)
+
 **ingest 계약**: `s01_ingest.py`가 이 JSON에서 `processed/kau_daily.parquet`
-(date, close_krw, close_usd) 생성. `s02`가 σ_carbon-diffusion(로그수익률 연율화)·
-μ_carbon(로그선형 추세)·carbon_base_kr(최근 종가 USD)을 **measured**로 승격.
+(date, close_krw, close_usd) 생성.
 
-**갱신 방법**: `curl -sL -A "Mozilla/5.0" https://allowancepriceexplorer.icapcarbonaction.com/api/systems -o data/raw/kau/icap_systems_YYYYMMDD.json` (최신 파일이 이김) → provenance 패턴 자동 매칭 → `make all`.
+**갱신 방법**: `curl -sL -A "Mozilla/5.0" https://allowancepriceexplorer.icapcarbonaction.com/api/systems -o data/raw/kau/icap_systems_YYYYMMDD.json` (최신 파일이 이김) → `make all`.
 
-**비고**: KRX 정본(`krx_kau_daily_*.csv`)이 도착하면 그것이 우선한다 (연물별 해상도).
-검증: ICAP 실측 σ=0.397·μ=0.085 — 기존 banded 0.40·0.086과 부합.
+**비고**: KRX 정본(`krx_kau_daily_*.csv`)이 도착하면 그것이 우선 (연물별 해상도).
+레퍼런스 대조: 실측 σ=0.397 (banded 0.40 부합), 장기 endpoint 추세 0.087 (μ 앵커 0.086 부합).

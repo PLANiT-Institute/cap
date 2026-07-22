@@ -19,7 +19,7 @@ config status에서 생성한다 — 손으로 고치지 말 것. 해설은 이 
 | k | 0.4 | **assumed** | #claim-lambda-invariance |
 | fx_usdkrw | 1300.0 | **assumed** | #ledger-logic |
 | fx_usdjpy | 150.0 | **assumed** | #ledger-logic |
-| carbon_base_kr | 9.5 | **measured** | #claim-policy-repricing |
+| carbon_base_kr | 14.93 | **measured** | #claim-policy-repricing |
 | carbon_base_jp | 3.0 | **banded** | #claim-policy-repricing |
 
 ## σ 캘리브레이션 상태
@@ -58,7 +58,7 @@ config status에서 생성한다 — 손으로 고치지 말 것. 해설은 이 
 - `p_bind_in_exercise` (R5 실험 변형): 구현됨 · 현재 **OFF**
 - T^GCAM 출처: **surrogate** (raw 미확보 시 logistic surrogate — `data/raw/gcam/MISSING.md`)
 - s05 envelope은 공분산 불확실성만 반영 (τ* 재계산 없음)
-- measured 승격 이력: ['carbon_diffusion', 'mu_carbon', 'carbon_base_kr']
+- measured 승격 이력: ['carbon_diffusion']
 - provenance UNKNOWN 출처 파일: 0개
 
 <!-- AUTO:END -->

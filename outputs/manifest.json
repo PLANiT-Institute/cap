@@ -1,13 +1,11 @@
 {
-  "run_at": "2026-07-22T01:40:25+00:00",
-  "config_sha256": "33eefaf44dcf5ff424a9986828a200b77133bc6e96c56876f184a9cb64aa86cb",
-  "git_sha": "8ea0be830bcf6e605a64765ef9d40822583bee29",
+  "run_at": "2026-07-22T02:13:53+00:00",
+  "config_sha256": "3b350fe5bd994805aa37cbb3523379edf75dc43ee4a91e32919199f20c9995d0",
+  "git_sha": "fcf1bf85532883207f617b9f5ef4ac280fda90bb",
   "seed": 42,
   "t_gcam_source": "surrogate",
   "measured_overrides": [
-    "carbon_diffusion",
-    "mu_carbon",
-    "carbon_base_kr"
+    "carbon_diffusion"
   ],
   "artifacts": [
     "calibration_resolved.json",
@@ -17,6 +15,7 @@
     "lambda_invariance.json",
     "lambda_k_sensitivity.json",
     "premium_levels.json",
+    "reference_prices.json",
     "share_envelopes.json",
     "shares_by_firm.json",
     "sigma_linearity.json",

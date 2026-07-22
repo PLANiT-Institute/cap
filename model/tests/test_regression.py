@@ -117,3 +117,21 @@ def test_cost_vs_risk_differ():
     for f in art("cost_vs_risk")["firms"]:
         diffs = [abs(f["cost_shares"][d] - f["risk_shares"][d]) for d in DRIVERS]
         assert max(diffs) > 0.01
+
+
+def test_calculator_api_overrides():
+    """계산기 원칙: compute()가 파일 안 건드리고 오버라이드 반영 — MCP 시임."""
+    from model.api import compute
+
+    base = compute()
+    hi = compute({"pricing": {"lambda": 0.8}})
+    for b, h in zip(base["firms"], hi["firms"]):
+        assert h["premium_bps"] == pytest.approx(b["premium_bps"] * 0.8 / 0.4)  # 수준 스케일
+        for d in DRIVERS:
+            assert h["shares"][d] == pytest.approx(b["shares"][d])  # 조성 불변 (P1)
+    scen = compute({"carbon_scenarios": [
+        {"scenario": "SQ", "level_usd": 12, "prob": 0.5, "binds": 0},
+        {"scenario": "REFORM", "level_usd": 60, "prob": 0.5, "binds": 1},
+    ]})
+    assert scen["derived"]["l_bind"] == pytest.approx(60.0)
+    assert scen["derived"]["sigma_carbon_reform"] != pytest.approx(base["derived"]["sigma_carbon_reform"])

@@ -172,37 +172,37 @@
         {
           "step": "uncommitted",
           "label": "미확약",
-          "sigma_b_usd_bn": 7.8603379854,
-          "premium_bps": 16.6525644872,
+          "sigma_b_usd_bn": 7.8559985495,
+          "premium_bps": 16.6433711503,
           "cut_bps": 0.0
         },
         {
           "step": "h2_cfd",
           "label": "H₂ CfD (CHPS 낙찰 구조)",
-          "sigma_b_usd_bn": 5.6029553951,
-          "premium_bps": 11.8701735484,
-          "cut_bps": 4.7823909388
+          "sigma_b_usd_bn": 5.6065059343,
+          "premium_bps": 11.8776955638,
+          "cut_bps": 4.7656755865
         },
         {
           "step": "carbon_cfd",
           "label": "Carbon CfD (탄소 꼬리 절단)",
-          "sigma_b_usd_bn": 0.5261370362,
-          "premium_bps": 1.1146506602,
-          "cut_bps": 10.7555228882
+          "sigma_b_usd_bn": 0.5253008508,
+          "premium_bps": 1.1128791548,
+          "cut_bps": 10.764816409
         },
         {
           "step": "ppa",
           "label": "PPA (전력 고정)",
-          "sigma_b_usd_bn": 0.3618355037,
-          "premium_bps": 0.7665686985,
-          "cut_bps": 0.3480819617
+          "sigma_b_usd_bn": 0.3613366643,
+          "premium_bps": 0.7655118794,
+          "cut_bps": 0.3473672753
         },
         {
           "step": "capex_subsidy",
           "label": "자본보조 (CAPEX 고정)",
           "sigma_b_usd_bn": 0.0,
           "premium_bps": 0.0,
-          "cut_bps": 0.7665686985
+          "cut_bps": 0.7655118794
         }
       ]
     }

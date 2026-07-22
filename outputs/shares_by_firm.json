@@ -92,23 +92,23 @@
       "route": "h2_dri",
       "cluster": "h2_route",
       "capacity_mt": 14.5,
-      "t_switch_year": 2040.360649331,
+      "t_switch_year": 2040.3797253044,
       "shares": {
-        "carbon": 0.4934875624,
-        "h2": 0.4691689409,
-        "elec": 0.035224453,
-        "capex": 0.0021190437
+        "carbon": 0.4947029323,
+        "h2": 0.4680183248,
+        "elec": 0.0351632028,
+        "capex": 0.0021155402
       },
       "shares_reform": {
-        "carbon": 0.8215892688,
-        "h2": 0.1613417317,
-        "elec": 0.016340285,
-        "capex": 0.0007287144
+        "carbon": 0.8222964702,
+        "h2": 0.160684395,
+        "elec": 0.0162928079,
+        "capex": 0.0007263269
       },
-      "sigma_b_usd_bn": 7.8603379854,
-      "sigma_b_reform_usd_bn": 13.4039404769,
-      "premium_bps": 16.6525644872,
-      "premium_reform_bps": 28.3969955985
+      "sigma_b_usd_bn": 7.8559985495,
+      "sigma_b_reform_usd_bn": 13.4074434066,
+      "premium_bps": 16.6433711503,
+      "premium_reform_bps": 28.4044167505
     }
   ]
 }

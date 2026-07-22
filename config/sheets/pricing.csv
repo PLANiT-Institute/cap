@@ -4,5 +4,5 @@ p_bind,0.65,assumed,"넷제로 예산 구속확률 — 수준에만 진입 anato
 k,0.40,assumed,"ATM 옵션가치 선형화 상수 (≈0.4σB); LSM이 근사 없이 같은 대상 계산",#claim-lambda-invariance
 fx_usdkrw,1300,assumed,"2026 근사 환율 — ingest USD 병기용",#ledger-logic
 fx_usdjpy,150,assumed,"2026 근사 환율 — ingest USD 병기용",#ledger-logic
-carbon_base_kr,9.5,measured,"KRX KAU 현물 ~$9.5 — 얇고 행정적으로 경계지어진 시장 (§04)",#claim-policy-repricing
+carbon_base_kr,14.93,measured,"KAU 2026-06-30 종가 (ICAP 레퍼런스; outputs/reference_prices.json 연단위 대조) — 시나리오화 시 이 행을 시나리오가 대체",#claim-policy-repricing
 carbon_base_jp,3.0,banded,"GX-ETS 초기 시세 근사 (ICAP 2025; price_parameters.csv P07)",#claim-policy-repricing

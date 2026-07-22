@@ -131,28 +131,22 @@ def load_calibration() -> CalibrationSet:
     firms = firms_schema.validate(pd.read_csv(CFG / "firms.csv"))
     routes = routes_schema.validate(pd.read_csv(CFG / "routes.csv"))
 
+    # 계산기 원칙: 가격 '수준·추세'는 시나리오(config)가 구동한다. 시계열은
+    # σ·ρ 캘리브레이션과 연단위 레퍼런스에만 쓴다 (μ·base 자동 오버라이드 없음).
     measured = []
-    kau_base_usd: float | None = None
     kau = PROCESSED / "kau_daily.parquet"
     if kau.exists():
         kau_df = pd.read_parquet(kau)
         px = kau_df["close_krw"].astype(float)
         sig = _annualized_sigma(np.log(px).diff().dropna())
-        # 장기 실현 추세 (endpoint 로그성장) → μ_carbon measured.
-        # OLS는 2019 급등–2022 급락 hump에 끌려 부호가 뒤집힘 — endpoint가 강건
-        span_years = len(px) / TRADING_DAYS
-        mu = float(np.log(px.iloc[-1] / px.iloc[0]) / span_years)
         i = sigmas.index[sigmas["driver"] == "carbon_diffusion"][0]
-        sigmas.loc[i, ["value", "mu", "status", "source"]] = [
-            sig, mu, "measured", "KAU 일별 로그수익률 연율화 + 로그선형 추세 (processed/kau_daily.parquet)",
+        sigmas.loc[i, ["value", "status", "source"]] = [
+            sig, "measured", "KAU 일별 로그수익률 연율화 (processed/kau_daily.parquet)",
         ]
         # measured 값이 기존 band 밖이면 band를 값까지 확장 (스키마 정합)
         sigmas.loc[i, "band_lo"] = min(float(sigmas.loc[i, "band_lo"]), sig)
         sigmas.loc[i, "band_hi"] = max(float(sigmas.loc[i, "band_hi"]), sig)
         measured.append("carbon_diffusion")
-        measured.append("mu_carbon")
-        if "close_usd" in kau_df.columns:
-            kau_base_usd = float(kau_df["close_usd"].astype(float).iloc[-1])
     smp = PROCESSED / "smp_daily.parquet"
     if smp.exists():
         px = pd.read_parquet(smp)["smp_krw_kwh"].astype(float)
@@ -179,19 +173,13 @@ def load_calibration() -> CalibrationSet:
         sigmas.loc[i, ["value", "status", "source"]] = [sig, "measured", "JEPX 스팟 연율화 (processed/jepx_daily.parquet)"]
         measured.append("elec_jp")
 
-    if kau_base_usd is not None:
-        j = pricing_df.index[pricing_df["param"] == "carbon_base_kr"][0]
-        pricing_df.loc[j, ["value", "status", "source"]] = [
-            kau_base_usd, "measured", "KAU 최근 종가 USD (processed/kau_daily.parquet)",
-        ]
-        measured.append("carbon_base_kr")
-
     pricing = dict(zip(pricing_df["param"], pricing_df["value"].astype(float)))
     lsm = dict(zip(lsm_df["param"], lsm_df["value"].astype(float)))
 
-    levels = scenarios["level_usd"].to_numpy(float)
-    probs = scenarios["prob"].to_numpy(float)
-    binds = scenarios["binds"].to_numpy(int)
+    carbon_scen = scenarios[scenarios["driver"] == "carbon"]
+    levels = carbon_scen["level_usd"].to_numpy(float)
+    probs = carbon_scen["prob"].to_numpy(float)
+    binds = carbon_scen["binds"].to_numpy(int)
 
     status: dict[str, str] = {}
     for _, r in sigmas.iterrows():
@@ -231,8 +219,42 @@ def load_calibration() -> CalibrationSet:
     )
 
 
+def reference_prices() -> dict:
+    """연단위 레퍼런스 가격 — 모델을 구동하지 않는다 (계산기 원칙). 대조·표시용."""
+    out: dict = {"carbon_kr_annual": [], "elec_base": []}
+    kau = PROCESSED / "kau_daily.parquet"
+    if kau.exists():
+        df = pd.read_parquet(kau)
+        df["year"] = df["date"].str.slice(0, 4)
+        agg = df.groupby("year").agg(
+            mean_krw=("close_krw", "mean"),
+            mean_usd=("close_usd", "mean") if "close_usd" in df.columns else ("close_krw", "size"),
+            n_obs=("close_krw", "size"),
+        )
+        out["carbon_kr_annual"] = [
+            {"year": y, "mean_krw": round(r["mean_krw"], 0), "mean_usd": round(r["mean_usd"], 2), "n_obs": int(r["n_obs"])}
+            for y, r in agg.iterrows()
+        ]
+        out["carbon_source"] = "ICAP Allowance Price Explorer (KAU secondary) — data/raw/kau/"
+    prices = pd.read_parquet(PROCESSED / "prices.parquet").set_index("price_id")
+    for pid, label in [("P02", "elec_kr_industrial"), ("P03", "elec_jp_industrial")]:
+        r = prices.loc[pid]
+        out["elec_base"].append(
+            {"series": label, "base_2026_usd_mwh": float(r["base_2026"]), "source": str(r["reference"]),
+             "note": "연단위 시계열은 SMP/JEPX 확보 시 대체 (data/raw/{smp,jepx}/MISSING.md)"}
+        )
+    return out
+
+
 def main() -> int:
     cal = load_calibration()
+    write_artifact(
+        "reference_prices",
+        reference_prices(),
+        cal.param_status,
+        uses=[],
+        note="연단위 레퍼런스 — 모델 파라미터가 아님. 시나리오(config)가 모델을 구동한다",
+    )
     write_artifact(
         "calibration_resolved",
         {

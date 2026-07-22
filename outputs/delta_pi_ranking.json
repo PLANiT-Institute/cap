@@ -26,9 +26,9 @@
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
-      "pi_uncommitted_bps": 16.6525644872,
+      "pi_uncommitted_bps": 16.6433711503,
       "pi_committed_bps": 0.0,
-      "delta_pi_bps": 16.6525644872
+      "delta_pi_bps": 16.6433711503
     },
     {
       "firm_id": "NIPPON",

@@ -1,0 +1,95 @@
+{
+  "artifact": "reference_prices",
+  "note": "연단위 레퍼런스 — 모델 파라미터가 아님. 시나리오(config)가 모델을 구동한다",
+  "conditional_on": [],
+  "status_of_inputs": {},
+  "carbon_kr_annual": [
+    {
+      "year": "2015",
+      "mean_krw": 10506.0,
+      "mean_usd": 9.28,
+      "n_obs": 242
+    },
+    {
+      "year": "2016",
+      "mean_krw": 17217.0,
+      "mean_usd": 14.87,
+      "n_obs": 246
+    },
+    {
+      "year": "2017",
+      "mean_krw": 21416.0,
+      "mean_usd": 18.95,
+      "n_obs": 243
+    },
+    {
+      "year": "2018",
+      "mean_krw": 22727.0,
+      "mean_usd": 20.66,
+      "n_obs": 244
+    },
+    {
+      "year": "2019",
+      "mean_krw": 29822.0,
+      "mean_usd": 25.56,
+      "n_obs": 246
+    },
+    {
+      "year": "2020",
+      "mean_krw": 30164.0,
+      "mean_usd": 25.46,
+      "n_obs": 248
+    },
+    {
+      "year": "2021",
+      "mean_krw": 23004.0,
+      "mean_usd": 19.98,
+      "n_obs": 248
+    },
+    {
+      "year": "2022",
+      "mean_krw": 23755.0,
+      "mean_usd": 18.53,
+      "n_obs": 246
+    },
+    {
+      "year": "2023",
+      "mean_krw": 11407.0,
+      "mean_usd": 8.75,
+      "n_obs": 245
+    },
+    {
+      "year": "2024",
+      "mean_krw": 9481.0,
+      "mean_usd": 6.92,
+      "n_obs": 244
+    },
+    {
+      "year": "2025",
+      "mean_krw": 9393.0,
+      "mean_usd": 6.6,
+      "n_obs": 242
+    },
+    {
+      "year": "2026",
+      "mean_krw": 16382.0,
+      "mean_usd": 11.0,
+      "n_obs": 120
+    }
+  ],
+  "elec_base": [
+    {
+      "series": "elec_kr_industrial",
+      "base_2026_usd_mwh": 75.0,
+      "source": "Intratec KR 2025; KEPCO tariff",
+      "note": "연단위 시계열은 SMP/JEPX 확보 시 대체 (data/raw/{smp,jepx}/MISSING.md)"
+    },
+    {
+      "series": "elec_jp_industrial",
+      "base_2026_usd_mwh": 95.0,
+      "source": "Intratec JP 2025; METI survey",
+      "note": "연단위 시계열은 SMP/JEPX 확보 시 대체 (data/raw/{smp,jepx}/MISSING.md)"
+    }
+  ],
+  "carbon_source": "ICAP Allowance Price Explorer (KAU secondary) — data/raw/kau/"
+}
