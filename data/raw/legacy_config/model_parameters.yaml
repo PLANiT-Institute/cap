@@ -1,0 +1,117 @@
+# CAP Model Parameters — EVERY VALUE MUST HAVE A SOURCE
+# Rule 2b: No ad-hoc parameters without explicit sources
+# Generated: 2026-06-29
+
+# ─── State Variables ─────────────────────────────────────────────────
+state_variables:
+  p_H2:
+    base_level_2026: 5.5      # USD/kg; IMARC H2 Index 2026
+    mu: -0.05                  # [SOURCE: learning curve DOE H2Shot + IRENA EL forecast]
+    sigma: 0.30                # CONFIDENCE: LOW — LCOH proxy; range 0.25-0.35
+    sigma_band: [0.25, 0.35]   # Robustness band for headline reporting [Research Notes §8.3]
+    sigma_source: "MENA H2 bids + DOE LCOH range; no liquid spot"
+    sigma_confidence: "LOW — GOVERNING; author data request needed if σ_H2 changes sign/scale [G02]"
+
+  p_elec_KR:
+    base_level_2026: 75        # USD/MWh; Intratec KR 2025
+    mu: -0.015                 # [SOURCE: KEPCO tariff projection; RE expansion]
+    sigma: 0.18                # CONFIDENCE: MEDIUM; Intratec range
+
+  p_elec_JP:
+    base_level_2026: 95        # USD/MWh; Intratec JP 2025
+    mu: -0.015
+    sigma: 0.22                # CONFIDENCE: MEDIUM; JEPX volatility
+
+  rho_H2_elec: 0.70            # [SOURCE: SPARK + power share 55-70% of LCOH]
+
+# ─── CAPEX Parameters (from SPARK / D5, D6) ──────────────────────────
+capex:
+  K_build_base:                # K07: H2-DRI-EAF, external H2
+    low: 620
+    mid: 700
+    high: 830
+    unit: "USD/t_cap_steel"
+    source: "SPARK_CostEngine; DIW DP2082 Huettel & Lehner 2024; LBL Green Steel"
+    base_year: 2025
+    learning_rate: 0.08        # 8% per doubling [LBL; SPARK calibration]
+
+  K_avoided_reline:
+    low: 190
+    mid: 230
+    high: 280
+    unit: "USD/t_cap_steel"
+    source: "ACCR 2024; US Steel Gary BF14; POSCO disclosure"
+    base_year: 2025
+
+  K_inc_at_reline:             # K_build_base.mid - K_avoided_reline.mid
+    value: 470
+    note: "Calculated: K_build_base.mid - K_avoided_reline.mid"
+
+# ─── Discount Rates (D9) ─────────────────────────────────────────────
+discount_rates:
+  KR:
+    wacc: 0.075                # [SOURCE: GuruFocus; RMI; range 7-8%] [VERIFY: needs 2025 update G04]
+    hurdle: 0.10
+    band: [0.07, 0.08]         # Robustness r-band KR [Research Notes §8.3]
+  JP:
+    wacc: 0.040                # [SOURCE: NSC/JFE annual reports; Refinitiv]
+    hurdle: 0.06
+    band: [0.03, 0.04]         # Robustness r-band JP [Research Notes §8.3]
+
+# ─── Stochastic Process (BASE=GBM, ROBUSTNESS=MR/OU) ─────────────────
+stochastic:
+  base_process: "GBM"          # GBM-around-declining-trend [Research Notes §5.4]; conservative upper bound on gap
+  robustness_process: "MR"     # Mean-reversion, log-price OU (Schwartz 1-factor); gap lower bound
+  mr_kappa_H2: 0.50            # OU reversion speed /yr [PROVISIONAL — Schwartz 1997 commodity range 0.2-1.5; [VERIFY G05]]
+  mr_kappa_elec: 0.50          # [PROVISIONAL — Schwartz 1997 range; [VERIFY G05]]
+  mr_kappa_source: "Schwartz (1997 JF) one-factor commodity calibration range; asset-class proxy pending KR/JP fit"
+  horizon_years: 35            # Simulation horizon [matches asset reline windows to ~2060]
+  n_paths: 4000                # Monte Carlo paths (deterministic seed)
+  seed: 42
+
+# ─── Robustness Reporting Band (mandatory) [Research Notes §8.3] ─────
+robustness_band:
+  sigma_H2: [0.25, 0.35]       # σ_H2 lo/hi
+  process: ["GBM", "MR"]       # GBM=upper bound, MR=lower bound
+  r_KR: [0.07, 0.08]
+  r_JP: [0.03, 0.04]
+
+# ─── Cost Engine Modeling Basis ──────────────────────────────────────
+cost_engine:
+  carbon_basis: "realized"     # Use realized KR/JP carbon in firm OPEX (≈dead channel); shadow used ONLY for GCAM T_GCAM benchmark
+  carbon_basis_note: "Research Notes §3.3 — shadow price (p_carbon_shadow P14) drives the efficiency path; realized price (P06/P07) drives what firms actually face"
+  K_inc_at_reline_source: "capex_h2dri_references.csv K11 (= K07.mid - K10.mid = 470)"
+  K_inc_offcycle_source: "capex_h2dri_references.csv K12 (= K07.mid = 700)"
+  # Intensities (q_*), energy/material prices (p_*), fixed O&M (c_fix_*) are read from
+  # Data/raw/opex_energy/{intensity_coefficients,price_parameters}.csv — single source, Rule 2b.
+
+# ─── GCAM Benchmark (D1 — BLOCKER) ──────────────────────────────────
+gcam_nz2050:
+  status: "PROVISIONAL — literature-anchored logistic surrogate until D1 raw drop [G01]"
+  source: "Zenodo 14171830 / KOASAS 300934 / KAIST EPRG"
+  real_data_path: "Data/raw/gcam/Q_gcam_h2dri.csv"   # If present, overrides the surrogate below (cols: year,Q_h2dri_Mt)
+  # --- Literature anchors (used to build a provisional logistic Q^GCAM(t) surrogate) ---
+  deployment_onset_yr: 2032    # midpoint of 2031-2033 commercial-onset range
+  deployment_onset_yr_source: "Eom et al. 2022; KAIST EPRG — onset range 2031-2033 [PROVISIONAL]"
+  deployment_2050_Mt: 38       # Mt H2-DRI crude steel /yr by 2050 (~half of Korea output)
+  deployment_2050_Mt_source: "GCAM NZ2050 Korea scenario [PROVISIONAL]"
+  total_bf_capacity_Mt: 78     # Korea+Japan BF-BOF crude steel base for share normalisation [worldsteel 2024; portfolio sum]
+  # Logistic surrogate Q(t) = L / (1 + exp(-k(t - t0))); onset = year Q first exceeds onset_threshold
+  surrogate:
+    form: "logistic"
+    L_Mt: 38                   # saturation = deployment_2050_Mt
+    t0_inflection_yr: 2040     # inflection ~ midway onset->2050 [PROVISIONAL]
+    k_steepness: 0.28          # /yr; tuned so Q(2032)≈onset_threshold, Q(2050)≈0.95*L [PROVISIONAL]
+    onset_threshold_Mt: 1.0    # Q level marking commercial onset (≈POSCO HyREX 1Mt 2030 target)
+  T_i_GCAM_rule: "Asset assigned T_GCAM = year cumulative Q^GCAM(t) reaches asset's merit-order rank share (LCOA-ascending). Provisional until D1."
+  provisional: true
+
+# ─── Carbon Prices (D10) ─────────────────────────────────────────────
+carbon_prices:
+  KR_ETS_realized:
+    base_2026: 1.0             # USD/tCO2; ICAP 2025
+    source: "ICAP Phase 3; MOE Korea gazette"
+    channel_C3_status: "INACTIVE — insufficient for gap closure at ~$110-140/tCO2 requirement"
+  JP_GX_ETS:
+    base_2026: 3.0             # USD/tCO2; ICAP 2025
+    source: "ICAP 2025; METI Japan"

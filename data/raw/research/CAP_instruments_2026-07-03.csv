@@ -1,0 +1,13 @@
+jurisdiction,instrument,type,value_or_terms,policy_channel,option_parameter,confidence,is_estimate,notes,source
+JP,GX_Economic_Transition_Bonds,investment_subsidy,program_20trn_JPY;cumulative_4.2trn_by_2026-03;JFE_104.5bn_JPY,A_lower_boundary,I_eff_down,Med-High,no,funds EAF and H2-DRI capex,METI/enecho;InfluenceMap;tendersgo
+JP,GreenSteel_price_gap_support,CCfD_like,~3trn_JPY_over_15yr_from_supply_start,A_and_B,I_eff_down+payoff_up,Med,yes,price-gap coverage,METI/enecho
+JP,GX-ETS_mandatory_phase2,carbon_price,start_2026-04;FY2026-2032;>=100k_tCO2;auctions_FY2033_power_only,B_shift_state,P_carbon_up;sigma_truncate,High,no,mandatory ETS raises residual-emission payoff,ICAP;UNFCCC
+JP,H2_ammonia_CfD_JERA_Mitsui,input_price_contract,~6.8bn_USD_over_15yr_volume_based,B_shift_state,P_H2_fixed,Med,no,from Day-4,S&P/Woodmac
+KR,CHPS_clean_hydrogen_auction,input_price_CfD,clean_500GWh/yr+general_930GWh;bids_H2_2026;<=4kgCO2/kgH2;15yr_CfD_wholesale_vs_LCOE;volume_cut_to_500_from_3000GWh;coal-ammonia_excluded,B_shift_state,P_H2_elec_fixed;sigma_truncate,Med-High,no,double-sided CfD,gasworld;SeoulEconomic;AmmoniaEnergy
+KR,H2_reduction_steel_subsidy,investment_subsidy,~268.5bn_KRW_(~193m_USD)_mostly_BF_efficiency,A_lower_boundary,I_eff_down_weak,Med,yes,under-scaled for H2-DRI new tech,FuelCellChina/ForOurClimate
+KR,FINEX_H2_reduction_RnD,RnD_investment,~227m_USD;POSCO_HyREX_national_RnD_flagship,A_lower_boundary,I_eff_down,Med,yes,R&D channel,FuelCellsWorks;POSCO
+KR,K-Steel_Act,regulation_support,effective_2026-06-17,A_institutional,framework,Med,no,detailed support clauses TBD,ForOurClimate
+KR,industrial_power_PPA,input_price,KRW_173.98/kWh_Sep2025;Q1-2026_frozen;renewable_PPA,B_shift_state,P_elec_fixed,Med,no,from Day-4,Day-4
+EU,Germany_Klimaschutzvertraege_CCfD,CCfD,Round2_up_to_5bn_EUR;15yr;Round1_15_firms_2024-10,A_and_B,I_eff_down+P_carbon_floor,High,no,design benchmark for transplant,CleanEnergyWire;IEA
+EU,CCfD_design_principles,design_reference,benchmark_selection;product_vs_sector;CO2-price-only_vs_opex_coverage;ex_strike_150_EUR/tCO2,design,strike_K;coverage_scope,High,no,informs KR/JP CCfD design,FSR;GlobalCCSInstitute
+GLOBAL,green_premium_offtake,demand_side,FMC_10pct_near-zero_by_2030(<0.4tCO2e/t);SteelZero_50pct_by_2030;premium_auto_30-80_USD/t;EU_50-200_EUR/t;APAC_near-zero_demand_~6Mt/yr_2030,B_shift_state,P_steel_up,Med-High,yes,fiscally-free payoff lift,RMI;WEF;Fastmarkets;Canary

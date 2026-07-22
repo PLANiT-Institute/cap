@@ -1,0 +1,12 @@
+asset_id,company,country,facility,bf_number,capacity_mt_yr,crude_steel_mt_yr,start_year,last_reline_year,next_reline_year_est,remaining_life_yr,emission_intensity_tCO2_t,notes,data_source
+A01,POSCO,KR,Gwangyang,BF5,4.5,4.2,2007,2022,2037,11,2.1,Large BF; reline ~2037,"POSCO DART, CDP, ACCR"
+A02,POSCO,KR,Gwangyang,BF3,3.8,3.5,2000,2018,2033,7,2.0,Early exercise candidate ~2033,"POSCO DART, ACCR"
+A03,Hyundai Steel,KR,Dangjin,BF1,4.0,3.8,2010,2025,2040,14,2.1,Integrated with BF2,"Hyundai DART, CDP"
+A04,Nippon Steel,JP,Oita,BF1,5.5,5.2,2004,2019,2034,8,1.9,NSC large integrated BF,"EDINET FY2024, ACCR"
+A05,JFE Steel,JP,Keihin,BF1,4.8,4.5,2006,2021,2036,10,2.0,FY2025 schedule UNVERIFIED [VERIFY],EDINET FY2024 (provisional)
+A06,POSCO,KR,Pohang,BF4,3.5,3.3,2010,2016,2031,5,2.0,PROVISIONAL [VERIFY] reline=last+15 campaign-life rule,"POSCO disclosure (provisional)"
+A07,POSCO,KR,Gwangyang,BF4,3.8,3.5,2008,2021,2036,10,2.0,PROVISIONAL [VERIFY] reline=last+15,"POSCO disclosure (provisional)"
+A08,Hyundai Steel,KR,Dangjin,BF2,4.0,3.7,2012,2013,2028,2,2.1,PROVISIONAL [VERIFY] near-term reline candidate,"Hyundai disclosure (provisional)"
+A09,Nippon Steel,JP,Kashima,BF1,3.0,2.8,2005,2017,2032,6,1.9,PROVISIONAL [VERIFY] reline=last+15,"EDINET (provisional)"
+A10,JFE Steel,JP,Kurashiki,BF3,4.0,3.7,2009,2019,2034,8,2.0,PROVISIONAL [VERIFY] West works,"EDINET (provisional)"
+A11,Kobe Steel,JP,Kakogawa,BF2,2.8,2.6,2007,2018,2033,7,1.95,PROVISIONAL [VERIFY] Midrex NG-DRI co-located,"EDINET (provisional)"

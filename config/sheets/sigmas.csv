@@ -1,0 +1,7 @@
+driver,value,band_lo,band_hi,mu,status,source,confidence,theory_anchor
+carbon_diffusion,0.40,0.30,0.50,0.086,banded,"EUA 실현변동성 + KAU proxy; KRX 일별 미확보 (data/raw/kau/MISSING.md) — 확보 시 measured 승격. μ=ln(ℓ̄/KAU현물)/15yr 시나리오 앵커",LOW,#claim-policy-repricing
+h2,0.30,0.25,0.35,-0.05,banded,"MENA H2 입찰 + DOE LCOH range; 유동 스팟 없음. μ=학습곡선 (DOE H2Shot+IRENA; legacy_config)",LOW,#axiom-linear-cost
+elec_kr_regulated,0.12,0.10,0.14,-0.015,banded,"KEPCO 산업용 요금 pass-through 변동성 — 전력 가면을 쓴 정책리스크 (§06). μ=KEPCO 요금 전망",MEDIUM,#allocator-reading
+elec_kr_smp,0.135,0.11,0.16,-0.015,banded,"SMP 변동성 근사; EPSIS 시계열 미확보 (data/raw/smp/MISSING.md) — 확보 시 measured 승격",MEDIUM,#allocator-reading
+elec_jp,0.22,0.18,0.25,-0.015,banded,"JEPX 변동성 (Intratec JP 2025; jepx 시계열 미확보 data/raw/jepx/MISSING.md)",MEDIUM,#allocator-reading
+capex,0.15,0.10,0.20,-0.03,assumed,"K07 밴드 620–830 (±15% around 700); μ=학습률 8%/doubling 근사 (capex_h2dri_references.csv)",LOW,#axiom-linear-cost

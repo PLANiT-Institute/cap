@@ -1,0 +1,13 @@
+item_id,cost_item,unit,low,mid,high,base_year,learning_rate_pct_per_doubling,source_project,reference,notes
+K01,H2-DRI shaft (excl. electrolyzer),USD/t_cap_DRI,420,530,640,2025,8,SPARK_CostEngine,DIW DP2082 Huettel & Lehner 2024,Electrolyzer separate
+K02,Electrolyzer (water electrolysis),USD/kW,600,700,900,2025,15,SPARK_CostEngine,IRENA 2023,High cost now; fast learning
+K03,EAF (Electric Arc Furnace),USD/t_cap_steel,100,120,150,2025,3,SPARK_CostEngine,World Steel Association,Mature tech
+K04,BOS auxiliary + civil works,USD/t_cap_steel,60,80,100,2025,2,SPARK_CostEngine,LBL Green Steel,Site-dependent
+K05,H2 storage + supply infrastructure,USD/t_cap_steel,40,60,90,2025,5,SPARK_CostEngine,S&P Global,Distance-dependent
+K06,K_build TOTAL (with electrolyzer),USD/t_cap_steel,720,830,1060,2025,—,Calculated,K01+K02+K03+K04+K05,Sum
+K07,K_build (ext. H2 supply; no electrolyzer),USD/t_cap_steel,620,700,830,2025,—,Calculated,K01+K03+K04+K05,Base case
+K08,BF reline avoided cost,USD/t_cap_steel,170,200,240,2025,n/a,ACCR / US Steel Gary BF14,POSCO disclosure,Reline credit
+K09,BF reline production loss (opp. cost),USD/t_steel,20,30,40,2025,n/a,Yellishetty 2019,Academic estimate,~30-60 days downtime
+K10,K_avoided = K08 + K09,USD/t_cap_steel,190,230,280,2025,—,Calculated,K08+K09,Timing option credit
+K11,K_inc at reline (optimal exercise),USD/t_cap_steel,340,470,640,2025,—,Calculated,K07 - K10,"Reconciled 2026-06-30: mid=K07.mid-K10.mid=700-230=470; low=K07.low-K10.high=340; high=K07.high-K10.low=640 (prev mid=390 broke own formula)"
+K12,K_inc off-cycle (worst timing),USD/t_cap_steel,620,700,830,2025,—,Calculated,= K07,No reline credit

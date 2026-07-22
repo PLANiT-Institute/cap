@@ -1,0 +1,102 @@
+{
+  "artifact": "cost_vs_risk",
+  "note": "Fig 4 — 평균(비용) 분해 vs 분산(리스크) 분해 (A1의 경험적 발톱)",
+  "conditional_on": [],
+  "status_of_inputs": {},
+  "drivers": [
+    "carbon",
+    "h2",
+    "elec",
+    "capex"
+  ],
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "cost_shares": {
+        "carbon": 0.7901523106,
+        "h2": 0.0,
+        "elec": 0.160951298,
+        "capex": 0.0488963914
+      },
+      "risk_shares": {
+        "carbon": 0.9567717911,
+        "h2": 0.0,
+        "elec": 0.0427297306,
+        "capex": 0.0004984782
+      },
+      "exposure_pv_usd_t": {
+        "carbon": 1522.3235865361,
+        "h2": 0.0,
+        "elec": 310.0920594784,
+        "capex": 94.2047867038
+      }
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "cost_shares": {
+        "carbon": 0.6497328718,
+        "h2": 0.0,
+        "elec": 0.2669362736,
+        "capex": 0.0833308546
+      },
+      "risk_shares": {
+        "carbon": 0.8980943907,
+        "h2": 0.0,
+        "elec": 0.0999600645,
+        "capex": 0.0019455448
+      },
+      "exposure_pv_usd_t": {
+        "carbon": 1404.8075983012,
+        "h2": 0.0,
+        "elec": 577.1511981148,
+        "capex": 180.1722258404
+      }
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "cost_shares": {
+        "carbon": 0.2293610638,
+        "h2": 0.5791654997,
+        "elec": 0.1333835696,
+        "capex": 0.0580898668
+      },
+      "risk_shares": {
+        "carbon": 0.1910020382,
+        "h2": 0.6989755635,
+        "elec": 0.1084503377,
+        "capex": 0.0015720606
+      },
+      "exposure_pv_usd_t": {
+        "carbon": 1088.5885372859,
+        "h2": 2748.822811032,
+        "elec": 633.0622231468,
+        "capex": 275.7048738097
+      }
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "cost_shares": {
+        "carbon": 0.3853322737,
+        "h2": 0.4653769387,
+        "elec": 0.0846139889,
+        "capex": 0.0646767988
+      },
+      "risk_shares": {
+        "carbon": 0.5224641039,
+        "h2": 0.4417574667,
+        "elec": 0.0337486629,
+        "capex": 0.0020297665
+      },
+      "exposure_pv_usd_t": {
+        "carbon": 962.7841265559,
+        "h2": 1162.7822533189,
+        "elec": 211.4149551489,
+        "capex": 161.6002590645
+      }
+    }
+  ]
+}

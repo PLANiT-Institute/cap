@@ -1,0 +1,7 @@
+driver_i,driver_j,value,band_lo,band_hi,status,source,theory_anchor
+h2,elec,0.70,0.55,0.80,banded,"전력이 LCOH의 55–70% (SPARK; price_parameters.csv P10)",#axiom-linear-cost
+elec,carbon,0.30,0.00,0.50,assumed,"SMP×KAU 실측 상관 미확보 (data/raw/smp/MISSING.md) — 확보 시 measured 승격",#claim-policy-repricing
+h2,carbon,0.00,0.00,0.20,assumed,"수소 기술리스크와 탄소정책 점프의 상관 근거 없음 — 0 보수 설정",#axiom-linear-cost
+h2,capex,0.00,0.00,0.30,assumed,"전해조 학습률과 H2 가격의 공통요인 가능 — 기본 0",#axiom-linear-cost
+elec,capex,0.00,0.00,0.20,assumed,"근거 없음 — 기본 0",#axiom-linear-cost
+carbon,capex,0.00,0.00,0.20,assumed,"근거 없음 — 기본 0",#axiom-linear-cost

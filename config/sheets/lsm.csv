@@ -1,0 +1,19 @@
+param,value,note
+seed,42,"고정 seed — JSON diff 0 재현 조건"
+base_year,2026,"t=0 기준 연도 (reline 연수·τ* 캘린더 변환)"
+n_paths,4000,"Monte Carlo 경로 수"
+horizon_years,35,"시뮬레이션 지평 (~2060 reline 윈도우)"
+basis_degree,3,"LSM 회귀 basis 다항 차수"
+lambda_grid_lo,0.15,"s05 λ×p_bind 격자"
+lambda_grid_hi,0.65,
+lambda_grid_n,6,
+p_bind_grid_lo,0.25,
+p_bind_grid_hi,0.95,
+p_bind_grid_n,8,
+n_band_draws,200,"s05 share envelope: σ·ρ band 내 draw 수 — 분산 분해 A1 #axiom-variance-not-mean"
+sigma_linearity_n,7,"s03 σ 스케일 격자 점수 (R² 체크)"
+p_bind_in_exercise,0,"실험 플래그(R5): p_bind를 행사정책에 투입 — 기본 off, LEDGER 자동 표기"
+lambda_k_carbon,0.50,"s05 driver별 λ_k 감응도 모듈 (R1 대응) — 시스템적 점프리스크 가중"
+lambda_k_h2,0.35,"부분 분산가능 기술리스크"
+lambda_k_elec,0.35,
+lambda_k_capex,0.30,

@@ -1,0 +1,11 @@
+coeff_id,technology,input,unit,low,mid,high,notes,source_project,reference,state_variable,data_code
+I01,H2-DRI-EAF,Green H2,kg_H2/t_steel,55,60,65,DR shaft efficiency 95%,SPARK,Midrex Tech Sheet 2023,p_H2,D8
+I02,H2-DRI-EAF,Electricity (ext. H2),MWh/t_steel,0.7,0.8,1.0,EAF + aux power,SPARK,LBL Green Steel,p_elec,D8
+I03,H2-DRI-EAF,Electricity (w/ electrolyzer),MWh/t_steel,3.2,3.6,4.0,50-55 kWh/kg H2 × 60kg + EAF,SPARK,Lhyfe/IRENA,p_elec,D8
+I04,H2-DRI-EAF,DR pellets,t/t_steel,1.55,1.62,1.70,Fe 96%,SPARK,Midrex,—,D8
+I05,H2-DRI-EAF,EAF electrodes etc,USD/t_steel,15,20,25,"Alloys, electrodes, refractories",SPARK,World Steel,—,D8
+I06,BF-BOF,Coking coal,t/t_steel,0.60,0.70,0.80,Avoided cost — positive to payoff,SPARK,IEA Coal 2024,p_coal,D4
+I07,BF-BOF,Iron ore,t/t_steel,1.55,1.65,1.75,Avoided cost,SPARK,World Bank,—,D4
+I08,BF-BOF,Energy (coke+fuel),GJ/t_steel,12,14,16,Energy conversion,SPARK,JFE Tech Rev,—,D4
+I09,BF-BOF,Emission intensity,tCO2/t_steel,1.8,2.0,2.2,Scope 1+2; #204,Nature Rev Energy 2024,Nature Rev Energy 2024 (#204),—,D10
+I10,H2-DRI-EAF,Residual emission intensity,tCO2/t_steel,0.05,0.10,0.20,Grid carbon intensity dependent,SPARK,IEA ETP 2024,—,—

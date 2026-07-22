@@ -1,0 +1,48 @@
+{
+  "artifact": "delta_pi_ranking",
+  "note": "Δπ = π(미확약) − π(확약) > 0 — 전환의 재무가치, 수준은 λ·p_bind 조건부",
+  "conditional_on": [
+    "ev_usd_bn",
+    "k",
+    "lambda",
+    "p_bind",
+    "scenarios"
+  ],
+  "status_of_inputs": {
+    "ev_usd_bn": "assumed",
+    "k": "assumed",
+    "lambda": "assumed",
+    "p_bind": "assumed",
+    "scenarios": "assumed"
+  },
+  "ranking": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "pi_uncommitted_bps": 19.2787140056,
+      "pi_committed_bps": 0.0,
+      "delta_pi_bps": 19.2787140056
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "pi_uncommitted_bps": 16.527919175,
+      "pi_committed_bps": 0.0,
+      "delta_pi_bps": 16.527919175
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "pi_uncommitted_bps": 11.6237270655,
+      "pi_committed_bps": 0.0,
+      "delta_pi_bps": 11.6237270655
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "pi_uncommitted_bps": 11.0957380003,
+      "pi_committed_bps": 0.0,
+      "delta_pi_bps": 11.0957380003
+    }
+  ]
+}

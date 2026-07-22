@@ -1,0 +1,4 @@
+scenario,level_usd,prob,binds,anchor_note
+SQ,12,0.45,0,"현상유지 — KAU 얇은 시장 관성 (#claim-policy-repricing); 예산 비구속"
+MSR,35,0.35,1,"MSR 도입 + 이월제한 개혁 — 시장안정예비 (#claim-policy-repricing)"
+CBAM,85,0.20,1,"CBAM 연계·EUA 수렴 (#claim-policy-repricing); EUA-KAU 스프레드 앵커링 필요 (R2)"

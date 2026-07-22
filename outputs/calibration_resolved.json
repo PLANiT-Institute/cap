@@ -1,0 +1,226 @@
+{
+  "artifact": "calibration_resolved",
+  "note": "s02 캘리브레이션 해상본 — 이후 단계의 유일한 파라미터 소스",
+  "conditional_on": [
+    "fx_usdjpy",
+    "fx_usdkrw",
+    "k",
+    "lambda",
+    "p_bind",
+    "scenarios"
+  ],
+  "status_of_inputs": {
+    "carbon_base_jp": "banded",
+    "carbon_base_kr": "measured",
+    "fx_usdjpy": "assumed",
+    "fx_usdkrw": "assumed",
+    "k": "assumed",
+    "lambda": "assumed",
+    "p_bind": "assumed",
+    "scenarios": "assumed"
+  },
+  "sigmas": [
+    {
+      "driver": "carbon_diffusion",
+      "value": 0.4,
+      "band_lo": 0.3,
+      "band_hi": 0.5,
+      "mu": 0.086,
+      "status": "banded",
+      "source": "EUA 실현변동성 + KAU proxy; KRX 일별 미확보 (data/raw/kau/MISSING.md) — 확보 시 measured 승격. μ=ln(ℓ̄/KAU현물)/15yr 시나리오 앵커",
+      "confidence": "LOW",
+      "theory_anchor": "#claim-policy-repricing"
+    },
+    {
+      "driver": "h2",
+      "value": 0.3,
+      "band_lo": 0.25,
+      "band_hi": 0.35,
+      "mu": -0.05,
+      "status": "banded",
+      "source": "MENA H2 입찰 + DOE LCOH range; 유동 스팟 없음. μ=학습곡선 (DOE H2Shot+IRENA; legacy_config)",
+      "confidence": "LOW",
+      "theory_anchor": "#axiom-linear-cost"
+    },
+    {
+      "driver": "elec_kr_regulated",
+      "value": 0.12,
+      "band_lo": 0.1,
+      "band_hi": 0.14,
+      "mu": -0.015,
+      "status": "banded",
+      "source": "KEPCO 산업용 요금 pass-through 변동성 — 전력 가면을 쓴 정책리스크 (§06). μ=KEPCO 요금 전망",
+      "confidence": "MEDIUM",
+      "theory_anchor": "#allocator-reading"
+    },
+    {
+      "driver": "elec_kr_smp",
+      "value": 0.135,
+      "band_lo": 0.11,
+      "band_hi": 0.16,
+      "mu": -0.015,
+      "status": "banded",
+      "source": "SMP 변동성 근사; EPSIS 시계열 미확보 (data/raw/smp/MISSING.md) — 확보 시 measured 승격",
+      "confidence": "MEDIUM",
+      "theory_anchor": "#allocator-reading"
+    },
+    {
+      "driver": "elec_jp",
+      "value": 0.22,
+      "band_lo": 0.18,
+      "band_hi": 0.25,
+      "mu": -0.015,
+      "status": "banded",
+      "source": "JEPX 변동성 (Intratec JP 2025; jepx 시계열 미확보 data/raw/jepx/MISSING.md)",
+      "confidence": "MEDIUM",
+      "theory_anchor": "#allocator-reading"
+    },
+    {
+      "driver": "capex",
+      "value": 0.15,
+      "band_lo": 0.1,
+      "band_hi": 0.2,
+      "mu": -0.03,
+      "status": "assumed",
+      "source": "K07 밴드 620–830 (±15% around 700); μ=학습률 8%/doubling 근사 (capex_h2dri_references.csv)",
+      "confidence": "LOW",
+      "theory_anchor": "#axiom-linear-cost"
+    }
+  ],
+  "correlations": [
+    {
+      "driver_i": "h2",
+      "driver_j": "elec",
+      "value": 0.7,
+      "band_lo": 0.55,
+      "band_hi": 0.8,
+      "status": "banded",
+      "source": "전력이 LCOH의 55–70% (SPARK; price_parameters.csv P10)",
+      "theory_anchor": "#axiom-linear-cost"
+    },
+    {
+      "driver_i": "elec",
+      "driver_j": "carbon",
+      "value": 0.3,
+      "band_lo": 0.0,
+      "band_hi": 0.5,
+      "status": "assumed",
+      "source": "SMP×KAU 실측 상관 미확보 (data/raw/smp/MISSING.md) — 확보 시 measured 승격",
+      "theory_anchor": "#claim-policy-repricing"
+    },
+    {
+      "driver_i": "h2",
+      "driver_j": "carbon",
+      "value": 0.0,
+      "band_lo": 0.0,
+      "band_hi": 0.2,
+      "status": "assumed",
+      "source": "수소 기술리스크와 탄소정책 점프의 상관 근거 없음 — 0 보수 설정",
+      "theory_anchor": "#axiom-linear-cost"
+    },
+    {
+      "driver_i": "h2",
+      "driver_j": "capex",
+      "value": 0.0,
+      "band_lo": 0.0,
+      "band_hi": 0.3,
+      "status": "assumed",
+      "source": "전해조 학습률과 H2 가격의 공통요인 가능 — 기본 0",
+      "theory_anchor": "#axiom-linear-cost"
+    },
+    {
+      "driver_i": "elec",
+      "driver_j": "capex",
+      "value": 0.0,
+      "band_lo": 0.0,
+      "band_hi": 0.2,
+      "status": "assumed",
+      "source": "근거 없음 — 기본 0",
+      "theory_anchor": "#axiom-linear-cost"
+    },
+    {
+      "driver_i": "carbon",
+      "driver_j": "capex",
+      "value": 0.0,
+      "band_lo": 0.0,
+      "band_hi": 0.2,
+      "status": "assumed",
+      "source": "근거 없음 — 기본 0",
+      "theory_anchor": "#axiom-linear-cost"
+    }
+  ],
+  "pricing": {
+    "lambda": {
+      "value": 0.4,
+      "status": "assumed"
+    },
+    "p_bind": {
+      "value": 0.65,
+      "status": "assumed"
+    },
+    "k": {
+      "value": 0.4,
+      "status": "assumed"
+    },
+    "fx_usdkrw": {
+      "value": 1300.0,
+      "status": "assumed"
+    },
+    "fx_usdjpy": {
+      "value": 150.0,
+      "status": "assumed"
+    },
+    "carbon_base_kr": {
+      "value": 9.5,
+      "status": "measured"
+    },
+    "carbon_base_jp": {
+      "value": 3.0,
+      "status": "banded"
+    }
+  },
+  "scenarios": [
+    {
+      "scenario": "SQ",
+      "level_usd": 12.0,
+      "prob": 0.45,
+      "binds": 0,
+      "anchor_note": "현상유지 — KAU 얇은 시장 관성 (#claim-policy-repricing); 예산 비구속"
+    },
+    {
+      "scenario": "MSR",
+      "level_usd": 35.0,
+      "prob": 0.35,
+      "binds": 1,
+      "anchor_note": "MSR 도입 + 이월제한 개혁 — 시장안정예비 (#claim-policy-repricing)"
+    },
+    {
+      "scenario": "CBAM",
+      "level_usd": 85.0,
+      "prob": 0.2,
+      "binds": 1,
+      "anchor_note": "CBAM 연계·EUA 수렴 (#claim-policy-repricing); EUA-KAU 스프레드 앵커링 필요 (R2)"
+    }
+  ],
+  "derived": {
+    "l_bar": 34.65,
+    "l_bind": 53.1818181818,
+    "sigma_carbon_reform": 0.8801254165,
+    "k_offcycle_mult": 1.4893617021,
+    "t_gcam_source": "surrogate",
+    "t_gcam": {
+      "A08": 2033.0,
+      "A06": 2035.0,
+      "A09": 2037.0,
+      "A02": 2038.0,
+      "A11": 2039.0,
+      "A04": 2041.0,
+      "A10": 2043.0,
+      "A07": 2044.0,
+      "A05": 2047.0,
+      "A01": 2053.0,
+      "A03": 2061.0
+    }
+  },
+  "measured_overrides": []
+}

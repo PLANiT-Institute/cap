@@ -1,0 +1,26 @@
+parameter,symbol,value_KR,value_JP,unit,confidence,source_day,note
+wacc_posttax_nominal,r,7.75,5.75,pct_per_yr,Low-Med,D3-6,midpoint of D3 range (KR 7.0-8.5 / JP 5.0-6.5)
+capex_incremental_drp_eaf,dCAPEX,600-1000,600-1000,EUR_per_t_capacity,Med,D3-2,DRP+EAF lower to electrolyser-incl upper
+avoided_reline_offset,,400,400,MUSD_per_furnace,Med,D3-4,offset term to switch CAPEX; some cases 700-1000
+h2_input_coeff,q_H2,55,55,kg_per_t_steel,Med,D3-7/D4-2,range 50-60 (MIDREX ~80)
+electricity_input_coeff,q_elec,3.5,3.5,MWh_per_t_steel,Med,D3-7,incl electrolyser (3.48-3.72)
+delta_emissions,dE,1.65,1.65,tCO2_per_t_steel,Med,D3-5,e_BFBOF(~2.15) - e_H2DRI(~0.5)
+h2_price_initial,P_H2_0,5.5,5.5,USD_per_kg,Med,D4-2,2026 working assumption
+h2_price_2030,P_H2_2030,3.3,3.3,USD_per_kg,Med,D4-2,~-50pct by 2030
+h2_drift,mu_H2,-4,-4,pct_per_yr,Med,D4-7,GBM-around-declining-trend
+h2_vol,sigma_H2,30,30,pct_per_yr,Low-Med,D4-7,contract volume truncates effective sigma
+elec_price_initial,P_elec_0,126,150-180,USD_per_MWh,Med,D4-3/7,KR ~173.98 KRW/kWh converted
+elec_drift,mu_elec,0-1.5,0-1.5,pct_per_yr,Med,D4-7,mild rising/flat
+elec_vol,sigma_elec,12,25,pct_per_yr,Low-Med,D4-3/7,JEPX spot spikes raise JP sigma
+carbon_price_initial,P_carbon_0,9.5,low,USD_per_t,High/Med,D4-4,KR K-ETS KAU ~13750 KRW; JP GX-ETS nascent
+carbon_drift,mu_carbon,strong_positive,positive,-,Med,D4-4,KR 2026 near-doubling expected
+carbon_vol,sigma_carbon,EUA-VIX_upper,EUA-VIX_upper,-,Low-Med,D4-4,truncated by ETS price collar
+grid_emission_factor,,430-460,482,gCO2_per_kWh,Med/High,D3-5/D4-5,KR 2024 est; JP 2024 Ember
+correlation_h2_elec,rho,positive,positive,-,Low,D4-7,strong under self-electrolysis
+option_solver,,LSM,LSM,-,resolved,D3-4/D4-7,Longstaff-Schwartz least-squares Monte Carlo
+exercise_node,,reline,reline,-,resolved,D3-4,discrete choice reline/switch/close at campaign end
+comparison_metric_primary,,conditions_gap,conditions_gap,-,resolved,D5-4.4,timing_gap secondary
+carbon_model_status,,deterministic_path,deterministic_path,-,pinned_D7,3rd stochastic factor = Phase-1b extension
+r_model_status,,jurisdiction_constant,jurisdiction_constant,-,pinned_D7,endogenization r=r0+f(readiness) = extension track
+gcam_scenario,,OPEN,OPEN,-,unresolved,reset-5,net-zero/current-policy/mid selection pending (top priority)
+merit_order_rule,,OPEN,OPEN,-,unresolved,reset-5,sector-to-asset allocation rule pending (top priority)

@@ -1,0 +1,117 @@
+{
+  "artifact": "share_envelopes",
+  "note": "Fig 5 — σ·ρ band draw 포락. 노출 E는 base 고정 (공분산 불확실성만)",
+  "conditional_on": [],
+  "status_of_inputs": {},
+  "n_draws": 200,
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "cluster": "grid_route",
+      "envelope": {
+        "carbon": {
+          "lo": 0.9183871326,
+          "hi": 0.9903118192,
+          "median": 0.962789234
+        },
+        "h2": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
+        },
+        "elec": {
+          "lo": 0.0074569344,
+          "hi": 0.0802378199,
+          "median": 0.0337291334
+        },
+        "capex": {
+          "lo": 0.0005416664,
+          "hi": 0.0071199897,
+          "median": 0.0029141095
+        }
+      }
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "cluster": "grid_route",
+      "envelope": {
+        "carbon": {
+          "lo": 0.8034044998,
+          "hi": 0.9626599084,
+          "median": 0.9041400583
+        },
+        "h2": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
+        },
+        "elec": {
+          "lo": 0.0311033376,
+          "hi": 0.1888711645,
+          "median": 0.0881231428
+        },
+        "capex": {
+          "lo": 0.0014627548,
+          "hi": 0.0191122989,
+          "median": 0.0064701425
+        }
+      }
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "cluster": "h2_route",
+      "envelope": {
+        "carbon": {
+          "lo": 0.1221859702,
+          "hi": 0.3217381666,
+          "median": 0.2104079732
+        },
+        "h2": {
+          "lo": 0.5639956606,
+          "hi": 0.8030030383,
+          "median": 0.6843473675
+        },
+        "elec": {
+          "lo": 0.0657816054,
+          "hi": 0.1364075243,
+          "median": 0.0943317337
+        },
+        "capex": {
+          "lo": 0.0015372366,
+          "hi": 0.0180517868,
+          "median": 0.0076146576
+        }
+      }
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "cluster": "h2_route",
+      "envelope": {
+        "carbon": {
+          "lo": 0.3300963801,
+          "hi": 0.682429772,
+          "median": 0.5177923728
+        },
+        "h2": {
+          "lo": 0.2879011852,
+          "hi": 0.6192064298,
+          "median": 0.4409359502
+        },
+        "elec": {
+          "lo": 0.0132053809,
+          "hi": 0.0492783086,
+          "median": 0.0289697597
+        },
+        "capex": {
+          "lo": 0.0025372693,
+          "hi": 0.0213609048,
+          "median": 0.0087604359
+        }
+      }
+    }
+  ]
+}

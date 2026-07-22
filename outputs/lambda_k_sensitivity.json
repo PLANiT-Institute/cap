@@ -1,0 +1,78 @@
+{
+  "artifact": "lambda_k_sensitivity",
+  "note": "R1 대응 — A5(λ 균일성) 스트레스: s_k = λ_k·RC_k/Σλ_j·RC_j",
+  "conditional_on": [],
+  "status_of_inputs": {},
+  "lambda_k": {
+    "carbon": 0.5,
+    "h2": 0.35,
+    "elec": 0.35,
+    "capex": 0.3
+  },
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "shares_uniform_lambda": {
+        "carbon": 0.9567717911,
+        "h2": 0.0,
+        "elec": 0.0427297306,
+        "capex": 0.0004984782
+      },
+      "shares_lambda_k": {
+        "carbon": 0.9693916324,
+        "h2": 0.0,
+        "elec": 0.0303053357,
+        "capex": 0.0003030319
+      },
+      "max_shift": 0.0126198413
+    },
+    {
+      "firm_id": "KOBE",
+      "shares_uniform_lambda": {
+        "carbon": 0.8980943907,
+        "h2": 0.0,
+        "elec": 0.0999600645,
+        "capex": 0.0019455448
+      },
+      "shares_lambda_k": {
+        "carbon": 0.9266024619,
+        "h2": 0.0,
+        "elec": 0.072193157,
+        "capex": 0.0012043811
+      },
+      "max_shift": 0.0285080712
+    },
+    {
+      "firm_id": "NIPPON",
+      "shares_uniform_lambda": {
+        "carbon": 0.1910020382,
+        "h2": 0.6989755635,
+        "elec": 0.1084503377,
+        "capex": 0.0015720606
+      },
+      "shares_lambda_k": {
+        "carbon": 0.2522666602,
+        "h2": 0.6462222228,
+        "elec": 0.100265334,
+        "capex": 0.001245783
+      },
+      "max_shift": 0.061264622
+    },
+    {
+      "firm_id": "POSCO",
+      "shares_uniform_lambda": {
+        "carbon": 0.5224641039,
+        "h2": 0.4417574667,
+        "elec": 0.0337486629,
+        "capex": 0.0020297665
+      },
+      "shares_lambda_k": {
+        "carbon": 0.6099731344,
+        "h2": 0.3610240957,
+        "elec": 0.0275809272,
+        "capex": 0.0014218428
+      },
+      "max_shift": 0.0875090305
+    }
+  ]
+}

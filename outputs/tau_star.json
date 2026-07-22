@@ -1,0 +1,147 @@
+{
+  "artifact": "tau_star",
+  "note": "LSM 사적 최적 전환연도 — 예산 없는 measure (A2); drift 0 평탄 기대경로",
+  "conditional_on": [],
+  "status_of_inputs": {
+    "carbon_base_jp": "banded",
+    "carbon_base_kr": "measured",
+    "firms_registry": "banded",
+    "routes_sensitivity": "banded"
+  },
+  "base_year": 2026,
+  "p_bind_in_exercise": false,
+  "assets": [
+    {
+      "asset_id": "A01",
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "country": "KR",
+      "route": "h2_dri",
+      "category": "priced_route",
+      "tau_star_year": 2044.893064877,
+      "tau_star_year_wacc_eq": 2044.6971175166,
+      "p_exercised": 0.55875,
+      "option_value_usd_t": 127.5387565818
+    },
+    {
+      "asset_id": "A02",
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "country": "KR",
+      "route": "h2_dri",
+      "category": "priced_route",
+      "tau_star_year": 2045.8022522523,
+      "tau_star_year_wacc_eq": 2045.8142345568,
+      "p_exercised": 0.555,
+      "option_value_usd_t": 134.4139774806
+    },
+    {
+      "asset_id": "A06",
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "country": "KR",
+      "route": "h2_dri",
+      "category": "priced_route",
+      "tau_star_year": 2044.9527320035,
+      "tau_star_year_wacc_eq": 2044.8168529665,
+      "p_exercised": 0.5765,
+      "option_value_usd_t": 124.3974659144
+    },
+    {
+      "asset_id": "A07",
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "country": "KR",
+      "route": "h2_dri",
+      "category": "priced_route",
+      "tau_star_year": 2044.9157278053,
+      "tau_star_year_wacc_eq": 2044.7201957295,
+      "p_exercised": 0.55475,
+      "option_value_usd_t": 136.2714633454
+    },
+    {
+      "asset_id": "A03",
+      "firm_id": "HYUNDAI",
+      "firm": "Hyundai Steel",
+      "country": "KR",
+      "route": "scrap_eaf",
+      "category": "no_feasible_route",
+      "tau_star_year": 2046.9675675676,
+      "tau_star_year_wacc_eq": 2046.7952994693,
+      "p_exercised": 0.32375,
+      "option_value_usd_t": 70.7930739703
+    },
+    {
+      "asset_id": "A08",
+      "firm_id": "HYUNDAI",
+      "firm": "Hyundai Steel",
+      "country": "KR",
+      "route": "scrap_eaf",
+      "category": "no_feasible_route",
+      "tau_star_year": 2045.9916540212,
+      "tau_star_year_wacc_eq": 2045.746996997,
+      "p_exercised": 0.3295,
+      "option_value_usd_t": 55.425379361
+    },
+    {
+      "asset_id": "A04",
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "country": "JP",
+      "route": "h2_dri",
+      "category": "priced_route",
+      "tau_star_year": 2047.1688693098,
+      "tau_star_year_wacc_eq": 2047.3938931298,
+      "p_exercised": 0.51075,
+      "option_value_usd_t": 106.9183854782
+    },
+    {
+      "asset_id": "A09",
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "country": "JP",
+      "route": "h2_dri",
+      "category": "priced_route",
+      "tau_star_year": 2046.2797589151,
+      "tau_star_year_wacc_eq": 2046.6257217848,
+      "p_exercised": 0.49775,
+      "option_value_usd_t": 93.3597935191
+    },
+    {
+      "asset_id": "A05",
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "country": "JP",
+      "route": "scrap_eaf",
+      "category": "priced_route",
+      "tau_star_year": 2050.2158273381,
+      "tau_star_year_wacc_eq": 2050.1369369369,
+      "p_exercised": 0.139,
+      "option_value_usd_t": 73.6786918756
+    },
+    {
+      "asset_id": "A10",
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "country": "JP",
+      "route": "scrap_eaf",
+      "category": "priced_route",
+      "tau_star_year": 2050.677238806,
+      "tau_star_year_wacc_eq": 2050.7538167939,
+      "p_exercised": 0.134,
+      "option_value_usd_t": 61.1915741242
+    },
+    {
+      "asset_id": "A11",
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "country": "JP",
+      "route": "ng_dri",
+      "category": "priced_route",
+      "tau_star_year": 2050.7234042553,
+      "tau_star_year_wacc_eq": 2050.9035433071,
+      "p_exercised": 0.12925,
+      "option_value_usd_t": 62.7906451372
+    }
+  ]
+}

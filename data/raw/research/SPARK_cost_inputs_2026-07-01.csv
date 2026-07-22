@@ -1,0 +1,26 @@
+category,parameter,value,unit,confidence,is_estimate,notes,source
+CAPEX,DRP_EAF_lower,600,EUR_per_t_annual_capacity,Med,no,DRI plant + EAF lower bound,DIW Berlin DP2082
+CAPEX,DRP_EAF_electrolyser_upper,1000,EUR_per_t_annual_capacity,Med,no,DRI + EAF + electrolysis upper bound,DIW Berlin DP2082
+CAPEX,full_green_conversion,1200,USD_per_t_annual_capacity,Med,no,full decarbonization capex,Morgan Stanley
+CAPEX,new_DRI_EAF_plant,1.0,bn_EUR_per_large_integrated_plant,Low-Med,yes,order-of-magnitude,IEEFA/synthesis
+CAPEX_case,JFE_Kurashiki_EAF_2Mtpa,2.2,bn_USD,High,no,commercial 2028 Q1,Renewable-EI/Fastmarkets
+CAPEX_case,POSCO_Gwangyang_EAF_2p5Mtpa,0.393,bn_USD,High,no,600 bn KRW; completed 2026,Korea Times/Seoul Economic
+LCOS,H2_DRI_EAF,653,EUR_per_t_steel,Med,yes,levelized cost of steel,Transition Asia/IEEFA
+LCOS,BF_BOF_current,565,EUR_per_t_steel,Med,yes,midpoint of 550-580,Transition Asia
+Premium,green_premium_H2_5usd_kg,225,USD_per_t_steel,Med,yes,China case at H2 $5/kg,Transition Asia
+Reline,BF_campaign_life_well_managed,17.5,years,High,yes,midpoint of 15-20+,Oxmaint/RMI
+Reline,BF_campaign_life_poor,11,years,Med,yes,midpoint of 10-12,Oxmaint
+Reline,reline_cost_20yr_extension,400,M_USD_per_furnace,Med,yes,some cases 700-1000,RMI/IndustriousLabs
+Emission,BF_BOF,2.15,tCO2_per_t_crude_steel,High,yes,midpoint 2.0-2.3,worldsteel 2024/TPI
+Emission,NG_DRI_EAF,1.43,tCO2_per_t_crude_steel,Med,no,conventional DRI,worldsteel 2023
+Emission,scrap_EAF,0.55,tCO2_per_t_crude_steel,High,yes,midpoint 0.4-0.7,worldsteel/IEEFA
+Emission,H2_DRI_EAF_70H2_30NG,0.5,tCO2_per_t_crude_steel,Med,yes,~1/4 of BF-BOF,MDPI case
+Emission,H2_DRI_EAF_100green,0.2,tCO2_per_t_crude_steel,Med,yes,clean grid + green H2,ACS I&EC LCA
+Input,H2_consumption,55,kg_H2_per_t_crude_steel,Med,yes,range 50-60; MIDREX ~80,ChemRxiv/MDPI/IEEFA
+Input,total_electricity,3.5,MWh_per_t_liquid_steel,Med,yes,incl electrolyser 3.48-3.72,ScienceDirect
+Input,electrolyser_efficiency,53,kWh_per_kg_H2,High,yes,range 52-55,synthesis
+WACC,KR_after_tax_nominal,7.75,percent,Low,yes,range 7.0-8.5; refine w/ DART,Damodaran-based synthesis
+WACC,JP_after_tax_nominal,5.75,percent,Low,yes,range 5.0-6.5; refine w/ filings,Damodaran-based synthesis
+WACC,KR_risk_free_10Y,3.3,percent,Low,yes,2025 benchmark,market estimate
+WACC,JP_risk_free_10Y,1.5,percent,Low,yes,2025 benchmark,market estimate
+WACC,mature_ERP_2025,4.3,percent,Med,no,Damodaran mature-market ERP,Damodaran Country Risk 2025

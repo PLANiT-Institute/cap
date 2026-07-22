@@ -1,0 +1,30 @@
+category,parameter,value,unit,confidence,is_estimate,notes,source
+H2_level,green_H2_global_2026,7.0,EUR_per_kg,Med,yes,range 5-9,PwC/Atawey
+H2_level,H2_CAP_current_workassumption,5.5,USD_per_kg,Med,yes,range 4.5-6.5 (Day-3),Day-3 synthesis
+H2_level,H2_CAP_2030_workassumption,3.3,USD_per_kg,Med,yes,range 2.5-4.0 (Day-3),Day-3 synthesis
+H2_level,KR_CHPS_floor_bid,465,KRW_per_kWh_power,Med,yes,clean H2/ammonia power auction floor 460-470,Shin&Kim/Lexology
+H2_calib,H2_drift_mu_real,-4.0,percent_per_yr,Low-Med,yes,declining trend ~-3 to -5,PwC (~50% by 2030)
+H2_calib,H2_volatility_sigma,30,percent_per_yr,Low,yes,policy+power-linked; CfD truncates,estimate pending time series
+Elec_level,KR_industrial_price,173.98,KRW_per_kWh,High,no,Sep-2025; Q1-2026 frozen,GlobalPetrolPrices/KoreaHerald
+Elec_level,KR_industrial_price_usd,126,USD_per_MWh,Med,yes,at ~1380 KRW/USD,conversion estimate
+Elec_level,JP_business_price_allin,28.93,JPY_per_kWh,High,no,Sep-2025 all-in retail,GlobalPetrolPrices
+Elec_level,JP_industrial_price,17.5,JPY_per_kWh,Med,no,Oct-2025 industrial,Intratec
+Elec_calib,KR_elec_drift_mu,1.0,percent_per_yr,Low,yes,flat-to-mild rise; policy-suppressed,estimate
+Elec_calib,JP_elec_drift_mu,1.5,percent_per_yr,Low,yes,liberalized+fuel-linked,estimate
+Elec_calib,KR_elec_volatility_sigma,12,percent_per_yr,Low,yes,regulated retail; SMP-based,estimate pending time series
+Elec_calib,JP_elec_volatility_sigma,25,percent_per_yr,Low,yes,JEPX spot spikes (2026 high),estimate pending time series
+Carbon_level,KR_KETS_KAU_current,13750,KRW_per_tCO2,High,no,~$9.53; strongest since Apr-2023,ICAP/QCIntel
+Carbon_level,KR_KETS_2026_expectation,2.0,x_multiple,Med,yes,expected to nearly double in 2026,QCIntel
+Carbon_level,JP_GXETS_status,2026-04,mandatory_start,High,no,price ceiling/floor; auctions FY2033,ICAP/Offset8
+Carbon_level,EUA_reference,58.6,EUR_per_tCO2,Med,yes,range 71-90 depending on auctions,Cemnet
+Carbon_calib,carbon_drift_mu,strong_positive,qualitative,Med,yes,KR doubling + JP mandatory start,QCIntel/ICAP
+Carbon_calib,carbon_volatility_proxy,EUA_Carbon_VIX,option_implied,Med,no,NBER w32937; CIV corr 0.96; truncate by ETS collar,NBER/CEPR
+Grid,KR_grid_emission_factor,411,gCO2_per_kWh,Med,yes,2021 actual; ~430-460 est 2024,Statista/Climatiq
+Grid,JP_grid_emission_factor,482,gCO2_per_kWh,High,no,2024 Ember,Ember GER 2025
+Grid,JP_grid_emission_factor_council,416,gCO2_per_kWh,Med,no,FY2024-25 preliminary power council,Argus
+Rawmat,iron_ore_IODEX,98.4,USD_per_t,High,no,2026-07-01; 2026 outlook ~95,TradingEconomics/Fitch
+Rawmat,coking_coal_HCC_FOB_AUS,192,USD_per_t,Med-High,yes,2026 outlook 190-195,Fitch/GMK
+Rawmat,scrap_HMS_1_2_cfr_Turkey,367,USD_per_t,Med,no,Dec-2025; East Asia softer,Fastmarkets
+Rawmat,DR_grade_pellet_premium,quarterly_contract,USD_per_t,Med,no,strong premiums Q1-2026; value TBD,Fastmarkets MB-IRO-0077
+Correlation,rho_H2_elec,positive,qualitative,Low,yes,strong if in-house electrolysis; weak if imported H2,estimate
+Correlation,rho_carbon_elec,positive,qualitative,Low,yes,via grid emission channel,estimate

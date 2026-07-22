@@ -1,0 +1,16 @@
+{
+  "artifact": "cluster_separation",
+  "note": "두 클러스터 불교차 — 절반은 발견, 절반은 A4 배정의 귀결 (은폐하지 않음)",
+  "conditional_on": [],
+  "status_of_inputs": {},
+  "h2_route_carbon_share": {
+    "lo": 0.1221859702,
+    "hi": 0.682429772
+  },
+  "grid_route_carbon_share": {
+    "lo": 0.8034044998,
+    "hi": 0.9903118192
+  },
+  "separated": true,
+  "gap": 0.1209747278
+}

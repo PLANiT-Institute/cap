@@ -1,0 +1,412 @@
+[
+  {
+    "company": "POSCO",
+    "sector": "steel",
+    "country": "KR",
+    "stock_code": "005490",
+    "dart_code": "",
+    "technology": "HyREX H2-DRI",
+    "verified": true,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "005490",
+        "operating_profit": 1674892868684
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "005490",
+        "revenue": 1454079239690,
+        "operating_profit": 1106629372680
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "005490",
+        "revenue": 1997127595121,
+        "operating_profit": 1596420465635
+      }
+    }
+  },
+  {
+    "company": "Hyundai Steel",
+    "sector": "steel",
+    "country": "KR",
+    "stock_code": "004020",
+    "dart_code": "",
+    "technology": "EAF hybrid",
+    "verified": true,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "004020",
+        "revenue": 23666889994897,
+        "operating_profit": 1464738464719
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "004020",
+        "revenue": 21609416275152,
+        "operating_profit": 650384176039
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "004020",
+        "revenue": 18617621568224,
+        "operating_profit": 14969491017
+      }
+    }
+  },
+  {
+    "company": "Dongkuk Steel",
+    "sector": "steel",
+    "country": "KR",
+    "stock_code": "001230",
+    "dart_code": "",
+    "technology": "EAF (plate)",
+    "verified": false,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "001230",
+        "revenue": 7763291035765,
+        "operating_profit": 633042372438
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "001230",
+        "revenue": 15622260452,
+        "operating_profit": -14990897566
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "001230",
+        "revenue": 40265149610,
+        "operating_profit": 14087775693
+      }
+    }
+  },
+  {
+    "company": "SeAH Besteel",
+    "sector": "steel",
+    "country": "KR",
+    "stock_code": "001430",
+    "dart_code": "",
+    "technology": "EAF (special steel)",
+    "verified": false,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "001430",
+        "revenue": 699556410636,
+        "operating_profit": 62859398608
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "001430",
+        "revenue": 59258960626,
+        "operating_profit": 40951094816
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "001430",
+        "revenue": 160825197208,
+        "operating_profit": 143098099378
+      }
+    }
+  },
+  {
+    "company": "KG Steel",
+    "sector": "steel",
+    "country": "KR",
+    "stock_code": "016380",
+    "dart_code": "",
+    "technology": "EAF (special steel)",
+    "verified": false,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "016380",
+        "revenue": 3676462978525,
+        "operating_profit": 325853385142
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "016380",
+        "revenue": 3287842124059,
+        "operating_profit": 287904559731
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "016380",
+        "revenue": 3214672206323,
+        "operating_profit": 233889822505
+      }
+    }
+  },
+  {
+    "company": "Daehan Steel",
+    "sector": "steel",
+    "country": "KR",
+    "stock_code": "084010",
+    "dart_code": "",
+    "technology": "EAF (rebar)",
+    "verified": false,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "084010",
+        "revenue": 1283527751006,
+        "operating_profit": 140978129727
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "084010",
+        "revenue": 955564674636,
+        "operating_profit": 74431357117
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "084010",
+        "revenue": 796284829280,
+        "operating_profit": 10648168125
+      }
+    }
+  },
+  {
+    "company": "Nippon Steel",
+    "sector": "steel",
+    "country": "JP",
+    "stock_code": "5401.T",
+    "dart_code": "",
+    "technology": "COURSE50 + EAF",
+    "verified": true,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "JFE Steel",
+    "sector": "steel",
+    "country": "JP",
+    "stock_code": "5411.T",
+    "dart_code": "",
+    "technology": "Scrap-EAF",
+    "verified": true,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "Kobe Steel",
+    "sector": "steel",
+    "country": "JP",
+    "stock_code": "5406.T",
+    "dart_code": "",
+    "technology": "Midrex NG-DRI + EAF",
+    "verified": true,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "Tokyo Steel",
+    "sector": "steel",
+    "country": "JP",
+    "stock_code": "5423.T",
+    "dart_code": "",
+    "technology": "EAF (all scrap)",
+    "verified": false,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "Topy Industries",
+    "sector": "steel",
+    "country": "JP",
+    "stock_code": "7231.T",
+    "dart_code": "",
+    "technology": "EAF",
+    "verified": false,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "Kyoei Steel",
+    "sector": "steel",
+    "country": "JP",
+    "stock_code": "5440.T",
+    "dart_code": "",
+    "technology": "EAF",
+    "verified": false,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "Yamato Kogyo",
+    "sector": "steel",
+    "country": "JP",
+    "stock_code": "5444.T",
+    "dart_code": "",
+    "technology": "EAF",
+    "verified": false,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "LG Chem",
+    "sector": "petrochemical",
+    "country": "KR",
+    "stock_code": "051910",
+    "dart_code": "",
+    "technology": "Naphtha Cracking Center",
+    "verified": false,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "051910",
+        "revenue": 23403601000000,
+        "operating_profit": 1070050000000
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "051910",
+        "revenue": 19947377000000,
+        "operating_profit": -109149000000
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "051910",
+        "revenue": 20601857000000,
+        "operating_profit": 154398000000
+      }
+    }
+  },
+  {
+    "company": "Lotte Chemical",
+    "sector": "petrochemical",
+    "country": "KR",
+    "stock_code": "011170",
+    "dart_code": "",
+    "technology": "Naphtha Cracking Center",
+    "verified": false,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "011170",
+        "revenue": 16296609822524,
+        "operating_profit": -608072280207
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "011170",
+        "revenue": 13473082835886,
+        "operating_profit": -212103874802
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "011170",
+        "revenue": 13640122547484,
+        "operating_profit": -462156000940
+      }
+    }
+  },
+  {
+    "company": "Hanwha Solutions",
+    "sector": "petrochemical",
+    "country": "KR",
+    "stock_code": "009830",
+    "dart_code": "",
+    "technology": "Naphtha Cracking Center",
+    "verified": false,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "009830",
+        "revenue": 9686399464742,
+        "operating_profit": 920363377740
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "009830",
+        "revenue": 7305296189362,
+        "operating_profit": 21556270449
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "009830",
+        "revenue": 6134940101954,
+        "operating_profit": -163588214249
+      }
+    }
+  },
+  {
+    "company": "Kumho Petrochemical",
+    "sector": "petrochemical",
+    "country": "KR",
+    "stock_code": "011780",
+    "dart_code": "",
+    "technology": "Synthetic rubber",
+    "verified": false,
+    "years": {
+      "2022": {
+        "year": 2022,
+        "stock_code": "011780",
+        "revenue": 5086855585805,
+        "operating_profit": 656205503429
+      },
+      "2023": {
+        "year": 2023,
+        "stock_code": "011780",
+        "revenue": 4196148138989,
+        "operating_profit": 232567908562
+      },
+      "2024": {
+        "year": 2024,
+        "stock_code": "011780",
+        "revenue": 4854274755589,
+        "operating_profit": 189635404504
+      }
+    }
+  },
+  {
+    "company": "Mitsubishi Chemical Group",
+    "sector": "petrochemical",
+    "country": "JP",
+    "stock_code": "4188.T",
+    "dart_code": "",
+    "technology": "NCC + MMA",
+    "verified": false,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "Mitsui Chemicals",
+    "sector": "petrochemical",
+    "country": "JP",
+    "stock_code": "4183.T",
+    "dart_code": "",
+    "technology": "NCC + specialty",
+    "verified": false,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "Asahi Kasei",
+    "sector": "petrochemical",
+    "country": "JP",
+    "stock_code": "3407.T",
+    "dart_code": "",
+    "technology": "NCC + performance",
+    "verified": false,
+    "years": {},
+    "note": "Use IR/EDINET"
+  },
+  {
+    "company": "Sumitomo Chemical",
+    "sector": "petrochemical",
+    "country": "JP",
+    "stock_code": "4005.T",
+    "dart_code": "",
+    "technology": "NCC + agrochemicals",
+    "verified": false,
+    "years": {},
+    "note": "Use IR/EDINET"
+  }
+]

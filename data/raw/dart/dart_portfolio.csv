@@ -1,0 +1,31 @@
+﻿company,sector,country,year,revenue_krw,operating_profit_krw,net_income_krw,tangible_assets_krw,technology,verified
+POSCO,steel,KR,2022,,1674892868684,,,HyREX H2-DRI,True
+POSCO,steel,KR,2023,1454079239690.0,1106629372680,,,HyREX H2-DRI,True
+POSCO,steel,KR,2024,1997127595121.0,1596420465635,,,HyREX H2-DRI,True
+Hyundai Steel,steel,KR,2022,23666889994897.0,1464738464719,,,EAF hybrid,True
+Hyundai Steel,steel,KR,2023,21609416275152.0,650384176039,,,EAF hybrid,True
+Hyundai Steel,steel,KR,2024,18617621568224.0,14969491017,,,EAF hybrid,True
+Dongkuk Steel,steel,KR,2022,7763291035765.0,633042372438,,,EAF (plate),False
+Dongkuk Steel,steel,KR,2023,15622260452.0,-14990897566,,,EAF (plate),False
+Dongkuk Steel,steel,KR,2024,40265149610.0,14087775693,,,EAF (plate),False
+SeAH Besteel,steel,KR,2022,699556410636.0,62859398608,,,EAF (special steel),False
+SeAH Besteel,steel,KR,2023,59258960626.0,40951094816,,,EAF (special steel),False
+SeAH Besteel,steel,KR,2024,160825197208.0,143098099378,,,EAF (special steel),False
+KG Steel,steel,KR,2022,3676462978525.0,325853385142,,,EAF (special steel),False
+KG Steel,steel,KR,2023,3287842124059.0,287904559731,,,EAF (special steel),False
+KG Steel,steel,KR,2024,3214672206323.0,233889822505,,,EAF (special steel),False
+Daehan Steel,steel,KR,2022,1283527751006.0,140978129727,,,EAF (rebar),False
+Daehan Steel,steel,KR,2023,955564674636.0,74431357117,,,EAF (rebar),False
+Daehan Steel,steel,KR,2024,796284829280.0,10648168125,,,EAF (rebar),False
+LG Chem,petrochemical,KR,2022,23403601000000.0,1070050000000,,,Naphtha Cracking Center,False
+LG Chem,petrochemical,KR,2023,19947377000000.0,-109149000000,,,Naphtha Cracking Center,False
+LG Chem,petrochemical,KR,2024,20601857000000.0,154398000000,,,Naphtha Cracking Center,False
+Lotte Chemical,petrochemical,KR,2022,16296609822524.0,-608072280207,,,Naphtha Cracking Center,False
+Lotte Chemical,petrochemical,KR,2023,13473082835886.0,-212103874802,,,Naphtha Cracking Center,False
+Lotte Chemical,petrochemical,KR,2024,13640122547484.0,-462156000940,,,Naphtha Cracking Center,False
+Hanwha Solutions,petrochemical,KR,2022,9686399464742.0,920363377740,,,Naphtha Cracking Center,False
+Hanwha Solutions,petrochemical,KR,2023,7305296189362.0,21556270449,,,Naphtha Cracking Center,False
+Hanwha Solutions,petrochemical,KR,2024,6134940101954.0,-163588214249,,,Naphtha Cracking Center,False
+Kumho Petrochemical,petrochemical,KR,2022,5086855585805.0,656205503429,,,Synthetic rubber,False
+Kumho Petrochemical,petrochemical,KR,2023,4196148138989.0,232567908562,,,Synthetic rubber,False
+Kumho Petrochemical,petrochemical,KR,2024,4854274755589.0,189635404504,,,Synthetic rubber,False

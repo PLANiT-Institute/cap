@@ -1,0 +1,4 @@
+route,q_h2_kg_t,q_elec_mwh_t,residual_intensity_tco2_t,k_capex_usd_t,p_h2_base_usd_kg,p_elec_base_kr_usd_mwh,p_elec_base_jp_usd_mwh,avoided_opex_usd_t,route_opex_other_usd_t,status,source,theory_anchor
+h2_dri,60,0.8,0.10,470,5.5,75,95,436.5,380,banded,"intensity I01/I02/I10; capex K11; avoided=BF coal 0.7×$250+ore 1.65×$110+fixed $80 (I06/I07/P04/P05/P12); other=DR펠릿 1.62×$185+misc $20+fixed $60 (I04/I05/P11/P13)",#axiom-route-sensitivity
+scrap_eaf,0,0.60,0.40,200,5.5,75,95,436.5,500,banded,"EAF 원단위 (K03+K04 capex≈200); other=고철 1.1t×$400(assumed)+fixed $60; 수소 감응도 0은 구성상 배정 (A4)",#axiom-route-sensitivity
+ng_dri,0,0.70,0.80,300,5.5,75,95,436.5,460,banded,"Midrex NG-DRI (Kobe Kakogawa); other=NG+펠릿+fixed 근사; 수소 감응도 0 구성상 배정 (A4)",#axiom-route-sensitivity

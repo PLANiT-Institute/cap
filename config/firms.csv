@@ -1,0 +1,12 @@
+asset_id,firm_id,firm,country,facility,bf_number,crude_steel_mt_yr,next_reline_year,emission_intensity_tco2_t,route,category,wacc,hurdle,ev_usd_bn,elec_driver,status,source,theory_anchor
+A01,POSCO,POSCO,KR,Gwangyang,BF5,4.2,2037,2.1,h2_dri,priced_route,0.075,0.10,40,elec_kr_regulated,banded,"assets_blast_furnace.csv A01; DART WACC; EV 시장근사",#axiom-linear-cost
+A02,POSCO,POSCO,KR,Gwangyang,BF3,3.5,2033,2.0,h2_dri,priced_route,0.075,0.10,40,elec_kr_regulated,banded,"assets_blast_furnace.csv A02",#axiom-linear-cost
+A06,POSCO,POSCO,KR,Pohang,BF4,3.3,2031,2.0,h2_dri,priced_route,0.075,0.10,40,elec_kr_regulated,banded,"assets_blast_furnace.csv A06 (PROVISIONAL reline)",#axiom-linear-cost
+A07,POSCO,POSCO,KR,Gwangyang,BF4,3.5,2036,2.0,h2_dri,priced_route,0.075,0.10,40,elec_kr_regulated,banded,"assets_blast_furnace.csv A07 (PROVISIONAL reline)",#axiom-linear-cost
+A03,HYUNDAI,Hyundai Steel,KR,Dangjin,BF1,3.8,2040,2.1,scrap_eaf,no_feasible_route,0.105,0.12,18,elec_kr_regulated,banded,"assets_blast_furnace.csv A03; 요구 심도 > scrap-EAF 심도 (A4) — stranding 분리",#axiom-route-sensitivity
+A08,HYUNDAI,Hyundai Steel,KR,Dangjin,BF2,3.7,2028,2.1,scrap_eaf,no_feasible_route,0.105,0.12,18,elec_kr_regulated,banded,"assets_blast_furnace.csv A08; 요구 심도 > scrap-EAF 심도 (A4) — stranding 분리",#axiom-route-sensitivity
+A04,NIPPON,Nippon Steel,JP,Oita,BF1,5.2,2034,1.9,h2_dri,priced_route,0.040,0.06,40,elec_jp,banded,"assets_blast_furnace.csv A04; EDINET FY2024",#axiom-linear-cost
+A09,NIPPON,Nippon Steel,JP,Kashima,BF1,2.8,2032,1.9,h2_dri,priced_route,0.040,0.06,40,elec_jp,banded,"assets_blast_furnace.csv A09 (PROVISIONAL)",#axiom-linear-cost
+A05,JFE,JFE Steel,JP,Keihin,BF1,4.5,2036,2.0,scrap_eaf,priced_route,0.040,0.06,15,elec_jp,banded,"assets_blast_furnace.csv A05 (FY2025 UNVERIFIED)",#axiom-linear-cost
+A10,JFE,JFE Steel,JP,Kurashiki,BF3,3.7,2034,2.0,scrap_eaf,priced_route,0.040,0.06,15,elec_jp,banded,"assets_blast_furnace.csv A10; Kurashiki EAF 전환 발표",#axiom-linear-cost
+A11,KOBE,Kobe Steel,JP,Kakogawa,BF2,2.6,2033,1.95,ng_dri,priced_route,0.040,0.06,8,elec_jp,banded,"assets_blast_furnace.csv A11; Midrex NG-DRI co-located",#axiom-linear-cost

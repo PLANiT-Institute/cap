@@ -1,0 +1,15 @@
+price_id,variable,description,unit,base_2026,low_scenario,high_scenario,sigma_pct_yr,sigma_confidence,mu_trend_pct_yr,source_project,reference,data_code,notes
+P01,p_H2,Green H2 price,USD/kg,5.5,3.0,8.0,25-35,LOW — no liquid spot; LCOH proxy,-4 to -7,hub/data/energy_prices,IMARC H2 Index; DOE H-Shot; MENA bids,D2,BLOCKER-adjacent: σ_H2 governs headline band
+P02,p_elec_KR,Industrial electricity KR,USD/MWh,75,60,100,15-20,MEDIUM,-1 to -2,hub/data/energy_prices,Intratec KR 2025; KEPCO tariff,D3,
+P03,p_elec_JP,Industrial electricity JP,USD/MWh,95,75,130,18-25,MEDIUM,-1 to -2,hub/data/energy_prices,Intratec JP 2025; METI survey,D3,
+P04,p_coal,Coking coal price,USD/t,250,180,350,20-30,MEDIUM,0 to +1,hub/data/world_bank,World Bank Pink Sheet 2026; Fitch,D4,
+P05,p_ore,Iron ore price,USD/t,110,85,160,15-25,MEDIUM,-1 to 0,hub/data/world_bank,World Bank Pink Sheet 2026,D4,
+P06,p_carbon_KR,KR ETS carbon price,USD/tCO2,1,0.5,5,—,HIGH — near-constant,—,hub/data/k_ets,ICAP 2025; MOE Korea,D10,Channel C3 effectively inactive
+P07,p_carbon_JP,JP GX-ETS carbon price,USD/tCO2,3,1,8,—,HIGH — low level,—,hub/data/k_ets,ICAP 2025; METI Japan,D10,
+P08,sigma_comb_no_policy,Combined cost-driver vol (no support),pct/yr,—,40,50,~46,Calculated,—,Calculated,Formula: sqrt(sigH2^2+sigE^2+2*rho*sigH2*sigE),D2+D3,rho=0.70
+P09,sigma_comb_post_C2,Combined cost-driver vol (after C2),pct/yr,—,18,22,~20,Calculated,—,Calculated,Formula: sqrt(0+sigE^2+0) with sigH2=0,D2+D3,super-additive via rho
+P10,rho_H2_elec,Correlation H2 vs electricity,—,0.70,0.55,0.80,—,MEDIUM,—,SPARK / academic,Power = 55-70% of LCOH H2,D2+D3,
+P11,p_pellet,DR-grade pellet price,USD/t,185,150,230,15-25,MEDIUM,0 to +1,hub/data/world_bank,S&P Global 2026 (~$75 DR premium over std ore P05),D4,DR-grade premium for H2-DRI shaft
+P12,c_fix_bf,BF-BOF fixed O&M,USD/t,80,60,100,—,MEDIUM,—,hub/data/lbl,LBL Green Steel; labour+maint+overhead,D4,Non-energy fixed cost BF route
+P13,c_fix_h2dri,H2-DRI-EAF fixed O&M,USD/t,60,45,80,—,MEDIUM,—,hub/data/lbl,LBL Green Steel,D8,Non-energy fixed cost H2-DRI route (excl I05 misc)
+P14,p_carbon_shadow,GCAM NZ2050 shadow carbon (benchmark only),USD/tCO2,50,40,60,—,MEDIUM,—,hub/data/gcam,Eom et al. 2022; GCAM-KAIST NZ2050 (2026 value),D1,"Benchmark driver for T_GCAM ONLY; not the realized price firms face"

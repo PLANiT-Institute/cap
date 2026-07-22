@@ -1,0 +1,52 @@
+{
+  "artifact": "premium_levels",
+  "note": "절대 수준 (bps) — λ·p_bind·k·EV에 조건부 (§07 원장)",
+  "conditional_on": [
+    "ev_usd_bn",
+    "k",
+    "lambda",
+    "p_bind",
+    "scenarios"
+  ],
+  "status_of_inputs": {
+    "ev_usd_bn": "assumed",
+    "k": "assumed",
+    "lambda": "assumed",
+    "p_bind": "assumed",
+    "scenarios": "assumed"
+  },
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "premium_bps": 19.2787140056,
+      "premium_reform_bps": 41.48508659,
+      "sigma_b_usd_bn": 5.1898520267,
+      "sigma_b_reform_usd_bn": 11.1678331167
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "premium_bps": 11.0957380003,
+      "premium_reform_bps": 23.189232952,
+      "sigma_b_usd_bn": 1.59305891,
+      "sigma_b_reform_usd_bn": 3.3293697246
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "premium_bps": 11.6237270655,
+      "premium_reform_bps": 15.1982965788,
+      "sigma_b_usd_bn": 8.3443219227,
+      "sigma_b_reform_usd_bn": 10.9103972087
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "premium_bps": 16.527919175,
+      "premium_reform_bps": 28.5908876857,
+      "sigma_b_usd_bn": 7.8015029463,
+      "sigma_b_reform_usd_bn": 13.4954613558
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "artifact": "wedge",
+  "note": "Exposure_i = τ*_i − T_i^GCAM (#claim-wedge-conjunction); Fig 2 덤벨 + WACC-equalized",
+  "conditional_on": [],
+  "status_of_inputs": {
+    "carbon_base_jp": "banded",
+    "carbon_base_kr": "measured",
+    "firms_registry": "banded",
+    "routes_sensitivity": "banded"
+  },
+  "t_gcam_source": "surrogate",
+  "assets": [
+    {
+      "asset_id": "A01",
+      "firm": "POSCO",
+      "country": "KR",
+      "category": "priced_route",
+      "t_gcam": 2053.0,
+      "tau_star_year": 2044.893064877,
+      "wedge_years": -8.106935123,
+      "tau_star_year_wacc_eq": 2044.6971175166,
+      "wedge_years_wacc_eq": -8.3028824834
+    },
+    {
+      "asset_id": "A02",
+      "firm": "POSCO",
+      "country": "KR",
+      "category": "priced_route",
+      "t_gcam": 2038.0,
+      "tau_star_year": 2045.8022522523,
+      "wedge_years": 7.8022522523,
+      "tau_star_year_wacc_eq": 2045.8142345568,
+      "wedge_years_wacc_eq": 7.8142345568
+    },
+    {
+      "asset_id": "A06",
+      "firm": "POSCO",
+      "country": "KR",
+      "category": "priced_route",
+      "t_gcam": 2035.0,
+      "tau_star_year": 2044.9527320035,
+      "wedge_years": 9.9527320035,
+      "tau_star_year_wacc_eq": 2044.8168529665,
+      "wedge_years_wacc_eq": 9.8168529665
+    },
+    {
+      "asset_id": "A07",
+      "firm": "POSCO",
+      "country": "KR",
+      "category": "priced_route",
+      "t_gcam": 2044.0,
+      "tau_star_year": 2044.9157278053,
+      "wedge_years": 0.9157278053,
+      "tau_star_year_wacc_eq": 2044.7201957295,
+      "wedge_years_wacc_eq": 0.7201957295
+    },
+    {
+      "asset_id": "A03",
+      "firm": "Hyundai Steel",
+      "country": "KR",
+      "category": "no_feasible_route",
+      "t_gcam": 2061.0,
+      "tau_star_year": 2046.9675675676,
+      "wedge_years": -14.0324324324,
+      "tau_star_year_wacc_eq": 2046.7952994693,
+      "wedge_years_wacc_eq": -14.2047005307
+    },
+    {
+      "asset_id": "A08",
+      "firm": "Hyundai Steel",
+      "country": "KR",
+      "category": "no_feasible_route",
+      "t_gcam": 2033.0,
+      "tau_star_year": 2045.9916540212,
+      "wedge_years": 12.9916540212,
+      "tau_star_year_wacc_eq": 2045.746996997,
+      "wedge_years_wacc_eq": 12.746996997
+    },
+    {
+      "asset_id": "A04",
+      "firm": "Nippon Steel",
+      "country": "JP",
+      "category": "priced_route",
+      "t_gcam": 2041.0,
+      "tau_star_year": 2047.1688693098,
+      "wedge_years": 6.1688693098,
+      "tau_star_year_wacc_eq": 2047.3938931298,
+      "wedge_years_wacc_eq": 6.3938931298
+    },
+    {
+      "asset_id": "A09",
+      "firm": "Nippon Steel",
+      "country": "JP",
+      "category": "priced_route",
+      "t_gcam": 2037.0,
+      "tau_star_year": 2046.2797589151,
+      "wedge_years": 9.2797589151,
+      "tau_star_year_wacc_eq": 2046.6257217848,
+      "wedge_years_wacc_eq": 9.6257217848
+    },
+    {
+      "asset_id": "A05",
+      "firm": "JFE Steel",
+      "country": "JP",
+      "category": "priced_route",
+      "t_gcam": 2047.0,
+      "tau_star_year": 2050.2158273381,
+      "wedge_years": 3.2158273381,
+      "tau_star_year_wacc_eq": 2050.1369369369,
+      "wedge_years_wacc_eq": 3.1369369369
+    },
+    {
+      "asset_id": "A10",
+      "firm": "JFE Steel",
+      "country": "JP",
+      "category": "priced_route",
+      "t_gcam": 2043.0,
+      "tau_star_year": 2050.677238806,
+      "wedge_years": 7.677238806,
+      "tau_star_year_wacc_eq": 2050.7538167939,
+      "wedge_years_wacc_eq": 7.7538167939
+    },
+    {
+      "asset_id": "A11",
+      "firm": "Kobe Steel",
+      "country": "JP",
+      "category": "priced_route",
+      "t_gcam": 2039.0,
+      "tau_star_year": 2050.7234042553,
+      "wedge_years": 11.7234042553,
+      "tau_star_year_wacc_eq": 2050.9035433071,
+      "wedge_years_wacc_eq": 11.9035433071
+    }
+  ]
+}
