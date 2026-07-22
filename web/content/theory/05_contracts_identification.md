@@ -10,9 +10,9 @@
 
 | 기업 | π 미확약 (bps) | π 확약 (bps) | Δπ (bps) |
 |---|---|---|---|
-| JFE Steel | 19.3 | 0.0 | **19.3** |
-| POSCO | 16.5 | 0.0 | **16.5** |
+| JFE Steel | 19.1 | 0.0 | **19.1** |
+| POSCO | 16.7 | 0.0 | **16.7** |
 | Nippon Steel | 11.6 | 0.0 | **11.6** |
-| Kobe Steel | 11.1 | 0.0 | **11.1** |
+| Kobe Steel | 11.0 | 0.0 | **11.0** |
 
 계약 원천 데이터: `data/processed/instruments.parquet` (JOGMEC CfD, CHPS, GX 채권 등 — `data/raw/research/CAP_instruments_2026-07-03.csv`).

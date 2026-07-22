@@ -17,4 +17,4 @@ $$\text{Exposure}_i = \tau^*_i - T_i^{GCAM}$$
 
 **코드 대응**: `model/s03_lsm.py`가 τ*를, GCAM 배치곡선(현재 surrogate)이 T^GCAM을 산출. wedge는 존재 증명이고, 크기(σ_B)를 [[02_variance_premium]]에 넘긴다.
 
-**현행 수치**: 11개 고로의 wedge는 `outputs/wedge.json` (평균 4.3년). τ*는 예산 없는 measure에서 풀린다 — [[02_variance_premium]]의 A2와 [08_referee_notes.md](08_referee_notes.md) R5 참조.
+**현행 수치**: 11개 고로의 wedge는 `outputs/wedge.json` (평균 3.7년). τ*는 예산 없는 measure에서 풀린다 — [[02_variance_premium]]의 A2와 [08_referee_notes.md](08_referee_notes.md) R5 참조.

@@ -19,21 +19,21 @@
       "capacity_mt": 8.2,
       "t_switch_year": 2045.1951219512,
       "shares": {
-        "carbon": 0.9567717911,
+        "carbon": 0.956403113,
         "h2": 0.0,
-        "elec": 0.0427297306,
-        "capex": 0.0004984782
+        "elec": 0.0430915803,
+        "capex": 0.0005053067
       },
       "shares_reform": {
-        "carbon": 0.9825998006,
+        "carbon": 0.9825714229,
         "h2": 0.0,
-        "elec": 0.0172925484,
-        "capex": 0.0001076511
+        "elec": 0.0173206166,
+        "capex": 0.0001079605
       },
-      "sigma_b_usd_bn": 5.1898520267,
-      "sigma_b_reform_usd_bn": 11.1678331167,
-      "premium_bps": 19.2787140056,
-      "premium_reform_bps": 41.48508659
+      "sigma_b_usd_bn": 5.1546665277,
+      "sigma_b_reform_usd_bn": 11.1518165941,
+      "premium_bps": 19.1480106309,
+      "premium_reform_bps": 41.4255901039
     },
     {
       "firm_id": "KOBE",
@@ -44,21 +44,21 @@
       "capacity_mt": 2.6,
       "t_switch_year": 2039.0,
       "shares": {
-        "carbon": 0.8980943907,
+        "carbon": 0.8971942212,
         "h2": 0.0,
-        "elec": 0.0999600645,
-        "capex": 0.0019455448
+        "elec": 0.1008352356,
+        "capex": 0.0019705431
       },
       "shares_reform": {
-        "carbon": 0.961000255,
+        "carbon": 0.9609326595,
         "h2": 0.0,
-        "elec": 0.0385543136,
-        "capex": 0.0004454314
+        "elec": 0.0386206569,
+        "capex": 0.0004466836
       },
-      "sigma_b_usd_bn": 1.59305891,
-      "sigma_b_reform_usd_bn": 3.3293697246,
-      "premium_bps": 11.0957380003,
-      "premium_reform_bps": 23.189232952
+      "sigma_b_usd_bn": 1.582921867,
+      "sigma_b_reform_usd_bn": 3.3246998412,
+      "premium_bps": 11.0251329694,
+      "premium_reform_bps": 23.1567069724
     },
     {
       "firm_id": "NIPPON",
@@ -69,21 +69,21 @@
       "capacity_mt": 8.0,
       "t_switch_year": 2039.6,
       "shares": {
-        "carbon": 0.1910020382,
-        "h2": 0.6989755635,
-        "elec": 0.1084503377,
-        "capex": 0.0015720606
+        "carbon": 0.1889320949,
+        "h2": 0.7008666616,
+        "elec": 0.1086249297,
+        "capex": 0.0015763138
       },
       "shares_reform": {
-        "carbon": 0.5150549333,
-        "h2": 0.4088490288,
-        "elec": 0.0751764987,
-        "capex": 0.0009195392
+        "carbon": 0.5143566872,
+        "h2": 0.4094642327,
+        "elec": 0.0752581573,
+        "capex": 0.0009209229
       },
-      "sigma_b_usd_bn": 8.3443219227,
-      "sigma_b_reform_usd_bn": 10.9103972087,
-      "premium_bps": 11.6237270655,
-      "premium_reform_bps": 15.1982965788
+      "sigma_b_usd_bn": 8.3330568768,
+      "sigma_b_reform_usd_bn": 10.902197906,
+      "premium_bps": 11.6080347396,
+      "premium_reform_bps": 15.186874865
     },
     {
       "firm_id": "POSCO",
@@ -92,23 +92,23 @@
       "route": "h2_dri",
       "cluster": "h2_route",
       "capacity_mt": 14.5,
-      "t_switch_year": 2040.7621291368,
+      "t_switch_year": 2040.360649331,
       "shares": {
-        "carbon": 0.5224641039,
-        "h2": 0.4417574667,
-        "elec": 0.0337486629,
-        "capex": 0.0020297665
+        "carbon": 0.4934875624,
+        "h2": 0.4691689409,
+        "elec": 0.035224453,
+        "capex": 0.0021190437
       },
       "shares_reform": {
-        "carbon": 0.8363553621,
-        "h2": 0.1476267234,
-        "elec": 0.0153396061,
-        "capex": 0.0006783083
+        "carbon": 0.8215892688,
+        "h2": 0.1613417317,
+        "elec": 0.016340285,
+        "capex": 0.0007287144
       },
-      "sigma_b_usd_bn": 7.8015029463,
-      "sigma_b_reform_usd_bn": 13.4954613558,
-      "premium_bps": 16.527919175,
-      "premium_reform_bps": 28.5908876857
+      "sigma_b_usd_bn": 7.8603379854,
+      "sigma_b_reform_usd_bn": 13.4039404769,
+      "premium_bps": 16.6525644872,
+      "premium_reform_bps": 28.3969955985
     }
   ]
 }

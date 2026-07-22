@@ -19,30 +19,30 @@
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
-      "pi_uncommitted_bps": 19.2787140056,
+      "pi_uncommitted_bps": 19.1480106309,
       "pi_committed_bps": 0.0,
-      "delta_pi_bps": 19.2787140056
+      "delta_pi_bps": 19.1480106309
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
-      "pi_uncommitted_bps": 16.527919175,
+      "pi_uncommitted_bps": 16.6525644872,
       "pi_committed_bps": 0.0,
-      "delta_pi_bps": 16.527919175
+      "delta_pi_bps": 16.6525644872
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
-      "pi_uncommitted_bps": 11.6237270655,
+      "pi_uncommitted_bps": 11.6080347396,
       "pi_committed_bps": 0.0,
-      "delta_pi_bps": 11.6237270655
+      "delta_pi_bps": 11.6080347396
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
-      "pi_uncommitted_bps": 11.0957380003,
+      "pi_uncommitted_bps": 11.0251329694,
       "pi_committed_bps": 0.0,
-      "delta_pi_bps": 11.0957380003
+      "delta_pi_bps": 11.0251329694
     }
   ]
 }

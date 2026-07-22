@@ -19,34 +19,34 @@
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
-      "premium_bps": 19.2787140056,
-      "premium_reform_bps": 41.48508659,
-      "sigma_b_usd_bn": 5.1898520267,
-      "sigma_b_reform_usd_bn": 11.1678331167
+      "premium_bps": 19.1480106309,
+      "premium_reform_bps": 41.4255901039,
+      "sigma_b_usd_bn": 5.1546665277,
+      "sigma_b_reform_usd_bn": 11.1518165941
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
-      "premium_bps": 11.0957380003,
-      "premium_reform_bps": 23.189232952,
-      "sigma_b_usd_bn": 1.59305891,
-      "sigma_b_reform_usd_bn": 3.3293697246
+      "premium_bps": 11.0251329694,
+      "premium_reform_bps": 23.1567069724,
+      "sigma_b_usd_bn": 1.582921867,
+      "sigma_b_reform_usd_bn": 3.3246998412
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
-      "premium_bps": 11.6237270655,
-      "premium_reform_bps": 15.1982965788,
-      "sigma_b_usd_bn": 8.3443219227,
-      "sigma_b_reform_usd_bn": 10.9103972087
+      "premium_bps": 11.6080347396,
+      "premium_reform_bps": 15.186874865,
+      "sigma_b_usd_bn": 8.3330568768,
+      "sigma_b_reform_usd_bn": 10.902197906
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
-      "premium_bps": 16.527919175,
-      "premium_reform_bps": 28.5908876857,
-      "sigma_b_usd_bn": 7.8015029463,
-      "sigma_b_reform_usd_bn": 13.4954613558
+      "premium_bps": 16.6525644872,
+      "premium_reform_bps": 28.3969955985,
+      "sigma_b_usd_bn": 7.8603379854,
+      "sigma_b_reform_usd_bn": 13.4039404769
     }
   ]
 }

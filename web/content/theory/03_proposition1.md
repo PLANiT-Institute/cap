@@ -6,7 +6,7 @@
 
 `status: CLAIM (동차성에 의한 항등 — 성립 조건은 A5)`
 
-**수치 데모**: λ×p_bind 격자 전체에서 share 벡터의 최대 이탈은 0.0e+00 (소수점 6자리 불변), 수준은 1.60–45.79bps로 스윙 (`model/s05_robustness.py` → `outputs/lambda_invariance.json`).
+**수치 데모**: λ×p_bind 격자 전체에서 share 벡터의 최대 이탈은 0.0e+00 (소수점 6자리 불변), 수준은 1.59–45.48bps로 스윙 (`model/s05_robustness.py` → `outputs/lambda_invariance.json`).
 
 ## 공리 A5 — λ 균일성 {#axiom-uniform-lambda}
 
@@ -14,4 +14,4 @@
 
 `status: AXIOM · challenged-by: #referee-1 · robustness: s05 λ_k 감응도 모듈`
 
-**λ_k 스트레스 결과**: driver별 λ_k 허용 시 기업별 share 최대 이동 8.8% (`outputs/lambda_k_sensitivity.json`).
+**λ_k 스트레스 결과**: driver별 λ_k 허용 시 기업별 share 최대 이동 8.9% (`outputs/lambda_k_sensitivity.json`).

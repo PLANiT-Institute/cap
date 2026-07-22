@@ -132,13 +132,27 @@ def load_calibration() -> CalibrationSet:
     routes = routes_schema.validate(pd.read_csv(CFG / "routes.csv"))
 
     measured = []
+    kau_base_usd: float | None = None
     kau = PROCESSED / "kau_daily.parquet"
     if kau.exists():
-        px = pd.read_parquet(kau)["close_krw"].astype(float)
+        kau_df = pd.read_parquet(kau)
+        px = kau_df["close_krw"].astype(float)
         sig = _annualized_sigma(np.log(px).diff().dropna())
+        # 장기 실현 추세 (endpoint 로그성장) → μ_carbon measured.
+        # OLS는 2019 급등–2022 급락 hump에 끌려 부호가 뒤집힘 — endpoint가 강건
+        span_years = len(px) / TRADING_DAYS
+        mu = float(np.log(px.iloc[-1] / px.iloc[0]) / span_years)
         i = sigmas.index[sigmas["driver"] == "carbon_diffusion"][0]
-        sigmas.loc[i, ["value", "status", "source"]] = [sig, "measured", "KRX KAU 일별 로그수익률 연율화 (processed/kau_daily.parquet)"]
+        sigmas.loc[i, ["value", "mu", "status", "source"]] = [
+            sig, mu, "measured", "KAU 일별 로그수익률 연율화 + 로그선형 추세 (processed/kau_daily.parquet)",
+        ]
+        # measured 값이 기존 band 밖이면 band를 값까지 확장 (스키마 정합)
+        sigmas.loc[i, "band_lo"] = min(float(sigmas.loc[i, "band_lo"]), sig)
+        sigmas.loc[i, "band_hi"] = max(float(sigmas.loc[i, "band_hi"]), sig)
         measured.append("carbon_diffusion")
+        measured.append("mu_carbon")
+        if "close_usd" in kau_df.columns:
+            kau_base_usd = float(kau_df["close_usd"].astype(float).iloc[-1])
     smp = PROCESSED / "smp_daily.parquet"
     if smp.exists():
         px = pd.read_parquet(smp)["smp_krw_kwh"].astype(float)
@@ -164,6 +178,13 @@ def load_calibration() -> CalibrationSet:
         i = sigmas.index[sigmas["driver"] == "elec_jp"][0]
         sigmas.loc[i, ["value", "status", "source"]] = [sig, "measured", "JEPX 스팟 연율화 (processed/jepx_daily.parquet)"]
         measured.append("elec_jp")
+
+    if kau_base_usd is not None:
+        j = pricing_df.index[pricing_df["param"] == "carbon_base_kr"][0]
+        pricing_df.loc[j, ["value", "status", "source"]] = [
+            kau_base_usd, "measured", "KAU 최근 종가 USD (processed/kau_daily.parquet)",
+        ]
+        measured.append("carbon_base_kr")
 
     pricing = dict(zip(pricing_df["param"], pricing_df["value"].astype(float)))
     lsm = dict(zip(lsm_df["param"], lsm_df["value"].astype(float)))

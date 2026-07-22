@@ -18,10 +18,10 @@
       "country": "KR",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2044.893064877,
-      "tau_star_year_wacc_eq": 2044.6971175166,
-      "p_exercised": 0.55875,
-      "option_value_usd_t": 127.5387565818
+      "tau_star_year": 2043.8165467626,
+      "tau_star_year_wacc_eq": 2043.6909018673,
+      "p_exercised": 0.6255,
+      "option_value_usd_t": 220.5276256432
     },
     {
       "asset_id": "A02",
@@ -30,10 +30,10 @@
       "country": "KR",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2045.8022522523,
-      "tau_star_year_wacc_eq": 2045.8142345568,
-      "p_exercised": 0.555,
-      "option_value_usd_t": 134.4139774806
+      "tau_star_year": 2044.9979641694,
+      "tau_star_year_wacc_eq": 2045.0348460292,
+      "p_exercised": 0.614,
+      "option_value_usd_t": 228.4445456025
     },
     {
       "asset_id": "A06",
@@ -42,10 +42,10 @@
       "country": "KR",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2044.9527320035,
-      "tau_star_year_wacc_eq": 2044.8168529665,
-      "p_exercised": 0.5765,
-      "option_value_usd_t": 124.3974659144
+      "tau_star_year": 2044.0279747833,
+      "tau_star_year_wacc_eq": 2044.0500582072,
+      "p_exercised": 0.6345,
+      "option_value_usd_t": 202.7767659669
     },
     {
       "asset_id": "A07",
@@ -54,10 +54,10 @@
       "country": "KR",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2044.9157278053,
-      "tau_star_year_wacc_eq": 2044.7201957295,
-      "p_exercised": 0.55475,
-      "option_value_usd_t": 136.2714633454
+      "tau_star_year": 2043.6285482563,
+      "tau_star_year_wacc_eq": 2043.5421201129,
+      "p_exercised": 0.6165,
+      "option_value_usd_t": 217.1927977388
     },
     {
       "asset_id": "A03",
@@ -66,10 +66,10 @@
       "country": "KR",
       "route": "scrap_eaf",
       "category": "no_feasible_route",
-      "tau_star_year": 2046.9675675676,
-      "tau_star_year_wacc_eq": 2046.7952994693,
-      "p_exercised": 0.32375,
-      "option_value_usd_t": 70.7930739703
+      "tau_star_year": 2045.5979988228,
+      "tau_star_year_wacc_eq": 2045.8837884951,
+      "p_exercised": 0.42475,
+      "option_value_usd_t": 115.3925445723
     },
     {
       "asset_id": "A08",
@@ -78,10 +78,10 @@
       "country": "KR",
       "route": "scrap_eaf",
       "category": "no_feasible_route",
-      "tau_star_year": 2045.9916540212,
-      "tau_star_year_wacc_eq": 2045.746996997,
-      "p_exercised": 0.3295,
-      "option_value_usd_t": 55.425379361
+      "tau_star_year": 2044.2146892655,
+      "tau_star_year_wacc_eq": 2043.9988938053,
+      "p_exercised": 0.4425,
+      "option_value_usd_t": 97.287542592
     },
     {
       "asset_id": "A04",
@@ -90,10 +90,10 @@
       "country": "JP",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2047.1688693098,
-      "tau_star_year_wacc_eq": 2047.3938931298,
-      "p_exercised": 0.51075,
-      "option_value_usd_t": 106.9183854782
+      "tau_star_year": 2047.2182617188,
+      "tau_star_year_wacc_eq": 2047.4007092199,
+      "p_exercised": 0.512,
+      "option_value_usd_t": 109.4788600318
     },
     {
       "asset_id": "A09",
@@ -102,10 +102,10 @@
       "country": "JP",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2046.2797589151,
-      "tau_star_year_wacc_eq": 2046.6257217848,
-      "p_exercised": 0.49775,
-      "option_value_usd_t": 93.3597935191
+      "tau_star_year": 2046.31555334,
+      "tau_star_year_wacc_eq": 2046.7079181961,
+      "p_exercised": 0.5015,
+      "option_value_usd_t": 93.5191707208
     },
     {
       "asset_id": "A05",
@@ -114,10 +114,10 @@
       "country": "JP",
       "route": "scrap_eaf",
       "category": "priced_route",
-      "tau_star_year": 2050.2158273381,
-      "tau_star_year_wacc_eq": 2050.1369369369,
-      "p_exercised": 0.139,
-      "option_value_usd_t": 73.6786918756
+      "tau_star_year": 2050.4059753954,
+      "tau_star_year_wacc_eq": 2050.2059859155,
+      "p_exercised": 0.14225,
+      "option_value_usd_t": 79.2566906468
     },
     {
       "asset_id": "A10",
@@ -126,10 +126,10 @@
       "country": "JP",
       "route": "scrap_eaf",
       "category": "priced_route",
-      "tau_star_year": 2050.677238806,
-      "tau_star_year_wacc_eq": 2050.7538167939,
-      "p_exercised": 0.134,
-      "option_value_usd_t": 61.1915741242
+      "tau_star_year": 2050.7675276753,
+      "tau_star_year_wacc_eq": 2050.8544776119,
+      "p_exercised": 0.1355,
+      "option_value_usd_t": 63.3524161977
     },
     {
       "asset_id": "A11",
@@ -138,10 +138,10 @@
       "country": "JP",
       "route": "ng_dri",
       "category": "priced_route",
-      "tau_star_year": 2050.7234042553,
-      "tau_star_year_wacc_eq": 2050.9035433071,
-      "p_exercised": 0.12925,
-      "option_value_usd_t": 62.7906451372
+      "tau_star_year": 2050.7485822306,
+      "tau_star_year_wacc_eq": 2050.8294573643,
+      "p_exercised": 0.13225,
+      "option_value_usd_t": 62.8918817555
     }
   ]
 }

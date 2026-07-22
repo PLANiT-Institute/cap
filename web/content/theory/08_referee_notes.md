@@ -3,7 +3,7 @@
 이 섹션은 약점 은폐를 막는 장치다. 각 항목은 위 공리·주장의 `challenged-by`가 역참조하며, 해소되면 상태를 갱신한다.
 
 ## R1 {#referee-1}
-λ 균일성(A5)은 미검증 가정이고 P1의 실질 전제다. Prop 1 자체는 동차성에 의한 항등식이라 trivial 비판 가능. → **대응**: s05 λ_k 감응도 모듈 (`outputs/lambda_k_sensitivity.json`, 최대 share 이동 8.8%), A5의 공리 승격(완료). `status: OPEN`
+λ 균일성(A5)은 미검증 가정이고 P1의 실질 전제다. Prop 1 자체는 동차성에 의한 항등식이라 trivial 비판 가능. → **대응**: s05 λ_k 감응도 모듈 (`outputs/lambda_k_sensitivity.json`, 최대 share 이동 8.9%), A5의 공리 승격(완료). `status: OPEN`
 
 ## R2 {#referee-2}
 점프 도입은 A1(분산=리스크)과 긴장한다 — 점프의 왜도·첨도는 분산이 못 담고, 점프리스크 가격 ≠ 확산리스크 가격(Merton). 시나리오 확률에 시장 규율 부재 — CBAM certificate 경로·EUA-KAU 스프레드 앵커링 필요. `status: OPEN`

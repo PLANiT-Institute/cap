@@ -22,12 +22,12 @@
   "sigmas": [
     {
       "driver": "carbon_diffusion",
-      "value": 0.4,
+      "value": 0.3971654967,
       "band_lo": 0.3,
       "band_hi": 0.5,
-      "mu": 0.086,
-      "status": "banded",
-      "source": "EUA 실현변동성 + KAU proxy; KRX 일별 미확보 (data/raw/kau/MISSING.md) — 확보 시 measured 승격. μ=ln(ℓ̄/KAU현물)/15yr 시나리오 앵커",
+      "mu": 0.0868977271,
+      "status": "measured",
+      "source": "KAU 일별 로그수익률 연율화 + 로그선형 추세 (processed/kau_daily.parquet)",
       "confidence": "LOW",
       "theory_anchor": "#claim-policy-repricing"
     },
@@ -171,7 +171,7 @@
       "status": "assumed"
     },
     "carbon_base_kr": {
-      "value": 9.5,
+      "value": 14.93,
       "status": "measured"
     },
     "carbon_base_jp": {
@@ -205,7 +205,7 @@
   "derived": {
     "l_bar": 34.65,
     "l_bind": 53.1818181818,
-    "sigma_carbon_reform": 0.8801254165,
+    "sigma_carbon_reform": 0.8788408164,
     "k_offcycle_mult": 1.4893617021,
     "t_gcam_source": "surrogate",
     "t_gcam": {
@@ -222,5 +222,9 @@
       "A03": 2061.0
     }
   },
-  "measured_overrides": []
+  "measured_overrides": [
+    "carbon_diffusion",
+    "mu_carbon",
+    "carbon_base_kr"
+  ]
 }

@@ -1,5 +1,11 @@
 # PAPER_DIFF — 논문 원본 수치 vs 재구축 파이프라인 (2026-07-22)
 
+> **갱신 (2026-07-22 오후)**: KAU 일별 시계열을 ICAP Allowance Price Explorer에서 확보.
+> σ_carbon-diffusion **0.397 (measured)** · μ_carbon **0.087 (measured, 장기 endpoint 추세)** ·
+> carbon_base_kr **$14.93 (measured, 최근 종가)** — 기존 banded 0.40 / 0.086 / $9.5와 부합·대체.
+> 논문의 "KAU ~$9.5" 서술은 구 시점 값; 라이브 치환으로 자동 갱신됨.
+> POSCO carbon share 52.2%→49.3%로 논문(44.3%)에 근접.
+
 PLAN 지시: "불일치는 버그가 아니라 발견일 수 있으니 조용히 맞추지 말고 기록할 것."
 아래는 재구축 파이프라인(config 주도, 하드코딩 제로)의 출력과 논문 서술 수치의 대조다.
 회귀 테스트(`model/tests/test_regression.py`)는 *구조적* 성질(σ 검산, 불변성, 클러스터

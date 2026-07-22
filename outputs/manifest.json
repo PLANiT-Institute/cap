@@ -1,10 +1,14 @@
 {
-  "run_at": "2026-07-22T01:20:56+00:00",
-  "config_sha256": "6be41bf8fccf7d5393f99353d45092322eded43c5e18f3d10f696af3e45488eb",
-  "git_sha": "2c902319c8f2e4e4e5dc9d4e69551f11ec9fec9c",
+  "run_at": "2026-07-22T01:40:25+00:00",
+  "config_sha256": "33eefaf44dcf5ff424a9986828a200b77133bc6e96c56876f184a9cb64aa86cb",
+  "git_sha": "8ea0be830bcf6e605a64765ef9d40822583bee29",
   "seed": 42,
   "t_gcam_source": "surrogate",
-  "measured_overrides": [],
+  "measured_overrides": [
+    "carbon_diffusion",
+    "mu_carbon",
+    "carbon_base_kr"
+  ],
   "artifacts": [
     "calibration_resolved.json",
     "cluster_separation.json",

@@ -99,7 +99,8 @@ def ingest_optional_timeseries() -> list[str]:
     """KAU/SMP/JEPX — 존재할 때만. 반환: 생성된 시계열 이름."""
     made = []
     kau_files = sorted(RAW.glob("kau/krx_kau_daily_*.csv"))
-    if kau_files:
+    icap_files = sorted(RAW.glob("kau/icap_systems_*.json"))
+    if kau_files:  # KRX 정본이 ICAP보다 우선 (MISSING.md 계약)
         frames = [pd.read_csv(f, encoding="utf-8-sig") for f in kau_files]
         df = pd.concat(frames, ignore_index=True)
         date_col, close_col = df.columns[0], df.columns[1]
@@ -111,6 +112,18 @@ def ingest_optional_timeseries() -> list[str]:
         ).dropna(subset=["date"]).sort_values("date")
         out.to_parquet(PROCESSED / "kau_daily.parquet", index=False)
         made.append("kau_daily")
+    elif icap_files:
+        import json
+
+        systems = json.loads(icap_files[-1].read_text())  # 최신 파일
+        korea = next(s for s in systems if s["name"].startswith("Korean Emissions"))
+        rows = [
+            {"date": dt, "close_usd": v[0], "close_krw": v[2]}
+            for dt, v in sorted(korea["values"]["secondary"].items())
+            if v and v[0] is not None and v[2] is not None
+        ]
+        pd.DataFrame(rows).to_parquet(PROCESSED / "kau_daily.parquet", index=False)
+        made.append("kau_daily(icap)")
     smp_files = sorted(RAW.glob("smp/smp_daily_*.csv"))
     if smp_files:
         df = pd.concat([pd.read_csv(f, encoding="utf-8-sig") for f in smp_files], ignore_index=True)

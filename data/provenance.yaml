@@ -136,6 +136,13 @@ registry:
     units: "n/a"
     license: "internal"
 
+  - pattern: "kau/icap_systems_*.json"
+    contents: "ICAP Allowance Price Explorer 전체 덤프 — KEA(id 8) secondary 시장 KAU 일별 [USD, EUR, KRW] 2015-01-12~"
+    source: "allowancepriceexplorer.icapcarbonaction.com /api/systems (ICAP)"
+    collected: "2026-07-22"
+    units: "USD·EUR·KRW /tCO2"
+    license: "ICAP published data, research use"
+
   # 신규 수집 파일이 도착하면 아래 패턴이 잡는다 (MISSING.md의 ingest 계약과 짝)
   - pattern: "kau/krx_kau_daily_*.csv"
     contents: "KAU 일별 시세 (KRX 배출권시장)"
