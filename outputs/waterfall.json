@@ -19,22 +19,22 @@
     {
       "step": "h2_cfd",
       "driver": "h2",
-      "label": "H₂ CfD (CHPS 낙찰 구조)"
+      "label": "H₂ CfD (CHPS-style)"
     },
     {
       "step": "carbon_cfd",
       "driver": "carbon",
-      "label": "Carbon CfD (탄소 꼬리 절단)"
+      "label": "Carbon CfD (tail truncation)"
     },
     {
       "step": "ppa",
       "driver": "elec",
-      "label": "PPA (전력 고정)"
+      "label": "PPA (power fixed)"
     },
     {
       "step": "capex_subsidy",
       "driver": "capex",
-      "label": "자본보조 (CAPEX 고정)"
+      "label": "Capital subsidy (CAPEX fixed)"
     }
   ],
   "firms": [
@@ -45,35 +45,72 @@
       "steps": [
         {
           "step": "uncommitted",
-          "label": "미확약",
+          "label": "Uncommitted",
           "sigma_b_usd_bn": 5.1546665277,
           "premium_bps": 19.1480106309,
           "cut_bps": 0.0
         },
         {
           "step": "h2_cfd",
-          "label": "H₂ CfD (CHPS 낙찰 구조)",
+          "label": "H₂ CfD (CHPS-style)",
           "sigma_b_usd_bn": 5.1546665277,
           "premium_bps": 19.1480106309,
           "cut_bps": 0.0
         },
         {
           "step": "carbon_cfd",
-          "label": "Carbon CfD (탄소 꼬리 절단)",
+          "label": "Carbon CfD (tail truncation)",
           "sigma_b_usd_bn": 0.5712805365,
           "premium_bps": 2.1221325818,
           "cut_bps": 17.0258780491
         },
         {
           "step": "ppa",
-          "label": "PPA (전력 고정)",
+          "label": "PPA (power fixed)",
           "sigma_b_usd_bn": 0.1158718876,
           "premium_bps": 0.4304286465,
           "cut_bps": 1.6917039354
         },
         {
           "step": "capex_subsidy",
-          "label": "자본보조 (CAPEX 고정)",
+          "label": "Capital subsidy (CAPEX fixed)",
+          "sigma_b_usd_bn": 0.0,
+          "premium_bps": 0.0,
+          "cut_bps": 0.4304286465
+        }
+      ],
+      "steps_reform": [
+        {
+          "step": "uncommitted",
+          "label": "Uncommitted",
+          "sigma_b_usd_bn": 11.1518165941,
+          "premium_bps": 41.4255901039,
+          "cut_bps": 0.0
+        },
+        {
+          "step": "h2_cfd",
+          "label": "H₂ CfD (CHPS-style)",
+          "sigma_b_usd_bn": 11.1518165941,
+          "premium_bps": 41.4255901039,
+          "cut_bps": 0.0
+        },
+        {
+          "step": "carbon_cfd",
+          "label": "Carbon CfD (tail truncation)",
+          "sigma_b_usd_bn": 0.5712805365,
+          "premium_bps": 2.1221325818,
+          "cut_bps": 39.3034575221
+        },
+        {
+          "step": "ppa",
+          "label": "PPA (power fixed)",
+          "sigma_b_usd_bn": 0.1158718876,
+          "premium_bps": 0.4304286465,
+          "cut_bps": 1.6917039354
+        },
+        {
+          "step": "capex_subsidy",
+          "label": "Capital subsidy (CAPEX fixed)",
           "sigma_b_usd_bn": 0.0,
           "premium_bps": 0.0,
           "cut_bps": 0.4304286465
@@ -87,35 +124,72 @@
       "steps": [
         {
           "step": "uncommitted",
-          "label": "미확약",
+          "label": "Uncommitted",
           "sigma_b_usd_bn": 1.582921867,
           "premium_bps": 11.0251329694,
           "cut_bps": 0.0
         },
         {
           "step": "h2_cfd",
-          "label": "H₂ CfD (CHPS 낙찰 구조)",
+          "label": "H₂ CfD (CHPS-style)",
           "sigma_b_usd_bn": 1.582921867,
           "premium_bps": 11.0251329694,
           "cut_bps": 0.0
         },
         {
           "step": "carbon_cfd",
-          "label": "Carbon CfD (탄소 꼬리 절단)",
+          "label": "Carbon CfD (tail truncation)",
           "sigma_b_usd_bn": 0.3375257209,
           "premium_bps": 2.3508841661,
           "cut_bps": 8.6742488033
         },
         {
           "step": "ppa",
-          "label": "PPA (전력 고정)",
+          "label": "PPA (power fixed)",
           "sigma_b_usd_bn": 0.0702671681,
           "premium_bps": 0.4894144731,
           "cut_bps": 1.861469693
         },
         {
           "step": "capex_subsidy",
-          "label": "자본보조 (CAPEX 고정)",
+          "label": "Capital subsidy (CAPEX fixed)",
+          "sigma_b_usd_bn": 0.0,
+          "premium_bps": 0.0,
+          "cut_bps": 0.4894144731
+        }
+      ],
+      "steps_reform": [
+        {
+          "step": "uncommitted",
+          "label": "Uncommitted",
+          "sigma_b_usd_bn": 3.3246998412,
+          "premium_bps": 23.1567069724,
+          "cut_bps": 0.0
+        },
+        {
+          "step": "h2_cfd",
+          "label": "H₂ CfD (CHPS-style)",
+          "sigma_b_usd_bn": 3.3246998412,
+          "premium_bps": 23.1567069724,
+          "cut_bps": 0.0
+        },
+        {
+          "step": "carbon_cfd",
+          "label": "Carbon CfD (tail truncation)",
+          "sigma_b_usd_bn": 0.3375257209,
+          "premium_bps": 2.3508841661,
+          "cut_bps": 20.8058228063
+        },
+        {
+          "step": "ppa",
+          "label": "PPA (power fixed)",
+          "sigma_b_usd_bn": 0.0702671681,
+          "premium_bps": 0.4894144731,
+          "cut_bps": 1.861469693
+        },
+        {
+          "step": "capex_subsidy",
+          "label": "Capital subsidy (CAPEX fixed)",
           "sigma_b_usd_bn": 0.0,
           "premium_bps": 0.0,
           "cut_bps": 0.4894144731
@@ -129,35 +203,72 @@
       "steps": [
         {
           "step": "uncommitted",
-          "label": "미확약",
+          "label": "Uncommitted",
           "sigma_b_usd_bn": 8.3330568768,
           "premium_bps": 11.6080347396,
           "cut_bps": 0.0
         },
         {
           "step": "h2_cfd",
-          "label": "H₂ CfD (CHPS 낙찰 구조)",
+          "label": "H₂ CfD (CHPS-style)",
           "sigma_b_usd_bn": 3.9530264599,
           "premium_bps": 5.5066068973,
           "cut_bps": 6.1014278422
         },
         {
           "step": "carbon_cfd",
-          "label": "Carbon CfD (탄소 꼬리 절단)",
+          "label": "Carbon CfD (tail truncation)",
           "sigma_b_usd_bn": 1.162272449,
           "premium_bps": 1.6190575877,
           "cut_bps": 3.8875493096
         },
         {
           "step": "ppa",
-          "label": "PPA (전력 고정)",
+          "label": "PPA (power fixed)",
           "sigma_b_usd_bn": 0.3308458486,
           "premium_bps": 0.4608717018,
           "cut_bps": 1.158185886
         },
         {
           "step": "capex_subsidy",
-          "label": "자본보조 (CAPEX 고정)",
+          "label": "Capital subsidy (CAPEX fixed)",
+          "sigma_b_usd_bn": 0.0,
+          "premium_bps": 0.0,
+          "cut_bps": 0.4608717018
+        }
+      ],
+      "steps_reform": [
+        {
+          "step": "uncommitted",
+          "label": "Uncommitted",
+          "sigma_b_usd_bn": 10.902197906,
+          "premium_bps": 15.186874865,
+          "cut_bps": 0.0
+        },
+        {
+          "step": "h2_cfd",
+          "label": "H₂ CfD (CHPS-style)",
+          "sigma_b_usd_bn": 8.0650170776,
+          "premium_bps": 11.2346525167,
+          "cut_bps": 3.9522223483
+        },
+        {
+          "step": "carbon_cfd",
+          "label": "Carbon CfD (tail truncation)",
+          "sigma_b_usd_bn": 1.162272449,
+          "premium_bps": 1.6190575877,
+          "cut_bps": 9.615594929
+        },
+        {
+          "step": "ppa",
+          "label": "PPA (power fixed)",
+          "sigma_b_usd_bn": 0.3308458486,
+          "premium_bps": 0.4608717018,
+          "cut_bps": 1.158185886
+        },
+        {
+          "step": "capex_subsidy",
+          "label": "Capital subsidy (CAPEX fixed)",
           "sigma_b_usd_bn": 0.0,
           "premium_bps": 0.0,
           "cut_bps": 0.4608717018
@@ -171,35 +282,72 @@
       "steps": [
         {
           "step": "uncommitted",
-          "label": "미확약",
+          "label": "Uncommitted",
           "sigma_b_usd_bn": 7.8559985495,
           "premium_bps": 16.6433711503,
           "cut_bps": 0.0
         },
         {
           "step": "h2_cfd",
-          "label": "H₂ CfD (CHPS 낙찰 구조)",
+          "label": "H₂ CfD (CHPS-style)",
           "sigma_b_usd_bn": 5.6065059343,
           "premium_bps": 11.8776955638,
           "cut_bps": 4.7656755865
         },
         {
           "step": "carbon_cfd",
-          "label": "Carbon CfD (탄소 꼬리 절단)",
+          "label": "Carbon CfD (tail truncation)",
           "sigma_b_usd_bn": 0.5253008508,
           "premium_bps": 1.1128791548,
           "cut_bps": 10.764816409
         },
         {
           "step": "ppa",
-          "label": "PPA (전력 고정)",
+          "label": "PPA (power fixed)",
           "sigma_b_usd_bn": 0.3613366643,
           "premium_bps": 0.7655118794,
           "cut_bps": 0.3473672753
         },
         {
           "step": "capex_subsidy",
-          "label": "자본보조 (CAPEX 고정)",
+          "label": "Capital subsidy (CAPEX fixed)",
+          "sigma_b_usd_bn": 0.0,
+          "premium_bps": 0.0,
+          "cut_bps": 0.7655118794
+        }
+      ],
+      "steps_reform": [
+        {
+          "step": "uncommitted",
+          "label": "Uncommitted",
+          "sigma_b_usd_bn": 13.4074434066,
+          "premium_bps": 28.4044167505,
+          "cut_bps": 0.0
+        },
+        {
+          "step": "h2_cfd",
+          "label": "H₂ CfD (CHPS-style)",
+          "sigma_b_usd_bn": 12.2260269214,
+          "premium_bps": 25.9015200248,
+          "cut_bps": 2.5028967257
+        },
+        {
+          "step": "carbon_cfd",
+          "label": "Carbon CfD (tail truncation)",
+          "sigma_b_usd_bn": 0.5253008508,
+          "premium_bps": 1.1128791548,
+          "cut_bps": 24.7886408701
+        },
+        {
+          "step": "ppa",
+          "label": "PPA (power fixed)",
+          "sigma_b_usd_bn": 0.3613366643,
+          "premium_bps": 0.7655118794,
+          "cut_bps": 0.3473672753
+        },
+        {
+          "step": "capex_subsidy",
+          "label": "Capital subsidy (CAPEX fixed)",
           "sigma_b_usd_bn": 0.0,
           "premium_bps": 0.0,
           "cut_bps": 0.7655118794

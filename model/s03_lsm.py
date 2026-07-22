@@ -85,6 +85,9 @@ def main() -> int:
             {
                 "asset_id": asset["asset_id"],
                 "firm": asset["firm"],
+                "firm_id": asset["firm_id"],
+                "facility": f"{asset['facility']} {asset['bf_number']}",
+                "emission_intensity_tco2_t": asset["emission_intensity_tco2_t"],
                 "country": asset["country"],
                 "category": asset["category"],
                 "t_gcam": t_gcam,

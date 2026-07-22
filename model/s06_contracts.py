@@ -22,10 +22,10 @@ from model.s02_calibrate import load_calibration  # noqa: E402
 from model.s04_anatomy import BPS, firm_exposures, firm_frame  # noqa: E402
 
 CONTRACTS = [
-    ("h2_cfd", "h2", "H₂ CfD (CHPS 낙찰 구조)"),
-    ("carbon_cfd", "carbon", "Carbon CfD (탄소 꼬리 절단)"),
-    ("ppa", "elec", "PPA (전력 고정)"),
-    ("capex_subsidy", "capex", "자본보조 (CAPEX 고정)"),
+    ("h2_cfd", "h2", "H₂ CfD (CHPS-style)"),
+    ("carbon_cfd", "carbon", "Carbon CfD (tail truncation)"),
+    ("ppa", "elec", "PPA (power fixed)"),
+    ("capex_subsidy", "capex", "Capital subsidy (CAPEX fixed)"),
 ]
 
 
@@ -39,27 +39,36 @@ def main() -> int:
     waterfalls, ranking = [], []
     for fid, g in priced.groupby("firm_id", sort=True):
         meta = firm_exposures(cal, g)
-        sig, rho = cal.rho_matrix(meta["elec_driver"])
         scale = meta["capacity_mt"] * 1e6 / 1e9  # USD/t → USD bn
 
-        def pi_of(sig_vec: np.ndarray) -> tuple[float, float]:
-            sigma_b, _ = euler_shares(meta["E"] * sig_vec, rho)
-            bn = sigma_b * scale
-            return bn, k * lam * pb * bn / annuity(meta["wacc"], horizon) / meta["ev_usd_bn"] * BPS
+        def run_waterfall(rho: np.ndarray, sig: np.ndarray) -> list[dict]:
+            def pi_of(sig_vec: np.ndarray) -> tuple[float, float]:
+                sigma_b, _ = euler_shares(meta["E"] * sig_vec, rho)
+                bn = sigma_b * scale
+                return bn, k * lam * pb * bn / annuity(meta["wacc"], horizon) / meta["ev_usd_bn"] * BPS
 
-        sig_now = sig.copy()
-        sigma0_bn, pi0 = pi_of(sig_now)
-        steps = [{"step": "uncommitted", "label": "미확약", "sigma_b_usd_bn": sigma0_bn, "premium_bps": pi0, "cut_bps": 0.0}]
-        prev = pi0
-        for step_id, driver, label in CONTRACTS:
-            sig_now[DRIVERS.index(driver)] = 0.0
-            bn, pi = pi_of(sig_now)
-            steps.append({"step": step_id, "label": label, "sigma_b_usd_bn": bn, "premium_bps": pi, "cut_bps": prev - pi})
-            prev = pi
-        delta = pi0 - prev
-        waterfalls.append({"firm_id": fid, "firm": meta["firm"], "route": meta["route"], "steps": steps})
+            sig_now = sig.copy()
+            sigma0_bn, pi0 = pi_of(sig_now)
+            steps = [{"step": "uncommitted", "label": "Uncommitted", "sigma_b_usd_bn": sigma0_bn,
+                      "premium_bps": pi0, "cut_bps": 0.0}]
+            prev = pi0
+            for step_id, driver, label in CONTRACTS:
+                sig_now[DRIVERS.index(driver)] = 0.0
+                bn, pi = pi_of(sig_now)
+                steps.append({"step": step_id, "label": label, "sigma_b_usd_bn": bn,
+                              "premium_bps": pi, "cut_bps": prev - pi})
+                prev = pi
+            return steps
+
+        sig_base, rho = cal.rho_matrix(meta["elec_driver"])
+        sig_reform, _ = cal.rho_matrix(meta["elec_driver"], carbon_sigma=cal.sigma_carbon_reform)
+        steps = run_waterfall(rho, sig_base)
+        steps_reform = run_waterfall(rho, sig_reform)
+        pi0, prev = steps[0]["premium_bps"], steps[-1]["premium_bps"]
+        waterfalls.append({"firm_id": fid, "firm": meta["firm"], "route": meta["route"],
+                           "steps": steps, "steps_reform": steps_reform})
         ranking.append({"firm_id": fid, "firm": meta["firm"], "pi_uncommitted_bps": pi0,
-                        "pi_committed_bps": prev, "delta_pi_bps": delta})
+                        "pi_committed_bps": prev, "delta_pi_bps": pi0 - prev})
 
     ranking.sort(key=lambda r: -r["delta_pi_bps"])
     uses = ["lambda", "p_bind", "k", "ev_usd_bn", "scenarios"]

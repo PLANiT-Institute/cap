@@ -122,6 +122,9 @@ def main() -> int:
                 "cluster": cluster,
                 "capacity_mt": meta["capacity_mt"],
                 "t_switch_year": meta["t_switch_year"],
+                "residual_intensity_tco2_t": float(
+                    cal.routes.set_index("route").loc[meta["route"], "residual_intensity_tco2_t"]
+                ),
                 "shares": base["shares"],
                 "shares_reform": reform["shares"],
                 "sigma_b_usd_bn": base["sigma_b_usd_bn"],

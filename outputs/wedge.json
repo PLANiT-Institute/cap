@@ -13,6 +13,9 @@
     {
       "asset_id": "A01",
       "firm": "POSCO",
+      "firm_id": "POSCO",
+      "facility": "Gwangyang BF5",
+      "emission_intensity_tco2_t": 2.1,
       "country": "KR",
       "category": "priced_route",
       "t_gcam": 2053.0,
@@ -24,6 +27,9 @@
     {
       "asset_id": "A02",
       "firm": "POSCO",
+      "firm_id": "POSCO",
+      "facility": "Gwangyang BF3",
+      "emission_intensity_tco2_t": 2.0,
       "country": "KR",
       "category": "priced_route",
       "t_gcam": 2038.0,
@@ -35,6 +41,9 @@
     {
       "asset_id": "A06",
       "firm": "POSCO",
+      "firm_id": "POSCO",
+      "facility": "Pohang BF4",
+      "emission_intensity_tco2_t": 2.0,
       "country": "KR",
       "category": "priced_route",
       "t_gcam": 2035.0,
@@ -46,6 +55,9 @@
     {
       "asset_id": "A07",
       "firm": "POSCO",
+      "firm_id": "POSCO",
+      "facility": "Gwangyang BF4",
+      "emission_intensity_tco2_t": 2.0,
       "country": "KR",
       "category": "priced_route",
       "t_gcam": 2044.0,
@@ -57,6 +69,9 @@
     {
       "asset_id": "A03",
       "firm": "Hyundai Steel",
+      "firm_id": "HYUNDAI",
+      "facility": "Dangjin BF1",
+      "emission_intensity_tco2_t": 2.1,
       "country": "KR",
       "category": "no_feasible_route",
       "t_gcam": 2061.0,
@@ -68,6 +83,9 @@
     {
       "asset_id": "A08",
       "firm": "Hyundai Steel",
+      "firm_id": "HYUNDAI",
+      "facility": "Dangjin BF2",
+      "emission_intensity_tco2_t": 2.1,
       "country": "KR",
       "category": "no_feasible_route",
       "t_gcam": 2033.0,
@@ -79,6 +97,9 @@
     {
       "asset_id": "A04",
       "firm": "Nippon Steel",
+      "firm_id": "NIPPON",
+      "facility": "Oita BF1",
+      "emission_intensity_tco2_t": 1.9,
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2041.0,
@@ -90,6 +111,9 @@
     {
       "asset_id": "A09",
       "firm": "Nippon Steel",
+      "firm_id": "NIPPON",
+      "facility": "Kashima BF1",
+      "emission_intensity_tco2_t": 1.9,
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2037.0,
@@ -101,6 +125,9 @@
     {
       "asset_id": "A05",
       "firm": "JFE Steel",
+      "firm_id": "JFE",
+      "facility": "Keihin BF1",
+      "emission_intensity_tco2_t": 2.0,
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2047.0,
@@ -112,6 +139,9 @@
     {
       "asset_id": "A10",
       "firm": "JFE Steel",
+      "firm_id": "JFE",
+      "facility": "Kurashiki BF3",
+      "emission_intensity_tco2_t": 2.0,
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2043.0,
@@ -123,6 +153,9 @@
     {
       "asset_id": "A11",
       "firm": "Kobe Steel",
+      "firm_id": "KOBE",
+      "facility": "Kakogawa BF2",
+      "emission_intensity_tco2_t": 1.95,
       "country": "JP",
       "category": "priced_route",
       "t_gcam": 2039.0,

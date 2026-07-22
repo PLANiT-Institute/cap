@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-07-22T02:13:53+00:00",
+  "run_at": "2026-07-22T08:21:50+00:00",
   "config_sha256": "3b350fe5bd994805aa37cbb3523379edf75dc43ee4a91e32919199f20c9995d0",
-  "git_sha": "fcf1bf85532883207f617b9f5ef4ac280fda90bb",
+  "git_sha": "bc68dec75c6c92a2e680ffa27790191a7860c6c3",
   "seed": 42,
   "t_gcam_source": "surrogate",
   "measured_overrides": [
@@ -12,6 +12,7 @@
     "cluster_separation.json",
     "cost_vs_risk.json",
     "delta_pi_ranking.json",
+    "emission_pathway.json",
     "lambda_invariance.json",
     "lambda_k_sensitivity.json",
     "premium_levels.json",

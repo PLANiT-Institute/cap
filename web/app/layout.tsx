@@ -7,24 +7,15 @@ const body = Inter({ subsets: ["latin"], variable: "--font-body" });
 const mono = IBM_Plex_Mono({ weight: ["400", "600"], subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata = {
-  title: "CAP — Carbon-transition Asset Pricing",
+  title: "CAP — Transition-risk pricing tool",
   description:
-    "The anatomy of the transition-risk premium for Korean and Japanese heavy industry — decomposed into four hedgeable drivers.",
+    "Price the transition-risk premium of heavy-industry assets, see why it exists, and see which contract hedges each slice. Steel live, petrochemicals next.",
 };
-
-const NAV = [
-  ["/", "Overview"],
-  ["/wedge", "Wedge"],
-  ["/sectors", "Sectors"],
-  ["/theory", "Method"],
-  ["/ledger", "Ledger"],
-  ["/data", "Data"],
-] as const;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
-      <body>
+      <body className="dark-app">
         <header className="nav">
           <div className="nav__inner">
             <a href="https://planit.institute" className="nav__logo" aria-label="PLANiT Institute">
@@ -34,12 +25,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/" className="nav__title" style={{ textDecoration: "none" }}>
               CAP
             </Link>
+            <span className="nav__tag">transition-risk pricing tool</span>
             <nav className="nav__links">
-              {NAV.map(([href, label]) => (
-                <Link key={href} href={href}>
-                  {label}
-                </Link>
-              ))}
+              <Link href="/">Dashboard</Link>
+              <Link href="/method">Method</Link>
+              <a href="https://github.com/PLANiT-Institute/cap">GitHub</a>
             </nav>
           </div>
         </header>
@@ -47,13 +37,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="footer">
           <div className="footer__inner">
             <div>
-              CAP — Carbon-transition Asset Pricing · <a href="https://planit.institute">PLANiT Institute</a>
-              <br />
-              Every number on this site is a computed artifact of the open model pipeline.
+              CAP · <a href="https://planit.institute">PLANiT Institute</a> — every number is a
+              computed artifact of the open pipeline.
             </div>
-            <div className="mono">
-              <Link href="/ledger">proven vs conditional ledger</Link> · <Link href="/data">data provenance</Link>
-            </div>
+            <div className="mono">API + MCP access: coming — the model core is already callable.</div>
           </div>
         </footer>
       </body>
