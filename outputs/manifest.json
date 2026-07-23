@@ -1,28 +1,41 @@
 {
-  "run_at": "2026-07-22T08:21:50+00:00",
-  "config_sha256": "3b350fe5bd994805aa37cbb3523379edf75dc43ee4a91e32919199f20c9995d0",
-  "git_sha": "bc68dec75c6c92a2e680ffa27790191a7860c6c3",
+  "run_at": "2026-07-23T02:03:50+00:00",
+  "git_sha": "fc722d32d7911bf055f17146f4ccae904e4e67f2",
+  "git_dirty": true,
+  "code_sha256": "1184a687eec5d74f9a56f6e3277c9ac3dfd571f51a852a838192d006a046db6b",
+  "config_sha256": "35a0f79dd7148ad1c02e8721cadf77b9e6bb28fb7527b828d160a381f720b8d8",
+  "raw_data_sha256": "14cf9e5970722c96d163e54ee2f65bd0080827cc24efde3f11d9673015cb53fb",
+  "processed_data_sha256": "3d322aeb456f6fe1dfe90de922ba984dd16ed3ff0249f343605448b1db6f0781",
+  "dependency_lock_sha256": "73aad5425d9c5c9009c9282b028f3e2f06610907663d58edc7adc7040b29c655",
   "seed": 42,
-  "t_gcam_source": "surrogate",
+  "t_required_source": "surrogate",
   "measured_overrides": [
     "carbon_diffusion"
   ],
   "artifacts": [
     "calibration_resolved.json",
     "cluster_separation.json",
+    "condition_gap.json",
     "cost_vs_risk.json",
-    "delta_pi_ranking.json",
-    "emission_pathway.json",
+    "deal_screening.json",
+    "emissions_pathways_by_firm.json",
+    "intervention_impacts.json",
     "lambda_invariance.json",
     "lambda_k_sensitivity.json",
+    "pilot_cases.json",
     "premium_levels.json",
     "reference_prices.json",
+    "result_contract.json",
     "share_envelopes.json",
     "shares_by_firm.json",
     "sigma_linearity.json",
     "stranding.json",
     "tau_star.json",
-    "waterfall.json",
+    "transition_underwriting.json",
     "wedge.json"
+  ],
+  "pilot_reports": [
+    "outputs/pilots/nippon_h2_cfd_dry_run.md",
+    "outputs/pilots/posco_h2_cfd_dry_run.md"
   ]
 }

@@ -1,6 +1,8 @@
 param,value,note
 seed,42,"고정 seed — JSON diff 0 재현 조건"
 base_year,2026,"t=0 기준 연도 (reline 연수·τ* 캘린더 변환)"
+mu_anchor_years,15,"μ_carbon 시나리오 앵커 지평 — carbon_reform 개입 시 drift 재산정에 사용"
+tau_exercise_threshold,0.5,"τ* 정의: 경로 행사비율이 이 값에 도달하는 첫 해 (p50) — 조건부 평균의 선택편의 회피"
 n_paths,4000,"Monte Carlo 경로 수"
 horizon_years,35,"시뮬레이션 지평 (~2060 reline 윈도우)"
 basis_degree,3,"LSM 회귀 basis 다항 차수"
@@ -16,4 +18,5 @@ p_bind_in_exercise,0,"실험 플래그(R5): p_bind를 행사정책에 투입 —
 lambda_k_carbon,0.50,"s05 driver별 λ_k 감응도 모듈 (R1 대응) — 시스템적 점프리스크 가중"
 lambda_k_h2,0.35,"부분 분산가능 기술리스크"
 lambda_k_elec,0.35,
+lambda_k_feedstock,0.40,"commodity/feedstock exposure — provisional systematic-risk weight"
 lambda_k_capex,0.30,

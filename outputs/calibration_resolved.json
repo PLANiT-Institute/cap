@@ -1,23 +1,42 @@
 {
   "artifact": "calibration_resolved",
   "note": "s02 캘리브레이션 해상본 — 이후 단계의 유일한 파라미터 소스",
+  "claims": {
+    "derived.l_bind": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "scenarios"
+      ]
+    },
+    "derived.p_bind": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "scenarios"
+      ],
+      "note": "Option A 파생"
+    },
+    "derived.sigma_carbon_reform": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "scenarios",
+        "sigma_carbon_diffusion"
+      ]
+    },
+    "derived.t_required": {
+      "status": "PROVISIONAL",
+      "depends_on": [
+        "t_required"
+      ],
+      "note": "surrogate — 실증 식별된 기업 의무로 해석 금지"
+    }
+  },
   "conditional_on": [
-    "fx_usdjpy",
-    "fx_usdkrw",
-    "k",
-    "lambda",
-    "p_bind",
     "scenarios"
   ],
-  "status_of_inputs": {
-    "carbon_base_jp": "banded",
-    "carbon_base_kr": "measured",
-    "fx_usdjpy": "assumed",
-    "fx_usdkrw": "assumed",
-    "k": "assumed",
-    "lambda": "assumed",
-    "p_bind": "assumed",
-    "scenarios": "assumed"
+  "input_status": {
+    "scenarios": "assumed",
+    "sigma_carbon_diffusion": "measured",
+    "t_required": "provisional"
   },
   "sigmas": [
     {
@@ -74,6 +93,17 @@
       "source": "JEPX 변동성 (Intratec JP 2025; jepx 시계열 미확보 data/raw/jepx/MISSING.md)",
       "confidence": "MEDIUM",
       "theory_anchor": "#allocator-reading"
+    },
+    {
+      "driver": "feedstock",
+      "value": 0.25,
+      "band_lo": 0.18,
+      "band_hi": 0.35,
+      "mu": 0.0,
+      "status": "assumed",
+      "source": "Naphtha/circular-feed spread volatility — route-specific market series not yet ingested; IEA feedstock-cost sensitivity anchor",
+      "confidence": "LOW",
+      "theory_anchor": "#axiom-linear-cost"
     },
     {
       "driver": "capex",
@@ -147,15 +177,51 @@
       "status": "assumed",
       "source": "근거 없음 — 기본 0",
       "theory_anchor": "#axiom-linear-cost"
+    },
+    {
+      "driver_i": "feedstock",
+      "driver_j": "carbon",
+      "value": 0.2,
+      "band_lo": 0.0,
+      "band_hi": 0.4,
+      "status": "assumed",
+      "source": "Naphtha-carbon common fossil cycle; matched time series not yet ingested",
+      "theory_anchor": "#claim-policy-repricing"
+    },
+    {
+      "driver_i": "feedstock",
+      "driver_j": "elec",
+      "value": 0.1,
+      "band_lo": 0.0,
+      "band_hi": 0.3,
+      "status": "assumed",
+      "source": "Energy-complex common factor; matched time series not yet ingested",
+      "theory_anchor": "#axiom-linear-cost"
+    },
+    {
+      "driver_i": "feedstock",
+      "driver_j": "h2",
+      "value": 0.0,
+      "band_lo": 0.0,
+      "band_hi": 0.2,
+      "status": "assumed",
+      "source": "Alternative-feed and hydrogen price co-movement uncalibrated — base 0",
+      "theory_anchor": "#axiom-linear-cost"
+    },
+    {
+      "driver_i": "feedstock",
+      "driver_j": "capex",
+      "value": 0.0,
+      "band_lo": 0.0,
+      "band_hi": 0.2,
+      "status": "assumed",
+      "source": "No empirical anchor — base 0",
+      "theory_anchor": "#axiom-linear-cost"
     }
   ],
   "pricing": {
     "lambda": {
       "value": 0.4,
-      "status": "assumed"
-    },
-    "p_bind": {
-      "value": 0.65,
       "status": "assumed"
     },
     "k": {
@@ -181,48 +247,378 @@
   },
   "scenarios": [
     {
-      "driver": "carbon",
+      "driver": "carbon_kr",
       "scenario": "SQ",
       "level_usd": 12.0,
       "prob": 0.45,
       "binds": 0,
+      "factor": "domestic",
       "anchor_note": "현상유지 — KAU 얇은 시장 관성 (#claim-policy-repricing); 예산 비구속"
     },
     {
-      "driver": "carbon",
+      "driver": "carbon_kr",
       "scenario": "MSR",
       "level_usd": 35.0,
       "prob": 0.35,
       "binds": 1,
-      "anchor_note": "MSR 도입 + 이월제한 개혁 — 시장안정예비 (#claim-policy-repricing)"
+      "factor": "domestic",
+      "anchor_note": "MSR 도입 + 이월제한 개혁 (#claim-policy-repricing #axiom-budget-binds)"
     },
     {
-      "driver": "carbon",
+      "driver": "carbon_kr",
       "scenario": "CBAM",
       "level_usd": 85.0,
       "prob": 0.2,
       "binds": 1,
-      "anchor_note": "CBAM 연계·EUA 수렴 (#claim-policy-repricing); EUA-KAU 스프레드 앵커링 필요 (R2)"
+      "factor": "cbam_common",
+      "anchor_note": "CBAM 연계·EUA 수렴 (#claim-policy-repricing #axiom-budget-binds); EUA-KAU 스프레드 앵커링 필요 (R2)"
+    },
+    {
+      "driver": "carbon_jp",
+      "scenario": "SQ",
+      "level_usd": 5.0,
+      "prob": 0.5,
+      "binds": 0,
+      "factor": "domestic",
+      "anchor_note": "GX-ETS 초기 저가 관성 (assumed; ICAP/METI) — 비구속"
+    },
+    {
+      "driver": "carbon_jp",
+      "scenario": "GX_COMPLIANCE",
+      "level_usd": 30.0,
+      "prob": 0.35,
+      "binds": 1,
+      "factor": "domestic",
+      "anchor_note": "GX-ETS 의무화 2단계 + 옥션 (assumed; #axiom-budget-binds)"
+    },
+    {
+      "driver": "carbon_jp",
+      "scenario": "CBAM",
+      "level_usd": 85.0,
+      "prob": 0.15,
+      "binds": 1,
+      "factor": "cbam_common",
+      "anchor_note": "CBAM 연계·EUA 수렴 (assumed; #axiom-budget-binds); KR과 공통요인"
+    }
+  ],
+  "interventions": [
+    {
+      "intervention_id": "h2_cfd",
+      "label": "H2 CfD (CHPS-style)",
+      "jurisdiction": "KR+JP",
+      "applicable_sector": "steel",
+      "applicable_route": "h2_dri",
+      "parameter": "p_h2_and_sigma",
+      "operation": "contract_for_difference",
+      "value": 3.0,
+      "coverage": 0.7,
+      "basis_sigma": 0.05,
+      "start_year": 2030,
+      "end_year": 2045,
+      "instrument_type": "offtake_contract",
+      "decision_owner": "joint",
+      "status": "assumed",
+      "source": "CHPS auction and JOGMEC CfD analogue",
+      "theory_anchor": "#claim-separately-contractible",
+      "modelled_terms": "Two-way hydrogen price-gap contract; $3.00/kg strike; 70% of hydrogen volume; modeled coverage 2030–2045",
+      "diligence_terms": "reference hydrogen index and settlement formula; minimum/maximum volume and ramp; delivery point and quality; basis and price reopener; parent guarantee or letter of credit; termination compensation",
+      "notes": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor",
+      "components": null
+    },
+    {
+      "intervention_id": "ppa",
+      "label": "Long-term PPA",
+      "jurisdiction": "KR+JP",
+      "applicable_sector": "all",
+      "applicable_route": "all",
+      "parameter": "p_elec_and_sigma",
+      "operation": "contract_for_difference",
+      "value": 65.0,
+      "coverage": 0.6,
+      "basis_sigma": 0.03,
+      "start_year": 2028,
+      "end_year": 2043,
+      "instrument_type": "energy_contract",
+      "decision_owner": "joint",
+      "status": "assumed",
+      "source": "Long-term fixed-price PPA convention",
+      "theory_anchor": "#claim-separately-contractible",
+      "modelled_terms": "Fixed-price physical or financial PPA; $65/MWh; 60% of electricity volume; modeled coverage 2028–2043",
+      "diligence_terms": "settlement node and hourly shape; balancing and curtailment allocation; renewable-attribute ownership and additionality; inflation and disruption reopener; parent guarantee or letter of credit; termination compensation",
+      "notes": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor",
+      "components": null
+    },
+    {
+      "intervention_id": "capex_subsidy",
+      "label": "CAPEX subsidy",
+      "jurisdiction": "KR+JP",
+      "applicable_sector": "all",
+      "applicable_route": "all",
+      "parameter": "k_capex",
+      "operation": "multiply",
+      "value": 0.7,
+      "coverage": 1.0,
+      "basis_sigma": 0.0,
+      "start_year": 2026,
+      "end_year": 2061,
+      "instrument_type": "grant",
+      "decision_owner": "public",
+      "status": "assumed",
+      "source": "GX transition bonds and 30% support analogue",
+      "theory_anchor": "#claim-separately-contractible",
+      "modelled_terms": "30% support for eligible CAPEX; modeled as a construction-date CAPEX reduction",
+      "diligence_terms": "eligible-cost definition; milestone disbursement; completion deadline; performance conditions; subsidy cumulation rule; clawback and change-in-control",
+      "notes": "CAPEX level reduced 30%; capex volatility retained",
+      "components": null
+    },
+    {
+      "intervention_id": "carbon_reform",
+      "label": "Carbon reform commitment",
+      "jurisdiction": "domestic",
+      "applicable_sector": "all",
+      "applicable_route": "all",
+      "parameter": "carbon_scenarios",
+      "operation": "shift_to_binding",
+      "value": 1.0,
+      "coverage": 1.0,
+      "basis_sigma": 0.0,
+      "start_year": 2027,
+      "end_year": 2061,
+      "instrument_type": "policy",
+      "decision_owner": "public",
+      "status": "assumed",
+      "source": "Domestic reform pathway commitment",
+      "theory_anchor": "#claim-policy-repricing",
+      "modelled_terms": "Policy support case; reallocates half of status-quo probability to binding carbon-price paths; modeled from 2027",
+      "diligence_terms": "legal durability and implementation calendar; covered emissions; free-allocation phaseout; review and reopening rule; change-in-law allocation",
+      "notes": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance",
+      "components": null
+    },
+    {
+      "intervention_id": "concessional",
+      "label": "Concessional finance",
+      "jurisdiction": "KR+JP",
+      "applicable_sector": "all",
+      "applicable_route": "all",
+      "parameter": "wacc",
+      "operation": "add",
+      "value": -0.015,
+      "coverage": 1.0,
+      "basis_sigma": 0.0,
+      "start_year": 2026,
+      "end_year": 2061,
+      "instrument_type": "financing",
+      "decision_owner": "lender",
+      "status": "assumed",
+      "source": "Blended-finance minus 150bp assumption",
+      "theory_anchor": "#claim-separately-contractible",
+      "modelled_terms": "Blended-finance case modeled at 150 bps below firm WACC; debt share and tenor follow the transaction profile",
+      "diligence_terms": "facility amount and draw schedule; amortization and maturity; DSCR and reserve covenants; security package; distribution lock-up; prepayment and change-of-control",
+      "notes": "Avoid joint use with capex support without a double-counting review",
+      "components": null
+    },
+    {
+      "intervention_id": "feedstock_hedge",
+      "label": "Naphtha/feedstock collar",
+      "jurisdiction": "KR+JP",
+      "applicable_sector": "petrochemicals",
+      "applicable_route": "all",
+      "parameter": "p_feedstock_and_sigma",
+      "operation": "contract_for_difference",
+      "value": 650.0,
+      "coverage": 0.7,
+      "basis_sigma": 0.06,
+      "start_year": 2028,
+      "end_year": 2043,
+      "instrument_type": "offtake_contract",
+      "decision_owner": "joint",
+      "status": "assumed",
+      "source": "Long-term feedstock collar screening assumption; replace with an actual index quote",
+      "theory_anchor": "#claim-separately-contractible",
+      "modelled_terms": "Fixed-price or two-way collar; $650/t reference; 70% of feedstock volume; modeled coverage 2028–2043",
+      "diligence_terms": "reference grade and pricing index; delivery point and logistics; volume and yield basis; floor/cap settlement; price reopener; credit support; termination and replacement cost",
+      "notes": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence",
+      "components": null
+    },
+    {
+      "intervention_id": "circular_feedstock",
+      "label": "Circular-feedstock offtake",
+      "jurisdiction": "KR+JP",
+      "applicable_sector": "petrochemicals",
+      "applicable_route": "circular_olefins",
+      "parameter": "p_feedstock_and_sigma",
+      "operation": "contract_for_difference",
+      "value": 650.0,
+      "coverage": 0.65,
+      "basis_sigma": 0.08,
+      "start_year": 2029,
+      "end_year": 2044,
+      "instrument_type": "offtake_contract",
+      "decision_owner": "joint",
+      "status": "assumed",
+      "source": "Long-term circular or bio-feedstock offtake screening assumption; DOE and IEA route anchor",
+      "theory_anchor": "#claim-separately-contractible",
+      "modelled_terms": "Fixed-price or collar offtake; $650/t reference; 65% of circular feedstock volume; modeled coverage 2029–2044",
+      "diligence_terms": "eligible feedstock taxonomy and chain of custody; mass-balance accounting; quality and yield specifications; minimum volume and ramp; index and reopener; sustainability attributes; credit support and termination compensation",
+      "notes": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required",
+      "components": null
+    },
+    {
+      "intervention_id": "package",
+      "label": "Integrated package",
+      "jurisdiction": "KR+JP",
+      "applicable_sector": "all",
+      "applicable_route": "all",
+      "parameter": "composite",
+      "operation": "combine",
+      "value": 0.0,
+      "coverage": 1.0,
+      "basis_sigma": 0.0,
+      "start_year": 2026,
+      "end_year": 2061,
+      "instrument_type": "package",
+      "decision_owner": "joint",
+      "status": "assumed",
+      "source": "Route-applicable input contract plus PPA CAPEX support and carbon reform",
+      "theory_anchor": "#claim-separately-contractible",
+      "modelled_terms": "Route-applicable input contract + PPA + 30% CAPEX support + carbon-policy reform; concessional debt excluded to avoid double counting",
+      "diligence_terms": "separate counterparty obligations; matched conditions precedent and long-stop dates; tenor alignment; subsidy and contract cumulation; cross-default limits; no double counting of support",
+      "notes": "Concessional debt excluded; engine skips sector or route-inapplicable components",
+      "components": "h2_cfd;ppa;feedstock_hedge;circular_feedstock;capex_subsidy;carbon_reform"
+    }
+  ],
+  "transaction_assumptions": [
+    {
+      "profile_id": "screening_default",
+      "project_life_years": 25,
+      "debt_share": 0.6,
+      "debt_tenor_years": 15,
+      "target_dscr": 1.3,
+      "green_premium_usd_t": 0.0,
+      "annual_fee_usd_m": 0.0,
+      "upfront_fee_usd_m": 0.0,
+      "counterparty_pd_annual": 0.01,
+      "recovery_rate": 0.4,
+      "collateral_pct": 0.0,
+      "irr_ceiling": 1.0,
+      "status": "assumed",
+      "source": "CAP illustrative screening profile — replace with lender term sheet and executable quote",
+      "theory_anchor": "#claim-separately-contractible",
+      "notes": "Debt rate uses firm WACC; fees zero; 1% annual counterparty PD is a visible stress assumption; not a market quote"
     }
   ],
   "derived": {
-    "l_bar": 34.65,
-    "l_bind": 53.1818181818,
-    "sigma_carbon_reform": 0.8788408164,
+    "l_bar": {
+      "KR": 34.65,
+      "JP": 25.75
+    },
+    "l_bind": {
+      "KR": 53.1818181818,
+      "JP": 46.5
+    },
+    "p_bind": {
+      "KR": 0.55,
+      "JP": 0.5
+    },
+    "p_bind_definition": "Option A — p_bind(country) = Σ prob(binds=1); 별도 파라미터 없음",
+    "sigma_carbon_reform": {
+      "KR": 0.8788408164,
+      "JP": 1.1340731875
+    },
+    "carbon_variance_decomposition": {
+      "KR": {
+        "diffusion_var": 0.1577404318,
+        "jump_var": 0.6146207488,
+        "jump_share": 0.7957685656
+      },
+      "JP": {
+        "diffusion_var": 0.1577404318,
+        "jump_var": 1.1283815628,
+        "jump_share": 0.8773518901
+      }
+    },
+    "jump_correlation_note": "점프에 확산과 동일 ρ·연σ 적용 — 근사 (Merton 비판 R2)",
     "k_offcycle_mult": 1.4893617021,
-    "t_gcam_source": "surrogate",
-    "t_gcam": {
-      "A08": 2033.0,
-      "A06": 2035.0,
-      "A09": 2037.0,
-      "A02": 2038.0,
-      "A11": 2039.0,
-      "A04": 2041.0,
-      "A10": 2043.0,
-      "A07": 2044.0,
-      "A05": 2047.0,
-      "A01": 2053.0,
-      "A03": 2061.0
+    "t_required_source": "surrogate",
+    "t_required": {
+      "P02": {
+        "year": 2030.0,
+        "status": "PROVISIONAL",
+        "pool": "petrochemicals:ccus_cracker",
+        "note": "petrochemical investment-cycle surrogate (PROVISIONAL; not a firm mandate or validated sector pathway)"
+      },
+      "P01": {
+        "year": 2032.0,
+        "status": "PROVISIONAL",
+        "pool": "petrochemicals:e_cracker",
+        "note": "petrochemical investment-cycle surrogate (PROVISIONAL; not a firm mandate or validated sector pathway)"
+      },
+      "A06": {
+        "year": 2032.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:h2_dri",
+        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A09": {
+        "year": 2035.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:h2_dri",
+        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A02": {
+        "year": 2037.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:h2_dri",
+        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A04": {
+        "year": 2039.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:h2_dri",
+        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A07": {
+        "year": 2040.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:h2_dri",
+        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A01": {
+        "year": 2042.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:h2_dri",
+        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A11": {
+        "year": 2061.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:ng_dri",
+        "note": "route pathway unavailable — h2 curve rescaled to ng_dri pool (PROVISIONAL) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A10": {
+        "year": 2040.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:scrap_eaf",
+        "note": "route pathway unavailable — h2 curve rescaled to scrap_eaf pool (PROVISIONAL) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A05": {
+        "year": 2061.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:scrap_eaf",
+        "note": "route pathway unavailable — h2 curve rescaled to scrap_eaf pool (PROVISIONAL) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A03": {
+        "year": null,
+        "status": "UNAVAILABLE",
+        "pool": "stranding",
+        "note": "no_feasible_route — priced-route 풀을 소비하지 않음; stranding/closure branch"
+      },
+      "A08": {
+        "year": null,
+        "status": "UNAVAILABLE",
+        "pool": "stranding",
+        "note": "no_feasible_route — priced-route 풀을 소비하지 않음; stranding/closure branch"
+      }
     }
   },
   "measured_overrides": [

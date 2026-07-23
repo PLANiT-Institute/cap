@@ -1,11 +1,15 @@
 """s02: config + processed → 검증된 CalibrationSet 하나.
 
-이후 단계(s03–s06)는 이 객체만 받는다 — 모델 코드 어디에도 숫자 리터럴 없음.
-- calibration.xlsx 5시트 로드 + pandera 검증 (carbon_jump는 scenarios.csv가 우선)
-- KAU/SMP/JEPX processed가 있으면 σ·ρ를 measured로 승격 (MISSING.md 계약)
-- 탄소 점프혼합: σ_reform = sqrt(σ_diff² + Σp(ℓ−ℓ̄)²/ℓ̄²), 수준은 E[ℓ|bind] (A2)
-- GCAM T^GCAM: raw 있으면 그것, 없으면 logistic surrogate (manifest에 출처 기록)
-- 산출: outputs/calibration_resolved.json
+이후 단계(s03–s07)는 이 객체만 받는다 — 모델 코드 어디에도 숫자 리터럴 없음.
+
+핵심 구조 (2026-07 개편):
+- 탄소는 국가별 factor: carbon_kr / carbon_jp (+cbam_common 공통요인 태그).
+  ℓ_bind·점프분산·σ_reform 전부 국가별. KR 시나리오를 JP 기업에 적용하지 않는다.
+- p_bind 정의 = Option A: p_bind(country) = Σ prob(binds=1). 별도 파라미터 없음.
+- T_required: route별 배치 풀 분리. no_feasible_route 자산은 priced 풀을 소비하지
+  않는다. H₂-DRI surrogate 곡선은 h2_dri 자산에만; scrap/NG는 자체 풀 스케일의
+  동형 곡선 (PROVISIONAL). reline 순 배분은 LCOA merit order가 아니라 근사임.
+- 확산과 정책점프를 동일 상관·동일 연σ로 합산하는 것은 근사 (분해는 별도 기록).
 """
 from __future__ import annotations
 
@@ -23,20 +27,28 @@ sys.path.insert(0, str(ROOT))
 from config.schema.config_schemas import (  # noqa: E402
     correlations_schema,
     firms_schema,
+    interventions_schema,
     lsm_schema,
     pricing_schema,
     routes_schema,
     scenarios_schema,
     sigmas_schema,
+    transaction_assumptions_schema,
 )
-from model.lib.anatomy import DRIVERS  # noqa: E402
-from model.lib.artifacts import write_artifact  # noqa: E402
+from model.lib.artifacts import (  # noqa: E402
+    EMPIRICAL,
+    PROVISIONAL,
+    SCENARIO_CONDITIONAL,
+    claim,
+    write_artifact,
+)
 from model.lib.jump import binding_level, scenario_mean_level, sigma_carbon_combined  # noqa: E402
 
 CFG = ROOT / "config"
 PROCESSED = ROOT / "data" / "processed"
 RAW = ROOT / "data" / "raw"
 TRADING_DAYS = 252  # 연율화 관례 상수 (파라미터 아님)
+COUNTRIES = ("KR", "JP")
 
 
 @dataclass
@@ -48,13 +60,18 @@ class CalibrationSet:
     scenarios: pd.DataFrame
     firms: pd.DataFrame
     routes: pd.DataFrame
+    interventions: pd.DataFrame
+    transaction_assumptions: pd.DataFrame
     param_status: dict[str, str]
-    l_bar: float
-    l_bind: float
-    sigma_carbon_reform: float
+    # 국가별 탄소 구조 (Option A: p_bind 파생)
+    l_bar: dict[str, float]
+    l_bind: dict[str, float]
+    p_bind: dict[str, float]
+    sigma_carbon_reform: dict[str, float]
+    carbon_var_decomp: dict[str, dict[str, float]]
     k_offcycle_mult: float
-    t_gcam: dict[str, float]
-    t_gcam_source: str
+    t_required: dict[str, dict]  # asset_id → {year, status, pool}
+    t_required_source: str
     measured_overrides: list[str] = field(default_factory=list)
 
     def sigma(self, driver: str) -> float:
@@ -65,24 +82,33 @@ class CalibrationSet:
         return float(row["band_lo"]), float(row["band_hi"])
 
     def mu_vector(self, elec_driver: str) -> np.ndarray:
-        """드라이버 drift — DRIVERS 순서 [carbon, h2, elec, capex]."""
         s = self.sigmas.set_index("driver")["mu"]
         return np.array(
-            [s["carbon_diffusion"], s["h2"], s[elec_driver], s["capex"]], dtype=float
+            [s["carbon_diffusion"], s["h2"], s[elec_driver], s["feedstock"], s["capex"]],
+            dtype=float,
         )
 
-    def rho_matrix(self, elec_driver: str, carbon_sigma: float | None = None) -> tuple[np.ndarray, np.ndarray]:
-        """(σ 벡터, ρ 4×4) — DRIVERS 순서 [carbon, h2, elec, capex]."""
+    def rho_matrix(
+        self, elec_driver: str, carbon_sigma: float | None = None
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """(σ 벡터, ρ 5×5) — DRIVERS 순서 [carbon, h2, elec, feedstock, capex].
+        주의: 점프 포함 σ_carbon에도 확산과 동일 ρ를 적용 — 근사 (§5 명시)."""
+        from model.lib.anatomy import DRIVERS
+
         sig = np.array(
             [
                 carbon_sigma if carbon_sigma is not None else self.sigma("carbon_diffusion"),
                 self.sigma("h2"),
                 self.sigma(elec_driver),
+                self.sigma("feedstock"),
                 self.sigma("capex"),
             ]
         )
         rho = np.eye(len(DRIVERS))
-        pair = {(r["driver_i"], r["driver_j"]): float(r["value"]) for _, r in self.correlations.iterrows()}
+        pair = {
+            (r["driver_i"], r["driver_j"]): float(r["value"])
+            for _, r in self.correlations.iterrows()
+        }
         for i, di in enumerate(DRIVERS):
             for j, dj in enumerate(DRIVERS):
                 if i == j:
@@ -92,32 +118,80 @@ class CalibrationSet:
                     rho[i, j] = v
         return sig, rho
 
+    def carbon_scenarios(self, country: str) -> pd.DataFrame:
+        return self.scenarios[self.scenarios["driver"] == f"carbon_{country.lower()}"]
+
 
 def _annualized_sigma(returns: pd.Series) -> float:
     return float(returns.std() * np.sqrt(TRADING_DAYS))
 
 
-def _gcam_t(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, float], str]:
-    """자산별 T^GCAM. raw CSV 우선, 없으면 legacy logistic surrogate."""
+def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, dict], str]:
+    """route별 배치 풀로 T_required 산출.
+
+    - priced_route 자산만 풀에 들어간다 (no_feasible_route는 풀 소비 금지).
+    - h2_dri: GCAM H₂-DRI 곡선 (raw 있으면 raw, 없으면 logistic surrogate).
+    - 석유화학 archetype: 자산별 next investment cycle을 T_required로 쓰는 명시적
+      PROVISIONAL surrogate. 실제 사별 mandate나 sector pathway로 해석하지 않는다.
+    - 기타 철강 route: route별 GCAM 경로 부재 → h2 곡선을 자기 풀 용량으로
+      정규화한 동형 곡선 사용, 자산 status=PROVISIONAL(route pathway unavailable).
+    - 풀 내 배분은 reline 연도순 — LCOA merit order가 아니라 근사 (명시).
+    """
     raw_csv = RAW / "gcam" / "Q_gcam_h2dri.csv"
     legacy = yaml.safe_load((RAW / "legacy_config" / "model_parameters.yaml").read_text())
-    g = legacy["gcam_nz2050"]
+    s = legacy["gcam_nz2050"]["surrogate"]
+    base_year = int(lsm["base_year"])
+    years = np.arange(base_year, base_year + int(lsm["horizon_years"]) + 1, dtype=float)
     if raw_csv.exists():
         q = pd.read_csv(raw_csv).sort_values("year")
-        years, q_mt = q["year"].to_numpy(float), q["Q_h2dri_Mt"].to_numpy(float)
+        years_h2, q_h2 = q["year"].to_numpy(float), q["Q_h2dri_Mt"].to_numpy(float)
         source = "gcam_raw"
     else:
-        s = g["surrogate"]
-        years = np.arange(lsm["base_year"], lsm["base_year"] + lsm["horizon_years"] + 1, dtype=float)
-        q_mt = s["L_Mt"] / (1.0 + np.exp(-s["k_steepness"] * (years - s["t0_inflection_yr"])))
+        years_h2 = years
+        q_h2 = s["L_Mt"] / (1.0 + np.exp(-s["k_steepness"] * (years - s["t0_inflection_yr"])))
         source = "surrogate"
-    # merit order: reline이 이른 자산부터 배치 요구 (T_i_GCAM_rule의 근사 — LCOA 대신 reline 순)
-    ordered = firms.sort_values("next_reline_year")
-    cum_cap = ordered["crude_steel_mt_yr"].cumsum()
-    out = {}
-    for (idx, row), need in zip(ordered.iterrows(), cum_cap):
-        reached = years[q_mt >= need]
-        out[row["asset_id"]] = float(reached[0]) if len(reached) else float(years[-1])
+
+    out: dict[str, dict] = {}
+    priced = firms[firms["category"] == "priced_route"]
+    for (sector, route), g in priced.groupby(["sector", "route"]):
+        if sector == "petrochemicals":
+            for _, row in g.iterrows():
+                year = float(np.clip(row["next_investment_year"], years[0], years[-1]))
+                out[row["asset_id"]] = {
+                    "year": year,
+                    "status": PROVISIONAL,
+                    "pool": f"{sector}:{route}",
+                    "note": "petrochemical investment-cycle surrogate (PROVISIONAL; not a firm mandate or validated sector pathway)",
+                }
+            continue
+        pool_cap = float(g["capacity_mt_yr"].sum())
+        if route == "h2_dri":
+            yrs, curve = years_h2, q_h2
+            route_status = PROVISIONAL if source == "surrogate" else EMPIRICAL
+            pool_note = f"H2-DRI deployment curve ({source})"
+        else:
+            # 동형 곡선을 자기 풀 용량으로 정규화 — route별 경로 부재의 명시적 대용
+            yrs = years_h2
+            curve = q_h2 / max(q_h2[-1], np.finfo(float).tiny) * pool_cap
+            route_status = PROVISIONAL
+            pool_note = f"route pathway unavailable — h2 curve rescaled to {route} pool (PROVISIONAL)"
+        ordered = g.sort_values("next_investment_year")
+        cum = ordered["capacity_mt_yr"].cumsum()
+        for (_, row), need in zip(ordered.iterrows(), cum):
+            reached = yrs[curve >= float(need)]
+            out[row["asset_id"]] = {
+                "year": float(reached[0]) if len(reached) else float(yrs[-1]),
+                "status": route_status,
+                "pool": f"{sector}:{route}",
+                "note": pool_note + " · investment-cycle allocation (approximation, not LCOA merit order)",
+            }
+    for _, row in firms[firms["category"] == "no_feasible_route"].iterrows():
+        out[row["asset_id"]] = {
+            "year": None,
+            "status": "UNAVAILABLE",
+            "pool": "stranding",
+            "note": "no_feasible_route — priced-route 풀을 소비하지 않음; stranding/closure branch",
+        }
     return out, source
 
 
@@ -127,12 +201,15 @@ def load_calibration() -> CalibrationSet:
     correlations = correlations_schema.validate(pd.read_excel(xlsx, sheet_name="correlations"))
     pricing_df = pricing_schema.validate(pd.read_excel(xlsx, sheet_name="pricing"))
     lsm_df = lsm_schema.validate(pd.read_excel(xlsx, sheet_name="lsm"))
-    scenarios = scenarios_schema.validate(pd.read_csv(CFG / "scenarios.csv"))  # csv 우선 (PLAN §2.1)
+    scenarios = scenarios_schema.validate(pd.read_csv(CFG / "scenarios.csv"))  # csv 우선
     firms = firms_schema.validate(pd.read_csv(CFG / "firms.csv"))
     routes = routes_schema.validate(pd.read_csv(CFG / "routes.csv"))
+    interventions = interventions_schema.validate(pd.read_csv(CFG / "interventions.csv"))
+    transaction_assumptions = transaction_assumptions_schema.validate(
+        pd.read_csv(CFG / "transaction_assumptions.csv")
+    )
 
-    # 계산기 원칙: 가격 '수준·추세'는 시나리오(config)가 구동한다. 시계열은
-    # σ·ρ 캘리브레이션과 연단위 레퍼런스에만 쓴다 (μ·base 자동 오버라이드 없음).
+    # 계산기 원칙: 시계열은 σ 캘리브레이션·레퍼런스에만. 수준·추세는 config가 구동.
     measured = []
     kau = PROCESSED / "kau_daily.parquet"
     if kau.exists():
@@ -143,7 +220,6 @@ def load_calibration() -> CalibrationSet:
         sigmas.loc[i, ["value", "status", "source"]] = [
             sig, "measured", "KAU 일별 로그수익률 연율화 (processed/kau_daily.parquet)",
         ]
-        # measured 값이 기존 band 밖이면 band를 값까지 확장 (스키마 정합)
         sigmas.loc[i, "band_lo"] = min(float(sigmas.loc[i, "band_lo"]), sig)
         sigmas.loc[i, "band_hi"] = max(float(sigmas.loc[i, "band_hi"]), sig)
         measured.append("carbon_diffusion")
@@ -152,7 +228,7 @@ def load_calibration() -> CalibrationSet:
         px = pd.read_parquet(smp)["smp_krw_kwh"].astype(float)
         sig = _annualized_sigma(np.log(px).diff().dropna())
         i = sigmas.index[sigmas["driver"] == "elec_kr_smp"][0]
-        sigmas.loc[i, ["value", "status", "source"]] = [sig, "measured", "EPSIS SMP 연율화 (processed/smp_daily.parquet)"]
+        sigmas.loc[i, ["value", "status", "source"]] = [sig, "measured", "EPSIS SMP 연율화"]
         measured.append("elec_kr_smp")
         if kau.exists():
             a = pd.read_parquet(kau).set_index("date")["close_krw"].astype(float)
@@ -163,23 +239,43 @@ def load_calibration() -> CalibrationSet:
                 j = correlations.index[
                     (correlations["driver_i"] == "elec") & (correlations["driver_j"] == "carbon")
                 ][0]
-                correlations.loc[j, ["value", "status", "source"]] = [rho_meas, "measured", "SMP×KAU 일별 로그수익률 상관 (실측)"]
+                correlations.loc[j, ["value", "status", "source"]] = [
+                    rho_meas, "measured", "SMP×KAU 일별 로그수익률 상관 (실측)",
+                ]
                 measured.append("rho_elec_carbon")
     jepx = PROCESSED / "jepx_daily.parquet"
     if jepx.exists():
         px = pd.read_parquet(jepx)["system_price_jpy_kwh"].astype(float)
         sig = _annualized_sigma(np.log(px[px > 0]).diff().dropna())
         i = sigmas.index[sigmas["driver"] == "elec_jp"][0]
-        sigmas.loc[i, ["value", "status", "source"]] = [sig, "measured", "JEPX 스팟 연율화 (processed/jepx_daily.parquet)"]
+        sigmas.loc[i, ["value", "status", "source"]] = [sig, "measured", "JEPX 스팟 연율화"]
         measured.append("elec_jp")
 
     pricing = dict(zip(pricing_df["param"], pricing_df["value"].astype(float)))
     lsm = dict(zip(lsm_df["param"], lsm_df["value"].astype(float)))
 
-    carbon_scen = scenarios[scenarios["driver"] == "carbon"]
-    levels = carbon_scen["level_usd"].to_numpy(float)
-    probs = carbon_scen["prob"].to_numpy(float)
-    binds = carbon_scen["binds"].to_numpy(int)
+    l_bar: dict[str, float] = {}
+    l_bind: dict[str, float] = {}
+    p_bind: dict[str, float] = {}
+    sigma_reform: dict[str, float] = {}
+    var_decomp: dict[str, dict[str, float]] = {}
+    sigma_diff = float(sigmas.set_index("driver").loc["carbon_diffusion", "value"])
+    for c in COUNTRIES:
+        scen = scenarios[scenarios["driver"] == f"carbon_{c.lower()}"]
+        levels = scen["level_usd"].to_numpy(float)
+        probs = scen["prob"].to_numpy(float)
+        binds = scen["binds"].to_numpy(int)
+        l_bar[c] = scenario_mean_level(levels, probs)
+        l_bind[c] = binding_level(levels, probs, binds)
+        p_bind[c] = float(probs[binds.astype(bool)].sum())  # Option A 파생
+        sigma_reform[c] = sigma_carbon_combined(sigma_diff, levels, probs)
+        lb = l_bar[c]
+        jump_var = float(np.dot(probs, (levels - lb) ** 2)) / lb**2
+        var_decomp[c] = {
+            "diffusion_var": sigma_diff**2,
+            "jump_var": jump_var,
+            "jump_share": jump_var / (sigma_diff**2 + jump_var),
+        }
 
     status: dict[str, str] = {}
     for _, r in sigmas.iterrows():
@@ -189,14 +285,19 @@ def load_calibration() -> CalibrationSet:
     for _, r in pricing_df.iterrows():
         status[r["param"]] = r["status"]
     status["scenarios"] = "assumed"  # 시나리오 확률에 시장 규율 부재 (R2)
+    status["p_bind"] = "assumed"  # 파생이지만 원천(시나리오 확률)이 assumed
     status["ev_usd_bn"] = "assumed"
     status["firms_registry"] = str(firms["status"].mode()[0])
     status["routes_sensitivity"] = str(routes["status"].mode()[0])
+    status["interventions"] = "assumed"
+    status["transaction_assumptions"] = str(transaction_assumptions["status"].mode()[0])
+    status["t_required"] = "provisional"
+    status["exposure_model"] = "model"  # 노출 정의·전환시점 규칙 — MODEL_CONDITIONAL 근원
 
     capex = pd.read_parquet(PROCESSED / "capex_refs.parquet").set_index("item_id")
     k_off = float(capex.loc["K12", "mid"]) / float(capex.loc["K11", "mid"])
 
-    t_gcam, t_gcam_source = _gcam_t(firms, lsm)
+    t_required, t_source = _t_required(firms, lsm)
 
     return CalibrationSet(
         sigmas=sigmas,
@@ -206,15 +307,17 @@ def load_calibration() -> CalibrationSet:
         scenarios=scenarios,
         firms=firms,
         routes=routes,
+        interventions=interventions,
+        transaction_assumptions=transaction_assumptions,
         param_status=status,
-        l_bar=scenario_mean_level(levels, probs),
-        l_bind=binding_level(levels, probs, binds),
-        sigma_carbon_reform=sigma_carbon_combined(
-            float(sigmas.set_index("driver").loc["carbon_diffusion", "value"]), levels, probs
-        ),
+        l_bar=l_bar,
+        l_bind=l_bind,
+        p_bind=p_bind,
+        sigma_carbon_reform=sigma_reform,
+        carbon_var_decomp=var_decomp,
         k_offcycle_mult=k_off,
-        t_gcam=t_gcam,
-        t_gcam_source=t_gcam_source,
+        t_required=t_required,
+        t_required_source=t_source,
         measured_overrides=measured,
     )
 
@@ -232,7 +335,8 @@ def reference_prices() -> dict:
             n_obs=("close_krw", "size"),
         )
         out["carbon_kr_annual"] = [
-            {"year": y, "mean_krw": round(r["mean_krw"], 0), "mean_usd": round(r["mean_usd"], 2), "n_obs": int(r["n_obs"])}
+            {"year": y, "mean_krw": round(r["mean_krw"], 0), "mean_usd": round(r["mean_usd"], 2),
+             "n_obs": int(r["n_obs"])}
             for y, r in agg.iterrows()
         ]
         out["carbon_source"] = "ICAP Allowance Price Explorer (KAU secondary) — data/raw/kau/"
@@ -246,53 +350,18 @@ def reference_prices() -> dict:
     return out
 
 
-def emission_pathway(cal: CalibrationSet) -> dict:
-    """부문 배출 궤적 (지수, base_year=100) — BAU vs 요구 경로. 웹 hero 애니메이션 입력.
-
-    NZ 경로: GCAM 배치곡선(현재 surrogate)의 H2-DRI 누적 배치 × route 평균 감축심도.
-    BAU: 현행 강도 유지 (지수 100 평탄). 계산기 원칙 — 전부 config·surrogate 유래.
-    """
-    import yaml as _yaml
-
-    legacy = _yaml.safe_load((RAW / "legacy_config" / "model_parameters.yaml").read_text())
-    g = legacy["gcam_nz2050"]
-    s = g["surrogate"]
-    base_year = int(cal.lsm["base_year"])
-    years = np.arange(base_year, base_year + int(cal.lsm["horizon_years"]) + 1)
-    q = s["L_Mt"] / (1.0 + np.exp(-s["k_steepness"] * (years - s["t0_inflection_yr"])))
-    total_cap = float(cal.firms["crude_steel_mt_yr"].sum())
-    intensity = cal.firms.set_index("route")["emission_intensity_tco2_t"]
-    depth = 1.0 - float(cal.routes["residual_intensity_tco2_t"].mean()) / float(
-        cal.firms["emission_intensity_tco2_t"].mean()
-    )
-    deployed_share = np.clip(q / total_cap, 0.0, 1.0)
-    nz_index = 100.0 * (1.0 - deployed_share * depth)
-    return {
-        "base_year": base_year,
-        "years": years.tolist(),
-        "bau_index": [100.0] * len(years),
-        "nz_index": nz_index.tolist(),
-        "deployed_share": deployed_share.tolist(),
-        "avg_abatement_depth": depth,
-        "source": cal.t_gcam_source,
-    }
-
-
 def main() -> int:
     cal = load_calibration()
-    write_artifact(
-        "emission_pathway",
-        emission_pathway(cal),
-        cal.param_status,
-        uses=["firms_registry", "routes_sensitivity"],
-        note="부문 배출지수 BAU vs GCAM 요구 경로 (surrogate) — Fig 1 애니메이션 입력",
-    )
     write_artifact(
         "reference_prices",
         reference_prices(),
         cal.param_status,
-        uses=[],
-        note="연단위 레퍼런스 — 모델 파라미터가 아님. 시나리오(config)가 모델을 구동한다",
+        claims={
+            "carbon_kr_annual": claim(EMPIRICAL, ["sigma_carbon_diffusion"],
+                                      "ICAP 실측 연평균 — 모델 파라미터 아님"),
+            "elec_base": claim(PROVISIONAL, ["routes_sensitivity"], "SMP/JEPX 미확보"),
+        },
+        note="연단위 레퍼런스 — 시나리오(config)가 모델을 구동한다",
     )
     write_artifact(
         "calibration_resolved",
@@ -301,23 +370,36 @@ def main() -> int:
             "correlations": cal.correlations.to_dict(orient="records"),
             "pricing": {k: {"value": v, "status": cal.param_status.get(k)} for k, v in cal.pricing.items()},
             "scenarios": cal.scenarios.to_dict(orient="records"),
+            "interventions": cal.interventions.to_dict(orient="records"),
+            "transaction_assumptions": cal.transaction_assumptions.to_dict(orient="records"),
             "derived": {
                 "l_bar": cal.l_bar,
                 "l_bind": cal.l_bind,
+                "p_bind": cal.p_bind,
+                "p_bind_definition": "Option A — p_bind(country) = Σ prob(binds=1); 별도 파라미터 없음",
                 "sigma_carbon_reform": cal.sigma_carbon_reform,
+                "carbon_variance_decomposition": cal.carbon_var_decomp,
+                "jump_correlation_note": "점프에 확산과 동일 ρ·연σ 적용 — 근사 (Merton 비판 R2)",
                 "k_offcycle_mult": cal.k_offcycle_mult,
-                "t_gcam_source": cal.t_gcam_source,
-                "t_gcam": cal.t_gcam,
+                "t_required_source": cal.t_required_source,
+                "t_required": cal.t_required,
             },
             "measured_overrides": cal.measured_overrides,
         },
         cal.param_status,
-        uses=list(cal.pricing.keys()) + ["scenarios"],
+        claims={
+            "derived.l_bind": claim(SCENARIO_CONDITIONAL, ["scenarios"]),
+            "derived.p_bind": claim(SCENARIO_CONDITIONAL, ["scenarios"], "Option A 파생"),
+            "derived.sigma_carbon_reform": claim(SCENARIO_CONDITIONAL,
+                                                 ["scenarios", "sigma_carbon_diffusion"]),
+            "derived.t_required": claim(PROVISIONAL, ["t_required"],
+                                        "surrogate — 실증 식별된 기업 의무로 해석 금지"),
+        },
         note="s02 캘리브레이션 해상본 — 이후 단계의 유일한 파라미터 소스",
     )
     print(
-        f"OK — σ_carbon {cal.sigma('carbon_diffusion'):.2f}→{cal.sigma_carbon_reform:.2f}, "
-        f"ℓ̄={cal.l_bar:.2f}, ℓ_bind={cal.l_bind:.2f}, T_GCAM={cal.t_gcam_source}"
+        f"OK — σ_reform KR {cal.sigma_carbon_reform['KR']:.2f} / JP {cal.sigma_carbon_reform['JP']:.2f}, "
+        f"p_bind KR {cal.p_bind['KR']:.2f} / JP {cal.p_bind['JP']:.2f}, T_required={cal.t_required_source}"
     )
     return 0
 

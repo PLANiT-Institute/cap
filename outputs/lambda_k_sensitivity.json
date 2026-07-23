@@ -1,78 +1,160 @@
 {
   "artifact": "lambda_k_sensitivity",
-  "note": "R1 대응 — A5(λ 균일성) 스트레스: s_k = λ_k·RC_k/Σλ_j·RC_j",
-  "conditional_on": [],
-  "status_of_inputs": {},
+  "note": "R1 대응 λ_k 감응도",
+  "claims": {
+    "firms": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "exposure_model",
+        "firms_registry",
+        "lambda",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "A5 깨질 때 share 이동 — P1이 scalar 공통 λ에만 성립함을 보이는 스트레스"
+    }
+  },
+  "conditional_on": [
+    "lambda",
+    "rho_feedstock_carbon",
+    "routes_sensitivity",
+    "scenarios",
+    "sigma_feedstock"
+  ],
+  "input_status": {
+    "exposure_model": "model",
+    "firms_registry": "banded",
+    "lambda": "assumed",
+    "rho_feedstock_carbon": "assumed",
+    "rho_h2_elec": "banded",
+    "routes_sensitivity": "assumed",
+    "scenarios": "assumed",
+    "sigma_carbon_diffusion": "measured",
+    "sigma_feedstock": "assumed",
+    "sigma_h2": "banded",
+    "t_required": "provisional"
+  },
   "lambda_k": {
     "carbon": 0.5,
     "h2": 0.35,
     "elec": 0.35,
+    "feedstock": 0.4,
     "capex": 0.3
   },
   "firms": [
     {
       "firm_id": "JFE",
       "shares_uniform_lambda": {
-        "carbon": 0.956403113,
+        "carbon": 0.9712545303,
         "h2": 0.0,
-        "elec": 0.0430915803,
-        "capex": 0.0005053067
+        "elec": 0.0283419852,
+        "feedstock": 0.0,
+        "capex": 0.0004034845
       },
       "shares_lambda_k": {
-        "carbon": 0.9691273645,
+        "carbon": 0.9797430133,
         "h2": 0.0,
-        "elec": 0.0305654178,
-        "capex": 0.0003072176
+        "elec": 0.0200127802,
+        "feedstock": 0.0,
+        "capex": 0.0002442065
       },
-      "max_shift": 0.0127242515
+      "max_shift": 0.008488483
+    },
+    {
+      "firm_id": "JP_NCC",
+      "shares_uniform_lambda": {
+        "carbon": 0.0177580306,
+        "h2": 0.0,
+        "elec": 0.0112598072,
+        "feedstock": 0.970385115,
+        "capex": 0.0005970471
+      },
+      "shares_lambda_k": {
+        "carbon": 0.0221337318,
+        "h2": 0.0,
+        "elec": 0.009824011,
+        "feedstock": 0.967595759,
+        "capex": 0.0004464982
+      },
+      "max_shift": 0.0043757012
     },
     {
       "firm_id": "KOBE",
       "shares_uniform_lambda": {
-        "carbon": 0.8971942212,
+        "carbon": 0.9997122534,
         "h2": 0.0,
-        "elec": 0.1008352356,
-        "capex": 0.0019705431
+        "elec": 0.0,
+        "feedstock": 0.0,
+        "capex": 0.0002877466
       },
       "shares_lambda_k": {
-        "carbon": 0.9259340932,
+        "carbon": 0.9998273322,
         "h2": 0.0,
-        "elec": 0.0728457074,
-        "capex": 0.0012201994
+        "elec": 0.0,
+        "feedstock": 0.0,
+        "capex": 0.0001726678
       },
-      "max_shift": 0.028739872
+      "max_shift": 0.0001150788
+    },
+    {
+      "firm_id": "KR_NCC",
+      "shares_uniform_lambda": {
+        "carbon": 0.0257755633,
+        "h2": 0.0,
+        "elec": 0.0133611373,
+        "feedstock": 0.959540328,
+        "capex": 0.0013229714
+      },
+      "shares_lambda_k": {
+        "carbon": 0.0320769362,
+        "h2": 0.0,
+        "elec": 0.0116392817,
+        "feedstock": 0.9552959425,
+        "capex": 0.0009878396
+      },
+      "max_shift": 0.0063013728
     },
     {
       "firm_id": "NIPPON",
       "shares_uniform_lambda": {
-        "carbon": 0.1889320949,
-        "h2": 0.7008666616,
-        "elec": 0.1086249297,
-        "capex": 0.0015763138
+        "carbon": 0.1009411916,
+        "h2": 0.7822410483,
+        "elec": 0.1152501143,
+        "feedstock": 0.0,
+        "capex": 0.0015676458
       },
       "shares_lambda_k": {
-        "carbon": 0.2497377414,
-        "h2": 0.6485028393,
-        "elec": 0.1005092397,
-        "capex": 0.0012501795
+        "carbon": 0.1382518194,
+        "h2": 0.7499651281,
+        "elec": 0.1104947981,
+        "feedstock": 0.0,
+        "capex": 0.0012882543
       },
-      "max_shift": 0.0608056465
+      "max_shift": 0.0373106278
     },
     {
       "firm_id": "POSCO",
       "shares_uniform_lambda": {
-        "carbon": 0.4947029323,
-        "h2": 0.4680183248,
-        "elec": 0.0351632028,
-        "capex": 0.0021155402
+        "carbon": 0.3161768839,
+        "h2": 0.6377150309,
+        "elec": 0.0435159068,
+        "feedstock": 0.0,
+        "capex": 0.0025921784
       },
       "shares_lambda_k": {
-        "carbon": 0.5832390068,
-        "h2": 0.3862450929,
-        "elec": 0.0290194076,
-        "capex": 0.0014964927
+        "carbon": 0.3979100581,
+        "h2": 0.5617971031,
+        "elec": 0.0383354778,
+        "feedstock": 0.0,
+        "capex": 0.001957361
       },
-      "max_shift": 0.0885360745
+      "max_shift": 0.0817331741
     }
   ]
 }

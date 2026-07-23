@@ -1,8 +1,8 @@
 {
   "sample": true,
-  "note": "Illustrative sample — the petrochemical pipeline has not been run. Structure mirrors the steel anatomy; numbers are placeholders for scoping, not results.",
+  "note": "Legacy scoping sample retained for reference. The live petrochemical pipeline now runs from config/firms.csv and config/routes.csv; use outputs/*.json, not the placeholder values below.",
   "sector": "Petrochemicals",
-  "phase": "Phase 2 — scoping",
+  "phase": "Superseded by live provisional archetypes",
   "asset_base": "Ethylene crackers (naphtha NCC), Korea & Japan — facility registry drafted from FY2024 energy disclosures (LOTTE Daesan, LG Chem Yeosu, YNCC, Mitsubishi Kashima, Sumitomo Chiba)",
   "routes": [
     { "route": "electric_cracking", "bet": "Short the grid transition — e-cracker electrification" },

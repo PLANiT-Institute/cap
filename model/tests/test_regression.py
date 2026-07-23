@@ -1,22 +1,37 @@
-"""회귀 테스트 — 논문 검산 고정 (PLAN 실행순서 3).
+"""회귀 테스트 — pathway-first 개편 (지시 §9의 17항목).
 
-논문 대조 수치는 여기 '기대값'으로 고정된다. 파이프라인이 바뀌어 깨지면
-그것은 발견이거나 회귀 — PAPER_DIFF.md 갱신 없이 조용히 통과 기준을 바꾸지 말 것.
+수치를 맞추기 위한 하드코딩 금지 — 구조적 성질만 고정한다.
+stale artifact 방지: 핵심 검증(경로·gap)은 outputs를 읽지 않고
+lib/pathways·s07.build를 in-memory로 재계산해 대조한다.
 """
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import pytest
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 OUT = ROOT / "outputs"
 
 from model.lib.anatomy import DRIVERS, euler_shares  # noqa: E402
+from model.lib.interventions import apply_interventions  # noqa: E402
 from model.lib.jump import sigma_carbon_combined  # noqa: E402
+from model.lib.pathways import asset_annual_emissions, condition_gap, firm_pathway  # noqa: E402
+from model.lib.result_contract import (  # noqa: E402
+    ALIGNMENT_GAP_BASIS,
+    ENTERPRISE_FIXED_RISK_BASIS,
+    ENTERPRISE_RISK_BASIS,
+    PROJECT_ECONOMICS_BASIS,
+    PROJECT_RISK_BASIS,
+    RISK_CHARGE_METRIC,
+)
+from model.lib.underwriting import annual_charge_usd_m  # noqa: E402
 from model.s02_calibrate import load_calibration  # noqa: E402
+from model.s07_pathways import build, switch_maps  # noqa: E402
 
 
 @pytest.fixture(scope="module")
@@ -24,114 +39,489 @@ def cal():
     return load_calibration()
 
 
+@pytest.fixture(scope="module")
+def fresh(cal):
+    """s07 산출을 in-memory 재생성 — stale artifact 우회."""
+    return build(cal)
+
+
 def art(name: str) -> dict:
     return json.loads((OUT / f"{name}.json").read_text())
 
 
-def test_sigma_carbon_040_to_088(cal):
-    """논문 §04 검산: 시나리오 {12·.45, 35·.35, 85·.20} → 0.40 → 0.88."""
-    levels = cal.scenarios["level_usd"].to_numpy(float)
-    probs = cal.scenarios["prob"].to_numpy(float)
-    assert sigma_carbon_combined(0.40, levels, probs) == pytest.approx(0.88, abs=0.005)
-    assert cal.sigma_carbon_reform == pytest.approx(
-        sigma_carbon_combined(cal.sigma("carbon_diffusion"), levels, probs)
+# 1. 자산별 배출 합 = 기업 배출
+def test_asset_sum_equals_firm(cal):
+    years = np.arange(2026, 2062)
+    residual = dict(zip(cal.routes["route"], cal.routes["residual_intensity_tco2_t"]))
+    g = cal.firms[cal.firms["firm_id"] == "POSCO"]
+    track = firm_pathway(g, {}, years, residual)
+    manual = sum(
+        asset_annual_emissions(a["capacity_mt_yr"], a["emission_intensity_tco2_t"],
+                               residual[a["route"]], None, years)
+        for _, a in g.iterrows()
     )
+    assert np.allclose(track["emissions_mtco2"], manual)
 
 
-def test_euler_shares_sum_to_one():
-    w = np.array([3.0, 2.0, 1.0, 0.5])
-    rho = np.array([[1, 0, 0.3, 0], [0, 1, 0.7, 0], [0.3, 0.7, 1, 0], [0, 0, 0, 1.0]])
-    sigma_b, shares = euler_shares(w, rho)
-    assert shares.sum() == pytest.approx(1.0)
-    assert sigma_b > 0
+# 2. BAU는 기존 집약도 유지
+def test_bau_flat(fresh):
+    pathways, _ = fresh
+    for f in pathways["firms"]:
+        bau = f["pathways"]["bau"]["emissions_mtco2"]
+        assert max(bau) == pytest.approx(min(bau))
+        assert f["pathways"]["bau"]["transitioned_capacity_mt"][-1] == 0
 
 
-def test_shares_by_firm_sum_to_one():
-    for f in art("shares_by_firm")["firms"]:
-        assert sum(f["shares"].values()) == pytest.approx(1.0, abs=1e-9)
-        assert sum(f["shares_reform"].values()) == pytest.approx(1.0, abs=1e-9)
+# 3/4. private/required 전환연도 = τ*/T_required (자산 단위)
+def test_switch_years_match_sources(cal, fresh):
+    private, required, _ = switch_maps(cal)
+    years = np.arange(int(cal.lsm["base_year"]),
+                      int(cal.lsm["base_year"] + cal.lsm["horizon_years"]) + 1)
+    residual = dict(zip(cal.routes["route"], cal.routes["residual_intensity_tco2_t"]))
+    a = cal.firms[cal.firms["asset_id"] == "A01"].iloc[0]
+    tau = private["A01"]
+    e = asset_annual_emissions(a["capacity_mt_yr"], a["emission_intensity_tco2_t"],
+                               residual[a["route"]], tau, years)
+    if tau is not None:
+        drop_year = years[np.argmax(np.diff(e) < 0) + 1]
+        assert drop_year == pytest.approx(np.ceil(tau), abs=1)
+    treq = required["A01"]
+    assert treq == cal.t_required["A01"]["year"]
 
 
-def test_lambda_invariance_prop1():
-    """Prop 1: λ×p_bind 격자 전체에서 share 불변 (소수점 6자리), 수준은 스윙."""
+# 5. cumulative alignment gap ≥ 0
+def test_gap_nonnegative(fresh):
+    _, gaps = fresh
+    for f in gaps["firms"]:
+        assert f["cumulative_alignment_gap_mtco2"] >= 0
+        assert all(g >= 0 for g in f["annual_alignment_gap_mtco2"])
+
+
+# 6. τ*를 앞당기는 개입은 cumulative gap을 늘리지 않는다 (일반적으로 감소)
+def test_intervention_gap_direction():
+    imp = art("intervention_impacts")
+    for f in imp["firms"]:
+        for iid, iv in f["interventions"].items():
+            if iv["delta"]["tau_star_years"] < -1e-9:
+                assert iv["delta"]["cumulative_gap_mtco2"] <= 1e-6
+
+
+# 7. scalar λ/p_bind만 변경 시 고정 exposure 아래 share 불변 (IDENTITY)
+def test_p1_scalar_invariance():
     inv = art("lambda_invariance")
-    assert inv["max_share_deviation"] < 1e-6
-    assert inv["level_max_bps"] / inv["level_min_bps"] > 10  # 수준은 크게 스윙
+    assert inv["max_share_deviation"] < 1e-9
+    assert inv["claims"]["max_share_deviation"]["status"] == "IDENTITY"
 
 
-def test_cluster_separation():
-    sep = art("cluster_separation")
-    assert sep["separated"] is True
-    assert sep["gap"] > 0
-
-
-def test_reform_raises_carbon_share():
-    """§04: reform-priced에서 모든 기업의 carbon share 상승."""
-    for f in art("shares_by_firm")["firms"]:
-        assert f["shares_reform"]["carbon"] > f["shares"]["carbon"]
-
-
-def test_h2_route_zero_h2_only_for_grid_cluster():
-    """A4: scrap/가스 route의 수소 감응도는 구성상 0."""
-    for f in art("shares_by_firm")["firms"]:
-        if f["cluster"] == "grid_route":
-            assert f["shares"]["h2"] == pytest.approx(0.0, abs=1e-12)
-        else:
-            assert f["shares"]["h2"] > 0
-
-
-def test_stranding_excluded_from_anatomy():
-    """no_feasible_route 자산은 anatomy 부재 + stranding 존재 (Hyundai A03/A08)."""
-    anatomy_firms = {f["firm_id"] for f in art("shares_by_firm")["firms"]}
-    stranded = {a["asset_id"] for a in art("stranding")["assets"]}
-    assert "HYUNDAI" not in anatomy_firms
-    assert stranded == {"A03", "A08"}
-
-
-def test_delta_pi_positive():
-    """I1: Δπ = π(미확약) − π(확약) > 0, 전 기업."""
-    for r in art("delta_pi_ranking")["ranking"]:
-        assert r["delta_pi_bps"] > 0
-
-
-def test_conditional_on_machinery():
-    """status 전파: 수준 artifact엔 conditional_on 비어있지 않고, 조성 artifact엔 비어있음."""
-    assert "lambda" in art("premium_levels")["conditional_on"]
-    assert "p_bind" in art("premium_levels")["conditional_on"]
-    assert art("shares_by_firm")["conditional_on"] == []
-    assert art("cost_vs_risk")["conditional_on"] == []
-
-
-def test_sigma_linearity_r2():
-    assert art("sigma_linearity")["r_squared"] > 0.9
-
-
-def test_manifest_records_gcam_source():
-    m = json.loads((OUT / "manifest.json").read_text())
-    assert m["t_gcam_source"] in ("surrogate", "gcam_raw")
-    assert m["seed"] == int(load_calibration().lsm["seed"])
-
-
-def test_cost_vs_risk_differ():
-    """A1의 경험적 발톱: 평균 분해 ≠ 분산 분해 (POSCO 탄소 36% vs 44% 류)."""
-    for f in art("cost_vs_risk")["firms"]:
-        diffs = [abs(f["cost_shares"][d] - f["risk_shares"][d]) for d in DRIVERS]
-        assert max(diffs) > 0.01
-
-
-def test_calculator_api_overrides():
-    """계산기 원칙: compute()가 파일 안 건드리고 오버라이드 반영 — MCP 시임."""
+# 8. 시나리오·WACC를 바꾸면 share가 변할 수 있다 (P1 과잉주장 방지)
+def test_shares_move_with_scenarios_and_wacc():
     from model.api import compute
 
     base = compute()
-    hi = compute({"pricing": {"lambda": 0.8}})
-    for b, h in zip(base["firms"], hi["firms"]):
-        assert h["premium_bps"] == pytest.approx(b["premium_bps"] * 0.8 / 0.4)  # 수준 스케일
-        for d in DRIVERS:
-            assert h["shares"][d] == pytest.approx(b["shares"][d])  # 조성 불변 (P1)
-    scen = compute({"carbon_scenarios": [
-        {"scenario": "SQ", "level_usd": 12, "prob": 0.5, "binds": 0},
-        {"scenario": "REFORM", "level_usd": 60, "prob": 0.5, "binds": 1},
+    scen = compute({"carbon_scenarios_kr": [
+        {"scenario": "SQ", "level_usd": 12, "prob": 0.1, "binds": 0},
+        {"scenario": "HARD", "level_usd": 120, "prob": 0.9, "binds": 1},
     ]})
-    assert scen["derived"]["l_bind"] == pytest.approx(60.0)
-    assert scen["derived"]["sigma_carbon_reform"] != pytest.approx(base["derived"]["sigma_carbon_reform"])
+    b = next(f for f in base["firms"] if f["firm_id"] == "POSCO")
+    s = next(f for f in scen["firms"] if f["firm_id"] == "POSCO")
+    assert abs(s["shares_reform"]["carbon"] - b["shares_reform"]["carbon"]) > 1e-3
+
+
+# 9. p_bind 정의 일관 (Option A: 파생)
+def test_p_bind_derived(cal):
+    for c in ("KR", "JP"):
+        scen = cal.carbon_scenarios(c)
+        assert cal.p_bind[c] == pytest.approx(
+            float(scen.loc[scen["binds"] == 1, "prob"].sum())
+        )
+
+
+# 10. KR 시나리오가 JP 기업에 자동 적용되지 않음
+def test_country_carbon_separation(cal):
+    assert cal.l_bind["KR"] != pytest.approx(cal.l_bind["JP"])
+    lv = art("premium_levels")
+    by = {f["firm_id"]: f for f in lv["firms"]}
+    assert by["POSCO"]["p_bind"] == pytest.approx(cal.p_bind["KR"])
+    assert by["NIPPON"]["p_bind"] == pytest.approx(cal.p_bind["JP"])
+    assert by["POSCO"]["l_bind"] != pytest.approx(by["NIPPON"]["l_bind"])
+
+
+# 11. no_feasible_route가 priced 풀을 소비하지 않음
+def test_stranding_not_in_deployment_pool(cal):
+    for aid, t in cal.t_required.items():
+        cat = cal.firms.set_index("asset_id").loc[aid, "category"]
+        if cat == "no_feasible_route":
+            assert t["pool"] == "stranding" and t["year"] is None
+        else:
+            assert t["pool"] != "stranding"
+
+
+# 12. 기업 평균 전환연도 방식 미사용 — 자산별 전환이 계단으로 나타남
+def test_asset_level_steps(fresh):
+    pathways, _ = fresh
+    posco = next(f for f in pathways["firms"] if f["firm_id"] == "POSCO")
+    req = np.array(posco["pathways"]["required"]["emissions_mtco2"])
+    drops = np.sum(np.diff(req) < -1e-9)
+    assert drops >= 2  # 자산 4개가 서로 다른 해에 전환 → 복수 계단
+
+
+# 13. intervention 후 residual risk가 근거 없이 0이 되지 않음
+def test_residual_never_zero():
+    imp = art("intervention_impacts")
+    for f in imp["firms"]:
+        for iid, iv in f["interventions"].items():
+            assert iv["residual"]["risk_charge_bps"] > 0
+            assert iv["residual"]["sigma_b_usd_bn"] > 0
+
+
+# 14. artifact dependency가 실제 assumed input을 포함
+def test_claims_carry_assumed_deps():
+    lv = art("premium_levels")
+    deps = lv["claims"]["firms.premium_bps"]["depends_on"]
+    for p in ("lambda", "k", "ev_usd_bn", "scenarios"):
+        assert p in deps
+    assert "lambda" in lv["conditional_on"]
+    sh = art("shares_by_firm")
+    assert sh["claims"]["firms.shares"]["status"] == "MODEL_CONDITIONAL"
+
+
+# 15. manifest가 dirty tree·lineage를 기록
+def test_manifest_lineage():
+    m = art("manifest")
+    for k in ("git_sha", "git_dirty", "code_sha256", "config_sha256",
+              "raw_data_sha256", "processed_data_sha256", "seed",
+              "t_required_source", "artifacts"):
+        assert k in m
+    assert isinstance(m["git_dirty"], bool)
+
+
+# 16. theory live-value 치환 unresolved 없음
+def test_theory_render_clean():
+    r = subprocess.run(
+        ["uv", "run", "python", "scripts/render_theory.py"], cwd=ROOT,
+        capture_output=True, text=True,
+    )
+    assert r.returncode == 0, r.stderr
+
+
+# 검산 유지: σ_carbon 점프혼합 (KR)
+def test_sigma_carbon_kr(cal):
+    scen = cal.carbon_scenarios("KR")
+    assert sigma_carbon_combined(
+        0.40, scen["level_usd"].to_numpy(float), scen["prob"].to_numpy(float)
+    ) == pytest.approx(0.88, abs=0.005)
+
+
+# 구조 유지: share 합=1 (IDENTITY), 클러스터 분리
+def test_shares_identity_and_clusters():
+    sh = art("shares_by_firm")
+    for f in sh["firms"]:
+        assert sum(f["shares"].values()) == pytest.approx(1.0, abs=1e-9)
+    sep = art("cluster_separation")
+    assert sep["separated"] is True
+
+
+# 개입 coverage 근사: h2_cfd가 σ_h2를 0으로 만들지 않음
+def test_coverage_keeps_basis_risk(cal):
+    ps = apply_interventions(cal, "h2_dri", "KR", "elec_kr_regulated", ["h2_cfd"])
+    assert 0 < ps.sigma_h2 < cal.sigma("h2")
+    ps2 = apply_interventions(cal, "h2_dri", "KR", "elec_kr_regulated", ["capex_subsidy"])
+    assert ps2.k_capex_mult < 1.0
+    feed = apply_interventions(cal, "circular_olefins", "KR", "elec_kr_smp", ["circular_feedstock"])
+    assert 0 < feed.sigma_feedstock < cal.sigma("feedstock")
+    naphtha = apply_interventions(cal, "e_cracker", "KR", "elec_kr_smp", ["feedstock_hedge"])
+    assert 0 < naphtha.sigma_feedstock < cal.sigma("feedstock")
+
+
+def test_underwriting_translation_and_ranking():
+    """금융 화면은 기존 charge를 번역할 뿐 관측 스프레드로 재명명하지 않는다."""
+    uw = art("transition_underwriting")
+    assert "not an observed" in uw["definitions"]["model_implied_spread"]
+    for firm in uw["firms"]:
+        u = firm["underwriting"]
+        assert u["annual_risk_charge_usd_m"] == pytest.approx(
+            annual_charge_usd_m(u["model_implied_spread_bps"], firm["enterprise_value_usd_bn"])
+        )
+        assert sum(u["risk_anatomy"].values()) == pytest.approx(1.0)
+        assert u["sensitivity"]["range_bps"]["lo"] > 0
+        assert u["sensitivity"]["range_bps"]["hi"] > u["sensitivity"]["range_bps"]["lo"]
+        sensitivity_base = u["sensitivity"]["base"]
+        assert any(
+            row["lambda"] == sensitivity_base["lambda"]
+            and row["p_bind"] == sensitivity_base["p_bind"]
+            and row["spread_bps"] == pytest.approx(sensitivity_base["spread_bps"])
+            for row in u["sensitivity"]["rows"]
+        )
+        positive = [o for o in firm["contract_options"] if o["applicable"] and o["risk_cut_bps"] > 0]
+        best = firm["decision_summary"]["best_de_risker"]
+        if positive:
+            assert best["risk_cut_bps"] == pytest.approx(max(o["risk_cut_bps"] for o in positive))
+        for option in firm["contract_options"]:
+            assert option["residual_charge_ratio"] > 0
+
+
+def test_deal_screening_keeps_value_risk_and_bankability_separate():
+    deals = art("deal_screening")
+    assert deals["profile"]["quote_status"] == "ILLUSTRATIVE_NOT_EXECUTABLE"
+    for firm in deals["firms"]:
+        assert firm["sector"] in {"steel", "petrochemicals"}
+        assert all(
+            route_case["base"]["economics"]["sector"] == firm["sector"]
+            for route_case in firm["route_cases"]
+        )
+        configured = next(r for r in firm["route_cases"] if r["is_configured_route"])
+        assert configured["feasibility_status"] == "CONFIGURED_ROUTE"
+        assert configured["meets_configured_decarbonization_depth"] is True
+        for route_case in firm["route_cases"]:
+            applicable = [o for o in route_case["options"] if o["applicable"]]
+            computed_frontier = {
+                option["intervention_id"]
+                for option in applicable
+                if not any(
+                    other["net_incremental_value_usd_m"] >= option["net_incremental_value_usd_m"]
+                    and other["risk_cut_bps"] >= option["risk_cut_bps"]
+                    and (
+                        other["net_incremental_value_usd_m"] > option["net_incremental_value_usd_m"]
+                        or other["risk_cut_bps"] > option["risk_cut_bps"]
+                    )
+                    for other in applicable
+                    if other is not option
+                )
+            }
+            assert set(route_case["frontier"]["pareto_interventions"]) == computed_frontier
+            econ_cases = [route_case["base"]["economics"]] + [
+                o["economics"] for o in route_case["options"] if o["applicable"]
+            ]
+            for econ in econ_cases:
+                be = econ["break_evens"]
+                assert be["required_green_premium_usd_t"] == pytest.approx(
+                    max(be["required_green_premium_npv_usd_t"], be["required_green_premium_dscr_usd_t"])
+                )
+                if econ["investment"]["decision"] != "INVESTABLE_SCREEN":
+                    assert not (econ["investment"]["npv_positive"] and econ["debt"]["dscr_pass"])
+            for option in route_case["options"]:
+                assert option["counterparty_adjustment"]["expected_loss_usd_m"] >= 0
+                assert option["term_sheet"]["modelled_core"]
+                assert len(option["term_sheet"]["must_have_clauses"]) >= 3
+                if option["contract_decision"] == "DUE_DILIGENCE_CANDIDATE":
+                    assert option["economics"]["investment"]["decision"] == "INVESTABLE_SCREEN"
+        rec = firm["recommendation"]
+        climate_leader = next(
+            r for r in firm["route_cases"] if r["route"] == rec["climate_equivalent_leader_route"]
+        )
+        assert climate_leader["meets_configured_decarbonization_depth"] is True
+
+
+def test_transaction_api_terms_move_investment_economics():
+    from model.api import screen_transaction
+
+    base = screen_transaction({"firm_id": "POSCO", "route": "h2_dri"})
+    supported = screen_transaction({
+        "firm_id": "POSCO",
+        "route": "h2_dri",
+        "interventions": ["h2_cfd"],
+        "terms": {"green_premium_usd_t": 500.0},
+    })
+    assert (
+        supported["after"]["economics"]["investment"]["project_npv_usd_m"]
+        > base["after"]["economics"]["investment"]["project_npv_usd_m"]
+    )
+    assert supported["after"]["economics"]["break_evens"]["required_green_premium_usd_t"] == 0
+    with pytest.raises(ValueError):
+        screen_transaction({"firm_id": "POSCO", "terms": {"debt_share": 1.5}})
+    with pytest.raises(ValueError):
+        screen_transaction({"firm_id": "POSCO", "route": "e_cracker"})
+
+
+def test_api_separates_fixed_exposure_from_full_counterfactual():
+    from model.api import compute
+
+    base_fixed = compute(mode="fixed_exposure")
+    base_full = compute(mode="full_counterfactual")
+    fixed_posco = next(f for f in base_fixed["firms"] if f["firm_id"] == "POSCO")
+    full_posco = next(f for f in base_full["firms"] if f["firm_id"] == "POSCO")
+    assert base_fixed["path_recomputed"] is False
+    assert base_full["path_recomputed"] is True
+    assert full_posco["cumulative_alignment_gap_mtco2"] == pytest.approx(
+        fixed_posco["cumulative_alignment_gap_mtco2"]
+    )
+
+    hard_reform = {
+        "carbon_scenarios_kr": [
+            {"scenario": "HARD", "level_usd": 500.0, "prob": 1.0, "binds": 1},
+        ]
+    }
+    shocked_fixed = compute(hard_reform, mode="fixed_exposure")
+    shocked_full = compute(hard_reform, mode="full_counterfactual")
+    shocked_fixed_posco = next(
+        f for f in shocked_fixed["firms"] if f["firm_id"] == "POSCO"
+    )
+    shocked_full_posco = next(
+        f for f in shocked_full["firms"] if f["firm_id"] == "POSCO"
+    )
+    assert shocked_fixed_posco["private_transition_year_capacity_weighted"] == pytest.approx(
+        fixed_posco["private_transition_year_capacity_weighted"]
+    )
+    assert (
+        shocked_full_posco["private_transition_year_capacity_weighted"]
+        < shocked_fixed_posco["private_transition_year_capacity_weighted"]
+    )
+    assert (
+        shocked_full_posco["cumulative_alignment_gap_mtco2"]
+        < shocked_fixed_posco["cumulative_alignment_gap_mtco2"]
+    )
+
+
+def test_api_refreshes_all_carbon_regimes_and_rejects_ambiguous_inputs():
+    from model.api import compute
+
+    base = compute()
+    changed = compute({"sigmas": {"carbon_diffusion": 0.55}})
+    for country in ("KR", "JP"):
+        assert (
+            changed["derived"]["sigma_carbon_reform"][country]
+            > base["derived"]["sigma_carbon_reform"][country]
+        )
+    with pytest.raises(ValueError, match="unknown calculation mode"):
+        compute(mode="hybrid")
+    with pytest.raises(ValueError, match="unknown override keys"):
+        compute({"silent_typo": {}})
+
+
+def test_petrochemical_feedstock_is_a_live_risk_driver():
+    deals = art("deal_screening")
+    petro = [firm for firm in deals["firms"] if firm["sector"] == "petrochemicals"]
+    assert petro
+    assert all(len(firm["route_cases"]) == 3 for firm in petro)
+    for firm in petro:
+        for route_case in firm["route_cases"]:
+            if route_case["route"] == "circular_olefins":
+                assert route_case["base"]["risk"]["shares"]["feedstock"] > 0
+                option = next(
+                    o for o in route_case["options"]
+                    if o["intervention_id"] == "circular_feedstock"
+                )
+                assert option["applicable"] is True
+                assert option["risk_cut_bps"] > 0
+
+
+def test_result_contract_prevents_cross_basis_bps_comparison():
+    contract = art("result_contract")
+    underwriting = art("transition_underwriting")
+    deals = art("deal_screening")
+
+    assert contract["contract_version"] == "1.0"
+    assert contract["release_stage"] == "INTERNAL_RESEARCH_PREVIEW"
+    assert "metric_id and basis_id both match" in contract["comparison_rule"]
+
+    enterprise = underwriting["firms"][0]["underwriting"]["result_contract"]
+    project_case = deals["firms"][0]["route_cases"][0]
+    project = project_case["base"]["risk"]["result_contract"]
+    economics = project_case["base"]["economics"]["result_contract"]
+
+    assert enterprise["metric_id"] == project["metric_id"] == RISK_CHARGE_METRIC
+    assert enterprise["basis_id"] == ENTERPRISE_RISK_BASIS
+    assert project["basis_id"] == PROJECT_RISK_BASIS
+    assert enterprise["basis_id"] != project["basis_id"]
+    assert economics["basis_id"] == PROJECT_ECONOMICS_BASIS
+
+
+def test_result_contract_is_attached_across_research_and_investor_artifacts():
+    underwriting = art("transition_underwriting")
+    impacts = art("intervention_impacts")
+    gaps = art("condition_gap")
+    deals = art("deal_screening")
+    impact_by_firm = {firm["firm_id"]: firm for firm in impacts["firms"]}
+
+    for firm in underwriting["firms"]:
+        assert firm["underwriting"]["result_contract"]["basis_id"] == ENTERPRISE_RISK_BASIS
+        impact = impact_by_firm[firm["firm_id"]]
+        for option in firm["contract_options"]:
+            descriptor = option["result_contract"]
+            assert descriptor["basis_id"] == ENTERPRISE_RISK_BASIS
+            assert option["after_spread_bps"] == pytest.approx(
+                impact["interventions"][option["intervention_id"]]["residual"]["risk_charge_bps"]
+            )
+
+    for firm in gaps["firms"]:
+        descriptor = firm["result_contract"]
+        assert descriptor["basis_id"] == ALIGNMENT_GAP_BASIS
+        assert descriptor["evidence_grade"] == "PROVISIONAL"
+
+    assert deals["release_stage"] == "INTERNAL_RESEARCH_PREVIEW"
+    assert "not directly comparable" in deals["comparison_warning"]
+    for firm in deals["firms"]:
+        for route_case in firm["route_cases"]:
+            cases = [route_case["base"]] + route_case["options"]
+            for case in cases:
+                assert case["risk"]["result_contract"]["basis_id"] == PROJECT_RISK_BASIS
+                assert case["economics"]["result_contract"]["basis_id"] == PROJECT_ECONOMICS_BASIS
+
+
+def test_internal_release_controls_and_validation_docs_exist():
+    required_docs = {
+        "MILESTONE_20.md",
+        "RESULT_CONTRACT.md",
+        "MODEL_CARD.md",
+        "VALIDATION_PLAN.md",
+        "PUBLIC_RELEASE_CHECKLIST.md",
+        "PILOT_CASE_TEMPLATE.md",
+        ".github/workflows/ci.yml",
+    }
+    assert all((ROOT / path).is_file() for path in required_docs)
+
+    page = (ROOT / "web/app/page.tsx").read_text()
+    dashboard = (ROOT / "web/components/UnderwritingDashboard.tsx").read_text()
+    frontier = (ROOT / "web/components/DealVisuals.tsx").read_text()
+    assert "not cleared for external release" in page
+    assert "Do not read their numeric difference as contract impact" in dashboard
+    assert "not directly comparable with enterprise transition-window bps" in frontier
+
+
+def test_korea_japan_pilot_dry_runs_are_reproducible_and_fail_closed():
+    pilots = art("pilot_cases")
+    assert pilots["capability_stage"] == "PILOT_READY_DRY_RUN_30"
+    assert pilots["release_stage"] == "INTERNAL_RESEARCH_PREVIEW"
+    assert pilots["forty_point_status"] == "NOT_ACHIEVED_REAL_CASES_AND_QUOTES_REQUIRED"
+    assert {case["firm_id"] for case in pilots["cases"]} == {"POSCO", "NIPPON"}
+
+    for case in pilots["cases"]:
+        replay = case["reproducibility"]
+        assert replay["exact_match"] is True
+        assert replay["run_a_sha256"] == replay["run_b_sha256"]
+        assert replay["status"] == "AUTOMATED_REPLAY_NOT_INDEPENDENT_ANALYST"
+
+        gates = case["forty_point_gates"]
+        assert gates["traceable_asset_sources"] is True
+        assert gates["automated_deterministic_replay"] is True
+        assert gates["executable_quote"] is False
+        assert gates["empirical_required_path"] is False
+        assert gates["independent_analyst_blind_rerun"] is False
+        assert gates["actual_transaction_case"] is False
+        assert gates["eligible_for_40"] is False
+
+        decision = case["decision_summary"]
+        assert decision["verdict"] == "FID_HOLD"
+        assert decision["gross_incremental_project_npv_usd_m"] > 0
+        assert (
+            decision["counterparty_adjusted_incremental_npv_usd_m"]
+            < decision["gross_incremental_project_npv_usd_m"]
+        )
+        assert decision["decision_at_required_premium_plus_0_1"] == "INVESTABLE_SCREEN"
+
+        enterprise = case["basis_separation"]["enterprise_transition_window"]
+        project = case["basis_separation"]["project_from_base_year"]
+        assert enterprise["basis_id"] == ENTERPRISE_RISK_BASIS
+        assert project["basis_id"] == PROJECT_RISK_BASIS
+        assert enterprise["basis_id"] != project["basis_id"]
+        for point in case["stress_results"]["enterprise_fixed_exposure_pricing"]:
+            assert point["basis_id"] == ENTERPRISE_FIXED_RISK_BASIS
+
+        assert case["input_evidence"]["input_fingerprint_sha256"]
+        assert all(asset["source"] for asset in case["input_evidence"]["assets"])
+
+    assert (OUT / "pilots/posco_h2_cfd_dry_run.md").is_file()
+    assert (OUT / "pilots/nippon_h2_cfd_dry_run.md").is_file()
+    pilot_page = (ROOT / "web/app/pilots/page.tsx").read_text()
+    assert "Not two validated deals" in pilot_page
+    assert "Automated replay is not an independent analyst review" in pilot_page

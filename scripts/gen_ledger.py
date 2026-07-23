@@ -35,10 +35,16 @@ def auto_section() -> str:
     prov = (ROOT / "data" / "DATA_PROVENANCE.md")
     unknown_srcs = prov.read_text().count("| UNKNOWN |") if prov.exists() else 0
 
-    lines = [BEGIN, "", "## Proven (조성 — λ·p_bind 불진입, Prop 1)", "",
-             "- driver shares, cost vs risk 분해, 클러스터 분리, share envelope, Δπ 서열의 *구조*",
-             "- 근거: `outputs/lambda_invariance.json`의 share 불변성 데모", "",
-             "## Conditional (수준 — status=assumed 파라미터 경유)", "",
+    lines = [BEGIN, "", "## Claim 수준 상태 (artifact `claims` 블록)", "",
+             "| 상태 | 대상 |", "|---|---|",
+             "| IDENTITY | share 합=1, scalar λ·p_bind 소거 (P1의 전부) |",
+             "| MODEL_CONDITIONAL | driver shares, τ*, 클러스터 분리, envelope, 개입 Δ |",
+             "| SCENARIO_CONDITIONAL | conditional risk charge (bps·$/t), ℓ_bind, 파생 p_bind |",
+             "| EMPIRICAL | σ_carbon-diffusion (KAU), 연단위 레퍼런스 |",
+             "| PROVISIONAL | T_required (surrogate), route별 경로 부재 rescale |",
+             "| OPEN | SDF/βλ 식별, Merton식 점프리스크 분리, p_bind 행사정책 |", "",
+             "p_bind는 파라미터가 아니라 파생이다 (Option A: Σ prob(binds=1), 국가별).", "",
+             "## Assumed 파라미터 (conditional risk charge 경유)", "",
              "| 파라미터 | 값 | status | anchor |", "|---|---|---|---|"]
     for _, r in pricing.iterrows():
         lines.append(f"| {r['param']} | {r['value']} | **{r['status']}** | {r['theory_anchor']} |")
@@ -61,7 +67,10 @@ def auto_section() -> str:
         "", "## 상시 표기 근사·플래그", "",
         f"- 탄소 점프는 **분산 계층에만** 추가 (regime-switching LSM 아님) — [04_carbon_jump.md](04_carbon_jump.md)",
         f"- `p_bind_in_exercise` (R5 실험 변형): 구현됨 · 현재 **{'ON' if pb_flag else 'OFF'}**",
-        f"- T^GCAM 출처: **{manifest.get('t_gcam_source', '미실행')}** (raw 미확보 시 logistic surrogate — `data/raw/gcam/MISSING.md`)",
+        f"- T_required 출처: **{manifest.get('t_required_source', '미실행')}** — surrogate이면 'provisional; 실증 식별된 기업 의무 아님'. route별 경로 부재 시 h2 곡선 rescale (PROVISIONAL)",
+        f"- 점프에 확산과 동일 ρ·연σ 적용 — 근사 (Merton 분리 OPEN)",
+        f"- 개입 coverage·tenor 결합은 1차 근사; residual risk는 0이 되지 않음",
+        f"- working tree dirty: **{manifest.get('git_dirty', '미실행')}**",
         f"- s05 envelope은 공분산 불확실성만 반영 (τ* 재계산 없음)",
         f"- measured 승격 이력: {manifest.get('measured_overrides') or '없음 (KAU/SMP/JEPX 미확보)'}",
         f"- provenance UNKNOWN 출처 파일: {unknown_srcs}개",

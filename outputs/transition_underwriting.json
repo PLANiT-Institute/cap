@@ -1,0 +1,5453 @@
+{
+  "artifact": "transition_underwriting",
+  "note": "paper-to-product layer: investor underwriting and corporate contract decision views",
+  "claims": {
+    "firms.underwriting.risk_anatomy": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "exposure_model",
+        "firms_registry",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "technology-contingent transition-cost uncertainty; not market beta identification"
+    },
+    "firms.underwriting.model_implied_spread_bps": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "ev_usd_bn",
+        "exposure_model",
+        "firms_registry",
+        "k",
+        "lambda",
+        "p_bind",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "conditional risk-charge normalization; not an observed loan or bond spread"
+    },
+    "firms.contract_options": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "ev_usd_bn",
+        "exposure_model",
+        "firms_registry",
+        "interventions",
+        "k",
+        "lambda",
+        "p_bind",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "coverage, tenor and basis retained; benefit-only ranking pending observed contract cost"
+    }
+  },
+  "conditional_on": [
+    "ev_usd_bn",
+    "interventions",
+    "k",
+    "lambda",
+    "p_bind",
+    "rho_feedstock_carbon",
+    "routes_sensitivity",
+    "scenarios",
+    "sigma_feedstock"
+  ],
+  "input_status": {
+    "exposure_model": "model",
+    "firms_registry": "banded",
+    "rho_feedstock_carbon": "assumed",
+    "rho_h2_elec": "banded",
+    "routes_sensitivity": "assumed",
+    "scenarios": "assumed",
+    "sigma_carbon_diffusion": "measured",
+    "sigma_feedstock": "assumed",
+    "sigma_h2": "banded",
+    "t_required": "provisional",
+    "ev_usd_bn": "assumed",
+    "k": "assumed",
+    "lambda": "assumed",
+    "p_bind": "assumed",
+    "interventions": "assumed"
+  },
+  "perspective": "reform-priced transition-cost risk; fixed-exposure scalar sensitivity",
+  "definitions": {
+    "model_implied_spread": "conditional risk charge, not an observed bond or loan spread",
+    "annual_risk_charge_value": "bps change applied to enterprise value; not a forecast financing saving",
+    "risk_anatomy": "Euler decomposition of transition-cost uncertainty under the calibrated exposure model",
+    "contract_ranking": "benefit-only ranking until observed contract premiums/support costs are supplied"
+  },
+  "portfolio": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "sector": "steel",
+      "route": "scrap_eaf",
+      "spread_bps": 39.2346027117,
+      "result_contract": {
+        "metric_id": "conditional_risk_charge_bps",
+        "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+        "interpretation": "enterprise transition-window charge; not observed spread"
+      },
+      "annual_risk_charge_usd_m": 58.8519040675,
+      "sigma_to_enterprise_value": 0.9153733561,
+      "dominant_driver": "carbon"
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "sector": "steel",
+      "route": "ng_dri",
+      "spread_bps": 26.7368143473,
+      "result_contract": {
+        "metric_id": "conditional_risk_charge_bps",
+        "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+        "interpretation": "enterprise transition-window charge; not observed spread"
+      },
+      "annual_risk_charge_usd_m": 21.3894514778,
+      "sigma_to_enterprise_value": 0.6237903735,
+      "dominant_driver": "carbon"
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "sector": "steel",
+      "route": "h2_dri",
+      "spread_bps": 23.3274012795,
+      "result_contract": {
+        "metric_id": "conditional_risk_charge_bps",
+        "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+        "interpretation": "enterprise transition-window charge; not observed spread"
+      },
+      "annual_risk_charge_usd_m": 93.309605118,
+      "sigma_to_enterprise_value": 0.3253247708,
+      "dominant_driver": "carbon"
+    },
+    {
+      "firm_id": "JP_NCC",
+      "firm": "Japan NCC archetype",
+      "sector": "petrochemicals",
+      "route": "ccus_cracker",
+      "spread_bps": 18.334517459,
+      "result_contract": {
+        "metric_id": "conditional_risk_charge_bps",
+        "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+        "interpretation": "enterprise transition-window charge; not observed spread"
+      },
+      "annual_risk_charge_usd_m": 18.334517459,
+      "sigma_to_enterprise_value": 0.3752661889,
+      "dominant_driver": "feedstock"
+    },
+    {
+      "firm_id": "KR_NCC",
+      "firm": "Korea NCC archetype",
+      "sector": "petrochemicals",
+      "route": "e_cracker",
+      "spread_bps": 16.7698565863,
+      "result_contract": {
+        "metric_id": "conditional_risk_charge_bps",
+        "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+        "interpretation": "enterprise transition-window charge; not observed spread"
+      },
+      "annual_risk_charge_usd_m": 25.1547848795,
+      "sigma_to_enterprise_value": 0.2467393268,
+      "dominant_driver": "feedstock"
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "sector": "steel",
+      "route": "h2_dri",
+      "spread_bps": 12.5835011111,
+      "result_contract": {
+        "metric_id": "conditional_risk_charge_bps",
+        "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+        "interpretation": "enterprise transition-window charge; not observed spread"
+      },
+      "annual_risk_charge_usd_m": 50.3340044444,
+      "sigma_to_enterprise_value": 0.2935827267,
+      "dominant_driver": "h2"
+    }
+  ],
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "sector": "steel",
+      "country": "JP",
+      "route": "scrap_eaf",
+      "capacity_mt": 8.2,
+      "enterprise_value_usd_bn": 15.0,
+      "wacc": 0.04,
+      "underwriting": {
+        "result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+          "interpretation": "enterprise transition-window charge; not observed spread"
+        },
+        "model_implied_spread_bps": 39.2346027117,
+        "annual_risk_charge_usd_m": 58.8519040675,
+        "transition_cost_sigma_usd_bn": 13.7306003422,
+        "sigma_to_enterprise_value": 0.9153733561,
+        "dominant_driver": "carbon",
+        "risk_anatomy": {
+          "carbon": 0.9910568484,
+          "h2": 0.0,
+          "elec": 0.0088918863,
+          "feedstock": 0.0,
+          "capex": 5.12653e-05
+        },
+        "share_envelope": {
+          "carbon": {
+            "lo": 0.939663762,
+            "hi": 0.9935196888,
+            "median": 0.9738309505
+          },
+          "h2": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "elec": {
+            "lo": 0.0042225272,
+            "hi": 0.0590250759,
+            "median": 0.0233560146
+          },
+          "feedstock": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "capex": {
+            "lo": 0.0002646988,
+            "hi": 0.006497511,
+            "median": 0.0024979621
+          }
+        },
+        "share_envelope_perspective": "base-regime covariance band; current anatomy is reform-priced and may sit outside it",
+        "sensitivity": {
+          "lambdas": [
+            0.15,
+            0.25,
+            0.35,
+            0.4,
+            0.45,
+            0.55,
+            0.65
+          ],
+          "p_binds": [
+            0.25,
+            0.35,
+            0.45,
+            0.5,
+            0.55,
+            0.65,
+            0.75,
+            0.85,
+            0.95
+          ],
+          "rows": [
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.25,
+              "spread_bps": 7.3564880084
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.35,
+              "spread_bps": 10.2990832118
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.45,
+              "spread_bps": 13.2416784152
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.5,
+              "spread_bps": 14.7129760169
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.55,
+              "spread_bps": 16.1842736186
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.65,
+              "spread_bps": 19.126868822
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.75,
+              "spread_bps": 22.0694640253
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.85,
+              "spread_bps": 25.0120592287
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.15,
+              "p_bind": 0.95,
+              "spread_bps": 27.9546544321
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.25,
+              "spread_bps": 12.2608133474
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.35,
+              "spread_bps": 17.1651386864
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.45,
+              "spread_bps": 22.0694640253
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.5,
+              "spread_bps": 24.5216266948
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.55,
+              "spread_bps": 26.9737893643
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.65,
+              "spread_bps": 31.8781147033
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.75,
+              "spread_bps": 36.7824400422
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.85,
+              "spread_bps": 41.6867653812
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.25,
+              "p_bind": 0.95,
+              "spread_bps": 46.5910907201
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.25,
+              "spread_bps": 17.1651386864
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.35,
+              "spread_bps": 24.0311941609
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.45,
+              "spread_bps": 30.8972496355
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.5,
+              "spread_bps": 34.3302773727
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.55,
+              "spread_bps": 37.76330511
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.65,
+              "spread_bps": 44.6293605846
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.75,
+              "spread_bps": 51.4954160591
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.85,
+              "spread_bps": 58.3614715337
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.35,
+              "p_bind": 0.95,
+              "spread_bps": 65.2275270082
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.25,
+              "spread_bps": 19.6173013558
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.35,
+              "spread_bps": 27.4642218982
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.45,
+              "spread_bps": 35.3111424405
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.5,
+              "spread_bps": 39.2346027117
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.55,
+              "spread_bps": 43.1580629829
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.65,
+              "spread_bps": 51.0049835252
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.75,
+              "spread_bps": 58.8519040675
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.85,
+              "spread_bps": 66.6988246099
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.4,
+              "p_bind": 0.95,
+              "spread_bps": 74.5457451522
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.25,
+              "spread_bps": 22.0694640253
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.35,
+              "spread_bps": 30.8972496355
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.45,
+              "spread_bps": 39.7250352456
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.5,
+              "spread_bps": 44.1389280507
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.55,
+              "spread_bps": 48.5528208557
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.65,
+              "spread_bps": 57.3806064659
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.75,
+              "spread_bps": 66.208392076
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.85,
+              "spread_bps": 75.0361776861
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.45,
+              "p_bind": 0.95,
+              "spread_bps": 83.8639632963
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.25,
+              "spread_bps": 26.9737893643
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.35,
+              "spread_bps": 37.76330511
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.45,
+              "spread_bps": 48.5528208557
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.5,
+              "spread_bps": 53.9475787286
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.55,
+              "spread_bps": 59.3423366014
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.65,
+              "spread_bps": 70.1318523472
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.75,
+              "spread_bps": 80.9213680929
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.85,
+              "spread_bps": 91.7108838386
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.55,
+              "p_bind": 0.95,
+              "spread_bps": 102.5003995843
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.25,
+              "spread_bps": 31.8781147033
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.35,
+              "spread_bps": 44.6293605846
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.45,
+              "spread_bps": 57.3806064659
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.5,
+              "spread_bps": 63.7562294065
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.55,
+              "spread_bps": 70.1318523472
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.65,
+              "spread_bps": 82.8830982285
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.75,
+              "spread_bps": 95.6343441098
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.85,
+              "spread_bps": 108.3855899911
+            },
+            {
+              "firm_id": "JFE",
+              "lambda": 0.65,
+              "p_bind": 0.95,
+              "spread_bps": 121.1368358724
+            }
+          ],
+          "range_bps": {
+            "lo": 7.3564880084,
+            "hi": 121.1368358724
+          },
+          "base": {
+            "lambda": 0.4,
+            "p_bind": 0.5,
+            "spread_bps": 39.2346027117
+          },
+          "note": "fixed exposure and covariance; scalar pricing sensitivity only"
+        }
+      },
+      "contract_options": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "h2"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.05,
+            "start_year": 2030,
+            "end_year": 2045,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+          },
+          "before_spread_bps": 39.2346027117,
+          "after_spread_bps": 39.2346027117,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 13.7306003422,
+          "after_sigma_usd_bn": 13.7306003422,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.9910568484,
+            "h2": 0.0,
+            "elec": 0.0088918863,
+            "feedstock": 0.0,
+            "capex": 5.12653e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "energy_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "elec"
+            ],
+            "coverage": 0.6,
+            "basis_sigma": 0.03,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+          },
+          "before_spread_bps": 39.2346027117,
+          "after_spread_bps": 39.1361612925,
+          "risk_cut_bps": 0.0984414192,
+          "risk_cut_pct": 0.0025090459,
+          "annual_risk_charge_value_usd_m": 0.1476621288,
+          "before_sigma_usd_bn": 13.7306003422,
+          "after_sigma_usd_bn": 13.6961496357,
+          "sigma_cut_pct": 0.0025090459,
+          "residual_charge_ratio": 0.9974909541,
+          "residual_shares": {
+            "carbon": 0.9937145368,
+            "h2": 0.0,
+            "elec": 0.0062339397,
+            "feedstock": 0.0,
+            "capex": 5.15235e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 2
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "multiply",
+            "instrument_type": "grant",
+            "decision_owner": "public",
+            "targets": [
+              "capex"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "CAPEX level reduced 30%; capex volatility retained"
+          },
+          "before_spread_bps": 39.2346027117,
+          "after_spread_bps": 39.2340898079,
+          "risk_cut_bps": 0.0005129038,
+          "risk_cut_pct": 1.30727e-05,
+          "annual_risk_charge_value_usd_m": 0.0007693557,
+          "before_sigma_usd_bn": 13.7306003422,
+          "after_sigma_usd_bn": 13.7304208456,
+          "sigma_cut_pct": 1.30727e-05,
+          "residual_charge_ratio": 0.9999869273,
+          "residual_shares": {
+            "carbon": 0.9910827605,
+            "h2": 0.0,
+            "elec": 0.0088921188,
+            "feedstock": 0.0,
+            "capex": 2.51207e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 3
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "shift_to_binding",
+            "instrument_type": "policy",
+            "decision_owner": "public",
+            "targets": [
+              "carbon"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2027,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+          },
+          "before_spread_bps": 39.2346027117,
+          "after_spread_bps": 45.6653972642,
+          "risk_cut_bps": -6.4307945525,
+          "risk_cut_pct": -0.1639061978,
+          "annual_risk_charge_value_usd_m": -9.6461918288,
+          "before_sigma_usd_bn": 13.7306003422,
+          "after_sigma_usd_bn": 10.6540872252,
+          "sigma_cut_pct": 0.2240625348,
+          "residual_charge_ratio": 1.1639061978,
+          "residual_shares": {
+            "carbon": 0.9882040703,
+            "h2": 0.0,
+            "elec": 0.0117107825,
+            "feedstock": 0.0,
+            "capex": 8.51472e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "add",
+            "instrument_type": "financing",
+            "decision_owner": "lender",
+            "targets": [
+              "financing"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Avoid joint use with capex support without a double-counting review"
+          },
+          "before_spread_bps": 39.2346027117,
+          "after_spread_bps": 38.2716417046,
+          "risk_cut_bps": 0.9629610071,
+          "risk_cut_pct": 0.0245436666,
+          "annual_risk_charge_value_usd_m": 1.4444415106,
+          "before_sigma_usd_bn": 13.7306003422,
+          "after_sigma_usd_bn": 16.6088094204,
+          "sigma_cut_pct": -0.2096200462,
+          "residual_charge_ratio": 0.9754563334,
+          "residual_shares": {
+            "carbon": 0.9894070508,
+            "h2": 0.0,
+            "elec": 0.0105264471,
+            "feedstock": 0.0,
+            "capex": 6.6502e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 1
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.06,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+          },
+          "before_spread_bps": 39.2346027117,
+          "after_spread_bps": 39.2346027117,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 13.7306003422,
+          "after_sigma_usd_bn": 13.7306003422,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.9910568484,
+            "h2": 0.0,
+            "elec": 0.0088918863,
+            "feedstock": 0.0,
+            "capex": 5.12653e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.65,
+            "basis_sigma": 0.08,
+            "start_year": 2029,
+            "end_year": 2044,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+          },
+          "before_spread_bps": 39.2346027117,
+          "after_spread_bps": 39.2346027117,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 13.7306003422,
+          "after_sigma_usd_bn": 13.7306003422,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.9910568484,
+            "h2": 0.0,
+            "elec": 0.0088918863,
+            "feedstock": 0.0,
+            "capex": 5.12653e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "combine",
+            "instrument_type": "package",
+            "decision_owner": "joint",
+            "targets": [
+              "elec",
+              "capex",
+              "carbon"
+            ],
+            "coverage": null,
+            "basis_sigma": null,
+            "start_year": null,
+            "end_year": null,
+            "components": [
+              "ppa",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "status": "assumed",
+            "notes": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+          },
+          "before_spread_bps": 39.2346027117,
+          "after_spread_bps": 45.5139231369,
+          "risk_cut_bps": -6.2793204252,
+          "risk_cut_pct": -0.1600454698,
+          "annual_risk_charge_value_usd_m": -9.4189806378,
+          "before_sigma_usd_bn": 13.7306003422,
+          "after_sigma_usd_bn": 10.6187471502,
+          "sigma_cut_pct": 0.2266363534,
+          "residual_charge_ratio": 1.1600454698,
+          "residual_shares": {
+            "carbon": 0.9917873636,
+            "h2": 0.0,
+            "elec": 0.0081706361,
+            "feedstock": 0.0,
+            "capex": 4.20003e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        }
+      ],
+      "decision_summary": {
+        "best_de_risker": {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "risk_cut_bps": 0.9629610071,
+          "annual_risk_charge_value_usd_m": 1.4444415106,
+          "decision_class": "de_risking_only"
+        },
+        "dominant_unhedged_driver": "carbon",
+        "explanation": "ranked by positive reduction in the model-implied conditional risk charge; contract price is not yet observed"
+      },
+      "package_attribution": {
+        "order_averaged_cut_bps": {
+          "h2_cfd": 0.0,
+          "ppa": 0.124461681,
+          "feedstock_hedge": 0.0,
+          "circular_feedstock": 0.0,
+          "capex_subsidy": 0.0007535206,
+          "carbon_reform": -6.4045356267
+        },
+        "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
+      }
+    },
+    {
+      "firm_id": "JP_NCC",
+      "firm": "Japan NCC archetype",
+      "sector": "petrochemicals",
+      "country": "JP",
+      "route": "ccus_cracker",
+      "capacity_mt": 1.3,
+      "enterprise_value_usd_bn": 10.0,
+      "wacc": 0.05,
+      "underwriting": {
+        "result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+          "interpretation": "enterprise transition-window charge; not observed spread"
+        },
+        "model_implied_spread_bps": 18.334517459,
+        "annual_risk_charge_usd_m": 18.334517459,
+        "transition_cost_sigma_usd_bn": 3.7526618893,
+        "sigma_to_enterprise_value": 0.3752661889,
+        "dominant_driver": "feedstock",
+        "risk_anatomy": {
+          "carbon": 0.0669907372,
+          "h2": 0.0,
+          "elec": 0.0124928066,
+          "feedstock": 0.9199636139,
+          "capex": 0.0005528424
+        },
+        "share_envelope": {
+          "carbon": {
+            "lo": 0.0027148368,
+            "hi": 0.0429100752,
+            "median": 0.0170637601
+          },
+          "h2": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "elec": {
+            "lo": 0.0027114011,
+            "hi": 0.0331572654,
+            "median": 0.012524721
+          },
+          "feedstock": {
+            "lo": 0.9313058763,
+            "hi": 0.9886805447,
+            "median": 0.9672222988
+          },
+          "capex": {
+            "lo": 0.0004985052,
+            "hi": 0.0080524474,
+            "median": 0.0032101819
+          }
+        },
+        "share_envelope_perspective": "base-regime covariance band; current anatomy is reform-priced and may sit outside it",
+        "sensitivity": {
+          "lambdas": [
+            0.15,
+            0.25,
+            0.35,
+            0.4,
+            0.45,
+            0.55,
+            0.65
+          ],
+          "p_binds": [
+            0.25,
+            0.35,
+            0.45,
+            0.5,
+            0.55,
+            0.65,
+            0.75,
+            0.85,
+            0.95
+          ],
+          "rows": [
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.25,
+              "spread_bps": 3.4377220236
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.35,
+              "spread_bps": 4.812810833
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.45,
+              "spread_bps": 6.1878996424
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.5,
+              "spread_bps": 6.8754440471
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.55,
+              "spread_bps": 7.5629884518
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.65,
+              "spread_bps": 8.9380772613
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.75,
+              "spread_bps": 10.3131660707
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.85,
+              "spread_bps": 11.6882548801
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.95,
+              "spread_bps": 13.0633436895
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.25,
+              "spread_bps": 5.7295367059
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.35,
+              "spread_bps": 8.0213513883
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.45,
+              "spread_bps": 10.3131660707
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.5,
+              "spread_bps": 11.4590734119
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.55,
+              "spread_bps": 12.6049807531
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.65,
+              "spread_bps": 14.8967954354
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.75,
+              "spread_bps": 17.1886101178
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.85,
+              "spread_bps": 19.4804248002
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.95,
+              "spread_bps": 21.7722394826
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.25,
+              "spread_bps": 8.0213513883
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.35,
+              "spread_bps": 11.2298919436
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.45,
+              "spread_bps": 14.438432499
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.5,
+              "spread_bps": 16.0427027766
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.55,
+              "spread_bps": 17.6469730543
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.65,
+              "spread_bps": 20.8555136096
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.75,
+              "spread_bps": 24.0640541649
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.85,
+              "spread_bps": 27.2725947203
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.95,
+              "spread_bps": 30.4811352756
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.25,
+              "spread_bps": 9.1672587295
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.35,
+              "spread_bps": 12.8341622213
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.45,
+              "spread_bps": 16.5010657131
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.5,
+              "spread_bps": 18.334517459
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.55,
+              "spread_bps": 20.1679692049
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.65,
+              "spread_bps": 23.8348726967
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.75,
+              "spread_bps": 27.5017761885
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.85,
+              "spread_bps": 31.1686796803
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.95,
+              "spread_bps": 34.8355831721
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.25,
+              "spread_bps": 10.3131660707
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.35,
+              "spread_bps": 14.438432499
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.45,
+              "spread_bps": 18.5636989272
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.5,
+              "spread_bps": 20.6263321414
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.55,
+              "spread_bps": 22.6889653555
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.65,
+              "spread_bps": 26.8142317838
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.75,
+              "spread_bps": 30.9394982121
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.85,
+              "spread_bps": 35.0647646403
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.95,
+              "spread_bps": 39.1900310686
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.25,
+              "spread_bps": 12.6049807531
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.35,
+              "spread_bps": 17.6469730543
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.45,
+              "spread_bps": 22.6889653555
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.5,
+              "spread_bps": 25.2099615061
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.55,
+              "spread_bps": 27.7309576567
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.65,
+              "spread_bps": 32.772949958
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.75,
+              "spread_bps": 37.8149422592
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.85,
+              "spread_bps": 42.8569345604
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.95,
+              "spread_bps": 47.8989268616
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.25,
+              "spread_bps": 14.8967954354
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.35,
+              "spread_bps": 20.8555136096
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.45,
+              "spread_bps": 26.8142317838
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.5,
+              "spread_bps": 29.7935908709
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.55,
+              "spread_bps": 32.772949958
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.65,
+              "spread_bps": 38.7316681321
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.75,
+              "spread_bps": 44.6903863063
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.85,
+              "spread_bps": 50.6491044805
+            },
+            {
+              "firm_id": "JP_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.95,
+              "spread_bps": 56.6078226547
+            }
+          ],
+          "range_bps": {
+            "lo": 3.4377220236,
+            "hi": 56.6078226547
+          },
+          "base": {
+            "lambda": 0.4,
+            "p_bind": 0.5,
+            "spread_bps": 18.334517459
+          },
+          "note": "fixed exposure and covariance; scalar pricing sensitivity only"
+        }
+      },
+      "contract_options": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "h2"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.05,
+            "start_year": 2030,
+            "end_year": 2045,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+          },
+          "before_spread_bps": 18.334517459,
+          "after_spread_bps": 18.334517459,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 3.7526618893,
+          "after_sigma_usd_bn": 3.7526618893,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.0669907372,
+            "h2": 0.0,
+            "elec": 0.0124928066,
+            "feedstock": 0.9199636139,
+            "capex": 0.0005528424
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "energy_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "elec"
+            ],
+            "coverage": 0.6,
+            "basis_sigma": 0.03,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+          },
+          "before_spread_bps": 18.334517459,
+          "after_spread_bps": 18.2717929338,
+          "risk_cut_bps": 0.0627245252,
+          "risk_cut_pct": 0.0034211168,
+          "annual_risk_charge_value_usd_m": 0.0627245252,
+          "before_sigma_usd_bn": 3.7526618893,
+          "after_sigma_usd_bn": 3.7398235947,
+          "sigma_cut_pct": 0.0034211168,
+          "residual_charge_ratio": 0.9965788832,
+          "residual_shares": {
+            "carbon": 0.0665379924,
+            "h2": 0.0,
+            "elec": 0.0082424788,
+            "feedstock": 0.9246628842,
+            "capex": 0.0005566446
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": -0.1075,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 2
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "multiply",
+            "instrument_type": "grant",
+            "decision_owner": "public",
+            "targets": [
+              "capex"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "CAPEX level reduced 30%; capex volatility retained"
+          },
+          "before_spread_bps": 18.334517459,
+          "after_spread_bps": 18.3319325717,
+          "risk_cut_bps": 0.0025848873,
+          "risk_cut_pct": 0.0001409847,
+          "annual_risk_charge_value_usd_m": 0.0025848873,
+          "before_sigma_usd_bn": 3.7526618893,
+          "after_sigma_usd_bn": 3.7521328212,
+          "sigma_cut_pct": 0.0001409848,
+          "residual_charge_ratio": 0.9998590153,
+          "residual_shares": {
+            "carbon": 0.0670096305,
+            "h2": 0.0,
+            "elec": 0.0124963299,
+            "feedstock": 0.9202230704,
+            "capex": 0.0002709692
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": -0.25675,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 3
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "shift_to_binding",
+            "instrument_type": "policy",
+            "decision_owner": "public",
+            "targets": [
+              "carbon"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2027,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+          },
+          "before_spread_bps": 18.334517459,
+          "after_spread_bps": 27.1040053874,
+          "risk_cut_bps": -8.7694879284,
+          "risk_cut_pct": -0.4783048121,
+          "annual_risk_charge_value_usd_m": -8.7694879284,
+          "before_sigma_usd_bn": 3.7526618893,
+          "after_sigma_usd_bn": 3.6983854194,
+          "sigma_cut_pct": 0.0144634586,
+          "residual_charge_ratio": 1.4783048121,
+          "residual_shares": {
+            "carbon": 0.0478206688,
+            "h2": 0.0,
+            "elec": 0.0121217749,
+            "feedstock": 0.9394883681,
+            "capex": 0.0005691882
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": -0.0605,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "add",
+            "instrument_type": "financing",
+            "decision_owner": "lender",
+            "targets": [
+              "financing"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Avoid joint use with capex support without a double-counting review"
+          },
+          "before_spread_bps": 18.334517459,
+          "after_spread_bps": 18.9908145871,
+          "risk_cut_bps": -0.6562971281,
+          "risk_cut_pct": -0.0357957132,
+          "annual_risk_charge_value_usd_m": -0.6562971281,
+          "before_sigma_usd_bn": 3.7526618893,
+          "after_sigma_usd_bn": 4.747860581,
+          "sigma_cut_pct": -0.2651980703,
+          "residual_charge_ratio": 1.0357957132,
+          "residual_shares": {
+            "carbon": 0.0592070873,
+            "h2": 0.0,
+            "elec": 0.0123557288,
+            "feedstock": 0.9280496802,
+            "capex": 0.0003875037
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 0.48775,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.06,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+          },
+          "before_spread_bps": 18.334517459,
+          "after_spread_bps": 14.5099068516,
+          "risk_cut_bps": 3.8246106074,
+          "risk_cut_pct": 0.2086016507,
+          "annual_risk_charge_value_usd_m": 3.8246106074,
+          "before_sigma_usd_bn": 3.7526618893,
+          "after_sigma_usd_bn": 2.9698504245,
+          "sigma_cut_pct": 0.2086016507,
+          "residual_charge_ratio": 0.7913983493,
+          "residual_shares": {
+            "carbon": 0.0949578082,
+            "h2": 0.0,
+            "elec": 0.0178834306,
+            "feedstock": 0.8862760654,
+            "capex": 0.0008826958
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 1.4815,
+          "delta_gap_mtco2": 1.183,
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "double_count_warning": false,
+          "de_risking_rank": 1
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.65,
+            "basis_sigma": 0.08,
+            "start_year": 2029,
+            "end_year": 2044,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+          },
+          "before_spread_bps": 18.334517459,
+          "after_spread_bps": 18.334517459,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 3.7526618893,
+          "after_sigma_usd_bn": 3.7526618893,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.0669907372,
+            "h2": 0.0,
+            "elec": 0.0124928066,
+            "feedstock": 0.9199636139,
+            "capex": 0.0005528424
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "combine",
+            "instrument_type": "package",
+            "decision_owner": "joint",
+            "targets": [
+              "elec",
+              "feedstock",
+              "capex",
+              "carbon"
+            ],
+            "coverage": null,
+            "basis_sigma": null,
+            "start_year": null,
+            "end_year": null,
+            "components": [
+              "ppa",
+              "feedstock_hedge",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "status": "assumed",
+            "notes": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+          },
+          "before_spread_bps": 18.334517459,
+          "after_spread_bps": 21.2143394192,
+          "risk_cut_bps": -2.8798219602,
+          "risk_cut_pct": -0.1570710528,
+          "annual_risk_charge_value_usd_m": -2.8798219602,
+          "before_sigma_usd_bn": 3.7526618893,
+          "after_sigma_usd_bn": 2.8947309621,
+          "sigma_cut_pct": 0.2286192981,
+          "residual_charge_ratio": 1.1570710528,
+          "residual_shares": {
+            "carbon": 0.0671018151,
+            "h2": 0.0,
+            "elec": 0.0113415789,
+            "feedstock": 0.9211013456,
+            "capex": 0.0004552604
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 0.81925,
+          "delta_gap_mtco2": 1.183,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        }
+      ],
+      "decision_summary": {
+        "best_de_risker": {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "risk_cut_bps": 3.8246106074,
+          "annual_risk_charge_value_usd_m": 3.8246106074,
+          "decision_class": "de_risking_with_alignment_tradeoff"
+        },
+        "dominant_unhedged_driver": "feedstock",
+        "explanation": "ranked by positive reduction in the model-implied conditional risk charge; contract price is not yet observed"
+      },
+      "package_attribution": {
+        "order_averaged_cut_bps": {
+          "h2_cfd": 0.0,
+          "ppa": 0.081345792,
+          "feedstock_hedge": 4.8096865847,
+          "circular_feedstock": 0.0,
+          "capex_subsidy": 0.0037380852,
+          "carbon_reform": -7.7745924222
+        },
+        "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
+      }
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "sector": "steel",
+      "country": "JP",
+      "route": "ng_dri",
+      "capacity_mt": 2.6,
+      "enterprise_value_usd_bn": 8.0,
+      "wacc": 0.04,
+      "underwriting": {
+        "result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+          "interpretation": "enterprise transition-window charge; not observed spread"
+        },
+        "model_implied_spread_bps": 26.7368143473,
+        "annual_risk_charge_usd_m": 21.3894514778,
+        "transition_cost_sigma_usd_bn": 4.9903229884,
+        "sigma_to_enterprise_value": 0.6237903735,
+        "dominant_driver": "carbon",
+        "risk_anatomy": {
+          "carbon": 0.9999646995,
+          "h2": 0.0,
+          "elec": 0.0,
+          "feedstock": 0.0,
+          "capex": 3.53005e-05
+        },
+        "share_envelope": {
+          "carbon": {
+            "lo": 0.9940577306,
+            "hi": 0.9998567971,
+            "median": 0.9981438765
+          },
+          "h2": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "elec": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "feedstock": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "capex": {
+            "lo": 0.0001432029,
+            "hi": 0.0059422694,
+            "median": 0.0018561235
+          }
+        },
+        "share_envelope_perspective": "base-regime covariance band; current anatomy is reform-priced and may sit outside it",
+        "sensitivity": {
+          "lambdas": [
+            0.15,
+            0.25,
+            0.35,
+            0.4,
+            0.45,
+            0.55,
+            0.65
+          ],
+          "p_binds": [
+            0.25,
+            0.35,
+            0.45,
+            0.5,
+            0.55,
+            0.65,
+            0.75,
+            0.85,
+            0.95
+          ],
+          "rows": [
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.25,
+              "spread_bps": 5.0131526901
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.35,
+              "spread_bps": 7.0184137662
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.45,
+              "spread_bps": 9.0236748422
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.5,
+              "spread_bps": 10.0263053802
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.55,
+              "spread_bps": 11.0289359183
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.65,
+              "spread_bps": 13.0341969943
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.75,
+              "spread_bps": 15.0394580704
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.85,
+              "spread_bps": 17.0447191464
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.15,
+              "p_bind": 0.95,
+              "spread_bps": 19.0499802225
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.25,
+              "spread_bps": 8.3552544835
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.35,
+              "spread_bps": 11.6973562769
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.45,
+              "spread_bps": 15.0394580704
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.5,
+              "spread_bps": 16.7105089671
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.55,
+              "spread_bps": 18.3815598638
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.65,
+              "spread_bps": 21.7236616572
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.75,
+              "spread_bps": 25.0657634506
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.85,
+              "spread_bps": 28.407865244
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.25,
+              "p_bind": 0.95,
+              "spread_bps": 31.7499670374
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.25,
+              "spread_bps": 11.6973562769
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.35,
+              "spread_bps": 16.3762987877
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.45,
+              "spread_bps": 21.0552412985
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.5,
+              "spread_bps": 23.3947125539
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.55,
+              "spread_bps": 25.7341838093
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.65,
+              "spread_bps": 30.4131263201
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.75,
+              "spread_bps": 35.0920688308
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.85,
+              "spread_bps": 39.7710113416
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.35,
+              "p_bind": 0.95,
+              "spread_bps": 44.4499538524
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.25,
+              "spread_bps": 13.3684071737
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.35,
+              "spread_bps": 18.7157700431
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.45,
+              "spread_bps": 24.0631329126
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.5,
+              "spread_bps": 26.7368143473
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.55,
+              "spread_bps": 29.410495782
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.65,
+              "spread_bps": 34.7578586515
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.75,
+              "spread_bps": 40.105221521
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.85,
+              "spread_bps": 45.4525843904
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.4,
+              "p_bind": 0.95,
+              "spread_bps": 50.7999472599
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.25,
+              "spread_bps": 15.0394580704
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.35,
+              "spread_bps": 21.0552412985
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.45,
+              "spread_bps": 27.0710245266
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.5,
+              "spread_bps": 30.0789161407
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.55,
+              "spread_bps": 33.0868077548
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.65,
+              "spread_bps": 39.1025909829
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.75,
+              "spread_bps": 45.1183742111
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.85,
+              "spread_bps": 51.1341574392
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.45,
+              "p_bind": 0.95,
+              "spread_bps": 57.1499406674
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.25,
+              "spread_bps": 18.3815598638
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.35,
+              "spread_bps": 25.7341838093
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.45,
+              "spread_bps": 33.0868077548
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.5,
+              "spread_bps": 36.7631197275
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.55,
+              "spread_bps": 40.4394317003
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.65,
+              "spread_bps": 47.7920556458
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.75,
+              "spread_bps": 55.1446795913
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.85,
+              "spread_bps": 62.4973035368
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.55,
+              "p_bind": 0.95,
+              "spread_bps": 69.8499274823
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.25,
+              "spread_bps": 21.7236616572
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.35,
+              "spread_bps": 30.4131263201
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.45,
+              "spread_bps": 39.1025909829
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.5,
+              "spread_bps": 43.4473233144
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.55,
+              "spread_bps": 47.7920556458
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.65,
+              "spread_bps": 56.4815203087
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.75,
+              "spread_bps": 65.1709849715
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.85,
+              "spread_bps": 73.8604496344
+            },
+            {
+              "firm_id": "KOBE",
+              "lambda": 0.65,
+              "p_bind": 0.95,
+              "spread_bps": 82.5499142973
+            }
+          ],
+          "range_bps": {
+            "lo": 5.0131526901,
+            "hi": 82.5499142973
+          },
+          "base": {
+            "lambda": 0.4,
+            "p_bind": 0.5,
+            "spread_bps": 26.7368143473
+          },
+          "note": "fixed exposure and covariance; scalar pricing sensitivity only"
+        }
+      },
+      "contract_options": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "h2"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.05,
+            "start_year": 2030,
+            "end_year": 2045,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+          },
+          "before_spread_bps": 26.7368143473,
+          "after_spread_bps": 26.7368143473,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 4.9903229884,
+          "after_sigma_usd_bn": 4.9903229884,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.9999646995,
+            "h2": 0.0,
+            "elec": 0.0,
+            "feedstock": 0.0,
+            "capex": 3.53005e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "energy_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "elec"
+            ],
+            "coverage": 0.6,
+            "basis_sigma": 0.03,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+          },
+          "before_spread_bps": 26.7368143473,
+          "after_spread_bps": 26.7368143473,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 4.9903229884,
+          "after_sigma_usd_bn": 4.9903229884,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.9999646995,
+            "h2": 0.0,
+            "elec": 0.0,
+            "feedstock": 0.0,
+            "capex": 3.53005e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "multiply",
+            "instrument_type": "grant",
+            "decision_owner": "public",
+            "targets": [
+              "capex"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "CAPEX level reduced 30%; capex volatility retained"
+          },
+          "before_spread_bps": 26.7368143473,
+          "after_spread_bps": 26.7365736715,
+          "risk_cut_bps": 0.0002406758,
+          "risk_cut_pct": 9.0017e-06,
+          "annual_risk_charge_value_usd_m": 0.0001925406,
+          "before_sigma_usd_bn": 4.9903229884,
+          "after_sigma_usd_bn": 4.9902780672,
+          "sigma_cut_pct": 9.0017e-06,
+          "residual_charge_ratio": 0.9999909983,
+          "residual_shares": {
+            "carbon": 0.9999827025,
+            "h2": 0.0,
+            "elec": 0.0,
+            "feedstock": 0.0,
+            "capex": 1.72975e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 1
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "shift_to_binding",
+            "instrument_type": "policy",
+            "decision_owner": "public",
+            "targets": [
+              "carbon"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2027,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+          },
+          "before_spread_bps": 26.7368143473,
+          "after_spread_bps": 31.0374608741,
+          "risk_cut_bps": -4.3006465268,
+          "risk_cut_pct": -0.1608511198,
+          "annual_risk_charge_value_usd_m": -3.4405172214,
+          "before_sigma_usd_bn": 4.9903229884,
+          "after_sigma_usd_bn": 3.8620146861,
+          "sigma_cut_pct": 0.2260992535,
+          "residual_charge_ratio": 1.1608511198,
+          "residual_shares": {
+            "carbon": 0.99994106,
+            "h2": 0.0,
+            "elec": 0.0,
+            "feedstock": 0.0,
+            "capex": 5.894e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "add",
+            "instrument_type": "financing",
+            "decision_owner": "lender",
+            "targets": [
+              "financing"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Avoid joint use with capex support without a double-counting review"
+          },
+          "before_spread_bps": 26.7368143473,
+          "after_spread_bps": 26.7371909127,
+          "risk_cut_bps": -0.0003765654,
+          "risk_cut_pct": -1.40842e-05,
+          "annual_risk_charge_value_usd_m": -0.0003012523,
+          "before_sigma_usd_bn": 4.9903229884,
+          "after_sigma_usd_bn": 6.1883649063,
+          "sigma_cut_pct": -0.2400730215,
+          "residual_charge_ratio": 1.0000140842,
+          "residual_shares": {
+            "carbon": 0.9999365328,
+            "h2": 0.0,
+            "elec": 0.0,
+            "feedstock": 0.0,
+            "capex": 6.34672e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.06,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+          },
+          "before_spread_bps": 26.7368143473,
+          "after_spread_bps": 26.7368143473,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 4.9903229884,
+          "after_sigma_usd_bn": 4.9903229884,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.9999646995,
+            "h2": 0.0,
+            "elec": 0.0,
+            "feedstock": 0.0,
+            "capex": 3.53005e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.65,
+            "basis_sigma": 0.08,
+            "start_year": 2029,
+            "end_year": 2044,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+          },
+          "before_spread_bps": 26.7368143473,
+          "after_spread_bps": 26.7368143473,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 4.9903229884,
+          "after_sigma_usd_bn": 4.9903229884,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.9999646995,
+            "h2": 0.0,
+            "elec": 0.0,
+            "feedstock": 0.0,
+            "capex": 3.53005e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "combine",
+            "instrument_type": "package",
+            "decision_owner": "joint",
+            "targets": [
+              "elec",
+              "capex",
+              "carbon"
+            ],
+            "coverage": null,
+            "basis_sigma": null,
+            "start_year": null,
+            "end_year": null,
+            "components": [
+              "ppa",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "status": "assumed",
+            "notes": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+          },
+          "before_spread_bps": 26.7368143473,
+          "after_spread_bps": 31.0369943869,
+          "risk_cut_bps": -4.3001800396,
+          "risk_cut_pct": -0.1608336724,
+          "annual_risk_charge_value_usd_m": -3.4401440317,
+          "before_sigma_usd_bn": 4.9903229884,
+          "after_sigma_usd_bn": 3.8619566407,
+          "sigma_cut_pct": 0.2261108851,
+          "residual_charge_ratio": 1.1608336724,
+          "residual_shares": {
+            "carbon": 0.9999711185,
+            "h2": 0.0,
+            "elec": 0.0,
+            "feedstock": 0.0,
+            "capex": 2.88815e-05
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        }
+      ],
+      "decision_summary": {
+        "best_de_risker": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "risk_cut_bps": 0.0002406758,
+          "annual_risk_charge_value_usd_m": 0.0001925406,
+          "decision_class": "de_risking_only"
+        },
+        "dominant_unhedged_driver": "carbon",
+        "explanation": "ranked by positive reduction in the model-implied conditional risk charge; contract price is not yet observed"
+      },
+      "package_attribution": {
+        "order_averaged_cut_bps": {
+          "h2_cfd": 0.0,
+          "ppa": 0.0,
+          "feedstock_hedge": 0.0,
+          "circular_feedstock": 0.0,
+          "capex_subsidy": 0.0003535815,
+          "carbon_reform": -4.3005336211
+        },
+        "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
+      }
+    },
+    {
+      "firm_id": "KR_NCC",
+      "firm": "Korea NCC archetype",
+      "sector": "petrochemicals",
+      "country": "KR",
+      "route": "e_cracker",
+      "capacity_mt": 2.0,
+      "enterprise_value_usd_bn": 15.0,
+      "wacc": 0.07,
+      "underwriting": {
+        "result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+          "interpretation": "enterprise transition-window charge; not observed spread"
+        },
+        "model_implied_spread_bps": 16.7698565863,
+        "annual_risk_charge_usd_m": 25.1547848795,
+        "transition_cost_sigma_usd_bn": 3.7010899024,
+        "sigma_to_enterprise_value": 0.2467393268,
+        "dominant_driver": "feedstock",
+        "risk_anatomy": {
+          "carbon": 0.0715651737,
+          "h2": 0.0,
+          "elec": 0.0144722611,
+          "feedstock": 0.9127300151,
+          "capex": 0.0012325502
+        },
+        "share_envelope": {
+          "carbon": {
+            "lo": 0.0054649942,
+            "hi": 0.0621062047,
+            "median": 0.0245981774
+          },
+          "h2": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "elec": {
+            "lo": 0.0032008754,
+            "hi": 0.0356315279,
+            "median": 0.0160336013
+          },
+          "feedstock": {
+            "lo": 0.9043773958,
+            "hi": 0.982140852,
+            "median": 0.9533946829
+          },
+          "capex": {
+            "lo": 0.0007138265,
+            "hi": 0.0144553135,
+            "median": 0.0048298338
+          }
+        },
+        "share_envelope_perspective": "base-regime covariance band; current anatomy is reform-priced and may sit outside it",
+        "sensitivity": {
+          "lambdas": [
+            0.15,
+            0.25,
+            0.35,
+            0.4,
+            0.45,
+            0.55,
+            0.65
+          ],
+          "p_binds": [
+            0.25,
+            0.35,
+            0.45,
+            0.55,
+            0.65,
+            0.75,
+            0.85,
+            0.95
+          ],
+          "rows": [
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.25,
+              "spread_bps": 2.8584982818
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.35,
+              "spread_bps": 4.0018975945
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.45,
+              "spread_bps": 5.1452969072
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.55,
+              "spread_bps": 6.2886962199
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.65,
+              "spread_bps": 7.4320955326
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.75,
+              "spread_bps": 8.5754948453
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.85,
+              "spread_bps": 9.718894158
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.15,
+              "p_bind": 0.95,
+              "spread_bps": 10.8622934707
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.25,
+              "spread_bps": 4.7641638029
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.35,
+              "spread_bps": 6.6698293241
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.45,
+              "spread_bps": 8.5754948453
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.55,
+              "spread_bps": 10.4811603664
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.65,
+              "spread_bps": 12.3868258876
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.75,
+              "spread_bps": 14.2924914088
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.85,
+              "spread_bps": 16.1981569299
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.25,
+              "p_bind": 0.95,
+              "spread_bps": 18.1038224511
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.25,
+              "spread_bps": 6.6698293241
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.35,
+              "spread_bps": 9.3377610537
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.45,
+              "spread_bps": 12.0056927834
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.55,
+              "spread_bps": 14.673624513
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.65,
+              "spread_bps": 17.3415562427
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.75,
+              "spread_bps": 20.0094879723
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.85,
+              "spread_bps": 22.6774197019
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.35,
+              "p_bind": 0.95,
+              "spread_bps": 25.3453514316
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.25,
+              "spread_bps": 7.6226620847
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.35,
+              "spread_bps": 10.6717269186
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.45,
+              "spread_bps": 13.7207917524
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.55,
+              "spread_bps": 16.7698565863
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.65,
+              "spread_bps": 19.8189214202
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.75,
+              "spread_bps": 22.867986254
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.85,
+              "spread_bps": 25.9170510879
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.4,
+              "p_bind": 0.95,
+              "spread_bps": 28.9661159218
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.25,
+              "spread_bps": 8.5754948453
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.35,
+              "spread_bps": 12.0056927834
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.45,
+              "spread_bps": 15.4358907215
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.55,
+              "spread_bps": 18.8660886596
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.65,
+              "spread_bps": 22.2962865977
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.75,
+              "spread_bps": 25.7264845358
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.85,
+              "spread_bps": 29.1566824739
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.45,
+              "p_bind": 0.95,
+              "spread_bps": 32.586880412
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.25,
+              "spread_bps": 10.4811603664
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.35,
+              "spread_bps": 14.673624513
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.45,
+              "spread_bps": 18.8660886596
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.55,
+              "spread_bps": 23.0585528062
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.65,
+              "spread_bps": 27.2510169527
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.75,
+              "spread_bps": 31.4434810993
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.85,
+              "spread_bps": 35.6359452459
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.55,
+              "p_bind": 0.95,
+              "spread_bps": 39.8284093925
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.25,
+              "spread_bps": 12.3868258876
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.35,
+              "spread_bps": 17.3415562427
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.45,
+              "spread_bps": 22.2962865977
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.55,
+              "spread_bps": 27.2510169527
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.65,
+              "spread_bps": 32.2057473078
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.75,
+              "spread_bps": 37.1604776628
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.85,
+              "spread_bps": 42.1152080179
+            },
+            {
+              "firm_id": "KR_NCC",
+              "lambda": 0.65,
+              "p_bind": 0.95,
+              "spread_bps": 47.0699383729
+            }
+          ],
+          "range_bps": {
+            "lo": 2.8584982818,
+            "hi": 47.0699383729
+          },
+          "base": {
+            "lambda": 0.4,
+            "p_bind": 0.55,
+            "spread_bps": 16.7698565863
+          },
+          "note": "fixed exposure and covariance; scalar pricing sensitivity only"
+        }
+      },
+      "contract_options": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "h2"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.05,
+            "start_year": 2030,
+            "end_year": 2045,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+          },
+          "before_spread_bps": 16.7698565863,
+          "after_spread_bps": 16.7698565863,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 3.7010899024,
+          "after_sigma_usd_bn": 3.7010899024,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.0715651737,
+            "h2": 0.0,
+            "elec": 0.0144722611,
+            "feedstock": 0.9127300151,
+            "capex": 0.0012325502
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "energy_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "elec"
+            ],
+            "coverage": 0.6,
+            "basis_sigma": 0.03,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+          },
+          "before_spread_bps": 16.7698565863,
+          "after_spread_bps": 16.7165305933,
+          "risk_cut_bps": 0.053325993,
+          "risk_cut_pct": 0.0031798717,
+          "annual_risk_charge_value_usd_m": 0.0799889895,
+          "before_sigma_usd_bn": 3.7010899024,
+          "after_sigma_usd_bn": 3.6893209112,
+          "sigma_cut_pct": 0.0031798717,
+          "residual_charge_ratio": 0.9968201283,
+          "residual_shares": {
+            "carbon": 0.0711771214,
+            "h2": 0.0,
+            "elec": 0.0104551347,
+            "feedstock": 0.9171273174,
+            "capex": 0.0012404265
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": -0.1815,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 2
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "multiply",
+            "instrument_type": "grant",
+            "decision_owner": "public",
+            "targets": [
+              "capex"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "CAPEX level reduced 30%; capex volatility retained"
+          },
+          "before_spread_bps": 16.7698565863,
+          "after_spread_bps": 16.7645849868,
+          "risk_cut_bps": 0.0052715995,
+          "risk_cut_pct": 0.0003143497,
+          "annual_risk_charge_value_usd_m": 0.0079073993,
+          "before_sigma_usd_bn": 3.7010899024,
+          "after_sigma_usd_bn": 3.6999264658,
+          "sigma_cut_pct": 0.0003143497,
+          "residual_charge_ratio": 0.9996856503,
+          "residual_shares": {
+            "carbon": 0.0716101879,
+            "h2": 0.0,
+            "elec": 0.014481364,
+            "feedstock": 0.9133041186,
+            "capex": 0.0006043295
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": -0.35475,
+          "delta_gap_mtco2": -2.34,
+          "decision_class": "dual_benefit",
+          "double_count_warning": false,
+          "de_risking_rank": 3
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "shift_to_binding",
+            "instrument_type": "policy",
+            "decision_owner": "public",
+            "targets": [
+              "carbon"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2027,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+          },
+          "before_spread_bps": 16.7698565863,
+          "after_spread_bps": 23.3666546804,
+          "risk_cut_bps": -6.5967980941,
+          "risk_cut_pct": -0.3933723619,
+          "annual_risk_charge_value_usd_m": -9.8951971411,
+          "before_sigma_usd_bn": 3.7010899024,
+          "after_sigma_usd_bn": 3.6598038818,
+          "sigma_cut_pct": 0.011155098,
+          "residual_charge_ratio": 1.3933723619,
+          "residual_shares": {
+            "carbon": 0.0567511063,
+            "h2": 0.0,
+            "elec": 0.0141921037,
+            "feedstock": 0.9277962743,
+            "capex": 0.0012605157
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": -0.134,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "add",
+            "instrument_type": "financing",
+            "decision_owner": "lender",
+            "targets": [
+              "financing"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Avoid joint use with capex support without a double-counting review"
+          },
+          "before_spread_bps": 16.7698565863,
+          "after_spread_bps": 17.7368141697,
+          "risk_cut_bps": -0.9669575834,
+          "risk_cut_pct": -0.0576604563,
+          "annual_risk_charge_value_usd_m": -1.4504363751,
+          "before_sigma_usd_bn": 3.7010899024,
+          "after_sigma_usd_bn": 4.6530573455,
+          "sigma_cut_pct": -0.2572127314,
+          "residual_charge_ratio": 1.0576604563,
+          "residual_shares": {
+            "carbon": 0.0578030304,
+            "h2": 0.0,
+            "elec": 0.0142183014,
+            "feedstock": 0.9270549003,
+            "capex": 0.000923768
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 0.36075,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.06,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+          },
+          "before_spread_bps": 16.7698565863,
+          "after_spread_bps": 13.301531355,
+          "risk_cut_bps": 3.4683252313,
+          "risk_cut_pct": 0.2068190156,
+          "annual_risk_charge_value_usd_m": 5.202487847,
+          "before_sigma_usd_bn": 3.7010899024,
+          "after_sigma_usd_bn": 2.935634132,
+          "sigma_cut_pct": 0.2068190156,
+          "residual_charge_ratio": 0.7931809844,
+          "residual_shares": {
+            "carbon": 0.1013394367,
+            "h2": 0.0,
+            "elec": 0.0207309036,
+            "feedstock": 0.8759705442,
+            "capex": 0.0019591155
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 1.102,
+          "delta_gap_mtco2": 2.34,
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "double_count_warning": false,
+          "de_risking_rank": 1
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.65,
+            "basis_sigma": 0.08,
+            "start_year": 2029,
+            "end_year": 2044,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+          },
+          "before_spread_bps": 16.7698565863,
+          "after_spread_bps": 16.7698565863,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 3.7010899024,
+          "after_sigma_usd_bn": 3.7010899024,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.0715651737,
+            "h2": 0.0,
+            "elec": 0.0144722611,
+            "feedstock": 0.9127300151,
+            "capex": 0.0012325502
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "combine",
+            "instrument_type": "package",
+            "decision_owner": "joint",
+            "targets": [
+              "elec",
+              "feedstock",
+              "capex",
+              "carbon"
+            ],
+            "coverage": null,
+            "basis_sigma": null,
+            "start_year": null,
+            "end_year": null,
+            "components": [
+              "ppa",
+              "feedstock_hedge",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "status": "assumed",
+            "notes": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+          },
+          "before_spread_bps": 16.7698565863,
+          "after_spread_bps": 18.3558406238,
+          "risk_cut_bps": -1.5859840375,
+          "risk_cut_pct": -0.0945735003,
+          "annual_risk_charge_value_usd_m": -2.3789760562,
+          "before_sigma_usd_bn": 3.7010899024,
+          "after_sigma_usd_bn": 2.8749847887,
+          "sigma_cut_pct": 0.223205903,
+          "residual_charge_ratio": 1.0945735003,
+          "residual_shares": {
+            "carbon": 0.0799399644,
+            "h2": 0.0,
+            "elec": 0.0146244177,
+            "feedstock": 0.904434722,
+            "capex": 0.0010008958
+          },
+          "dominant_residual_driver": "feedstock",
+          "delta_tau_years": 0.284,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        }
+      ],
+      "decision_summary": {
+        "best_de_risker": {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "risk_cut_bps": 3.4683252313,
+          "annual_risk_charge_value_usd_m": 5.202487847,
+          "decision_class": "de_risking_with_alignment_tradeoff"
+        },
+        "dominant_unhedged_driver": "feedstock",
+        "explanation": "ranked by positive reduction in the model-implied conditional risk charge; contract price is not yet observed"
+      },
+      "package_attribution": {
+        "order_averaged_cut_bps": {
+          "h2_cfd": 0.0,
+          "ppa": 0.0674285327,
+          "feedstock_hedge": 4.1988971295,
+          "circular_feedstock": 0.0,
+          "capex_subsidy": 0.0073055186,
+          "carbon_reform": -5.8596152183
+        },
+        "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
+      }
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "sector": "steel",
+      "country": "JP",
+      "route": "h2_dri",
+      "capacity_mt": 8.0,
+      "enterprise_value_usd_bn": 40.0,
+      "wacc": 0.04,
+      "underwriting": {
+        "result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+          "interpretation": "enterprise transition-window charge; not observed spread"
+        },
+        "model_implied_spread_bps": 12.5835011111,
+        "annual_risk_charge_usd_m": 50.3340044444,
+        "transition_cost_sigma_usd_bn": 11.743309067,
+        "sigma_to_enterprise_value": 0.2935827267,
+        "dominant_driver": "h2",
+        "risk_anatomy": {
+          "carbon": 0.4505138369,
+          "h2": 0.4659769238,
+          "elec": 0.0825754009,
+          "feedstock": 0.0,
+          "capex": 0.0009338384
+        },
+        "share_envelope": {
+          "carbon": {
+            "lo": 0.047839396,
+            "hi": 0.206749523,
+            "median": 0.1168317572
+          },
+          "h2": {
+            "lo": 0.6672806031,
+            "hi": 0.8540763669,
+            "median": 0.7734522256
+          },
+          "elec": {
+            "lo": 0.0734192051,
+            "hi": 0.1415426868,
+            "median": 0.1038952096
+          },
+          "feedstock": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "capex": {
+            "lo": 0.0013983337,
+            "hi": 0.0178947918,
+            "median": 0.0078512973
+          }
+        },
+        "share_envelope_perspective": "base-regime covariance band; current anatomy is reform-priced and may sit outside it",
+        "sensitivity": {
+          "lambdas": [
+            0.15,
+            0.25,
+            0.35,
+            0.4,
+            0.45,
+            0.55,
+            0.65
+          ],
+          "p_binds": [
+            0.25,
+            0.35,
+            0.45,
+            0.5,
+            0.55,
+            0.65,
+            0.75,
+            0.85,
+            0.95
+          ],
+          "rows": [
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.25,
+              "spread_bps": 2.3594064583
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.35,
+              "spread_bps": 3.3031690417
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.45,
+              "spread_bps": 4.246931625
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.5,
+              "spread_bps": 4.7188129167
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.55,
+              "spread_bps": 5.1906942083
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.65,
+              "spread_bps": 6.1344567917
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.75,
+              "spread_bps": 7.078219375
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.85,
+              "spread_bps": 8.0219819583
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.15,
+              "p_bind": 0.95,
+              "spread_bps": 8.9657445417
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.25,
+              "spread_bps": 3.9323440972
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.35,
+              "spread_bps": 5.5052817361
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.45,
+              "spread_bps": 7.078219375
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.5,
+              "spread_bps": 7.8646881944
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.55,
+              "spread_bps": 8.6511570139
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.65,
+              "spread_bps": 10.2240946528
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.75,
+              "spread_bps": 11.7970322917
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.85,
+              "spread_bps": 13.3699699305
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.25,
+              "p_bind": 0.95,
+              "spread_bps": 14.9429075694
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.25,
+              "spread_bps": 5.5052817361
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.35,
+              "spread_bps": 7.7073944305
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.45,
+              "spread_bps": 9.909507125
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.5,
+              "spread_bps": 11.0105634722
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.55,
+              "spread_bps": 12.1116198194
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.65,
+              "spread_bps": 14.3137325139
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.75,
+              "spread_bps": 16.5158452083
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.85,
+              "spread_bps": 18.7179579028
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.35,
+              "p_bind": 0.95,
+              "spread_bps": 20.9200705972
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.25,
+              "spread_bps": 6.2917505556
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.35,
+              "spread_bps": 8.8084507778
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.45,
+              "spread_bps": 11.325151
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.5,
+              "spread_bps": 12.5835011111
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.55,
+              "spread_bps": 13.8418512222
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.65,
+              "spread_bps": 16.3585514444
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.75,
+              "spread_bps": 18.8752516667
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.85,
+              "spread_bps": 21.3919518889
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.4,
+              "p_bind": 0.95,
+              "spread_bps": 23.9086521111
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.25,
+              "spread_bps": 7.078219375
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.35,
+              "spread_bps": 9.909507125
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.45,
+              "spread_bps": 12.740794875
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.5,
+              "spread_bps": 14.15643875
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.55,
+              "spread_bps": 15.572082625
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.65,
+              "spread_bps": 18.403370375
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.75,
+              "spread_bps": 21.234658125
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.85,
+              "spread_bps": 24.065945875
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.45,
+              "p_bind": 0.95,
+              "spread_bps": 26.897233625
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.25,
+              "spread_bps": 8.6511570139
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.35,
+              "spread_bps": 12.1116198194
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.45,
+              "spread_bps": 15.572082625
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.5,
+              "spread_bps": 17.3023140278
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.55,
+              "spread_bps": 19.0325454305
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.65,
+              "spread_bps": 22.4930082361
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.75,
+              "spread_bps": 25.9534710416
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.85,
+              "spread_bps": 29.4139338472
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.55,
+              "p_bind": 0.95,
+              "spread_bps": 32.8743966527
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.25,
+              "spread_bps": 10.2240946528
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.35,
+              "spread_bps": 14.3137325139
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.45,
+              "spread_bps": 18.403370375
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.5,
+              "spread_bps": 20.4481893055
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.55,
+              "spread_bps": 22.4930082361
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.65,
+              "spread_bps": 26.5826460972
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.75,
+              "spread_bps": 30.6722839583
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.85,
+              "spread_bps": 34.7619218194
+            },
+            {
+              "firm_id": "NIPPON",
+              "lambda": 0.65,
+              "p_bind": 0.95,
+              "spread_bps": 38.8515596805
+            }
+          ],
+          "range_bps": {
+            "lo": 2.3594064583,
+            "hi": 38.8515596805
+          },
+          "base": {
+            "lambda": 0.4,
+            "p_bind": 0.5,
+            "spread_bps": 12.5835011111
+          },
+          "note": "fixed exposure and covariance; scalar pricing sensitivity only"
+        }
+      },
+      "contract_options": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "h2"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.05,
+            "start_year": 2030,
+            "end_year": 2045,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+          },
+          "before_spread_bps": 12.5835011111,
+          "after_spread_bps": 10.7027129063,
+          "risk_cut_bps": 1.8807882048,
+          "risk_cut_pct": 0.1494646194,
+          "annual_risk_charge_value_usd_m": 7.5231528192,
+          "before_sigma_usd_bn": 11.743309067,
+          "after_sigma_usd_bn": 9.9880998464,
+          "sigma_cut_pct": 0.1494646194,
+          "residual_charge_ratio": 0.8505353806,
+          "residual_shares": {
+            "carbon": 0.6227638087,
+            "h2": 0.2857879024,
+            "elec": 0.0901574057,
+            "feedstock": 0.0,
+            "capex": 0.0012908833
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 7.4618625,
+          "delta_gap_mtco2": 100.8,
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "double_count_warning": false,
+          "de_risking_rank": 1
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "energy_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "elec"
+            ],
+            "coverage": 0.6,
+            "basis_sigma": 0.03,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+          },
+          "before_spread_bps": 12.5835011111,
+          "after_spread_bps": 12.2897603831,
+          "risk_cut_bps": 0.293740728,
+          "risk_cut_pct": 0.0233433228,
+          "annual_risk_charge_value_usd_m": 1.174962912,
+          "before_sigma_usd_bn": 11.743309067,
+          "after_sigma_usd_bn": 11.4691812131,
+          "sigma_cut_pct": 0.0233433228,
+          "residual_charge_ratio": 0.9766566772,
+          "residual_shares": {
+            "carbon": 0.4658999321,
+            "h2": 0.4737855928,
+            "elec": 0.0593354633,
+            "feedstock": 0.0,
+            "capex": 0.0009790117
+          },
+          "dominant_residual_driver": "h2",
+          "delta_tau_years": 7.4618625,
+          "delta_gap_mtco2": 100.8,
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "double_count_warning": false,
+          "de_risking_rank": 2
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "multiply",
+            "instrument_type": "grant",
+            "decision_owner": "public",
+            "targets": [
+              "capex"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "CAPEX level reduced 30%; capex volatility retained"
+          },
+          "before_spread_bps": 12.5835011111,
+          "after_spread_bps": 12.5805042602,
+          "risk_cut_bps": 0.0029968509,
+          "risk_cut_pct": 0.0002381572,
+          "annual_risk_charge_value_usd_m": 0.0119874036,
+          "before_sigma_usd_bn": 11.743309067,
+          "after_sigma_usd_bn": 11.7405123139,
+          "sigma_cut_pct": 0.0002381572,
+          "residual_charge_ratio": 0.9997618428,
+          "residual_shares": {
+            "carbon": 0.4507284997,
+            "h2": 0.4661989546,
+            "elec": 0.0826147468,
+            "feedstock": 0.0,
+            "capex": 0.0004577989
+          },
+          "dominant_residual_driver": "h2",
+          "delta_tau_years": -0.8927625,
+          "delta_gap_mtco2": -14.4,
+          "decision_class": "dual_benefit",
+          "double_count_warning": false,
+          "de_risking_rank": 3
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "shift_to_binding",
+            "instrument_type": "policy",
+            "decision_owner": "public",
+            "targets": [
+              "carbon"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2027,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+          },
+          "before_spread_bps": 12.5835011111,
+          "after_spread_bps": 17.0735729834,
+          "risk_cut_bps": -4.4900718723,
+          "risk_cut_pct": -0.3568221461,
+          "annual_risk_charge_value_usd_m": -17.9602874892,
+          "before_sigma_usd_bn": 11.743309067,
+          "after_sigma_usd_bn": 10.622387874,
+          "sigma_cut_pct": 0.0954519026,
+          "residual_charge_ratio": 1.3568221461,
+          "residual_shares": {
+            "carbon": 0.3343473099,
+            "h2": 0.5695096418,
+            "elec": 0.0950017257,
+            "feedstock": 0.0,
+            "capex": 0.0011413226
+          },
+          "dominant_residual_driver": "h2",
+          "delta_tau_years": -0.8107,
+          "delta_gap_mtco2": -14.4,
+          "decision_class": "alignment_with_risk_tradeoff",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "add",
+            "instrument_type": "financing",
+            "decision_owner": "lender",
+            "targets": [
+              "financing"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Avoid joint use with capex support without a double-counting review"
+          },
+          "before_spread_bps": 12.5835011111,
+          "after_spread_bps": 12.8265551745,
+          "risk_cut_bps": -0.2430540634,
+          "risk_cut_pct": -0.0193152972,
+          "annual_risk_charge_value_usd_m": -0.9722162536,
+          "before_sigma_usd_bn": 11.743309067,
+          "after_sigma_usd_bn": 14.8436318852,
+          "sigma_cut_pct": -0.2640075979,
+          "residual_charge_ratio": 1.0193152972,
+          "residual_shares": {
+            "carbon": 0.3496600947,
+            "h2": 0.5560538696,
+            "elec": 0.0934700975,
+            "feedstock": 0.0,
+            "capex": 0.0008159382
+          },
+          "dominant_residual_driver": "h2",
+          "delta_tau_years": -0.2343625,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.06,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+          },
+          "before_spread_bps": 12.5835011111,
+          "after_spread_bps": 12.5835011111,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 11.743309067,
+          "after_sigma_usd_bn": 11.743309067,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.4505138369,
+            "h2": 0.4659769238,
+            "elec": 0.0825754009,
+            "feedstock": 0.0,
+            "capex": 0.0009338384
+          },
+          "dominant_residual_driver": "h2",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.65,
+            "basis_sigma": 0.08,
+            "start_year": 2029,
+            "end_year": 2044,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+          },
+          "before_spread_bps": 12.5835011111,
+          "after_spread_bps": 12.5835011111,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 11.743309067,
+          "after_sigma_usd_bn": 11.743309067,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.4505138369,
+            "h2": 0.4659769238,
+            "elec": 0.0825754009,
+            "feedstock": 0.0,
+            "capex": 0.0009338384
+          },
+          "dominant_residual_driver": "h2",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "combine",
+            "instrument_type": "package",
+            "decision_owner": "joint",
+            "targets": [
+              "h2",
+              "elec",
+              "capex",
+              "carbon"
+            ],
+            "coverage": null,
+            "basis_sigma": null,
+            "start_year": null,
+            "end_year": null,
+            "components": [
+              "h2_cfd",
+              "ppa",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "status": "assumed",
+            "notes": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+          },
+          "before_spread_bps": 12.5835011111,
+          "after_spread_bps": 13.4487202641,
+          "risk_cut_bps": -0.865219153,
+          "risk_cut_pct": -0.0687582212,
+          "annual_risk_charge_value_usd_m": -3.460876612,
+          "before_sigma_usd_bn": 11.743309067,
+          "after_sigma_usd_bn": 8.3671720731,
+          "sigma_cut_pct": 0.2874945192,
+          "residual_charge_ratio": 1.0687582212,
+          "residual_shares": {
+            "carbon": 0.529554692,
+            "h2": 0.3893119496,
+            "elec": 0.0802320126,
+            "feedstock": 0.0,
+            "capex": 0.0009013457
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.1902875,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "risk_increasing",
+          "double_count_warning": false
+        }
+      ],
+      "decision_summary": {
+        "best_de_risker": {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "risk_cut_bps": 1.8807882048,
+          "annual_risk_charge_value_usd_m": 7.5231528192,
+          "decision_class": "de_risking_with_alignment_tradeoff"
+        },
+        "dominant_unhedged_driver": "h2",
+        "explanation": "ranked by positive reduction in the model-implied conditional risk charge; contract price is not yet observed"
+      },
+      "package_attribution": {
+        "order_averaged_cut_bps": {
+          "h2_cfd": 2.520841426,
+          "ppa": 0.3650866871,
+          "feedstock_hedge": 0.0,
+          "circular_feedstock": 0.0,
+          "capex_subsidy": 0.0045253595,
+          "carbon_reform": -3.7556726257
+        },
+        "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
+      }
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "sector": "steel",
+      "country": "KR",
+      "route": "h2_dri",
+      "capacity_mt": 14.5,
+      "enterprise_value_usd_bn": 40.0,
+      "wacc": 0.075,
+      "underwriting": {
+        "result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda x p_bind sensitivity plus model-conditional exposure",
+          "interpretation": "enterprise transition-window charge; not observed spread"
+        },
+        "model_implied_spread_bps": 23.3274012795,
+        "annual_risk_charge_usd_m": 93.309605118,
+        "transition_cost_sigma_usd_bn": 13.0129908314,
+        "sigma_to_enterprise_value": 0.3253247708,
+        "dominant_driver": "carbon",
+        "risk_anatomy": {
+          "carbon": 0.6865618216,
+          "h2": 0.2875040859,
+          "elec": 0.0247654485,
+          "feedstock": 0.0,
+          "capex": 0.001168644
+        },
+        "share_envelope": {
+          "carbon": {
+            "lo": 0.1747559643,
+            "hi": 0.4958270123,
+            "median": 0.3319412502
+          },
+          "h2": {
+            "lo": 0.4634630869,
+            "hi": 0.7703009343,
+            "median": 0.625151669
+          },
+          "elec": {
+            "lo": 0.0219024702,
+            "hi": 0.0626473949,
+            "median": 0.0373186738
+          },
+          "feedstock": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "median": 0.0
+          },
+          "capex": {
+            "lo": 0.0019371485,
+            "hi": 0.0270333354,
+            "median": 0.0105248763
+          }
+        },
+        "share_envelope_perspective": "base-regime covariance band; current anatomy is reform-priced and may sit outside it",
+        "sensitivity": {
+          "lambdas": [
+            0.15,
+            0.25,
+            0.35,
+            0.4,
+            0.45,
+            0.55,
+            0.65
+          ],
+          "p_binds": [
+            0.25,
+            0.35,
+            0.45,
+            0.55,
+            0.65,
+            0.75,
+            0.85,
+            0.95
+          ],
+          "rows": [
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.15,
+              "p_bind": 0.25,
+              "spread_bps": 3.9762615817
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.15,
+              "p_bind": 0.35,
+              "spread_bps": 5.5667662144
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.15,
+              "p_bind": 0.45,
+              "spread_bps": 7.1572708471
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.15,
+              "p_bind": 0.55,
+              "spread_bps": 8.7477754798
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.15,
+              "p_bind": 0.65,
+              "spread_bps": 10.3382801125
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.15,
+              "p_bind": 0.75,
+              "spread_bps": 11.9287847452
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.15,
+              "p_bind": 0.85,
+              "spread_bps": 13.5192893779
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.15,
+              "p_bind": 0.95,
+              "spread_bps": 15.1097940106
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.25,
+              "p_bind": 0.25,
+              "spread_bps": 6.6271026362
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.25,
+              "p_bind": 0.35,
+              "spread_bps": 9.2779436907
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.25,
+              "p_bind": 0.45,
+              "spread_bps": 11.9287847452
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.25,
+              "p_bind": 0.55,
+              "spread_bps": 14.5796257997
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.25,
+              "p_bind": 0.65,
+              "spread_bps": 17.2304668542
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.25,
+              "p_bind": 0.75,
+              "spread_bps": 19.8813079087
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.25,
+              "p_bind": 0.85,
+              "spread_bps": 22.5321489632
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.25,
+              "p_bind": 0.95,
+              "spread_bps": 25.1829900176
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.35,
+              "p_bind": 0.25,
+              "spread_bps": 9.2779436907
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.35,
+              "p_bind": 0.35,
+              "spread_bps": 12.989121167
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.35,
+              "p_bind": 0.45,
+              "spread_bps": 16.7002986433
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.35,
+              "p_bind": 0.55,
+              "spread_bps": 20.4114761196
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.35,
+              "p_bind": 0.65,
+              "spread_bps": 24.1226535958
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.35,
+              "p_bind": 0.75,
+              "spread_bps": 27.8338310721
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.35,
+              "p_bind": 0.85,
+              "spread_bps": 31.5450085484
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.35,
+              "p_bind": 0.95,
+              "spread_bps": 35.2561860247
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.4,
+              "p_bind": 0.25,
+              "spread_bps": 10.603364218
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.4,
+              "p_bind": 0.35,
+              "spread_bps": 14.8447099051
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.4,
+              "p_bind": 0.45,
+              "spread_bps": 19.0860555923
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.4,
+              "p_bind": 0.55,
+              "spread_bps": 23.3274012795
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.4,
+              "p_bind": 0.65,
+              "spread_bps": 27.5687469667
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.4,
+              "p_bind": 0.75,
+              "spread_bps": 31.8100926539
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.4,
+              "p_bind": 0.85,
+              "spread_bps": 36.051438341
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.4,
+              "p_bind": 0.95,
+              "spread_bps": 40.2927840282
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.45,
+              "p_bind": 0.25,
+              "spread_bps": 11.9287847452
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.45,
+              "p_bind": 0.35,
+              "spread_bps": 16.7002986433
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.45,
+              "p_bind": 0.45,
+              "spread_bps": 21.4718125414
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.45,
+              "p_bind": 0.55,
+              "spread_bps": 26.2433264394
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.45,
+              "p_bind": 0.65,
+              "spread_bps": 31.0148403375
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.45,
+              "p_bind": 0.75,
+              "spread_bps": 35.7863542356
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.45,
+              "p_bind": 0.85,
+              "spread_bps": 40.5578681337
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.45,
+              "p_bind": 0.95,
+              "spread_bps": 45.3293820318
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.55,
+              "p_bind": 0.25,
+              "spread_bps": 14.5796257997
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.55,
+              "p_bind": 0.35,
+              "spread_bps": 20.4114761196
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.55,
+              "p_bind": 0.45,
+              "spread_bps": 26.2433264394
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.55,
+              "p_bind": 0.55,
+              "spread_bps": 32.0751767593
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.55,
+              "p_bind": 0.65,
+              "spread_bps": 37.9070270792
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.55,
+              "p_bind": 0.75,
+              "spread_bps": 43.7388773991
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.55,
+              "p_bind": 0.85,
+              "spread_bps": 49.5707277189
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.55,
+              "p_bind": 0.95,
+              "spread_bps": 55.4025780388
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.65,
+              "p_bind": 0.25,
+              "spread_bps": 17.2304668542
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.65,
+              "p_bind": 0.35,
+              "spread_bps": 24.1226535958
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.65,
+              "p_bind": 0.45,
+              "spread_bps": 31.0148403375
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.65,
+              "p_bind": 0.55,
+              "spread_bps": 37.9070270792
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.65,
+              "p_bind": 0.65,
+              "spread_bps": 44.7992138209
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.65,
+              "p_bind": 0.75,
+              "spread_bps": 51.6914005625
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.65,
+              "p_bind": 0.85,
+              "spread_bps": 58.5835873042
+            },
+            {
+              "firm_id": "POSCO",
+              "lambda": 0.65,
+              "p_bind": 0.95,
+              "spread_bps": 65.4757740459
+            }
+          ],
+          "range_bps": {
+            "lo": 3.9762615817,
+            "hi": 65.4757740459
+          },
+          "base": {
+            "lambda": 0.4,
+            "p_bind": 0.55,
+            "spread_bps": 23.3274012795
+          },
+          "note": "fixed exposure and covariance; scalar pricing sensitivity only"
+        }
+      },
+      "contract_options": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "h2"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.05,
+            "start_year": 2030,
+            "end_year": 2045,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+          },
+          "before_spread_bps": 23.3274012795,
+          "after_spread_bps": 21.270063142,
+          "risk_cut_bps": 2.0573381375,
+          "risk_cut_pct": 0.0881940561,
+          "annual_risk_charge_value_usd_m": 8.22935255,
+          "before_sigma_usd_bn": 13.0129908314,
+          "after_sigma_usd_bn": 11.8653223878,
+          "sigma_cut_pct": 0.0881940561,
+          "residual_charge_ratio": 0.9118059439,
+          "residual_shares": {
+            "carbon": 0.8257998726,
+            "h2": 0.1489077853,
+            "elec": 0.0238866914,
+            "feedstock": 0.0,
+            "capex": 0.0014056507
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 1.0040068966,
+          "delta_gap_mtco2": 27.97,
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "double_count_warning": false,
+          "de_risking_rank": 1
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "energy_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "elec"
+            ],
+            "coverage": 0.6,
+            "basis_sigma": 0.03,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+          },
+          "before_spread_bps": 23.3274012795,
+          "after_spread_bps": 23.2004732574,
+          "risk_cut_bps": 0.1269280221,
+          "risk_cut_pct": 0.0054411557,
+          "annual_risk_charge_value_usd_m": 0.5077120884,
+          "before_sigma_usd_bn": 13.0129908314,
+          "after_sigma_usd_bn": 12.9421851223,
+          "sigma_cut_pct": 0.0054411557,
+          "residual_charge_ratio": 0.9945588443,
+          "residual_shares": {
+            "carbon": 0.692000923,
+            "h2": 0.2875533703,
+            "elec": 0.0192642405,
+            "feedstock": 0.0,
+            "capex": 0.0011814661
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.14385,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 3
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "multiply",
+            "instrument_type": "grant",
+            "decision_owner": "public",
+            "targets": [
+              "capex"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "CAPEX level reduced 30%; capex volatility retained"
+          },
+          "before_spread_bps": 23.3274012795,
+          "after_spread_bps": 23.3204485791,
+          "risk_cut_bps": 0.0069527004,
+          "risk_cut_pct": 0.0002980486,
+          "annual_risk_charge_value_usd_m": 0.0278108016,
+          "before_sigma_usd_bn": 13.0129908314,
+          "after_sigma_usd_bn": 13.0091123271,
+          "sigma_cut_pct": 0.0002980486,
+          "residual_charge_ratio": 0.9997019514,
+          "residual_shares": {
+            "carbon": 0.6869712623,
+            "h2": 0.287675543,
+            "elec": 0.0247802177,
+            "feedstock": 0.0,
+            "capex": 0.0005729771
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": -0.8187206897,
+          "delta_gap_mtco2": -27.97,
+          "decision_class": "dual_benefit",
+          "double_count_warning": false,
+          "de_risking_rank": 4
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "shift_to_binding",
+            "instrument_type": "policy",
+            "decision_owner": "public",
+            "targets": [
+              "carbon"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2027,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+          },
+          "before_spread_bps": 23.3274012795,
+          "after_spread_bps": 29.3333168563,
+          "risk_cut_bps": -6.0059155768,
+          "risk_cut_pct": -0.2574618366,
+          "annual_risk_charge_value_usd_m": -24.0236623072,
+          "before_sigma_usd_bn": 13.0129908314,
+          "after_sigma_usd_bn": 11.6126924424,
+          "sigma_cut_pct": 0.1076077289,
+          "residual_charge_ratio": 1.2574618366,
+          "residual_shares": {
+            "carbon": 0.6083131414,
+            "h2": 0.3610209632,
+            "elec": 0.0291984207,
+            "feedstock": 0.0,
+            "capex": 0.0014674748
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": -0.75245,
+          "delta_gap_mtco2": -21.32,
+          "decision_class": "alignment_with_risk_tradeoff",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "add",
+            "instrument_type": "financing",
+            "decision_owner": "lender",
+            "targets": [
+              "financing"
+            ],
+            "coverage": 1.0,
+            "basis_sigma": 0.0,
+            "start_year": 2026,
+            "end_year": 2061,
+            "components": [],
+            "status": "assumed",
+            "notes": "Avoid joint use with capex support without a double-counting review"
+          },
+          "before_spread_bps": 23.3274012795,
+          "after_spread_bps": 23.1728784714,
+          "risk_cut_bps": 0.1545228081,
+          "risk_cut_pct": 0.0066240901,
+          "annual_risk_charge_value_usd_m": 0.6180912324,
+          "before_sigma_usd_bn": 13.0129908314,
+          "after_sigma_usd_bn": 15.2711864085,
+          "sigma_cut_pct": -0.1735339405,
+          "residual_charge_ratio": 0.9933759099,
+          "residual_shares": {
+            "carbon": 0.6000783334,
+            "h2": 0.3690929181,
+            "elec": 0.0296706548,
+            "feedstock": 0.0,
+            "capex": 0.0011580937
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": -0.1640258621,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "de_risking_only",
+          "double_count_warning": false,
+          "de_risking_rank": 2
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.7,
+            "basis_sigma": 0.06,
+            "start_year": 2028,
+            "end_year": 2043,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+          },
+          "before_spread_bps": 23.3274012795,
+          "after_spread_bps": 23.3274012795,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 13.0129908314,
+          "after_sigma_usd_bn": 13.0129908314,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.6865618216,
+            "h2": 0.2875040859,
+            "elec": 0.0247654485,
+            "feedstock": 0.0,
+            "capex": 0.001168644
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "contract_for_difference",
+            "instrument_type": "offtake_contract",
+            "decision_owner": "joint",
+            "targets": [
+              "feedstock"
+            ],
+            "coverage": 0.65,
+            "basis_sigma": 0.08,
+            "start_year": 2029,
+            "end_year": 2044,
+            "components": [],
+            "status": "assumed",
+            "notes": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+          },
+          "before_spread_bps": 23.3274012795,
+          "after_spread_bps": 23.3274012795,
+          "risk_cut_bps": 0.0,
+          "risk_cut_pct": 0.0,
+          "annual_risk_charge_value_usd_m": 0.0,
+          "before_sigma_usd_bn": 13.0129908314,
+          "after_sigma_usd_bn": 13.0129908314,
+          "sigma_cut_pct": 0.0,
+          "residual_charge_ratio": 1.0,
+          "residual_shares": {
+            "carbon": 0.6865618216,
+            "h2": 0.2875040859,
+            "elec": 0.0247654485,
+            "feedstock": 0.0,
+            "capex": 0.001168644
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": 0.0,
+          "delta_gap_mtco2": 0.0,
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "result_contract": {
+            "metric_id": "conditional_risk_charge_bps",
+            "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+            "evidence_grade": "SCENARIO_CONDITIONAL",
+            "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+            "interpretation": "enterprise transition-window residual charge"
+          },
+          "terms": {
+            "operation": "combine",
+            "instrument_type": "package",
+            "decision_owner": "joint",
+            "targets": [
+              "h2",
+              "elec",
+              "capex",
+              "carbon"
+            ],
+            "coverage": null,
+            "basis_sigma": null,
+            "start_year": null,
+            "end_year": null,
+            "components": [
+              "h2_cfd",
+              "ppa",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "status": "assumed",
+            "notes": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+          },
+          "before_spread_bps": 23.3274012795,
+          "after_spread_bps": 25.864173464,
+          "risk_cut_bps": -2.5367721845,
+          "risk_cut_pct": -0.1087464546,
+          "annual_risk_charge_value_usd_m": -10.147088738,
+          "before_sigma_usd_bn": 13.0129908314,
+          "after_sigma_usd_bn": 10.2393020601,
+          "sigma_cut_pct": 0.2131476774,
+          "residual_charge_ratio": 1.1087464546,
+          "residual_shares": {
+            "carbon": 0.7796362522,
+            "h2": 0.196743335,
+            "elec": 0.0226955189,
+            "feedstock": 0.0,
+            "capex": 0.0009248938
+          },
+          "dominant_residual_driver": "carbon",
+          "delta_tau_years": -0.4743724138,
+          "delta_gap_mtco2": -6.27,
+          "decision_class": "alignment_with_risk_tradeoff",
+          "double_count_warning": false
+        }
+      ],
+      "decision_summary": {
+        "best_de_risker": {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "risk_cut_bps": 2.0573381375,
+          "annual_risk_charge_value_usd_m": 8.22935255,
+          "decision_class": "de_risking_with_alignment_tradeoff"
+        },
+        "dominant_unhedged_driver": "carbon",
+        "explanation": "ranked by positive reduction in the model-implied conditional risk charge; contract price is not yet observed"
+      },
+      "package_attribution": {
+        "order_averaged_cut_bps": {
+          "h2_cfd": 2.6644619715,
+          "ppa": 0.1479219226,
+          "feedstock_hedge": 0.0,
+          "circular_feedstock": 0.0,
+          "capex_subsidy": 0.0095727117,
+          "carbon_reform": -5.3587287904
+        },
+        "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
+      }
+    }
+  ]
+}

@@ -43,7 +43,7 @@
 | `financials/company_financials.csv` | 기업 재무 (매출·영업이익·이자부부채·자본·이자) | DART 연결재무제표 (005490, 004020) | 2026-06-30 | KRW tn | DART open data | `73af3663ad569d98…` |
 | `gcam/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `23ed9913817a9a19…` |
 | `jepx/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `75f2cc50f87d7ba8…` |
-| `kau/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `da97340810957b32…` |
+| `kau/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `6218aaeaf8efb56e…` |
 | `kau/icap_systems_20260722.json` | ICAP Allowance Price Explorer 전체 덤프 — KEA(id 8) secondary 시장 KAU 일별 [USD, EUR, KRW] 2015-01-12~ | allowancepriceexplorer.icapcarbonaction.com /api/systems (ICAP) | 2026-07-22 | USD·EUR·KRW /tCO2 | ICAP published data, research use | `c5d0f5d465ff9445…` |
 | `legacy_config/CAP_model_params_consolidated_2026-07-05.csv` | 구 리포 파라미터 통합표 — 감사용 보존 | 기존 CAP_local repo | 2026-07-22 | mixed | internal | `81723d0fd1e299a4…` |
 | `legacy_config/model_parameters.yaml` | 구 리포 마스터 파라미터 (v2026-06-29) — 신 config의 출처 감사용 보존 | 기존 CAP_local repo | 2026-07-22 | mixed | internal | `88f962524df84c3a…` |

@@ -1,7 +1,6 @@
-"""make render-theory — 이론 md의 {{...}} 라이브 수치를 outputs/*.json에서 치환 (PLAN §4.2).
+"""make render-theory — 이론 md의 {{...}} 라이브 수치를 outputs/*.json에서 치환.
 
-theory/*.md → web/content/theory/*.md. 미해결 {{키}}가 남으면 exit 1 —
-"이론과 숫자가 어긋난 상태로는 빌드가 통과하지 않는다" (PLAN §4.3).
+미해결 {{키}}가 남으면 exit 1 — 이론과 숫자가 어긋난 상태로는 빌드가 통과하지 않는다.
 """
 from __future__ import annotations
 
@@ -31,51 +30,68 @@ def build_context() -> dict[str, str]:
     shares = art("shares_by_firm")
     cvr = art("cost_vs_risk")
     inv = art("lambda_invariance")
-    sep = art("cluster_separation")
     lam_k = art("lambda_k_sensitivity")
     stranding = art("stranding")
-    wedge = art("wedge")
-    dpi = art("delta_pi_ranking")
-    manifest = json.loads((OUT / "manifest.json").read_text())
+    gaps = art("condition_gap")
+    imp = art("intervention_impacts")
+    manifest = art("manifest")
 
     ctx: dict[str, str] = {}
-    sig = {r["driver"]: r for r in cal["sigmas"]}
-    for d, r in sig.items():
-        ctx[f"sigma.{d}"] = f"{r['value']:.2f}"
-    ctx["sigma.carbon_reform"] = f"{cal['derived']['sigma_carbon_reform']:.2f}"
-    ctx["derived.l_bar"] = f"{cal['derived']['l_bar']:.2f}"
-    ctx["derived.l_bind"] = f"{cal['derived']['l_bind']:.2f}"
+    for r in cal["sigmas"]:
+        ctx[f"sigma.{r['driver']}"] = f"{r['value']:.2f}"
+    d = cal["derived"]
+    for c in ("KR", "JP"):
+        lc = c.lower()
+        ctx[f"sigma.carbon_reform_{lc}"] = f"{d['sigma_carbon_reform'][c]:.2f}"
+        ctx[f"derived.l_bind_{lc}"] = f"{d['l_bind'][c]:.1f}"
+        ctx[f"derived.p_bind_{lc}"] = f"{d['p_bind'][c]:.2f}"
+        ctx[f"derived.jump_share_{lc}"] = pct(d["carbon_variance_decomposition"][c]["jump_share"], 0)
     for p, obj in cal["pricing"].items():
         ctx[f"pricing.{p}"] = f"{obj['value']:g}"
-    ctx["scenarios.summary"] = " · ".join(
-        f"{{{s['scenario']} ${s['level_usd']:g} · {s['prob']:.2f}}}" for s in cal["scenarios"]
-    )
-    ctx["gcam.source"] = cal["derived"]["t_gcam_source"]
+
+    def scen_summary(driver: str) -> str:
+        rows = [s for s in cal["scenarios"] if s["driver"] == driver]
+        return " · ".join(f"{{{s['scenario']} ${s['level_usd']:g} · {s['prob']:.2f}}}" for s in rows)
+
+    ctx["scenarios.kr_summary"] = scen_summary("carbon_kr")
+    ctx["scenarios.jp_summary"] = scen_summary("carbon_jp")
+    ctx["gcam.source"] = d["t_required_source"]
 
     for f in shares["firms"]:
-        for d, v in f["shares"].items():
-            ctx[f"shares.{f['firm_id']}.{d}"] = f"{v:.3f}"
-            ctx[f"shares.{f['firm_id']}.{d}_pct"] = pct(v)
-        for d, v in f["shares_reform"].items():
-            ctx[f"shares_reform.{f['firm_id']}.{d}"] = f"{v:.3f}"
-            ctx[f"shares_reform.{f['firm_id']}.{d}_pct"] = pct(v)
+        for dr, v in f["shares"].items():
+            ctx[f"shares.{f['firm_id']}.{dr}"] = f"{v:.3f}"
+            ctx[f"shares.{f['firm_id']}.{dr}_pct"] = pct(v)
+        for dr, v in f["shares_reform"].items():
+            ctx[f"shares_reform.{f['firm_id']}.{dr}"] = f"{v:.3f}"
+            ctx[f"shares_reform.{f['firm_id']}.{dr}_pct"] = pct(v)
     for f in cvr["firms"]:
-        for d, v in f["cost_shares"].items():
-            ctx[f"cost.{f['firm_id']}.{d}_pct"] = pct(v)
-        for d, v in f["risk_shares"].items():
-            ctx[f"risk.{f['firm_id']}.{d}_pct"] = pct(v)
+        for dr, v in f["cost_shares"].items():
+            ctx[f"cost.{f['firm_id']}.{dr}_pct"] = pct(v)
+        for dr, v in f["risk_shares"].items():
+            ctx[f"risk.{f['firm_id']}.{dr}_pct"] = pct(v)
 
     ctx["invariance.max_share_deviation"] = f"{inv['max_share_deviation']:.1e}"
     ctx["invariance.share_decimals"] = str(inv["share_invariant_to_decimals"])
     ctx["invariance.level_min_bps"] = f"{inv['level_min_bps']:.2f}"
     ctx["invariance.level_max_bps"] = f"{inv['level_max_bps']:.2f}"
-
     ctx["lambda_k.max_shift_pct"] = pct(max(f["max_shift"] for f in lam_k["firms"]))
     ctx["stranding.asset_ids"] = ", ".join(a["asset_id"] for a in stranding["assets"])
 
-    wedges = [a["wedge_years"] for a in wedge["assets"] if a["wedge_years"] is not None]
-    ctx["wedge.mean_years"] = f"{sum(wedges) / len(wedges):.1f}"
-    ctx["lsm.p_bind_in_exercise"] = "ON" if json.loads((OUT / "tau_star.json").read_text())["p_bind_in_exercise"] else "OFF"
+    for f in gaps["firms"]:
+        ctx[f"gap.{f['firm_id']}.cum_mtco2"] = f"{f['cumulative_alignment_gap_mtco2']:.0f}"
+        ctx[f"gap.{f['firm_id']}.first_year"] = str(f["first_misalignment_year"] or "—")
+
+    iv_table = cal["interventions"]
+    h2row = next(r for r in iv_table if r["intervention_id"] == "h2_cfd")
+    ctx["iv.h2_cfd_price"] = f"{h2row['value']:g}"
+    for f in imp["firms"]:
+        pk = f["interventions"].get("package")
+        if pk:
+            ctx[f"iv.{f['firm_id']}.package_dtau"] = f"{pk['delta']['tau_star_years']:+.1f}"
+            ctx[f"iv.{f['firm_id']}.package_dgap"] = f"{pk['delta']['cumulative_gap_mtco2']:+.0f}"
+
+    tau = art("tau_star")
+    ctx["lsm.p_bind_in_exercise"] = "ON" if tau["p_bind_in_exercise"] else "OFF"
 
     def cluster_range(cluster: str, driver: str) -> str:
         vals = [f["shares"][driver] for f in shares["firms"] if f["cluster"] == cluster]
@@ -86,14 +102,8 @@ def build_context() -> dict[str, str]:
     ctx["cluster.grid_route.carbon_range_pct"] = cluster_range("grid_route", "carbon")
     all_carbon = [f["shares"]["carbon"] for f in shares["firms"]]
     ctx["cluster.all.carbon_range_pct"] = f"{pct(min(all_carbon))}–{pct(max(all_carbon))}"
-
-    rows = ["| 기업 | π 미확약 (bps) | π 확약 (bps) | Δπ (bps) |", "|---|---|---|---|"]
-    for r in dpi["ranking"]:
-        rows.append(
-            f"| {r['firm']} | {r['pi_uncommitted_bps']:.1f} | {r['pi_committed_bps']:.1f} | **{r['delta_pi_bps']:.1f}** |"
-        )
-    ctx["delta_pi.table"] = "\n".join(rows)
     ctx["manifest.config_sha"] = manifest["config_sha256"][:12]
+    ctx["manifest.dirty"] = "dirty" if manifest["git_dirty"] else "clean"
     return ctx
 
 

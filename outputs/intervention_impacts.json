@@ -1,0 +1,2482 @@
+{
+  "artifact": "intervention_impacts",
+  "note": "개입 = 파라미터 변환: τ* before/after, gap before/after, residual anatomy, charge",
+  "claims": {
+    "firms.interventions.delta": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "exposure_model",
+        "firms_registry",
+        "interventions",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "coverage·tenor 1차 근사; τ*·경로·anatomy·수준 동시 재계산"
+    },
+    "firms.interventions.residual.risk_charge_bps": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "ev_usd_bn",
+        "exposure_model",
+        "firms_registry",
+        "interventions",
+        "k",
+        "lambda",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "잔여 conditional risk charge — fully-hedged 0 주장 금지"
+    }
+  },
+  "conditional_on": [
+    "ev_usd_bn",
+    "interventions",
+    "k",
+    "lambda",
+    "rho_feedstock_carbon",
+    "routes_sensitivity",
+    "scenarios",
+    "sigma_feedstock"
+  ],
+  "input_status": {
+    "exposure_model": "model",
+    "firms_registry": "banded",
+    "interventions": "assumed",
+    "rho_feedstock_carbon": "assumed",
+    "rho_h2_elec": "banded",
+    "routes_sensitivity": "assumed",
+    "scenarios": "assumed",
+    "sigma_carbon_diffusion": "measured",
+    "sigma_feedstock": "assumed",
+    "sigma_h2": "banded",
+    "t_required": "provisional",
+    "ev_usd_bn": "assumed",
+    "k": "assumed",
+    "lambda": "assumed"
+  },
+  "interventions": [
+    "h2_cfd",
+    "ppa",
+    "capex_subsidy",
+    "carbon_reform",
+    "concessional",
+    "feedstock_hedge",
+    "circular_feedstock",
+    "package"
+  ],
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "before": {
+        "risk_result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda, k, scenarios, covariance and exposure calibration",
+          "interpretation": "enterprise transition-window risk; not project-at-commissioning risk"
+        },
+        "alignment_result_contract": {
+          "metric_id": "cumulative_alignment_gap_mtco2",
+          "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
+          "evidence_grade": "PROVISIONAL",
+          "uncertainty": "required pathway source and private transition model",
+          "interpretation": "surrogate-conditioned central case"
+        },
+        "tau_star_cap_weighted": 2061.0,
+        "timing_gap_mean_years": 10.5,
+        "cumulative_gap_mtco2": 124.32,
+        "shares": {
+          "carbon": 0.9910568484,
+          "h2": 0.0,
+          "elec": 0.0088918863,
+          "feedstock": 0.0,
+          "capex": 5.12653e-05
+        },
+        "sigma_b_usd_bn": 13.7306003422,
+        "risk_charge_bps": 39.2346027117,
+        "double_count_warning": false
+      },
+      "interventions": {
+        "h2_cfd": {
+          "label": "H2 CfD (CHPS-style)",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9910568484,
+              "h2": 0.0,
+              "elec": 0.0088918863,
+              "feedstock": 0.0,
+              "capex": 5.12653e-05
+            },
+            "sigma_b_usd_bn": 13.7306003422,
+            "risk_charge_bps": 39.2346027117,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+        },
+        "ppa": {
+          "label": "Long-term PPA",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.1361612925,
+            "sigma_b_usd_bn": 13.6961496357
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.0984414192
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9937145368,
+              "h2": 0.0,
+              "elec": 0.0062339397,
+              "feedstock": 0.0,
+              "capex": 5.15235e-05
+            },
+            "sigma_b_usd_bn": 13.6961496357,
+            "risk_charge_bps": 39.1361612925,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+        },
+        "capex_subsidy": {
+          "label": "CAPEX subsidy",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2340898079,
+            "sigma_b_usd_bn": 13.7304208456
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.0005129038
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9910827605,
+              "h2": 0.0,
+              "elec": 0.0088921188,
+              "feedstock": 0.0,
+              "capex": 2.51207e-05
+            },
+            "sigma_b_usd_bn": 13.7304208456,
+            "risk_charge_bps": 39.2340898079,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "CAPEX level reduced 30%; capex volatility retained"
+        },
+        "carbon_reform": {
+          "label": "Carbon reform commitment",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 45.6653972642,
+            "sigma_b_usd_bn": 10.6540872252
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 6.4307945525
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9882040703,
+              "h2": 0.0,
+              "elec": 0.0117107825,
+              "feedstock": 0.0,
+              "capex": 8.51472e-05
+            },
+            "sigma_b_usd_bn": 10.6540872252,
+            "risk_charge_bps": 45.6653972642,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+        },
+        "concessional": {
+          "label": "Concessional finance",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 38.2716417046,
+            "sigma_b_usd_bn": 16.6088094204
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.9629610071
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9894070508,
+              "h2": 0.0,
+              "elec": 0.0105264471,
+              "feedstock": 0.0,
+              "capex": 6.6502e-05
+            },
+            "sigma_b_usd_bn": 16.6088094204,
+            "risk_charge_bps": 38.2716417046,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Avoid joint use with capex support without a double-counting review"
+        },
+        "feedstock_hedge": {
+          "label": "Naphtha/feedstock collar",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9910568484,
+              "h2": 0.0,
+              "elec": 0.0088918863,
+              "feedstock": 0.0,
+              "capex": 5.12653e-05
+            },
+            "sigma_b_usd_bn": 13.7306003422,
+            "risk_charge_bps": 39.2346027117,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+        },
+        "circular_feedstock": {
+          "label": "Circular-feedstock offtake",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9910568484,
+              "h2": 0.0,
+              "elec": 0.0088918863,
+              "feedstock": 0.0,
+              "capex": 5.12653e-05
+            },
+            "sigma_b_usd_bn": 13.7306003422,
+            "risk_charge_bps": 39.2346027117,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+        },
+        "package": {
+          "label": "Integrated package",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 39.2346027117,
+            "sigma_b_usd_bn": 13.7306003422
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 10.5,
+            "cumulative_gap_mtco2": 124.32,
+            "risk_charge_bps": 45.5139231369,
+            "sigma_b_usd_bn": 10.6187471502
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 6.2793204252
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9917873636,
+              "h2": 0.0,
+              "elec": 0.0081706361,
+              "feedstock": 0.0,
+              "capex": 4.20003e-05
+            },
+            "sigma_b_usd_bn": 10.6187471502,
+            "risk_charge_bps": 45.5139231369,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+        }
+      },
+      "sequential_package": {
+        "order": [
+          "h2_cfd",
+          "ppa",
+          "feedstock_hedge",
+          "circular_feedstock",
+          "capex_subsidy",
+          "carbon_reform"
+        ],
+        "steps": [
+          {
+            "after_ids": [
+              "h2_cfd"
+            ],
+            "risk_charge_bps": 39.2346027117,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa"
+            ],
+            "risk_charge_bps": 39.1361612925,
+            "cut_bps": 0.0984414192
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge"
+            ],
+            "risk_charge_bps": 39.1361612925,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock"
+            ],
+            "risk_charge_bps": 39.1361612925,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy"
+            ],
+            "risk_charge_bps": 39.1356470985,
+            "cut_bps": 0.0005141939
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "risk_charge_bps": 45.5139231369,
+            "cut_bps": -6.3782760383
+          }
+        ],
+        "note": "순차 소거는 적용 순서에 따라 배분이 달라진다 — order-averaged 참조"
+      },
+      "order_averaged_contribution_bps": {
+        "h2_cfd": 0.0,
+        "ppa": 0.124461681,
+        "feedstock_hedge": 0.0,
+        "circular_feedstock": 0.0,
+        "capex_subsidy": 0.0007535206,
+        "carbon_reform": -6.4045356267
+      }
+    },
+    {
+      "firm_id": "JP_NCC",
+      "before": {
+        "risk_result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda, k, scenarios, covariance and exposure calibration",
+          "interpretation": "enterprise transition-window risk; not project-at-commissioning risk"
+        },
+        "alignment_result_contract": {
+          "metric_id": "cumulative_alignment_gap_mtco2",
+          "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
+          "evidence_grade": "PROVISIONAL",
+          "uncertainty": "required pathway source and private transition model",
+          "interpretation": "surrogate-conditioned central case"
+        },
+        "tau_star_cap_weighted": 2040.36825,
+        "timing_gap_mean_years": 10.36825,
+        "cumulative_gap_mtco2": 13.013,
+        "shares": {
+          "carbon": 0.0669907372,
+          "h2": 0.0,
+          "elec": 0.0124928066,
+          "feedstock": 0.9199636139,
+          "capex": 0.0005528424
+        },
+        "sigma_b_usd_bn": 3.7526618893,
+        "risk_charge_bps": 18.334517459,
+        "double_count_warning": false
+      },
+      "interventions": {
+        "h2_cfd": {
+          "label": "H2 CfD (CHPS-style)",
+          "before": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "after": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0669907372,
+              "h2": 0.0,
+              "elec": 0.0124928066,
+              "feedstock": 0.9199636139,
+              "capex": 0.0005528424
+            },
+            "sigma_b_usd_bn": 3.7526618893,
+            "risk_charge_bps": 18.334517459,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+        },
+        "ppa": {
+          "label": "Long-term PPA",
+          "before": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "after": {
+            "tau_star_cap_weighted": 2040.26075,
+            "timing_gap_mean_years": 10.26075,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.2717929338,
+            "sigma_b_usd_bn": 3.7398235947
+          },
+          "delta": {
+            "tau_star_years": -0.1075,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.0627245251
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0665379924,
+              "h2": 0.0,
+              "elec": 0.0082424788,
+              "feedstock": 0.9246628842,
+              "capex": 0.0005566446
+            },
+            "sigma_b_usd_bn": 3.7398235947,
+            "risk_charge_bps": 18.2717929338,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+        },
+        "capex_subsidy": {
+          "label": "CAPEX subsidy",
+          "before": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "after": {
+            "tau_star_cap_weighted": 2040.1115,
+            "timing_gap_mean_years": 10.1115,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.3319325717,
+            "sigma_b_usd_bn": 3.7521328212
+          },
+          "delta": {
+            "tau_star_years": -0.25675,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.0025848873
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0670096305,
+              "h2": 0.0,
+              "elec": 0.0124963299,
+              "feedstock": 0.9202230704,
+              "capex": 0.0002709692
+            },
+            "sigma_b_usd_bn": 3.7521328212,
+            "risk_charge_bps": 18.3319325717,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "CAPEX level reduced 30%; capex volatility retained"
+        },
+        "carbon_reform": {
+          "label": "Carbon reform commitment",
+          "before": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "after": {
+            "tau_star_cap_weighted": 2040.30775,
+            "timing_gap_mean_years": 10.30775,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 27.1040053874,
+            "sigma_b_usd_bn": 3.6983854194
+          },
+          "delta": {
+            "tau_star_years": -0.0605,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 8.7694879284
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0478206688,
+              "h2": 0.0,
+              "elec": 0.0121217749,
+              "feedstock": 0.9394883681,
+              "capex": 0.0005691882
+            },
+            "sigma_b_usd_bn": 3.6983854194,
+            "risk_charge_bps": 27.1040053874,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+        },
+        "concessional": {
+          "label": "Concessional finance",
+          "before": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "after": {
+            "tau_star_cap_weighted": 2040.856,
+            "timing_gap_mean_years": 10.856,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.9908145871,
+            "sigma_b_usd_bn": 4.747860581
+          },
+          "delta": {
+            "tau_star_years": 0.48775,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.6562971281
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0592070873,
+              "h2": 0.0,
+              "elec": 0.0123557288,
+              "feedstock": 0.9280496802,
+              "capex": 0.0003875037
+            },
+            "sigma_b_usd_bn": 4.747860581,
+            "risk_charge_bps": 18.9908145871,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Avoid joint use with capex support without a double-counting review"
+        },
+        "feedstock_hedge": {
+          "label": "Naphtha/feedstock collar",
+          "before": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "after": {
+            "tau_star_cap_weighted": 2041.84975,
+            "timing_gap_mean_years": 11.84975,
+            "cumulative_gap_mtco2": 14.196,
+            "risk_charge_bps": 14.5099068516,
+            "sigma_b_usd_bn": 2.9698504245
+          },
+          "delta": {
+            "tau_star_years": 1.4815,
+            "cumulative_gap_mtco2": 1.183,
+            "risk_charge_bps": -3.8246106074
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0949578082,
+              "h2": 0.0,
+              "elec": 0.0178834306,
+              "feedstock": 0.8862760654,
+              "capex": 0.0008826958
+            },
+            "sigma_b_usd_bn": 2.9698504245,
+            "risk_charge_bps": 14.5099068516,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+        },
+        "circular_feedstock": {
+          "label": "Circular-feedstock offtake",
+          "before": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "after": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0669907372,
+              "h2": 0.0,
+              "elec": 0.0124928066,
+              "feedstock": 0.9199636139,
+              "capex": 0.0005528424
+            },
+            "sigma_b_usd_bn": 3.7526618893,
+            "risk_charge_bps": 18.334517459,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+        },
+        "package": {
+          "label": "Integrated package",
+          "before": {
+            "tau_star_cap_weighted": 2040.36825,
+            "timing_gap_mean_years": 10.36825,
+            "cumulative_gap_mtco2": 13.013,
+            "risk_charge_bps": 18.334517459,
+            "sigma_b_usd_bn": 3.7526618893
+          },
+          "after": {
+            "tau_star_cap_weighted": 2041.1875,
+            "timing_gap_mean_years": 11.1875,
+            "cumulative_gap_mtco2": 14.196,
+            "risk_charge_bps": 21.2143394192,
+            "sigma_b_usd_bn": 2.8947309621
+          },
+          "delta": {
+            "tau_star_years": 0.81925,
+            "cumulative_gap_mtco2": 1.183,
+            "risk_charge_bps": 2.8798219603
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0671018151,
+              "h2": 0.0,
+              "elec": 0.0113415789,
+              "feedstock": 0.9211013456,
+              "capex": 0.0004552604
+            },
+            "sigma_b_usd_bn": 2.8947309621,
+            "risk_charge_bps": 21.2143394192,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+        }
+      },
+      "sequential_package": {
+        "order": [
+          "h2_cfd",
+          "ppa",
+          "feedstock_hedge",
+          "circular_feedstock",
+          "capex_subsidy",
+          "carbon_reform"
+        ],
+        "steps": [
+          {
+            "after_ids": [
+              "h2_cfd"
+            ],
+            "risk_charge_bps": 18.334517459,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa"
+            ],
+            "risk_charge_bps": 18.2717929338,
+            "cut_bps": 0.0627245251
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge"
+            ],
+            "risk_charge_bps": 14.4391515171,
+            "cut_bps": 3.8326414167
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock"
+            ],
+            "risk_charge_bps": 14.4391515171,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy"
+            ],
+            "risk_charge_bps": 14.4358691423,
+            "cut_bps": 0.0032823749
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "risk_charge_bps": 21.2143394192,
+            "cut_bps": -6.7784702769
+          }
+        ],
+        "note": "순차 소거는 적용 순서에 따라 배분이 달라진다 — order-averaged 참조"
+      },
+      "order_averaged_contribution_bps": {
+        "h2_cfd": 0.0,
+        "ppa": 0.081345792,
+        "feedstock_hedge": 4.8096865847,
+        "circular_feedstock": 0.0,
+        "capex_subsidy": 0.0037380852,
+        "carbon_reform": -7.7745924222
+      }
+    },
+    {
+      "firm_id": "KOBE",
+      "before": {
+        "risk_result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda, k, scenarios, covariance and exposure calibration",
+          "interpretation": "enterprise transition-window risk; not project-at-commissioning risk"
+        },
+        "alignment_result_contract": {
+          "metric_id": "cumulative_alignment_gap_mtco2",
+          "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
+          "evidence_grade": "PROVISIONAL",
+          "uncertainty": "required pathway source and private transition model",
+          "interpretation": "surrogate-conditioned central case"
+        },
+        "tau_star_cap_weighted": 2061.0,
+        "timing_gap_mean_years": 0.0,
+        "cumulative_gap_mtco2": 0.0,
+        "shares": {
+          "carbon": 0.9999646995,
+          "h2": 0.0,
+          "elec": 0.0,
+          "feedstock": 0.0,
+          "capex": 3.53005e-05
+        },
+        "sigma_b_usd_bn": 4.9903229884,
+        "risk_charge_bps": 26.7368143473,
+        "double_count_warning": false
+      },
+      "interventions": {
+        "h2_cfd": {
+          "label": "H2 CfD (CHPS-style)",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9999646995,
+              "h2": 0.0,
+              "elec": 0.0,
+              "feedstock": 0.0,
+              "capex": 3.53005e-05
+            },
+            "sigma_b_usd_bn": 4.9903229884,
+            "risk_charge_bps": 26.7368143473,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+        },
+        "ppa": {
+          "label": "Long-term PPA",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9999646995,
+              "h2": 0.0,
+              "elec": 0.0,
+              "feedstock": 0.0,
+              "capex": 3.53005e-05
+            },
+            "sigma_b_usd_bn": 4.9903229884,
+            "risk_charge_bps": 26.7368143473,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+        },
+        "capex_subsidy": {
+          "label": "CAPEX subsidy",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7365736715,
+            "sigma_b_usd_bn": 4.9902780672
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.0002406758
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9999827025,
+              "h2": 0.0,
+              "elec": 0.0,
+              "feedstock": 0.0,
+              "capex": 1.72975e-05
+            },
+            "sigma_b_usd_bn": 4.9902780672,
+            "risk_charge_bps": 26.7365736715,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "CAPEX level reduced 30%; capex volatility retained"
+        },
+        "carbon_reform": {
+          "label": "Carbon reform commitment",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 31.0374608741,
+            "sigma_b_usd_bn": 3.8620146861
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 4.3006465268
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.99994106,
+              "h2": 0.0,
+              "elec": 0.0,
+              "feedstock": 0.0,
+              "capex": 5.894e-05
+            },
+            "sigma_b_usd_bn": 3.8620146861,
+            "risk_charge_bps": 31.0374608741,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+        },
+        "concessional": {
+          "label": "Concessional finance",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7371909127,
+            "sigma_b_usd_bn": 6.1883649063
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0003765653
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9999365328,
+              "h2": 0.0,
+              "elec": 0.0,
+              "feedstock": 0.0,
+              "capex": 6.34672e-05
+            },
+            "sigma_b_usd_bn": 6.1883649063,
+            "risk_charge_bps": 26.7371909127,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Avoid joint use with capex support without a double-counting review"
+        },
+        "feedstock_hedge": {
+          "label": "Naphtha/feedstock collar",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9999646995,
+              "h2": 0.0,
+              "elec": 0.0,
+              "feedstock": 0.0,
+              "capex": 3.53005e-05
+            },
+            "sigma_b_usd_bn": 4.9903229884,
+            "risk_charge_bps": 26.7368143473,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+        },
+        "circular_feedstock": {
+          "label": "Circular-feedstock offtake",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9999646995,
+              "h2": 0.0,
+              "elec": 0.0,
+              "feedstock": 0.0,
+              "capex": 3.53005e-05
+            },
+            "sigma_b_usd_bn": 4.9903229884,
+            "risk_charge_bps": 26.7368143473,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+        },
+        "package": {
+          "label": "Integrated package",
+          "before": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 26.7368143473,
+            "sigma_b_usd_bn": 4.9903229884
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 31.0369943869,
+            "sigma_b_usd_bn": 3.8619566407
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 4.3001800396
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.9999711185,
+              "h2": 0.0,
+              "elec": 0.0,
+              "feedstock": 0.0,
+              "capex": 2.88815e-05
+            },
+            "sigma_b_usd_bn": 3.8619566407,
+            "risk_charge_bps": 31.0369943869,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+        }
+      },
+      "sequential_package": {
+        "order": [
+          "h2_cfd",
+          "ppa",
+          "feedstock_hedge",
+          "circular_feedstock",
+          "capex_subsidy",
+          "carbon_reform"
+        ],
+        "steps": [
+          {
+            "after_ids": [
+              "h2_cfd"
+            ],
+            "risk_charge_bps": 26.7368143473,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa"
+            ],
+            "risk_charge_bps": 26.7368143473,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge"
+            ],
+            "risk_charge_bps": 26.7368143473,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock"
+            ],
+            "risk_charge_bps": 26.7368143473,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy"
+            ],
+            "risk_charge_bps": 26.7365736715,
+            "cut_bps": 0.0002406758
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "risk_charge_bps": 31.0369943869,
+            "cut_bps": -4.3004207154
+          }
+        ],
+        "note": "순차 소거는 적용 순서에 따라 배분이 달라진다 — order-averaged 참조"
+      },
+      "order_averaged_contribution_bps": {
+        "h2_cfd": 0.0,
+        "ppa": 0.0,
+        "feedstock_hedge": 0.0,
+        "circular_feedstock": 0.0,
+        "capex_subsidy": 0.0003535815,
+        "carbon_reform": -4.3005336211
+      }
+    },
+    {
+      "firm_id": "KR_NCC",
+      "before": {
+        "risk_result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda, k, scenarios, covariance and exposure calibration",
+          "interpretation": "enterprise transition-window risk; not project-at-commissioning risk"
+        },
+        "alignment_result_contract": {
+          "metric_id": "cumulative_alignment_gap_mtco2",
+          "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
+          "evidence_grade": "PROVISIONAL",
+          "uncertainty": "required pathway source and private transition model",
+          "interpretation": "surrogate-conditioned central case"
+        },
+        "tau_star_cap_weighted": 2039.3205,
+        "timing_gap_mean_years": 7.3205,
+        "cumulative_gap_mtco2": 18.72,
+        "shares": {
+          "carbon": 0.0715651737,
+          "h2": 0.0,
+          "elec": 0.0144722611,
+          "feedstock": 0.9127300151,
+          "capex": 0.0012325502
+        },
+        "sigma_b_usd_bn": 3.7010899024,
+        "risk_charge_bps": 16.7698565863,
+        "double_count_warning": false
+      },
+      "interventions": {
+        "h2_cfd": {
+          "label": "H2 CfD (CHPS-style)",
+          "before": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "after": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0715651737,
+              "h2": 0.0,
+              "elec": 0.0144722611,
+              "feedstock": 0.9127300151,
+              "capex": 0.0012325502
+            },
+            "sigma_b_usd_bn": 3.7010899024,
+            "risk_charge_bps": 16.7698565863,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+        },
+        "ppa": {
+          "label": "Long-term PPA",
+          "before": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "after": {
+            "tau_star_cap_weighted": 2039.139,
+            "timing_gap_mean_years": 7.139,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7165305933,
+            "sigma_b_usd_bn": 3.6893209112
+          },
+          "delta": {
+            "tau_star_years": -0.1815,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.053325993
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0711771214,
+              "h2": 0.0,
+              "elec": 0.0104551347,
+              "feedstock": 0.9171273174,
+              "capex": 0.0012404265
+            },
+            "sigma_b_usd_bn": 3.6893209112,
+            "risk_charge_bps": 16.7165305933,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+        },
+        "capex_subsidy": {
+          "label": "CAPEX subsidy",
+          "before": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "after": {
+            "tau_star_cap_weighted": 2038.96575,
+            "timing_gap_mean_years": 6.96575,
+            "cumulative_gap_mtco2": 16.38,
+            "risk_charge_bps": 16.7645849868,
+            "sigma_b_usd_bn": 3.6999264658
+          },
+          "delta": {
+            "tau_star_years": -0.35475,
+            "cumulative_gap_mtco2": -2.34,
+            "risk_charge_bps": -0.0052715996
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0716101879,
+              "h2": 0.0,
+              "elec": 0.014481364,
+              "feedstock": 0.9133041186,
+              "capex": 0.0006043295
+            },
+            "sigma_b_usd_bn": 3.6999264658,
+            "risk_charge_bps": 16.7645849868,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "CAPEX level reduced 30%; capex volatility retained"
+        },
+        "carbon_reform": {
+          "label": "Carbon reform commitment",
+          "before": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "after": {
+            "tau_star_cap_weighted": 2039.1865,
+            "timing_gap_mean_years": 7.1865,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 23.3666546804,
+            "sigma_b_usd_bn": 3.6598038818
+          },
+          "delta": {
+            "tau_star_years": -0.134,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 6.596798094
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0567511063,
+              "h2": 0.0,
+              "elec": 0.0141921037,
+              "feedstock": 0.9277962743,
+              "capex": 0.0012605157
+            },
+            "sigma_b_usd_bn": 3.6598038818,
+            "risk_charge_bps": 23.3666546804,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+        },
+        "concessional": {
+          "label": "Concessional finance",
+          "before": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "after": {
+            "tau_star_cap_weighted": 2039.68125,
+            "timing_gap_mean_years": 7.68125,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 17.7368141697,
+            "sigma_b_usd_bn": 4.6530573455
+          },
+          "delta": {
+            "tau_star_years": 0.36075,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.9669575834
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0578030304,
+              "h2": 0.0,
+              "elec": 0.0142183014,
+              "feedstock": 0.9270549003,
+              "capex": 0.000923768
+            },
+            "sigma_b_usd_bn": 4.6530573455,
+            "risk_charge_bps": 17.7368141697,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Avoid joint use with capex support without a double-counting review"
+        },
+        "feedstock_hedge": {
+          "label": "Naphtha/feedstock collar",
+          "before": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "after": {
+            "tau_star_cap_weighted": 2040.4225,
+            "timing_gap_mean_years": 8.4225,
+            "cumulative_gap_mtco2": 21.06,
+            "risk_charge_bps": 13.301531355,
+            "sigma_b_usd_bn": 2.935634132
+          },
+          "delta": {
+            "tau_star_years": 1.102,
+            "cumulative_gap_mtco2": 2.34,
+            "risk_charge_bps": -3.4683252314
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.1013394367,
+              "h2": 0.0,
+              "elec": 0.0207309036,
+              "feedstock": 0.8759705442,
+              "capex": 0.0019591155
+            },
+            "sigma_b_usd_bn": 2.935634132,
+            "risk_charge_bps": 13.301531355,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+        },
+        "circular_feedstock": {
+          "label": "Circular-feedstock offtake",
+          "before": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "after": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0715651737,
+              "h2": 0.0,
+              "elec": 0.0144722611,
+              "feedstock": 0.9127300151,
+              "capex": 0.0012325502
+            },
+            "sigma_b_usd_bn": 3.7010899024,
+            "risk_charge_bps": 16.7698565863,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+        },
+        "package": {
+          "label": "Integrated package",
+          "before": {
+            "tau_star_cap_weighted": 2039.3205,
+            "timing_gap_mean_years": 7.3205,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 16.7698565863,
+            "sigma_b_usd_bn": 3.7010899024
+          },
+          "after": {
+            "tau_star_cap_weighted": 2039.6045,
+            "timing_gap_mean_years": 7.6045,
+            "cumulative_gap_mtco2": 18.72,
+            "risk_charge_bps": 18.3558406238,
+            "sigma_b_usd_bn": 2.8749847887
+          },
+          "delta": {
+            "tau_star_years": 0.284,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 1.5859840375
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.0799399644,
+              "h2": 0.0,
+              "elec": 0.0146244177,
+              "feedstock": 0.904434722,
+              "capex": 0.0010008958
+            },
+            "sigma_b_usd_bn": 2.8749847887,
+            "risk_charge_bps": 18.3558406238,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+        }
+      },
+      "sequential_package": {
+        "order": [
+          "h2_cfd",
+          "ppa",
+          "feedstock_hedge",
+          "circular_feedstock",
+          "capex_subsidy",
+          "carbon_reform"
+        ],
+        "steps": [
+          {
+            "after_ids": [
+              "h2_cfd"
+            ],
+            "risk_charge_bps": 16.7698565863,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa"
+            ],
+            "risk_charge_bps": 16.7165305933,
+            "cut_bps": 0.053325993
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge"
+            ],
+            "risk_charge_bps": 13.2411452296,
+            "cut_bps": 3.4753853637
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock"
+            ],
+            "risk_charge_bps": 13.2411452296,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy"
+            ],
+            "risk_charge_bps": 13.234468136,
+            "cut_bps": 0.0066770936
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "risk_charge_bps": 18.3558406238,
+            "cut_bps": -5.1213724878
+          }
+        ],
+        "note": "순차 소거는 적용 순서에 따라 배분이 달라진다 — order-averaged 참조"
+      },
+      "order_averaged_contribution_bps": {
+        "h2_cfd": 0.0,
+        "ppa": 0.0674285327,
+        "feedstock_hedge": 4.1988971295,
+        "circular_feedstock": 0.0,
+        "capex_subsidy": 0.0073055186,
+        "carbon_reform": -5.8596152183
+      }
+    },
+    {
+      "firm_id": "NIPPON",
+      "before": {
+        "risk_result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda, k, scenarios, covariance and exposure calibration",
+          "interpretation": "enterprise transition-window risk; not project-at-commissioning risk"
+        },
+        "alignment_result_contract": {
+          "metric_id": "cumulative_alignment_gap_mtco2",
+          "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
+          "evidence_grade": "PROVISIONAL",
+          "uncertainty": "required pathway source and private transition model",
+          "interpretation": "surrogate-conditioned central case"
+        },
+        "tau_star_cap_weighted": 2053.5381375,
+        "timing_gap_mean_years": 16.522125,
+        "cumulative_gap_mtco2": 236.16,
+        "shares": {
+          "carbon": 0.4505138369,
+          "h2": 0.4659769238,
+          "elec": 0.0825754009,
+          "feedstock": 0.0,
+          "capex": 0.0009338384
+        },
+        "sigma_b_usd_bn": 11.743309067,
+        "risk_charge_bps": 12.5835011111,
+        "double_count_warning": false
+      },
+      "interventions": {
+        "h2_cfd": {
+          "label": "H2 CfD (CHPS-style)",
+          "before": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 24.0,
+            "cumulative_gap_mtco2": 336.96,
+            "risk_charge_bps": 10.7027129063,
+            "sigma_b_usd_bn": 9.9880998464
+          },
+          "delta": {
+            "tau_star_years": 7.4618625,
+            "cumulative_gap_mtco2": 100.8,
+            "risk_charge_bps": -1.8807882047
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.6227638087,
+              "h2": 0.2857879024,
+              "elec": 0.0901574057,
+              "feedstock": 0.0,
+              "capex": 0.0012908833
+            },
+            "sigma_b_usd_bn": 9.9880998464,
+            "risk_charge_bps": 10.7027129063,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+        },
+        "ppa": {
+          "label": "Long-term PPA",
+          "before": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "after": {
+            "tau_star_cap_weighted": 2061.0,
+            "timing_gap_mean_years": 24.0,
+            "cumulative_gap_mtco2": 336.96,
+            "risk_charge_bps": 12.2897603831,
+            "sigma_b_usd_bn": 11.4691812131
+          },
+          "delta": {
+            "tau_star_years": 7.4618625,
+            "cumulative_gap_mtco2": 100.8,
+            "risk_charge_bps": -0.2937407279
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.4658999321,
+              "h2": 0.4737855928,
+              "elec": 0.0593354633,
+              "feedstock": 0.0,
+              "capex": 0.0009790117
+            },
+            "sigma_b_usd_bn": 11.4691812131,
+            "risk_charge_bps": 12.2897603831,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+        },
+        "capex_subsidy": {
+          "label": "CAPEX subsidy",
+          "before": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "after": {
+            "tau_star_cap_weighted": 2052.645375,
+            "timing_gap_mean_years": 15.6255,
+            "cumulative_gap_mtco2": 221.76,
+            "risk_charge_bps": 12.5805042602,
+            "sigma_b_usd_bn": 11.7405123139
+          },
+          "delta": {
+            "tau_star_years": -0.8927625,
+            "cumulative_gap_mtco2": -14.4,
+            "risk_charge_bps": -0.0029968509
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.4507284997,
+              "h2": 0.4661989546,
+              "elec": 0.0826147468,
+              "feedstock": 0.0,
+              "capex": 0.0004577989
+            },
+            "sigma_b_usd_bn": 11.7405123139,
+            "risk_charge_bps": 12.5805042602,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "CAPEX level reduced 30%; capex volatility retained"
+        },
+        "carbon_reform": {
+          "label": "Carbon reform commitment",
+          "before": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "after": {
+            "tau_star_cap_weighted": 2052.7274375,
+            "timing_gap_mean_years": 15.744125,
+            "cumulative_gap_mtco2": 221.76,
+            "risk_charge_bps": 17.0735729834,
+            "sigma_b_usd_bn": 10.622387874
+          },
+          "delta": {
+            "tau_star_years": -0.8107,
+            "cumulative_gap_mtco2": -14.4,
+            "risk_charge_bps": 4.4900718723
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.3343473099,
+              "h2": 0.5695096418,
+              "elec": 0.0950017257,
+              "feedstock": 0.0,
+              "capex": 0.0011413226
+            },
+            "sigma_b_usd_bn": 10.622387874,
+            "risk_charge_bps": 17.0735729834,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+        },
+        "concessional": {
+          "label": "Concessional finance",
+          "before": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "after": {
+            "tau_star_cap_weighted": 2053.303775,
+            "timing_gap_mean_years": 16.3055,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.8265551745,
+            "sigma_b_usd_bn": 14.8436318852
+          },
+          "delta": {
+            "tau_star_years": -0.2343625,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.2430540635
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.3496600947,
+              "h2": 0.5560538696,
+              "elec": 0.0934700975,
+              "feedstock": 0.0,
+              "capex": 0.0008159382
+            },
+            "sigma_b_usd_bn": 14.8436318852,
+            "risk_charge_bps": 12.8265551745,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Avoid joint use with capex support without a double-counting review"
+        },
+        "feedstock_hedge": {
+          "label": "Naphtha/feedstock collar",
+          "before": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "after": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.4505138369,
+              "h2": 0.4659769238,
+              "elec": 0.0825754009,
+              "feedstock": 0.0,
+              "capex": 0.0009338384
+            },
+            "sigma_b_usd_bn": 11.743309067,
+            "risk_charge_bps": 12.5835011111,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+        },
+        "circular_feedstock": {
+          "label": "Circular-feedstock offtake",
+          "before": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "after": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.4505138369,
+              "h2": 0.4659769238,
+              "elec": 0.0825754009,
+              "feedstock": 0.0,
+              "capex": 0.0009338384
+            },
+            "sigma_b_usd_bn": 11.743309067,
+            "risk_charge_bps": 12.5835011111,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+        },
+        "package": {
+          "label": "Integrated package",
+          "before": {
+            "tau_star_cap_weighted": 2053.5381375,
+            "timing_gap_mean_years": 16.522125,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 12.5835011111,
+            "sigma_b_usd_bn": 11.743309067
+          },
+          "after": {
+            "tau_star_cap_weighted": 2053.728425,
+            "timing_gap_mean_years": 16.7675,
+            "cumulative_gap_mtco2": 236.16,
+            "risk_charge_bps": 13.4487202641,
+            "sigma_b_usd_bn": 8.3671720731
+          },
+          "delta": {
+            "tau_star_years": 0.1902875,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.865219153
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.529554692,
+              "h2": 0.3893119496,
+              "elec": 0.0802320126,
+              "feedstock": 0.0,
+              "capex": 0.0009013457
+            },
+            "sigma_b_usd_bn": 8.3671720731,
+            "risk_charge_bps": 13.4487202641,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+        }
+      },
+      "sequential_package": {
+        "order": [
+          "h2_cfd",
+          "ppa",
+          "feedstock_hedge",
+          "circular_feedstock",
+          "capex_subsidy",
+          "carbon_reform"
+        ],
+        "steps": [
+          {
+            "after_ids": [
+              "h2_cfd"
+            ],
+            "risk_charge_bps": 10.7027129063,
+            "cut_bps": 1.8807882047
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa"
+            ],
+            "risk_charge_bps": 10.4311790583,
+            "cut_bps": 0.271533848
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge"
+            ],
+            "risk_charge_bps": 10.4311790583,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock"
+            ],
+            "risk_charge_bps": 10.4311790583,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy"
+            ],
+            "risk_charge_bps": 10.4275636548,
+            "cut_bps": 0.0036154035
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "risk_charge_bps": 13.4487202641,
+            "cut_bps": -3.0211566093
+          }
+        ],
+        "note": "순차 소거는 적용 순서에 따라 배분이 달라진다 — order-averaged 참조"
+      },
+      "order_averaged_contribution_bps": {
+        "h2_cfd": 2.520841426,
+        "ppa": 0.3650866871,
+        "feedstock_hedge": 0.0,
+        "circular_feedstock": 0.0,
+        "capex_subsidy": 0.0045253595,
+        "carbon_reform": -3.7556726257
+      }
+    },
+    {
+      "firm_id": "POSCO",
+      "before": {
+        "risk_result_contract": {
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "lambda, k, scenarios, covariance and exposure calibration",
+          "interpretation": "enterprise transition-window risk; not project-at-commissioning risk"
+        },
+        "alignment_result_contract": {
+          "metric_id": "cumulative_alignment_gap_mtco2",
+          "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
+          "evidence_grade": "PROVISIONAL",
+          "uncertainty": "required pathway source and private transition model",
+          "interpretation": "surrogate-conditioned central case"
+        },
+        "tau_star_cap_weighted": 2050.602987931,
+        "timing_gap_mean_years": 12.8460625,
+        "cumulative_gap_mtco2": 360.98,
+        "shares": {
+          "carbon": 0.6865618216,
+          "h2": 0.2875040859,
+          "elec": 0.0247654485,
+          "feedstock": 0.0,
+          "capex": 0.001168644
+        },
+        "sigma_b_usd_bn": 13.0129908314,
+        "risk_charge_bps": 23.3274012795,
+        "double_count_warning": false
+      },
+      "interventions": {
+        "h2_cfd": {
+          "label": "H2 CfD (CHPS-style)",
+          "before": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "after": {
+            "tau_star_cap_weighted": 2051.6069948276,
+            "timing_gap_mean_years": 13.851625,
+            "cumulative_gap_mtco2": 388.95,
+            "risk_charge_bps": 21.270063142,
+            "sigma_b_usd_bn": 11.8653223878
+          },
+          "delta": {
+            "tau_star_years": 1.0040068966,
+            "cumulative_gap_mtco2": 27.97,
+            "risk_charge_bps": -2.0573381374
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.8257998726,
+              "h2": 0.1489077853,
+              "elec": 0.0238866914,
+              "feedstock": 0.0,
+              "capex": 0.0014056507
+            },
+            "sigma_b_usd_bn": 11.8653223878,
+            "risk_charge_bps": 21.270063142,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
+        },
+        "ppa": {
+          "label": "Long-term PPA",
+          "before": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "after": {
+            "tau_star_cap_weighted": 2050.746837931,
+            "timing_gap_mean_years": 12.986125,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.2004732574,
+            "sigma_b_usd_bn": 12.9421851223
+          },
+          "delta": {
+            "tau_star_years": 0.14385,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.1269280221
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.692000923,
+              "h2": 0.2875533703,
+              "elec": 0.0192642405,
+              "feedstock": 0.0,
+              "capex": 0.0011814661
+            },
+            "sigma_b_usd_bn": 12.9421851223,
+            "risk_charge_bps": 23.2004732574,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
+        },
+        "capex_subsidy": {
+          "label": "CAPEX subsidy",
+          "before": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "after": {
+            "tau_star_cap_weighted": 2049.7842672414,
+            "timing_gap_mean_years": 12.027875,
+            "cumulative_gap_mtco2": 333.01,
+            "risk_charge_bps": 23.3204485791,
+            "sigma_b_usd_bn": 13.0091123271
+          },
+          "delta": {
+            "tau_star_years": -0.8187206897,
+            "cumulative_gap_mtco2": -27.97,
+            "risk_charge_bps": -0.0069527004
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.6869712623,
+              "h2": 0.287675543,
+              "elec": 0.0247802177,
+              "feedstock": 0.0,
+              "capex": 0.0005729771
+            },
+            "sigma_b_usd_bn": 13.0091123271,
+            "risk_charge_bps": 23.3204485791,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "CAPEX level reduced 30%; capex volatility retained"
+        },
+        "carbon_reform": {
+          "label": "Carbon reform commitment",
+          "before": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "after": {
+            "tau_star_cap_weighted": 2049.850537931,
+            "timing_gap_mean_years": 12.094875,
+            "cumulative_gap_mtco2": 339.66,
+            "risk_charge_bps": 29.3333168563,
+            "sigma_b_usd_bn": 11.6126924424
+          },
+          "delta": {
+            "tau_star_years": -0.75245,
+            "cumulative_gap_mtco2": -21.32,
+            "risk_charge_bps": 6.0059155768
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.6083131414,
+              "h2": 0.3610209632,
+              "elec": 0.0291984207,
+              "feedstock": 0.0,
+              "capex": 0.0014674748
+            },
+            "sigma_b_usd_bn": 11.6126924424,
+            "risk_charge_bps": 29.3333168563,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
+        },
+        "concessional": {
+          "label": "Concessional finance",
+          "before": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "after": {
+            "tau_star_cap_weighted": 2050.438962069,
+            "timing_gap_mean_years": 12.68175,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.1728784714,
+            "sigma_b_usd_bn": 15.2711864085
+          },
+          "delta": {
+            "tau_star_years": -0.1640258621,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": -0.154522808
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.6000783334,
+              "h2": 0.3690929181,
+              "elec": 0.0296706548,
+              "feedstock": 0.0,
+              "capex": 0.0011580937
+            },
+            "sigma_b_usd_bn": 15.2711864085,
+            "risk_charge_bps": 23.1728784714,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Avoid joint use with capex support without a double-counting review"
+        },
+        "feedstock_hedge": {
+          "label": "Naphtha/feedstock collar",
+          "before": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "after": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.6865618216,
+              "h2": 0.2875040859,
+              "elec": 0.0247654485,
+              "feedstock": 0.0,
+              "capex": 0.001168644
+            },
+            "sigma_b_usd_bn": 13.0129908314,
+            "risk_charge_bps": 23.3274012795,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
+        },
+        "circular_feedstock": {
+          "label": "Circular-feedstock offtake",
+          "before": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "after": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "delta": {
+            "tau_star_years": 0.0,
+            "cumulative_gap_mtco2": 0.0,
+            "risk_charge_bps": 0.0
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.6865618216,
+              "h2": 0.2875040859,
+              "elec": 0.0247654485,
+              "feedstock": 0.0,
+              "capex": 0.001168644
+            },
+            "sigma_b_usd_bn": 13.0129908314,
+            "risk_charge_bps": 23.3274012795,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
+        },
+        "package": {
+          "label": "Integrated package",
+          "before": {
+            "tau_star_cap_weighted": 2050.602987931,
+            "timing_gap_mean_years": 12.8460625,
+            "cumulative_gap_mtco2": 360.98,
+            "risk_charge_bps": 23.3274012795,
+            "sigma_b_usd_bn": 13.0129908314
+          },
+          "after": {
+            "tau_star_cap_weighted": 2050.1286155172,
+            "timing_gap_mean_years": 12.3745,
+            "cumulative_gap_mtco2": 354.71,
+            "risk_charge_bps": 25.864173464,
+            "sigma_b_usd_bn": 10.2393020601
+          },
+          "delta": {
+            "tau_star_years": -0.4743724138,
+            "cumulative_gap_mtco2": -6.27,
+            "risk_charge_bps": 2.5367721846
+          },
+          "residual": {
+            "shares": {
+              "carbon": 0.7796362522,
+              "h2": 0.196743335,
+              "elec": 0.0226955189,
+              "feedstock": 0.0,
+              "capex": 0.0009248938
+            },
+            "sigma_b_usd_bn": 10.2393020601,
+            "risk_charge_bps": 25.864173464,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+          },
+          "double_count_warning": false,
+          "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
+        }
+      },
+      "sequential_package": {
+        "order": [
+          "h2_cfd",
+          "ppa",
+          "feedstock_hedge",
+          "circular_feedstock",
+          "capex_subsidy",
+          "carbon_reform"
+        ],
+        "steps": [
+          {
+            "after_ids": [
+              "h2_cfd"
+            ],
+            "risk_charge_bps": 21.270063142,
+            "cut_bps": 2.0573381374
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa"
+            ],
+            "risk_charge_bps": 21.1586261329,
+            "cut_bps": 0.1114370091
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge"
+            ],
+            "risk_charge_bps": 21.1586261329,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock"
+            ],
+            "risk_charge_bps": 21.1586261329,
+            "cut_bps": 0.0
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy"
+            ],
+            "risk_charge_bps": 21.1509605292,
+            "cut_bps": 0.0076656037
+          },
+          {
+            "after_ids": [
+              "h2_cfd",
+              "ppa",
+              "feedstock_hedge",
+              "circular_feedstock",
+              "capex_subsidy",
+              "carbon_reform"
+            ],
+            "risk_charge_bps": 25.864173464,
+            "cut_bps": -4.7132129348
+          }
+        ],
+        "note": "순차 소거는 적용 순서에 따라 배분이 달라진다 — order-averaged 참조"
+      },
+      "order_averaged_contribution_bps": {
+        "h2_cfd": 2.6644619715,
+        "ppa": 0.1479219226,
+        "feedstock_hedge": 0.0,
+        "circular_feedstock": 0.0,
+        "capex_subsidy": 0.0095727117,
+        "carbon_reform": -5.3587287904
+      }
+    }
+  ],
+  "perspective": "reform-priced (국가별 σ_reform 관점)"
+}

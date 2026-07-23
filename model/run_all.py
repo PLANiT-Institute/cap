@@ -1,7 +1,7 @@
-"""make model 진입점: s02→s06 실행 + outputs/manifest.json.
+"""make model 진입점: s02→s11 + outputs/manifest.json (lineage 포함).
 
-manifest: 실행 시각, config 해시(전 config 파일 SHA256), git SHA, seed, t_gcam_source.
-config만 바꾸면 코드 수정 없이 전체 결과가 재생성되고 해시가 바뀐다 (Phase 2 완료 기준).
+manifest: 실행 시각, config/코드/raw/processed/lock 해시, git SHA+dirty,
+seed, T_required 출처, artifact 목록. dirty tree는 숨기지 않는다.
 """
 from __future__ import annotations
 
@@ -15,46 +15,80 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from model import s02_calibrate, s03_lsm, s04_anatomy, s05_robustness, s06_contracts  # noqa: E402
+from model import (  # noqa: E402
+    s02_calibrate,
+    s03_lsm,
+    s04_anatomy,
+    s05_robustness,
+    s06_interventions,
+    s07_pathways,
+    s08_underwriting,
+    s09_deal_screening,
+    s10_result_contract,
+    s11_pilot_cases,
+)
 
 
-def config_hash() -> str:
+def tree_hash(paths: list[Path], patterns: tuple[str, ...] = ("*",)) -> str:
     h = hashlib.sha256()
-    for p in sorted((ROOT / "config").rglob("*")):
-        if p.is_file() and "__pycache__" not in p.parts:
-            h.update(p.relative_to(ROOT).as_posix().encode())
-            h.update(p.read_bytes())
+    for base in paths:
+        if not base.exists():
+            continue
+        for pat in patterns:
+            for p in sorted(base.rglob(pat)):
+                if p.is_file() and "__pycache__" not in p.parts and p.name != ".DS_Store":
+                    h.update(p.relative_to(ROOT).as_posix().encode())
+                    h.update(p.read_bytes())
     return h.hexdigest()
 
 
-def git_sha() -> str:
+def git_info() -> tuple[str, bool]:
     try:
-        return subprocess.run(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True
-        ).stdout.strip() or "unknown"
+        sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                             capture_output=True, text=True).stdout.strip() or "unknown"
+        dirty = bool(subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
+                                    capture_output=True, text=True).stdout.strip())
+        return sha, dirty
     except OSError:
-        return "unknown"
+        return "unknown", True
 
 
 def main() -> int:
-    for stage in (s02_calibrate, s03_lsm, s04_anatomy, s05_robustness, s06_contracts):
+    for stage in (s02_calibrate, s03_lsm, s04_anatomy, s05_robustness,
+                  s06_interventions, s07_pathways, s08_underwriting,
+                  s09_deal_screening, s10_result_contract, s11_pilot_cases):
         rc = stage.main()
         if rc:
             return rc
     cal = s02_calibrate.load_calibration()
+    sha, dirty = git_info()
     manifest = {
         "run_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "config_sha256": config_hash(),
-        "git_sha": git_sha(),
+        "git_sha": sha,
+        "git_dirty": dirty,
+        "code_sha256": tree_hash([ROOT / "model", ROOT / "scripts"], ("*.py",)),
+        "config_sha256": tree_hash([ROOT / "config"]),
+        "raw_data_sha256": tree_hash([ROOT / "data" / "raw"]),
+        "processed_data_sha256": tree_hash([ROOT / "data" / "processed"]),
+        "dependency_lock_sha256": hashlib.sha256((ROOT / "uv.lock").read_bytes()).hexdigest()
+        if (ROOT / "uv.lock").exists() else None,
         "seed": int(cal.lsm["seed"]),
-        "t_gcam_source": cal.t_gcam_source,
+        "t_required_source": cal.t_required_source,
         "measured_overrides": cal.measured_overrides,
-        "artifacts": sorted(p.name for p in (ROOT / "outputs").glob("*.json") if p.name != "manifest.json"),
+        "artifacts": sorted(p.name for p in (ROOT / "outputs").glob("*.json")
+                            if p.name != "manifest.json"),
+        "pilot_reports": sorted(
+            p.relative_to(ROOT).as_posix()
+            for p in (ROOT / "outputs" / "pilots").glob("*.md")
+        ),
     }
     (ROOT / "outputs" / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
     )
-    print(f"OK — manifest (config {manifest['config_sha256'][:12]}…, t_gcam={manifest['t_gcam_source']})")
+    print(
+        f"OK — manifest (config {manifest['config_sha256'][:12]}…, "
+        f"dirty={dirty}, T_required={manifest['t_required_source']})"
+    )
     return 0
 
 

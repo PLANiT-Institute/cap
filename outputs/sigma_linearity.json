@@ -1,28 +1,41 @@
 {
   "artifact": "sigma_linearity",
-  "note": "옵션가치의 σ 선형성 — π=k·λ·p_bind·σ_B 선형 근사의 수치 근거 (§3.4 R² 체크)",
-  "conditional_on": [],
-  "status_of_inputs": {
-    "routes_sensitivity": "banded"
+  "note": "risk-charge 선형화 π≈k·λ·p_bind·σ_B의 유효성 체크",
+  "claims": {
+    "r_squared": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "exposure_model",
+        "routes_sensitivity"
+      ],
+      "note": "band 범위 내 선형 근사의 수치 근거"
+    }
+  },
+  "conditional_on": [
+    "routes_sensitivity"
+  ],
+  "input_status": {
+    "exposure_model": "model",
+    "routes_sensitivity": "assumed"
   },
   "asset_id": "A01",
   "sigma_scale": [
-    0.7869470983,
-    0.8570985966,
-    0.9272500949,
-    0.9974015932,
-    1.0675530914,
-    1.1377045897,
-    1.207856088
+    0.7773832272,
+    0.853703559,
+    0.9300238909,
+    1.0063442227,
+    1.0826645546,
+    1.1589848864,
+    1.2353052183
   ],
   "option_value_usd_t": [
-    185.0292462199,
-    193.0442425006,
-    196.8636963913,
-    215.467773027,
-    239.1219389123,
-    260.1344118252,
-    280.9858899496
+    209.2226945153,
+    212.6981332566,
+    215.4186909963,
+    215.8275715839,
+    221.8717779634,
+    231.7462327319,
+    240.6565061661
   ],
-  "r_squared": 0.9544380368
+  "r_squared": 0.896411815
 }

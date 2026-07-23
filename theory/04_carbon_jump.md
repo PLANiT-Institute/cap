@@ -6,8 +6,10 @@
 
 $$\sigma^2_{carbon} = \sigma^2_{diff} + \sum_j p_j(\ell_j - \bar\ell)^2/\bar\ell^2$$
 
-시나리오 {{scenarios.summary}}로 σ_carbon은 {{sigma.carbon_diffusion}}("개혁 미가격") → **{{sigma.carbon_reform}}**("개혁 가격")로 상승하고, POSCO의 탄소 share는 {{shares.POSCO.carbon_pct}} → {{shares_reform.POSCO.carbon_pct}}로 뒤집힌다. 그 차이가 곧 자국 정책 불확실성이 만든 프리미엄의 몫이다 — 한국 철강 프리미엄의 탄소 share는 자국 정부의 정책 궤적에 대한 노출이라는 해석의 엔진.
+탄소는 **국가별 factor**다: carbon_kr(K-ETS)·carbon_jp(GX-ETS)에 CBAM 연계는 cbam_common 공통요인으로 태그된다. KR 시나리오 {{scenarios.kr_summary}} → σ {{sigma.carbon_diffusion}}→**{{sigma.carbon_reform_kr}}**, ℓ_bind {{derived.l_bind_kr}}; JP 시나리오 {{scenarios.jp_summary}} → σ→**{{sigma.carbon_reform_jp}}**, ℓ_bind {{derived.l_bind_jp}}. KR 시나리오를 JP 기업에 적용하지 않는다. POSCO 탄소 share는 개혁 가격화 시 {{shares.POSCO.carbon_pct}} → {{shares_reform.POSCO.carbon_pct}}.
+
+**p_bind 정의 (Option A)**: p_bind(country) = Σ prob(binds=1) — 시나리오에서 **파생**되며 별도 파라미터가 아니다. 현행 KR {{derived.p_bind_kr}}, JP {{derived.p_bind_jp}}. 혼합 금지를 스키마가 강제한다.
 
 `status: CLAIM · conditional-on: scenarios.csv 확률 (시장 규율 미비) · challenged-by: #referee-2`
 
-**구현 주의**: 점프는 분산 계층에만 추가된다 (regime-switching LSM 아님). 노출의 *수준*은 구속 조건부 시나리오 평균 ℓ_bind = {{derived.l_bind}} USD/t를 쓰고 (A2: p_bind는 수준에만), *분산*은 전 시나리오 산포로 계산한다. 이 근사는 LEDGER에 상시 표기.
+**구현 주의 (근사 2건, 상시 표기)**: ① 점프는 분산 계층에만 추가 (regime-switching LSM 아님). ② 점프에 확산과 **동일한 상관·동일 연σ**를 적용 — Merton식 점프리스크 분리는 미구현(OPEN). 분해는 `calibration_resolved.json`의 carbon_variance_decomposition (KR jump share {{derived.jump_share_kr}}, JP {{derived.jump_share_jp}})로 별도 기록.

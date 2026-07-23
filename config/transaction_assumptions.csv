@@ -1,0 +1,2 @@
+profile_id,project_life_years,debt_share,debt_tenor_years,target_dscr,green_premium_usd_t,annual_fee_usd_m,upfront_fee_usd_m,counterparty_pd_annual,recovery_rate,collateral_pct,irr_ceiling,status,source,theory_anchor,notes
+screening_default,25,0.60,15,1.30,0,0,0,0.01,0.40,0,1.0,assumed,CAP illustrative screening profile — replace with lender term sheet and executable quote,#claim-separately-contractible,Debt rate uses firm WACC; fees zero; 1% annual counterparty PD is a visible stress assumption; not a market quote

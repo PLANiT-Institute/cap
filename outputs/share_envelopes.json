@@ -1,8 +1,42 @@
 {
   "artifact": "share_envelopes",
-  "note": "Fig 5 — σ·ρ band draw 포락. 노출 E는 base 고정 (공분산 불확실성만)",
-  "conditional_on": [],
-  "status_of_inputs": {},
+  "note": "σ·ρ band draw 포락 — share가 캘리브레이션에 조건부임을 그대로 보여주는 장치",
+  "claims": {
+    "firms.envelope": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "exposure_model",
+        "firms_registry",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "노출 E base 고정 — 공분산 불확실성만; τ* 재계산 없음"
+    }
+  },
+  "conditional_on": [
+    "rho_feedstock_carbon",
+    "routes_sensitivity",
+    "scenarios",
+    "sigma_feedstock"
+  ],
+  "input_status": {
+    "exposure_model": "model",
+    "firms_registry": "banded",
+    "rho_feedstock_carbon": "assumed",
+    "rho_h2_elec": "banded",
+    "routes_sensitivity": "assumed",
+    "scenarios": "assumed",
+    "sigma_carbon_diffusion": "measured",
+    "sigma_feedstock": "assumed",
+    "sigma_h2": "banded",
+    "t_required": "provisional"
+  },
   "n_draws": 200,
   "firms": [
     {
@@ -11,9 +45,9 @@
       "cluster": "grid_route",
       "envelope": {
         "carbon": {
-          "lo": 0.9183871326,
-          "hi": 0.9903118192,
-          "median": 0.962789234
+          "lo": 0.939663762,
+          "hi": 0.9935196888,
+          "median": 0.9738309505
         },
         "h2": {
           "lo": 0.0,
@@ -21,14 +55,51 @@
           "median": 0.0
         },
         "elec": {
-          "lo": 0.0074569344,
-          "hi": 0.0802378199,
-          "median": 0.0337291334
+          "lo": 0.0042225272,
+          "hi": 0.0590250759,
+          "median": 0.0233560146
+        },
+        "feedstock": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
         },
         "capex": {
-          "lo": 0.0005416664,
-          "hi": 0.0071199897,
-          "median": 0.0029141095
+          "lo": 0.0002646988,
+          "hi": 0.006497511,
+          "median": 0.0024979621
+        }
+      }
+    },
+    {
+      "firm_id": "JP_NCC",
+      "firm": "Japan NCC archetype",
+      "cluster": "capture_route",
+      "envelope": {
+        "carbon": {
+          "lo": 0.0027148368,
+          "hi": 0.0429100752,
+          "median": 0.0170637601
+        },
+        "h2": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
+        },
+        "elec": {
+          "lo": 0.0027114011,
+          "hi": 0.0331572654,
+          "median": 0.012524721
+        },
+        "feedstock": {
+          "lo": 0.9313058763,
+          "hi": 0.9886805447,
+          "median": 0.9672222988
+        },
+        "capex": {
+          "lo": 0.0004985052,
+          "hi": 0.0080524474,
+          "median": 0.0032101819
         }
       }
     },
@@ -38,9 +109,9 @@
       "cluster": "grid_route",
       "envelope": {
         "carbon": {
-          "lo": 0.8034044998,
-          "hi": 0.9626599084,
-          "median": 0.9041400583
+          "lo": 0.9940577306,
+          "hi": 0.9998567971,
+          "median": 0.9981438765
         },
         "h2": {
           "lo": 0.0,
@@ -48,14 +119,51 @@
           "median": 0.0
         },
         "elec": {
-          "lo": 0.0311033376,
-          "hi": 0.1888711645,
-          "median": 0.0881231428
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
+        },
+        "feedstock": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
         },
         "capex": {
-          "lo": 0.0014627548,
-          "hi": 0.0191122989,
-          "median": 0.0064701425
+          "lo": 0.0001432029,
+          "hi": 0.0059422694,
+          "median": 0.0018561235
+        }
+      }
+    },
+    {
+      "firm_id": "KR_NCC",
+      "firm": "Korea NCC archetype",
+      "cluster": "electric_route",
+      "envelope": {
+        "carbon": {
+          "lo": 0.0054649942,
+          "hi": 0.0621062047,
+          "median": 0.0245981774
+        },
+        "h2": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
+        },
+        "elec": {
+          "lo": 0.0032008754,
+          "hi": 0.0356315279,
+          "median": 0.0160336013
+        },
+        "feedstock": {
+          "lo": 0.9043773958,
+          "hi": 0.982140852,
+          "median": 0.9533946829
+        },
+        "capex": {
+          "lo": 0.0007138265,
+          "hi": 0.0144553135,
+          "median": 0.0048298338
         }
       }
     },
@@ -65,24 +173,29 @@
       "cluster": "h2_route",
       "envelope": {
         "carbon": {
-          "lo": 0.1221859702,
-          "hi": 0.3217381666,
-          "median": 0.2104079732
+          "lo": 0.047839396,
+          "hi": 0.206749523,
+          "median": 0.1168317572
         },
         "h2": {
-          "lo": 0.5639956606,
-          "hi": 0.8030030383,
-          "median": 0.6843473675
+          "lo": 0.6672806031,
+          "hi": 0.8540763669,
+          "median": 0.7734522256
         },
         "elec": {
-          "lo": 0.0657816054,
-          "hi": 0.1364075243,
-          "median": 0.0943317337
+          "lo": 0.0734192051,
+          "hi": 0.1415426868,
+          "median": 0.1038952096
+        },
+        "feedstock": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
         },
         "capex": {
-          "lo": 0.0015372366,
-          "hi": 0.0180517868,
-          "median": 0.0076146576
+          "lo": 0.0013983337,
+          "hi": 0.0178947918,
+          "median": 0.0078512973
         }
       }
     },
@@ -92,24 +205,29 @@
       "cluster": "h2_route",
       "envelope": {
         "carbon": {
-          "lo": 0.3105568169,
-          "hi": 0.6618304662,
-          "median": 0.4952888018
+          "lo": 0.1747559643,
+          "hi": 0.4958270123,
+          "median": 0.3319412502
         },
         "h2": {
-          "lo": 0.3065358454,
-          "hi": 0.638968719,
-          "median": 0.4623087073
+          "lo": 0.4634630869,
+          "hi": 0.7703009343,
+          "median": 0.625151669
         },
         "elec": {
-          "lo": 0.0138856335,
-          "hi": 0.050390041,
-          "median": 0.0300573965
+          "lo": 0.0219024702,
+          "hi": 0.0626473949,
+          "median": 0.0373186738
+        },
+        "feedstock": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "median": 0.0
         },
         "capex": {
-          "lo": 0.0025745986,
-          "hi": 0.0217029306,
-          "median": 0.0089167935
+          "lo": 0.0019371485,
+          "hi": 0.0270333354,
+          "median": 0.0105248763
         }
       }
     }

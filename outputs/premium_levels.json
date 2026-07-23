@@ -1,52 +1,145 @@
 {
   "artifact": "premium_levels",
-  "note": "절대 수준 (bps) — λ·p_bind·k·EV에 조건부 (§07 원장)",
+  "note": "conditional risk charge — $/t는 EV 독립, wacc_eq는 R4 통제",
+  "claims": {
+    "firms.premium_bps": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "ev_usd_bn",
+        "exposure_model",
+        "firms_registry",
+        "k",
+        "lambda",
+        "p_bind",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "conditional risk charge — assumed λ·k·EV, 파생 p_bind, 시나리오에 조건부. 시장 위험프리미엄의 실증 식별이 아님"
+    }
+  },
   "conditional_on": [
     "ev_usd_bn",
     "k",
     "lambda",
     "p_bind",
-    "scenarios"
+    "rho_feedstock_carbon",
+    "routes_sensitivity",
+    "scenarios",
+    "sigma_feedstock"
   ],
-  "status_of_inputs": {
+  "input_status": {
     "ev_usd_bn": "assumed",
+    "exposure_model": "model",
+    "firms_registry": "banded",
     "k": "assumed",
     "lambda": "assumed",
     "p_bind": "assumed",
-    "scenarios": "assumed"
+    "rho_feedstock_carbon": "assumed",
+    "rho_h2_elec": "banded",
+    "routes_sensitivity": "assumed",
+    "scenarios": "assumed",
+    "sigma_carbon_diffusion": "measured",
+    "sigma_feedstock": "assumed",
+    "sigma_h2": "banded",
+    "t_required": "provisional"
   },
+  "wacc_eq": 0.0563636364,
   "firms": [
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
-      "premium_bps": 19.1480106309,
-      "premium_reform_bps": 41.4255901039,
-      "sigma_b_usd_bn": 5.1546665277,
-      "sigma_b_reform_usd_bn": 11.1518165941
+      "premium_bps": 13.9851665714,
+      "premium_reform_bps": 39.2346027117,
+      "premium_usd_t": 2.5582621777,
+      "premium_reform_usd_t": 7.1770614717,
+      "premium_bps_wacc_eq": 14.2900355151,
+      "premium_reform_bps_wacc_eq": 40.2186552932,
+      "wacc": 0.04,
+      "p_bind": 0.5,
+      "l_bind": 46.5,
+      "sigma_b_usd_bn": 4.8942698445,
+      "sigma_b_reform_usd_bn": 13.7306003422
+    },
+    {
+      "firm_id": "JP_NCC",
+      "firm": "Japan NCC archetype",
+      "premium_bps": 17.6427328423,
+      "premium_reform_bps": 18.334517459,
+      "premium_usd_t": 13.5713329556,
+      "premium_reform_usd_t": 14.1034749684,
+      "premium_bps_wacc_eq": 17.3352312252,
+      "premium_reform_bps_wacc_eq": 18.051602287,
+      "wacc": 0.05,
+      "p_bind": 0.5,
+      "l_bind": 46.5,
+      "sigma_b_usd_bn": 3.6110691927,
+      "sigma_b_reform_usd_bn": 3.7526618893
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
-      "premium_bps": 11.0251329694,
-      "premium_reform_bps": 23.1567069724,
-      "sigma_b_usd_bn": 1.582921867,
-      "sigma_b_reform_usd_bn": 3.3246998412
+      "premium_bps": 9.3647225982,
+      "premium_reform_bps": 26.7368143473,
+      "premium_usd_t": 2.8814531072,
+      "premium_reform_usd_t": 8.2267121069,
+      "premium_bps_wacc_eq": 9.3640618901,
+      "premium_reform_bps_wacc_eq": 26.7365829377,
+      "wacc": 0.04,
+      "p_bind": 0.5,
+      "l_bind": 46.5,
+      "sigma_b_usd_bn": 1.7478892532,
+      "sigma_b_reform_usd_bn": 4.9903229884
+    },
+    {
+      "firm_id": "KR_NCC",
+      "firm": "Korea NCC archetype",
+      "premium_bps": 16.1866294818,
+      "premium_reform_bps": 16.7698565863,
+      "premium_usd_t": 12.1399721114,
+      "premium_reform_usd_t": 12.5773924398,
+      "premium_bps_wacc_eq": 17.1381179333,
+      "premium_reform_bps_wacc_eq": 17.6479767786,
+      "wacc": 0.07,
+      "p_bind": 0.55,
+      "l_bind": 53.1818181818,
+      "sigma_b_usd_bn": 3.5723722871,
+      "sigma_b_reform_usd_bn": 3.7010899024
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
-      "premium_bps": 11.6080347396,
-      "premium_reform_bps": 15.186874865,
-      "sigma_b_usd_bn": 8.3330568768,
-      "sigma_b_reform_usd_bn": 10.902197906
+      "premium_bps": 9.7121055999,
+      "premium_reform_bps": 12.5835011111,
+      "premium_usd_t": 4.8560527999,
+      "premium_reform_usd_t": 6.2917505555,
+      "premium_bps_wacc_eq": 8.8099107897,
+      "premium_reform_bps_wacc_eq": 12.4769836389,
+      "wacc": 0.04,
+      "p_bind": 0.5,
+      "l_bind": 46.5,
+      "sigma_b_usd_bn": 9.0636347344,
+      "sigma_b_reform_usd_bn": 11.743309067
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
-      "premium_bps": 16.6433711503,
-      "premium_reform_bps": 28.4044167505,
-      "sigma_b_usd_bn": 7.8559985495,
-      "sigma_b_reform_usd_bn": 13.4074434066
+      "premium_bps": 15.6630034665,
+      "premium_reform_bps": 23.3274012795,
+      "premium_usd_t": 4.3208285425,
+      "premium_reform_usd_t": 6.4351451805,
+      "premium_bps_wacc_eq": 16.9844855614,
+      "premium_reform_bps_wacc_eq": 23.1639167882,
+      "wacc": 0.075,
+      "p_bind": 0.55,
+      "l_bind": 53.1818181818,
+      "sigma_b_usd_bn": 8.7374722139,
+      "sigma_b_reform_usd_bn": 13.0129908314
     }
   ]
 }

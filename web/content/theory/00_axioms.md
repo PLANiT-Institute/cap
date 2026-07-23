@@ -2,13 +2,21 @@
 
 기존의 모든 전환리스크 도구는 자본 배분 결정 직전에서 멈춘다. 시나리오 정합성 프레임워크(TPI, PACTA, SBTi)는 야심을 채점하고, MACC 연구는 기대비용을 주고, 등급·footprint는 과거를 보고, IAM은 세계를 그리되 기업을 그리지 않는다. 전부 유용하지만, 어느 것도 다음 문장을 산출하지 못한다:
 
-> "이 기업의 전환리스크 프리미엄은 탄소정책 repricing 리스크 C%, 수소비용 리스크 H%, 그리드전환 리스크 E%, 자본 리스크 K%로 구성되며 — 그 이유는 이 기업이 보유한(혹은 보유를 거부한) 포지션이고 — 각 성분은 실재하는 상품으로 개별 소거 가능하다."
+> "이 기업의 전환리스크 프리미엄은 탄소정책 repricing C%, 수소 H%, 전력 E%, 원료 F%, 자본 K%로 구성되며 — 그 이유는 이 기업이 보유한(혹은 보유를 거부한) 기술 포지션이고 — 각 성분은 실재하는 계약으로 개별 변환 가능하다."
 
-CAP의 산출물은 프리미엄의 수준(bps)이 아니라 이 **조성(anatomy)** 이다. 수준은 시장위험가격 λ와 탄소예산 구속확률에 조건부인 삽화로만 살아남는다. 조성은 그 둘에 독립임을 증명한다([[03_proposition1]]).
+CAP의 핵심 문장은 이것이다:
+
+> **"CAP maps the gap between privately optimal and required decarbonization pathways into a conditional distribution of transition cash-flow losses, decomposes its sources, and evaluates which interventions change both transition timing and residual risk."**
+
+인과 순서: 현재 자산 구성 → 사적 최적 감축경로(τ*) → 요구 감축경로(T_required) → **condition gap** (누적 초과배출) → gap의 경제적 원인 → 개입 후 바뀐 전환시점·경로 → 잔여 위험 anatomy → **conditional risk charge**. 감축경로가 원인이고, condition gap이 핵심 상태이며, anatomy는 설명이고, premium은 조건부 결과다.
+
+조성(share)은 scalar λ·p_bind에는 항등적으로 불변이지만([[03_proposition1]]), 노출 모델·시나리오·전환시점·캘리브레이션에는 조건부다 — "calibration-independent"가 아니다. 현재 구현은 정확한 시장위험프리미엄을 증명하지 않는다.
 
 **왜 조성인가.** 배분자(allocator)에게 수준은 "얼마나 위험한가"를 말하지만, 조성은 두 가지 실행 가능한 답을 준다: (1) 어떤 노출이 섹터 공통요인이라 종목선택으로 벗을 수 없고 직접 헤지(탄소상품)가 필요한가, (2) 어떤 노출이 종목선택으로 다이얼을 돌릴 수 있는가. 그리고 계약 지도([[05_contracts_identification]])를 통해 각 성분을 소거하는 단일 상품의 이름을 댄다.
 
 **Phase 1의 대상**: 한·일 철강 5사(POSCO, Nippon, Hyundai, JFE, Kobe) 11개 고로. 철강을 먼저 하는 이유 — 전환 route가 이산적이고 공개돼 있으며(수소환원 vs scrap-EAF), 자산이 크고 수명이 길어 타이밍 문제가 실재하고, 한국 관점에서 K-ETS·CBAM 정책 채널이 직접 물린다.
+
+**Sector extension**: 동일한 CAP 구조를 석유화학 NCC에 적용하되, 노출벡터에 원료를 추가하고 e-cracker·cracker+CCUS·circular-olefins를 별도 route로 둔다. 현행 두 NCC는 제품 검증용 archetype이며 용량·EV·WACC·기술경제성·T_required가 `assumed/provisional`이다. 따라서 석유화학 숫자는 기업 실증 결과가 아니라 모델이 어떤 데이터를 요구하고 어떤 계약을 비교하는지 보여주는 계산 사례다.
 
 ## 공리 색인
 

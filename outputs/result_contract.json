@@ -1,0 +1,95 @@
+{
+  "artifact": "result_contract",
+  "note": "metric_id와 basis_id가 모두 같을 때만 수치 직접 비교 허용",
+  "claims": {
+    "bases": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "exposure_model",
+        "t_required",
+        "transaction_assumptions"
+      ],
+      "note": "계산 기준 metadata; 수치 claim이 아니라 비교 가능성 계약"
+    }
+  },
+  "conditional_on": [
+    "transaction_assumptions"
+  ],
+  "input_status": {
+    "exposure_model": "model",
+    "t_required": "provisional",
+    "transaction_assumptions": "assumed"
+  },
+  "contract_version": "1.0",
+  "release_stage": "INTERNAL_RESEARCH_PREVIEW",
+  "comparison_rule": "Direct numerical comparison is allowed only when metric_id and basis_id both match.",
+  "bases": {
+    "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized": {
+      "label": "Enterprise transition-window risk",
+      "exposure_scope": "existing enterprise assets",
+      "transition_rule": "asset-level min(private tau*, required year)",
+      "regime": "reform-priced",
+      "path_mode": "full_counterfactual",
+      "normalization": "enterprise value",
+      "allowed_use": "enterprise exposure and contract-risk comparison",
+      "prohibited_use": "project-at-commissioning risk or observed market spread"
+    },
+    "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized": {
+      "label": "Enterprise fixed-exposure price stress",
+      "exposure_scope": "existing enterprise assets using latest solved transition path",
+      "transition_rule": "tau* and alignment path held fixed",
+      "regime": "caller-supplied scenario",
+      "path_mode": "fixed_exposure",
+      "normalization": "enterprise value",
+      "allowed_use": "comparative pricing sensitivity",
+      "prohibited_use": "timing, alignment or emissions consequence"
+    },
+    "project_from_base_year.reform_priced.fixed_commissioning.ev_normalized": {
+      "label": "Project-at-commissioning risk",
+      "exposure_scope": "selected technology across screened firm capacity",
+      "transition_rule": "project commissioned at model base year",
+      "regime": "reform-priced",
+      "path_mode": "fixed commissioning",
+      "normalization": "enterprise value",
+      "allowed_use": "technology and contract pre-deal comparison",
+      "prohibited_use": "comparison with enterprise-window bps without rebasing"
+    },
+    "project_levelized.expected_scenario.illustrative_terms": {
+      "label": "Illustrative levelized project economics",
+      "exposure_scope": "selected technology across screened firm capacity",
+      "transition_rule": "project starts at model base year",
+      "regime": "scenario-weighted expected prices",
+      "path_mode": "level annual cash flow",
+      "normalization": "project cash flow",
+      "allowed_use": "break-even and pre-deal screening",
+      "prohibited_use": "lender-grade project finance or executable valuation"
+    },
+    "enterprise_private_vs_required.full_counterfactual.provisional_required": {
+      "label": "Enterprise private-versus-required alignment gap",
+      "exposure_scope": "asset-level enterprise emissions",
+      "transition_rule": "private tau* versus required pathway",
+      "regime": "physical emissions pathway",
+      "path_mode": "full_counterfactual",
+      "normalization": "cumulative MtCO2",
+      "allowed_use": "scenario comparison and research diagnosis",
+      "prohibited_use": "empirically identified firm mandate while required path is surrogate"
+    }
+  },
+  "metrics": {
+    "conditional_risk_charge_bps": {
+      "unit": "bps",
+      "public_label": "conditional risk charge",
+      "prohibited_label": "observed spread"
+    },
+    "project_npv_usd_m": {
+      "unit": "USD million",
+      "public_label": "illustrative project NPV",
+      "prohibited_label": "executable valuation"
+    },
+    "cumulative_alignment_gap_mtco2": {
+      "unit": "MtCO2",
+      "public_label": "surrogate-conditioned alignment gap",
+      "prohibited_label": "verified compliance gap"
+    }
+  }
+}

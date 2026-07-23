@@ -1,8 +1,29 @@
 {
   "artifact": "reference_prices",
-  "note": "연단위 레퍼런스 — 모델 파라미터가 아님. 시나리오(config)가 모델을 구동한다",
-  "conditional_on": [],
-  "status_of_inputs": {},
+  "note": "연단위 레퍼런스 — 시나리오(config)가 모델을 구동한다",
+  "claims": {
+    "carbon_kr_annual": {
+      "status": "EMPIRICAL",
+      "depends_on": [
+        "sigma_carbon_diffusion"
+      ],
+      "note": "ICAP 실측 연평균 — 모델 파라미터 아님"
+    },
+    "elec_base": {
+      "status": "PROVISIONAL",
+      "depends_on": [
+        "routes_sensitivity"
+      ],
+      "note": "SMP/JEPX 미확보"
+    }
+  },
+  "conditional_on": [
+    "routes_sensitivity"
+  ],
+  "input_status": {
+    "sigma_carbon_diffusion": "measured",
+    "routes_sensitivity": "assumed"
+  },
   "carbon_kr_annual": [
     {
       "year": "2015",

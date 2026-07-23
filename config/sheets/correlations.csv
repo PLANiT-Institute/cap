@@ -5,3 +5,7 @@ h2,carbon,0.00,0.00,0.20,assumed,"수소 기술리스크와 탄소정책 점프�
 h2,capex,0.00,0.00,0.30,assumed,"전해조 학습률과 H2 가격의 공통요인 가능 — 기본 0",#axiom-linear-cost
 elec,capex,0.00,0.00,0.20,assumed,"근거 없음 — 기본 0",#axiom-linear-cost
 carbon,capex,0.00,0.00,0.20,assumed,"근거 없음 — 기본 0",#axiom-linear-cost
+feedstock,carbon,0.20,0.00,0.40,assumed,"Naphtha-carbon common fossil cycle; matched time series not yet ingested",#claim-policy-repricing
+feedstock,elec,0.10,0.00,0.30,assumed,"Energy-complex common factor; matched time series not yet ingested",#axiom-linear-cost
+feedstock,h2,0.00,0.00,0.20,assumed,"Alternative-feed and hydrogen price co-movement uncalibrated — base 0",#axiom-linear-cost
+feedstock,capex,0.00,0.00,0.20,assumed,"No empirical anchor — base 0",#axiom-linear-cost

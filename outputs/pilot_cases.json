@@ -1,0 +1,509 @@
+{
+  "artifact": "pilot_cases",
+  "note": "Korea/Japan pilot workflow dry run; not an actual transaction validation",
+  "claims": {
+    "cases.decision_summary": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "firms_registry",
+        "interventions",
+        "routes_sensitivity",
+        "transaction_assumptions"
+      ],
+      "note": "dry-run investment screen under illustrative terms"
+    },
+    "cases.reproducibility": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "exposure_model",
+        "transaction_assumptions"
+      ],
+      "note": "exact automated replay; not independent analyst validation"
+    },
+    "cases.forty_point_gates": {
+      "status": "OPEN",
+      "depends_on": [
+        "firms_registry",
+        "t_required",
+        "transaction_assumptions"
+      ],
+      "note": "actual cases, executable quotes and blind analyst replay remain open"
+    }
+  },
+  "conditional_on": [
+    "interventions",
+    "routes_sensitivity",
+    "transaction_assumptions"
+  ],
+  "input_status": {
+    "firms_registry": "banded",
+    "interventions": "assumed",
+    "routes_sensitivity": "assumed",
+    "transaction_assumptions": "assumed",
+    "exposure_model": "model",
+    "t_required": "provisional"
+  },
+  "capability_stage": "PILOT_READY_DRY_RUN_30",
+  "release_stage": "INTERNAL_RESEARCH_PREVIEW",
+  "forty_point_status": "NOT_ACHIEVED_REAL_CASES_AND_QUOTES_REQUIRED",
+  "cases": [
+    {
+      "case_id": "POSCO_H2_DRI_H2_CFD_DRY_RUN_V1",
+      "case_type": "AUTOMATED_DRY_RUN_EXISTING_CONFIG",
+      "capability_stage": "PILOT_READY_DRY_RUN_30",
+      "release_stage": "INTERNAL_RESEARCH_PREVIEW",
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "country": "KR",
+      "sector": "steel",
+      "route": "h2_dri",
+      "decision_question": "Does the modeled H2 CfD make the configured H2 DRI route pass absolute NPV, return and debt-service gates under the illustrative transaction profile?",
+      "decision_summary": {
+        "verdict": "FID_HOLD",
+        "selected_support": "H2 CfD (CHPS-style)",
+        "project_npv_usd_m": -33620.3115689129,
+        "gross_incremental_project_npv_usd_m": 8291.8760566525,
+        "counterparty_adjusted_incremental_npv_usd_m": 7595.6487895654,
+        "counterparty_expected_loss_usd_m": 696.2272670871,
+        "dscr": -6.3749754547,
+        "annual_cfads_shortfall_usd_m": 3555.2904617564,
+        "required_green_premium_usd_t": 255.4403387569,
+        "decision_at_required_premium_plus_0_1": "INVESTABLE_SCREEN"
+      },
+      "basis_separation": {
+        "enterprise_transition_window": {
+          "before_bps": 23.3274012795,
+          "after_bps": 21.270063142,
+          "delta_bps": -2.0573381375,
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+          "interpretation": "enterprise transition-window residual charge"
+        },
+        "project_from_base_year": {
+          "before_bps": 33.3439631207,
+          "after_bps": 22.2964139644,
+          "delta_bps": -11.0475491563,
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "project_from_base_year.reform_priced.fixed_commissioning.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
+          "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
+        },
+        "comparison_rule": "Do not compare enterprise and project bps directly; metric_id and basis_id must both match."
+      },
+      "research_summary": {
+        "cumulative_alignment_gap_mtco2": 360.98,
+        "alignment_result_contract": {
+          "metric_id": "cumulative_alignment_gap_mtco2",
+          "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
+          "evidence_grade": "PROVISIONAL",
+          "uncertainty": "required pathway source and private transition model",
+          "interpretation": "surrogate-conditioned central case"
+        },
+        "t_required_source": "surrogate"
+      },
+      "input_evidence": {
+        "input_fingerprint_sha256": "3349b29a2f63b34c8617e0342ca48a1cce6433c2def68e3d8e75126ba516829f",
+        "pilot_generator_sha256": "05c57633090f1f178079e0515142d2960f75a5003d76fb0d3c361104096898de",
+        "assets": [
+          {
+            "asset_id": "A01",
+            "facility": "Gwangyang",
+            "unit_number": "BF5",
+            "status": "banded",
+            "source": "assets_blast_furnace.csv A01; DART WACC; EV 시장근사"
+          },
+          {
+            "asset_id": "A02",
+            "facility": "Gwangyang",
+            "unit_number": "BF3",
+            "status": "banded",
+            "source": "assets_blast_furnace.csv A02"
+          },
+          {
+            "asset_id": "A06",
+            "facility": "Pohang",
+            "unit_number": "BF4",
+            "status": "banded",
+            "source": "assets_blast_furnace.csv A06 (PROVISIONAL reline)"
+          },
+          {
+            "asset_id": "A07",
+            "facility": "Gwangyang",
+            "unit_number": "BF4",
+            "status": "banded",
+            "source": "assets_blast_furnace.csv A07 (PROVISIONAL reline)"
+          }
+        ],
+        "route_status": "banded",
+        "intervention_status": "assumed",
+        "transaction_terms_status": "assumed"
+      },
+      "stress_results": {
+        "transaction": {
+          "green_premium": [
+            {
+              "green_premium_usd_t": 0.0,
+              "project_npv_usd_m": -33620.3115689129,
+              "project_irr": null,
+              "dscr": -6.3749754547,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 255.4403387569
+            },
+            {
+              "green_premium_usd_t": 255.5403387569,
+              "project_npv_usd_m": 13.1617080264,
+              "project_irr": 0.1002510945,
+              "dscr": 1.6239081265,
+              "decision": "INVESTABLE_SCREEN",
+              "remaining_required_green_premium_usd_t": 0.0
+            },
+            {
+              "green_premium_usd_t": 305.4403387569,
+              "project_npv_usd_m": 6580.8540132163,
+              "project_irr": 0.2148830413,
+              "dscr": 3.1858700955,
+              "decision": "INVESTABLE_SCREEN",
+              "remaining_required_green_premium_usd_t": 0.0
+            }
+          ],
+          "debt_share": [
+            {
+              "green_premium_usd_t": 0.0,
+              "debt_share": 0.5,
+              "project_npv_usd_m": -33620.3115689129,
+              "project_irr": null,
+              "dscr": -7.6499705457,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 255.4403387569
+            },
+            {
+              "green_premium_usd_t": 0.0,
+              "debt_share": 0.6,
+              "project_npv_usd_m": -33620.3115689129,
+              "project_irr": null,
+              "dscr": -6.3749754547,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 255.4403387569
+            },
+            {
+              "green_premium_usd_t": 0.0,
+              "debt_share": 0.7,
+              "project_npv_usd_m": -33620.3115689129,
+              "project_irr": null,
+              "dscr": -5.4642646755,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 255.4403387569
+            }
+          ],
+          "target_dscr": [
+            {
+              "green_premium_usd_t": 0.0,
+              "target_dscr": 1.15,
+              "project_npv_usd_m": -33620.3115689129,
+              "project_irr": null,
+              "dscr": -6.3749754547,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 255.4403387569
+            },
+            {
+              "green_premium_usd_t": 0.0,
+              "target_dscr": 1.3,
+              "project_npv_usd_m": -33620.3115689129,
+              "project_irr": null,
+              "dscr": -6.3749754547,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 255.4403387569
+            },
+            {
+              "green_premium_usd_t": 0.0,
+              "target_dscr": 1.45,
+              "project_npv_usd_m": -33620.3115689129,
+              "project_irr": null,
+              "dscr": -6.3749754547,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 255.4403387569
+            }
+          ],
+          "joint_gate_stress": {
+            "green_premium_usd_t": 255.5403387569,
+            "debt_share": 0.7,
+            "target_dscr": 1.45,
+            "project_npv_usd_m": 13.1617080264,
+            "project_irr": 0.1002510945,
+            "dscr": 1.3919212513,
+            "decision": "ECONOMIC_NOT_DEBT_BANKABLE",
+            "remaining_required_green_premium_usd_t": 2.1646821258
+          }
+        },
+        "enterprise_fixed_exposure_pricing": [
+          {
+            "lambda": 0.25,
+            "risk_charge_reform_bps": 13.2937894638,
+            "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
+            "interpretation": "price stress only; no path inference"
+          },
+          {
+            "lambda": 0.4,
+            "risk_charge_reform_bps": 21.270063142,
+            "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
+            "interpretation": "price stress only; no path inference"
+          },
+          {
+            "lambda": 0.55,
+            "risk_charge_reform_bps": 29.2463368203,
+            "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
+            "interpretation": "price stress only; no path inference"
+          }
+        ]
+      },
+      "reproducibility": {
+        "method": "two fresh in-memory API calls with identical request and config",
+        "run_a_sha256": "ba3df846dfb2e08406bd58629546d8fe7083e3ab95d77a136e3587eee1e3b91b",
+        "run_b_sha256": "ba3df846dfb2e08406bd58629546d8fe7083e3ab95d77a136e3587eee1e3b91b",
+        "exact_match": true,
+        "status": "AUTOMATED_REPLAY_NOT_INDEPENDENT_ANALYST"
+      },
+      "forty_point_gates": {
+        "traceable_asset_sources": true,
+        "automated_deterministic_replay": true,
+        "executable_quote": false,
+        "empirical_required_path": false,
+        "independent_analyst_blind_rerun": false,
+        "actual_transaction_case": false,
+        "eligible_for_40": false
+      },
+      "open_evidence": [
+        "executable H2 CfD or lender quote",
+        "verified firm-specific required pathway",
+        "independent analyst blind rerun",
+        "construction, ramp, tax, working-capital and covenant cash-flow model",
+        "actual counterparty credit and security terms"
+      ]
+    },
+    {
+      "case_id": "NIPPON_H2_DRI_H2_CFD_DRY_RUN_V1",
+      "case_type": "AUTOMATED_DRY_RUN_EXISTING_CONFIG",
+      "capability_stage": "PILOT_READY_DRY_RUN_30",
+      "release_stage": "INTERNAL_RESEARCH_PREVIEW",
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "country": "JP",
+      "sector": "steel",
+      "route": "h2_dri",
+      "decision_question": "Does the modeled H2 CfD make the configured H2 DRI route pass absolute NPV, return and debt-service gates under the illustrative transaction profile?",
+      "decision_summary": {
+        "verdict": "FID_HOLD",
+        "selected_support": "H2 CfD (CHPS-style)",
+        "project_npv_usd_m": -28319.3838512653,
+        "gross_incremental_project_npv_usd_m": 6442.8115037673,
+        "counterparty_adjusted_incremental_npv_usd_m": 5901.8409182233,
+        "counterparty_expected_loss_usd_m": 540.9705855439,
+        "dscr": -9.4683714249,
+        "annual_cfads_shortfall_usd_m": 2184.979259168,
+        "required_green_premium_usd_t": 276.9165575598,
+        "decision_at_required_premium_plus_0_1": "INVESTABLE_SCREEN"
+      },
+      "basis_separation": {
+        "enterprise_transition_window": {
+          "before_bps": 12.5835011111,
+          "after_bps": 10.7027129063,
+          "delta_bps": -1.8807882048,
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "contract coverage, tenor, basis and pricing assumptions",
+          "interpretation": "enterprise transition-window residual charge"
+        },
+        "project_from_base_year": {
+          "before_bps": 17.8834842066,
+          "after_bps": 12.3807247351,
+          "delta_bps": -5.5027594715,
+          "metric_id": "conditional_risk_charge_bps",
+          "basis_id": "project_from_base_year.reform_priced.fixed_commissioning.ev_normalized",
+          "evidence_grade": "SCENARIO_CONDITIONAL",
+          "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
+          "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
+        },
+        "comparison_rule": "Do not compare enterprise and project bps directly; metric_id and basis_id must both match."
+      },
+      "research_summary": {
+        "cumulative_alignment_gap_mtco2": 236.16,
+        "alignment_result_contract": {
+          "metric_id": "cumulative_alignment_gap_mtco2",
+          "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
+          "evidence_grade": "PROVISIONAL",
+          "uncertainty": "required pathway source and private transition model",
+          "interpretation": "surrogate-conditioned central case"
+        },
+        "t_required_source": "surrogate"
+      },
+      "input_evidence": {
+        "input_fingerprint_sha256": "3349b29a2f63b34c8617e0342ca48a1cce6433c2def68e3d8e75126ba516829f",
+        "pilot_generator_sha256": "05c57633090f1f178079e0515142d2960f75a5003d76fb0d3c361104096898de",
+        "assets": [
+          {
+            "asset_id": "A04",
+            "facility": "Oita",
+            "unit_number": "BF1",
+            "status": "banded",
+            "source": "assets_blast_furnace.csv A04; EDINET FY2024"
+          },
+          {
+            "asset_id": "A09",
+            "facility": "Kashima",
+            "unit_number": "BF1",
+            "status": "banded",
+            "source": "assets_blast_furnace.csv A09 (PROVISIONAL)"
+          }
+        ],
+        "route_status": "banded",
+        "intervention_status": "assumed",
+        "transaction_terms_status": "assumed"
+      },
+      "stress_results": {
+        "transaction": {
+          "green_premium": [
+            {
+              "green_premium_usd_t": 0.0,
+              "project_npv_usd_m": -28319.3838512653,
+              "project_irr": null,
+              "dscr": -9.4683714249,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 276.9165575598
+            },
+            {
+              "green_premium_usd_t": 277.0165575598,
+              "project_npv_usd_m": 10.2266849266,
+              "project_irr": 0.0602860685,
+              "dscr": 1.4535342916,
+              "decision": "INVESTABLE_SCREEN",
+              "remaining_required_green_premium_usd_t": 0.0
+            },
+            {
+              "green_premium_usd_t": 326.9165575598,
+              "project_npv_usd_m": 5113.3424633074,
+              "project_irr": 0.1817723747,
+              "dscr": 3.4209368904,
+              "decision": "INVESTABLE_SCREEN",
+              "remaining_required_green_premium_usd_t": 0.0
+            }
+          ],
+          "debt_share": [
+            {
+              "green_premium_usd_t": 0.0,
+              "debt_share": 0.5,
+              "project_npv_usd_m": -28319.3838512653,
+              "project_irr": null,
+              "dscr": -11.3620457099,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 276.9165575598
+            },
+            {
+              "green_premium_usd_t": 0.0,
+              "debt_share": 0.6,
+              "project_npv_usd_m": -28319.3838512653,
+              "project_irr": null,
+              "dscr": -9.4683714249,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 276.9165575598
+            },
+            {
+              "green_premium_usd_t": 0.0,
+              "debt_share": 0.7,
+              "project_npv_usd_m": -28319.3838512653,
+              "project_irr": null,
+              "dscr": -8.1157469357,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 278.6178086287
+            }
+          ],
+          "target_dscr": [
+            {
+              "green_premium_usd_t": 0.0,
+              "target_dscr": 1.15,
+              "project_npv_usd_m": -28319.3838512653,
+              "project_irr": null,
+              "dscr": -9.4683714249,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 276.9165575598
+            },
+            {
+              "green_premium_usd_t": 0.0,
+              "target_dscr": 1.3,
+              "project_npv_usd_m": -28319.3838512653,
+              "project_irr": null,
+              "dscr": -9.4683714249,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 276.9165575598
+            },
+            {
+              "green_premium_usd_t": 0.0,
+              "target_dscr": 1.45,
+              "project_npv_usd_m": -28319.3838512653,
+              "project_irr": null,
+              "dscr": -9.4683714249,
+              "decision": "NOT_ECONOMIC_ON_TERMS",
+              "remaining_required_green_premium_usd_t": 276.9269159417
+            }
+          ],
+          "joint_gate_stress": {
+            "green_premium_usd_t": 277.0165575598,
+            "debt_share": 0.7,
+            "target_dscr": 1.45,
+            "project_npv_usd_m": 10.2266849266,
+            "project_irr": 0.0602860685,
+            "dscr": 1.2458865357,
+            "decision": "ECONOMIC_NOT_DEBT_BANKABLE",
+            "remaining_required_green_premium_usd_t": 6.0398443722
+          }
+        },
+        "enterprise_fixed_exposure_pricing": [
+          {
+            "lambda": 0.25,
+            "risk_charge_reform_bps": 6.6891955665,
+            "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
+            "interpretation": "price stress only; no path inference"
+          },
+          {
+            "lambda": 0.4,
+            "risk_charge_reform_bps": 10.7027129063,
+            "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
+            "interpretation": "price stress only; no path inference"
+          },
+          {
+            "lambda": 0.55,
+            "risk_charge_reform_bps": 14.7162302462,
+            "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
+            "interpretation": "price stress only; no path inference"
+          }
+        ]
+      },
+      "reproducibility": {
+        "method": "two fresh in-memory API calls with identical request and config",
+        "run_a_sha256": "c742785c255b10c0d7dc4b411b34f5bedf25d4e9895f3c278c00a3699a57a33e",
+        "run_b_sha256": "c742785c255b10c0d7dc4b411b34f5bedf25d4e9895f3c278c00a3699a57a33e",
+        "exact_match": true,
+        "status": "AUTOMATED_REPLAY_NOT_INDEPENDENT_ANALYST"
+      },
+      "forty_point_gates": {
+        "traceable_asset_sources": true,
+        "automated_deterministic_replay": true,
+        "executable_quote": false,
+        "empirical_required_path": false,
+        "independent_analyst_blind_rerun": false,
+        "actual_transaction_case": false,
+        "eligible_for_40": false
+      },
+      "open_evidence": [
+        "executable H2 CfD or lender quote",
+        "verified firm-specific required pathway",
+        "independent analyst blind rerun",
+        "construction, ramp, tax, working-capital and covenant cash-flow model",
+        "actual counterparty credit and security terms"
+      ]
+    }
+  ]
+}

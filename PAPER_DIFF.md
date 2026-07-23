@@ -52,3 +52,24 @@ PLAN 지시: "불일치는 버그가 아니라 발견일 수 있으니 조용히
 2. Nippon의 wacc 4% 적용 범위 (JP 노출 PV가 KR보다 구조적으로 커짐 — H₂ share 왜곡).
 3. grid-route 전력 노출의 범위 (EAF 전력만 vs 전 에너지 전화).
 4. GCAM surrogate 포화(38Mt) < 포트폴리오 용량(41.3Mt) → 후순위 자산 T^GCAM이 horizon 말단으로 밀림 (A01, A03). raw 확보로 해소.
+
+---
+
+## 갱신 3 (2026-07-22 — pathway-first 개편)
+
+인과구조 개편으로 다수 수치가 바뀌었다. 원인별 기록 (억지로 이전 수치에 맞추지 않음):
+
+| 변경 | 이전 | 이후 | 원인 |
+|---|---|---|---|
+| τ* 정의 | 행사경로 조건부 평균 | **E[min(τ,H)]** (미행사=지평말; p_ex<문턱이면 None) | 조건부 평균의 선택편의 — 개입 효과가 묻히거나 역방향으로 보임 |
+| JFE/Kobe τ* | ~2050 | **None (지평 내 사적 전환 없음, p_ex 13–14%)** | scrap/NG route가 사적 NPV 음수 — required만이 전환을 만든다는 발견 |
+| p_bind | 0.65 (독립 파라미터) | **파생: KR 0.55 / JP 0.50** (Option A) | 시나리오 확률과의 불일치 구조 제거 |
+| 탄소 regime | KR 단일 | **국가별** (JP: SQ$5/GX$30/CBAM$85; σ_reform KR 0.88 / JP 1.13; ℓ_bind KR 53.2 / JP 46.5) | KR 시나리오를 JP에 적용하던 오류 수정 |
+| T_required | 전 자산 단일 H₂ 곡선, no_feasible 포함 | **route별 풀, no_feasible 제외, 비H₂ route는 rescale(PROVISIONAL)** | 배치용량 소비 오류·경로 오적용 수정 |
+| POSCO risk charge (reform) | 28.4bps | 23.3bps (개입 전) | 국가별 regime + T_required 변경 + t_switch 이동 |
+| 핵심 지표 | bps | **cumulative alignment gap** (POSCO 368 / NIPPON 277 / JFE 137 / KOBE 3 MtCO₂) | 개편 §2 — 시간 gap이 아니라 용량·강도 반영 누적 초과배출 |
+| 계약 효과 | σ=0 → 0bps | **파라미터 변환 → 잔여 유지** (예: POSCO package 후 25.9bps) | coverage·tenor·basis 반영 |
+
+**모델 발견 2건**:
+1. H₂ CfD 단독(계약가 $3/kg, coverage 70%·tenor 15y)은 τ*를 못 앞당김 — blended 수소가로는 route가 여전히 사적 적자. **조합(package)만 τ*·gap 동시 개선** (POSCO Δτ* −0.4y, Δgap −28Mt; NIPPON −2.2y, −26Mt).
+2. carbon reform은 gap을 닫으면서 **risk charge를 올림** (가격되는 탄소 부담 증가) — timing 수단 ≠ risk 절감 수단.

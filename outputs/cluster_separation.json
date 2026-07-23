@@ -1,16 +1,50 @@
 {
   "artifact": "cluster_separation",
-  "note": "두 클러스터 불교차 — 절반은 발견, 절반은 A4 배정의 귀결 (은폐하지 않음)",
-  "conditional_on": [],
-  "status_of_inputs": {},
+  "note": "두 클러스터 불교차 — 은폐하지 않음",
+  "claims": {
+    "separated": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "exposure_model",
+        "firms_registry",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "절반은 A4 배정의 귀결 — route 감응도 0 구성"
+    }
+  },
+  "conditional_on": [
+    "rho_feedstock_carbon",
+    "routes_sensitivity",
+    "scenarios",
+    "sigma_feedstock"
+  ],
+  "input_status": {
+    "exposure_model": "model",
+    "firms_registry": "banded",
+    "rho_feedstock_carbon": "assumed",
+    "rho_h2_elec": "banded",
+    "routes_sensitivity": "assumed",
+    "scenarios": "assumed",
+    "sigma_carbon_diffusion": "measured",
+    "sigma_feedstock": "assumed",
+    "sigma_h2": "banded",
+    "t_required": "provisional"
+  },
   "h2_route_carbon_share": {
-    "lo": 0.1221859702,
-    "hi": 0.6618304662
+    "lo": 0.047839396,
+    "hi": 0.4958270123
   },
   "grid_route_carbon_share": {
-    "lo": 0.8034044998,
-    "hi": 0.9903118192
+    "lo": 0.939663762,
+    "hi": 0.9998567971
   },
   "separated": true,
-  "gap": 0.1415740335
+  "gap": 0.4438367497
 }

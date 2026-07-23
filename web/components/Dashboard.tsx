@@ -1,263 +1,360 @@
 "use client";
-// The tool. Sector → firm → three panels:
-// ① your premium (size conditional, mix proven) ② why it exists (required vs current)
-// ③ how to hedge it (contract → bps retired). All data precomputed server-side.
-import { useState } from "react";
+// Pathway-first decision system (개편 §6):
+// ① 감축경로 ② 자산 타임라인 ③ why the gap ④ residual anatomy ⑤ conditional charge
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import PathwayPanel from "./PathwayPanel";
 import PremiumFan from "./PremiumFan";
+import { readScenarioQuery, replaceScenarioQuery, scenarioHref } from "../lib/scenarioUrl";
 import tokens from "../tokens.json";
 
-const DRIVERS = ["carbon", "h2", "elec", "capex"] as const;
+const DRIVERS = ["carbon", "h2", "elec", "feedstock", "capex"] as const;
 const DRIVER_LABEL: Record<string, string> = {
   carbon: "Carbon policy",
   h2: "Hydrogen",
   elec: "Electricity",
+  feedstock: "Feedstock",
   capex: "Capital",
 };
-const INSTRUMENT: Record<string, string> = {
-  carbon: "Carbon CfD",
-  h2: "Hydrogen CfD (CHPS-style)",
-  elec: "Power purchase agreement",
-  capex: "Capital subsidy / concessional finance",
+
+const SECTOR_LABEL: Record<string, string> = {
+  steel: "Steel",
+  petrochemicals: "Petrochemicals",
 };
 
-export type SteelFirm = {
-  firm_id: string;
-  firm: string;
-  country: string;
-  cluster: string;
-  shares: Record<string, number>;
-  shares_reform: Record<string, number>;
-  premium_bps: number;
-  premium_reform_bps: number;
-  grid: { lambda: number; p_bind: number; premium_bps: number }[];
-  waterfall: { step: string; label: string; premium_bps: number; cut_bps: number }[];
-  waterfall_reform: { step: string; label: string; premium_bps: number; cut_bps: number }[];
-  assets: {
-    asset_id: string;
-    facility: string;
-    tau_star: number | null;
-    t_gcam: number;
-    wedge: number | null;
-    intensity: number;
-  }[];
-  residual_intensity: number;
-};
+function semanticClass(value: number, threshold = 0.05) {
+  if (value < -threshold) return "semantic-good";
+  if (value > threshold) return "semantic-bad";
+  return "semantic-neutral";
+}
 
-export default function Dashboard({
-  steel,
-  petchem,
-  pricing,
-  sigma,
-}: {
-  steel: SteelFirm[];
-  petchem: any;
-  pricing: { lambda: number; p_bind: number };
-  sigma: { base: number; reform: number };
-}) {
-  const [sector, setSector] = useState<"steel" | "petchem">("steel");
-  const [firmId, setFirmId] = useState(steel[0].firm_id);
-  const [reform, setReform] = useState(true);
+export default function Dashboard({ data }: { data: any }) {
+  const firms = data.firms as any[];
+  const [firmId, setFirmId] = useState(firms.find((f: any) => f.firm_id === "POSCO")?.firm_id ?? firms[0].firm_id);
+  const selectedFirm = firms.find((x) => x.firm_id === firmId)!;
+  const [sector, setSector] = useState(selectedFirm.sector);
+  const [iv, setIv] = useState<string | null>("package");
+  const [returnMode, setReturnMode] = useState("investor");
+  const [returnRoute, setReturnRoute] = useState(selectedFirm.route);
+  const [returnIntervention, setReturnIntervention] = useState<string | undefined>("package");
   const colors = tokens.drivers as Record<string, string>;
 
-  const f = steel.find((x) => x.firm_id === firmId)!;
-  const shares = reform ? f.shares_reform : f.shares;
-  const bps = reform ? f.premium_reform_bps : f.premium_bps;
-  const gridScale = reform ? f.premium_reform_bps / f.premium_bps : 1;
-  const dominant = DRIVERS.reduce((a, b) => (shares[a] >= shares[b] ? a : b));
-  const yearMin = 2026;
-  const yearMax = 2062;
-  const yearX = (y: number) => ((Math.min(Math.max(y, yearMin), yearMax) - yearMin) / (yearMax - yearMin)) * 100;
+  const f = selectedFirm;
+  const visibleFirms = firms.filter((candidate) => candidate.sector === sector);
+  const visibleInterventions = data.interventions.filter((intervention: any) => (
+    (intervention.applicable_sector === "all" || intervention.applicable_sector === f.sector)
+    && (intervention.applicable_route === "all" || intervention.applicable_route === f.route)
+  ));
+  const impact = iv && f.impacts ? f.impacts[iv] : null;
+  const provisional = data.t_required_source === "surrogate";
+  const yearMin = data.years[0];
+  const yearMax = data.years[data.years.length - 1];
+  const yearX = (y: number) =>
+    ((Math.min(Math.max(y, yearMin), yearMax) - yearMin) / (yearMax - yearMin)) * 100;
+
+  const shares = impact ? impact.residual.shares : f.shares_reform;
+  const charge = impact ? impact.residual.risk_charge_bps : f.levels?.premium_reform_bps;
+  const interventionLabel = iv
+    ? data.interventions.find((intervention: any) => intervention.id === iv)?.label ?? iv
+    : "No intervention";
+  const underwriteHref = scenarioHref("/", {
+    firm: firmId,
+    mode: returnMode,
+    intervention: returnIntervention,
+    route: returnRoute,
+  });
+
+  useEffect(() => {
+    const query = readScenarioQuery();
+    const nextFirm = firms.find((candidate) => candidate.firm_id === query.firm)
+      ?? firms.find((candidate) => candidate.firm_id === "POSCO")
+      ?? firms[0];
+    const nextMode = query.mode === "treasury" || query.mode === "deal" ? query.mode : "investor";
+    const nextIntervention = query.intervention !== "base"
+      && data.interventions.some((candidate: any) => candidate.id === query.intervention)
+      && nextFirm.impacts?.[query.intervention!]
+      ? query.intervention!
+      : nextFirm.impacts?.package
+        ? "package"
+        : null;
+    setFirmId(nextFirm.firm_id);
+    setSector(nextFirm.sector);
+    setIv(nextIntervention);
+    setReturnMode(nextMode);
+    setReturnRoute(query.route ?? nextFirm.route);
+    setReturnIntervention(query.intervention ?? nextIntervention ?? undefined);
+    replaceScenarioQuery({
+      firm: nextFirm.firm_id,
+      mode: nextMode,
+      intervention: query.intervention ?? nextIntervention ?? undefined,
+      route: query.route ?? nextFirm.route,
+    });
+  // URL state is intentionally hydrated once; later changes flow through the handlers below.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function selectSector(nextSector: string) {
+    const nextFirm = firms.find((candidate) => candidate.sector === nextSector);
+    if (!nextFirm) return;
+    setSector(nextSector);
+    setFirmId(nextFirm.firm_id);
+    setIv("package");
+    setReturnRoute(nextFirm.route);
+    setReturnIntervention("package");
+    replaceScenarioQuery({ firm: nextFirm.firm_id, mode: returnMode, intervention: "package", route: nextFirm.route });
+  }
+
+  function selectFirm(nextFirmId: string) {
+    const nextFirm = firms.find((candidate) => candidate.firm_id === nextFirmId);
+    if (!nextFirm) return;
+    setFirmId(nextFirmId);
+    setIv("package");
+    setReturnRoute(nextFirm.route);
+    setReturnIntervention("package");
+    replaceScenarioQuery({ firm: nextFirmId, mode: returnMode, intervention: "package", route: nextFirm.route });
+  }
+
+  function selectIntervention(nextIntervention: string | null) {
+    setIv(nextIntervention);
+    setReturnIntervention(nextIntervention ?? "base");
+    replaceScenarioQuery({
+      firm: firmId,
+      mode: returnMode,
+      intervention: nextIntervention ?? "base",
+      route: returnRoute,
+    });
+  }
 
   return (
     <div className="dash">
-      {/* ── controls ── */}
       <div className="dash__controls">
-        <div className="seg" role="tablist" aria-label="Sector">
-          <button className={sector === "steel" ? "on" : ""} onClick={() => setSector("steel")}>
-            Steel <em className="live">LIVE</em>
-          </button>
-          <button className={sector === "petchem" ? "on" : ""} onClick={() => setSector("petchem")}>
-            Petrochemicals <em className="sample">SAMPLE</em>
-          </button>
+        <div className="seg seg--sector" role="tablist" aria-label="Sector">
+          {Object.keys(SECTOR_LABEL).filter((candidate) => firms.some((firm) => firm.sector === candidate)).map((candidate) => (
+            <button key={candidate} className={candidate === sector ? "on" : ""} onClick={() => selectSector(candidate)}>{SECTOR_LABEL[candidate]}</button>
+          ))}
         </div>
-        {sector === "steel" && (
-          <>
-            <div className="seg" role="tablist" aria-label="Firm">
-              {steel.map((s) => (
-                <button key={s.firm_id} className={s.firm_id === firmId ? "on" : ""} onClick={() => setFirmId(s.firm_id)}>
-                  {s.firm}
-                </button>
-              ))}
-            </div>
-            <label className="reform-ctl">
-              <input type="checkbox" checked={reform} onChange={(e) => setReform(e.target.checked)} />
-              <span>
-                price the carbon-policy reform{" "}
-                <b className="mono">σ {reform ? sigma.reform.toFixed(2) : sigma.base.toFixed(2)}</b>
-              </span>
-            </label>
-          </>
-        )}
+        <div className="seg" role="tablist" aria-label="Firm">
+          {visibleFirms.map((s) => (
+            <button key={s.firm_id} className={s.firm_id === firmId ? "on" : ""} onClick={() => selectFirm(s.firm_id)}>
+              {s.firm}
+            </button>
+          ))}
+        </div>
+        <div className="seg" role="tablist" aria-label="Intervention">
+          <button className={iv === null ? "on" : ""} onClick={() => selectIntervention(null)}>
+            no intervention
+          </button>
+          {visibleInterventions.map((i: any) => (
+            <button key={i.id} className={iv === i.id ? "on" : ""} onClick={() => selectIntervention(i.id)} title={i.label}>
+              {i.short}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {sector === "petchem" ? (
-        /* ── petrochemicals: structure loaded, pricing pending ── */
-        <div className="panel-grid">
-          <section className="panel" style={{ gridColumn: "1 / -1" }}>
-            <h2>
-              Petrochemicals — sample structure <span className="tag tag--sample">SAMPLE</span>
-            </h2>
-            <p className="panel__lede">{petchem.note}</p>
-            <p className="panel__lede">{petchem.asset_base}</p>
-            <div className="petchem-grid">
-              {petchem.firms.map((p: any) => (
-                <div key={p.firm} className="petchem-card">
-                  <div className="petchem-card__head">
-                    <b>{p.firm}</b>
-                    <span className="mono">{p.country}</span>
-                  </div>
-                  <div className="mix-bar">
-                    {DRIVERS.map((d) =>
-                      p.shares[d] > 0 ? (
-                        <div key={d} style={{ width: `${p.shares[d] * 100}%`, background: colors[d] }} />
-                      ) : null
-                    )}
-                  </div>
-                  <p>{petchem.routes.find((r: any) => r.route === p.route)?.bet}</p>
+      <section className="scenario-strip" aria-label="Current scenario" aria-live="polite">
+        <b>Current scenario</b>
+        <dl>
+          <div><dt>Company</dt><dd>{f.firm}</dd></div>
+          <div><dt>Route</dt><dd className="mono">{returnRoute.replaceAll("_", " ")}</dd></div>
+          <div><dt>Selected term</dt><dd>{interventionLabel}</dd></div>
+          <div><dt>Regime</dt><dd>reform-priced</dd></div>
+        </dl>
+        <Link href={underwriteHref}>Back to underwriting →</Link>
+      </section>
+
+      {/* ── ① 감축경로 ── */}
+      <section className="panel" style={{ marginBottom: 18 }}>
+        <h2>① Decarbonization pathways — the cause</h2>
+        <p className="panel__lede">
+          What the firm would do on its own (private optimal, from real-option timing) vs what the
+          sector pathway requires. The shaded area is the <b>condition gap</b> — cumulative excess
+          emissions {f.gap.cumulative_alignment_gap_mtco2.toFixed(0)} MtCO₂
+          {f.gap.first_misalignment_year ? `, misaligned from ${f.gap.first_misalignment_year}` : ""}.
+        </p>
+        <PathwayPanel
+          firm={{ ...f.pathway, cum_gap_by_year: f.gap.cumulative_gap_by_year_mtco2 }}
+          years={data.years}
+          selectedIv={iv}
+          provisional={provisional}
+          singleAsset={f.assets.length === 1 ? f.assets[0] : undefined}
+        />
+        {provisional && (
+          <p className="panel__foot">{data.required_disclaimer}</p>
+        )}
+      </section>
+
+      {/* ── ② 자산 타임라인 ── */}
+      <section className="panel" style={{ marginBottom: 18 }}>
+        <h2>② Asset timeline — where the gap lives</h2>
+        <div className="gap-rows">
+          <div className="gap-rows__scale mono">
+            {[2030, 2040, 2050, 2060].map((y) => (
+              <span key={y} style={{ left: `${yearX(y)}%` }}>{y}</span>
+            ))}
+          </div>
+          {f.assets.map((a: any) => {
+            const tauIv = iv ? a.tau_interventions?.[iv] : null;
+            const stranding = a.category === "no_feasible_route";
+            return (
+              <div key={a.asset_id} className="gap-row">
+                <span className="gap-row__label">
+                  {a.facility}
+                  <em>
+                    {a.capacity_mt}Mt · {a.intensity_tco2_t}t/t · {stranding ? "stranding/closure" : a.route}
+                    {a.t_required_status === "PROVISIONAL" ? " · prov." : ""}
+                  </em>
+                </span>
+                <div className="gap-row__track">
+                  {[2030, 2040, 2050, 2060].map((y) => (
+                    <i key={y} className="gap-row__grid" style={{ left: `${yearX(y)}%` }} />
+                  ))}
+                  {stranding ? (
+                    <span className="gap-row__strand mono">no feasible priced route — stranding branch, not in deployment pool</span>
+                  ) : (
+                    <>
+                      {a.tau_star_year != null && a.t_required != null && (
+                        <div
+                          className={`gap-row__span ${a.timing_gap_years > 0 ? "late" : "early"}`}
+                          style={{
+                            left: `${Math.min(yearX(a.tau_star_year), yearX(a.t_required))}%`,
+                            width: `${Math.abs(yearX(a.tau_star_year) - yearX(a.t_required))}%`,
+                          }}
+                        />
+                      )}
+                      {a.t_required != null && (
+                        <b className="gap-row__gcam" style={{ left: `${yearX(a.t_required)}%` }} title={`required ${a.t_required}`} />
+                      )}
+                      {a.tau_star_year != null ? (
+                        <b className="gap-row__tau" style={{ left: `${yearX(a.tau_star_year)}%` }} title={`τ* ${a.tau_star_year.toFixed(0)}`} />
+                      ) : (
+                        <span className="gap-row__never mono">no private transition in horizon</span>
+                      )}
+                      {tauIv != null && (
+                        <b className="gap-row__iv" style={{ left: `${yearX(tauIv)}%` }} title={`τ* with ${iv}: ${tauIv.toFixed(0)}`} />
+                      )}
+                    </>
+                  )}
                 </div>
-              ))}
-            </div>
-            <p className="mono" style={{ color: "var(--molten-soft)", fontSize: 12 }}>
-              Illustrative mix only — the pricing pipeline for this sector has not been run. Same
-              machinery as steel: asset registry + route sensitivities + scenarios in, premium out.
-            </p>
-          </section>
+                <span className="gap-row__wedge mono">
+                  {a.timing_gap_years == null ? "—" : `${a.timing_gap_years > 0 ? "+" : ""}${a.timing_gap_years.toFixed(0)}y`}
+                </span>
+              </div>
+            );
+          })}
         </div>
-      ) : (
-        <div className="panel-grid">
-          {/* ── ① your premium ── */}
-          <section className="panel panel--premium">
-            <h2>① Your premium</h2>
-            <div className="premium-head">
-              <div>
-                <div className="big-bps mono">
-                  {bps.toFixed(1)}
-                  <small> bps</small>
-                </div>
-                <div className="premium-sub">
-                  base case (λ {pricing.lambda} · p_bind {pricing.p_bind}) ·{" "}
-                  <span className="cond">level conditional</span>
-                </div>
-              </div>
-              <div className="mix-readout">
-                {DRIVERS.filter((d) => shares[d] > 0.005).map((d) => (
-                  <div key={d} className="mix-readout__row">
-                    <i style={{ background: colors[d] }} />
-                    <span>{DRIVER_LABEL[d]}</span>
-                    <b className="mono">{(shares[d] * 100).toFixed(0)}%</b>
-                  </div>
-                ))}
-                <div className="proven">mix proven — invariant to λ · p_bind</div>
-              </div>
-            </div>
-            <PremiumFan
-              grid={f.grid.map((g) => ({ ...g, premium_bps: g.premium_bps * gridScale }))}
-              shares={shares}
-              firm={f.firm}
-              baseCase={{ lambda: pricing.lambda, p_bind: pricing.p_bind, premium_bps: bps }}
-            />
-          </section>
+        <div className="gap-legend">
+          <span><b className="dot dot--tau" /> τ* private</span>
+          <span><b className="dot dot--gcam" /> T_required{provisional ? " (provisional)" : ""}</span>
+          <span><b className="dot dot--iv" /> τ* with intervention</span>
+          <span><b className="dot dot--late" /> waiting past requirement</span>
+        </div>
+      </section>
 
-          {/* ── ③ how to hedge ── */}
-          <section className="panel">
-            <h2>③ How to hedge it</h2>
-            <p className="panel__lede">
-              Each slice has a real instrument. Start with your dominant slice:{" "}
-              <b>{DRIVER_LABEL[dominant]}</b> ({(shares[dominant] * 100).toFixed(0)}%) →{" "}
-              <b>{INSTRUMENT[dominant]}</b>.
-            </p>
-            <ol className="hedge-list">
-              {(reform ? f.waterfall_reform : f.waterfall)
-                .filter((s) => s.step !== "uncommitted" && s.cut_bps > 0.05)
-                .map((s) => {
-                  const driver = { h2_cfd: "h2", carbon_cfd: "carbon", ppa: "elec", capex_subsidy: "capex" }[s.step] as string;
-                  return (
-                    <li key={s.step}>
-                      <i style={{ background: colors[driver] }} />
-                      <span className="hedge-list__name">{INSTRUMENT[driver]}</span>
-                      <span className="hedge-list__cut mono">−{s.cut_bps.toFixed(1)} bps</span>
-                    </li>
-                  );
-                })}
-            </ol>
-            <div className="hedge-total mono">
-              uncommitted {bps.toFixed(1)} bps → fully contracted 0.0 bps
-            </div>
-            <p className="panel__foot">
-              Carbon-policy risk is the sector's common factor — stock selection cannot shed it,
-              only a carbon hedge can. Hydrogen risk is elective: dial it with names or an H₂ CfD.
-            </p>
-          </section>
-
-          {/* ── ② why it exists ── */}
-          <section className="panel" style={{ gridColumn: "1 / -1" }}>
-            <h2>② Why it exists — required vs current</h2>
-            <p className="panel__lede">
-              The model compares two dates per furnace: <b className="mono" style={{ color: "#7fa3d0" }}>τ*</b>{" "}
-              when switching is privately optimal (real-options, LSM) and{" "}
-              <b className="mono" style={{ color: "var(--molten-soft)" }}>T_GCAM</b> when the
-              net-zero pathway requires it. Waiting past the required date is rational — and is
-              exactly what gets priced. Current intensity {f.assets[0]?.intensity.toFixed(1)} tCO₂/t
-              must reach {f.residual_intensity.toFixed(1)} on the firm's route.
-            </p>
-            <div className="gap-rows">
-              <div className="gap-rows__scale mono">
-                {[2030, 2040, 2050, 2060].map((y) => (
-                  <span key={y} style={{ left: `${yearX(y)}%` }}>
-                    {y}
-                  </span>
-                ))}
-              </div>
-              {f.assets.map((a) => {
-                const t1 = a.tau_star ?? yearMax;
-                const left = Math.min(yearX(t1), yearX(a.t_gcam));
-                const width = Math.abs(yearX(t1) - yearX(a.t_gcam));
-                const late = (a.wedge ?? 0) > 0;
+      <div className="panel-grid">
+        {/* ── ③ why the gap ── */}
+        <section className="panel">
+          <h2>③ Why the gap exists — what moves it</h2>
+          <p className="panel__lede">
+            Each intervention transforms parameters (contract price, coverage, tenor, capex,
+            discount rate, carbon scenarios) and re-solves transition timing. Effect on τ* and
+            cumulative gap, standalone:
+          </p>
+          <table className="iv-table">
+            <thead>
+              <tr><th>Intervention</th><th>Δτ*</th><th>Δcum. gap</th><th>Δcharge</th><th>Decision read</th></tr>
+            </thead>
+            <tbody>
+              {visibleInterventions.map((i: any) => {
+                const im = f.impacts[i.id];
+                if (!im) return null;
                 return (
-                  <div key={a.asset_id} className="gap-row">
-                    <span className="gap-row__label mono">{a.facility}</span>
-                    <div className="gap-row__track">
-                      {[2030, 2040, 2050, 2060].map((y) => (
-                        <i key={y} className="gap-row__grid" style={{ left: `${yearX(y)}%` }} />
-                      ))}
-                      <div
-                        className={`gap-row__span ${late ? "late" : "early"}`}
-                        style={{ left: `${left}%`, width: `${Math.max(width, 0.5)}%` }}
-                      />
-                      <b className="gap-row__gcam" style={{ left: `${yearX(a.t_gcam)}%` }} title={`required ${a.t_gcam}`} />
-                      <b className="gap-row__tau" style={{ left: `${yearX(t1)}%` }} title={`optimal ${t1.toFixed(0)}`} />
-                    </div>
-                    <span className="gap-row__wedge mono">
-                      {a.wedge == null ? "—" : `${a.wedge > 0 ? "+" : ""}${a.wedge.toFixed(0)}y`}
-                    </span>
-                  </div>
+                  <tr key={i.id} className={iv === i.id ? "sel" : ""} onClick={() => selectIntervention(i.id)}>
+                    <td>{i.label}</td>
+                    <td className={`mono ${semanticClass(im.delta.tau_star_years)}`}>{im.delta.tau_star_years > 0 ? "+" : ""}{im.delta.tau_star_years.toFixed(1)}y</td>
+                    <td className={`mono ${semanticClass(im.delta.cumulative_gap_mtco2)}`}>{im.delta.cumulative_gap_mtco2 > 0 ? "+" : ""}{im.delta.cumulative_gap_mtco2.toFixed(0)} Mt</td>
+                    <td className={`mono ${semanticClass(im.delta.risk_charge_bps)}`}>{im.delta.risk_charge_bps > 0 ? "+" : ""}{im.delta.risk_charge_bps.toFixed(1)} bps</td>
+                    <td className="iv-table__read">
+                      <span className={`meaning-badge ${semanticClass(im.delta.cumulative_gap_mtco2)}`}>
+                        {im.delta.cumulative_gap_mtco2 < -0.05 ? "alignment ↑" : im.delta.cumulative_gap_mtco2 > 0.05 ? "alignment ↓" : "alignment —"}
+                      </span>
+                      <span className={`meaning-badge ${semanticClass(im.delta.risk_charge_bps)}`}>
+                        {im.delta.risk_charge_bps < -0.05 ? "charge ↓" : im.delta.risk_charge_bps > 0.05 ? "charge ↑" : "charge —"}
+                      </span>
+                    </td>
+                  </tr>
                 );
               })}
+            </tbody>
+          </table>
+          <p className="panel__foot">
+            A reduction in modeled charge does not guarantee an earlier transition. Carbon reform
+            can close the gap while <b>raising</b> the priced carbon burden. Read Δτ*, Δgap and
+            Δcharge as separate gates; sequential attribution is order-dependent and the artifact
+            also reports order-averaged (Shapley) contributions.
+          </p>
+        </section>
+
+        {/* ── ④ residual anatomy ── */}
+        <section className="panel">
+          <h2>④ Residual risk anatomy {iv ? `— with ${iv}` : ""}</h2>
+          <p className="panel__lede">
+            What uncertainty remains under the selected pathway and intervention. Coverage, tenor
+            and basis risk keep this from ever reaching zero.
+          </p>
+          <div className="mix-readout">
+            {DRIVERS.filter((d) => shares[d] > 0.004).map((d) => (
+              <div key={d} className="mix-readout__row">
+                <i style={{ background: colors[d] }} />
+                <span>{DRIVER_LABEL[d]}</span>
+                <b className="mono">{(shares[d] * 100).toFixed(0)}%</b>
+              </div>
+            ))}
+          </div>
+          <div className="mix-bar" style={{ height: 16, marginTop: 10 }}>
+            {DRIVERS.map((d) =>
+              shares[d] > 0.004 ? <div key={d} style={{ width: `${shares[d] * 100}%`, background: colors[d] }} /> : null
+            )}
+          </div>
+          <p className="proven" style={{ marginTop: 10 }}>
+            model-conditional mix · invariant to scalar λ and p_bind (P1) — conditional on the
+            exposure model and calibration
+          </p>
+        </section>
+      </div>
+
+      {/* ── ⑤ conditional charge ── */}
+      <section className="panel" style={{ marginTop: 18 }}>
+        <h2>⑤ Conditional risk charge — the last step, not the first</h2>
+        <div className="premium-head">
+          <div>
+            <div className="big-bps mono">
+              {charge?.toFixed(1)}
+              <small> bps</small>
             </div>
-            <div className="gap-legend mono">
-              <span>
-                <b className="dot dot--tau" /> τ* private optimum
-              </span>
-              <span>
-                <b className="dot dot--gcam" /> T_GCAM required
-              </span>
-              <span>
-                <b className="dot dot--late" /> waiting past requirement = priced exposure
-              </span>
+            <div className="premium-sub">
+              <span className="cond">SCENARIO_CONDITIONAL</span> — conditional on assumed λ{" "}
+              {data.pricing.lambda} · k {data.pricing.k} · EV estimate · WACC{" "}
+              {(f.levels.wacc * 100).toFixed(1)}% · derived p_bind {f.levels.p_bind.toFixed(2)} (Σ
+              prob of binding scenarios) · reform-priced carbon regime. Not an empirically
+              identified market risk premium.
             </div>
-          </section>
+          </div>
         </div>
-      )}
+        <PremiumFan
+          grid={f.grid}
+          shares={f.shares_reform}
+          firm={f.firm}
+          baseCase={{ lambda: data.pricing.lambda, p_bind: f.levels.p_bind, premium_bps: f.levels.premium_reform_bps }}
+        />
+        <p className="panel__foot">
+          $/t view (EV-independent): {f.levels.premium_reform_usd_t.toFixed(1)} $/t · WACC-equalized:{" "}
+          {f.levels.premium_reform_bps_wacc_eq.toFixed(1)} bps · manifest{" "}
+          {data.manifest.config_sha256.slice(0, 12)}
+          {data.manifest.git_dirty ? " · working tree DIRTY" : ""} · T_required{" "}
+          {data.t_required_source}
+        </p>
+      </section>
     </div>
   );
 }

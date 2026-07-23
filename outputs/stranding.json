@@ -1,19 +1,32 @@
 {
   "artifact": "stranding",
-  "note": "no_feasible_route 자산 — Fig 3와 §4.6의 모순을 데이터 수준에서 차단",
-  "conditional_on": [],
-  "status_of_inputs": {
-    "firms_registry": "banded"
+  "note": "no_feasible_route — priced-route 배치 풀을 소비하지 않음",
+  "claims": {
+    "assets": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "firms_registry",
+        "routes_sensitivity"
+      ]
+    }
+  },
+  "conditional_on": [
+    "routes_sensitivity"
+  ],
+  "input_status": {
+    "firms_registry": "banded",
+    "routes_sensitivity": "assumed"
   },
   "assets": [
     {
       "asset_id": "A03",
       "firm_id": "HYUNDAI",
       "firm": "Hyundai Steel",
+      "sector": "steel",
       "country": "KR",
       "facility": "Dangjin",
-      "bf_number": "BF1",
-      "crude_steel_mt_yr": 3.8,
+      "unit_number": "BF1",
+      "capacity_mt_yr": 3.8,
       "emission_intensity_tco2_t": 2.1,
       "route": "scrap_eaf",
       "source": "assets_blast_furnace.csv A03; 요구 심도 > scrap-EAF 심도 (A4) — stranding 분리"
@@ -22,14 +35,15 @@
       "asset_id": "A08",
       "firm_id": "HYUNDAI",
       "firm": "Hyundai Steel",
+      "sector": "steel",
       "country": "KR",
       "facility": "Dangjin",
-      "bf_number": "BF2",
-      "crude_steel_mt_yr": 3.7,
+      "unit_number": "BF2",
+      "capacity_mt_yr": 3.7,
       "emission_intensity_tco2_t": 2.1,
       "route": "scrap_eaf",
       "source": "assets_blast_furnace.csv A08; 요구 심도 > scrap-EAF 심도 (A4) — stranding 분리"
     }
   ],
-  "rule": "요구 감축심도가 모든 priced route의 심도를 초과 — anatomy 제외, stranding 분리 (A4/R3)"
+  "rule": "요구 감축심도가 모든 priced route의 심도를 초과 — anatomy 제외, stranding/closure branch (A4/R3)"
 }

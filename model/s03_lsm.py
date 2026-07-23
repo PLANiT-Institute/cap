@@ -1,9 +1,10 @@
-"""s03: 교환옵션 LSM → τ*, wedge, σ_B 선형성 (Fig 2, §3.4).
+"""s03: 교환옵션 LSM → τ* (base + intervention별), wedge, σ_B 선형성.
 
-- τ*_i: 자산별 사적 최적 전환연도 (LSM, 예산 없는 measure — A2)
-- wedge_i = τ*_i − T_i^GCAM (#claim-wedge-conjunction) + WACC-equalized 변형
-- sigma_linearity: 옵션가치가 σ_B에 선형인지 (R² 체크; π=kλp_bind·σ_B 근사의 근거)
-- p_bind_in_exercise 플래그(R5): on이면 τ*(p_bind) 변형도 산출
+- τ*_i: 자산별 사적 최적 전환연도 (예산 없는 measure — A2)
+- intervention별 τ*(C): lib/interventions의 파라미터 변환 후 LSM 재실행
+  (σ만 바꾸는 게 아니라 가격 수준·K·할인율·탄소 drift가 함께 움직인다)
+- wedge_i = τ*_i − T_required_i + WACC-equalized 변형
+- sigma_linearity: 옵션가치의 σ 선형성 (risk-charge 선형화의 수치 근거)
 """
 from __future__ import annotations
 
@@ -15,32 +16,65 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from model.lib.artifacts import write_artifact  # noqa: E402
+from model.lib.artifacts import (  # noqa: E402
+    MODEL_CONDITIONAL,
+    PROVISIONAL,
+    claim,
+    write_artifact,
+)
+from model.lib.interventions import ParamSet, apply_interventions, base_params  # noqa: E402
 from model.lib.lsm_engine import LsmSpec, lsm_tau_star  # noqa: E402
 from model.s02_calibrate import CalibrationSet, load_calibration  # noqa: E402
 
 
-def build_spec(cal: CalibrationSet, asset: dict, rate: float, seed_offset: int) -> LsmSpec:
+def build_spec(
+    cal: CalibrationSet,
+    asset: dict,
+    rate: float,
+    seed_offset: int,
+    ps: ParamSet | None = None,
+    reference_l_bar: dict[str, float] | None = None,
+) -> LsmSpec:
     route = cal.routes.set_index("route").loc[asset["route"]]
     country = asset["country"]
-    p_elec = route["p_elec_base_kr_usd_mwh"] if country == "KR" else route["p_elec_base_jp_usd_mwh"]
+    if ps is None:
+        ps = base_params(cal, route, country, asset["elec_driver"])
     p_carbon = cal.pricing["carbon_base_kr"] if country == "KR" else cal.pricing["carbon_base_jp"]
     sig, rho = cal.rho_matrix(asset["elec_driver"])
+    sig = sig.copy()
+    sig[1], sig[2], sig[3] = ps.sigma_h2, ps.sigma_elec, ps.sigma_feedstock
+    mu = cal.mu_vector(asset["elec_driver"]).copy()
+    # carbon_reform → ℓ̄ 이동을 drift 재앵커로 반영 (근사; mu_anchor_years는 config)
+    base_regime = base_params(cal, route, country, asset["elec_driver"]).carbon
+    reference_level = (
+        base_regime.l_bar
+        if reference_l_bar is None
+        else float(reference_l_bar[country])
+    )
+    if ps.carbon.l_bar != reference_level:
+        mu[0] += float(np.log(ps.carbon.l_bar / reference_level)) / cal.lsm["mu_anchor_years"]
     base_year = int(cal.lsm["base_year"])
     return LsmSpec(
-        x0=np.array([p_carbon, route["p_h2_base_usd_kg"], p_elec, route["k_capex_usd_t"]]),
+        x0=np.array([
+            p_carbon,
+            ps.p_h2,
+            ps.p_elec,
+            ps.p_feedstock,
+            route["k_capex_usd_t"] * ps.k_capex_mult,
+        ]),
         sigma=sig,
-        mu=cal.mu_vector(asset["elec_driver"]),
+        mu=mu,
         rho=rho,
         delta_intensity=asset["emission_intensity_tco2_t"] - route["residual_intensity_tco2_t"],
         q_h2=route["q_h2_kg_t"],
         q_elec=route["q_elec_mwh_t"],
+        q_feedstock=route["q_feedstock_t_t"],
         avoided_opex=route["avoided_opex_usd_t"],
         route_opex_other=route["route_opex_other_usd_t"],
         k_reline_mult=1.0,
         k_offcycle_mult=cal.k_offcycle_mult,
-        reline_t=max(0, int(asset["next_reline_year"]) - base_year),
-        rate=rate,
+        reline_t=max(0, int(asset["next_investment_year"]) - base_year),
+        rate=rate + ps.wacc_delta,
         horizon=int(cal.lsm["horizon_years"]),
         n_paths=int(cal.lsm["n_paths"]),
         basis_degree=int(cal.lsm["basis_degree"]),
@@ -48,25 +82,97 @@ def build_spec(cal: CalibrationSet, asset: dict, rate: float, seed_offset: int) 
     )
 
 
+def tau_year_of(cal: CalibrationSet, res: dict) -> float | None:
+    """τ* 정본 = E[min(τ, H)] (미행사=지평말). 개입에 단조 반응; p_exercised 병기.
+    p_exercised < tau_exercise_threshold이면 '지평 내 사적 전환 없음'으로 None."""
+    if res["p_exercised"] < cal.lsm["tau_exercise_threshold"]:
+        return None
+    return int(cal.lsm["base_year"]) + res["tau_expected"]
+
+
+def solve_tau_map(
+    cal: CalibrationSet,
+    intervention_ids: list[str] | None = None,
+    reference_l_bar: dict[str, float] | None = None,
+) -> tuple[dict[str, float | None], list[dict]]:
+    """파일을 읽거나 쓰지 않고 자산별 τ*를 다시 푼다.
+
+    ``reference_l_bar``는 API scenario override 전의 기대 탄소가격이다. 이를 넘기면
+    override가 만든 기대가격 이동이 LSM drift에 반영된다. 배치 의무(T_required)는
+    별도 층이므로 사적 최적 전환을 푸는 이 함수가 변경하지 않는다.
+    """
+    ids = intervention_ids or []
+    threshold = float(cal.lsm["tau_exercise_threshold"])
+    tau_map: dict[str, float | None] = {}
+    diagnostics: list[dict] = []
+    for seed_offset, (_, row) in enumerate(cal.firms.iterrows()):
+        asset = row.to_dict()
+        ps = (
+            apply_interventions(
+                cal,
+                asset["route"],
+                asset["country"],
+                asset["elec_driver"],
+                ids,
+            )
+            if ids
+            else None
+        )
+        result = lsm_tau_star(
+            build_spec(
+                cal,
+                asset,
+                asset["wacc"],
+                seed_offset,
+                ps,
+                reference_l_bar=reference_l_bar,
+            ),
+            tau_threshold=threshold,
+        )
+        tau_year = tau_year_of(cal, result)
+        tau_map[asset["asset_id"]] = tau_year
+        diagnostics.append(
+            {
+                "asset_id": asset["asset_id"],
+                "firm_id": asset["firm_id"],
+                "tau_star_year": tau_year,
+                "p_exercised": result["p_exercised"],
+                "option_value_usd_t": result["option_value"],
+            }
+        )
+    return tau_map, diagnostics
+
+
 def main() -> int:
     cal = load_calibration()
     base_year = int(cal.lsm["base_year"])
     wacc_eq = float(cal.firms["wacc"].mean())
     p_bind_flag = bool(int(cal.lsm["p_bind_in_exercise"]))
-    p_bind = cal.pricing["p_bind"]
+    intervention_ids = [
+        i for i in cal.interventions["intervention_id"]
+    ]
 
     tau_rows, wedge_rows = [], []
+    tau_interventions: dict[str, dict[str, float | None]] = {i: {} for i in intervention_ids}
     for i, (_, a) in enumerate(cal.firms.iterrows()):
         asset = a.to_dict()
-        res = lsm_tau_star(build_spec(cal, asset, asset["wacc"], i))
-        res_eq = lsm_tau_star(build_spec(cal, asset, wacc_eq, i))
-        tau_year = (base_year + res["tau_mean"]) if res["tau_mean"] is not None else None
-        tau_year_eq = (base_year + res_eq["tau_mean"]) if res_eq["tau_mean"] is not None else None
-        t_gcam = cal.t_gcam[asset["asset_id"]]
+        thr = float(cal.lsm["tau_exercise_threshold"])
+        res = lsm_tau_star(build_spec(cal, asset, asset["wacc"], i), tau_threshold=thr)
+        res_eq = lsm_tau_star(build_spec(cal, asset, wacc_eq, i), tau_threshold=thr)
+        tau_year = tau_year_of(cal, res)
+        tau_year_eq = tau_year_of(cal, res_eq)
+        treq = cal.t_required[asset["asset_id"]]
+        for iid in intervention_ids:
+            ps = apply_interventions(cal, asset["route"], asset["country"], asset["elec_driver"], [iid])
+            res_c = lsm_tau_star(build_spec(cal, asset, asset["wacc"], i, ps), tau_threshold=thr)
+            tau_interventions[iid][asset["asset_id"]] = tau_year_of(cal, res_c)
         row = {
             "asset_id": asset["asset_id"],
             "firm_id": asset["firm_id"],
             "firm": asset["firm"],
+            "facility": f"{asset['facility']} {asset['unit_number']}",
+            "sector": asset["sector"],
+            "emission_intensity_tco2_t": asset["emission_intensity_tco2_t"],
             "country": asset["country"],
             "route": asset["route"],
             "category": asset["category"],
@@ -76,47 +182,66 @@ def main() -> int:
             "option_value_usd_t": res["option_value"],
         }
         if p_bind_flag:
-            res_pb = lsm_tau_star(build_spec(cal, asset, asset["wacc"], i), exercise_relax=p_bind)
-            row["tau_star_year_p_bind"] = (
-                (base_year + res_pb["tau_mean"]) if res_pb["tau_mean"] is not None else None
+            res_pb = lsm_tau_star(
+                build_spec(cal, asset, asset["wacc"], i),
+                exercise_relax=cal.p_bind[asset["country"]],
             )
+            row["tau_star_year_p_bind"] = tau_year_of(cal, res_pb)
         tau_rows.append(row)
         wedge_rows.append(
             {
                 "asset_id": asset["asset_id"],
                 "firm": asset["firm"],
                 "firm_id": asset["firm_id"],
-                "facility": f"{asset['facility']} {asset['bf_number']}",
+                "facility": f"{asset['facility']} {asset['unit_number']}",
+                "sector": asset["sector"],
                 "emission_intensity_tco2_t": asset["emission_intensity_tco2_t"],
                 "country": asset["country"],
                 "category": asset["category"],
-                "t_gcam": t_gcam,
+                "t_required": treq["year"],
+                "t_required_status": treq["status"],
                 "tau_star_year": tau_year,
-                "wedge_years": (tau_year - t_gcam) if tau_year is not None else None,
+                "timing_gap_years": (tau_year - treq["year"])
+                if (tau_year is not None and treq["year"] is not None)
+                else None,
                 "tau_star_year_wacc_eq": tau_year_eq,
-                "wedge_years_wacc_eq": (tau_year_eq - t_gcam) if tau_year_eq is not None else None,
             }
         )
 
+    lsm_deps = ["carbon_base_kr", "carbon_base_jp", "routes_sensitivity", "firms_registry",
+                "exposure_model"]
     write_artifact(
         "tau_star",
-        {"base_year": base_year, "p_bind_in_exercise": p_bind_flag, "assets": tau_rows},
+        {
+            "base_year": base_year,
+            "p_bind_in_exercise": p_bind_flag,
+            "assets": tau_rows,
+            "interventions": tau_interventions,
+        },
         cal.param_status,
-        uses=["carbon_base_kr", "carbon_base_jp", "routes_sensitivity", "firms_registry"],
-        note="LSM 사적 최적 전환연도 — 예산 없는 measure (A2); drift 0 평탄 기대경로",
+        claims={
+            "assets.tau_star_year": claim(MODEL_CONDITIONAL, lsm_deps,
+                                          "LSM drift-flat GBM; 예산 없는 measure (A2)"),
+            "interventions": claim(MODEL_CONDITIONAL, lsm_deps + ["interventions"],
+                                   "coverage·tenor 1차 근사 후 τ* 재계산"),
+        },
+        note="사적 최적 전환연도 — base + intervention별",
     )
     write_artifact(
         "wedge",
-        {"t_gcam_source": cal.t_gcam_source, "assets": wedge_rows},
+        {"t_required_source": cal.t_required_source, "assets": wedge_rows},
         cal.param_status,
-        uses=["carbon_base_kr", "carbon_base_jp", "routes_sensitivity", "firms_registry"],
-        note="Exposure_i = τ*_i − T_i^GCAM (#claim-wedge-conjunction); Fig 2 덤벨 + WACC-equalized",
+        claims={
+            "assets.timing_gap_years": claim(
+                PROVISIONAL, lsm_deps + ["t_required"],
+                "T_required는 surrogate — 실증 식별된 의무 아님",
+            ),
+        },
+        note="timing gap = τ* − T_required (#claim-wedge-conjunction)",
     )
 
-    # σ_B 선형성: 대표 자산(첫 priced_route)에서 σ 스케일 격자 → 옵션가치 회귀 R²
     rep = cal.firms[cal.firms["category"] == "priced_route"].iloc[0].to_dict()
     n_grid = int(cal.lsm["sigma_linearity_n"])
-    # 스케일 범위 = 캘리브레이션 band가 함의하는 상대 폭 (선형 근사의 유효 영역)
     lo = float((cal.sigmas["band_lo"] / cal.sigmas["value"]).mean())
     hi = float((cal.sigmas["band_hi"] / cal.sigmas["value"]).mean())
     scales = np.linspace(lo, hi, n_grid)
@@ -138,10 +263,11 @@ def main() -> int:
             "r_squared": r2,
         },
         cal.param_status,
-        uses=["routes_sensitivity"],
-        note="옵션가치의 σ 선형성 — π=k·λ·p_bind·σ_B 선형 근사의 수치 근거 (§3.4 R² 체크)",
+        claims={"r_squared": claim(MODEL_CONDITIONAL, ["routes_sensitivity", "exposure_model"],
+                                   "band 범위 내 선형 근사의 수치 근거")},
+        note="risk-charge 선형화 π≈k·λ·p_bind·σ_B의 유효성 체크",
     )
-    print(f"OK — τ*/wedge {len(tau_rows)} assets, σ-linearity R²={r2:.4f}")
+    print(f"OK — τ* base+{len(intervention_ids)} interventions × {len(tau_rows)} assets, σ-linearity R²={r2:.4f}")
     return 0
 
 

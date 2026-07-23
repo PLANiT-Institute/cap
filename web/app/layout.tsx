@@ -7,9 +7,9 @@ const body = Inter({ subsets: ["latin"], variable: "--font-body" });
 const mono = IBM_Plex_Mono({ weight: ["400", "600"], subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata = {
-  title: "CAP — Transition-risk pricing tool",
+  title: "CAP — Transition-risk underwriter",
   description:
-    "Price the transition-risk premium of heavy-industry assets, see why it exists, and see which contract hedges each slice. Steel live, petrochemicals next.",
+    "Translate industrial technology choices into financial risk anatomy and test which contracts reduce the conditional transition-risk charge.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -25,9 +25,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/" className="nav__title" style={{ textDecoration: "none" }}>
               CAP
             </Link>
-            <span className="nav__tag">transition-risk pricing tool</span>
+            <span className="nav__tag">transition-risk underwriter</span>
             <nav className="nav__links">
-              <Link href="/">Dashboard</Link>
+              <Link href="/">Underwrite</Link>
+              <Link href="/pilots">Pilots</Link>
               <Link href="/method">Method</Link>
               <a href="https://github.com/PLANiT-Institute/cap">GitHub</a>
             </nav>

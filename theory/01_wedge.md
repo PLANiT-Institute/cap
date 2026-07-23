@@ -9,12 +9,14 @@
 
 둘을 합치면:
 
-$$\text{Exposure}_i = \tau^*_i - T_i^{GCAM}$$
+$$\text{timing gap}_i = \tau^*_i - T_i^{required}$$
+
+시간 gap만으로 끝나지 않는다 — 핵심 상태는 자산 용량·배출강도를 반영한 **누적 초과배출 gap** = Σ_t max(E_private − E_required, 0)이다 (`outputs/condition_gap.json`).
 
 사적 최적 전환연도가 시나리오 요구연도보다 늦은 만큼이 노출이다. "오늘 합리적, 내일 노출됨(rational today, exposed tomorrow)"의 형식적 내용.
 
 `status: CLAIM`
 
-**코드 대응**: `model/s03_lsm.py`가 τ*를, GCAM 배치곡선(현재 {{gcam.source}})이 T^GCAM을 산출. wedge는 존재 증명이고, 크기(σ_B)를 [[02_variance_premium]]에 넘긴다.
+**코드 대응**: `model/s03_lsm.py`가 τ*(전 경로 기대 전환연도)를, route별 배치 풀({{gcam.source}})이 T_required를 산출. no_feasible_route 자산은 풀을 소비하지 않는다. **Required pathway is a provisional surrogate and must not be interpreted as an empirically identified firm mandate.**
 
-**현행 수치**: 11개 고로의 wedge는 `outputs/wedge.json` (평균 {{wedge.mean_years}}년). τ*는 예산 없는 measure에서 풀린다 — [[02_variance_premium]]의 A2와 [08_referee_notes.md](08_referee_notes.md) R5 참조.
+**현행 수치**: `outputs/wedge.json`·`condition_gap.json` (POSCO 누적 gap {{gap.POSCO.cum_mtco2}} MtCO₂, 최초 이탈 {{gap.POSCO.first_year}}). τ*는 예산 없는 measure — A2와 R5 참조. 사적 전환 확률이 문턱 미만인 자산(τ*=None)은 '지평 내 사적 전환 없음'으로 처리된다.

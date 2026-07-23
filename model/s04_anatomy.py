@@ -1,18 +1,15 @@
-"""s04: Euler 분해 → driver shares (Fig 3), cost vs risk shares (Fig 4).
+"""s04: Euler 분해 → 전환비용 불확실성의 구성 (risk anatomy).
 
-노출 구성 (A3: B = aᵀX 선형):
-- 전환연도 t_sw = 자산별 min(τ*, T^GCAM)의 용량가중 평균 — 예산 구속 세계에서
-  옵션은 요구연도에 강제 행사된다 (§01). τ* 미행사 자산은 T^GCAM.
-- E_carbon = 현재강도 × ℓ_bind × PV[0, t_sw] + 잔여강도 × ℓ_bind × PV[t_sw, H]
-  (수준은 구속 조건부 ℓ_bind — A2: p_bind는 수준에만)
-- E_h2   = q_h2 × p_h2 × PV[t_sw, H]
-- E_elec = q_elec × p_elec × PV[t_sw, H]
-- E_capex = K × df(t_sw)
-- w_k = E_k σ_k, σ_B² = wᵀρw, s_k = w_k(ρw)_k/σ_B² (Euler; Σ=1)
-- cost share = E_k/ΣE (평균 분해 — Fig 4의 대조축, A1)
+교정된 해석 (개편 §1):
+- Euler share는 우선 '전환비용 불확실성의 구성'이다. 시장 위험프리미엄의 구성이
+  실증 식별된 것이 아니다.
+- share는 scalar λ·p_bind에는 항등적으로 불변(P1)이지만, 노출 모델·전환시점·
+  시나리오·WACC·route 캘리브레이션에는 조건부다 → MODEL_CONDITIONAL.
+- 절대 수준은 conditional risk charge — λ·p_bind(파생)·k·EV·시나리오에 조건부.
 
-no_feasible_route 자산은 anatomy에서 제외되고 stranding.json으로 분리 (A4).
-reform-priced 변형: σ_carbon → sqrt(σ_diff²+jump) (#claim-policy-repricing).
+구조: 전환연도 t_sw = 자산별 min(τ*, T_required) (T_required 없으면 τ*),
+자산별 노출 PV를 계산해 기업으로 합산 (기업 평균 연도 선계산 금지).
+탄소 수준은 국가별 ℓ_bind (KR 시나리오를 JP에 적용하지 않음).
 """
 from __future__ import annotations
 
@@ -27,75 +24,129 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from model.lib.anatomy import DRIVERS, euler_shares  # noqa: E402
-from model.lib.artifacts import write_artifact  # noqa: E402
+from model.lib.artifacts import (  # noqa: E402
+    IDENTITY,
+    MODEL_CONDITIONAL,
+    SCENARIO_CONDITIONAL,
+    claim,
+    write_artifact,
+)
 from model.lib.finance import annuity, df, pv_window  # noqa: E402
+from model.lib.interventions import ParamSet, base_params  # noqa: E402
 from model.s02_calibrate import CalibrationSet, load_calibration  # noqa: E402
 
 OUT = ROOT / "outputs"
-BPS = 1e4  # 단위 환산 상수 (bps)
+BPS = 1e4  # 단위 환산 상수
+
+ANATOMY_DEPS = [
+    "exposure_model",
+    "routes_sensitivity",
+    "firms_registry",
+    "scenarios",
+    "t_required",
+    "sigma_carbon_diffusion",
+    "sigma_h2",
+    "sigma_feedstock",
+    "rho_h2_elec",
+    "rho_feedstock_carbon",
+]
+LEVEL_DEPS = ANATOMY_DEPS + ["lambda", "p_bind", "k", "ev_usd_bn"]
 
 
-def firm_frame(cal: CalibrationSet) -> pd.DataFrame:
-    tau = {a["asset_id"]: a for a in json.loads((OUT / "tau_star.json").read_text())["assets"]}
+def firm_frame(cal: CalibrationSet, tau_map: dict[str, float | None] | None = None) -> pd.DataFrame:
+    """자산 프레임 + 전환연도. tau_map으로 intervention τ*(C) 주입 가능."""
+    if tau_map is None:
+        tau_art = json.loads((OUT / "tau_star.json").read_text())
+        base_tau = {a["asset_id"]: a["tau_star_year"] for a in tau_art["assets"]}
+    else:
+        base_tau = tau_map
     horizon_end = cal.lsm["base_year"] + cal.lsm["horizon_years"]
     rows = []
     for _, a in cal.firms.iterrows():
-        t = tau[a["asset_id"]]
-        tau_year = t["tau_star_year"] if t["tau_star_year"] is not None else horizon_end
-        rows.append({**a.to_dict(), "tau_star_year": tau_year, "t_gcam": cal.t_gcam[a["asset_id"]],
-                     "t_switch_year": min(tau_year, cal.t_gcam[a["asset_id"]])})
+        aid = a["asset_id"]
+        tau = base_tau.get(aid)
+        tau_eff = tau if tau is not None else horizon_end
+        treq = cal.t_required[aid]["year"]
+        t_switch = min(tau_eff, treq) if treq is not None else tau_eff
+        rows.append({**a.to_dict(), "tau_star_year": tau_eff, "t_required": treq,
+                     "t_switch_year": t_switch})
     return pd.DataFrame(rows)
 
 
-def firm_exposures(cal: CalibrationSet, g: pd.DataFrame) -> dict:
-    """기업 하나의 (E 벡터, 메타). g = priced 자산들."""
-    cap = g["crude_steel_mt_yr"].to_numpy(float)
-    w_cap = cap / cap.sum()
-    route = cal.routes.set_index("route").loc[g["route"].iloc[0]]
-    country = g["country"].iloc[0]
-    wacc = float(g["wacc"].iloc[0])
+def asset_exposure(cal: CalibrationSet, a: pd.Series, ps: ParamSet, rate: float) -> np.ndarray:
+    """자산 하나의 노출 PV 벡터 (USD, 자산 전체). 자산별 계산 → 기업 합산용."""
+    route = cal.routes.set_index("route").loc[a["route"]]
     horizon = float(cal.lsm["horizon_years"])
     base_year = float(cal.lsm["base_year"])
-    t_sw = float(np.dot(w_cap, g["t_switch_year"].to_numpy(float)) - base_year)
-    t_sw = min(max(t_sw, 0.0), horizon)
-    intensity = float(np.dot(w_cap, g["emission_intensity_tco2_t"].to_numpy(float)))
-    p_elec = float(route["p_elec_base_kr_usd_mwh"] if country == "KR" else route["p_elec_base_jp_usd_mwh"])
-
+    t_sw = min(max(float(a["t_switch_year"]) - base_year, 0.0), horizon)
+    cap_t = float(a["capacity_mt_yr"]) * 1e6
     e_carbon = (
-        intensity * cal.l_bind * annuity(wacc, t_sw)
-        + float(route["residual_intensity_tco2_t"]) * cal.l_bind * pv_window(wacc, t_sw, horizon)
+        float(a["emission_intensity_tco2_t"]) * ps.carbon.l_bind * annuity(rate, t_sw)
+        + float(route["residual_intensity_tco2_t"]) * ps.carbon.l_bind * pv_window(rate, t_sw, horizon)
+    ) * cap_t
+    e_h2 = float(route["q_h2_kg_t"]) * ps.p_h2 * pv_window(rate, t_sw, horizon) * cap_t
+    e_elec = float(route["q_elec_mwh_t"]) * ps.p_elec * pv_window(rate, t_sw, horizon) * cap_t
+    e_feedstock = (
+        float(route["q_feedstock_t_t"])
+        * ps.p_feedstock
+        * pv_window(rate, t_sw, horizon)
+        * cap_t
     )
-    e_h2 = float(route["q_h2_kg_t"]) * float(route["p_h2_base_usd_kg"]) * pv_window(wacc, t_sw, horizon)
-    e_elec = float(route["q_elec_mwh_t"]) * p_elec * pv_window(wacc, t_sw, horizon)
-    e_capex = float(route["k_capex_usd_t"]) * df(wacc, t_sw)
+    e_capex = float(route["k_capex_usd_t"]) * ps.k_capex_mult * df(rate, t_sw) * cap_t
+    return np.array([e_carbon, e_h2, e_elec, e_feedstock, e_capex])
+
+
+def firm_exposures(
+    cal: CalibrationSet,
+    g: pd.DataFrame,
+    ps: ParamSet | None = None,
+    rate_override: float | None = None,
+) -> dict:
+    """기업 = 자산별 노출의 합. ps로 intervention 파라미터 주입."""
+    country = g["country"].iloc[0]
+    elec_driver = g["elec_driver"].iloc[0]
+    route = g["route"].iloc[0]
+    if ps is None:
+        ps = base_params(cal, cal.routes.set_index("route").loc[route], country, elec_driver)
+    wacc = (float(g["wacc"].iloc[0]) if rate_override is None else float(rate_override)) + ps.wacc_delta
+    E = np.zeros(len(DRIVERS))
+    for _, a in g.iterrows():
+        E += asset_exposure(cal, a, ps, wacc)
+    cap_mt = float(g["capacity_mt_yr"].sum())
     return {
-        "E": np.array([e_carbon, e_h2, e_elec, e_capex]),
-        "t_switch_year": t_sw + base_year,
-        "capacity_mt": float(cap.sum()),
+        "E": E,  # USD (기업 전체)
+        "capacity_mt": cap_mt,
         "wacc": wacc,
         "ev_usd_bn": float(g["ev_usd_bn"].iloc[0]),
-        "elec_driver": g["elec_driver"].iloc[0],
-        "route": g["route"].iloc[0],
+        "elec_driver": elec_driver,
+        "route": route,
+        "sector": str(g["sector"].iloc[0]),
         "country": country,
         "firm": g["firm"].iloc[0],
+        "params": ps,
+        "t_switch_year_cap_weighted": float(
+            np.average(g["t_switch_year"], weights=g["capacity_mt_yr"])
+        ),
     }
 
 
-def anatomy_for(cal: CalibrationSet, meta: dict, carbon_sigma: float) -> dict:
+def anatomy_for(cal: CalibrationSet, meta: dict, reform: bool) -> dict:
+    ps: ParamSet = meta["params"]
+    carbon_sigma = ps.carbon.sigma_reform if reform else cal.sigma("carbon_diffusion")
     sig, rho = cal.rho_matrix(meta["elec_driver"], carbon_sigma=carbon_sigma)
+    sig = sig.copy()
+    sig[1], sig[2], sig[3] = ps.sigma_h2, ps.sigma_elec, ps.sigma_feedstock
     w = meta["E"] * sig
     sigma_b, shares = euler_shares(w, rho)
     horizon = float(cal.lsm["horizon_years"])
-    sigma_b_usd_bn = sigma_b * meta["capacity_mt"] * 1e6 / 1e9
-    pi_bps = (
-        cal.pricing["k"] * cal.pricing["lambda"] * cal.pricing["p_bind"]
-        * sigma_b_usd_bn / annuity(meta["wacc"], horizon) / meta["ev_usd_bn"] * BPS
-    )
+    sigma_b_bn = sigma_b / 1e9
+    scale = cal.pricing["k"] * cal.pricing["lambda"] * ps.carbon.p_bind
+    pi_annual = scale * sigma_b / annuity(meta["wacc"], horizon)
     return {
         "shares": dict(zip(DRIVERS, shares.tolist())),
-        "sigma_b_usd_t": sigma_b,
-        "sigma_b_usd_bn": sigma_b_usd_bn,
-        "premium_bps": pi_bps,
+        "sigma_b_usd_bn": sigma_b_bn,
+        "premium_bps": pi_annual / (meta["ev_usd_bn"] * 1e9) * BPS,
+        "premium_usd_t": pi_annual / (meta["capacity_mt"] * 1e6),
     }
 
 
@@ -104,92 +155,122 @@ def main() -> int:
     frame = firm_frame(cal)
     priced = frame[frame["category"] == "priced_route"]
     stranded = frame[frame["category"] == "no_feasible_route"]
+    wacc_eq = float(priced["wacc"].mean())
 
-    firms_out, cost_risk_out = [], []
+    shares_out, levels_out, cost_risk_out = [], [], []
     for firm_id, g in priced.groupby("firm_id", sort=True):
         meta = firm_exposures(cal, g)
-        base = anatomy_for(cal, meta, cal.sigma("carbon_diffusion"))
-        reform = anatomy_for(cal, meta, cal.sigma_carbon_reform)
+        base = anatomy_for(cal, meta, reform=False)
+        reform = anatomy_for(cal, meta, reform=True)
+        meta_eq = firm_exposures(cal, g, rate_override=wacc_eq)
+        base_eq = anatomy_for(cal, meta_eq, reform=False)
+        reform_eq = anatomy_for(cal, meta_eq, reform=True)
         cost_total = float(meta["E"].sum())
-        cost_shares = dict(zip(DRIVERS, (meta["E"] / cost_total).tolist()))
-        cluster = "h2_route" if meta["route"] == "h2_dri" else "grid_route"
-        firms_out.append(
+        cluster = {
+            "h2_dri": "h2_route",
+            "e_cracker": "electric_route",
+            "ccus_cracker": "capture_route",
+            "circular_olefins": "feedstock_route",
+        }.get(meta["route"], "grid_route")
+        shares_out.append(
             {
                 "firm_id": firm_id,
                 "firm": meta["firm"],
                 "country": meta["country"],
+                "sector": meta["sector"],
                 "route": meta["route"],
                 "cluster": cluster,
                 "capacity_mt": meta["capacity_mt"],
-                "t_switch_year": meta["t_switch_year"],
+                "t_switch_year": meta["t_switch_year_cap_weighted"],
                 "residual_intensity_tco2_t": float(
                     cal.routes.set_index("route").loc[meta["route"], "residual_intensity_tco2_t"]
                 ),
                 "shares": base["shares"],
                 "shares_reform": reform["shares"],
-                "sigma_b_usd_bn": base["sigma_b_usd_bn"],
-                "sigma_b_reform_usd_bn": reform["sigma_b_usd_bn"],
+            }
+        )
+        levels_out.append(
+            {
+                "firm_id": firm_id,
+                "firm": meta["firm"],
                 "premium_bps": base["premium_bps"],
                 "premium_reform_bps": reform["premium_bps"],
+                "premium_usd_t": base["premium_usd_t"],
+                "premium_reform_usd_t": reform["premium_usd_t"],
+                "premium_bps_wacc_eq": base_eq["premium_bps"],
+                "premium_reform_bps_wacc_eq": reform_eq["premium_bps"],
+                "wacc": meta["wacc"],
+                "p_bind": meta["params"].carbon.p_bind,
+                "l_bind": meta["params"].carbon.l_bind,
+                "sigma_b_usd_bn": base["sigma_b_usd_bn"],
+                "sigma_b_reform_usd_bn": reform["sigma_b_usd_bn"],
             }
         )
         cost_risk_out.append(
             {
                 "firm_id": firm_id,
                 "firm": meta["firm"],
-                "cost_shares": cost_shares,
+                "cost_shares": dict(zip(DRIVERS, (meta["E"] / cost_total).tolist())),
                 "risk_shares": base["shares"],
-                "exposure_pv_usd_t": dict(zip(DRIVERS, meta["E"].tolist())),
+                "exposure_pv_usd_bn": dict(zip(DRIVERS, (meta["E"] / 1e9).tolist())),
             }
         )
 
     write_artifact(
         "shares_by_firm",
-        {"drivers": DRIVERS, "firms": firms_out},
+        {"drivers": DRIVERS, "firms": shares_out},
         cal.param_status,
-        uses=[],  # 조성은 proven — λ·p_bind 불진입 (Prop 1); 수준 필드는 아래 artifact
-        note="Fig 3 — driver risk shares (Euler). premium_bps 필드만 conditional (levels artifact 참조)",
+        claims={
+            "firms.shares": claim(
+                MODEL_CONDITIONAL, ANATOMY_DEPS,
+                "전환비용 불확실성의 구성 — scalar λ·p_bind에는 항등 불변(P1), "
+                "노출 모델·시나리오·전환시점·캘리브레이션에는 조건부",
+            ),
+            "shares_sum_to_one": claim(IDENTITY, [], "Euler 분해 항등"),
+        },
+        note="risk anatomy — model-conditional mix (conditional premium 필드 없음; premium_levels 분리)",
     )
     write_artifact(
         "premium_levels",
-        {
-            "firms": [
-                {k: f[k] for k in ("firm_id", "firm", "premium_bps", "premium_reform_bps",
-                                   "sigma_b_usd_bn", "sigma_b_reform_usd_bn")}
-                for f in firms_out
-            ]
-        },
+        {"wacc_eq": wacc_eq, "firms": levels_out},
         cal.param_status,
-        uses=["lambda", "p_bind", "k", "ev_usd_bn", "scenarios"],
-        note="절대 수준 (bps) — λ·p_bind·k·EV에 조건부 (§07 원장)",
+        claims={
+            "firms.premium_bps": claim(
+                SCENARIO_CONDITIONAL, LEVEL_DEPS,
+                "conditional risk charge — assumed λ·k·EV, 파생 p_bind, 시나리오에 조건부. "
+                "시장 위험프리미엄의 실증 식별이 아님",
+            ),
+        },
+        note="conditional risk charge — $/t는 EV 독립, wacc_eq는 R4 통제",
     )
     write_artifact(
         "cost_vs_risk",
         {"drivers": DRIVERS, "firms": cost_risk_out},
         cal.param_status,
-        uses=[],
-        note="Fig 4 — 평균(비용) 분해 vs 분산(리스크) 분해 (A1의 경험적 발톱)",
+        claims={
+            "firms": claim(MODEL_CONDITIONAL, ANATOMY_DEPS, "평균 분해 vs 분산 분해 (A1)"),
+        },
+        note="cost vs risk shares — 평균으로 나누면 anatomy를 잘못 말한다",
     )
     write_artifact(
         "stranding",
         {
             "assets": stranded[
-                ["asset_id", "firm_id", "firm", "country", "facility", "bf_number",
-                 "crude_steel_mt_yr", "emission_intensity_tco2_t", "route", "source"]
+                ["asset_id", "firm_id", "firm", "sector", "country", "facility", "unit_number",
+                 "capacity_mt_yr", "emission_intensity_tco2_t", "route", "source"]
             ].to_dict(orient="records"),
-            "rule": "요구 감축심도가 모든 priced route의 심도를 초과 — anatomy 제외, stranding 분리 (A4/R3)",
+            "rule": "요구 감축심도가 모든 priced route의 심도를 초과 — anatomy 제외, stranding/closure branch (A4/R3)",
         },
         cal.param_status,
-        uses=["firms_registry"],
-        note="no_feasible_route 자산 — Fig 3와 §4.6의 모순을 데이터 수준에서 차단",
+        claims={"assets": claim(MODEL_CONDITIONAL, ["firms_registry", "routes_sensitivity"])},
+        note="no_feasible_route — priced-route 배치 풀을 소비하지 않음",
     )
-    for f in firms_out:
+    for f, l in zip(shares_out, levels_out):
         print(
             f"{f['firm_id']:8s} {f['cluster']:10s} "
             + " ".join(f"{d}={f['shares'][d]:.3f}" for d in DRIVERS)
-            + f" | reform carbon={f['shares_reform']['carbon']:.3f} | π={f['premium_bps']:.1f}bps"
+            + f" | π={l['premium_bps']:.1f}bps (p_bind {l['p_bind']:.2f})"
         )
-    print(f"stranded: {list(stranded['asset_id'])}")
     return 0
 
 

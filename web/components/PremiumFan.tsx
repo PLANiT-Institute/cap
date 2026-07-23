@@ -3,11 +3,12 @@
 // mix inside the fan keeps constant proportions (Prop 1). Size = bet, mix = fact.
 import tokens from "../tokens.json";
 
-const DRIVERS = ["carbon", "h2", "elec", "capex"] as const;
+const DRIVERS = ["carbon", "h2", "elec", "feedstock", "capex"] as const;
 const LABELS: Record<string, string> = {
   carbon: "Carbon policy",
   h2: "Hydrogen",
   elec: "Electricity",
+  feedstock: "Feedstock",
   capex: "Capital",
 };
 
@@ -55,6 +56,7 @@ export default function PremiumFan({
     carbon: "#7fa3d0",
     h2: "#5cb8c9",
     elec: "#f0a24a",
+    feedstock: "#a89bd6",
     capex: "#a8b6c8",
   };
   const baseX = X(baseCase.lambda * baseCase.p_bind);
@@ -66,7 +68,7 @@ export default function PremiumFan({
         className="fan"
         viewBox={`0 0 ${W} ${H}`}
         role="img"
-        aria-label={`${firm}'s transition-risk premium fans from ${pts[0].y.toFixed(1)} to ${pts[pts.length - 1].y.toFixed(1)} basis points depending on the assumed price of risk — a ${swing}-fold swing — while the mix of drivers inside stays fixed.`}
+        aria-label={`${firm}'s conditional risk charge ranges from ${pts[0].y.toFixed(1)} to ${pts[pts.length - 1].y.toFixed(1)} basis points depending on the assumed price of risk — a ${swing}-fold swing — while the mix of drivers inside stays fixed.`}
         style={{ width: "100%", height: "auto" }}
       >
         {/* y grid */}
@@ -116,7 +118,7 @@ export default function PremiumFan({
               });
           })()}
           <text x={W - PAD.r + 10} y={Y(pts[pts.length - 1].y) - 16} fontSize="10" fill="#94a3b8">
-            mix: proven, fixed
+            mix: scalar-invariant
           </text>
         </g>
         {/* axes */}
@@ -133,9 +135,9 @@ export default function PremiumFan({
           bps
         </text>
       </svg>
-      <figcaption className="mono" style={{ fontSize: 11, color: "#64748b", marginTop: 6 }}>
-        {firm}. Level swings ×{swing} with the assumed price of risk — the mix of drivers does not
-        move (Prop 1). Every firm carries the same proof.
+      <figcaption style={{ fontSize: 13, color: "#94a3b8", marginTop: 8 }}>
+        {firm}. Level swings ×{swing} with the assumed price of risk. The mix stays fixed only in
+        this scalar λ·p_bind sensitivity, conditional on exposures and covariance (Prop 1).
       </figcaption>
     </figure>
   );

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import numpy as np
 
-DRIVERS = ["carbon", "h2", "elec", "capex"]
+DRIVERS = ["carbon", "h2", "elec", "feedstock", "capex"]
 
 
 def euler_shares(w: np.ndarray, rho: np.ndarray) -> tuple[float, np.ndarray]:
