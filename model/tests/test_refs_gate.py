@@ -17,7 +17,7 @@ BIB_SAMPLE = """\
 
 @article{merton1976,
   title = {Option pricing when underlying stock returns are discontinuous},
-  keywords = {domain:jump-risk, supports:referee-2, supports:axiom-variance-not-mean},
+  keywords = {domain:jump-risk, supports:referee-2, counters:axiom-variance-not-mean},
 }
 """
 
@@ -25,9 +25,10 @@ BIB_SAMPLE = """\
 def test_bib_supports(tmp_path: Path) -> None:
     bib = tmp_path / "refs.bib"
     bib.write_text(BIB_SAMPLE)
-    supports, deferred = check_anchors.bib_supports(bib)
+    supports, counters, deferred = check_anchors.bib_supports(bib)
 
-    assert supports == {"referee-2", "axiom-variance-not-mean"}
+    assert supports == {"referee-2"}
+    assert counters == {"axiom-variance-not-mean"}, "반박 문헌은 지지로 세지 않는다"
     assert "referee-9" not in supports, "주석 속 예시가 지지로 잡히면 안 된다"
     assert deferred == {"axiom-linear-cost", "referee-4", "referee-6"}
     assert "axiom-uniform-lambda" not in deferred, "deferred: 로 시작하지 않는 주석은 무시"
@@ -43,4 +44,4 @@ def test_gate_excludes_section_header() -> None:
 
 
 def test_missing_bib_is_empty(tmp_path: Path) -> None:
-    assert check_anchors.bib_supports(tmp_path / "nope.bib") == (set(), set())
+    assert check_anchors.bib_supports(tmp_path / "nope.bib") == (set(), set(), set())
