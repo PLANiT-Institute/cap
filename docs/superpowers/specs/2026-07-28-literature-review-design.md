@@ -36,9 +36,12 @@ References/INDEX.md      # 도메인별 색인
 `refs.bib` 첫 줄에 유예 목록을 둔다:
 
 ```
-% deferred: axiom-linear-cost, axiom-route-sensitivity, claim-separately-contractible,
-%           referee-3, referee-4, referee-6
+% deferred: axiom-linear-cost, axiom-route-sensitivity, claim-separately-contractible
+% deferred: referee-3, referee-4, referee-6
 ```
+
+여러 줄로 나눌 수 있으나 각 줄이 `deferred:`로 시작해야 한다. 이어쓰기를 인정하지
+않는 이유는 파서가 무관한 주석을 유예로 삼키면 게이트가 조용히 헐거워지기 때문이다.
 
 이번 회차에서 조사하지 않기로 한 앵커. 유예가 침묵이 아니라 파일에 남는다.
 
