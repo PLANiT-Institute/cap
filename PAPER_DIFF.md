@@ -73,3 +73,93 @@ PLAN 지시: "불일치는 버그가 아니라 발견일 수 있으니 조용히
 **모델 발견 2건**:
 1. H₂ CfD 단독(계약가 $3/kg, coverage 70%·tenor 15y)은 τ*를 못 앞당김 — blended 수소가로는 route가 여전히 사적 적자. **조합(package)만 τ*·gap 동시 개선** (POSCO Δτ* −0.4y, Δgap −28Mt; NIPPON −2.2y, −26Mt).
 2. carbon reform은 gap을 닫으면서 **risk charge를 올림** (가격되는 탄소 부담 증가) — timing 수단 ≠ risk 절감 수단.
+
+---
+
+## 갱신 4 (2026-07-28 — 문헌조사 1차)
+
+`theory/refs.bib` 구축(82편, 5개 도메인) 과정에서 나온 **문헌 대조 발견**. 규칙 8대로
+조용히 맞추지 않고 기록한다. 상세: `docs/superpowers/specs/2026-07-28-literature-review-design.md`.
+
+### D1. A5(λ 균일성)를 지지하는 문헌이 0편 — 반대 증거만 7편
+
+5개 도메인 조사 어디에서도 driver 간 **단일 λ**를 지지하는 문헌이 나오지 않았다. 반대로
+Chen–Roll–Ross(1986), Bolton–Kacperczyk(2021, 2023), Adrian–Crump–Moench(2015),
+Görgen 외(2021), Kan–Zhang(1999), Ready(2018)가 팩터별 위험가격의 차이를 보고한다.
+Ready(2018)는 성분별 λ의 **부호가 반대**인 경우를 보고하는데, 이 경우 share 불변성의
+실질적 의미가 사라진다.
+
+`refs.bib`에 `% unsupported: axiom-uniform-lambda`로 선언했다 — 미조사(deferred)가 아니라
+**조사 결과**다. `make check-anchors`가 매 실행마다 이 사실을 출력한다.
+
+함의: R1은 "OPEN"이 아니라 **문헌이 비판 쪽에 서 있는** 상태다. A5의 status를 config에서
+`assumed`로 유지하는 것은 정당하나, LEDGER의 서술은 "미검증"이 아니라 "반증 우세"로
+바뀌어야 한다. λ_k 감응도 모듈(`outputs/lambda_k_sensitivity.json`)의 최대 share 이동이
+이제 부수 robustness가 아니라 **주 결과**로 승격될 후보.
+
+### D2. 방법론적 novelty 주장 falsified — P1은 기여가 아니다
+
+`09_contribution.md`의 "방법론적 기여는 P1"은 방어 불가능하다. 기후 맥락에서 Euler
+분산분해를 이미 쓴 선행연구: Roncalli–Weisang(2016, QF)이 **리스크 팩터**에 대한 Euler
+분산분해를 정식화했고, Le Guenedal 외(2021, JPM)는 포트폴리오 분산을 탄소 리스크 팩터
+기여로 분해한다. Le Guenedal–Roncalli(2022), Desnos 외(2023), Barnett–Brock–Hansen(2020),
+Battiston 외(2017)도 인접하다.
+
+살아남는 기여는 **방법이 아니라 대상**: Euler 분산분해를 수익률 포트폴리오가 아니라
+자산의 route-conditional 엔지니어링 비용함수 B=aᵀX에 적용하고, 감응도 벡터 a를 기업이
+보유한 기술 포지션에서 bottom-up으로 구성한 것. `09_contribution.md`가 이미 쓴
+"발명이 아니라 조합"이 옳은 자기서술이고, P1을 방법론적 기여로 부르는 문장이 그것과
+모순됐다. §09 수정 반영됨.
+
+### D3. R1 방어 초안이 성립하지 않음 — 가설 불일치
+
+Kalkbrener(2005)·Denault(2001)의 Euler 배분 **유일성 정리는 coherent 위험측도**(단조성
+포함)를 전제한다. **분산은 단조 위험측도가 아니다.** 따라서 "두 독립 공리계가 같은 배분
+규칙으로 수렴하므로 항등식이 trivial하지 않다"는 방어는 CAP의 측도에 그대로 적용되지
+않는다 (Artzner 외 1999).
+
+추가로 Tasche(2008): Euler 배분의 정당화는 **RORAC 정합성**이라는 특정 목적함수 하에서만
+성립한다. CAP의 목적은 RORAC이 아니다.
+
+### D4. RC_k < 0 가능성 — "조성" 서술 자체의 전제
+
+driver 간 공분산이 음이면 RC_k < 0이 되어 s_k가 [0,1] 밖으로 나간다. scrap-EAF route에서
+전력↔탄소 공분산이 음일 개연성이 실재한다. "탄소 C%, 수소 H%…"라는 조성 서술 전체가
+여기 걸려 있다. **검증 테스트 미작성 — 다음 회차 최우선.**
+
+### D5. 미답변 반론 2건 (referee note 신설 후보)
+
+- **팩터 회전 비불변성** (Meucci 2009; Roncalli–Weisang 2016): Euler 리스크기여는 팩터
+  좌표계 선택에 불변이 아니다. CAP의 5개 driver는 강하게 상관돼 있다. 즉 P1이 자랑하는
+  "λ에 불변"보다 **driver 정의 자유도가 훨씬 큰 취약점**인데 R1–R6 어디에도 없다.
+- **과점 하 옵션행사 게임** (Grenadier 2002): CAP은 τ*를 단독 최적화로 푼다. 한·일 철강은
+  5사 과점이고 route 선택이 공개된다. 경쟁은 대기 프리미엄을 잠식한다.
+
+### D6. 식별 공백 — 자국 정책 채널 vs 글로벌 기후뉴스
+
+`claim-policy-repricing`의 지지 문헌이 사실상 얇다. Engle 외(2020)는 기후위험 뉴스가
+**글로벌 뉴스 팩터**로 추출·헤지된다고 본다. 탄소 share를 "**자국** 정책 repricing"으로
+읽으려면 두 채널의 분리 식별이 필요한데 현재 전략이 없다 — 인용 부족이 아니라 식별 부족.
+Pástor–Stambaugh–Taylor(2022)는 실현 brown 초과수익이 기대수익(리스크 프리미엄)이 아니라
+기후우려의 예상 밖 상승에서 온다고 본다.
+
+또한 **K-ETS/CBAM 한국 철강 대상 이벤트스터디가 문헌에 없다.** K-ETS는 유동성이 낮고
+무상할당 비중이 높아 EU ETS 탄력성(Hengge 외 2023)을 그대로 이식할 수 없다.
+
+### D7. 점프 — variance share ≠ premium share
+
+Bollerslev–Todorov(2011), Pan(2002), Broadie 외(2009): 점프·꼬리 프리미엄은 총 위험프리미엄의
+크고 독립적인 부분이다. CAP의 분산 기반 share는 점프 성분의 경제적 비중을 **과소평가**할
+수 있다. λ_jump / λ_diffusion 분리 전까지 "variance share"를 "premium share"로 읽으면 안 된다.
+Meyer(1987)는 더 근본적이다 — 평균-분산이 기대효용과 정합적인 것은 location-scale family
+내부뿐인데, R2 대응으로 점프를 도입한 순간 CAP은 그 조건을 스스로 깼다.
+
+Ilhan–Sautner–Vilkov(2021)가 탄소 꼬리위험 가격의 유일한 직접 추정치이며, λ_jump 밴드의
+실증 앵커 후보다. Kelly–Jiang(2014)은 옵션시장 없이 횡단면만으로 꼬리위험을 추정하는
+방법으로, "개별 철강사 옵션시장 부재"라는 제약의 우회로다.
+
+### 검증 상태 (중요)
+
+82편의 인용 수치는 **초록·2차 요약 기반**이다. 조사 에이전트 5개 전부 원문 PDF 접근
+실패를 자진 신고했다. 심층 노트 작성 시 원문 대조 필요. 현재 `refs.bib`는 문헌 지도이지
+검증된 인용 목록이 아니다.

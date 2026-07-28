@@ -4,10 +4,17 @@
 %   keywords = {domain:jump-risk, supports:referee-2},
 % make check-anchors가 supports 대상의 실재와, 공리·주장·referee note의 지지 여부를 검증한다.
 %
-% 이번 회차에서 조사하지 않는 anchor는 아래에 명시한다 (줄마다 'deferred:'로 시작).
 % 반박 문헌은 counters:<anchor>로 단다 — 게이트를 채우지 않되 anchor 실재는 검증된다.
+% supports:referee-N은 방향을 뜻하지 않는다: 그 note를 다루는 데 쓰이는 문헌이라는 뜻이며,
+% 비판을 지지하는지 대응을 지지하는지는 References/<citekey>.md 노트에 적는다.
+%
+% 이번 회차에서 조사하지 않은 anchor (줄마다 'deferred:'로 시작):
 % deferred: axiom-linear-cost, axiom-route-sensitivity, claim-separately-contractible
-% deferred: referee-3, referee-4, referee-6
+% deferred: referee-3, referee-4
+%
+% 조사했으나 지지 문헌이 한 편도 없는 anchor. 미완이 아니라 조사 결과다.
+% A5(λ 균일성)를 직접 지지하는 문헌은 5개 도메인 어디에도 없었고, 반대 방향 증거만 7편 나왔다.
+% unsupported: axiom-uniform-lambda
 
 @article{adriancrumpmoench2015,
   author  = {Adrian, Tobias and Crump, Richard K. and Moench, Emanuel},
@@ -18,7 +25,7 @@
   number  = {2},
   pages   = {211--244},
   note    = {Federal Reserve Bank of New York Staff Report No. 493},
-  keywords = {domain:sdf-lambda, supports:axiom-uniform-lambda}
+  keywords = {domain:sdf-lambda, supports:referee-1, counters:axiom-uniform-lambda}
 }
 
 @article{angchenxing2006,
@@ -51,17 +58,17 @@
   number  = {1},
   pages   = {75--106},
   year    = {2024},
-  keywords = {domain:carbon-premium, supports:purpose}
+  keywords = {domain:carbon-premium, counters:purpose}
 }
 
-@article{atilganetal2023,
+@techreport{atilganetal2023,
   author  = {Atilgan, Yigit and Demirtas, K. Ozgur and Edmans, Alex and Gunaydin, A. Doruk},
   title   = {Does the Carbon Premium Reflect Risk or Mispricing?},
-  journal = {ECGI Finance Working Paper},
+  institution = {ECGI Finance Working Paper},
   number  = {938/2023},
   year    = {2023},
   note    = {SSRN 4573622; CEPR DP18594},
-  keywords = {domain:carbon-premium, supports:purpose}
+  keywords = {domain:carbon-premium, counters:purpose}
 }
 
 @article{balicakiciwhitelaw2011,
@@ -94,7 +101,7 @@
   volume  = {9},
   number  = {1},
   pages   = {69--107},
-  keywords = {domain:jump-risk, supports:axiom-variance-not-mean, supports:referee-2}
+  keywords = {domain:jump-risk, supports:referee-2, counters:axiom-variance-not-mean}
 }
 
 @article{bollerslevtauchenzhou2009,
@@ -116,7 +123,7 @@
   volume  = {66},
   number  = {6},
   pages   = {2165--2211},
-  keywords = {domain:jump-risk, supports:axiom-variance-not-mean, supports:referee-2}
+  keywords = {domain:jump-risk, supports:referee-2, counters:axiom-variance-not-mean}
 }
 
 @article{boltonkacperczyk2021,
@@ -128,7 +135,7 @@
   pages   = {517--549},
   year    = {2021},
   note    = {NBER Working Paper No. 26968},
-  keywords = {domain:carbon-premium, domain:sdf-lambda, supports:axiom-uniform-lambda, supports:claim-policy-repricing, supports:purpose, supports:referee-1}
+  keywords = {domain:carbon-premium, domain:sdf-lambda, supports:purpose, supports:claim-policy-repricing, supports:referee-1, counters:axiom-uniform-lambda}
 }
 
 @article{boltonkacperczyk2023,
@@ -140,7 +147,7 @@
   pages   = {3677--3754},
   year    = {2023},
   note    = {NBER Working Paper No. 28510},
-  keywords = {domain:carbon-premium, domain:sdf-lambda, supports:axiom-uniform-lambda, supports:purpose, supports:referee-1}
+  keywords = {domain:carbon-premium, domain:sdf-lambda, supports:purpose, supports:referee-1, counters:axiom-uniform-lambda}
 }
 
 @article{broadiechernovjohannes2009,
@@ -162,7 +169,7 @@
   volume  = {59},
   number  = {3},
   pages   = {383--403},
-  keywords = {domain:sdf-lambda, supports:axiom-uniform-lambda, supports:referee-1}
+  keywords = {domain:sdf-lambda, supports:referee-1, counters:axiom-uniform-lambda}
 }
 
 @article{covalshumway2001,
@@ -257,7 +264,7 @@
   pages   = {77--93},
   year    = {2021},
   note    = {SSRN 2930897},
-  keywords = {domain:carbon-premium, domain:sdf-lambda, supports:axiom-uniform-lambda, supports:purpose, supports:referee-1}
+  keywords = {domain:carbon-premium, domain:sdf-lambda, supports:referee-1, counters:axiom-uniform-lambda, counters:purpose}
 }
 
 @article{guo2005,
@@ -271,10 +278,10 @@
   keywords = {domain:real-options, supports:referee-5}
 }
 
-@article{hengge2023,
+@techreport{hengge2023,
   author  = {Hengge, Martina and Panizza, Ugo and Varghese, Richard},
   title   = {Carbon Policy Surprises and Stock Returns: Signals from Financial Markets},
-  journal = {IMF Working Paper},
+  institution = {IMF Working Paper},
   number  = {2023/013},
   year    = {2023},
   keywords = {domain:carbon-premium, supports:carbon-jump, supports:claim-policy-repricing}
@@ -299,7 +306,7 @@
   volume  = {54},
   number  = {1},
   pages   = {103--127},
-  keywords = {domain:sdf-lambda, supports:axiom-uniform-lambda, supports:referee-1}
+  keywords = {domain:sdf-lambda, supports:referee-1, counters:axiom-uniform-lambda}
 }
 
 @article{leecho2021,
@@ -310,13 +317,13 @@
   number  = {22},
   pages   = {12166},
   year    = {2021},
-  keywords = {domain:carbon-premium, supports:claim-policy-repricing, supports:purpose}
+  keywords = {domain:carbon-premium, counters:claim-policy-repricing, counters:purpose}
 }
 
-@techreport{litterman1996,
+@article{litterman1996,
   author      = {Litterman, Robert},
   title       = {Hot Spots and Hedges},
-  institution = {Goldman Sachs / The Journal of Portfolio Management},
+  journal = {The Journal of Portfolio Management},
   year        = {1996},
   volume      = {23},
   number      = {5},
@@ -332,7 +339,7 @@
   volume  = {14},
   number  = {1},
   pages   = {113--147},
-  keywords = {domain:real-options, supports:wedge}
+  keywords = {domain:real-options, domain:method}
 }
 
 @article{margrabe1978,
@@ -354,7 +361,7 @@
   volume  = {7},
   number  = {1},
   pages   = {77--91},
-  keywords = {domain:variance-premium, supports:axiom-variance-not-mean}
+  keywords = {domain:variance-premium, supports:variance-premium}
 }
 
 @article{mcdonald1986,
@@ -386,7 +393,7 @@
   volume  = {3},
   number  = {1-2},
   pages   = {125--144},
-  keywords = {domain:jump-risk, supports:axiom-variance-not-mean, supports:referee-2}
+  keywords = {domain:jump-risk, supports:referee-2, counters:axiom-variance-not-mean}
 }
 
 @article{merton1987,
@@ -453,7 +460,7 @@
   number  = {1},
   pages   = {155--176},
   doi     = {10.1093/rof/rfw071},
-  keywords = {domain:sdf-lambda, supports:axiom-uniform-lambda, supports:proposition1}
+  keywords = {domain:sdf-lambda, supports:referee-1, counters:axiom-uniform-lambda, counters:proposition1}
 }
 
 @article{rothschildstiglitz1970,
@@ -464,10 +471,10 @@
   volume  = {2},
   number  = {3},
   pages   = {225--243},
-  keywords = {domain:variance-premium, supports:axiom-variance-not-mean}
+  keywords = {domain:variance-premium, counters:axiom-variance-not-mean}
 }
 
-@article{sanin2021,
+@article{senvonschickfus2020,
   author  = {Sen, Suphi and von Schickfus, Marie-Theres},
   title   = {Climate Policy, Stranded Assets, and Investors' Expectations},
   journal = {Journal of Environmental Economics and Management},
@@ -494,4 +501,300 @@
   pages   = {102258},
   year    = {2020},
   keywords = {domain:carbon-premium, supports:axiom-budget-binds, supports:carbon-jump}
+}
+
+@article{abadiechamorro2008,
+  author  = {Abadie, Luis M. and Chamorro, Jos\'e M.},
+  title   = {European {CO2} Prices and Carbon Capture Investments},
+  journal = {Energy Economics},
+  year    = {2008}, volume = {30}, number = {6},
+  keywords = {domain:real-options, supports:carbon-jump, supports:wedge}
+}
+
+@article{artzneretal1999,
+  author  = {Artzner, Philippe and Delbaen, Freddy and Eber, Jean-Marc and Heath, David},
+  title   = {Coherent Measures of Risk},
+  journal = {Mathematical Finance},
+  year    = {1999}, volume = {9}, number = {3}, pages = {203--228},
+  keywords = {domain:variance-premium, counters:proposition1, counters:referee-1}
+}
+
+@techreport{atanasovaschwartz2020,
+  author      = {Atanasova, Christina and Schwartz, Eduardo S.},
+  title       = {Stranded Fossil Fuel Reserves and Firm Value},
+  institution = {National Bureau of Economic Research},
+  year        = {2020}, number = {26497}, type = {NBER Working Paper},
+  keywords = {domain:carbon-premium, counters:axiom-budget-binds}
+}
+
+@article{barnettbrockhansen2020,
+  author  = {Barnett, Michael and Brock, William and Hansen, Lars Peter},
+  title   = {Pricing Uncertainty Induced by Climate Change},
+  journal = {The Review of Financial Studies},
+  year    = {2020}, volume = {33}, number = {3}, pages = {1024--1066},
+  keywords = {domain:sdf-lambda, counters:axiom-variance-not-mean, counters:contribution}
+}
+
+@article{bartramhoukim2022,
+  author  = {Bartram, S\"ohnke M. and Hou, Kewei and Kim, Sehoon},
+  title   = {Real Effects of Climate Policy: Financial Constraints and Spillovers},
+  journal = {Journal of Financial Economics},
+  year    = {2022}, volume = {143}, number = {2}, pages = {668--696},
+  keywords = {domain:carbon-premium, counters:axiom-budget-binds, counters:claim-policy-repricing}
+}
+
+@article{battistonetal2017,
+  author  = {Battiston, Stefano and Mandel, Antoine and Monasterolo, Irene and Sch\"utze, Franziska and Visentin, Gabriele},
+  title   = {A Climate Stress-Test of the Financial System},
+  journal = {Nature Climate Change},
+  year    = {2017}, volume = {7}, number = {4}, pages = {283--288},
+  keywords = {domain:carbon-premium, counters:contribution, supports:purpose}
+}
+
+@article{brennanschwartz1985,
+  author  = {Brennan, Michael J. and Schwartz, Eduardo S.},
+  title   = {Evaluating Natural Resource Investments},
+  journal = {The Journal of Business},
+  year    = {1985}, volume = {58}, number = {2}, pages = {135--157},
+  keywords = {domain:real-options, supports:claim-wedge-conjunction, supports:wedge}
+}
+
+@article{carrwu2009,
+  author  = {Carr, Peter and Wu, Liuren},
+  title   = {Variance Risk Premiums},
+  journal = {The Review of Financial Studies},
+  year    = {2009}, volume = {22}, number = {3}, pages = {1311--1341},
+  keywords = {domain:variance-premium, supports:variance-premium}
+}
+
+@techreport{desnosetal2023,
+  author      = {Desnos, Baptiste and Le Guenedal, Th\'eo and Morais, Philippe and Roncalli, Thierry},
+  title       = {From Climate Stress Testing to Climate Value-at-Risk: A Stochastic Approach},
+  institution = {SSRN Working Paper}, year = {2023}, number = {4497124},
+  keywords = {domain:variance-premium, counters:contribution}
+}
+
+@article{duffiepansingleton2000,
+  author  = {Duffie, Darrell and Pan, Jun and Singleton, Kenneth},
+  title   = {Transform Analysis and Asset Pricing for Affine Jump-Diffusions},
+  journal = {Econometrica},
+  year    = {2000}, volume = {68}, number = {6}, pages = {1343--1376},
+  keywords = {domain:jump-risk, supports:carbon-jump}
+}
+
+@article{englegigliokellyleestroebel2020,
+  author  = {Engle, Robert F. and Giglio, Stefano and Kelly, Bryan and Lee, Heebum and Stroebel, Johannes},
+  title   = {Hedging Climate Change News},
+  journal = {The Review of Financial Studies},
+  year    = {2020}, volume = {33}, number = {3}, pages = {1184--1216},
+  keywords = {domain:carbon-premium, counters:claim-policy-repricing, supports:contracts-identification}
+}
+
+@article{gabaix2012,
+  author  = {Gabaix, Xavier},
+  title   = {Variable Rare Disasters: An Exactly Solved Framework for Ten Puzzles in Macro-Finance},
+  journal = {Quarterly Journal of Economics},
+  year    = {2012}, volume = {127}, number = {2}, pages = {645--700},
+  keywords = {domain:jump-risk, supports:carbon-jump, supports:referee-2}
+}
+
+@article{gourierouxlaurentscaillet2000,
+  author  = {Gouri\'eroux, Christian and Laurent, Jean-Paul and Scaillet, Olivier},
+  title   = {Sensitivity Analysis of Values at Risk},
+  journal = {Journal of Empirical Finance},
+  year    = {2000}, volume = {7}, number = {3-4}, pages = {225--245},
+  keywords = {domain:variance-premium, counters:claim-lambda-invariance}
+}
+
+@article{grenadier2002,
+  author  = {Grenadier, Steven R.},
+  title   = {Option Exercise Games: An Application to the Equilibrium Investment Strategies of Firms},
+  journal = {The Review of Financial Studies},
+  year    = {2002}, volume = {15}, number = {3}, pages = {691--721},
+  keywords = {domain:real-options, counters:claim-wedge-conjunction, counters:wedge}
+}
+
+@article{hansenjagannathan1991,
+  author  = {Hansen, Lars Peter and Jagannathan, Ravi},
+  title   = {Implications of Security Market Data for Models of Dynamic Economies},
+  journal = {Journal of Political Economy},
+  year    = {1991}, volume = {99}, number = {2}, pages = {225--262},
+  keywords = {domain:sdf-lambda, supports:referee-1}
+}
+
+@article{harveysiddique2000,
+  author  = {Harvey, Campbell R. and Siddique, Akhtar},
+  title   = {Conditional Skewness in Asset Pricing Tests},
+  journal = {The Journal of Finance},
+  year    = {2000}, volume = {55}, number = {3}, pages = {1263--1295},
+  keywords = {domain:variance-premium, counters:axiom-variance-not-mean}
+}
+
+@article{honglixu2019,
+  author  = {Hong, Harrison and Li, Frank Weikai and Xu, Jiangmin},
+  title   = {Climate Risks and Market Efficiency},
+  journal = {Journal of Econometrics},
+  year    = {2019}, volume = {208}, number = {1}, pages = {265--281},
+  keywords = {domain:carbon-premium, counters:claim-policy-repricing}
+}
+
+@article{ilhansautnervilkov2021,
+  author  = {Ilhan, Emirhan and Sautner, Zacharias and Vilkov, Grigory},
+  title   = {Carbon Tail Risk},
+  journal = {The Review of Financial Studies},
+  year    = {2021}, volume = {34}, number = {3}, pages = {1540--1571},
+  keywords = {domain:jump-risk, counters:axiom-uniform-lambda, counters:axiom-variance-not-mean, supports:carbon-jump}
+}
+
+@article{kellogg2014,
+  author  = {Kellogg, Ryan},
+  title   = {The Effect of Uncertainty on Investment: Evidence from Texas Oil Drilling},
+  journal = {American Economic Review},
+  year    = {2014}, volume = {104}, number = {6}, pages = {1698--1734},
+  keywords = {domain:real-options, supports:claim-wedge-conjunction, supports:wedge}
+}
+
+@article{kellyjiang2014,
+  author  = {Kelly, Bryan and Jiang, Hao},
+  title   = {Tail Risk and Asset Prices},
+  journal = {The Review of Financial Studies},
+  year    = {2014}, volume = {27}, number = {10}, pages = {2841--2871},
+  keywords = {domain:jump-risk, supports:carbon-jump, supports:referee-2}
+}
+
+@article{kruegersautnerstarks2020,
+  author  = {Krueger, Philipp and Sautner, Zacharias and Starks, Laura T.},
+  title   = {The Importance of Climate Risks for Institutional Investors},
+  journal = {The Review of Financial Studies},
+  year    = {2020}, volume = {33}, number = {3}, pages = {1067--1111},
+  keywords = {domain:carbon-premium, supports:purpose}
+}
+
+@article{leguenedaletal2021,
+  author  = {Le Guenedal, Th\'eo and Lepetit, Frederic and Roncalli, Thierry and Sekine, Takaya},
+  title   = {The Market Measure of Carbon Risk and Its Impact on the Minimum-Variance Portfolio},
+  journal = {The Journal of Portfolio Management},
+  year    = {2021},
+  note    = {SSRN 3772707 — volume/issue 확인 필요},
+  keywords = {domain:variance-premium, counters:contribution}
+}
+
+@techreport{leguenedalroncalli2022,
+  author      = {Le Guenedal, Th\'eo and Roncalli, Thierry},
+  title       = {Portfolio Construction with Climate Risk Measures},
+  institution = {SSRN Working Paper}, year = {2022}, number = {3999971},
+  keywords = {domain:variance-premium, counters:contribution}
+}
+
+@article{lewellennagelshanken2010,
+  author  = {Lewellen, Jonathan and Nagel, Stefan and Shanken, Jay},
+  title   = {A Skeptical Appraisal of Asset Pricing Tests},
+  journal = {Journal of Financial Economics},
+  year    = {2010}, volume = {96}, number = {2}, pages = {175--194},
+  keywords = {domain:sdf-lambda, counters:axiom-uniform-lambda, counters:referee-1}
+}
+
+@article{meucci2009,
+  author  = {Meucci, Attilio},
+  title   = {Managing Diversification},
+  journal = {Risk},
+  year    = {2009}, volume = {22}, number = {5}, pages = {74--79},
+  keywords = {domain:variance-premium, counters:claim-lambda-invariance}
+}
+
+@article{meyer1987,
+  author  = {Meyer, Jack},
+  title   = {Two-Moment Decision Models and Expected Utility Maximization},
+  journal = {American Economic Review},
+  year    = {1987}, volume = {77}, number = {3}, pages = {421--430},
+  keywords = {domain:variance-premium, counters:axiom-variance-not-mean}
+}
+
+@article{pastorstambaughtaylor2021,
+  author  = {P\'astor, \v{L}ubo\v{s} and Stambaugh, Robert F. and Taylor, Lucian A.},
+  title   = {Sustainable Investing in Equilibrium},
+  journal = {Journal of Financial Economics},
+  year    = {2021}, volume = {142}, number = {2}, pages = {550--571},
+  keywords = {domain:carbon-premium, counters:claim-policy-repricing, counters:purpose}
+}
+
+@article{pastorstambaughtaylor2022,
+  author  = {P\'astor, \v{L}ubo\v{s} and Stambaugh, Robert F. and Taylor, Lucian A.},
+  title   = {Dissecting Green Returns},
+  journal = {Journal of Financial Economics},
+  year    = {2022}, volume = {146}, number = {2}, pages = {403--424},
+  keywords = {domain:carbon-premium, counters:claim-policy-repricing, counters:purpose}
+}
+
+@article{roncalliweisang2016,
+  author  = {Roncalli, Thierry and Weisang, Guillaume},
+  title   = {Risk Parity Portfolios with Risk Factors},
+  journal = {Quantitative Finance},
+  year    = {2016}, volume = {16}, number = {3}, pages = {377--388},
+  keywords = {domain:variance-premium, counters:claim-lambda-invariance, counters:contribution}
+}
+
+@article{sautneretal2023,
+  author  = {Sautner, Zacharias and van Lent, Laurence and Vilkov, Grigory and Zhang, Ruishen},
+  title   = {Firm-Level Climate Change Exposure},
+  journal = {The Journal of Finance},
+  year    = {2023}, volume = {78}, number = {3}, pages = {1449--1498},
+  keywords = {domain:carbon-premium, supports:purpose, supports:referee-6}
+}
+
+@article{schwartzsmith2000,
+  author  = {Schwartz, Eduardo S. and Smith, James E.},
+  title   = {Short-Term Variations and Long-Term Dynamics in Commodity Prices},
+  journal = {Management Science},
+  year    = {2000}, volume = {46}, number = {7}, pages = {893--911},
+  keywords = {domain:real-options, supports:wedge}
+}
+
+@techreport{seltzerstarkszhu2022,
+  author      = {Seltzer, Lee and Starks, Laura T. and Zhu, Qifei},
+  title       = {Climate Regulatory Risk and Corporate Bonds},
+  institution = {National Bureau of Economic Research},
+  year        = {2022}, number = {29994}, type = {NBER Working Paper},
+  keywords = {domain:carbon-premium, supports:claim-policy-repricing, supports:purpose}
+}
+
+@article{sinn2008,
+  author  = {Sinn, Hans-Werner},
+  title   = {Public Policies against Global Warming: A Supply Side Approach},
+  journal = {International Tax and Public Finance},
+  year    = {2008}, volume = {15}, number = {4}, pages = {360--394},
+  keywords = {domain:carbon-premium, counters:axiom-budget-binds}
+}
+
+@article{stentoft2004,
+  author  = {Stentoft, Lars},
+  title   = {Convergence of the Least Squares Monte Carlo Approach to American Option Valuation},
+  journal = {Management Science},
+  year    = {2004}, volume = {50}, number = {9}, pages = {1193--1203},
+  keywords = {domain:real-options, supports:wedge}
+}
+
+@incollection{tasche2008,
+  author    = {Tasche, Dirk},
+  title     = {Capital Allocation to Business Units and Sub-Portfolios: the Euler Principle},
+  booktitle = {Pillar II in the New Basel Accord: The Challenge of Economic Capital},
+  publisher = {Risk Books}, year = {2008}, pages = {423--453},
+  note      = {arXiv:0708.2542},
+  keywords = {domain:variance-premium, counters:claim-lambda-invariance, supports:proposition1}
+}
+
+@article{wachter2013,
+  author  = {Wachter, Jessica A.},
+  title   = {Can Time-Varying Risk of Rare Disasters Explain Aggregate Stock Market Volatility?},
+  journal = {The Journal of Finance},
+  year    = {2013}, volume = {68}, number = {3}, pages = {987--1035},
+  keywords = {domain:jump-risk, supports:carbon-jump, supports:referee-2}
+}
+
+@article{zerbib2022,
+  author  = {Zerbib, Olivier David},
+  title   = {A Sustainable Capital Asset Pricing Model (S-CAPM): Evidence from Environmental Integration and Sin Stock Exclusion},
+  journal = {Review of Finance},
+  year    = {2022}, volume = {26}, number = {6}, pages = {1345--1388},
+  keywords = {domain:sdf-lambda, counters:axiom-uniform-lambda}
 }

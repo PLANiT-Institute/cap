@@ -55,36 +55,43 @@ def config_refs() -> set[str]:
     return refs
 
 
-def bib_supports(bib: Path = BIB) -> tuple[set[str], set[str], set[str]]:
-    """(지지 anchor, 반박 anchor, 유예 anchor).
+def bib_supports(bib: Path = BIB) -> tuple[set[str], set[str], set[str], set[str]]:
+    """(지지 anchor, 반박 anchor, 유예 anchor, 무지지 anchor).
 
-    유예는 '% deferred: a, b, c' 줄에 적는다. 여러 줄 가능하며 각 줄이
-    'deferred:'로 시작해야 한다 — 이어쓰기는 인정하지 않는다.
+    지시어는 '% deferred: a, b' / '% unsupported: c' 줄에 적는다. 여러 줄 가능하며
+    각 줄이 지시어로 시작해야 한다 — 이어쓰기는 인정하지 않는다.
+
+    deferred = 이번 회차에 조사하지 않았다. unsupported = 조사했고 지지 문헌이 없다.
+    둘을 구분하는 이유: 후자는 조사 결과이지 미완이 아니다.
     """
-    supports, counters, deferred = set(), set(), set()
+    directives = {"deferred:": set(), "unsupported:": set()}
+    supports, counters = set(), set()
     if not bib.exists():
-        return supports, counters, deferred
+        return supports, counters, directives["deferred:"], directives["unsupported:"]
     for line in bib.read_text().splitlines():
         if not line.startswith("%"):  # 주석의 예시가 실제 지지로 잡히지 않게
             supports |= {m.group(1) for m in SUPPORTS.finditer(line)}
             counters |= {m.group(1) for m in COUNTERS.finditer(line)}
             continue
         body = line.lstrip("%").strip()
-        if body.startswith("deferred:"):
-            deferred |= set(ANCHOR_WORD.findall(body[len("deferred:") :]))
-    return supports, counters, deferred
+        for name, acc in directives.items():
+            if body.startswith(name):
+                acc |= set(ANCHOR_WORD.findall(body[len(name) :]))
+    return supports, counters, directives["deferred:"], directives["unsupported:"]
 
 
 def main() -> int:
     anchors, axioms = theory_anchors()
     refs = config_refs()
-    supports, counters, deferred = bib_supports()
+    supports, counters, deferred, unsupported = bib_supports()
     missing = sorted(r for r in refs if r not in anchors)
     orphans = sorted(a for a in axioms if a not in refs)
     dangling = sorted((supports | counters) - anchors)
-    stale_deferred = sorted(d for d in deferred if d not in anchors)
+    stale_deferred = sorted((deferred | unsupported) - anchors)
     gated = {a for a in anchors if GATED.match(a)}
-    uncited = sorted(gated - supports - deferred)
+    uncited = sorted(gated - supports - deferred - unsupported)
+    # 'unsupported' 선언은 반박 문헌을 실제로 걸어둔 anchor에만 허용한다 — 조용한 탈출구 방지
+    hollow = sorted(unsupported - counters)
     ok = True
     if missing:
         ok = False
@@ -101,9 +108,14 @@ def main() -> int:
         print("FAIL — refs.bib이 참조하지만 theory에 없는 anchor:", file=sys.stderr)
         for a in dangling:
             print(f"  #{a}", file=sys.stderr)
+    if hollow:
+        ok = False
+        print("FAIL — unsupported로 선언했으나 반박 문헌(counters:)도 없는 anchor:", file=sys.stderr)
+        for a in hollow:
+            print(f"  #{a} — 조사했다면 반박 문헌이라도 남아야 한다", file=sys.stderr)
     if stale_deferred:
         ok = False
-        print("FAIL — refs.bib의 deferred 목록에 있지만 theory에 없는 anchor:", file=sys.stderr)
+        print("FAIL — refs.bib의 deferred/unsupported 목록에 있지만 theory에 없는 anchor:", file=sys.stderr)
         for a in stale_deferred:
             print(f"  #{a}", file=sys.stderr)
     if uncited:
@@ -112,7 +124,11 @@ def main() -> int:
         for a in uncited:
             print(f"  #{a}", file=sys.stderr)
         print("  (조사 후 refs.bib에 supports:<anchor>를 달거나 deferred에 명시할 것)", file=sys.stderr)
-    if redundant := sorted(deferred & supports):
+    if unsupported:
+        print("NOTE — 조사했으나 지지 문헌이 없는 anchor (반박 문헌만 존재):")
+        for a in sorted(unsupported):
+            print(f"  #{a}")
+    if redundant := sorted((deferred | unsupported) & supports):
         print("NOTE — 유예 목록에 있으나 이미 지지되는 anchor (deferred에서 뺄 것):")
         for a in redundant:
             print(f"  #{a}")
