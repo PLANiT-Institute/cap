@@ -19,6 +19,7 @@ check-anchors:
 
 ledger:
 	$(PY) scripts/gen_ledger.py
+	$(PY) scripts/gen_refs_index.py
 
 render-theory:
 	$(PY) scripts/render_theory.py
