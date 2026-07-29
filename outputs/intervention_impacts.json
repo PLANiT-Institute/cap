@@ -19,6 +19,26 @@
       ],
       "note": "coverage·tenor 1차 근사; τ*·경로·anatomy·수준 동시 재계산"
     },
+    "firms.interventions.residual.risk_charge_bps_high_basis": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "ev_usd_bn",
+        "exposure_model",
+        "firms_registry",
+        "interventions",
+        "k",
+        "lambda",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required"
+      ],
+      "note": "basis_sigma_hi(문헌 최악) 하 잔여 — Δπ를 밴드로 읽을 것"
+    },
     "firms.interventions.residual.risk_charge_bps": {
       "status": "SCENARIO_CONDITIONAL",
       "depends_on": [
@@ -128,7 +148,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -140,7 +161,8 @@
             },
             "sigma_b_usd_bn": 13.7306003422,
             "risk_charge_bps": 39.2346027117,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 39.2346027117,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -164,7 +186,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.0984414192
+            "risk_charge_bps": -0.0984414192,
+            "risk_charge_bps_high_basis": -0.0623709578
           },
           "residual": {
             "shares": {
@@ -176,7 +199,8 @@
             },
             "sigma_b_usd_bn": 13.6961496357,
             "risk_charge_bps": 39.1361612925,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 39.1722317539,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -200,7 +224,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.0005129038
+            "risk_charge_bps": -0.0005129038,
+            "risk_charge_bps_high_basis": -0.0005129038
           },
           "residual": {
             "shares": {
@@ -212,7 +237,8 @@
             },
             "sigma_b_usd_bn": 13.7304208456,
             "risk_charge_bps": 39.2340898079,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 39.2340898079,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -236,7 +262,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 6.4307945525
+            "risk_charge_bps": 6.4307945525,
+            "risk_charge_bps_high_basis": 6.4307945525
           },
           "residual": {
             "shares": {
@@ -248,7 +275,8 @@
             },
             "sigma_b_usd_bn": 10.6540872252,
             "risk_charge_bps": 45.6653972642,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 45.6653972642,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -272,7 +300,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.9629610071
+            "risk_charge_bps": -0.9629610071,
+            "risk_charge_bps_high_basis": -0.9629610071
           },
           "residual": {
             "shares": {
@@ -284,7 +313,8 @@
             },
             "sigma_b_usd_bn": 16.6088094204,
             "risk_charge_bps": 38.2716417046,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 38.2716417046,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -308,7 +338,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -320,7 +351,8 @@
             },
             "sigma_b_usd_bn": 13.7306003422,
             "risk_charge_bps": 39.2346027117,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 39.2346027117,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -344,7 +376,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -356,7 +389,8 @@
             },
             "sigma_b_usd_bn": 13.7306003422,
             "risk_charge_bps": 39.2346027117,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 39.2346027117,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -380,7 +414,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 6.2793204252
+            "risk_charge_bps": 6.2793204252,
+            "risk_charge_bps_high_basis": 6.3343602875
           },
           "residual": {
             "shares": {
@@ -392,7 +427,8 @@
             },
             "sigma_b_usd_bn": 10.6187471502,
             "risk_charge_bps": 45.5139231369,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 45.5689629992,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -528,7 +564,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -540,7 +577,8 @@
             },
             "sigma_b_usd_bn": 3.7526618893,
             "risk_charge_bps": 18.334517459,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 18.334517459,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -564,7 +602,8 @@
           "delta": {
             "tau_star_years": -0.1075,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.0627245251
+            "risk_charge_bps": -0.0627245251,
+            "risk_charge_bps_high_basis": -0.0401911939
           },
           "residual": {
             "shares": {
@@ -576,7 +615,8 @@
             },
             "sigma_b_usd_bn": 3.7398235947,
             "risk_charge_bps": 18.2717929338,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 18.2943262651,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -600,7 +640,8 @@
           "delta": {
             "tau_star_years": -0.25675,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.0025848873
+            "risk_charge_bps": -0.0025848873,
+            "risk_charge_bps_high_basis": -0.0025848873
           },
           "residual": {
             "shares": {
@@ -612,7 +653,8 @@
             },
             "sigma_b_usd_bn": 3.7521328212,
             "risk_charge_bps": 18.3319325717,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 18.3319325717,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -636,7 +678,8 @@
           "delta": {
             "tau_star_years": -0.0605,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 8.7694879284
+            "risk_charge_bps": 8.7694879284,
+            "risk_charge_bps_high_basis": 8.7694879284
           },
           "residual": {
             "shares": {
@@ -648,7 +691,8 @@
             },
             "sigma_b_usd_bn": 3.6983854194,
             "risk_charge_bps": 27.1040053874,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 27.1040053874,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -672,7 +716,8 @@
           "delta": {
             "tau_star_years": 0.48775,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.6562971281
+            "risk_charge_bps": 0.6562971281,
+            "risk_charge_bps_high_basis": 0.6562971281
           },
           "residual": {
             "shares": {
@@ -684,7 +729,8 @@
             },
             "sigma_b_usd_bn": 4.747860581,
             "risk_charge_bps": 18.9908145871,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 18.9908145871,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -708,7 +754,8 @@
           "delta": {
             "tau_star_years": 1.4815,
             "cumulative_gap_mtco2": 1.183,
-            "risk_charge_bps": -3.8246106074
+            "risk_charge_bps": -3.8246106074,
+            "risk_charge_bps_high_basis": -0.2428186725
           },
           "residual": {
             "shares": {
@@ -720,7 +767,8 @@
             },
             "sigma_b_usd_bn": 2.9698504245,
             "risk_charge_bps": 14.5099068516,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 18.0916987865,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -744,7 +792,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -756,7 +805,8 @@
             },
             "sigma_b_usd_bn": 3.7526618893,
             "risk_charge_bps": 18.334517459,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 18.334517459,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -780,7 +830,8 @@
           "delta": {
             "tau_star_years": 0.81925,
             "cumulative_gap_mtco2": 1.183,
-            "risk_charge_bps": 2.8798219603
+            "risk_charge_bps": 2.8798219603,
+            "risk_charge_bps_high_basis": 8.3409537478
           },
           "residual": {
             "shares": {
@@ -792,7 +843,8 @@
             },
             "sigma_b_usd_bn": 2.8947309621,
             "risk_charge_bps": 21.2143394192,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 26.6754712067,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -928,7 +980,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -940,7 +993,8 @@
             },
             "sigma_b_usd_bn": 4.9903229884,
             "risk_charge_bps": 26.7368143473,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 26.7368143473,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -964,7 +1018,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -976,7 +1031,8 @@
             },
             "sigma_b_usd_bn": 4.9903229884,
             "risk_charge_bps": 26.7368143473,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 26.7368143473,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -1000,7 +1056,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.0002406758
+            "risk_charge_bps": -0.0002406758,
+            "risk_charge_bps_high_basis": -0.0002406758
           },
           "residual": {
             "shares": {
@@ -1012,7 +1069,8 @@
             },
             "sigma_b_usd_bn": 4.9902780672,
             "risk_charge_bps": 26.7365736715,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 26.7365736715,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -1036,7 +1094,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 4.3006465268
+            "risk_charge_bps": 4.3006465268,
+            "risk_charge_bps_high_basis": 4.3006465268
           },
           "residual": {
             "shares": {
@@ -1048,7 +1107,8 @@
             },
             "sigma_b_usd_bn": 3.8620146861,
             "risk_charge_bps": 31.0374608741,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 31.0374608741,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -1072,7 +1132,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0003765653
+            "risk_charge_bps": 0.0003765653,
+            "risk_charge_bps_high_basis": 0.0003765653
           },
           "residual": {
             "shares": {
@@ -1084,7 +1145,8 @@
             },
             "sigma_b_usd_bn": 6.1883649063,
             "risk_charge_bps": 26.7371909127,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 26.7371909127,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -1108,7 +1170,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -1120,7 +1183,8 @@
             },
             "sigma_b_usd_bn": 4.9903229884,
             "risk_charge_bps": 26.7368143473,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 26.7368143473,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -1144,7 +1208,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -1156,7 +1221,8 @@
             },
             "sigma_b_usd_bn": 4.9903229884,
             "risk_charge_bps": 26.7368143473,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 26.7368143473,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -1180,7 +1246,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 4.3001800396
+            "risk_charge_bps": 4.3001800396,
+            "risk_charge_bps_high_basis": 4.3001800396
           },
           "residual": {
             "shares": {
@@ -1192,7 +1259,8 @@
             },
             "sigma_b_usd_bn": 3.8619566407,
             "risk_charge_bps": 31.0369943869,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 31.0369943869,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -1328,7 +1396,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -1340,7 +1409,8 @@
             },
             "sigma_b_usd_bn": 3.7010899024,
             "risk_charge_bps": 16.7698565863,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 16.7698565863,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -1364,7 +1434,8 @@
           "delta": {
             "tau_star_years": -0.1815,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.053325993
+            "risk_charge_bps": -0.053325993,
+            "risk_charge_bps_high_basis": -0.0113658615
           },
           "residual": {
             "shares": {
@@ -1376,7 +1447,8 @@
             },
             "sigma_b_usd_bn": 3.6893209112,
             "risk_charge_bps": 16.7165305933,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 16.7584907249,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -1400,7 +1472,8 @@
           "delta": {
             "tau_star_years": -0.35475,
             "cumulative_gap_mtco2": -2.34,
-            "risk_charge_bps": -0.0052715996
+            "risk_charge_bps": -0.0052715996,
+            "risk_charge_bps_high_basis": -0.0052715996
           },
           "residual": {
             "shares": {
@@ -1412,7 +1485,8 @@
             },
             "sigma_b_usd_bn": 3.6999264658,
             "risk_charge_bps": 16.7645849868,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 16.7645849868,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -1436,7 +1510,8 @@
           "delta": {
             "tau_star_years": -0.134,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 6.596798094
+            "risk_charge_bps": 6.596798094,
+            "risk_charge_bps_high_basis": 6.596798094
           },
           "residual": {
             "shares": {
@@ -1448,7 +1523,8 @@
             },
             "sigma_b_usd_bn": 3.6598038818,
             "risk_charge_bps": 23.3666546804,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 23.3666546804,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -1472,7 +1548,8 @@
           "delta": {
             "tau_star_years": 0.36075,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.9669575834
+            "risk_charge_bps": 0.9669575834,
+            "risk_charge_bps_high_basis": 0.9669575834
           },
           "residual": {
             "shares": {
@@ -1484,7 +1561,8 @@
             },
             "sigma_b_usd_bn": 4.6530573455,
             "risk_charge_bps": 17.7368141697,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 17.7368141697,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -1508,7 +1586,8 @@
           "delta": {
             "tau_star_years": 1.102,
             "cumulative_gap_mtco2": 2.34,
-            "risk_charge_bps": -3.4683252314
+            "risk_charge_bps": -3.4683252314,
+            "risk_charge_bps_high_basis": -0.2203425129
           },
           "residual": {
             "shares": {
@@ -1520,7 +1599,8 @@
             },
             "sigma_b_usd_bn": 2.935634132,
             "risk_charge_bps": 13.301531355,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 16.5495140734,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -1544,7 +1624,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -1556,7 +1637,8 @@
             },
             "sigma_b_usd_bn": 3.7010899024,
             "risk_charge_bps": 16.7698565863,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 16.7698565863,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -1580,7 +1662,8 @@
           "delta": {
             "tau_star_years": 0.284,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 1.5859840375
+            "risk_charge_bps": 1.5859840375,
+            "risk_charge_bps_high_basis": 6.2614386963
           },
           "residual": {
             "shares": {
@@ -1592,7 +1675,8 @@
             },
             "sigma_b_usd_bn": 2.8749847887,
             "risk_charge_bps": 18.3558406238,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 23.0312952827,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -1728,7 +1812,8 @@
           "delta": {
             "tau_star_years": 7.4618625,
             "cumulative_gap_mtco2": 100.8,
-            "risk_charge_bps": -1.8807882047
+            "risk_charge_bps": -1.8807882047,
+            "risk_charge_bps_high_basis": -0.8454933104
           },
           "residual": {
             "shares": {
@@ -1740,7 +1825,8 @@
             },
             "sigma_b_usd_bn": 9.9880998464,
             "risk_charge_bps": 10.7027129063,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 11.7380078006,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -1764,7 +1850,8 @@
           "delta": {
             "tau_star_years": 7.4618625,
             "cumulative_gap_mtco2": 100.8,
-            "risk_charge_bps": -0.2937407279
+            "risk_charge_bps": -0.2937407279,
+            "risk_charge_bps_high_basis": -0.1859908481
           },
           "residual": {
             "shares": {
@@ -1776,7 +1863,8 @@
             },
             "sigma_b_usd_bn": 11.4691812131,
             "risk_charge_bps": 12.2897603831,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 12.397510263,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -1800,7 +1888,8 @@
           "delta": {
             "tau_star_years": -0.8927625,
             "cumulative_gap_mtco2": -14.4,
-            "risk_charge_bps": -0.0029968509
+            "risk_charge_bps": -0.0029968509,
+            "risk_charge_bps_high_basis": -0.0029968509
           },
           "residual": {
             "shares": {
@@ -1812,7 +1901,8 @@
             },
             "sigma_b_usd_bn": 11.7405123139,
             "risk_charge_bps": 12.5805042602,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 12.5805042602,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -1836,7 +1926,8 @@
           "delta": {
             "tau_star_years": -0.8107,
             "cumulative_gap_mtco2": -14.4,
-            "risk_charge_bps": 4.4900718723
+            "risk_charge_bps": 4.4900718723,
+            "risk_charge_bps_high_basis": 4.4900718723
           },
           "residual": {
             "shares": {
@@ -1848,7 +1939,8 @@
             },
             "sigma_b_usd_bn": 10.622387874,
             "risk_charge_bps": 17.0735729834,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 17.0735729834,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -1872,7 +1964,8 @@
           "delta": {
             "tau_star_years": -0.2343625,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.2430540635
+            "risk_charge_bps": 0.2430540635,
+            "risk_charge_bps_high_basis": 0.2430540635
           },
           "residual": {
             "shares": {
@@ -1884,7 +1977,8 @@
             },
             "sigma_b_usd_bn": 14.8436318852,
             "risk_charge_bps": 12.8265551745,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 12.8265551745,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -1908,7 +2002,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -1920,7 +2015,8 @@
             },
             "sigma_b_usd_bn": 11.743309067,
             "risk_charge_bps": 12.5835011111,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 12.5835011111,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -1944,7 +2040,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -1956,7 +2053,8 @@
             },
             "sigma_b_usd_bn": 11.743309067,
             "risk_charge_bps": 12.5835011111,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 12.5835011111,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -1980,7 +2078,8 @@
           "delta": {
             "tau_star_years": 0.1902875,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.865219153
+            "risk_charge_bps": 0.865219153,
+            "risk_charge_bps_high_basis": 2.7846398151
           },
           "residual": {
             "shares": {
@@ -1992,7 +2091,8 @@
             },
             "sigma_b_usd_bn": 8.3671720731,
             "risk_charge_bps": 13.4487202641,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 15.3681409261,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -2128,7 +2228,8 @@
           "delta": {
             "tau_star_years": 1.0040068966,
             "cumulative_gap_mtco2": 27.97,
-            "risk_charge_bps": -2.0573381374
+            "risk_charge_bps": -2.0573381374,
+            "risk_charge_bps_high_basis": -0.9496200613
           },
           "residual": {
             "shares": {
@@ -2140,7 +2241,8 @@
             },
             "sigma_b_usd_bn": 11.8653223878,
             "risk_charge_bps": 21.270063142,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 22.3777812182,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -2164,7 +2266,8 @@
           "delta": {
             "tau_star_years": 0.14385,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.1269280221
+            "risk_charge_bps": -0.1269280221,
+            "risk_charge_bps_high_basis": -0.0102401567
           },
           "residual": {
             "shares": {
@@ -2176,7 +2279,8 @@
             },
             "sigma_b_usd_bn": 12.9421851223,
             "risk_charge_bps": 23.2004732574,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 23.3171611227,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -2200,7 +2304,8 @@
           "delta": {
             "tau_star_years": -0.8187206897,
             "cumulative_gap_mtco2": -27.97,
-            "risk_charge_bps": -0.0069527004
+            "risk_charge_bps": -0.0069527004,
+            "risk_charge_bps_high_basis": -0.0069527004
           },
           "residual": {
             "shares": {
@@ -2212,7 +2317,8 @@
             },
             "sigma_b_usd_bn": 13.0091123271,
             "risk_charge_bps": 23.3204485791,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 23.3204485791,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -2236,7 +2342,8 @@
           "delta": {
             "tau_star_years": -0.75245,
             "cumulative_gap_mtco2": -21.32,
-            "risk_charge_bps": 6.0059155768
+            "risk_charge_bps": 6.0059155768,
+            "risk_charge_bps_high_basis": 6.0059155768
           },
           "residual": {
             "shares": {
@@ -2248,7 +2355,8 @@
             },
             "sigma_b_usd_bn": 11.6126924424,
             "risk_charge_bps": 29.3333168563,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 29.3333168563,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -2272,7 +2380,8 @@
           "delta": {
             "tau_star_years": -0.1640258621,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": -0.154522808
+            "risk_charge_bps": -0.154522808,
+            "risk_charge_bps_high_basis": -0.154522808
           },
           "residual": {
             "shares": {
@@ -2284,7 +2393,8 @@
             },
             "sigma_b_usd_bn": 15.2711864085,
             "risk_charge_bps": 23.1728784714,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 23.1728784714,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -2308,7 +2418,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -2320,7 +2431,8 @@
             },
             "sigma_b_usd_bn": 13.0129908314,
             "risk_charge_bps": 23.3274012795,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 23.3274012795,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -2344,7 +2456,8 @@
           "delta": {
             "tau_star_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
-            "risk_charge_bps": 0.0
+            "risk_charge_bps": 0.0,
+            "risk_charge_bps_high_basis": 0.0
           },
           "residual": {
             "shares": {
@@ -2356,7 +2469,8 @@
             },
             "sigma_b_usd_bn": 13.0129908314,
             "risk_charge_bps": 23.3274012795,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 23.3274012795,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -2380,7 +2494,8 @@
           "delta": {
             "tau_star_years": -0.4743724138,
             "cumulative_gap_mtco2": -6.27,
-            "risk_charge_bps": 2.5367721846
+            "risk_charge_bps": 2.5367721846,
+            "risk_charge_bps_high_basis": 4.4720839061
           },
           "residual": {
             "shares": {
@@ -2392,7 +2507,8 @@
             },
             "sigma_b_usd_bn": 10.2393020601,
             "risk_charge_bps": 25.864173464,
-            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음"
+            "risk_charge_bps_high_basis": 27.7994851855,
+            "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"

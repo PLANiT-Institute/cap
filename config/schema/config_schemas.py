@@ -96,6 +96,8 @@ interventions_schema = pa.DataFrameSchema(
         "value": Column(float),
         "coverage": Column(float, Check.in_range(0, 1)),
         "basis_sigma": Column(float, Check.ge(0)),
+        # 문헌 최악 basis (헤지 유효성 ≈10% 분산감소, Peña 외 2024) — PAPER_DIFF D12
+        "basis_sigma_hi": Column(float, Check.ge(0)),
         "start_year": Column(int),
         "end_year": Column(int),
         "instrument_type": Column(str, Check.isin(
@@ -109,6 +111,12 @@ interventions_schema = pa.DataFrameSchema(
         "notes": Column(str),
         "components": Column(str, nullable=True),
     },
+    checks=[
+        Check(
+            lambda df: (df["basis_sigma"] <= df["basis_sigma_hi"]).all(),
+            error="basis_sigma > basis_sigma_hi",
+        ),
+    ],
 )
 
 transaction_assumptions_schema = pa.DataFrameSchema(

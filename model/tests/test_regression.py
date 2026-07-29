@@ -563,3 +563,20 @@ def test_negative_covariance_actually_breaks_the_composition():
     _, shares = euler_shares(w, rho)
     assert shares.min() < 0, "음의 공분산에서 RC_k < 0이 나와야 한다"
     assert shares.sum() == pytest.approx(1.0), "음수여도 Euler 항등(Σ=1)은 유지된다"
+
+
+def test_high_basis_never_improves_the_hedge():
+    """basis 밴드: 잔여 위험은 basis가 커질수록 나빠지거나 같아야 한다 (PAPER_DIFF D12)."""
+    impacts = art("intervention_impacts")
+    shrunk = []
+    for firm in impacts["firms"]:
+        for iid, iv in firm["interventions"].items():
+            lo = iv["delta"]["risk_charge_bps"]
+            hi = iv["delta"]["risk_charge_bps_high_basis"]
+            assert hi >= lo - 1e-9, f"{firm['firm_id']}/{iid}: hi basis가 lo보다 좋다"
+            if lo < -0.5:  # 유의미한 위험 감축이 있던 계약만
+                shrunk.append((firm["firm_id"], iid, lo, hi))
+    assert shrunk, "위험을 줄이는 계약이 하나도 없으면 이 테스트가 무의미하다"
+    # 문헌 최악 basis에서 감축분이 최소 30% 사라지는 사례가 있어야 한다 —
+    # 사라지지 않는다면 basis가 결과에 안 들어간다는 뜻이고 그 자체가 버그다.
+    assert any(hi > lo * 0.7 for _, _, lo, hi in shrunk)

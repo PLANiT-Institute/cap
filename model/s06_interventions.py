@@ -37,14 +37,22 @@ from model.s04_anatomy import ANATOMY_DEPS, anatomy_for, firm_exposures, firm_fr
 OUT = ROOT / "outputs"
 
 
-def firm_state(cal: CalibrationSet, firm_id: str, tau_map: dict | None, ids: list[str]) -> dict:
-    """한 기업의 (anatomy, charge, gap) 상태 — 개입 ids 적용."""
+def firm_state(
+    cal: CalibrationSet, firm_id: str, tau_map: dict | None, ids: list[str], basis_case: str = "lo"
+) -> dict:
+    """한 기업의 (anatomy, charge, gap) 상태 — 개입 ids 적용.
+
+    basis_case="hi"는 계약 잔여 basis를 문헌 최악(Peña 외 2024)으로 두고 다시 푼다.
+    """
     frame = firm_frame(cal, tau_map=tau_map)
     g_all = frame[frame["firm_id"] == firm_id]
     g = g_all[g_all["category"] == "priced_route"]
     if g.empty:
         return {}
-    ps = apply_interventions(cal, g["route"].iloc[0], g["country"].iloc[0], g["elec_driver"].iloc[0], ids)
+    ps = apply_interventions(
+        cal, g["route"].iloc[0], g["country"].iloc[0], g["elec_driver"].iloc[0], ids,
+        basis_case=basis_case,
+    )
     meta = firm_exposures(cal, g, ps=ps)
     an = anatomy_for(cal, meta, reform=True)  # 정책 점프 가격화 관점 (문서화)
     base_year = int(cal.lsm["base_year"])
@@ -100,6 +108,7 @@ def main() -> int:
         ivs = {}
         for iid in iv_ids:
             after = firm_state(cal, fid, tau_map=iv_tau[iid], ids=[iid])
+            high = firm_state(cal, fid, tau_map=iv_tau[iid], ids=[iid], basis_case="hi")
             ivs[iid] = {
                 "label": cal.interventions.set_index("intervention_id").loc[iid, "label"],
                 "before": {k: before[k] for k in ("tau_star_cap_weighted", "timing_gap_mean_years",
@@ -110,12 +119,15 @@ def main() -> int:
                     "tau_star_years": after["tau_star_cap_weighted"] - before["tau_star_cap_weighted"],
                     "cumulative_gap_mtco2": after["cumulative_gap_mtco2"] - before["cumulative_gap_mtco2"],
                     "risk_charge_bps": after["risk_charge_bps"] - before["risk_charge_bps"],
+                    "risk_charge_bps_high_basis": high["risk_charge_bps"] - before["risk_charge_bps"],
                 },
                 "residual": {
                     "shares": after["shares"],
                     "sigma_b_usd_bn": after["sigma_b_usd_bn"],
                     "risk_charge_bps": after["risk_charge_bps"],
-                    "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음",
+                    "risk_charge_bps_high_basis": high["risk_charge_bps"],
+                    "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. "
+                            "high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계",
                 },
                 "double_count_warning": after["double_count_warning"],
                 "assumptions": cal.interventions.set_index("intervention_id").loc[iid, "notes"],
@@ -177,6 +189,10 @@ def main() -> int:
             "firms.interventions.delta": claim(
                 MODEL_CONDITIONAL, ANATOMY_DEPS + ["interventions"],
                 "coverage·tenor 1차 근사; τ*·경로·anatomy·수준 동시 재계산",
+            ),
+            "firms.interventions.residual.risk_charge_bps_high_basis": claim(
+                SCENARIO_CONDITIONAL, ANATOMY_DEPS + ["interventions", "lambda", "k", "ev_usd_bn"],
+                "basis_sigma_hi(문헌 최악) 하 잔여 — Δπ를 밴드로 읽을 것",
             ),
             "firms.interventions.residual.risk_charge_bps": claim(
                 SCENARIO_CONDITIONAL, ANATOMY_DEPS + ["interventions", "lambda", "k", "ev_usd_bn"],

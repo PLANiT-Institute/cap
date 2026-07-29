@@ -236,3 +236,37 @@ waterfall의 Δπ 해석에 잔여 basis를 명시해야 한다. **s06 재검토
 - **한·일 철강 route 비용 문헌 없음** — 전부 EU/스웨덴/글로벌/브라질. KEEI·RITE 국문·일문 보고서 추가 조사 필요
 - **K-ETS/CBAM 한국 철강 이벤트스터디 없음** (D6에서 이월)
 - **수소 offtake 헤지 유효성·basis risk의 피어리뷰 정량 연구 부재** — 실무 보고서만 존재
+
+---
+
+## 갱신 6 (2026-07-29 — s06 재검토: basis를 점추정에서 밴드로)
+
+D12(PPA 헤지 유효성 5–10%)의 모델 반영. `config/interventions.csv`에 `basis_sigma_hi`
+컬럼을 추가하고, `apply_interventions(..., basis_case="lo"|"hi")`로 계약 잔여 basis를
+밴드로 푼다. hi 값은 문헌 최악(헤지 유효성 ≈10% 분산감소, Peña 외 2024)을 해당 driver
+원 σ의 0.95배로 근사한 것이다 — **측정치가 아니라 명시적 stress 경계**다.
+
+`outputs/intervention_impacts.json`의 각 개입에 `residual.risk_charge_bps_high_basis`와
+`delta.risk_charge_bps_high_basis`가 붙는다.
+
+### D14. 계약의 위험 감축 효과 절반 이상이 basis 가정에 걸려 있다
+
+| 기업 | 계약 | Δ risk charge (lo basis) | Δ (hi basis) | 남는 비율 |
+|---|---|---|---|---|
+| POSCO | H2 CfD | −2.06 bps | −0.95 bps | 46% |
+| NIPPON | H2 CfD | −1.88 bps | −0.85 bps | 45% |
+| POSCO | PPA | −0.13 bps | −0.01 bps | 8% |
+| NIPPON | PPA | −0.29 bps | −0.19 bps | 66% |
+
+H2 CfD의 위험 감축은 문헌 최악 basis에서 **절반 이하**로 줄고, PPA는 사실상 사라진다.
+계약 waterfall의 Δπ를 점추정으로 제시하면 안 된다는 뜻이다.
+
+부수 확인: 애초에 PPA의 위험 감축은 lo basis에서도 −0.05~−0.29bps로 작다. 계약이 주로
+**타이밍(τ*)** 을 움직이고 위험 수준은 거의 못 움직인다는 갱신 3의 발견과 일치한다.
+"계약으로 각 성분을 소거한다"는 서사는 위험 수준 기준으로는 이미 약했고, basis를 넣으면 더 약해진다.
+
+회귀 테스트 `test_high_basis_never_improves_the_hedge` — hi가 lo보다 좋아지면 실패하고,
+basis가 결과에 아예 안 들어가도 실패한다.
+
+**미해결**: 수소 offtake basis의 실측 근거가 문헌에 없다(D12). `basis_sigma_hi=0.285`는
+전력 문헌의 유효성 비율을 수소에 이식한 것이므로 status는 `assumed`다.

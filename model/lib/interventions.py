@@ -3,6 +3,8 @@
 config/interventions.csv의 행을 (route, country)별 유효 파라미터로 변환한다.
 근사 두 가지를 명시한다:
 - coverage 결합: σ_eff = (1−cov)·σ + cov·basis  (동일 driver 내 가법 근사)
+- basis는 점추정이 아니라 밴드다: basis_case="lo"|"hi"가 basis_sigma / basis_sigma_hi를 고른다.
+  전력계약 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024) 때문 — PAPER_DIFF D12.
 - tenor: [start,end] 창을 지평 대비 비율로 가중 (시간가변 LSM 대신 1차 근사)
 숫자는 전부 config에서 온다.
 """
@@ -99,6 +101,7 @@ def apply_interventions(
     *,
     base_year_override: float | None = None,
     horizon_override: float | None = None,
+    basis_case: str = "lo",
 ) -> ParamSet:
     route_row = cal.routes.set_index("route").loc[route]
     ps = base_params(cal, route_row, country, elec_driver)
@@ -113,6 +116,7 @@ def apply_interventions(
         else float(horizon_override)
     )
     table = cal.interventions.set_index("intervention_id")
+    basis_col = {"lo": "basis_sigma", "hi": "basis_sigma_hi"}[basis_case]
 
     def expand(ids_: list[str]) -> list[str]:
         out: list[str] = []
@@ -140,20 +144,20 @@ def apply_interventions(
             ps = replace(
                 ps,
                 p_h2=cov_t * float(row["value"]) + (1 - cov_t) * ps.p_h2,
-                sigma_h2=(1 - cov_t) * ps.sigma_h2 + cov_t * float(row["basis_sigma"]),
+                sigma_h2=(1 - cov_t) * ps.sigma_h2 + cov_t * float(row[basis_col]),
             )
         elif op == "contract_for_difference" and param == "p_elec_and_sigma":
             ps = replace(
                 ps,
                 p_elec=cov_t * float(row["value"]) + (1 - cov_t) * ps.p_elec,
-                sigma_elec=(1 - cov_t) * ps.sigma_elec + cov_t * float(row["basis_sigma"]),
+                sigma_elec=(1 - cov_t) * ps.sigma_elec + cov_t * float(row[basis_col]),
             )
         elif op == "contract_for_difference" and param == "p_feedstock_and_sigma":
             ps = replace(
                 ps,
                 p_feedstock=cov_t * float(row["value"]) + (1 - cov_t) * ps.p_feedstock,
                 sigma_feedstock=(1 - cov_t) * ps.sigma_feedstock
-                + cov_t * float(row["basis_sigma"]),
+                + cov_t * float(row[basis_col]),
             )
         elif op == "multiply" and param == "k_capex":
             ps = replace(ps, k_capex_mult=ps.k_capex_mult * float(row["value"]))

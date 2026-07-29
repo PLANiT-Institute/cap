@@ -105,7 +105,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "3349b29a2f63b34c8617e0342ca48a1cce6433c2def68e3d8e75126ba516829f",
+        "input_fingerprint_sha256": "8f4060ea4eb94c91645ca841dfcbe861bb9b90aa657e83ab0a438f7f3eaac11d",
         "pilot_generator_sha256": "05c57633090f1f178079e0515142d2960f75a5003d76fb0d3c361104096898de",
         "assets": [
           {
@@ -341,7 +341,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "3349b29a2f63b34c8617e0342ca48a1cce6433c2def68e3d8e75126ba516829f",
+        "input_fingerprint_sha256": "8f4060ea4eb94c91645ca841dfcbe861bb9b90aa657e83ab0a438f7f3eaac11d",
         "pilot_generator_sha256": "05c57633090f1f178079e0515142d2960f75a5003d76fb0d3c361104096898de",
         "assets": [
           {
