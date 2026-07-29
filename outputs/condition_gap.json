@@ -601,10 +601,10 @@
           "intensity_tco2_t": 1.9,
           "route": "h2_dri",
           "category": "priced_route",
-          "tau_star_year": 2053.5755,
+          "tau_star_year": null,
           "t_required": 2039.0,
           "t_required_status": "PROVISIONAL",
-          "timing_gap_years": 14.5755
+          "timing_gap_years": null
         },
         {
           "asset_id": "A09",
@@ -613,17 +613,17 @@
           "intensity_tco2_t": 1.9,
           "route": "h2_dri",
           "category": "priced_route",
-          "tau_star_year": 2053.46875,
+          "tau_star_year": 2053.7695,
           "t_required": 2035.0,
           "t_required_status": "PROVISIONAL",
-          "timing_gap_years": 18.46875
+          "timing_gap_years": 18.7695
         }
       ],
-      "capacity_weighted_timing_gap_years": 15.9381375,
-      "cumulative_alignment_gap_mtco2": 236.16,
+      "capacity_weighted_timing_gap_years": 18.7695,
+      "cumulative_alignment_gap_mtco2": 311.04,
       "peak_annual_gap_mtco2": 14.4,
       "first_misalignment_year": 2035,
-      "alignment_restored_year": 2054,
+      "alignment_restored_year": null,
       "annual_alignment_gap_mtco2": [
         0.0,
         0.0,
@@ -653,14 +653,14 @@
         14.4,
         14.4,
         14.4,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
+        9.36,
+        9.36,
+        9.36,
+        9.36,
+        9.36,
+        9.36,
+        9.36,
+        9.36
       ],
       "cumulative_gap_by_year_mtco2": [
         0.0,
@@ -691,14 +691,14 @@
         207.36,
         221.76,
         236.16,
-        236.16,
-        236.16,
-        236.16,
-        236.16,
-        236.16,
-        236.16,
-        236.16,
-        236.16
+        245.52,
+        254.88,
+        264.24,
+        273.6,
+        282.96,
+        292.32,
+        301.68,
+        311.04
       ]
     },
     {

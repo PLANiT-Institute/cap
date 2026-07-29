@@ -41,7 +41,7 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.6755,
       "timing_gap_years": 8.6755,
-      "tau_star_year_wacc_eq": 2050.50175
+      "tau_star_year_wacc_eq": 2050.63125
     },
     {
       "asset_id": "A02",
@@ -56,7 +56,7 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.6305,
       "timing_gap_years": 13.6305,
-      "tau_star_year_wacc_eq": 2050.66875
+      "tau_star_year_wacc_eq": 2050.62275
     },
     {
       "asset_id": "A06",
@@ -71,7 +71,7 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.372,
       "timing_gap_years": 18.372,
-      "tau_star_year_wacc_eq": 2050.2265
+      "tau_star_year_wacc_eq": 2050.30525
     },
     {
       "asset_id": "A07",
@@ -86,7 +86,7 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.70625,
       "timing_gap_years": 10.70625,
-      "tau_star_year_wacc_eq": 2050.526
+      "tau_star_year_wacc_eq": 2050.631
     },
     {
       "asset_id": "A03",
@@ -129,8 +129,8 @@
       "category": "priced_route",
       "t_required": 2039.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2053.5755,
-      "timing_gap_years": 14.5755,
+      "tau_star_year": null,
+      "timing_gap_years": null,
       "tau_star_year_wacc_eq": null
     },
     {
@@ -144,8 +144,8 @@
       "category": "priced_route",
       "t_required": 2035.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2053.46875,
-      "timing_gap_years": 18.46875,
+      "tau_star_year": 2053.7695,
+      "timing_gap_years": 18.7695,
       "tau_star_year_wacc_eq": null
     },
     {
@@ -206,7 +206,7 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2039.3205,
       "timing_gap_years": 7.3205,
-      "tau_star_year_wacc_eq": 2039.48
+      "tau_star_year_wacc_eq": 2039.319
     },
     {
       "asset_id": "P02",
@@ -221,7 +221,7 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2040.36825,
       "timing_gap_years": 10.36825,
-      "tau_star_year_wacc_eq": 2039.9485
+      "tau_star_year_wacc_eq": 2039.81025
     }
   ]
 }

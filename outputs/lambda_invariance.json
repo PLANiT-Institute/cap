@@ -53,289 +53,289 @@
       "firm_id": "JFE",
       "lambda": 0.15,
       "p_bind": 0.25,
-      "premium_bps": 2.6222187321
+      "premium_bps": 2.683178623
     },
     {
       "firm_id": "JFE",
       "lambda": 0.15,
       "p_bind": 0.35,
-      "premium_bps": 3.671106225
+      "premium_bps": 3.7564500722
     },
     {
       "firm_id": "JFE",
       "lambda": 0.15,
       "p_bind": 0.45,
-      "premium_bps": 4.7199937179
+      "premium_bps": 4.8297215213
     },
     {
       "firm_id": "JFE",
       "lambda": 0.15,
       "p_bind": 0.55,
-      "premium_bps": 5.7688812107
+      "premium_bps": 5.9029929705
     },
     {
       "firm_id": "JFE",
       "lambda": 0.15,
       "p_bind": 0.65,
-      "premium_bps": 6.8177687036
+      "premium_bps": 6.9762644197
     },
     {
       "firm_id": "JFE",
       "lambda": 0.15,
       "p_bind": 0.75,
-      "premium_bps": 7.8666561964
+      "premium_bps": 8.0495358689
     },
     {
       "firm_id": "JFE",
       "lambda": 0.15,
       "p_bind": 0.85,
-      "premium_bps": 8.9155436893
+      "premium_bps": 9.1228073181
     },
     {
       "firm_id": "JFE",
       "lambda": 0.15,
       "p_bind": 0.95,
-      "premium_bps": 9.9644311822
+      "premium_bps": 10.1960787673
     },
     {
       "firm_id": "JFE",
       "lambda": 0.25,
       "p_bind": 0.25,
-      "premium_bps": 4.3703645536
+      "premium_bps": 4.4719643716
     },
     {
       "firm_id": "JFE",
       "lambda": 0.25,
       "p_bind": 0.35,
-      "premium_bps": 6.118510375
+      "premium_bps": 6.2607501203
     },
     {
       "firm_id": "JFE",
       "lambda": 0.25,
       "p_bind": 0.45,
-      "premium_bps": 7.8666561964
+      "premium_bps": 8.0495358689
     },
     {
       "firm_id": "JFE",
       "lambda": 0.25,
       "p_bind": 0.55,
-      "premium_bps": 9.6148020179
+      "premium_bps": 9.8383216175
     },
     {
       "firm_id": "JFE",
       "lambda": 0.25,
       "p_bind": 0.65,
-      "premium_bps": 11.3629478393
+      "premium_bps": 11.6271073662
     },
     {
       "firm_id": "JFE",
       "lambda": 0.25,
       "p_bind": 0.75,
-      "premium_bps": 13.1110936607
+      "premium_bps": 13.4158931148
     },
     {
       "firm_id": "JFE",
       "lambda": 0.25,
       "p_bind": 0.85,
-      "premium_bps": 14.8592394822
+      "premium_bps": 15.2046788635
     },
     {
       "firm_id": "JFE",
       "lambda": 0.25,
       "p_bind": 0.95,
-      "premium_bps": 16.6073853036
+      "premium_bps": 16.9934646121
     },
     {
       "firm_id": "JFE",
       "lambda": 0.35,
       "p_bind": 0.25,
-      "premium_bps": 6.118510375
+      "premium_bps": 6.2607501203
     },
     {
       "firm_id": "JFE",
       "lambda": 0.35,
       "p_bind": 0.35,
-      "premium_bps": 8.565914525
+      "premium_bps": 8.7650501684
     },
     {
       "firm_id": "JFE",
       "lambda": 0.35,
       "p_bind": 0.45,
-      "premium_bps": 11.013318675
+      "premium_bps": 11.2693502165
     },
     {
       "firm_id": "JFE",
       "lambda": 0.35,
       "p_bind": 0.55,
-      "premium_bps": 13.460722825
+      "premium_bps": 13.7736502646
     },
     {
       "firm_id": "JFE",
       "lambda": 0.35,
       "p_bind": 0.65,
-      "premium_bps": 15.908126975
+      "premium_bps": 16.2779503127
     },
     {
       "firm_id": "JFE",
       "lambda": 0.35,
       "p_bind": 0.75,
-      "premium_bps": 18.355531125
+      "premium_bps": 18.7822503608
     },
     {
       "firm_id": "JFE",
       "lambda": 0.35,
       "p_bind": 0.85,
-      "premium_bps": 20.802935275
+      "premium_bps": 21.2865504089
     },
     {
       "firm_id": "JFE",
       "lambda": 0.35,
       "p_bind": 0.95,
-      "premium_bps": 23.250339425
+      "premium_bps": 23.790850457
     },
     {
       "firm_id": "JFE",
       "lambda": 0.45,
       "p_bind": 0.25,
-      "premium_bps": 7.8666561964
+      "premium_bps": 8.0495358689
     },
     {
       "firm_id": "JFE",
       "lambda": 0.45,
       "p_bind": 0.35,
-      "premium_bps": 11.013318675
+      "premium_bps": 11.2693502165
     },
     {
       "firm_id": "JFE",
       "lambda": 0.45,
       "p_bind": 0.45,
-      "premium_bps": 14.1599811536
+      "premium_bps": 14.489164564
     },
     {
       "firm_id": "JFE",
       "lambda": 0.45,
       "p_bind": 0.55,
-      "premium_bps": 17.3066436322
+      "premium_bps": 17.7089789116
     },
     {
       "firm_id": "JFE",
       "lambda": 0.45,
       "p_bind": 0.65,
-      "premium_bps": 20.4533061107
+      "premium_bps": 20.9287932591
     },
     {
       "firm_id": "JFE",
       "lambda": 0.45,
       "p_bind": 0.75,
-      "premium_bps": 23.5999685893
+      "premium_bps": 24.1486076067
     },
     {
       "firm_id": "JFE",
       "lambda": 0.45,
       "p_bind": 0.85,
-      "premium_bps": 26.7466310679
+      "premium_bps": 27.3684219543
     },
     {
       "firm_id": "JFE",
       "lambda": 0.45,
       "p_bind": 0.95,
-      "premium_bps": 29.8932935465
+      "premium_bps": 30.5882363018
     },
     {
       "firm_id": "JFE",
       "lambda": 0.55,
       "p_bind": 0.25,
-      "premium_bps": 9.6148020179
+      "premium_bps": 9.8383216175
     },
     {
       "firm_id": "JFE",
       "lambda": 0.55,
       "p_bind": 0.35,
-      "premium_bps": 13.460722825
+      "premium_bps": 13.7736502646
     },
     {
       "firm_id": "JFE",
       "lambda": 0.55,
       "p_bind": 0.45,
-      "premium_bps": 17.3066436322
+      "premium_bps": 17.7089789116
     },
     {
       "firm_id": "JFE",
       "lambda": 0.55,
       "p_bind": 0.55,
-      "premium_bps": 21.1525644393
+      "premium_bps": 21.6443075586
     },
     {
       "firm_id": "JFE",
       "lambda": 0.55,
       "p_bind": 0.65,
-      "premium_bps": 24.9984852465
+      "premium_bps": 25.5796362056
     },
     {
       "firm_id": "JFE",
       "lambda": 0.55,
       "p_bind": 0.75,
-      "premium_bps": 28.8444060536
+      "premium_bps": 29.5149648526
     },
     {
       "firm_id": "JFE",
       "lambda": 0.55,
       "p_bind": 0.85,
-      "premium_bps": 32.6903268608
+      "premium_bps": 33.4502934996
     },
     {
       "firm_id": "JFE",
       "lambda": 0.55,
       "p_bind": 0.95,
-      "premium_bps": 36.5362476679
+      "premium_bps": 37.3856221467
     },
     {
       "firm_id": "JFE",
       "lambda": 0.65,
       "p_bind": 0.25,
-      "premium_bps": 11.3629478393
+      "premium_bps": 11.6271073662
     },
     {
       "firm_id": "JFE",
       "lambda": 0.65,
       "p_bind": 0.35,
-      "premium_bps": 15.908126975
+      "premium_bps": 16.2779503127
     },
     {
       "firm_id": "JFE",
       "lambda": 0.65,
       "p_bind": 0.45,
-      "premium_bps": 20.4533061107
+      "premium_bps": 20.9287932591
     },
     {
       "firm_id": "JFE",
       "lambda": 0.65,
       "p_bind": 0.55,
-      "premium_bps": 24.9984852465
+      "premium_bps": 25.5796362056
     },
     {
       "firm_id": "JFE",
       "lambda": 0.65,
       "p_bind": 0.65,
-      "premium_bps": 29.5436643822
+      "premium_bps": 30.2304791521
     },
     {
       "firm_id": "JFE",
       "lambda": 0.65,
       "p_bind": 0.75,
-      "premium_bps": 34.0888435179
+      "premium_bps": 34.8813220986
     },
     {
       "firm_id": "JFE",
       "lambda": 0.65,
       "p_bind": 0.85,
-      "premium_bps": 38.6340226536
+      "premium_bps": 39.532165045
     },
     {
       "firm_id": "JFE",
       "lambda": 0.65,
       "p_bind": 0.95,
-      "premium_bps": 43.1792017894
+      "premium_bps": 44.1830079915
     },
     {
       "firm_id": "JP_NCC",
@@ -629,289 +629,289 @@
       "firm_id": "KOBE",
       "lambda": 0.15,
       "p_bind": 0.25,
-      "premium_bps": 1.7558854872
+      "premium_bps": 1.75575557
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.15,
       "p_bind": 0.35,
-      "premium_bps": 2.458239682
+      "premium_bps": 2.458057798
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.15,
       "p_bind": 0.45,
-      "premium_bps": 3.1605938769
+      "premium_bps": 3.160360026
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.15,
       "p_bind": 0.55,
-      "premium_bps": 3.8629480718
+      "premium_bps": 3.8626622539
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.15,
       "p_bind": 0.65,
-      "premium_bps": 4.5653022666
+      "premium_bps": 4.5649644819
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.15,
       "p_bind": 0.75,
-      "premium_bps": 5.2676564615
+      "premium_bps": 5.2672667099
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.15,
       "p_bind": 0.85,
-      "premium_bps": 5.9700106564
+      "premium_bps": 5.9695689379
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.15,
       "p_bind": 0.95,
-      "premium_bps": 6.6723648512
+      "premium_bps": 6.6718711659
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.25,
       "p_bind": 0.25,
-      "premium_bps": 2.926475812
+      "premium_bps": 2.9262592833
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.25,
       "p_bind": 0.35,
-      "premium_bps": 4.0970661367
+      "premium_bps": 4.0967629966
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.25,
       "p_bind": 0.45,
-      "premium_bps": 5.2676564615
+      "premium_bps": 5.2672667099
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.25,
       "p_bind": 0.55,
-      "premium_bps": 6.4382467863
+      "premium_bps": 6.4377704232
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.25,
       "p_bind": 0.65,
-      "premium_bps": 7.6088371111
+      "premium_bps": 7.6082741366
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.25,
       "p_bind": 0.75,
-      "premium_bps": 8.7794274359
+      "premium_bps": 8.7787778499
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.25,
       "p_bind": 0.85,
-      "premium_bps": 9.9500177606
+      "premium_bps": 9.9492815632
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.25,
       "p_bind": 0.95,
-      "premium_bps": 11.1206080854
+      "premium_bps": 11.1197852765
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.35,
       "p_bind": 0.25,
-      "premium_bps": 4.0970661367
+      "premium_bps": 4.0967629966
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.35,
       "p_bind": 0.35,
-      "premium_bps": 5.7358925914
+      "premium_bps": 5.7354681953
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.35,
       "p_bind": 0.45,
-      "premium_bps": 7.3747190461
+      "premium_bps": 7.3741733939
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.35,
       "p_bind": 0.55,
-      "premium_bps": 9.0135455008
+      "premium_bps": 9.0128785925
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.35,
       "p_bind": 0.65,
-      "premium_bps": 10.6523719555
+      "premium_bps": 10.6515837912
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.35,
       "p_bind": 0.75,
-      "premium_bps": 12.2911984102
+      "premium_bps": 12.2902889898
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.35,
       "p_bind": 0.85,
-      "premium_bps": 13.9300248649
+      "premium_bps": 13.9289941885
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.35,
       "p_bind": 0.95,
-      "premium_bps": 15.5688513196
+      "premium_bps": 15.5676993871
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.45,
       "p_bind": 0.25,
-      "premium_bps": 5.2676564615
+      "premium_bps": 5.2672667099
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.45,
       "p_bind": 0.35,
-      "premium_bps": 7.3747190461
+      "premium_bps": 7.3741733939
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.45,
       "p_bind": 0.45,
-      "premium_bps": 9.4817816307
+      "premium_bps": 9.4810800779
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.45,
       "p_bind": 0.55,
-      "premium_bps": 11.5888442153
+      "premium_bps": 11.5879867618
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.45,
       "p_bind": 0.65,
-      "premium_bps": 13.6959067999
+      "premium_bps": 13.6948934458
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.45,
       "p_bind": 0.75,
-      "premium_bps": 15.8029693845
+      "premium_bps": 15.8018001298
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.45,
       "p_bind": 0.85,
-      "premium_bps": 17.9100319691
+      "premium_bps": 17.9087068137
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.45,
       "p_bind": 0.95,
-      "premium_bps": 20.0170945537
+      "premium_bps": 20.0156134977
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.55,
       "p_bind": 0.25,
-      "premium_bps": 6.4382467863
+      "premium_bps": 6.4377704232
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.55,
       "p_bind": 0.35,
-      "premium_bps": 9.0135455008
+      "premium_bps": 9.0128785925
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.55,
       "p_bind": 0.45,
-      "premium_bps": 11.5888442153
+      "premium_bps": 11.5879867618
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.55,
       "p_bind": 0.55,
-      "premium_bps": 14.1641429298
+      "premium_bps": 14.1630949311
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.55,
       "p_bind": 0.65,
-      "premium_bps": 16.7394416444
+      "premium_bps": 16.7382031004
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.55,
       "p_bind": 0.75,
-      "premium_bps": 19.3147403589
+      "premium_bps": 19.3133112697
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.55,
       "p_bind": 0.85,
-      "premium_bps": 21.8900390734
+      "premium_bps": 21.888419439
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.55,
       "p_bind": 0.95,
-      "premium_bps": 24.4653377879
+      "premium_bps": 24.4635276083
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.65,
       "p_bind": 0.25,
-      "premium_bps": 7.6088371111
+      "premium_bps": 7.6082741366
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.65,
       "p_bind": 0.35,
-      "premium_bps": 10.6523719555
+      "premium_bps": 10.6515837912
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.65,
       "p_bind": 0.45,
-      "premium_bps": 13.6959067999
+      "premium_bps": 13.6948934458
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.65,
       "p_bind": 0.55,
-      "premium_bps": 16.7394416444
+      "premium_bps": 16.7382031004
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.65,
       "p_bind": 0.65,
-      "premium_bps": 19.7829764888
+      "premium_bps": 19.781512755
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.65,
       "p_bind": 0.75,
-      "premium_bps": 22.8265113332
+      "premium_bps": 22.8248224097
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.65,
       "p_bind": 0.85,
-      "premium_bps": 25.8700461776
+      "premium_bps": 25.8681320643
     },
     {
       "firm_id": "KOBE",
       "lambda": 0.65,
       "p_bind": 0.95,
-      "premium_bps": 28.9135810221
+      "premium_bps": 28.9114417189
     },
     {
       "firm_id": "KR_NCC",
@@ -1205,289 +1205,289 @@
       "firm_id": "NIPPON",
       "lambda": 0.15,
       "p_bind": 0.25,
-      "premium_bps": 1.8210198
+      "premium_bps": 1.6408354261
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.15,
       "p_bind": 0.35,
-      "premium_bps": 2.54942772
+      "premium_bps": 2.2971695965
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.15,
       "p_bind": 0.45,
-      "premium_bps": 3.27783564
+      "premium_bps": 2.953503767
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.15,
       "p_bind": 0.55,
-      "premium_bps": 4.00624356
+      "premium_bps": 3.6098379374
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.15,
       "p_bind": 0.65,
-      "premium_bps": 4.7346514799
+      "premium_bps": 4.2661721079
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.15,
       "p_bind": 0.75,
-      "premium_bps": 5.4630593999
+      "premium_bps": 4.9225062783
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.15,
       "p_bind": 0.85,
-      "premium_bps": 6.1914673199
+      "premium_bps": 5.5788404488
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.15,
       "p_bind": 0.95,
-      "premium_bps": 6.9198752399
+      "premium_bps": 6.2351746192
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.25,
       "p_bind": 0.25,
-      "premium_bps": 3.035033
+      "premium_bps": 2.7347257102
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.25,
       "p_bind": 0.35,
-      "premium_bps": 4.2490461999
+      "premium_bps": 3.8286159942
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.25,
       "p_bind": 0.45,
-      "premium_bps": 5.4630593999
+      "premium_bps": 4.9225062783
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.25,
       "p_bind": 0.55,
-      "premium_bps": 6.6770725999
+      "premium_bps": 6.0163965624
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.25,
       "p_bind": 0.65,
-      "premium_bps": 7.8910857999
+      "premium_bps": 7.1102868465
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.25,
       "p_bind": 0.75,
-      "premium_bps": 9.1050989999
+      "premium_bps": 8.2041771305
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.25,
       "p_bind": 0.85,
-      "premium_bps": 10.3191121999
+      "premium_bps": 9.2980674146
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.25,
       "p_bind": 0.95,
-      "premium_bps": 11.5331253999
+      "premium_bps": 10.3919576987
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.35,
       "p_bind": 0.25,
-      "premium_bps": 4.2490461999
+      "premium_bps": 3.8286159942
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.35,
       "p_bind": 0.35,
-      "premium_bps": 5.9486646799
+      "premium_bps": 5.3600623919
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.35,
       "p_bind": 0.45,
-      "premium_bps": 7.6482831599
+      "premium_bps": 6.8915087896
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.35,
       "p_bind": 0.55,
-      "premium_bps": 9.3479016399
+      "premium_bps": 8.4229551873
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.35,
       "p_bind": 0.65,
-      "premium_bps": 11.0475201199
+      "premium_bps": 9.954401585
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.35,
       "p_bind": 0.75,
-      "premium_bps": 12.7471385998
+      "premium_bps": 11.4858479827
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.35,
       "p_bind": 0.85,
-      "premium_bps": 14.4467570798
+      "premium_bps": 13.0172943804
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.35,
       "p_bind": 0.95,
-      "premium_bps": 16.1463755598
+      "premium_bps": 14.5487407781
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.45,
       "p_bind": 0.25,
-      "premium_bps": 5.4630593999
+      "premium_bps": 4.9225062783
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.45,
       "p_bind": 0.35,
-      "premium_bps": 7.6482831599
+      "premium_bps": 6.8915087896
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.45,
       "p_bind": 0.45,
-      "premium_bps": 9.8335069199
+      "premium_bps": 8.860511301
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.45,
       "p_bind": 0.55,
-      "premium_bps": 12.0187306799
+      "premium_bps": 10.8295138123
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.45,
       "p_bind": 0.65,
-      "premium_bps": 14.2039544398
+      "premium_bps": 12.7985163236
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.45,
       "p_bind": 0.75,
-      "premium_bps": 16.3891781998
+      "premium_bps": 14.7675188349
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.45,
       "p_bind": 0.85,
-      "premium_bps": 18.5744019598
+      "premium_bps": 16.7365213463
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.45,
       "p_bind": 0.95,
-      "premium_bps": 20.7596257197
+      "premium_bps": 18.7055238576
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.55,
       "p_bind": 0.25,
-      "premium_bps": 6.6770725999
+      "premium_bps": 6.0163965624
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.55,
       "p_bind": 0.35,
-      "premium_bps": 9.3479016399
+      "premium_bps": 8.4229551873
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.55,
       "p_bind": 0.45,
-      "premium_bps": 12.0187306799
+      "premium_bps": 10.8295138123
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.55,
       "p_bind": 0.55,
-      "premium_bps": 14.6895597198
+      "premium_bps": 13.2360724372
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.55,
       "p_bind": 0.65,
-      "premium_bps": 17.3603887598
+      "premium_bps": 15.6426310622
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.55,
       "p_bind": 0.75,
-      "premium_bps": 20.0312177998
+      "premium_bps": 18.0491896872
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.55,
       "p_bind": 0.85,
-      "premium_bps": 22.7020468397
+      "premium_bps": 20.4557483121
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.55,
       "p_bind": 0.95,
-      "premium_bps": 25.3728758797
+      "premium_bps": 22.8623069371
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.65,
       "p_bind": 0.25,
-      "premium_bps": 7.8910857999
+      "premium_bps": 7.1102868465
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.65,
       "p_bind": 0.35,
-      "premium_bps": 11.0475201199
+      "premium_bps": 9.954401585
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.65,
       "p_bind": 0.45,
-      "premium_bps": 14.2039544398
+      "premium_bps": 12.7985163236
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.65,
       "p_bind": 0.55,
-      "premium_bps": 17.3603887598
+      "premium_bps": 15.6426310622
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.65,
       "p_bind": 0.65,
-      "premium_bps": 20.5168230798
+      "premium_bps": 18.4867458008
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.65,
       "p_bind": 0.75,
-      "premium_bps": 23.6732573997
+      "premium_bps": 21.3308605394
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.65,
       "p_bind": 0.85,
-      "premium_bps": 26.8296917197
+      "premium_bps": 24.1749752779
     },
     {
       "firm_id": "NIPPON",
       "lambda": 0.65,
       "p_bind": 0.95,
-      "premium_bps": 29.9861260396
+      "premium_bps": 27.0190900165
     },
     {
       "firm_id": "POSCO",
@@ -1778,7 +1778,7 @@
       "premium_bps": 43.9632029116
     }
   ],
-  "level_min_bps": 1.7558854872,
+  "level_min_bps": 1.6408354261,
   "level_max_bps": 54.4719376504,
   "max_share_deviation": 0.0,
   "share_invariant_to_decimals": 6

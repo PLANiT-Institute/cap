@@ -61,18 +61,18 @@
       "t_switch_year": 2051.5243902439,
       "residual_intensity_tco2_t": 0.4,
       "shares": {
-        "carbon": 0.9712545303,
+        "carbon": 0.9769709146,
         "h2": 0.0,
-        "elec": 0.0283419852,
+        "elec": 0.0227254411,
         "feedstock": 0.0,
-        "capex": 0.0004034845
+        "capex": 0.0003036443
       },
       "shares_reform": {
-        "carbon": 0.9910568484,
+        "carbon": 0.9927202112,
         "h2": 0.0,
-        "elec": 0.0088918863,
+        "elec": 0.007241471,
         "feedstock": 0.0,
-        "capex": 5.12653e-05
+        "capex": 3.83178e-05
       }
     },
     {
@@ -111,18 +111,18 @@
       "t_switch_year": 2061.0,
       "residual_intensity_tco2_t": 0.8,
       "shares": {
-        "carbon": 0.9997122534,
+        "carbon": 0.9998602064,
         "h2": 0.0,
         "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0002877466
+        "capex": 0.0001397936
       },
       "shares_reform": {
-        "carbon": 0.9999646995,
+        "carbon": 0.9999828525,
         "h2": 0.0,
         "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 3.53005e-05
+        "capex": 1.71475e-05
       }
     },
     {
@@ -161,18 +161,18 @@
       "t_switch_year": 2037.6,
       "residual_intensity_tco2_t": 0.1,
       "shares": {
-        "carbon": 0.1009411916,
-        "h2": 0.7822410483,
-        "elec": 0.1152501143,
+        "carbon": 0.1516039238,
+        "h2": 0.7347444485,
+        "elec": 0.1115914859,
         "feedstock": 0.0,
-        "capex": 0.0015676458
+        "capex": 0.0020601418
       },
       "shares_reform": {
-        "carbon": 0.4505138369,
-        "h2": 0.4659769238,
-        "elec": 0.0825754009,
+        "carbon": 0.5686857787,
+        "h2": 0.3615404756,
+        "elec": 0.0687600264,
         "feedstock": 0.0,
-        "capex": 0.0009338384
+        "capex": 0.0010137193
       }
     },
     {

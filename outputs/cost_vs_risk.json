@@ -49,25 +49,25 @@
       "firm_id": "JFE",
       "firm": "JFE Steel",
       "cost_shares": {
-        "carbon": 0.8354609047,
+        "carbon": 0.8587876118,
         "h2": 0.0,
-        "elec": 0.1189217607,
+        "elec": 0.1007361803,
         "feedstock": 0.0,
-        "capex": 0.0456173346
+        "capex": 0.0404762079
       },
       "risk_shares": {
-        "carbon": 0.9712545303,
+        "carbon": 0.9769709146,
         "h2": 0.0,
-        "elec": 0.0283419852,
+        "elec": 0.0227254411,
         "feedstock": 0.0,
-        "capex": 0.0004034845
+        "capex": 0.0003036443
       },
       "exposure_pv_usd_bn": {
-        "carbon": 12.0034558001,
+        "carbon": 9.8762731907,
         "h2": 0.0,
-        "elec": 1.7086043048,
+        "elec": 1.1584913704,
         "feedstock": 0.0,
-        "capex": 0.6554054849
+        "capex": 0.4654865549
       }
     },
     {
@@ -99,25 +99,25 @@
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
       "cost_shares": {
-        "carbon": 0.9570102983,
+        "carbon": 0.9696425067,
         "h2": 0.0,
         "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0429897017
+        "capex": 0.0303574933
       },
       "risk_shares": {
-        "carbon": 0.9997122534,
+        "carbon": 0.9998602064,
         "h2": 0.0,
         "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0002877466
+        "capex": 0.0001397936
       },
       "exposure_pv_usd_bn": {
-        "carbon": 4.4002758925,
+        "carbon": 3.5206850687,
         "h2": 0.0,
         "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.1976640672
+        "capex": 0.1102253385
       }
     },
     {
@@ -149,25 +149,25 @@
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
       "cost_shares": {
-        "carbon": 0.1684640589,
-        "h2": 0.62758342,
-        "elec": 0.1445343634,
+        "carbon": 0.2040907565,
+        "h2": 0.5929480064,
+        "elec": 0.1365577227,
         "feedstock": 0.0,
-        "capex": 0.0594181577
+        "capex": 0.0664035144
       },
       "risk_shares": {
-        "carbon": 0.1009411916,
-        "h2": 0.7822410483,
-        "elec": 0.1152501143,
+        "carbon": 0.1516039238,
+        "h2": 0.7347444485,
+        "elec": 0.1115914859,
         "feedstock": 0.0,
-        "capex": 0.0015676458
+        "capex": 0.0020601418
       },
       "exposure_pv_usd_bn": {
-        "carbon": 6.7830212972,
-        "h2": 25.268960819,
-        "elec": 5.8195182492,
+        "carbon": 6.0770049118,
+        "h2": 17.6556156149,
+        "elec": 4.066141778,
         "feedstock": 0.0,
-        "capex": 2.3924072105
+        "capex": 1.9772305723
       }
     },
     {

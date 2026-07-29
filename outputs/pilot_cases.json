@@ -105,8 +105,8 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "8f4060ea4eb94c91645ca841dfcbe861bb9b90aa657e83ab0a438f7f3eaac11d",
-        "pilot_generator_sha256": "05c57633090f1f178079e0515142d2960f75a5003d76fb0d3c361104096898de",
+        "input_fingerprint_sha256": "3c0cf075ed50d705e94932a8bee7358401cd8716915b59ec2569e9269ecf10c2",
+        "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {
             "asset_id": "A01",
@@ -261,8 +261,8 @@
       },
       "reproducibility": {
         "method": "two fresh in-memory API calls with identical request and config",
-        "run_a_sha256": "ba3df846dfb2e08406bd58629546d8fe7083e3ab95d77a136e3587eee1e3b91b",
-        "run_b_sha256": "ba3df846dfb2e08406bd58629546d8fe7083e3ab95d77a136e3587eee1e3b91b",
+        "run_a_sha256": "b32306c502e475b03f5ac64fd128568ee23e937327c5bdf220a65cdbe3284f74",
+        "run_b_sha256": "b32306c502e475b03f5ac64fd128568ee23e937327c5bdf220a65cdbe3284f74",
         "exact_match": true,
         "status": "AUTOMATED_REPLAY_NOT_INDEPENDENT_ANALYST"
       },
@@ -301,16 +301,16 @@
         "gross_incremental_project_npv_usd_m": 6442.8115037673,
         "counterparty_adjusted_incremental_npv_usd_m": 5901.8409182233,
         "counterparty_expected_loss_usd_m": 540.9705855439,
-        "dscr": -9.4683714249,
-        "annual_cfads_shortfall_usd_m": 2184.979259168,
-        "required_green_premium_usd_t": 276.9165575598,
+        "dscr": -8.4077073061,
+        "annual_cfads_shortfall_usd_m": 2218.2560117128,
+        "required_green_premium_usd_t": 277.2820014641,
         "decision_at_required_premium_plus_0_1": "INVESTABLE_SCREEN"
       },
       "basis_separation": {
         "enterprise_transition_window": {
-          "before_bps": 12.5835011111,
-          "after_bps": 10.7027129063,
-          "delta_bps": -1.8807882048,
+          "before_bps": 12.4753703209,
+          "after_bps": 11.0560269115,
+          "delta_bps": -1.4193434094,
           "metric_id": "conditional_risk_charge_bps",
           "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
           "evidence_grade": "SCENARIO_CONDITIONAL",
@@ -318,9 +318,9 @@
           "interpretation": "enterprise transition-window residual charge"
         },
         "project_from_base_year": {
-          "before_bps": 17.8834842066,
-          "after_bps": 12.3807247351,
-          "delta_bps": -5.5027594715,
+          "before_bps": 17.8892231587,
+          "after_bps": 12.3890129883,
+          "delta_bps": -5.5002101705,
           "metric_id": "conditional_risk_charge_bps",
           "basis_id": "project_from_base_year.reform_priced.fixed_commissioning.ev_normalized",
           "evidence_grade": "SCENARIO_CONDITIONAL",
@@ -330,7 +330,7 @@
         "comparison_rule": "Do not compare enterprise and project bps directly; metric_id and basis_id must both match."
       },
       "research_summary": {
-        "cumulative_alignment_gap_mtco2": 236.16,
+        "cumulative_alignment_gap_mtco2": 311.04,
         "alignment_result_contract": {
           "metric_id": "cumulative_alignment_gap_mtco2",
           "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
@@ -341,8 +341,8 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "8f4060ea4eb94c91645ca841dfcbe861bb9b90aa657e83ab0a438f7f3eaac11d",
-        "pilot_generator_sha256": "05c57633090f1f178079e0515142d2960f75a5003d76fb0d3c361104096898de",
+        "input_fingerprint_sha256": "3c0cf075ed50d705e94932a8bee7358401cd8716915b59ec2569e9269ecf10c2",
+        "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {
             "asset_id": "A04",
@@ -370,23 +370,23 @@
               "green_premium_usd_t": 0.0,
               "project_npv_usd_m": -28319.3838512653,
               "project_irr": null,
-              "dscr": -9.4683714249,
+              "dscr": -8.4077073061,
               "decision": "NOT_ECONOMIC_ON_TERMS",
-              "remaining_required_green_premium_usd_t": 276.9165575598
+              "remaining_required_green_premium_usd_t": 277.2820014641
             },
             {
-              "green_premium_usd_t": 277.0165575598,
-              "project_npv_usd_m": 10.2266849266,
-              "project_irr": 0.0602860685,
-              "dscr": 1.4535342916,
+              "green_premium_usd_t": 277.3820014641,
+              "project_npv_usd_m": 47.5994816055,
+              "project_irr": 0.0613286179,
+              "dscr": 1.3035010232,
               "decision": "INVESTABLE_SCREEN",
               "remaining_required_green_premium_usd_t": 0.0
             },
             {
-              "green_premium_usd_t": 326.9165575598,
-              "project_npv_usd_m": 5113.3424633074,
-              "project_irr": 0.1817723747,
-              "dscr": 3.4209368904,
+              "green_premium_usd_t": 327.2820014641,
+              "project_npv_usd_m": 5150.7152599863,
+              "project_irr": 0.1825866059,
+              "dscr": 3.050511619,
               "decision": "INVESTABLE_SCREEN",
               "remaining_required_green_premium_usd_t": 0.0
             }
@@ -397,7 +397,7 @@
               "debt_share": 0.5,
               "project_npv_usd_m": -28319.3838512653,
               "project_irr": null,
-              "dscr": -11.3620457099,
+              "dscr": -10.0892487673,
               "decision": "NOT_ECONOMIC_ON_TERMS",
               "remaining_required_green_premium_usd_t": 276.9165575598
             },
@@ -406,18 +406,18 @@
               "debt_share": 0.6,
               "project_npv_usd_m": -28319.3838512653,
               "project_irr": null,
-              "dscr": -9.4683714249,
+              "dscr": -8.4077073061,
               "decision": "NOT_ECONOMIC_ON_TERMS",
-              "remaining_required_green_premium_usd_t": 276.9165575598
+              "remaining_required_green_premium_usd_t": 277.2820014641
             },
             {
               "green_premium_usd_t": 0.0,
               "debt_share": 0.7,
               "project_npv_usd_m": -28319.3838512653,
               "project_irr": null,
-              "dscr": -8.1157469357,
+              "dscr": -7.2066062624,
               "decision": "NOT_ECONOMIC_ON_TERMS",
-              "remaining_required_green_premium_usd_t": 278.6178086287
+              "remaining_required_green_premium_usd_t": 283.4706683748
             }
           ],
           "target_dscr": [
@@ -426,7 +426,7 @@
               "target_dscr": 1.15,
               "project_npv_usd_m": -28319.3838512653,
               "project_irr": null,
-              "dscr": -9.4683714249,
+              "dscr": -8.4077073061,
               "decision": "NOT_ECONOMIC_ON_TERMS",
               "remaining_required_green_premium_usd_t": 276.9165575598
             },
@@ -435,47 +435,47 @@
               "target_dscr": 1.3,
               "project_npv_usd_m": -28319.3838512653,
               "project_irr": null,
-              "dscr": -9.4683714249,
+              "dscr": -8.4077073061,
               "decision": "NOT_ECONOMIC_ON_TERMS",
-              "remaining_required_green_premium_usd_t": 276.9165575598
+              "remaining_required_green_premium_usd_t": 277.2820014641
             },
             {
               "green_premium_usd_t": 0.0,
               "target_dscr": 1.45,
               "project_npv_usd_m": -28319.3838512653,
               "project_irr": null,
-              "dscr": -9.4683714249,
+              "dscr": -8.4077073061,
               "decision": "NOT_ECONOMIC_ON_TERMS",
-              "remaining_required_green_premium_usd_t": 276.9269159417
+              "remaining_required_green_premium_usd_t": 281.5664631715
             }
           ],
           "joint_gate_stress": {
-            "green_premium_usd_t": 277.0165575598,
+            "green_premium_usd_t": 277.3820014641,
             "debt_share": 0.7,
             "target_dscr": 1.45,
-            "project_npv_usd_m": 10.2266849266,
-            "project_irr": 0.0602860685,
-            "dscr": 1.2458865357,
+            "project_npv_usd_m": 47.5994816055,
+            "project_irr": 0.0613286179,
+            "dscr": 1.1172865913,
             "decision": "ECONOMIC_NOT_DEBT_BANKABLE",
-            "remaining_required_green_premium_usd_t": 6.0398443722
+            "remaining_required_green_premium_usd_t": 11.0872055693
           }
         },
         "enterprise_fixed_exposure_pricing": [
           {
             "lambda": 0.25,
-            "risk_charge_reform_bps": 6.6891955665,
+            "risk_charge_reform_bps": 6.9100168197,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.4,
-            "risk_charge_reform_bps": 10.7027129063,
+            "risk_charge_reform_bps": 11.0560269115,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.55,
-            "risk_charge_reform_bps": 14.7162302462,
+            "risk_charge_reform_bps": 15.2020370033,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           }
@@ -483,8 +483,8 @@
       },
       "reproducibility": {
         "method": "two fresh in-memory API calls with identical request and config",
-        "run_a_sha256": "c742785c255b10c0d7dc4b411b34f5bedf25d4e9895f3c278c00a3699a57a33e",
-        "run_b_sha256": "c742785c255b10c0d7dc4b411b34f5bedf25d4e9895f3c278c00a3699a57a33e",
+        "run_a_sha256": "5c3041297dc98f6c1911248a4b71d6abb8718df65336f8d3a9eb31ffebafe162",
+        "run_b_sha256": "5c3041297dc98f6c1911248a4b71d6abb8718df65336f8d3a9eb31ffebafe162",
         "exact_match": true,
         "status": "AUTOMATED_REPLAY_NOT_INDEPENDENT_ANALYST"
       },

@@ -17,7 +17,7 @@ Rules:
    Abstract-based summaries stay in `refs.bib` as a map, not as support
    (the lesson of `PAPER_DIFF.md` D8 and D18).
 
-Status: **OPEN 8 · RESOLVED 0** (registered 2026-07-29)
+Status: **OPEN 2 (X1, X3 — boundary check pending) · RESOLVED 6** (updated 2026-07-29)
 
 ---
 
@@ -34,7 +34,7 @@ Status: **OPEN 8 · RESOLVED 0** (registered 2026-07-29)
 | Recommendation | **Boundary check first.** KEEI states "per t crude steel", Midrex "per t steel"; equivalence unconfirmed. If confirmed as same-boundary and Korea-specific, candidate for `measured` promotion. Expect the anatomy to move |
 | Prerequisite | X2 (boundary definitions) |
 
-### X2. Process boundary for power intensity `OPEN`
+### X2. Process boundary for power intensity `RESOLVED (2026-07-29)`
 
 | | |
 |---|---|
@@ -53,7 +53,7 @@ Status: **OPEN 8 · RESOLVED 0** (registered 2026-07-29)
 | Impact | Carbon exposure moves 18%; feeds the LEVEL gap and the carbon share directly |
 | Recommendation | Re-verify sources; check whether the difference is a definition issue (indirect power emissions included or not) |
 
-### X4. Japanese WACC `OPEN`
+### X4. Japanese WACC `RESOLVED (2026-07-29)`
 
 | | |
 |---|---|
@@ -67,7 +67,7 @@ Status: **OPEN 8 · RESOLVED 0** (registered 2026-07-29)
 
 ## Tier 2 — framing and scope
 
-### X5. ρ(H₂, power) `OPEN`
+### X5. ρ(H₂, power) `RESOLVED (2026-07-29)`
 
 Current 0.70 (power is 55–70% of LCOH; banded) vs alternative 0.35 (in-house
 electrolysis assumption). The factor-of-two difference feeds σ_B directly, and
@@ -78,7 +78,7 @@ on it.
 purchased hydrogen**, keep 0.70, and carry 0.35 as the in-house-electrolysis
 sensitivity. Must stay consistent with X2 (`external_h2`).
 
-### X6. Reference date for carbon prices in prose `OPEN`
+### X6. Reference date for carbon prices in prose `RESOLVED (2026-07-29)`
 
 KAU ranged over a factor of four in seven years — $25 (2019–20) → $6.6 (2025) →
 $11 (H1 2026) (`PAPER_DIFF.md`, update 8). The multiple against the switching
@@ -88,7 +88,7 @@ break-even (~$50/tCO₂) moves between 1/7 and 1/3.3 depending on the date chose
 uses the 2026-06-30 close ($14.93, measured); put the yearly averages table in
 an appendix.
 
-### X7. Japanese required-pathway benchmark `OPEN`
+### X7. Japanese required-pathway benchmark `RESOLVED (2026-07-29)`
 
 Korea uses GCAM-KAIST NZ2050_limCCS; Japan uses TZ-OSeMOSYS-STEEL — a separate
 IAM, leaving the single-IAM frame. Needs sign-off.
@@ -97,7 +97,7 @@ IAM, leaving the single-IAM frame. Needs sign-off.
 preserved by normalizing through state variables", and extend
 `t_required_source` so the artifact records the choice.
 
-### X8. Standing of λ_k (per-driver risk prices) `OPEN`
+### X8. Standing of λ_k (per-driver risk prices) `RESOLVED (2026-07-29)`
 
 `outputs/lambda_k_sensitivity.json` is currently side-robustness. But A5
 (uniform λ) has zero supporting papers and seven against, with Ready (2018)
@@ -128,4 +128,10 @@ uniform λ and λ_k side by side. POSCO's carbon share moves 31.6% → 39.8%
 
 | Date | ID | Decision | Rejected alternative | Numeric shift |
 |---|---|---|---|---|
-| — | — | (none yet) | | |
+| 2026-07-29 | X2 | Adopt `process_boundary` field; the model prices the `external_h2` boundary. Values from other boundaries are reference-only | Hunting country-specific values before aligning boundaries — rejected: it produced the D17 confusion | none (framework) |
+| 2026-07-29 | X4 | JP steel WACC 4.0% → **5.75%** (5 assets) | Keeping 4.0% (low-rate-era convention) — rejected: NS interest-bearing debt doubled; survey band 5.0–6.5% | PAPER_DIFF update 10 — Oita τ* leaves the horizon; NIPPON gap +32% |
+| 2026-07-29 | X5 | Reference technology = externally purchased H₂; keep ρ(H₂,elec)=0.70; carry 0.35 as in-house-electrolysis sensitivity | Switching to 0.35 as the base — rejected: inconsistent with the `external_h2` boundary (X2) | none (base unchanged) |
+| 2026-07-29 | X6 | Carbon-price prose must carry a reference date; config uses the 2026-06-30 KAU close ($14.93) | Undated citation — rejected: the break-even multiple moves 1/7↔1/3.3 with the date | none (rule) |
+| 2026-07-29 | X7 | Approve TZ-OSeMOSYS-STEEL as the Japanese required-pathway benchmark, normalized through state variables. Implementation ticket: extend `t_required_source` to record per-country sources | Forcing a single global IAM — rejected: GCAM-KAIST is Korea-specific | none yet (implementation pending) |
+| 2026-07-29 | X8 | Promote λ_k to a headline result: report shares under uniform λ and λ_k side by side | Keeping λ_k as side-robustness — rejected: A5 has zero supporting papers, seven against (D1) | presentation change; implementation with s12 |
+

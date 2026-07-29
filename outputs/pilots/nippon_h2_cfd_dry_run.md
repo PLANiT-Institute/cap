@@ -9,13 +9,13 @@
 - Project NPV: −$28,319.4m
 - Gross incremental project NPV before counterparty EL: $6,442.8m
 - Counterparty-adjusted incremental NPV: $5,901.8m
-- Required contracted premium: $276.9/t
-- Annual CFADS shortfall: $2,185.0m
+- Required contracted premium: $277.3/t
+- Annual CFADS shortfall: $2,218.3m
 
 ## Basis separation
 
-- Enterprise transition-window charge: 10.70 bps (`enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized`)
-- Project-from-base-year charge: 12.38 bps (`project_from_base_year.reform_priced.fixed_commissioning.ev_normalized`)
+- Enterprise transition-window charge: 11.06 bps (`enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized`)
+- Project-from-base-year charge: 12.39 bps (`project_from_base_year.reform_priced.fixed_commissioning.ev_normalized`)
 - These bps values are not directly comparable; only within-basis before/after deltas are effects.
 
 ## Replay and 40-point gates

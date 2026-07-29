@@ -167,19 +167,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 2312.4,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 207.9798004978,
-                "dscr": -11.8507422072,
+                "annual_debt_service_usd_m": 234.2172400043,
+                "dscr": -10.5232005977,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 337.3415575598,
-                "required_green_premium_dscr_usd_t": 333.547407396,
-                "required_green_premium_usd_t": 337.3415575598,
+                "required_green_premium_dscr_usd_t": 337.7070014641,
+                "required_green_premium_usd_t": 337.7070014641,
                 "break_even_carbon_usd_t": 203.2981881894,
                 "break_even_hydrogen_usd_kg": -0.1223592927,
                 "break_even_feedstock_usd_t": null
@@ -198,15 +198,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 48.8815234979,
-              "risk_charge_usd_t": 8.9417421033,
-              "sigma_b_usd_bn": 17.1066511926,
+              "risk_charge_bps": 48.8972099672,
+              "risk_charge_usd_t": 8.9446115794,
+              "sigma_b_usd_bn": 13.6915185017,
               "shares": {
-                "carbon": 0.0043433165,
-                "h2": 0.8772718667,
-                "elec": 0.1172427909,
+                "carbon": 0.0043405303,
+                "h2": 0.8767090906,
+                "elec": 0.1171675788,
                 "feedstock": 0.0,
-                "capex": 0.0011420259
+                "capex": 0.0017828003
               }
             }
           },
@@ -277,19 +277,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2312.4,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 207.9798004978,
-                  "dscr": -9.3668471425,
+                  "annual_debt_service_usd_m": 234.2172400043,
+                  "dscr": -8.3175559577,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 274.3415575598,
-                  "required_green_premium_dscr_usd_t": 270.547407396,
-                  "required_green_premium_usd_t": 274.3415575598,
+                  "required_green_premium_dscr_usd_t": 274.7070014641,
+                  "required_green_premium_usd_t": 274.7070014641,
                   "break_even_carbon_usd_t": 170.1402934525,
                   "break_even_hydrogen_usd_kg": -0.1223592927,
                   "break_even_feedstock_usd_t": null
@@ -308,18 +308,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 33.8406476093,
-                "risk_charge_usd_t": 6.1903623675,
-                "sigma_b_usd_bn": 11.8429237339,
+                "risk_charge_bps": 33.8633021679,
+                "risk_charge_usd_t": 6.1945064941,
+                "sigma_b_usd_bn": 9.481932169,
                 "shares": {
-                  "carbon": 0.0090621995,
-                  "h2": 0.8121019184,
-                  "elec": 0.1764530795,
+                  "carbon": 0.0090500783,
+                  "h2": 0.811015689,
+                  "elec": 0.1762170642,
                   "feedstock": 0.0,
-                  "capex": 0.0023828026
+                  "capex": 0.0037171685
                 }
               },
-              "risk_cut_bps": 15.0408758887,
+              "risk_cut_bps": 15.0339077993,
               "gross_incremental_value_usd_m": 6603.8817913615,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -395,19 +395,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2312.4,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 207.9798004978,
-                  "dscr": -11.5100937412,
+                  "annual_debt_service_usd_m": 234.2172400043,
+                  "dscr": -10.2207121899,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 328.7015575598,
-                  "required_green_premium_dscr_usd_t": 324.907407396,
-                  "required_green_premium_usd_t": 328.7015575598,
+                  "required_green_premium_dscr_usd_t": 329.0670014641,
+                  "required_green_premium_usd_t": 329.0670014641,
                   "break_even_carbon_usd_t": 198.7508197683,
                   "break_even_hydrogen_usd_kg": 0.0216407073,
                   "break_even_feedstock_usd_t": null
@@ -426,18 +426,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 47.2645236297,
-                "risk_charge_usd_t": 8.6459494444,
-                "sigma_b_usd_bn": 16.5407634963,
+                "risk_charge_bps": 47.2807465787,
+                "risk_charge_usd_t": 8.6489170571,
+                "sigma_b_usd_bn": 13.238898845,
                 "shares": {
-                  "carbon": 0.0039995913,
-                  "h2": 0.9100272263,
-                  "elec": 0.0847516786,
+                  "carbon": 0.0039968471,
+                  "h2": 0.9094028371,
+                  "elec": 0.0846935286,
                   "feedstock": 0.0,
-                  "capex": 0.0012215038
+                  "capex": 0.0019067871
                 }
               },
-              "risk_cut_bps": 1.6169998683,
+              "risk_cut_bps": 1.6164633885,
               "gross_incremental_value_usd_m": 905.675217101,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -513,19 +513,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1618.68,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 145.5858603485,
-                  "dscr": -16.9296317245,
+                  "annual_debt_service_usd_m": 163.952068003,
+                  "dscr": -15.033143711,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 326.3115902918,
-                  "required_green_premium_dscr_usd_t": 323.6556851772,
-                  "required_green_premium_usd_t": 326.3115902918,
+                  "required_green_premium_dscr_usd_t": 326.5674010249,
+                  "required_green_premium_usd_t": 326.5674010249,
                   "break_even_carbon_usd_t": 197.4929422589,
                   "break_even_hydrogen_usd_kg": 0.0614734951,
                   "break_even_feedstock_usd_t": null
@@ -544,18 +544,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.8672863138,
-                "risk_charge_usd_t": 8.9391377403,
-                "sigma_b_usd_bn": 17.1016687263,
+                "risk_charge_bps": 48.8749755518,
+                "risk_charge_usd_t": 8.9405443083,
+                "sigma_b_usd_bn": 13.6852927291,
                 "shares": {
-                  "carbon": 0.0043458477,
-                  "h2": 0.8777831167,
-                  "elec": 0.1173111168,
+                  "carbon": 0.0043444804,
+                  "h2": 0.8775069446,
+                  "elec": 0.1172742078,
                   "feedstock": 0.0,
-                  "capex": 0.0005599188
+                  "capex": 0.0008743672
                 }
               },
-              "risk_cut_bps": 0.0142371842,
+              "risk_cut_bps": 0.0222344154,
               "gross_incremental_value_usd_m": 1156.2,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -630,19 +630,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2312.4,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 207.9798004978,
-                  "dscr": -11.0735393268,
+                  "annual_debt_service_usd_m": 234.2172400043,
+                  "dscr": -9.8330613919,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 317.6290575598,
-                  "required_green_premium_dscr_usd_t": 313.834907396,
-                  "required_green_premium_usd_t": 317.6290575598,
+                  "required_green_premium_dscr_usd_t": 317.9945014641,
+                  "required_green_premium_usd_t": 317.9945014641,
                   "break_even_carbon_usd_t": 203.2981881894,
                   "break_even_hydrogen_usd_kg": 0.206182374,
                   "break_even_feedstock_usd_t": null
@@ -661,18 +661,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 73.2544191102,
-                "risk_charge_usd_t": 13.4001986177,
-                "sigma_b_usd_bn": 17.0908175027,
+                "risk_charge_bps": 73.2779706061,
+                "risk_charge_usd_t": 13.4045068182,
+                "sigma_b_usd_bn": 13.6788539468,
                 "shares": {
-                  "carbon": 0.0029772533,
-                  "h2": 0.8788981067,
-                  "elec": 0.1169804972,
+                  "carbon": 0.0029753398,
+                  "h2": 0.8783332428,
+                  "elec": 0.1169053144,
                   "feedstock": 0.0,
-                  "capex": 0.0011441429
+                  "capex": 0.0017861031
                 }
               },
-              "risk_cut_bps": -24.3728956123,
+              "risk_cut_bps": -24.3807606389,
               "gross_incremental_value_usd_m": 2066.3336478129,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -748,19 +748,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2312.4,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 186.7643529736,
-                  "dscr": -13.1969241494,
+                  "annual_debt_service_usd_m": 211.6318315167,
+                  "dscr": -11.6462395205,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 332.2713431782,
-                  "required_green_premium_dscr_usd_t": 330.1839827885,
-                  "required_green_premium_usd_t": 332.2713431782,
+                  "required_green_premium_dscr_usd_t": 334.1263879234,
+                  "required_green_premium_usd_t": 334.1263879234,
                   "break_even_carbon_usd_t": 200.6296543043,
                   "break_even_hydrogen_usd_kg": -0.0378557196,
                   "break_even_feedstock_usd_t": null
@@ -779,18 +779,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.8717618687,
-                "risk_charge_usd_t": 8.9399564394,
-                "sigma_b_usd_bn": 21.2089615905,
+                "risk_charge_bps": 48.8834656316,
+                "risk_charge_usd_t": 8.9420973716,
+                "sigma_b_usd_bn": 16.5415121017,
                 "shares": {
-                  "carbon": 0.0043450518,
-                  "h2": 0.8776223537,
-                  "elec": 0.1172896316,
+                  "carbon": 0.0043429714,
+                  "h2": 0.8772021603,
+                  "elec": 0.117233475,
                   "feedstock": 0.0,
-                  "capex": 0.0007429629
+                  "capex": 0.0012213933
                 }
               },
-              "risk_cut_bps": 0.0097616293,
+              "risk_cut_bps": 0.0137443356,
               "gross_incremental_value_usd_m": -5039.9793799058,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -865,19 +865,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2312.4,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 207.9798004978,
-                  "dscr": -11.8507422072,
+                  "annual_debt_service_usd_m": 234.2172400043,
+                  "dscr": -10.5232005977,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 337.3415575598,
-                  "required_green_premium_dscr_usd_t": 333.547407396,
-                  "required_green_premium_usd_t": 337.3415575598,
+                  "required_green_premium_dscr_usd_t": 337.7070014641,
+                  "required_green_premium_usd_t": 337.7070014641,
                   "break_even_carbon_usd_t": 203.2981881894,
                   "break_even_hydrogen_usd_kg": -0.1223592927,
                   "break_even_feedstock_usd_t": null
@@ -896,15 +896,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.8815234979,
-                "risk_charge_usd_t": 8.9417421033,
-                "sigma_b_usd_bn": 17.1066511926,
+                "risk_charge_bps": 48.8972099672,
+                "risk_charge_usd_t": 8.9446115794,
+                "sigma_b_usd_bn": 13.6915185017,
                 "shares": {
-                  "carbon": 0.0043433165,
-                  "h2": 0.8772718667,
-                  "elec": 0.1172427909,
+                  "carbon": 0.0043405303,
+                  "h2": 0.8767090906,
+                  "elec": 0.1171675788,
                   "feedstock": 0.0,
-                  "capex": 0.0011420259
+                  "capex": 0.0017828003
                 }
               },
               "risk_cut_bps": 0.0,
@@ -982,19 +982,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2312.4,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 207.9798004978,
-                  "dscr": -11.8507422072,
+                  "annual_debt_service_usd_m": 234.2172400043,
+                  "dscr": -10.5232005977,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 337.3415575598,
-                  "required_green_premium_dscr_usd_t": 333.547407396,
-                  "required_green_premium_usd_t": 337.3415575598,
+                  "required_green_premium_dscr_usd_t": 337.7070014641,
+                  "required_green_premium_usd_t": 337.7070014641,
                   "break_even_carbon_usd_t": 203.2981881894,
                   "break_even_hydrogen_usd_kg": -0.1223592927,
                   "break_even_feedstock_usd_t": null
@@ -1013,15 +1013,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.8815234979,
-                "risk_charge_usd_t": 8.9417421033,
-                "sigma_b_usd_bn": 17.1066511926,
+                "risk_charge_bps": 48.8972099672,
+                "risk_charge_usd_t": 8.9446115794,
+                "sigma_b_usd_bn": 13.6915185017,
                 "shares": {
-                  "carbon": 0.0043433165,
-                  "h2": 0.8772718667,
-                  "elec": 0.1172427909,
+                  "carbon": 0.0043405303,
+                  "h2": 0.8767090906,
+                  "elec": 0.1171675788,
                   "feedstock": 0.0,
-                  "capex": 0.0011420259
+                  "capex": 0.0017828003
                 }
               },
               "risk_cut_bps": 0.0,
@@ -1103,19 +1103,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1618.68,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 145.5858603485,
-                  "dscr": -11.7842797088,
+                  "annual_debt_service_usd_m": 163.952068003,
+                  "dscr": -10.4641833488,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 234.9590902918,
-                  "required_green_premium_dscr_usd_t": 232.3031851772,
-                  "required_green_premium_usd_t": 234.9590902918,
+                  "required_green_premium_dscr_usd_t": 235.2149010249,
+                  "required_green_premium_usd_t": 235.2149010249,
                   "break_even_carbon_usd_t": 159.787679101,
                   "break_even_hydrogen_usd_kg": 0.5340151618,
                   "break_even_feedstock_usd_t": null
@@ -1134,18 +1134,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.1193485564,
-                "risk_charge_usd_t": 8.8023198579,
-                "sigma_b_usd_bn": 11.2266128721,
+                "risk_charge_bps": 48.1369164302,
+                "risk_charge_usd_t": 8.8055334933,
+                "sigma_b_usd_bn": 8.9857544342,
                 "shares": {
-                  "carbon": 0.0058146885,
-                  "h2": 0.8639258148,
-                  "elec": 0.1289602115,
+                  "carbon": 0.005810445,
+                  "h2": 0.8632953394,
+                  "elec": 0.1288660989,
                   "feedstock": 0.0,
-                  "capex": 0.0012992853
+                  "capex": 0.0020281166
                 }
               },
-              "risk_cut_bps": 0.7621749415,
+              "risk_cut_bps": 0.760293537,
               "gross_incremental_value_usd_m": 10732.0906562754,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -1216,19 +1216,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 984.0,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 88.502042765,
-                "dscr": -7.3474010281,
+                "annual_debt_service_usd_m": 99.6669106401,
+                "dscr": -6.5243318552,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 94.9453436425,
-                "required_green_premium_dscr_usd_t": 93.3308116579,
-                "required_green_premium_usd_t": 94.9453436425,
+                "required_green_premium_dscr_usd_t": 95.1008516868,
+                "required_green_premium_usd_t": 95.1008516868,
                 "break_even_carbon_usd_t": 85.0908397765,
                 "break_even_hydrogen_usd_kg": null,
                 "break_even_feedstock_usd_t": null
@@ -1247,15 +1247,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 12.0841088084,
-              "risk_charge_usd_t": 2.2105077089,
-              "sigma_b_usd_bn": 4.2289728218,
+              "risk_charge_bps": 12.0955951812,
+              "risk_charge_usd_t": 2.2126088746,
+              "sigma_b_usd_bn": 3.3868407896,
               "shares": {
-                "carbon": 0.6867157413,
+                "carbon": 0.6854121051,
                 "h2": 0.0,
-                "elec": 0.3099004919,
+                "elec": 0.3093121881,
                 "feedstock": 0.0,
-                "capex": 0.0033837668
+                "capex": 0.0052757068
               }
             }
           },
@@ -1324,19 +1324,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 984.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 88.502042765,
-                  "dscr": -7.3474010281,
+                  "annual_debt_service_usd_m": 99.6669106401,
+                  "dscr": -6.5243318552,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 94.9453436425,
-                  "required_green_premium_dscr_usd_t": 93.3308116579,
-                  "required_green_premium_usd_t": 94.9453436425,
+                  "required_green_premium_dscr_usd_t": 95.1008516868,
+                  "required_green_premium_usd_t": 95.1008516868,
                   "break_even_carbon_usd_t": 85.0908397765,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -1355,15 +1355,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0841088084,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 4.2289728218,
+                "risk_charge_bps": 12.0955951812,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 3.3868407896,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -1442,19 +1442,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 984.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 88.502042765,
-                  "dscr": -6.7470081068,
+                  "annual_debt_service_usd_m": 99.6669106401,
+                  "dscr": -5.9911960365,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 88.4653436425,
-                  "required_green_premium_dscr_usd_t": 86.8508116579,
-                  "required_green_premium_usd_t": 88.4653436425,
+                  "required_green_premium_dscr_usd_t": 88.6208516868,
+                  "required_green_premium_usd_t": 88.6208516868,
                   "break_even_carbon_usd_t": 81.0408397765,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -1473,18 +1473,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 11.0750167215,
-                "risk_charge_usd_t": 2.0259176929,
-                "sigma_b_usd_bn": 3.8758294433,
+                "risk_charge_bps": 11.0875485331,
+                "risk_charge_usd_t": 2.0282100975,
+                "sigma_b_usd_bn": 3.1045815494,
                 "shares": {
-                  "carbon": 0.7822594795,
+                  "carbon": 0.7804921657,
                   "h2": 0.0,
-                  "elec": 0.2137120434,
+                  "elec": 0.2132292161,
                   "feedstock": 0.0,
-                  "capex": 0.0040284771
+                  "capex": 0.0062786181
                 }
               },
-              "risk_cut_bps": 1.009092087,
+              "risk_cut_bps": 1.0080466481,
               "gross_incremental_value_usd_m": 679.2564128257,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -1560,19 +1560,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 688.8,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 61.9514299355,
-                  "dscr": -10.496287183,
+                  "annual_debt_service_usd_m": 69.7668374481,
+                  "dscr": -9.3204740789,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 90.2517405497,
-                  "required_green_premium_dscr_usd_t": 89.1215681605,
-                  "required_green_premium_usd_t": 90.2517405497,
+                  "required_green_premium_dscr_usd_t": 90.3605961808,
+                  "required_green_premium_usd_t": 90.3605961808,
                   "break_even_carbon_usd_t": 82.1573378436,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -1591,18 +1591,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0736774055,
-                "risk_charge_usd_t": 2.2085995254,
-                "sigma_b_usd_bn": 4.2253222323,
+                "risk_charge_bps": 12.0793119534,
+                "risk_charge_usd_t": 2.2096302354,
+                "sigma_b_usd_bn": 3.382281386,
                 "shares": {
-                  "carbon": 0.6879028698,
+                  "carbon": 0.6872612574,
                   "h2": 0.0,
-                  "elec": 0.3104362182,
+                  "elec": 0.310146672,
                   "feedstock": 0.0,
-                  "capex": 0.001660912
+                  "capex": 0.0025920706
                 }
               },
-              "risk_cut_bps": 0.010431403,
+              "risk_cut_bps": 0.0162832278,
               "gross_incremental_value_usd_m": 492.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -1677,19 +1677,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 984.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 88.502042765,
-                  "dscr": -5.8093574333,
+                  "annual_debt_service_usd_m": 99.6669106401,
+                  "dscr": -5.1585826901,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 78.3453436425,
-                  "required_green_premium_dscr_usd_t": 76.7308116579,
-                  "required_green_premium_usd_t": 78.3453436425,
+                  "required_green_premium_dscr_usd_t": 78.5008516868,
+                  "required_green_premium_usd_t": 78.5008516868,
                   "break_even_carbon_usd_t": 85.0908397765,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -1708,18 +1708,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 15.3725487399,
-                "risk_charge_usd_t": 2.8120515988,
-                "sigma_b_usd_bn": 3.5865334577,
+                "risk_charge_bps": 15.3928607874,
+                "risk_charge_usd_t": 2.8157672172,
+                "sigma_b_usd_bn": 2.8733969131,
                 "shares": {
-                  "carbon": 0.5971036051,
+                  "carbon": 0.5955287978,
                   "h2": 0.0,
-                  "elec": 0.3981918195,
+                  "elec": 0.3971416242,
                   "feedstock": 0.0,
-                  "capex": 0.0047045755
+                  "capex": 0.007329578
                 }
               },
-              "risk_cut_bps": -3.2884399315,
+              "risk_cut_bps": -3.2972656062,
               "gross_incremental_value_usd_m": 1740.0704402635,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -1795,19 +1795,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 984.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 79.4741927547,
-                  "dscr": -8.1820271142,
+                  "annual_debt_service_usd_m": 90.0560985178,
+                  "dscr": -7.2206103829,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 92.7878056077,
-                  "required_green_premium_dscr_usd_t": 91.899567144,
-                  "required_green_premium_usd_t": 92.7878056077,
+                  "required_green_premium_dscr_usd_t": 93.5771863504,
+                  "required_green_premium_usd_t": 93.5771863504,
                   "break_even_carbon_usd_t": 83.7423785048,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -1826,18 +1826,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0769572308,
-                "risk_charge_usd_t": 2.2091994934,
-                "sigma_b_usd_bn": 5.2410576629,
+                "risk_charge_bps": 12.0855313225,
+                "risk_charge_usd_t": 2.2107679248,
+                "sigma_b_usd_bn": 4.0895824394,
                 "shares": {
-                  "carbon": 0.6875292831,
+                  "carbon": 0.6865540926,
                   "h2": 0.0,
-                  "elec": 0.3102676264,
+                  "elec": 0.3098275432,
                   "feedstock": 0.0,
-                  "capex": 0.0022030905
+                  "capex": 0.0036183642
                 }
               },
-              "risk_cut_bps": 0.0071515776,
+              "risk_cut_bps": 0.0100638587,
               "gross_incremental_value_usd_m": -1329.6859846179,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -1912,19 +1912,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 984.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 88.502042765,
-                  "dscr": -7.3474010281,
+                  "annual_debt_service_usd_m": 99.6669106401,
+                  "dscr": -6.5243318552,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 94.9453436425,
-                  "required_green_premium_dscr_usd_t": 93.3308116579,
-                  "required_green_premium_usd_t": 94.9453436425,
+                  "required_green_premium_dscr_usd_t": 95.1008516868,
+                  "required_green_premium_usd_t": 95.1008516868,
                   "break_even_carbon_usd_t": 85.0908397765,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -1943,15 +1943,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0841088084,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 4.2289728218,
+                "risk_charge_bps": 12.0955951812,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 3.3868407896,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -2029,19 +2029,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 984.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 88.502042765,
-                  "dscr": -7.3474010281,
+                  "annual_debt_service_usd_m": 99.6669106401,
+                  "dscr": -6.5243318552,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 94.9453436425,
-                  "required_green_premium_dscr_usd_t": 93.3308116579,
-                  "required_green_premium_usd_t": 94.9453436425,
+                  "required_green_premium_dscr_usd_t": 95.1008516868,
+                  "required_green_premium_usd_t": 95.1008516868,
                   "break_even_carbon_usd_t": 85.0908397765,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -2060,15 +2060,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0841088084,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 4.2289728218,
+                "risk_charge_bps": 12.0955951812,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 3.3868407896,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -2149,19 +2149,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 688.8,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 61.9514299355,
-                  "dscr": -7.4413778742,
+                  "annual_debt_service_usd_m": 69.7668374481,
+                  "dscr": -6.6077812448,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 67.1717405497,
-                  "required_green_premium_dscr_usd_t": 66.0415681605,
-                  "required_green_premium_usd_t": 67.1717405497,
+                  "required_green_premium_dscr_usd_t": 67.2805961808,
+                  "required_green_premium_usd_t": 67.2805961808,
                   "break_even_carbon_usd_t": 78.1073378436,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -2180,18 +2180,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 13.6956739405,
-                "risk_charge_usd_t": 2.5053062086,
-                "sigma_b_usd_bn": 3.1953057131,
+                "risk_charge_bps": 13.7068482821,
+                "risk_charge_usd_t": 2.5073502955,
+                "sigma_b_usd_bn": 2.5586676892,
                 "shares": {
-                  "carbon": 0.7120817571,
+                  "carbon": 0.7109211984,
                   "h2": 0.0,
-                  "elec": 0.285013943,
+                  "elec": 0.2845494241,
                   "feedstock": 0.0,
-                  "capex": 0.0029042999
+                  "capex": 0.0045293776
                 }
               },
-              "risk_cut_bps": -1.611565132,
+              "risk_cut_bps": -1.6112531009,
               "gross_incremental_value_usd_m": 2911.3268530892,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -2262,19 +2262,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 1476.0,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 132.7530641476,
-                "dscr": -3.6505372069,
+                "annual_debt_service_usd_m": 149.5003659602,
+                "dscr": -3.2415974161,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 82.5680154637,
-                "required_green_premium_dscr_usd_t": 80.1462174868,
-                "required_green_premium_usd_t": 82.5680154637,
+                "required_green_premium_dscr_usd_t": 82.8012775303,
+                "required_green_premium_usd_t": 82.8012775303,
                 "break_even_carbon_usd_t": 94.5566795531,
                 "break_even_hydrogen_usd_kg": null,
                 "break_even_feedstock_usd_t": null
@@ -2293,15 +2293,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 21.2903589491,
-              "risk_charge_usd_t": 3.8945778566,
-              "sigma_b_usd_bn": 7.4508059129,
+              "risk_charge_bps": 21.3050297499,
+              "risk_charge_usd_t": 3.8972615396,
+              "sigma_b_usd_bn": 5.9655389172,
               "shares": {
-                "carbon": 0.8291064177,
+                "carbon": 0.8279649533,
                 "h2": 0.0,
-                "elec": 0.1684408721,
+                "elec": 0.1682089727,
                 "feedstock": 0.0,
-                "capex": 0.0024527102
+                "capex": 0.003826074
               }
             }
           },
@@ -2370,19 +2370,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1476.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 132.7530641476,
-                  "dscr": -3.6505372069,
+                  "annual_debt_service_usd_m": 149.5003659602,
+                  "dscr": -3.2415974161,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 82.5680154637,
-                  "required_green_premium_dscr_usd_t": 80.1462174868,
-                  "required_green_premium_usd_t": 82.5680154637,
+                  "required_green_premium_dscr_usd_t": 82.8012775303,
+                  "required_green_premium_usd_t": 82.8012775303,
                   "break_even_carbon_usd_t": 94.5566795531,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -2401,15 +2401,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.2903589491,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 7.4508059129,
+                "risk_charge_bps": 21.3050297499,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 5.9655389172,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -2488,19 +2488,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1476.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 132.7530641476,
-                  "dscr": -3.1835649347,
+                  "annual_debt_service_usd_m": 149.5003659602,
+                  "dscr": -2.8269362238,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 75.0080154637,
-                  "required_green_premium_dscr_usd_t": 72.5862174868,
-                  "required_green_premium_usd_t": 75.0080154637,
+                  "required_green_premium_dscr_usd_t": 75.2412775303,
+                  "required_green_premium_usd_t": 75.2412775303,
                   "break_even_carbon_usd_t": 88.2566795531,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -2519,18 +2519,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 20.3236933928,
-                "risk_charge_usd_t": 3.7177487914,
-                "sigma_b_usd_bn": 7.1125101866,
+                "risk_charge_bps": 20.3390614726,
+                "risk_charge_usd_t": 3.7205600255,
+                "sigma_b_usd_bn": 5.6950618787,
                 "shares": {
-                  "carbon": 0.885396127,
+                  "carbon": 0.8840586319,
                   "h2": 0.0,
-                  "elec": 0.1119122953,
+                  "elec": 0.1117432386,
                   "feedstock": 0.0,
-                  "capex": 0.0026915777
+                  "capex": 0.0041981296
                 }
               },
-              "risk_cut_bps": 0.9666655564,
+              "risk_cut_bps": 0.9659682773,
               "gross_incremental_value_usd_m": 792.4658149634,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -2606,19 +2606,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1033.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 92.9271449033,
-                  "dscr": -5.2150531527,
+                  "annual_debt_service_usd_m": 104.6502561721,
+                  "dscr": -4.6308534515,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 75.5276108246,
-                  "required_green_premium_dscr_usd_t": 73.8323522408,
-                  "required_green_premium_usd_t": 75.5276108246,
+                  "required_green_premium_dscr_usd_t": 75.6908942712,
+                  "required_green_premium_usd_t": 75.6908942712,
                   "break_even_carbon_usd_t": 88.6896756871,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -2637,18 +2637,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.277038917,
-                "risk_charge_usd_t": 3.8921412653,
-                "sigma_b_usd_bn": 7.4461444145,
+                "risk_charge_bps": 21.2842333717,
+                "risk_charge_usd_t": 3.8934573241,
+                "sigma_b_usd_bn": 5.9597158038,
                 "shares": {
-                  "carbon": 0.8301448311,
+                  "carbon": 0.8295837181,
                   "h2": 0.0,
-                  "elec": 0.1686518357,
+                  "elec": 0.1685378402,
                   "feedstock": 0.0,
-                  "capex": 0.0012033332
+                  "capex": 0.0018784417
                 }
               },
-              "risk_cut_bps": 0.0133200321,
+              "risk_cut_bps": 0.0207963782,
               "gross_incremental_value_usd_m": 738.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -2723,19 +2723,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1476.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 132.7530641476,
-                  "dscr": -2.8815154095,
+                  "annual_debt_service_usd_m": 149.5003659602,
+                  "dscr": -2.5587228335,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 70.1180154637,
-                  "required_green_premium_dscr_usd_t": 67.6962174868,
-                  "required_green_premium_usd_t": 70.1180154637,
+                  "required_green_premium_dscr_usd_t": 70.3512775303,
+                  "required_green_premium_usd_t": 70.3512775303,
                   "break_even_carbon_usd_t": 94.5566795531,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -2754,18 +2754,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.0124302988,
-                "risk_charge_usd_t": 4.7583713961,
-                "sigma_b_usd_bn": 6.0688993843,
+                "risk_charge_bps": 26.0394426608,
+                "risk_charge_usd_t": 4.7633126818,
+                "sigma_b_usd_bn": 4.8608023676,
                 "shares": {
-                  "carbon": 0.7690462369,
+                  "carbon": 0.7674515038,
                   "h2": 0.0,
-                  "elec": 0.2272569043,
+                  "elec": 0.226785653,
                   "feedstock": 0.0,
-                  "capex": 0.0036968588
+                  "capex": 0.0057628432
                 }
               },
-              "risk_cut_bps": -4.7220713496,
+              "risk_cut_bps": -4.7344129109,
               "gross_incremental_value_usd_m": 1305.0528301976,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -2841,19 +2841,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1476.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 119.2112891321,
-                  "dscr": -4.0652190202,
+                  "annual_debt_service_usd_m": 135.0841477766,
+                  "dscr": -3.5875416026,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 79.3317084116,
-                  "required_green_premium_dscr_usd_t": 77.9993507161,
-                  "required_green_premium_usd_t": 79.3317084116,
+                  "required_green_premium_dscr_usd_t": 80.5157795256,
+                  "required_green_premium_usd_t": 80.5157795256,
                   "break_even_carbon_usd_t": 91.8597570097,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -2872,18 +2872,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.2812266393,
-                "risk_charge_usd_t": 3.8929073121,
-                "sigma_b_usd_bn": 9.2354501072,
+                "risk_charge_bps": 21.2921756263,
+                "risk_charge_usd_t": 3.8949101755,
+                "sigma_b_usd_bn": 7.2049879493,
                 "shares": {
-                  "carbon": 0.8298181513,
+                  "carbon": 0.8289649428,
                   "h2": 0.0,
-                  "elec": 0.1685854675,
+                  "elec": 0.1684121301,
                   "feedstock": 0.0,
-                  "capex": 0.0015963812
+                  "capex": 0.0026229271
                 }
               },
-              "risk_cut_bps": 0.0091323099,
+              "risk_cut_bps": 0.0128541236,
               "gross_incremental_value_usd_m": -990.9765660898,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -2958,19 +2958,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1476.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 132.7530641476,
-                  "dscr": -3.6505372069,
+                  "annual_debt_service_usd_m": 149.5003659602,
+                  "dscr": -3.2415974161,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 82.5680154637,
-                  "required_green_premium_dscr_usd_t": 80.1462174868,
-                  "required_green_premium_usd_t": 82.5680154637,
+                  "required_green_premium_dscr_usd_t": 82.8012775303,
+                  "required_green_premium_usd_t": 82.8012775303,
                   "break_even_carbon_usd_t": 94.5566795531,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -2989,15 +2989,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.2903589491,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 7.4508059129,
+                "risk_charge_bps": 21.3050297499,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 5.9655389172,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -3075,19 +3075,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1476.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 132.7530641476,
-                  "dscr": -3.6505372069,
+                  "annual_debt_service_usd_m": 149.5003659602,
+                  "dscr": -3.2415974161,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 82.5680154637,
-                  "required_green_premium_dscr_usd_t": 80.1462174868,
-                  "required_green_premium_usd_t": 82.5680154637,
+                  "required_green_premium_dscr_usd_t": 82.8012775303,
+                  "required_green_premium_usd_t": 82.8012775303,
                   "break_even_carbon_usd_t": 94.5566795531,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -3106,15 +3106,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.2903589491,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 7.4508059129,
+                "risk_charge_bps": 21.3050297499,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 5.9655389172,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -3195,19 +3195,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1033.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 92.9271449033,
-                  "dscr": -3.4493473391,
+                  "annual_debt_service_usd_m": 104.6502561721,
+                  "dscr": -3.0629452017,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 55.5176108246,
-                  "required_green_premium_dscr_usd_t": 53.8223522408,
-                  "required_green_premium_usd_t": 55.5176108246,
+                  "required_green_premium_dscr_usd_t": 55.6808942712,
+                  "required_green_premium_usd_t": 55.6808942712,
                   "break_even_carbon_usd_t": 82.3896756871,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -3226,18 +3226,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 24.3954653721,
-                "risk_charge_usd_t": 4.4625851291,
-                "sigma_b_usd_bn": 5.6916490723,
+                "risk_charge_bps": 24.4095819772,
+                "risk_charge_usd_t": 4.4651674349,
+                "sigma_b_usd_bn": 4.5565550466,
                 "shares": {
-                  "carbon": 0.8448160169,
+                  "carbon": 0.8438391476,
                   "h2": 0.0,
-                  "elec": 0.153124432,
+                  "elec": 0.1529473727,
                   "feedstock": 0.0,
-                  "capex": 0.0020595511
+                  "capex": 0.0032134798
                 }
               },
-              "risk_cut_bps": -3.105106423,
+              "risk_cut_bps": -3.1045522273,
               "gross_incremental_value_usd_m": 2835.518645161,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -3264,7 +3264,7 @@
       "recommendation": {
         "action": "NEGOTIATE_PRICE_SUPPORT_OR_GREEN_PREMIUM",
         "configured_route_best_npv_usd_m": -7041.1783223864,
-        "configured_route_required_green_premium_usd_t": 67.1717405497,
+        "configured_route_required_green_premium_usd_t": 67.2805961808,
         "economic_leader_route": "ng_dri",
         "economic_leader_feasibility": "OPEN_NOT_TECHNICALLY_VALIDATED",
         "economic_leader_npv_usd_m": -5819.551416259,
@@ -6507,19 +6507,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 733.2,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 65.944814792,
-                "dscr": -11.9015043484,
+                "annual_debt_service_usd_m": 74.2640029282,
+                "dscr": -10.5682762719,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 338.6290575598,
-                "required_green_premium_dscr_usd_t": 334.834907396,
-                "required_green_premium_usd_t": 338.6290575598,
+                "required_green_premium_dscr_usd_t": 338.9945014641,
+                "required_green_premium_usd_t": 338.9945014641,
                 "break_even_carbon_usd_t": 208.7927338161,
                 "break_even_hydrogen_usd_kg": -0.143817626,
                 "break_even_feedstock_usd_t": null
@@ -6538,15 +6538,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 29.0606618357,
-              "risk_charge_usd_t": 8.9417421033,
-              "sigma_b_usd_bn": 5.4240601342,
+              "risk_charge_bps": 29.0699876329,
+              "risk_charge_usd_t": 8.9446115794,
+              "sigma_b_usd_bn": 4.3412131835,
               "shares": {
-                "carbon": 0.0043433165,
-                "h2": 0.8772718667,
-                "elec": 0.1172427909,
+                "carbon": 0.0043405303,
+                "h2": 0.8767090906,
+                "elec": 0.1171675788,
                 "feedstock": 0.0,
-                "capex": 0.0011420259
+                "capex": 0.0017828003
               }
             }
           },
@@ -6617,19 +6617,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 733.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 65.944814792,
-                  "dscr": -9.4176092837,
+                  "annual_debt_service_usd_m": 74.2640029282,
+                  "dscr": -8.3626316319,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 275.6290575598,
-                  "required_green_premium_dscr_usd_t": 271.834907396,
-                  "required_green_premium_usd_t": 275.6290575598,
+                  "required_green_premium_dscr_usd_t": 275.9945014641,
+                  "required_green_premium_usd_t": 275.9945014641,
                   "break_even_carbon_usd_t": 174.738679762,
                   "break_even_hydrogen_usd_kg": -0.143817626,
                   "break_even_feedstock_usd_t": null
@@ -6648,18 +6648,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 20.1186776945,
-                "risk_charge_usd_t": 6.1903623675,
-                "sigma_b_usd_bn": 3.755073379,
+                "risk_charge_bps": 20.1321461059,
+                "risk_charge_usd_t": 6.1945064941,
+                "sigma_b_usd_bn": 3.0064662975,
                 "shares": {
-                  "carbon": 0.0090621995,
-                  "h2": 0.8121019184,
-                  "elec": 0.1764530795,
+                  "carbon": 0.0090500783,
+                  "h2": 0.811015689,
+                  "elec": 0.1762170642,
                   "feedstock": 0.0,
-                  "capex": 0.0023828026
+                  "capex": 0.0037171685
                 }
               },
-              "risk_cut_bps": 8.9419841411,
+              "risk_cut_bps": 8.937841527,
               "gross_incremental_value_usd_m": 2093.9137387244,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -6735,19 +6735,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 733.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 65.944814792,
-                  "dscr": -11.5608558824,
+                  "annual_debt_service_usd_m": 74.2640029282,
+                  "dscr": -10.2657878641,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 329.9890575598,
-                  "required_green_premium_dscr_usd_t": 326.194907396,
-                  "required_green_premium_usd_t": 329.9890575598,
+                  "required_green_premium_dscr_usd_t": 330.3545014641,
+                  "required_green_premium_usd_t": 330.3545014641,
                   "break_even_carbon_usd_t": 204.1224635458,
                   "break_even_hydrogen_usd_kg": 0.000182374,
                   "break_even_feedstock_usd_t": null
@@ -6766,18 +6766,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 28.0993356945,
-                "risk_charge_usd_t": 8.6459494444,
-                "sigma_b_usd_bn": 5.2446323281,
+                "risk_charge_bps": 28.1089804355,
+                "risk_charge_usd_t": 8.6489170571,
+                "sigma_b_usd_bn": 4.1976996338,
                 "shares": {
-                  "carbon": 0.0039995913,
-                  "h2": 0.9100272263,
-                  "elec": 0.0847516786,
+                  "carbon": 0.0039968471,
+                  "h2": 0.9094028371,
+                  "elec": 0.0846935286,
                   "feedstock": 0.0,
-                  "capex": 0.0012215038
+                  "capex": 0.0019067871
                 }
               },
-              "risk_cut_bps": 0.9613261412,
+              "risk_cut_bps": 0.9610071975,
               "gross_incremental_value_usd_m": 287.1653127393,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -6853,19 +6853,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 513.24,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 46.1613703544,
-                  "dscr": -17.0021490691,
+                  "annual_debt_service_usd_m": 51.9848020497,
+                  "dscr": -15.0975375312,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 327.5990902918,
-                  "required_green_premium_dscr_usd_t": 324.9431851772,
-                  "required_green_premium_usd_t": 327.5990902918,
+                  "required_green_premium_dscr_usd_t": 327.8549010249,
+                  "required_green_premium_usd_t": 327.8549010249,
                   "break_even_carbon_usd_t": 202.8305893469,
                   "break_even_hydrogen_usd_kg": 0.0400151618,
                   "break_even_feedstock_usd_t": null
@@ -6884,18 +6884,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 29.0521976561,
-                "risk_charge_usd_t": 8.9391377403,
-                "sigma_b_usd_bn": 5.4224803278,
+                "risk_charge_bps": 29.0567690018,
+                "risk_charge_usd_t": 8.9405443083,
+                "sigma_b_usd_bn": 4.339239158,
                 "shares": {
-                  "carbon": 0.0043458477,
-                  "h2": 0.8777831167,
-                  "elec": 0.1173111168,
+                  "carbon": 0.0043444804,
+                  "h2": 0.8775069446,
+                  "elec": 0.1172742078,
                   "feedstock": 0.0,
-                  "capex": 0.0005599188
+                  "capex": 0.0008743672
                 }
               },
-              "risk_cut_bps": 0.0084641796,
+              "risk_cut_bps": 0.0132186311,
               "gross_incremental_value_usd_m": 366.6,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -6970,19 +6970,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 733.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 65.944814792,
-                  "dscr": -11.1447541754,
+                  "annual_debt_service_usd_m": 74.2640029282,
+                  "dscr": -9.8962986241,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 319.4353075598,
-                  "required_green_premium_dscr_usd_t": 315.641157396,
-                  "required_green_premium_usd_t": 319.4353075598,
+                  "required_green_premium_dscr_usd_t": 319.8007514641,
+                  "required_green_premium_usd_t": 319.8007514641,
                   "break_even_carbon_usd_t": 208.7927338161,
                   "break_even_hydrogen_usd_kg": 0.1760782073,
                   "break_even_feedstock_usd_t": null
@@ -7001,18 +7001,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 43.5506455076,
-                "risk_charge_usd_t": 13.4001986177,
-                "sigma_b_usd_bn": 5.419039696,
+                "risk_charge_bps": 43.5646471591,
+                "risk_charge_usd_t": 13.4045068182,
+                "sigma_b_usd_bn": 4.3371975929,
                 "shares": {
-                  "carbon": 0.0029772533,
-                  "h2": 0.8788981067,
-                  "elec": 0.1169804972,
+                  "carbon": 0.0029753398,
+                  "h2": 0.8783332428,
+                  "elec": 0.1169053144,
                   "feedstock": 0.0,
-                  "capex": 0.0011441429
+                  "capex": 0.0017861031
                 }
               },
-              "risk_cut_bps": -14.4899836719,
+              "risk_cut_bps": -14.4946595262,
               "gross_incremental_value_usd_m": 637.9374098832,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -7088,19 +7088,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 733.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 59.217965577,
-                  "dscr": -13.2534526027,
+                  "annual_debt_service_usd_m": 67.1027758468,
+                  "dscr": -11.6961256833,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 333.5588431782,
-                  "required_green_premium_dscr_usd_t": 331.4714827885,
-                  "required_green_premium_usd_t": 333.5588431782,
+                  "required_green_premium_dscr_usd_t": 335.4138879234,
+                  "required_green_premium_usd_t": 335.4138879234,
                   "break_even_carbon_usd_t": 206.0520773936,
                   "break_even_hydrogen_usd_kg": -0.059314053,
                   "break_even_feedstock_usd_t": null
@@ -7119,18 +7119,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 29.054858428,
-                "risk_charge_usd_t": 8.9399564394,
-                "sigma_b_usd_bn": 6.7247926994,
+                "risk_charge_bps": 29.0618164578,
+                "risk_charge_usd_t": 8.9420973716,
+                "sigma_b_usd_bn": 5.2448696908,
                 "shares": {
-                  "carbon": 0.0043450518,
-                  "h2": 0.8776223537,
-                  "elec": 0.1172896316,
+                  "carbon": 0.0043429714,
+                  "h2": 0.8772021603,
+                  "elec": 0.117233475,
                   "feedstock": 0.0,
-                  "capex": 0.0007429629
+                  "capex": 0.0012213933
                 }
               },
-              "risk_cut_bps": 0.0058034076,
+              "risk_cut_bps": 0.0081711751,
               "gross_incremental_value_usd_m": -1604.887387172,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -7205,19 +7205,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 733.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 65.944814792,
-                  "dscr": -11.9015043484,
+                  "annual_debt_service_usd_m": 74.2640029282,
+                  "dscr": -10.5682762719,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 338.6290575598,
-                  "required_green_premium_dscr_usd_t": 334.834907396,
-                  "required_green_premium_usd_t": 338.6290575598,
+                  "required_green_premium_dscr_usd_t": 338.9945014641,
+                  "required_green_premium_usd_t": 338.9945014641,
                   "break_even_carbon_usd_t": 208.7927338161,
                   "break_even_hydrogen_usd_kg": -0.143817626,
                   "break_even_feedstock_usd_t": null
@@ -7236,15 +7236,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 29.0606618357,
-                "risk_charge_usd_t": 8.9417421033,
-                "sigma_b_usd_bn": 5.4240601342,
+                "risk_charge_bps": 29.0699876329,
+                "risk_charge_usd_t": 8.9446115794,
+                "sigma_b_usd_bn": 4.3412131835,
                 "shares": {
-                  "carbon": 0.0043433165,
-                  "h2": 0.8772718667,
-                  "elec": 0.1172427909,
+                  "carbon": 0.0043405303,
+                  "h2": 0.8767090906,
+                  "elec": 0.1171675788,
                   "feedstock": 0.0,
-                  "capex": 0.0011420259
+                  "capex": 0.0017828003
                 }
               },
               "risk_cut_bps": 0.0,
@@ -7322,19 +7322,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 733.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 65.944814792,
-                  "dscr": -11.9015043484,
+                  "annual_debt_service_usd_m": 74.2640029282,
+                  "dscr": -10.5682762719,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 338.6290575598,
-                  "required_green_premium_dscr_usd_t": 334.834907396,
-                  "required_green_premium_usd_t": 338.6290575598,
+                  "required_green_premium_dscr_usd_t": 338.9945014641,
+                  "required_green_premium_usd_t": 338.9945014641,
                   "break_even_carbon_usd_t": 208.7927338161,
                   "break_even_hydrogen_usd_kg": -0.143817626,
                   "break_even_feedstock_usd_t": null
@@ -7353,15 +7353,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 29.0606618357,
-                "risk_charge_usd_t": 8.9417421033,
-                "sigma_b_usd_bn": 5.4240601342,
+                "risk_charge_bps": 29.0699876329,
+                "risk_charge_usd_t": 8.9446115794,
+                "sigma_b_usd_bn": 4.3412131835,
                 "shares": {
-                  "carbon": 0.0043433165,
-                  "h2": 0.8772718667,
-                  "elec": 0.1172427909,
+                  "carbon": 0.0043405303,
+                  "h2": 0.8767090906,
+                  "elec": 0.1171675788,
                   "feedstock": 0.0,
-                  "capex": 0.0011420259
+                  "capex": 0.0017828003
                 }
               },
               "risk_cut_bps": 0.0,
@@ -7443,19 +7443,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 513.24,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 46.1613703544,
-                  "dscr": -11.8860152068,
+                  "annual_debt_service_usd_m": 51.9848020497,
+                  "dscr": -10.554522252,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 236.7653402918,
-                  "required_green_premium_dscr_usd_t": 234.1094351772,
-                  "required_green_premium_usd_t": 236.7653402918,
+                  "required_green_premium_dscr_usd_t": 237.0211510249,
+                  "required_green_premium_usd_t": 237.0211510249,
                   "break_even_carbon_usd_t": 164.1062650226,
                   "break_even_hydrogen_usd_kg": 0.5039109951,
                   "break_even_feedstock_usd_t": null
@@ -7474,18 +7474,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 28.6075395381,
-                "risk_charge_usd_t": 8.8023198579,
-                "sigma_b_usd_bn": 3.5596577399,
+                "risk_charge_bps": 28.6179838533,
+                "risk_charge_usd_t": 8.8055334933,
+                "sigma_b_usd_bn": 2.8491416499,
                 "shares": {
-                  "carbon": 0.0058146885,
-                  "h2": 0.8639258148,
-                  "elec": 0.1289602115,
+                  "carbon": 0.005810445,
+                  "h2": 0.8632953394,
+                  "elec": 0.1288660989,
                   "feedstock": 0.0,
-                  "capex": 0.0012992853
+                  "capex": 0.0020281166
                 }
               },
-              "risk_cut_bps": 0.4531222976,
+              "risk_cut_bps": 0.4520037796,
               "gross_incremental_value_usd_m": 3385.6164613469,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -7556,19 +7556,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 312.0,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 28.0616233157,
-                "dscr": -7.4666920599,
+                "annual_debt_service_usd_m": 31.6017033737,
+                "dscr": -6.6302596896,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 96.2328436425,
-                "required_green_premium_dscr_usd_t": 94.6183116579,
-                "required_green_premium_usd_t": 96.2328436425,
+                "required_green_premium_dscr_usd_t": 96.3883516868,
+                "required_green_premium_usd_t": 96.3883516868,
                 "break_even_carbon_usd_t": 87.8357055758,
                 "break_even_hydrogen_usd_kg": null,
                 "break_even_feedstock_usd_t": null
@@ -7587,15 +7587,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 7.1841500538,
-              "risk_charge_usd_t": 2.2105077089,
-              "sigma_b_usd_bn": 1.3408938215,
+              "risk_charge_bps": 7.1909788425,
+              "risk_charge_usd_t": 2.2126088746,
+              "sigma_b_usd_bn": 1.0738763479,
               "shares": {
-                "carbon": 0.6867157413,
+                "carbon": 0.6854121051,
                 "h2": 0.0,
-                "elec": 0.3099004919,
+                "elec": 0.3093121881,
                 "feedstock": 0.0,
-                "capex": 0.0033837668
+                "capex": 0.0052757068
               }
             }
           },
@@ -7664,19 +7664,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 312.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 28.0616233157,
-                  "dscr": -7.4666920599,
+                  "annual_debt_service_usd_m": 31.6017033737,
+                  "dscr": -6.6302596896,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 96.2328436425,
-                  "required_green_premium_dscr_usd_t": 94.6183116579,
-                  "required_green_premium_usd_t": 96.2328436425,
+                  "required_green_premium_dscr_usd_t": 96.3883516868,
+                  "required_green_premium_usd_t": 96.3883516868,
                   "break_even_carbon_usd_t": 87.8357055758,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -7695,15 +7695,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1841500538,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 1.3408938215,
+                "risk_charge_bps": 7.1909788425,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 1.0738763479,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -7782,19 +7782,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 312.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 28.0616233157,
-                  "dscr": -6.8662991386,
+                  "annual_debt_service_usd_m": 31.6017033737,
+                  "dscr": -6.0971238709,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 89.7528436425,
-                  "required_green_premium_dscr_usd_t": 88.1383116579,
-                  "required_green_premium_usd_t": 89.7528436425,
+                  "required_green_premium_dscr_usd_t": 89.9083516868,
+                  "required_green_premium_usd_t": 89.9083516868,
                   "break_even_carbon_usd_t": 83.6550604145,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -7813,18 +7813,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 6.5842325021,
-                "risk_charge_usd_t": 2.0259176929,
-                "sigma_b_usd_bn": 1.2289215308,
+                "risk_charge_bps": 6.5916828169,
+                "risk_charge_usd_t": 2.0282100975,
+                "sigma_b_usd_bn": 0.9843795157,
                 "shares": {
-                  "carbon": 0.7822594795,
+                  "carbon": 0.7804921657,
                   "h2": 0.0,
-                  "elec": 0.2137120434,
+                  "elec": 0.2132292161,
                   "feedstock": 0.0,
-                  "capex": 0.0040284771
+                  "capex": 0.0062786181
                 }
               },
-              "risk_cut_bps": 0.5999175517,
+              "risk_cut_bps": 0.5992960255,
               "gross_incremental_value_usd_m": 215.3739845545,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -7900,19 +7900,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 218.4,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 19.643136321,
-                  "dscr": -10.6667029427,
+                  "annual_debt_service_usd_m": 22.1211923616,
+                  "dscr": -9.4717995565,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 91.5392405497,
-                  "required_green_premium_dscr_usd_t": 90.4090681605,
-                  "required_green_premium_usd_t": 91.5392405497,
+                  "required_green_premium_dscr_usd_t": 91.6480961808,
+                  "required_green_premium_usd_t": 91.6480961808,
                   "break_even_carbon_usd_t": 84.8075745482,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -7931,18 +7931,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1779484575,
-                "risk_charge_usd_t": 2.2085995254,
-                "sigma_b_usd_bn": 1.3397363176,
+                "risk_charge_bps": 7.181298265,
+                "risk_charge_usd_t": 2.2096302354,
+                "sigma_b_usd_bn": 1.0724306834,
                 "shares": {
-                  "carbon": 0.6879028698,
+                  "carbon": 0.6872612574,
                   "h2": 0.0,
-                  "elec": 0.3104362182,
+                  "elec": 0.310146672,
                   "feedstock": 0.0,
-                  "capex": 0.001660912
+                  "capex": 0.0025920706
                 }
               },
-              "risk_cut_bps": 0.0062015963,
+              "risk_cut_bps": 0.0096805775,
               "gross_incremental_value_usd_m": 156.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -8017,19 +8017,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 312.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 28.0616233157,
-                  "dscr": -5.9767123275,
+                  "annual_debt_service_usd_m": 31.6017033737,
+                  "dscr": -5.3071901858,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 80.1515936425,
-                  "required_green_premium_dscr_usd_t": 78.5370616579,
-                  "required_green_premium_usd_t": 80.1515936425,
+                  "required_green_premium_dscr_usd_t": 80.3071016868,
+                  "required_green_premium_usd_t": 80.3071016868,
                   "break_even_carbon_usd_t": 87.8357055758,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -8048,18 +8048,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 9.139167696,
-                "risk_charge_usd_t": 2.8120515988,
-                "sigma_b_usd_bn": 1.1371935354,
+                "risk_charge_bps": 9.1512434559,
+                "risk_charge_usd_t": 2.8157672172,
+                "sigma_b_usd_bn": 0.91107707,
                 "shares": {
-                  "carbon": 0.5971036051,
+                  "carbon": 0.5955287978,
                   "h2": 0.0,
-                  "elec": 0.3981918195,
+                  "elec": 0.3971416242,
                   "feedstock": 0.0,
-                  "capex": 0.0047045755
+                  "capex": 0.007329578
                 }
               },
-              "risk_cut_bps": -1.9550176422,
+              "risk_cut_bps": -1.9602646134,
               "gross_incremental_value_usd_m": 534.4881001724,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -8135,19 +8135,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 312.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 25.1991342881,
-                  "dscr": -8.3148689794,
+                  "annual_debt_service_usd_m": 28.5543727008,
+                  "dscr": -7.3378428655,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 94.0753056077,
-                  "required_green_premium_dscr_usd_t": 93.187067144,
-                  "required_green_premium_usd_t": 94.0753056077,
+                  "required_green_premium_dscr_usd_t": 94.8646863504,
+                  "required_green_premium_usd_t": 94.8646863504,
                   "break_even_carbon_usd_t": 86.4437455534,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -8166,18 +8166,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1798983537,
-                "risk_charge_usd_t": 2.2091994934,
-                "sigma_b_usd_bn": 1.6617987712,
+                "risk_charge_bps": 7.1849957557,
+                "risk_charge_usd_t": 2.2107679248,
+                "sigma_b_usd_bn": 1.296696871,
                 "shares": {
-                  "carbon": 0.6875292831,
+                  "carbon": 0.6865540926,
                   "h2": 0.0,
-                  "elec": 0.3102676264,
+                  "elec": 0.3098275432,
                   "feedstock": 0.0,
-                  "capex": 0.0022030905
+                  "capex": 0.0036183642
                 }
               },
-              "risk_cut_bps": 0.0042517001,
+              "risk_cut_bps": 0.0059830867,
               "gross_incremental_value_usd_m": -428.4528959832,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -8252,19 +8252,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 312.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 28.0616233157,
-                  "dscr": -7.4666920599,
+                  "annual_debt_service_usd_m": 31.6017033737,
+                  "dscr": -6.6302596896,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 96.2328436425,
-                  "required_green_premium_dscr_usd_t": 94.6183116579,
-                  "required_green_premium_usd_t": 96.2328436425,
+                  "required_green_premium_dscr_usd_t": 96.3883516868,
+                  "required_green_premium_usd_t": 96.3883516868,
                   "break_even_carbon_usd_t": 87.8357055758,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -8283,15 +8283,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1841500538,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 1.3408938215,
+                "risk_charge_bps": 7.1909788425,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 1.0738763479,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -8369,19 +8369,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 312.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 28.0616233157,
-                  "dscr": -7.4666920599,
+                  "annual_debt_service_usd_m": 31.6017033737,
+                  "dscr": -6.6302596896,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 96.2328436425,
-                  "required_green_premium_dscr_usd_t": 94.6183116579,
-                  "required_green_premium_usd_t": 96.2328436425,
+                  "required_green_premium_dscr_usd_t": 96.3883516868,
+                  "required_green_premium_usd_t": 96.3883516868,
                   "break_even_carbon_usd_t": 87.8357055758,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -8400,15 +8400,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1841500538,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 1.3408938215,
+                "risk_charge_bps": 7.1909788425,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 1.0738763479,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -8489,19 +8489,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 218.4,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 19.643136321,
-                  "dscr": -7.6804562945,
+                  "annual_debt_service_usd_m": 22.1211923616,
+                  "dscr": -6.8200776673,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 68.9779905497,
-                  "required_green_premium_dscr_usd_t": 67.8478181605,
-                  "required_green_premium_usd_t": 68.9779905497,
+                  "required_green_premium_dscr_usd_t": 69.0868461808,
+                  "required_green_premium_usd_t": 69.0868461808,
                   "break_even_carbon_usd_t": 80.6269293869,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -8520,18 +8520,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 8.142245178,
-                "risk_charge_usd_t": 2.5053062086,
-                "sigma_b_usd_bn": 1.0131457139,
+                "risk_charge_bps": 8.1488884604,
+                "risk_charge_usd_t": 2.5073502955,
+                "sigma_b_usd_bn": 0.8112848771,
                 "shares": {
-                  "carbon": 0.7120817571,
+                  "carbon": 0.7109211984,
                   "h2": 0.0,
-                  "elec": 0.285013943,
+                  "elec": 0.2845494241,
                   "feedstock": 0.0,
-                  "capex": 0.0029042999
+                  "capex": 0.0045293776
                 }
               },
-              "risk_cut_bps": -0.9580951242,
+              "risk_cut_bps": -0.9579096179,
               "gross_incremental_value_usd_m": 905.8620847269,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -8602,19 +8602,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 468.0,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 42.0924349736,
-                "dscr": -3.7300645614,
+                "annual_debt_service_usd_m": 47.4025550605,
+                "dscr": -3.3122159723,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 83.8555154637,
-                "required_green_premium_dscr_usd_t": 81.4337174868,
-                "required_green_premium_usd_t": 83.8555154637,
+                "required_green_premium_dscr_usd_t": 84.0887775303,
+                "required_green_premium_usd_t": 84.0887775303,
                 "break_even_carbon_usd_t": 98.6678395336,
                 "break_even_hydrogen_usd_kg": null,
                 "break_even_feedstock_usd_t": null
@@ -8633,15 +8633,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 12.6573780338,
-              "risk_charge_usd_t": 3.8945778566,
-              "sigma_b_usd_bn": 2.3624506553,
+              "risk_charge_bps": 12.6661000037,
+              "risk_charge_usd_t": 3.8972615396,
+              "sigma_b_usd_bn": 1.8915123396,
               "shares": {
-                "carbon": 0.8291064177,
+                "carbon": 0.8279649533,
                 "h2": 0.0,
-                "elec": 0.1684408721,
+                "elec": 0.1682089727,
                 "feedstock": 0.0,
-                "capex": 0.0024527102
+                "capex": 0.003826074
               }
             }
           },
@@ -8710,19 +8710,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 468.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 42.0924349736,
-                  "dscr": -3.7300645614,
+                  "annual_debt_service_usd_m": 47.4025550605,
+                  "dscr": -3.3122159723,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 83.8555154637,
-                  "required_green_premium_dscr_usd_t": 81.4337174868,
-                  "required_green_premium_usd_t": 83.8555154637,
+                  "required_green_premium_dscr_usd_t": 84.0887775303,
+                  "required_green_premium_usd_t": 84.0887775303,
                   "break_even_carbon_usd_t": 98.6678395336,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -8741,15 +8741,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6573780338,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 2.3624506553,
+                "risk_charge_bps": 12.6661000037,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 1.8915123396,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -8828,19 +8828,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 468.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 42.0924349736,
-                  "dscr": -3.2630922893,
+                  "annual_debt_service_usd_m": 47.4025550605,
+                  "dscr": -2.89755478,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 76.2955154637,
-                  "required_green_premium_dscr_usd_t": 73.8737174868,
-                  "required_green_premium_usd_t": 76.2955154637,
+                  "required_green_premium_dscr_usd_t": 76.5287775303,
+                  "required_green_premium_usd_t": 76.5287775303,
                   "break_even_carbon_usd_t": 92.0939264902,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -8859,18 +8859,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0826835719,
-                "risk_charge_usd_t": 3.7177487914,
-                "sigma_b_usd_bn": 2.2551861567,
+                "risk_charge_bps": 12.0918200828,
+                "risk_charge_usd_t": 3.7205600255,
+                "sigma_b_usd_bn": 1.8057513274,
                 "shares": {
-                  "carbon": 0.885396127,
+                  "carbon": 0.8840586319,
                   "h2": 0.0,
-                  "elec": 0.1119122953,
+                  "elec": 0.1117432386,
                   "feedstock": 0.0,
-                  "capex": 0.0026915777
+                  "capex": 0.0041981296
                 }
               },
-              "risk_cut_bps": 0.5746944619,
+              "risk_cut_bps": 0.574279921,
               "gross_incremental_value_usd_m": 251.2696486469,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -8946,19 +8946,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 327.6,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 29.4647044815,
-                  "dscr": -5.3286636592,
+                  "annual_debt_service_usd_m": 33.1817885424,
+                  "dscr": -4.7317371033,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 76.8151108246,
-                  "required_green_premium_dscr_usd_t": 75.1198522408,
-                  "required_green_premium_usd_t": 76.8151108246,
+                  "required_green_premium_dscr_usd_t": 76.9783942712,
+                  "required_green_premium_usd_t": 76.9783942712,
                   "break_even_carbon_usd_t": 92.5457485431,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -8977,18 +8977,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6494591123,
-                "risk_charge_usd_t": 3.8921412653,
-                "sigma_b_usd_bn": 2.3609726192,
+                "risk_charge_bps": 12.6537363033,
+                "risk_charge_usd_t": 3.8934573241,
+                "sigma_b_usd_bn": 1.8896659866,
                 "shares": {
-                  "carbon": 0.8301448311,
+                  "carbon": 0.8295837181,
                   "h2": 0.0,
-                  "elec": 0.1686518357,
+                  "elec": 0.1685378402,
                   "feedstock": 0.0,
-                  "capex": 0.0012033332
+                  "capex": 0.0018784417
                 }
               },
-              "risk_cut_bps": 0.0079189215,
+              "risk_cut_bps": 0.0123637004,
               "gross_incremental_value_usd_m": 234.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -9063,19 +9063,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 468.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 42.0924349736,
-                  "dscr": -2.9930853389,
+                  "annual_debt_service_usd_m": 47.4025550605,
+                  "dscr": -2.6577944973,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 71.9242654637,
-                  "required_green_premium_dscr_usd_t": 69.5024674868,
-                  "required_green_premium_usd_t": 71.9242654637,
+                  "required_green_premium_dscr_usd_t": 72.1575275303,
+                  "required_green_premium_usd_t": 72.1575275303,
                   "break_even_carbon_usd_t": 98.6678395336,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -9094,18 +9094,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 15.4647070374,
-                "risk_charge_usd_t": 4.7583713961,
-                "sigma_b_usd_bn": 1.9242851706,
+                "risk_charge_bps": 15.480766216,
+                "risk_charge_usd_t": 4.7633126818,
+                "sigma_b_usd_bn": 1.541230019,
                 "shares": {
-                  "carbon": 0.7690462369,
+                  "carbon": 0.7674515038,
                   "h2": 0.0,
-                  "elec": 0.2272569043,
+                  "elec": 0.226785653,
                   "feedstock": 0.0,
-                  "capex": 0.0036968588
+                  "capex": 0.0057628432
                 }
               },
-              "risk_cut_bps": -2.8073290036,
+              "risk_cut_bps": -2.8146662123,
               "gross_incremental_value_usd_m": 396.5556872247,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -9181,19 +9181,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 468.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 37.7987014321,
-                  "dscr": -4.1537802636,
+                  "annual_debt_service_usd_m": 42.8315590511,
+                  "dscr": -3.665696591,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 80.6192084116,
-                  "required_green_premium_dscr_usd_t": 79.2868507161,
-                  "required_green_premium_usd_t": 80.6192084116,
+                  "required_green_premium_dscr_usd_t": 81.8032795256,
+                  "required_green_premium_usd_t": 81.8032795256,
                   "break_even_carbon_usd_t": 95.8536594884,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -9212,18 +9212,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6519487642,
-                "risk_charge_usd_t": 3.8929073121,
-                "sigma_b_usd_bn": 2.9283134486,
+                "risk_charge_bps": 12.6584580705,
+                "risk_charge_usd_t": 3.8949101755,
+                "sigma_b_usd_bn": 2.2845083742,
                 "shares": {
-                  "carbon": 0.8298181513,
+                  "carbon": 0.8289649428,
                   "h2": 0.0,
-                  "elec": 0.1685854675,
+                  "elec": 0.1684121301,
                   "feedstock": 0.0,
-                  "capex": 0.0015963812
+                  "capex": 0.0026229271
                 }
               },
-              "risk_cut_bps": 0.0054292696,
+              "risk_cut_bps": 0.0076419332,
               "gross_incremental_value_usd_m": -321.0572266938,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -9298,19 +9298,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 468.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 42.0924349736,
-                  "dscr": -3.7300645614,
+                  "annual_debt_service_usd_m": 47.4025550605,
+                  "dscr": -3.3122159723,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 83.8555154637,
-                  "required_green_premium_dscr_usd_t": 81.4337174868,
-                  "required_green_premium_usd_t": 83.8555154637,
+                  "required_green_premium_dscr_usd_t": 84.0887775303,
+                  "required_green_premium_usd_t": 84.0887775303,
                   "break_even_carbon_usd_t": 98.6678395336,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -9329,15 +9329,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6573780338,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 2.3624506553,
+                "risk_charge_bps": 12.6661000037,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 1.8915123396,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -9415,19 +9415,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 468.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 42.0924349736,
-                  "dscr": -3.7300645614,
+                  "annual_debt_service_usd_m": 47.4025550605,
+                  "dscr": -3.3122159723,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 83.8555154637,
-                  "required_green_premium_dscr_usd_t": 81.4337174868,
-                  "required_green_premium_usd_t": 83.8555154637,
+                  "required_green_premium_dscr_usd_t": 84.0887775303,
+                  "required_green_premium_usd_t": 84.0887775303,
                   "break_even_carbon_usd_t": 98.6678395336,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -9446,15 +9446,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6573780338,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 2.3624506553,
+                "risk_charge_bps": 12.6661000037,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 1.8915123396,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -9535,19 +9535,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 327.6,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 29.4647044815,
-                  "dscr": -3.6087329526,
+                  "annual_debt_service_usd_m": 33.1817885424,
+                  "dscr": -3.20447615,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 57.3238608246,
-                  "required_green_premium_dscr_usd_t": 55.6286022408,
-                  "required_green_premium_usd_t": 57.3238608246,
+                  "required_green_premium_dscr_usd_t": 57.4871442712,
+                  "required_green_premium_usd_t": 57.4871442712,
                   "break_even_carbon_usd_t": 85.9718354996,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -9566,18 +9566,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 14.5034016694,
-                "risk_charge_usd_t": 4.4625851291,
-                "sigma_b_usd_bn": 1.804669218,
+                "risk_charge_bps": 14.5117941633,
+                "risk_charge_usd_t": 4.4651674349,
+                "sigma_b_usd_bn": 1.4447613562,
                 "shares": {
-                  "carbon": 0.8448160169,
+                  "carbon": 0.8438391476,
                   "h2": 0.0,
-                  "elec": 0.153124432,
+                  "elec": 0.1529473727,
                   "feedstock": 0.0,
-                  "capex": 0.0020595511
+                  "capex": 0.0032134798
                 }
               },
-              "risk_cut_bps": -1.8460236356,
+              "risk_cut_bps": -1.8456941595,
               "gross_incremental_value_usd_m": 881.8253358716,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -9604,7 +9604,7 @@
       "recommendation": {
         "action": "NEGOTIATE_PRICE_SUPPORT_OR_GREEN_PREMIUM",
         "configured_route_best_npv_usd_m": -1905.2574561477,
-        "configured_route_required_green_premium_usd_t": 57.3238608246,
+        "configured_route_required_green_premium_usd_t": 57.4871442712,
         "economic_leader_route": "ng_dri",
         "economic_leader_feasibility": "CONFIGURED_ROUTE",
         "economic_leader_npv_usd_m": -1905.2574561477,
@@ -12847,19 +12847,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 2256.0,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 202.9071224369,
-                "dscr": -11.9522664896,
+                "annual_debt_service_usd_m": 228.5046243944,
+                "dscr": -10.6133519461,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 339.9165575598,
-                "required_green_premium_dscr_usd_t": 336.122407396,
-                "required_green_premium_usd_t": 339.9165575598,
+                "required_green_premium_dscr_usd_t": 340.2820014641,
+                "required_green_premium_usd_t": 340.2820014641,
                 "break_even_carbon_usd_t": 214.5925319776,
                 "break_even_hydrogen_usd_kg": -0.1652759593,
                 "break_even_feedstock_usd_t": null
@@ -12878,15 +12878,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 17.8834842066,
-              "risk_charge_usd_t": 8.9417421033,
-              "sigma_b_usd_bn": 16.6894157976,
+              "risk_charge_bps": 17.8892231587,
+              "risk_charge_usd_t": 8.9446115794,
+              "sigma_b_usd_bn": 13.3575790261,
               "shares": {
-                "carbon": 0.0043433165,
-                "h2": 0.8772718667,
-                "elec": 0.1172427909,
+                "carbon": 0.0043405303,
+                "h2": 0.8767090906,
+                "elec": 0.1171675788,
                 "feedstock": 0.0,
-                "capex": 0.0011420259
+                "capex": 0.0017828003
               }
             }
           },
@@ -12957,19 +12957,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2256.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 202.9071224369,
-                  "dscr": -9.4683714249,
+                  "annual_debt_service_usd_m": 228.5046243944,
+                  "dscr": -8.4077073061,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 276.9165575598,
-                  "required_green_premium_dscr_usd_t": 273.122407396,
-                  "required_green_premium_usd_t": 276.9165575598,
+                  "required_green_premium_dscr_usd_t": 277.2820014641,
+                  "required_green_premium_usd_t": 277.2820014641,
                   "break_even_carbon_usd_t": 179.5925319776,
                   "break_even_hydrogen_usd_kg": -0.1652759593,
                   "break_even_feedstock_usd_t": null
@@ -12988,18 +12988,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.3807247351,
-                "risk_charge_usd_t": 6.1903623675,
-                "sigma_b_usd_bn": 11.5540719355,
+                "risk_charge_bps": 12.3890129883,
+                "risk_charge_usd_t": 6.1945064941,
+                "sigma_b_usd_bn": 9.2506655307,
                 "shares": {
-                  "carbon": 0.0090621995,
-                  "h2": 0.8121019184,
-                  "elec": 0.1764530795,
+                  "carbon": 0.0090500783,
+                  "h2": 0.811015689,
+                  "elec": 0.1762170642,
                   "feedstock": 0.0,
-                  "capex": 0.0023828026
+                  "capex": 0.0037171685
                 }
               },
-              "risk_cut_bps": 5.5027594715,
+              "risk_cut_bps": 5.5002101705,
               "gross_incremental_value_usd_m": 6442.8115037673,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -13075,19 +13075,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2256.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 202.9071224369,
-                  "dscr": -11.6116180236,
+                  "annual_debt_service_usd_m": 228.5046243944,
+                  "dscr": -10.3108635383,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 331.2765575598,
-                  "required_green_premium_dscr_usd_t": 327.482407396,
-                  "required_green_premium_usd_t": 331.2765575598,
+                  "required_green_premium_dscr_usd_t": 331.6420014641,
+                  "required_green_premium_usd_t": 331.6420014641,
                   "break_even_carbon_usd_t": 209.7925319776,
                   "break_even_hydrogen_usd_kg": -0.0212759593,
                   "break_even_feedstock_usd_t": null
@@ -13106,18 +13106,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.2918988889,
-                "risk_charge_usd_t": 8.6459494444,
-                "sigma_b_usd_bn": 16.1373302402,
+                "risk_charge_bps": 17.2978341141,
+                "risk_charge_usd_t": 8.6489170571,
+                "sigma_b_usd_bn": 12.9159988732,
                 "shares": {
-                  "carbon": 0.0039995913,
-                  "h2": 0.9100272263,
-                  "elec": 0.0847516786,
+                  "carbon": 0.0039968471,
+                  "h2": 0.9094028371,
+                  "elec": 0.0846935286,
                   "feedstock": 0.0,
-                  "capex": 0.0012215038
+                  "capex": 0.0019067871
                 }
               },
-              "risk_cut_bps": 0.5915853177,
+              "risk_cut_bps": 0.5913890446,
               "gross_incremental_value_usd_m": 883.5855776595,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -13193,19 +13193,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1579.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 142.0349857058,
-                  "dscr": -17.0746664137,
+                  "annual_debt_service_usd_m": 159.9532370761,
+                  "dscr": -15.1619313515,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 328.8865902918,
-                  "required_green_premium_dscr_usd_t": 326.2306851772,
-                  "required_green_premium_usd_t": 328.8865902918,
+                  "required_green_premium_dscr_usd_t": 329.1424010249,
+                  "required_green_premium_usd_t": 329.1424010249,
                   "break_even_carbon_usd_t": 208.4647723844,
                   "break_even_hydrogen_usd_kg": 0.0185568285,
                   "break_even_feedstock_usd_t": null
@@ -13224,18 +13224,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.8782754806,
-                "risk_charge_usd_t": 8.9391377403,
-                "sigma_b_usd_bn": 16.6845548549,
+                "risk_charge_bps": 17.8810886165,
+                "risk_charge_usd_t": 8.9405443083,
+                "sigma_b_usd_bn": 13.3515051016,
                 "shares": {
-                  "carbon": 0.0043458477,
-                  "h2": 0.8777831167,
-                  "elec": 0.1173111168,
+                  "carbon": 0.0043444804,
+                  "h2": 0.8775069446,
+                  "elec": 0.1172742078,
                   "feedstock": 0.0,
-                  "capex": 0.0005599188
+                  "capex": 0.0008743672
                 }
               },
-              "risk_cut_bps": 0.0052087259,
+              "risk_cut_bps": 0.0081345422,
               "gross_incremental_value_usd_m": 1128.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -13310,19 +13310,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2256.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 202.9071224369,
-                  "dscr": -11.215969024,
+                  "annual_debt_service_usd_m": 228.5046243944,
+                  "dscr": -9.9595358564,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 321.2415575598,
-                  "required_green_premium_dscr_usd_t": 317.447407396,
-                  "required_green_premium_usd_t": 321.2415575598,
+                  "required_green_premium_dscr_usd_t": 321.6070014641,
+                  "required_green_premium_usd_t": 321.6070014641,
                   "break_even_carbon_usd_t": 214.5925319776,
                   "break_even_hydrogen_usd_kg": 0.1459740407,
                   "break_even_feedstock_usd_t": null
@@ -13341,18 +13341,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.8003972354,
-                "risk_charge_usd_t": 13.4001986177,
-                "sigma_b_usd_bn": 16.6739682953,
+                "risk_charge_bps": 26.8090136364,
+                "risk_charge_usd_t": 13.4045068182,
+                "sigma_b_usd_bn": 13.3452233628,
                 "shares": {
-                  "carbon": 0.0029772533,
-                  "h2": 0.8788981067,
-                  "elec": 0.1169804972,
+                  "carbon": 0.0029753398,
+                  "h2": 0.8783332428,
+                  "elec": 0.1169053144,
                   "feedstock": 0.0,
-                  "capex": 0.0011441429
+                  "capex": 0.0017861031
                 }
               },
-              "risk_cut_bps": -8.9169130289,
+              "risk_cut_bps": -8.9197904776,
               "gross_incremental_value_usd_m": 1909.8334100453,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -13428,19 +13428,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2256.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 182.2091248523,
-                  "dscr": -13.3099810559,
+                  "annual_debt_service_usd_m": 206.4700795285,
+                  "dscr": -11.7460118461,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 334.8463431782,
-                  "required_green_premium_dscr_usd_t": 332.7589827885,
-                  "required_green_premium_usd_t": 334.8463431782,
+                  "required_green_premium_dscr_usd_t": 336.7013879234,
+                  "required_green_premium_usd_t": 336.7013879234,
                   "break_even_carbon_usd_t": 211.7757462101,
                   "break_even_hydrogen_usd_kg": -0.0807723863,
                   "break_even_feedstock_usd_t": null
@@ -13459,18 +13459,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.8799128788,
-                "risk_charge_usd_t": 8.9399564394,
-                "sigma_b_usd_bn": 20.6916698444,
+                "risk_charge_bps": 17.8841947433,
+                "risk_charge_usd_t": 8.9420973716,
+                "sigma_b_usd_bn": 16.138060587,
                 "shares": {
-                  "carbon": 0.0043450518,
-                  "h2": 0.8776223537,
-                  "elec": 0.1172896316,
+                  "carbon": 0.0043429714,
+                  "h2": 0.8772021603,
+                  "elec": 0.117233475,
                   "feedstock": 0.0,
-                  "capex": 0.0007429629
+                  "capex": 0.0012213933
                 }
               },
-              "risk_cut_bps": 0.0035713278,
+              "risk_cut_bps": 0.0050284155,
               "gross_incremental_value_usd_m": -4959.1770213382,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -13545,19 +13545,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2256.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 202.9071224369,
-                  "dscr": -11.9522664896,
+                  "annual_debt_service_usd_m": 228.5046243944,
+                  "dscr": -10.6133519461,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 339.9165575598,
-                  "required_green_premium_dscr_usd_t": 336.122407396,
-                  "required_green_premium_usd_t": 339.9165575598,
+                  "required_green_premium_dscr_usd_t": 340.2820014641,
+                  "required_green_premium_usd_t": 340.2820014641,
                   "break_even_carbon_usd_t": 214.5925319776,
                   "break_even_hydrogen_usd_kg": -0.1652759593,
                   "break_even_feedstock_usd_t": null
@@ -13576,15 +13576,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.8834842066,
-                "risk_charge_usd_t": 8.9417421033,
-                "sigma_b_usd_bn": 16.6894157976,
+                "risk_charge_bps": 17.8892231587,
+                "risk_charge_usd_t": 8.9446115794,
+                "sigma_b_usd_bn": 13.3575790261,
                 "shares": {
-                  "carbon": 0.0043433165,
-                  "h2": 0.8772718667,
-                  "elec": 0.1172427909,
+                  "carbon": 0.0043405303,
+                  "h2": 0.8767090906,
+                  "elec": 0.1171675788,
                   "feedstock": 0.0,
-                  "capex": 0.0011420259
+                  "capex": 0.0017828003
                 }
               },
               "risk_cut_bps": 0.0,
@@ -13662,19 +13662,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 2256.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 202.9071224369,
-                  "dscr": -11.9522664896,
+                  "annual_debt_service_usd_m": 228.5046243944,
+                  "dscr": -10.6133519461,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 339.9165575598,
-                  "required_green_premium_dscr_usd_t": 336.122407396,
-                  "required_green_premium_usd_t": 339.9165575598,
+                  "required_green_premium_dscr_usd_t": 340.2820014641,
+                  "required_green_premium_usd_t": 340.2820014641,
                   "break_even_carbon_usd_t": 214.5925319776,
                   "break_even_hydrogen_usd_kg": -0.1652759593,
                   "break_even_feedstock_usd_t": null
@@ -13693,15 +13693,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.8834842066,
-                "risk_charge_usd_t": 8.9417421033,
-                "sigma_b_usd_bn": 16.6894157976,
+                "risk_charge_bps": 17.8892231587,
+                "risk_charge_usd_t": 8.9446115794,
+                "sigma_b_usd_bn": 13.3575790261,
                 "shares": {
-                  "carbon": 0.0043433165,
-                  "h2": 0.8772718667,
-                  "elec": 0.1172427909,
+                  "carbon": 0.0043405303,
+                  "h2": 0.8767090906,
+                  "elec": 0.1171675788,
                   "feedstock": 0.0,
-                  "capex": 0.0011420259
+                  "capex": 0.0017828003
                 }
               },
               "risk_cut_bps": 0.0,
@@ -13783,19 +13783,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1579.2,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 142.0349857058,
-                  "dscr": -11.9877507048,
+                  "annual_debt_service_usd_m": 159.9532370761,
+                  "dscr": -10.6448611552,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 238.5715902918,
-                  "required_green_premium_dscr_usd_t": 235.9156851772,
-                  "required_green_premium_usd_t": 238.5715902918,
+                  "required_green_premium_dscr_usd_t": 238.8274010249,
+                  "required_green_premium_usd_t": 238.8274010249,
                   "break_even_carbon_usd_t": 168.6647723844,
                   "break_even_hydrogen_usd_kg": 0.4738068285,
                   "break_even_feedstock_usd_t": null
@@ -13814,18 +13814,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.6046397158,
-                "risk_charge_usd_t": 8.8023198579,
-                "sigma_b_usd_bn": 10.952793046,
+                "risk_charge_bps": 17.6110669867,
+                "risk_charge_usd_t": 8.8055334933,
+                "sigma_b_usd_bn": 8.7665896919,
                 "shares": {
-                  "carbon": 0.0058146885,
-                  "h2": 0.8639258148,
-                  "elec": 0.1289602115,
+                  "carbon": 0.005810445,
+                  "h2": 0.8632953394,
+                  "elec": 0.1288660989,
                   "feedstock": 0.0,
-                  "capex": 0.0012992853
+                  "capex": 0.0020281166
                 }
               },
-              "risk_cut_bps": 0.2788444908,
+              "risk_cut_bps": 0.2781561721,
               "gross_incremental_value_usd_m": 10364.2304914721,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -13896,19 +13896,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 960.0,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 86.3434563561,
-                "dscr": -7.5859830917,
+                "annual_debt_service_usd_m": 97.2360103806,
+                "dscr": -6.7361875239,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 97.5203436425,
-                "required_green_premium_dscr_usd_t": 95.9058116579,
-                "required_green_premium_usd_t": 97.5203436425,
+                "required_green_premium_dscr_usd_t": 97.6758516868,
+                "required_green_premium_usd_t": 97.6758516868,
                 "break_even_carbon_usd_t": 90.7635624283,
                 "break_even_hydrogen_usd_kg": null,
                 "break_even_feedstock_usd_t": null
@@ -13927,15 +13927,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 4.4210154177,
-              "risk_charge_usd_t": 2.2105077089,
-              "sigma_b_usd_bn": 4.1258271432,
+              "risk_charge_bps": 4.4252177492,
+              "risk_charge_usd_t": 2.2126088746,
+              "sigma_b_usd_bn": 3.3042349167,
               "shares": {
-                "carbon": 0.6867157413,
+                "carbon": 0.6854121051,
                 "h2": 0.0,
-                "elec": 0.3099004919,
+                "elec": 0.3093121881,
                 "feedstock": 0.0,
-                "capex": 0.0033837668
+                "capex": 0.0052757068
               }
             }
           },
@@ -14004,19 +14004,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 960.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 86.3434563561,
-                  "dscr": -7.5859830917,
+                  "annual_debt_service_usd_m": 97.2360103806,
+                  "dscr": -6.7361875239,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 97.5203436425,
-                  "required_green_premium_dscr_usd_t": 95.9058116579,
-                  "required_green_premium_usd_t": 97.5203436425,
+                  "required_green_premium_dscr_usd_t": 97.6758516868,
+                  "required_green_premium_usd_t": 97.6758516868,
                   "break_even_carbon_usd_t": 90.7635624283,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -14035,15 +14035,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4210154177,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 4.1258271432,
+                "risk_charge_bps": 4.4252177492,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 3.3042349167,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -14122,19 +14122,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 960.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 86.3434563561,
-                  "dscr": -6.9855901704,
+                  "annual_debt_service_usd_m": 97.2360103806,
+                  "dscr": -6.2030517052,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 91.0403436425,
-                  "required_green_premium_dscr_usd_t": 89.4258116579,
-                  "required_green_premium_usd_t": 91.0403436425,
+                  "required_green_premium_dscr_usd_t": 91.1958516868,
+                  "required_green_premium_usd_t": 91.1958516868,
                   "break_even_carbon_usd_t": 86.4435624283,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -14153,18 +14153,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.0518353859,
-                "risk_charge_usd_t": 2.0259176929,
-                "sigma_b_usd_bn": 3.7812970178,
+                "risk_charge_bps": 4.056420195,
+                "risk_charge_usd_t": 2.0282100975,
+                "sigma_b_usd_bn": 3.0288600482,
                 "shares": {
-                  "carbon": 0.7822594795,
+                  "carbon": 0.7804921657,
                   "h2": 0.0,
-                  "elec": 0.2137120434,
+                  "elec": 0.2132292161,
                   "feedstock": 0.0,
-                  "capex": 0.0040284771
+                  "capex": 0.0062786181
                 }
               },
-              "risk_cut_bps": 0.3691800318,
+              "risk_cut_bps": 0.3687975542,
               "gross_incremental_value_usd_m": 662.6891832446,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -14240,19 +14240,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 672.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 60.4404194493,
-                  "dscr": -10.8371187025,
+                  "annual_debt_service_usd_m": 68.0652072664,
+                  "dscr": -9.6231250341,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 92.8267405497,
-                  "required_green_premium_dscr_usd_t": 91.6965681605,
-                  "required_green_premium_usd_t": 92.8267405497,
+                  "required_green_premium_dscr_usd_t": 92.9355961808,
+                  "required_green_premium_usd_t": 92.9355961808,
                   "break_even_carbon_usd_t": 87.6344936998,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -14271,18 +14271,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4171990508,
-                "risk_charge_usd_t": 2.2085995254,
-                "sigma_b_usd_bn": 4.1222655925,
+                "risk_charge_bps": 4.4192604707,
+                "risk_charge_usd_t": 2.2096302354,
+                "sigma_b_usd_bn": 3.299786718,
                 "shares": {
-                  "carbon": 0.6879028698,
+                  "carbon": 0.6872612574,
                   "h2": 0.0,
-                  "elec": 0.3104362182,
+                  "elec": 0.310146672,
                   "feedstock": 0.0,
-                  "capex": 0.001660912
+                  "capex": 0.0025920706
                 }
               },
-              "risk_cut_bps": 0.0038163669,
+              "risk_cut_bps": 0.0059572785,
               "gross_incremental_value_usd_m": 480.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -14357,19 +14357,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 960.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 86.3434563561,
-                  "dscr": -6.1440672216,
+                  "annual_debt_service_usd_m": 97.2360103806,
+                  "dscr": -5.4557976816,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 81.9578436425,
-                  "required_green_premium_dscr_usd_t": 80.3433116579,
-                  "required_green_premium_usd_t": 81.9578436425,
+                  "required_green_premium_dscr_usd_t": 82.1133516868,
+                  "required_green_premium_usd_t": 82.1133516868,
                   "break_even_carbon_usd_t": 90.7635624283,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -14388,18 +14388,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 5.6241031975,
-                "risk_charge_usd_t": 2.8120515988,
-                "sigma_b_usd_bn": 3.4990570319,
+                "risk_charge_bps": 5.6315344344,
+                "risk_charge_usd_t": 2.8157672172,
+                "sigma_b_usd_bn": 2.8033140615,
                 "shares": {
-                  "carbon": 0.5971036051,
+                  "carbon": 0.5955287978,
                   "h2": 0.0,
-                  "elec": 0.3981918195,
+                  "elec": 0.3971416242,
                   "feedstock": 0.0,
-                  "capex": 0.0047045755
+                  "capex": 0.007329578
                 }
               },
-              "risk_cut_bps": -1.2030877798,
+              "risk_cut_bps": -1.2063166852,
               "gross_incremental_value_usd_m": 1591.5278417044,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -14475,19 +14475,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 960.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 77.5357978095,
-                  "dscr": -8.4477108446,
+                  "annual_debt_service_usd_m": 87.85960831,
+                  "dscr": -7.455075348,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 95.3628056077,
-                  "required_green_premium_dscr_usd_t": 94.474567144,
-                  "required_green_premium_usd_t": 95.3628056077,
+                  "required_green_premium_dscr_usd_t": 96.1521863504,
+                  "required_green_premium_usd_t": 96.1521863504,
                   "break_even_carbon_usd_t": 89.3252037385,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -14506,18 +14506,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4183989869,
-                "risk_charge_usd_t": 2.2091994934,
-                "sigma_b_usd_bn": 5.1132269882,
+                "risk_charge_bps": 4.4215358497,
+                "risk_charge_usd_t": 2.2107679248,
+                "sigma_b_usd_bn": 3.9898365263,
                 "shares": {
-                  "carbon": 0.6875292831,
+                  "carbon": 0.6865540926,
                   "h2": 0.0,
-                  "elec": 0.3102676264,
+                  "elec": 0.3098275432,
                   "feedstock": 0.0,
-                  "capex": 0.0022030905
+                  "capex": 0.0036183642
                 }
               },
-              "risk_cut_bps": 0.0026164308,
+              "risk_cut_bps": 0.0036818995,
               "gross_incremental_value_usd_m": -1339.378586911,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -14592,19 +14592,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 960.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 86.3434563561,
-                  "dscr": -7.5859830917,
+                  "annual_debt_service_usd_m": 97.2360103806,
+                  "dscr": -6.7361875239,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 97.5203436425,
-                  "required_green_premium_dscr_usd_t": 95.9058116579,
-                  "required_green_premium_usd_t": 97.5203436425,
+                  "required_green_premium_dscr_usd_t": 97.6758516868,
+                  "required_green_premium_usd_t": 97.6758516868,
                   "break_even_carbon_usd_t": 90.7635624283,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -14623,15 +14623,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4210154177,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 4.1258271432,
+                "risk_charge_bps": 4.4252177492,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 3.3042349167,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -14709,19 +14709,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 960.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 86.3434563561,
-                  "dscr": -7.5859830917,
+                  "annual_debt_service_usd_m": 97.2360103806,
+                  "dscr": -6.7361875239,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 97.5203436425,
-                  "required_green_premium_dscr_usd_t": 95.9058116579,
-                  "required_green_premium_usd_t": 97.5203436425,
+                  "required_green_premium_dscr_usd_t": 97.6758516868,
+                  "required_green_premium_usd_t": 97.6758516868,
                   "break_even_carbon_usd_t": 90.7635624283,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -14740,15 +14740,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4210154177,
-                "risk_charge_usd_t": 2.2105077089,
-                "sigma_b_usd_bn": 4.1258271432,
+                "risk_charge_bps": 4.4252177492,
+                "risk_charge_usd_t": 2.2126088746,
+                "sigma_b_usd_bn": 3.3042349167,
                 "shares": {
-                  "carbon": 0.6867157413,
+                  "carbon": 0.6854121051,
                   "h2": 0.0,
-                  "elec": 0.3099004919,
+                  "elec": 0.3093121881,
                   "feedstock": 0.0,
-                  "capex": 0.0033837668
+                  "capex": 0.0052757068
                 }
               },
               "risk_cut_bps": 0.0,
@@ -14829,19 +14829,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 672.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 60.4404194493,
-                  "dscr": -7.9195347147,
+                  "annual_debt_service_usd_m": 68.0652072664,
+                  "dscr": -7.0323740898,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 70.7842405497,
-                  "required_green_premium_dscr_usd_t": 69.6540681605,
-                  "required_green_premium_usd_t": 70.7842405497,
+                  "required_green_premium_dscr_usd_t": 70.8930961808,
+                  "required_green_premium_usd_t": 70.8930961808,
                   "break_even_carbon_usd_t": 83.3144936998,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -14860,18 +14860,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 5.0106124172,
-                "risk_charge_usd_t": 2.5053062086,
-                "sigma_b_usd_bn": 3.1173714274,
+                "risk_charge_bps": 5.014700591,
+                "risk_charge_usd_t": 2.5073502955,
+                "sigma_b_usd_bn": 2.4962611602,
                 "shares": {
-                  "carbon": 0.7120817571,
+                  "carbon": 0.7109211984,
                   "h2": 0.0,
-                  "elec": 0.285013943,
+                  "elec": 0.2845494241,
                   "feedstock": 0.0,
-                  "capex": 0.0029042999
+                  "capex": 0.0045293776
                 }
               },
-              "risk_cut_bps": -0.5895969995,
+              "risk_cut_bps": -0.5894828418,
               "gross_incremental_value_usd_m": 2734.2170249491,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -14942,19 +14942,19 @@
                 "decision": "NOT_ECONOMIC_ON_TERMS"
               },
               "debt": {
-                "debt_rate": 0.04,
+                "debt_rate": 0.0575,
                 "debt_share": 0.6,
                 "debt_amount_usd_m": 1440.0,
                 "tenor_years": 15,
-                "annual_debt_service_usd_m": 129.5151845342,
-                "dscr": -3.809591916,
+                "annual_debt_service_usd_m": 145.8540155709,
+                "dscr": -3.3828345285,
                 "target_dscr": 1.3,
                 "dscr_pass": false
               },
               "break_evens": {
                 "required_green_premium_npv_usd_t": 85.1430154637,
-                "required_green_premium_dscr_usd_t": 82.7212174868,
-                "required_green_premium_usd_t": 85.1430154637,
+                "required_green_premium_dscr_usd_t": 85.3762775303,
+                "required_green_premium_usd_t": 85.3762775303,
                 "break_even_carbon_usd_t": 103.1527413306,
                 "break_even_hydrogen_usd_kg": null,
                 "break_even_feedstock_usd_t": null
@@ -14973,15 +14973,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 7.7891557131,
-              "risk_charge_usd_t": 3.8945778566,
-              "sigma_b_usd_bn": 7.2690789394,
+              "risk_charge_bps": 7.7945230792,
+              "risk_charge_usd_t": 3.8972615396,
+              "sigma_b_usd_bn": 5.820037968,
               "shares": {
-                "carbon": 0.8291064177,
+                "carbon": 0.8279649533,
                 "h2": 0.0,
-                "elec": 0.1684408721,
+                "elec": 0.1682089727,
                 "feedstock": 0.0,
-                "capex": 0.0024527102
+                "capex": 0.003826074
               }
             }
           },
@@ -15050,19 +15050,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1440.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 129.5151845342,
-                  "dscr": -3.809591916,
+                  "annual_debt_service_usd_m": 145.8540155709,
+                  "dscr": -3.3828345285,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 85.1430154637,
-                  "required_green_premium_dscr_usd_t": 82.7212174868,
-                  "required_green_premium_usd_t": 85.1430154637,
+                  "required_green_premium_dscr_usd_t": 85.3762775303,
+                  "required_green_premium_usd_t": 85.3762775303,
                   "break_even_carbon_usd_t": 103.1527413306,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -15081,15 +15081,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7891557131,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 7.2690789394,
+                "risk_charge_bps": 7.7945230792,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 5.820037968,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -15168,19 +15168,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1440.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 129.5151845342,
-                  "dscr": -3.3426196438,
+                  "annual_debt_service_usd_m": 145.8540155709,
+                  "dscr": -2.9681733362,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 77.5830154637,
-                  "required_green_premium_dscr_usd_t": 75.1612174868,
-                  "required_green_premium_usd_t": 77.5830154637,
+                  "required_green_premium_dscr_usd_t": 77.8162775303,
+                  "required_green_premium_usd_t": 77.8162775303,
                   "break_even_carbon_usd_t": 96.2800140579,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -15199,18 +15199,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.4354975827,
-                "risk_charge_usd_t": 3.7177487914,
-                "sigma_b_usd_bn": 6.9390343284,
+                "risk_charge_bps": 7.4411200509,
+                "risk_charge_usd_t": 3.7205600255,
+                "sigma_b_usd_bn": 5.5561579304,
                 "shares": {
-                  "carbon": 0.885396127,
+                  "carbon": 0.8840586319,
                   "h2": 0.0,
-                  "elec": 0.1119122953,
+                  "elec": 0.1117432386,
                   "feedstock": 0.0,
-                  "capex": 0.0026915777
+                  "capex": 0.0041981296
                 }
               },
-              "risk_cut_bps": 0.3536581304,
+              "risk_cut_bps": 0.3534030283,
               "gross_incremental_value_usd_m": 773.1373804521,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -15286,19 +15286,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1008.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 90.6606291739,
-                  "dscr": -5.4422741657,
+                  "annual_debt_service_usd_m": 102.0978108996,
+                  "dscr": -4.8326207551,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 78.1026108246,
-                  "required_green_premium_dscr_usd_t": 76.4073522408,
-                  "required_green_premium_usd_t": 78.1026108246,
+                  "required_green_premium_dscr_usd_t": 78.2658942712,
+                  "required_green_premium_usd_t": 78.2658942712,
                   "break_even_carbon_usd_t": 96.7523734769,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -15317,18 +15317,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7842825306,
-                "risk_charge_usd_t": 3.8921412653,
-                "sigma_b_usd_bn": 7.2645311361,
+                "risk_charge_bps": 7.7869146482,
+                "risk_charge_usd_t": 3.8934573241,
+                "sigma_b_usd_bn": 5.8143568818,
                 "shares": {
-                  "carbon": 0.8301448311,
+                  "carbon": 0.8295837181,
                   "h2": 0.0,
-                  "elec": 0.1686518357,
+                  "elec": 0.1685378402,
                   "feedstock": 0.0,
-                  "capex": 0.0012033332
+                  "capex": 0.0018784417
                 }
               },
-              "risk_cut_bps": 0.0048731825,
+              "risk_cut_bps": 0.007608431,
               "gross_incremental_value_usd_m": 720.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -15403,19 +15403,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1440.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 129.5151845342,
-                  "dscr": -3.1046552684,
+                  "annual_debt_service_usd_m": 145.8540155709,
+                  "dscr": -2.7568661612,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 73.7305154637,
-                  "required_green_premium_dscr_usd_t": 71.3087174868,
-                  "required_green_premium_usd_t": 73.7305154637,
+                  "required_green_premium_dscr_usd_t": 73.9637775303,
+                  "required_green_premium_usd_t": 73.9637775303,
                   "break_even_carbon_usd_t": 103.1527413306,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -15434,18 +15434,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 9.5167427922,
-                "risk_charge_usd_t": 4.7583713961,
-                "sigma_b_usd_bn": 5.9208774481,
+                "risk_charge_bps": 9.5266253637,
+                "risk_charge_usd_t": 4.7633126818,
+                "sigma_b_usd_bn": 4.7422462123,
                 "shares": {
-                  "carbon": 0.7690462369,
+                  "carbon": 0.7674515038,
                   "h2": 0.0,
-                  "elec": 0.2272569043,
+                  "elec": 0.226785653,
                   "feedstock": 0.0,
-                  "capex": 0.0036968588
+                  "capex": 0.0057628432
                 }
               },
-              "risk_cut_bps": -1.7275870791,
+              "risk_cut_bps": -1.7321022845,
               "gross_incremental_value_usd_m": 1167.1204172499,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -15521,19 +15521,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.025,
+                  "debt_rate": 0.0425,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1440.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 116.3036967142,
-                  "dscr": -4.2423415071,
+                  "annual_debt_service_usd_m": 131.789412465,
+                  "dscr": -3.7438515794,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 81.9067084116,
-                  "required_green_premium_dscr_usd_t": 80.5743507161,
-                  "required_green_premium_usd_t": 81.9067084116,
+                  "required_green_premium_dscr_usd_t": 83.0907795256,
+                  "required_green_premium_usd_t": 83.0907795256,
                   "break_even_carbon_usd_t": 100.2106440106,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -15552,18 +15552,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7858146241,
-                "risk_charge_usd_t": 3.8929073121,
-                "sigma_b_usd_bn": 9.0101952266,
+                "risk_charge_bps": 7.7898203511,
+                "risk_charge_usd_t": 3.8949101755,
+                "sigma_b_usd_bn": 7.0292565359,
                 "shares": {
-                  "carbon": 0.8298181513,
+                  "carbon": 0.8289649428,
                   "h2": 0.0,
-                  "elec": 0.1685854675,
+                  "elec": 0.1684121301,
                   "feedstock": 0.0,
-                  "capex": 0.0015963812
+                  "capex": 0.0026229271
                 }
               },
-              "risk_cut_bps": 0.003341089,
+              "risk_cut_bps": 0.0047027281,
               "gross_incremental_value_usd_m": -1008.9303737128,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -15638,19 +15638,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1440.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 129.5151845342,
-                  "dscr": -3.809591916,
+                  "annual_debt_service_usd_m": 145.8540155709,
+                  "dscr": -3.3828345285,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 85.1430154637,
-                  "required_green_premium_dscr_usd_t": 82.7212174868,
-                  "required_green_premium_usd_t": 85.1430154637,
+                  "required_green_premium_dscr_usd_t": 85.3762775303,
+                  "required_green_premium_usd_t": 85.3762775303,
                   "break_even_carbon_usd_t": 103.1527413306,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -15669,15 +15669,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7891557131,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 7.2690789394,
+                "risk_charge_bps": 7.7945230792,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 5.820037968,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -15755,19 +15755,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1440.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 129.5151845342,
-                  "dscr": -3.809591916,
+                  "annual_debt_service_usd_m": 145.8540155709,
+                  "dscr": -3.3828345285,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 85.1430154637,
-                  "required_green_premium_dscr_usd_t": 82.7212174868,
-                  "required_green_premium_usd_t": 85.1430154637,
+                  "required_green_premium_dscr_usd_t": 85.3762775303,
+                  "required_green_premium_usd_t": 85.3762775303,
                   "break_even_carbon_usd_t": 103.1527413306,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -15786,15 +15786,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7891557131,
-                "risk_charge_usd_t": 3.8945778566,
-                "sigma_b_usd_bn": 7.2690789394,
+                "risk_charge_bps": 7.7945230792,
+                "risk_charge_usd_t": 3.8972615396,
+                "sigma_b_usd_bn": 5.820037968,
                 "shares": {
-                  "carbon": 0.8291064177,
+                  "carbon": 0.8279649533,
                   "h2": 0.0,
-                  "elec": 0.1684408721,
+                  "elec": 0.1682089727,
                   "feedstock": 0.0,
-                  "capex": 0.0024527102
+                  "capex": 0.003826074
                 }
               },
               "risk_cut_bps": 0.0,
@@ -15875,19 +15875,19 @@
                   "decision": "NOT_ECONOMIC_ON_TERMS"
                 },
                 "debt": {
-                  "debt_rate": 0.04,
+                  "debt_rate": 0.0575,
                   "debt_share": 0.6,
                   "debt_amount_usd_m": 1008.0,
                   "tenor_years": 15,
-                  "annual_debt_service_usd_m": 90.6606291739,
-                  "dscr": -3.768118566,
+                  "annual_debt_service_usd_m": 102.0978108996,
+                  "dscr": -3.3460070984,
                   "target_dscr": 1.3,
                   "dscr_pass": false
                 },
                 "break_evens": {
                   "required_green_premium_npv_usd_t": 59.1301108246,
-                  "required_green_premium_dscr_usd_t": 57.4348522408,
-                  "required_green_premium_usd_t": 59.1301108246,
+                  "required_green_premium_dscr_usd_t": 59.2933942712,
+                  "required_green_premium_usd_t": 59.2933942712,
                   "break_even_carbon_usd_t": 89.8796462042,
                   "break_even_hydrogen_usd_kg": null,
                   "break_even_feedstock_usd_t": null
@@ -15906,18 +15906,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 8.9251702581,
-                "risk_charge_usd_t": 4.4625851291,
-                "sigma_b_usd_bn": 5.5528283632,
+                "risk_charge_bps": 8.9303348697,
+                "risk_charge_usd_t": 4.4651674349,
+                "sigma_b_usd_bn": 4.4454195577,
                 "shares": {
-                  "carbon": 0.8448160169,
+                  "carbon": 0.8438391476,
                   "h2": 0.0,
-                  "elec": 0.153124432,
+                  "elec": 0.1529473727,
                   "feedstock": 0.0,
-                  "capex": 0.0020595511
+                  "capex": 0.0032134798
                 }
               },
-              "risk_cut_bps": -1.136014545,
+              "risk_cut_bps": -1.1358117905,
               "gross_incremental_value_usd_m": 2660.257797702,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -15944,7 +15944,7 @@
       "recommendation": {
         "action": "NEGOTIATE_PRICE_SUPPORT_OR_GREEN_PREMIUM",
         "configured_route_best_npv_usd_m": -24397.9648635605,
-        "configured_route_required_green_premium_usd_t": 238.5715902918,
+        "configured_route_required_green_premium_usd_t": 238.8274010249,
         "economic_leader_route": "ng_dri",
         "economic_leader_feasibility": "OPEN_NOT_TECHNICALLY_VALIDATED",
         "economic_leader_npv_usd_m": -6047.0501307877,

@@ -51,20 +51,20 @@
     {
       "firm_id": "JFE",
       "shares_uniform_lambda": {
-        "carbon": 0.9712545303,
+        "carbon": 0.9769709146,
         "h2": 0.0,
-        "elec": 0.0283419852,
+        "elec": 0.0227254411,
         "feedstock": 0.0,
-        "capex": 0.0004034845
+        "capex": 0.0003036443
       },
       "shares_lambda_k": {
-        "carbon": 0.9797430133,
+        "carbon": 0.9837975745,
         "h2": 0.0,
-        "elec": 0.0200127802,
+        "elec": 0.0160189658,
         "feedstock": 0.0,
-        "capex": 0.0002442065
+        "capex": 0.0001834596
       },
-      "max_shift": 0.008488483
+      "max_shift": 0.00682666
     },
     {
       "firm_id": "JP_NCC",
@@ -87,20 +87,20 @@
     {
       "firm_id": "KOBE",
       "shares_uniform_lambda": {
-        "carbon": 0.9997122534,
+        "carbon": 0.9998602064,
         "h2": 0.0,
         "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0002877466
+        "capex": 0.0001397936
       },
       "shares_lambda_k": {
-        "carbon": 0.9998273322,
+        "carbon": 0.9999161191,
         "h2": 0.0,
         "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0001726678
+        "capex": 8.38809e-05
       },
-      "max_shift": 0.0001150788
+      "max_shift": 5.59128e-05
     },
     {
       "firm_id": "KR_NCC",
@@ -123,20 +123,20 @@
     {
       "firm_id": "NIPPON",
       "shares_uniform_lambda": {
-        "carbon": 0.1009411916,
-        "h2": 0.7822410483,
-        "elec": 0.1152501143,
+        "carbon": 0.1516039238,
+        "h2": 0.7347444485,
+        "elec": 0.1115914859,
         "feedstock": 0.0,
-        "capex": 0.0015676458
+        "capex": 0.0020601418
       },
       "shares_lambda_k": {
-        "carbon": 0.1382518194,
-        "h2": 0.7499651281,
-        "elec": 0.1104947981,
+        "carbon": 0.2034200672,
+        "h2": 0.6901090222,
+        "elec": 0.1048123486,
         "feedstock": 0.0,
-        "capex": 0.0012882543
+        "capex": 0.001658562
       },
-      "max_shift": 0.0373106278
+      "max_shift": 0.0518161435
     },
     {
       "firm_id": "POSCO",

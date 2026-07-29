@@ -17,7 +17,7 @@ P1의 정확한 의미는 다음으로 **제한**된다:
 
 `status: IDENTITY (scalar 소거) · 성립 조건은 A5`
 
-**수치 데모**: λ×p_bind 격자 전체에서 share 벡터의 최대 이탈은 0.0e+00 (소수점 6자리 불변), 수준은 1.76–54.47bps로 스윙 (`model/s05_robustness.py` → `outputs/lambda_invariance.json`).
+**수치 데모**: λ×p_bind 격자 전체에서 share 벡터의 최대 이탈은 0.0e+00 (소수점 6자리 불변), 수준은 1.64–54.47bps로 스윙 (`model/s05_robustness.py` → `outputs/lambda_invariance.json`).
 
 ## 공리 A5 — λ 균일성 {#axiom-uniform-lambda}
 

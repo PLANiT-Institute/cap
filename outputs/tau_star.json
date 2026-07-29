@@ -52,7 +52,7 @@
       "route": "h2_dri",
       "category": "priced_route",
       "tau_star_year": 2050.6755,
-      "tau_star_year_wacc_eq": 2050.50175,
+      "tau_star_year_wacc_eq": 2050.63125,
       "p_exercised": 0.61975,
       "option_value_usd_t": 215.6587348131
     },
@@ -67,7 +67,7 @@
       "route": "h2_dri",
       "category": "priced_route",
       "tau_star_year": 2050.6305,
-      "tau_star_year_wacc_eq": 2050.66875,
+      "tau_star_year_wacc_eq": 2050.62275,
       "p_exercised": 0.6305,
       "option_value_usd_t": 237.613183182
     },
@@ -82,7 +82,7 @@
       "route": "h2_dri",
       "category": "priced_route",
       "tau_star_year": 2050.372,
-      "tau_star_year_wacc_eq": 2050.2265,
+      "tau_star_year_wacc_eq": 2050.30525,
       "p_exercised": 0.62475,
       "option_value_usd_t": 208.7543064507
     },
@@ -97,7 +97,7 @@
       "route": "h2_dri",
       "category": "priced_route",
       "tau_star_year": 2050.70625,
-      "tau_star_year_wacc_eq": 2050.526,
+      "tau_star_year_wacc_eq": 2050.631,
       "p_exercised": 0.62725,
       "option_value_usd_t": 245.3396187752
     },
@@ -141,10 +141,10 @@
       "country": "JP",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2053.5755,
+      "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
-      "p_exercised": 0.50075,
-      "option_value_usd_t": 82.4898128609
+      "p_exercised": 0.48875,
+      "option_value_usd_t": 53.8101793168
     },
     {
       "asset_id": "A09",
@@ -156,10 +156,10 @@
       "country": "JP",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2053.46875,
+      "tau_star_year": 2053.7695,
       "tau_star_year_wacc_eq": null,
-      "p_exercised": 0.51625,
-      "option_value_usd_t": 108.173752214
+      "p_exercised": 0.503,
+      "option_value_usd_t": 66.7070264913
     },
     {
       "asset_id": "A05",
@@ -173,8 +173,8 @@
       "category": "priced_route",
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
-      "p_exercised": 0.1235,
-      "option_value_usd_t": 66.588737054
+      "p_exercised": 0.122,
+      "option_value_usd_t": 41.2158251395
     },
     {
       "asset_id": "A10",
@@ -188,8 +188,8 @@
       "category": "priced_route",
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
-      "p_exercised": 0.138,
-      "option_value_usd_t": 72.8396871097
+      "p_exercised": 0.13775,
+      "option_value_usd_t": 44.5146562704
     },
     {
       "asset_id": "A11",
@@ -203,8 +203,8 @@
       "category": "priced_route",
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
-      "p_exercised": 0.1345,
-      "option_value_usd_t": 68.9496079798
+      "p_exercised": 0.13325,
+      "option_value_usd_t": 44.9964659033
     },
     {
       "asset_id": "P01",
@@ -217,7 +217,7 @@
       "route": "e_cracker",
       "category": "priced_route",
       "tau_star_year": 2039.3205,
-      "tau_star_year_wacc_eq": 2039.48,
+      "tau_star_year_wacc_eq": 2039.319,
       "p_exercised": 0.89275,
       "option_value_usd_t": 2303.1429528393
     },
@@ -232,7 +232,7 @@
       "route": "ccus_cracker",
       "category": "priced_route",
       "tau_star_year": 2040.36825,
-      "tau_star_year_wacc_eq": 2039.9485,
+      "tau_star_year_wacc_eq": 2039.81025,
       "p_exercised": 0.86975,
       "option_value_usd_t": 3094.6908008441
     }
@@ -275,8 +275,8 @@
       "A07": 2049.87625,
       "A03": null,
       "A08": null,
-      "A04": 2052.69175,
-      "A09": 2052.55925,
+      "A04": 2052.95075,
+      "A09": 2052.7625,
       "A05": null,
       "A10": null,
       "A11": null,
@@ -290,8 +290,8 @@
       "A07": 2049.86,
       "A03": 2052.47125,
       "A08": 2052.25275,
-      "A04": 2052.6885,
-      "A09": 2052.79975,
+      "A04": 2053.02,
+      "A09": 2053.1145,
       "A05": null,
       "A10": null,
       "A11": null,
@@ -305,8 +305,8 @@
       "A07": 2050.55,
       "A03": null,
       "A08": null,
-      "A04": 2053.29975,
-      "A09": 2053.31125,
+      "A04": null,
+      "A09": 2053.496,
       "A05": null,
       "A10": null,
       "A11": null,
@@ -320,8 +320,8 @@
       "A07": 2050.70625,
       "A03": null,
       "A08": null,
-      "A04": 2053.5755,
-      "A09": 2053.46875,
+      "A04": null,
+      "A09": 2053.7695,
       "A05": null,
       "A10": null,
       "A11": null,
@@ -335,8 +335,8 @@
       "A07": 2050.70625,
       "A03": null,
       "A08": null,
-      "A04": 2053.5755,
-      "A09": 2053.46875,
+      "A04": null,
+      "A09": 2053.7695,
       "A05": null,
       "A10": null,
       "A11": null,
@@ -350,8 +350,8 @@
       "A07": 2050.21875,
       "A03": 2051.943,
       "A08": 2051.77825,
-      "A04": 2053.63725,
-      "A09": 2053.89775,
+      "A04": 2053.80975,
+      "A09": 2054.0335,
       "A05": null,
       "A10": null,
       "A11": null,
