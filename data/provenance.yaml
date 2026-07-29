@@ -66,6 +66,13 @@ registry:
     units: "KRW tn, %"
     license: "DART open data (derived)"
 
+  - pattern: "research/params_consolidated_*.csv"
+    contents: "consolidated parameter research (weekly SSOT snapshots from the knowledge base)"
+    source: "planit_internal — PLANiT Institute internal analysis; workbook CAP_DS_params (raw/clean/export)"
+    collected: "2026-07-29"
+    units: "mixed — unit column per row"
+    license: "internal analysis, research use"
+
   - pattern: "research/SPARK_cost_inputs_2026-07-01.csv"
     contents: "SPARK 비용 입력 (기술 비용 구성요소)"
     source: "SPARK CostEngine 프로젝트 내부 정리"

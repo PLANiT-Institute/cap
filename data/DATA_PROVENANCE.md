@@ -57,6 +57,8 @@
 | `research/CAP_instruments_2026-07-03.csv` | 계약·정책 수단 목록 (CfD, PPA, 보조금 — s06 waterfall 입력) | 공시·보도 기반 내부 정리 (JOGMEC, CHPS, K-ETS 등) | 2026-07-03 | mixed (파일 내 명시) | internal research compilation | `f285a5c3a2c951d2…` |
 | `research/CAP_state_variables_2026-07-02.csv` | 상태변수 정의·캘리브레이션 노트 | 내부 정리 (문헌 앵커 파일 내 명시) | 2026-07-02 | mixed | internal research compilation | `444cfb114444a7be…` |
 | `research/SPARK_cost_inputs_2026-07-01.csv` | SPARK 비용 입력 (기술 비용 구성요소) | SPARK CostEngine 프로젝트 내부 정리 | 2026-07-01 | USD | internal research compilation | `03cbb8e00cc9aab1…` |
+| `research/params_consolidated_2026-07-26.csv` | consolidated parameter research (weekly SSOT snapshots from the knowledge base) | planit_internal — PLANiT Institute internal analysis; workbook CAP_DS_params (raw/clean/export) | 2026-07-29 | mixed — unit column per row | internal analysis, research use | `c1e86ec518633149…` |
+| `route_costs/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `09f31dcc44f80e9e…` |
 | `smp/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `e726de16cba20153…` |
 
-등록 파일 53개 · 출처불명 0개
+등록 파일 55개 · 출처불명 0개
