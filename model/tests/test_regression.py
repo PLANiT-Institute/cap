@@ -525,3 +525,41 @@ def test_korea_japan_pilot_dry_runs_are_reproducible_and_fail_closed():
     pilot_page = (ROOT / "web/app/pilots/page.tsx").read_text()
     assert "Not two validated deals" in pilot_page
     assert "Automated replay is not an independent analyst review" in pilot_page
+
+
+# --- D4: RC_k < 0이면 '조성' 서술이 무너진다 (PAPER_DIFF 갱신 4, Tasche 2008) ---
+
+
+def test_shares_stay_in_unit_interval():
+    """s_k가 [0,1] 밖으로 나가면 '탄소 C%, 수소 H%…'라는 서술 자체가 성립하지 않는다."""
+    for name in ("shares_by_firm", "share_envelopes"):
+        for firm in art(name)["firms"]:
+            for key, value in firm.items():
+                if not isinstance(value, dict):
+                    continue
+                for driver, share in value.items():
+                    if driver in DRIVERS and isinstance(share, (int, float)):
+                        assert -1e-12 <= share <= 1 + 1e-12, f"{name}/{firm.get('firm')}/{key}/{driver}={share}"
+
+
+def test_nonnegative_correlation_bands_are_what_keep_shares_a_composition():
+    """s_k ∈ [0,1]은 항등식이 아니라 ρ ≥ 0의 귀결이다.
+
+    w ≥ 0이므로 ρ의 모든 성분이 음이 아니면 (ρw)_k ≥ 0 → RC_k ≥ 0. 음의 상관을
+    config에 넣는 순간 이 성질이 깨지므로, 그때는 조성 서술을 함께 고쳐야 한다.
+    """
+    rho = pd.read_excel(ROOT / "config" / "calibration.xlsx", "correlations")
+    assert (rho["band_lo"] >= 0).all(), (
+        "음의 상관 밴드가 들어왔다 — s_k가 [0,1] 밖으로 나갈 수 있으므로 "
+        "theory/02_variance_premium.md의 '조성' 서술을 먼저 고칠 것"
+    )
+
+
+def test_negative_covariance_actually_breaks_the_composition():
+    """위 가드가 지키는 실패 모드를 실제로 보여준다 — 클리핑으로 덮으면 Σ=1이 깨진다."""
+    rho = np.eye(5)
+    rho[0, 1] = rho[1, 0] = -0.9
+    w = np.array([1.0, 0.2, 0.0, 0.0, 0.0])
+    _, shares = euler_shares(w, rho)
+    assert shares.min() < 0, "음의 공분산에서 RC_k < 0이 나와야 한다"
+    assert shares.sum() == pytest.approx(1.0), "음수여도 Euler 항등(Σ=1)은 유지된다"

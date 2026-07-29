@@ -3,6 +3,17 @@
 논리는 [07_ledger_logic.md](07_ledger_logic.md). 아래 자동 섹션은 `make ledger`가
 config status에서 생성한다 — 손으로 고치지 말 것. 해설은 이 상단에만 쓴다.
 
+**A5(λ 균일성)의 status는 `assumed`이되, "아직 검증 안 된 가정"이 아니다.** 2026-07 문헌조사
+결과 A5를 지지하는 문헌은 한 편도 없고 반대 방향 증거만 7편이다 — 상태는 **반증 우세**다
+(`theory/refs.bib`의 `% unsupported: axiom-uniform-lambda`, [08_referee_notes.md](08_referee_notes.md) R1,
+`PAPER_DIFF.md` D1). config의 λ=0.4는 수준(bps)만 움직이고 share는 못 움직이므로(P1) 결과의
+조성은 여전히 λ에 불변이지만, **driver별 λ_k를 허용하면 조성도 움직인다.** 따라서
+`outputs/lambda_k_sensitivity.json`은 부수 robustness가 아니라 주 결과로 읽어야 한다.
+
+조성(share)이 [0,1]에 머무는 것도 항등식이 아니라 **ρ ≥ 0의 귀결**이다. 음의 상관이 들어오면
+RC_k < 0이 되어 "탄소 C%, 수소 H%…"라는 서술 자체가 깨진다 (`PAPER_DIFF.md` D4,
+회귀 테스트 `test_nonnegative_correlation_bands_are_what_keep_shares_a_composition`).
+
 <!-- AUTO:BEGIN -->
 
 ## Claim 수준 상태 (artifact `claims` 블록)
