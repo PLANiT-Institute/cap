@@ -13,9 +13,11 @@
 %
 % 조사했으나 지지 문헌이 한 편도 없는 anchor. 미완이 아니라 조사 결과다.
 % A5(λ 균일성): 5개 도메인 어디에도 지지 문헌이 없고 반대 방향 증거만 7편.
-% A3(선형 비용함수): 철강 techno-economics 조사에서도 지지 0편 — 감축수단 간 상호작용과
-%   학습곡선 때문에 공학 비용은 투입가격에 선형이 아니라는 반증만 4편.
-% unsupported: axiom-uniform-lambda, axiom-linear-cost
+% unsupported: axiom-uniform-lambda
+%
+% A3(선형 비용함수)는 한·일 조사(gei2024)에서 탄소가격 방향의 지지가 나와 unsupported에서
+% 빠졌다. 단 지지는 '탄소가격 국소 구간'에 한정되고, 수소 수입 캐리어 비용과 학습곡선
+% 방향으로는 반증이 우세하다 — theory/02_variance_premium.md의 A3 서술 참조.
 
 @article{adriancrumpmoench2015,
   author  = {Adrian, Tobias and Crump, Richard K. and Moench, Emanuel},
@@ -942,4 +944,45 @@
   institution = {Agora Energiewende and Wuppertal Institut},
   year        = {2021},
   keywords = {domain:steel-techno, counters:axiom-route-sensitivity, supports:referee-3}
+}
+
+@techreport{gei2024,
+  author      = {{Global Efficiency Intelligence and Solutions for Our Climate and Transition Asia}},
+  title       = {Green Steel Economics: A Global Comparison of Green Hydrogen Direct Reduction Steel and Traditional Steelmaking (녹색 철강 경제학)},
+  institution = {Global Efficiency Intelligence / 기후솔루션(Solutions for Our Climate) / Transition Asia},
+  year        = {2024},
+  month       = {7},
+  keywords = {domain:steel-techno-krjp, supports:axiom-linear-cost, supports:axiom-route-sensitivity}
+}
+
+@article{jiangetal2025,
+  author  = {Jiang, Weiyi and Jung, Taeyong and Dai, Hancheng and Xiang, Pianpian and Chen, Sha},
+  title   = {Transition Pathways for Low-Carbon Steel Manufacture in East Asia: The Role of Renewable Energy and Technological Collaboration},
+  journal = {Sustainability},
+  year    = {2025},
+  volume  = {17},
+  number  = {10},
+  pages   = {4280},
+  doi     = {10.3390/su17104280},
+  keywords = {domain:steel-techno-krjp, counters:axiom-linear-cost, supports:axiom-route-sensitivity}
+}
+
+@techreport{kang2022,
+  author      = {Kang, Byung-wook},
+  title       = {탄소중립을 위한 철강 생산공정 전환 시나리오 분석 연구 (Scenario Analysis of Steel Production Process Transition for Carbon Neutrality)},
+  institution = {Korea Energy Economics Institute (에너지경제연구원, KEEI)},
+  type        = {기본연구보고서},
+  number      = {22-03},
+  year        = {2022},
+  month       = {12},
+  keywords = {domain:steel-techno-krjp, counters:referee-3, supports:axiom-route-sensitivity}
+}
+
+@techreport{shibata2023,
+  author      = {Shibata, Yoshiro},
+  title       = {水素輸入と製品輸入の比較 ― 水素直接還元製鉄を例にした水素利用の古くて新しい視点 ― (Comparing Hydrogen Import vs. Product Import: The Case of Hydrogen Direct Reduction Steelmaking)},
+  institution = {Institute of Energy Economics, Japan (日本エネルギー経済研究所, IEEJ)},
+  year        = {2023},
+  month       = {5},
+  keywords = {domain:steel-techno-krjp, counters:axiom-linear-cost, supports:axiom-route-sensitivity}
 }

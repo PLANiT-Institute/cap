@@ -1,6 +1,6 @@
 # 문헌 색인 (자동 생성 — `make ledger`)
 
-`theory/refs.bib` 96편. 이 파일을 손으로 고치지 말 것.
+`theory/refs.bib` 100편. 이 파일을 손으로 고치지 말 것.
 
 `+` = 지지(supports), `−` = 반박(counters). 굵은 citekey는 심층 노트가 있다.
 
@@ -116,6 +116,15 @@
 | vogletal2018 | Vogl 외 (2018), Assessment of Hydrogen Direct Reduction for Fossil-Free Steelmaking | +axiom-route-sensitivity, −axiom-linear-cost |
 | vogletal2021 | Vogl 외 (2021), Phasing Out the Blast Furnace to Meet Global Climate Targets | +axiom-route-sensitivity |
 | wachsmuthetal2021 | Wachsmuth 외 (2021), Breakthrough Strategies for Climate-Neutral Industry in Europe: Policy and Technology Pathways for Raising EU Climate Ambition | +referee-3, −axiom-route-sensitivity |
+
+## steel-techno-krjp (4편)
+
+| citekey | 문헌 | anchor |
+|---|---|---|
+| gei2024 | {Global Efficiency Intelligence 외 (2024), Green Steel Economics: A Global Comparison of Green Hydrogen Direct Reduction Steel and Traditional Steelmaking (녹색 철강 경제학) | +axiom-linear-cost, +axiom-route-sensitivity |
+| jiangetal2025 | Jiang 외 (2025), Transition Pathways for Low-Carbon Steel Manufacture in East Asia: The Role of Renewable Energy and Technological Collaboration | +axiom-route-sensitivity, −axiom-linear-cost |
+| kang2022 | Kang (2022), 탄소중립을 위한 철강 생산공정 전환 시나리오 분석 연구 (Scenario Analysis of Steel Production Process Transition for Carbon Neutrality) | +axiom-route-sensitivity, −referee-3 |
+| shibata2023 | Shibata (2023), 水素輸入と製品輸入の比較 ― 水素直接還元製鉄を例にした水素利用の古くて新しい視点 ― (Comparing Hydrogen Import vs. Product Import: The Case of Hydrogen Direct Reduction Steelmaking) | +axiom-route-sensitivity, −axiom-linear-cost |
 
 ## variance-premium (22편)
 
