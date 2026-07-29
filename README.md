@@ -1,5 +1,18 @@
 # CAP — Carbon-transition Asset Pricing
 
+> **Canonical-source declaration.** This repository is the single source of
+> truth (SSOT) for CAP's logic, theory, parameters, and code. Documents in the
+> external working folder are exploration, evidence, and drafts; nothing is
+> canonical until it has been promoted into `theory/` or `config/` through the
+> gates in [CONTRIBUTING.md](CONTRIBUTING.md). Computation runs only in this repo.
+>
+> The repo is self-contained — no file references an external storage path.
+> External data arrives as CSV imports under `data/raw/` and is recorded in
+> provenance by source label and SHA256 only. Pipeline structure:
+> [ARCHITECTURE.md](ARCHITECTURE.md) · import/citation contract:
+> [DATA_INTERFACE.md](DATA_INTERFACE.md) · terms: [GLOSSARY.md](GLOSSARY.md) ·
+> open judgement calls: [DECISIONS.md](DECISIONS.md).
+
 **Transition-risk underwriting + pathway decision system** — 한·일 철강 5사 11개 고로와
 한·일 석유화학 NCC archetype 2개. 석유화학 자산·원료·경로 수치는 현재 명시적
 `assumed/provisional` 입력이며 기업 실측치가 아니다.

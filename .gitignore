@@ -8,3 +8,6 @@ web/out/
 .vercel
 .env*
 /tmp/
+
+# 생성물 — 편집 정본은 config/sheets/*.csv. `make calibration`이 조립한다.
+config/calibration.xlsx

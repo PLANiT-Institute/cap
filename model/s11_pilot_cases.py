@@ -123,17 +123,18 @@ def build(cal: CalibrationSet | None = None) -> dict:
     enterprise_by_firm = {row["firm_id"]: row for row in underwriting["firms"]}
     gap_by_firm = {row["firm_id"]: row for row in gaps["firms"]}
     deal_by_firm = {row["firm_id"]: row for row in deals["firms"]}
+    # 지문은 편집 정본(config/sheets/*.csv)에서 뜬다. 생성물 calibration.xlsx를
+    # 넣으면 셀 값이 같아도 재조립 때마다 지문이 바뀌어 replay 판정이 흔들린다.
     config_paths = [
         ROOT / "config" / name
         for name in (
-            "calibration.xlsx",
             "firms.csv",
             "routes.csv",
             "scenarios.csv",
             "interventions.csv",
             "transaction_assumptions.csv",
         )
-    ]
+    ] + sorted((ROOT / "config" / "sheets").glob("*.csv"))
     upstream_paths = [
         OUT / f"{name}.json"
         for name in (

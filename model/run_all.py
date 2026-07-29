@@ -29,6 +29,12 @@ from model import (  # noqa: E402
 )
 
 
+# 생성물 — 편집 정본은 config/sheets/*.csv다. xlsx는 make calibration이 매번 새로
+# 조립하며 zip 메타데이터가 바뀌어, 셀 값이 동일해도 바이트 해시가 달라진다.
+# lineage에 그 노이즈를 넣지 않기 위해 해시 대상에서 제외한다.
+GENERATED_ARTIFACTS = {"calibration.xlsx"}
+
+
 def tree_hash(paths: list[Path], patterns: tuple[str, ...] = ("*",)) -> str:
     h = hashlib.sha256()
     for base in paths:
@@ -36,7 +42,9 @@ def tree_hash(paths: list[Path], patterns: tuple[str, ...] = ("*",)) -> str:
             continue
         for pat in patterns:
             for p in sorted(base.rglob(pat)):
-                if p.is_file() and "__pycache__" not in p.parts and p.name != ".DS_Store":
+                if (p.is_file() and "__pycache__" not in p.parts
+                        and p.name != ".DS_Store"
+                        and p.name not in GENERATED_ARTIFACTS):
                     h.update(p.relative_to(ROOT).as_posix().encode())
                     h.update(p.read_bytes())
     return h.hexdigest()

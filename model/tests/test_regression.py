@@ -548,7 +548,7 @@ def test_nonnegative_correlation_bands_are_what_keep_shares_a_composition():
     w ≥ 0이므로 ρ의 모든 성분이 음이 아니면 (ρw)_k ≥ 0 → RC_k ≥ 0. 음의 상관을
     config에 넣는 순간 이 성질이 깨지므로, 그때는 조성 서술을 함께 고쳐야 한다.
     """
-    rho = pd.read_excel(ROOT / "config" / "calibration.xlsx", "correlations")
+    rho = pd.read_csv(ROOT / "config" / "sheets" / "correlations.csv")
     assert (rho["band_lo"] >= 0).all(), (
         "음의 상관 밴드가 들어왔다 — s_k가 [0,1] 밖으로 나갈 수 있으므로 "
         "theory/02_variance_premium.md의 '조성' 서술을 먼저 고칠 것"
