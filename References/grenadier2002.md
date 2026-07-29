@@ -1,7 +1,7 @@
 # grenadier2002
 
 > 태그: `domain:real-options, counters:wedge, counters:claim-wedge-conjunction`
-> 검증: critic 조사 기반, 원문 대조 미완 (2026-07-28) — `PAPER_DIFF.md` D5 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: grenadier2002 (Grenadier, "Option Exercise Games: An Application to the Equilibrium Investment Strategies of Firms", RFS 15(3), 691–721)
 - **한 줄 주장**: 다수 기업이 경쟁하는 균형에서 옵션 행사 시점은 단독 최적화 해보다 **앞당겨지며**, 경쟁이 심할수록 대기 프리미엄은 잠식된다.

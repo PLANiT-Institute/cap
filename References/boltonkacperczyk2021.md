@@ -1,7 +1,7 @@
 # boltonkacperczyk2021
 
 > 태그: `domain:carbon-premium, domain:sdf-lambda, supports:purpose, supports:claim-policy-repricing, supports:referee-1, counters:axiom-uniform-lambda`
-> 검증: 초록·2차 요약 기반. 원문 PDF 대조 미완 (2026-07-28) — `PAPER_DIFF.md` 갱신 4 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: boltonkacperczyk2021
 - **한 줄 주장**: 미국 상장기업의 scope 1 배출량 수준·변화가 클수록 실현주식수익률이 유의하게 높다 — 탄소 배출 노출에 대한 자본비용 프리미엄의 존재를 최초로 대규모 횡단면에서 입증.

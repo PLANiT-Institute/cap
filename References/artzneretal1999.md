@@ -1,7 +1,8 @@
 # artzneretal1999
 
 > 태그: `domain:variance-premium, counters:proposition1, counters:referee-1`
-> 검증: critic 조사 기반, 원문 대조 미완 (2026-07-28) — `PAPER_DIFF.md` D3 참조.
+> 검증: **UNVERIFIABLE (2026-07-29)** — 서지는 대조 완료, 인용 문장은 유료장벽으로 원문 미확인.
+> 표준 결과라 실질 오류 가능성은 낮으나 인용 전 원문 확인 필요.
 
 - **citekey**: artzneretal1999 (Artzner, Delbaen, Eber & Heath, "Coherent Measures of Risk", Math. Finance 9(3), 203–228)
 - **한 줄 주장**: 위험측도가 만족해야 할 네 공리(단조성·평행이동 불변·양의 동차성·열등가법성)를 제시하고, 이를 만족하는 측도만을 coherent로 정의한다.

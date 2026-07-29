@@ -1,7 +1,7 @@
 # margrabe1978
 
 > 태그: `domain:real-options, supports:wedge`
-> 검증: 초록·2차 요약 기반. 원문 PDF 대조 미완 (2026-07-28) — `PAPER_DIFF.md` 갱신 4 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: margrabe1978
 - **한 줄 주장**: 두 개의 확률적 자산가치 중 하나를 다른 하나로 교환할 권리(exchange option)는 Black-Scholes를 일반화한 폐형해로 가치평가할 수 있다.

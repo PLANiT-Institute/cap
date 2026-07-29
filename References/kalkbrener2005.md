@@ -1,7 +1,7 @@
 # kalkbrener2005
 
 > 태그: `domain:sdf-lambda, supports:claim-lambda-invariance, supports:proposition1, supports:referee-1`
-> 검증: 초록·2차 요약 기반. 원문 PDF 대조 미완 (2026-07-28) — `PAPER_DIFF.md` 갱신 4 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: kalkbrener2005
 - **한 줄 주장**: 부가성(diversification)·연속성·선형응집(linear aggregation) 세 공리를 만족하는 자본배분 규칙은 (준)동차 위험측도에 대해 Euler(가토 미분) 배분으로 유일하게 특정된다.

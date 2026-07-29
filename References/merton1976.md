@@ -1,7 +1,7 @@
 # merton1976
 
 > 태그: `domain:jump-risk, supports:referee-2, counters:axiom-variance-not-mean`
-> 검증: 초록·2차 요약 기반. 원문 PDF 대조 미완 (2026-07-28) — `PAPER_DIFF.md` 갱신 4 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: merton1976
 - **한 줄 주장**: 기초자산 수익률에 불연속(점프) 성분이 있으면, 점프 위험이 시장 전체와 상관관계가 없는 한(diversifiable) 점프 리스크에는 프리미엄이 붙지 않으며, 그 결과 옵션 가격 공식은 순수 확산 모형(Black-Scholes)과 다른 형태를 갖는다.

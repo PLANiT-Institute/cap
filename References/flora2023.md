@@ -1,7 +1,8 @@
 # flora2023
 
 > 태그: `domain:real-options, supports:claim-wedge-conjunction, supports:referee-5, supports:wedge`
-> 검증: 초록·2차 요약 기반. 원문 PDF 대조 미완 (2026-07-28) — `PAPER_DIFF.md` 갱신 4 참조.
+> 검증: **UNVERIFIABLE (2026-07-29)** — 서지는 대조 완료, 인용 문장은 유료장벽으로 원문 미확인.
+> 표준 결과라 실질 오류 가능성은 낮으나 인용 전 원문 확인 필요.
 
 - **citekey**: flora2023
 - **한 줄 주장**: IAM 시나리오 신호(탄소가격·배출량)를 점진적으로 관측하며 학습하는 미국식 옵션 문제로 자산 좌초(stranding) 및 그린 투자 타이밍을 정식화할 수 있다.

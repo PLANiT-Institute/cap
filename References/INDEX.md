@@ -1,6 +1,6 @@
 # 문헌 색인 (자동 생성 — `make ledger`)
 
-`theory/refs.bib` 82편. 이 파일을 손으로 고치지 말 것.
+`theory/refs.bib` 96편. 이 파일을 손으로 고치지 말 것.
 
 `+` = 지지(supports), `−` = 반박(counters). 굵은 citekey는 심층 노트가 있다.
 
@@ -13,7 +13,7 @@
 | atilganetal2023 | Atilgan 외 (2023), Does the Carbon Premium Reflect Risk or Mispricing? | −purpose |
 | **[bartramhoukim2022](bartramhoukim2022.md)** | Bartram 외 (2022), Real Effects of Climate Policy: Financial Constraints and Spillovers | −axiom-budget-binds, −claim-policy-repricing |
 | battistonetal2017 | Battiston 외 (2017), A Climate Stress-Test of the Financial System | +purpose, −contribution |
-| **[boltonkacperczyk2021](boltonkacperczyk2021.md)** | Bolton & Kacperczyk (2021), Do Investors Care about Carbon Risk? | +claim-policy-repricing, +purpose, +referee-1, −axiom-uniform-lambda |
+| **[boltonkacperczyk2021](boltonkacperczyk2021.md)** | Bolton & Kacperczyk (2021), Do Investors Care about Carbon Risk? | +claim-policy-repricing, +purpose, +referee-1, +referee-4, −axiom-uniform-lambda |
 | boltonkacperczyk2023 | Bolton & Kacperczyk (2023), Global Pricing of Carbon-Transition Risk | +purpose, +referee-1, −axiom-uniform-lambda |
 | delisetal2024 | Delis 외 (2024), Being Stranded with Fossil Fuel Reserves? Climate Policy Risk and the Pricing of Bank Loans | +axiom-budget-binds |
 | englegigliokellyleestroebel2020 | Engle 외 (2020), Hedging Climate Change News | +contracts-identification, −claim-policy-repricing |
@@ -26,10 +26,21 @@
 | pastorstambaughtaylor2021 | P\'astor 외 (2021), Sustainable Investing in Equilibrium | −claim-policy-repricing, −purpose |
 | **[pastorstambaughtaylor2022](pastorstambaughtaylor2022.md)** | P\'astor 외 (2022), Dissecting Green Returns | −claim-policy-repricing, −purpose |
 | sautneretal2023 | Sautner 외 (2023), Firm-Level Climate Change Exposure | +purpose, +referee-6 |
-| seltzerstarkszhu2022 | Seltzer 외 (2022), Climate Regulatory Risk and Corporate Bonds | +claim-policy-repricing, +purpose |
+| seltzerstarkszhu2022 | Seltzer 외 (2022), Climate Regulatory Risk and Corporate Bonds | +claim-policy-repricing, +purpose, +referee-4 |
 | senvonschickfus2020 | Sen & von Schickfus (2020), Climate Policy, Stranded Assets, and Investors' Expectations | +axiom-budget-binds, +carbon-jump |
 | sinn2008 | Sinn (2008), Public Policies against Global Warming: A Supply Side Approach | −axiom-budget-binds |
 | vanderploegrezai2020 | van der Ploeg & Rezai (2020), The Risk of Policy Tipping and Stranded Carbon Assets | +axiom-budget-binds, +carbon-jump |
+
+## contracts (6편)
+
+| citekey | 문헌 | anchor |
+|---|---|---|
+| campelloetal2011 | Campello 외 (2011), The Real and Financial Implications of Corporate Hedging | −referee-4 |
+| leeetal2025 | Lee 외 (2025), Designing Carbon Contracts for Difference under Asymmetric Information | −claim-separately-contractible |
+| neuhoffetal2025 | Neuhoff 외 (2025), Contracting Matters: Hedging Producers and Consumers with a Renewable Energy Pool | +contracts-identification |
+| pena2024 | Pe\~na 외 (2024), Hedging Renewable Power Purchase Agreements | −claim-separately-contractible, −contracts-identification |
+| richstein2022 | Richstein & Neuhoff (2022), Carbon Contracts-for-Difference: How to De-Risk Innovative Investments for a Low-Carbon Industry? | +claim-separately-contractible, +contracts-identification |
+| richsteinetal2025 | Richstein & others (2025), Carbon Contracts for Difference Design: Managing Carbon Price Risk in a Low-Carbon Industry | +contracts-identification |
 
 ## jump-risk (13편)
 
@@ -61,11 +72,11 @@
 |---|---|---|
 | abadiechamorro2008 | Abadie & Chamorro (2008), European {CO2} Prices and Carbon Capture Investments | +carbon-jump, +wedge |
 | brennanschwartz1985 | Brennan & Schwartz (1985), Evaluating Natural Resource Investments | +claim-wedge-conjunction, +wedge |
-| **[decaire2020](decaire2020.md)** | D\'ecaire 외 (2020), Real Option Exercise: Empirical Evidence | +wedge |
+| **[decaire2020](decaire2020.md)** | D\'ecaire 외 (2020), Real Option Exercise: Empirical Evidence | +referee-8, +wedge |
 | **[dixit1994](dixit1994.md)** | Dixit & Pindyck (1994), Investment under Uncertainty | +claim-wedge-conjunction, +wedge |
 | **[flora2023](flora2023.md)** | Flora & Tankov (2023), Green Investment and Asset Stranding under Transition Scenario Uncertainty | +claim-wedge-conjunction, +referee-5, +wedge |
 | fuss2008 | Fuss 외 (2008), Investment under Market and Climate Policy Uncertainty | +referee-5, +wedge |
-| **[grenadier2002](grenadier2002.md)** | Grenadier (2002), Option Exercise Games: An Application to the Equilibrium Investment Strategies of Firms | −claim-wedge-conjunction, −wedge |
+| **[grenadier2002](grenadier2002.md)** | Grenadier (2002), Option Exercise Games: An Application to the Equilibrium Investment Strategies of Firms | +referee-8, −claim-wedge-conjunction, −wedge |
 | **[guo2005](guo2005.md)** | Guo 외 (2005), Irreversible Investment with Regime Shifts | +referee-5 |
 | kellogg2014 | Kellogg (2014), The Effect of Uncertainty on Investment: Evidence from Texas Oil Drilling | +claim-wedge-conjunction, +wedge |
 | **[longstaff2001](longstaff2001.md)** | Longstaff & Schwartz (2001), Valuing American Options by Simulation: A Simple Least-Squares Approach | — |
@@ -81,7 +92,7 @@
 |---|---|---|
 | adriancrumpmoench2015 | Adrian 외 (2015), Regression-Based Estimation of Dynamic Asset Pricing Models | +referee-1, −axiom-uniform-lambda |
 | barnettbrockhansen2020 | Barnett 외 (2020), Pricing Uncertainty Induced by Climate Change | −axiom-variance-not-mean, −contribution |
-| **[boltonkacperczyk2021](boltonkacperczyk2021.md)** | Bolton & Kacperczyk (2021), Do Investors Care about Carbon Risk? | +claim-policy-repricing, +purpose, +referee-1, −axiom-uniform-lambda |
+| **[boltonkacperczyk2021](boltonkacperczyk2021.md)** | Bolton & Kacperczyk (2021), Do Investors Care about Carbon Risk? | +claim-policy-repricing, +purpose, +referee-1, +referee-4, −axiom-uniform-lambda |
 | boltonkacperczyk2023 | Bolton & Kacperczyk (2023), Global Pricing of Carbon-Transition Risk | +purpose, +referee-1, −axiom-uniform-lambda |
 | chenrollross1986 | Chen 외 (1986), Economic Forces and the Stock Market | +referee-1, −axiom-uniform-lambda |
 | denault2001 | Denault (2001), Coherent Allocation of Risk Capital | +claim-lambda-invariance, +proposition1 |
@@ -92,6 +103,19 @@
 | lewellennagelshanken2010 | Lewellen 외 (2010), A Skeptical Appraisal of Asset Pricing Tests | −axiom-uniform-lambda, −referee-1 |
 | **[ready2018](ready2018.md)** | Ready (2018), Oil Prices and the Stock Market | +referee-1, −axiom-uniform-lambda, −proposition1 |
 | zerbib2022 | Zerbib (2022), A Sustainable Capital Asset Pricing Model (S-CAPM): Evidence from Environmental Integration and Sin Stock Exclusion | −axiom-uniform-lambda |
+
+## steel-techno (8편)
+
+| citekey | 문헌 | anchor |
+|---|---|---|
+| fischedicketal2014 | Fischedick 외 (2014), Techno-Economic Evaluation of Innovative Steel Production Technologies | +axiom-route-sensitivity, −axiom-linear-cost |
+| iea2020 | {International Energy Agency} (2020), Iron and Steel Technology Roadmap: Towards More Sustainable Steelmaking | +axiom-route-sensitivity, −referee-3 |
+| kesicki2012 | Kesicki & Ekins (2012), Marginal Abatement Cost Curves: A Call for Caution | −axiom-linear-cost |
+| ozorioetal2013 | Ozorio 외 (2013), Investment Decision in Integrated Steel Plants under Uncertainty | +referee-3, −axiom-route-sensitivity |
+| rissmanetal2020 | Rissman 외 (2020), Technologies and Policies to Decarbonize Global Industry: Review and Assessment of Mitigation Drivers through 2070 | −axiom-linear-cost |
+| vogletal2018 | Vogl 외 (2018), Assessment of Hydrogen Direct Reduction for Fossil-Free Steelmaking | +axiom-route-sensitivity, −axiom-linear-cost |
+| vogletal2021 | Vogl 외 (2021), Phasing Out the Blast Furnace to Meet Global Climate Targets | +axiom-route-sensitivity |
+| wachsmuthetal2021 | Wachsmuth 외 (2021), Breakthrough Strategies for Climate-Neutral Industry in Europe: Policy and Technology Pathways for Raising EU Climate Ambition | +referee-3, −axiom-route-sensitivity |
 
 ## variance-premium (22편)
 
@@ -113,9 +137,9 @@
 | litterman1996 | Litterman (1996), Hot Spots and Hedges | +variance-premium |
 | markowitz1952 | Markowitz (1952), Portfolio Selection | +variance-premium |
 | merton1987 | Merton (1987), A Simple Model of Capital Market Equilibrium with Incomplete Information | +variance-premium |
-| meucci2009 | Meucci (2009), Managing Diversification | −claim-lambda-invariance |
+| meucci2009 | Meucci (2009), Managing Diversification | +referee-7, −claim-lambda-invariance |
 | **[meyer1987](meyer1987.md)** | Meyer (1987), Two-Moment Decision Models and Expected Utility Maximization | −axiom-variance-not-mean |
-| **[roncalliweisang2016](roncalliweisang2016.md)** | Roncalli & Weisang (2016), Risk Parity Portfolios with Risk Factors | −claim-lambda-invariance, −contribution |
+| **[roncalliweisang2016](roncalliweisang2016.md)** | Roncalli & Weisang (2016), Risk Parity Portfolios with Risk Factors | +referee-7, −claim-lambda-invariance, −contribution |
 | rothschildstiglitz1970 | Rothschild & Stiglitz (1970), Increasing Risk: I. A Definition | −axiom-variance-not-mean |
 | tasche1999 | Tasche (1999), Risk Contributions and Performance Measurement | +variance-premium |
 | tasche2008 | Tasche (2008), Capital Allocation to Business Units and Sub-Portfolios: the Euler Principle | +proposition1, −claim-lambda-invariance |

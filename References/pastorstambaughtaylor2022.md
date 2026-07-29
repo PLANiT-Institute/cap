@@ -1,7 +1,7 @@
 # pastorstambaughtaylor2022
 
 > 태그: `domain:carbon-premium, counters:claim-policy-repricing, counters:purpose`
-> 검증: critic 조사 기반, 원문 대조 미완 (2026-07-28) — `PAPER_DIFF.md` D6 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: pastorstambaughtaylor2022 (Pástor, Stambaugh & Taylor, "Dissecting Green Returns", JFE 146(2), 403–424)
 - **한 줄 주장**: 실현된 brown-minus-green 초과수익은 기후우려의 **예상 밖 상승**(현금흐름·선호 뉴스)이 만든 것이고, 균형에서 기대수익 차이(=리스크 프리미엄)는 오히려 **반대 부호**다.

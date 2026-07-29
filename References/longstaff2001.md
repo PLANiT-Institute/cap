@@ -1,7 +1,7 @@
 # longstaff2001
 
 > 태그: `domain:real-options, domain:method`
-> 검증: 초록·2차 요약 기반. 원문 PDF 대조 미완 (2026-07-28) — `PAPER_DIFF.md` 갱신 4 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: longstaff2001
 - **한 줄 주장**: 회귀 기반 후진귀납(backward induction) 알고리즘(LSM)으로 조건부 계속가치를 추정하면 고차원 미국식/버뮤다식 옵션도 시뮬레이션만으로 가치평가할 수 있다.

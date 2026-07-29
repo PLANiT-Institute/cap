@@ -1,7 +1,7 @@
 # ready2018
 
 > 태그: `domain:sdf-lambda, supports:referee-1, counters:axiom-uniform-lambda, counters:proposition1`
-> 검증: 초록·2차 요약 기반. 원문 PDF 대조 미완 (2026-07-28) — `PAPER_DIFF.md` 갱신 4 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: ready2018
 - **한 줄 주장**: 유가 변화를 자산가격 기반으로 공급발(供給發) 성분과 수요발(需要發) 성분으로 분해하면, 공급 충격은 주식시장 수익률의 월간 변동의 약 6%를 설명하며 부정적, 수요 충격은 긍정적 부호로 각각 다르게 가격된다.

@@ -1,7 +1,8 @@
 # roncalliweisang2016
 
 > 태그: `domain:variance-premium, counters:claim-lambda-invariance, counters:contribution`
-> 검증: critic 조사 기반, 원문 대조 미완 (2026-07-28) — `PAPER_DIFF.md` D2·D5 참조.
+> 검증: **UNVERIFIABLE (2026-07-29)** — 서지는 대조 완료, 인용 문장은 유료장벽으로 원문 미확인.
+> 표준 결과라 실질 오류 가능성은 낮으나 인용 전 원문 확인 필요.
 
 - **citekey**: roncalliweisang2016 (Roncalli & Weisang, "Risk Parity Portfolios with Risk Factors", QF 16(3), 377–388)
 - **한 줄 주장**: 리스크 기여도(Euler 분산분해)를 자산이 아니라 **리스크 팩터**에 대해 정식화하고, 팩터가 상관돼 있을 때 그 분해가 **좌표계 선택(회전)에 불변이 아님**을 보인다.

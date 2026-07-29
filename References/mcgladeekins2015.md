@@ -1,7 +1,7 @@
 # mcgladeekins2015
 
 > 태그: `domain:carbon-premium, supports:axiom-budget-binds`
-> 검증: 초록·2차 요약 기반. 원문 PDF 대조 미완 (2026-07-28) — `PAPER_DIFF.md` 갱신 4 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: mcgladeekins2015
 - **한 줄 주장**: 2°C 목표를 지키려면 현재 확인된 화석연료 매장량 중 석탄 82–88%, 석유 33–35%, 가스 49–52%가 연소되지 못한 채 남아야 한다.

@@ -1,7 +1,7 @@
 # ilhansautnervilkov2021
 
 > 태그: `domain:jump-risk, supports:carbon-jump, counters:axiom-uniform-lambda, counters:axiom-variance-not-mean`
-> 검증: critic 조사 기반, 원문 대조 미완 (2026-07-28) — `PAPER_DIFF.md` D1·D7 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: ilhansautnervilkov2021 (Ilhan, Sautner & Vilkov, "Carbon Tail Risk", RFS 34(3), 1540–1571)
 - **한 줄 주장**: 탄소집약 기업의 옵션시장 **하방 꼬리위험 보호 비용**이 유의하게 높고, 그 프리미엄은 변동성 스큐(꼬리)에 집중되며 기후정책 불확실성이 커질 때 함께 커진다.

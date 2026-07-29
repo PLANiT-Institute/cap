@@ -8,13 +8,14 @@
 % supports:referee-N은 방향을 뜻하지 않는다: 그 note를 다루는 데 쓰이는 문헌이라는 뜻이며,
 % 비판을 지지하는지 대응을 지지하는지는 References/<citekey>.md 노트에 적는다.
 %
-% 이번 회차에서 조사하지 않은 anchor (줄마다 'deferred:'로 시작):
-% deferred: axiom-linear-cost, axiom-route-sensitivity, claim-separately-contractible
-% deferred: referee-3, referee-4
+% 미조사 anchor 없음 — 2차 회차(2026-07-29)에 steel-techno·contracts 도메인까지 채웠다.
+% 새로 유예할 anchor가 생기면 'deferred:'로 시작하는 줄에 적는다.
 %
 % 조사했으나 지지 문헌이 한 편도 없는 anchor. 미완이 아니라 조사 결과다.
-% A5(λ 균일성)를 직접 지지하는 문헌은 5개 도메인 어디에도 없었고, 반대 방향 증거만 7편 나왔다.
-% unsupported: axiom-uniform-lambda
+% A5(λ 균일성): 5개 도메인 어디에도 지지 문헌이 없고 반대 방향 증거만 7편.
+% A3(선형 비용함수): 철강 techno-economics 조사에서도 지지 0편 — 감축수단 간 상호작용과
+%   학습곡선 때문에 공학 비용은 투입가격에 선형이 아니라는 반증만 4편.
+% unsupported: axiom-uniform-lambda, axiom-linear-cost
 
 @article{adriancrumpmoench2015,
   author  = {Adrian, Tobias and Crump, Richard K. and Moench, Emanuel},
@@ -135,7 +136,7 @@
   pages   = {517--549},
   year    = {2021},
   note    = {NBER Working Paper No. 26968},
-  keywords = {domain:carbon-premium, domain:sdf-lambda, supports:purpose, supports:claim-policy-repricing, supports:referee-1, counters:axiom-uniform-lambda}
+  keywords = {domain:carbon-premium, domain:sdf-lambda, counters:axiom-uniform-lambda, supports:claim-policy-repricing, supports:purpose, supports:referee-1, supports:referee-4}
 }
 
 @article{boltonkacperczyk2023,
@@ -755,7 +756,7 @@
   title       = {Climate Regulatory Risk and Corporate Bonds},
   institution = {National Bureau of Economic Research},
   year        = {2022}, number = {29994}, type = {NBER Working Paper},
-  keywords = {domain:carbon-premium, supports:claim-policy-repricing, supports:purpose}
+  keywords = {domain:carbon-premium, supports:claim-policy-repricing, supports:purpose, supports:referee-4}
 }
 
 @article{sinn2008,
@@ -797,4 +798,148 @@
   journal = {Review of Finance},
   year    = {2022}, volume = {26}, number = {6}, pages = {1345--1388},
   keywords = {domain:sdf-lambda, counters:axiom-uniform-lambda}
+}
+
+@article{campelloetal2011,
+  author  = {Campello, Murillo and Lin, Chen and Ma, Yue and Zou, Hong},
+  title   = {The Real and Financial Implications of Corporate Hedging},
+  journal = {The Journal of Finance},
+  year    = {2011},
+  volume  = {66},
+  number  = {5},
+  pages   = {1615--1647},
+  keywords = {domain:contracts, counters:referee-4}
+}
+
+@article{fischedicketal2014,
+  author  = {Fischedick, Manfred and Marzinkowski, Joachim and Winzer, Petra and Weigel, Max},
+  title   = {Techno-Economic Evaluation of Innovative Steel Production Technologies},
+  journal = {Journal of Cleaner Production},
+  year    = {2014},
+  volume  = {84},
+  pages   = {563--580},
+  doi     = {10.1016/j.jclepro.2014.05.063},
+  keywords = {domain:steel-techno, counters:axiom-linear-cost, supports:axiom-route-sensitivity}
+}
+
+@techreport{iea2020,
+  author      = {{International Energy Agency}},
+  title       = {Iron and Steel Technology Roadmap: Towards More Sustainable Steelmaking},
+  institution = {IEA},
+  address     = {Paris},
+  year        = {2020},
+  keywords = {domain:steel-techno, counters:referee-3, supports:axiom-route-sensitivity}
+}
+
+@article{kesicki2012,
+  author  = {Kesicki, Fabian and Ekins, Paul},
+  title   = {Marginal Abatement Cost Curves: A Call for Caution},
+  journal = {Climate Policy},
+  year    = {2012},
+  volume  = {12},
+  number  = {2},
+  pages   = {219--236},
+  doi     = {10.1080/14693062.2011.582347},
+  keywords = {domain:steel-techno, counters:axiom-linear-cost}
+}
+
+@article{leeetal2025,
+  author  = {Lee, Sanglim and Lee, Jiwoong and Kim, Gyu Hyun and Suh, Taewon},
+  title   = {Designing Carbon Contracts for Difference under Asymmetric Information},
+  journal = {Economics Letters},
+  year    = {2025},
+  note    = {S0165-1765(25)00436-7},
+  keywords = {domain:contracts, counters:claim-separately-contractible}
+}
+
+@article{neuhoffetal2025,
+  author  = {Neuhoff, Karsten and Ballesteros, Fernanda and Kr\"oger, Mats and Richstein, J\"orn C.},
+  title   = {Contracting Matters: Hedging Producers and Consumers with a Renewable Energy Pool},
+  journal = {The Energy Journal},
+  year    = {2025},
+  note    = {SAGE, doi:10.1177/01956574251325486},
+  keywords = {domain:contracts, supports:contracts-identification}
+}
+
+@article{ozorioetal2013,
+  author  = {Ozorio, Luiz de Magalh\~aes and Bastian-Pinto, Carlos de Lamare and Baidya, Tara Keshar Nanda and Brand\~ao, Luiz Eduardo Teixeira},
+  title   = {Investment Decision in Integrated Steel Plants under Uncertainty},
+  journal = {International Review of Financial Analysis},
+  year    = {2013},
+  volume  = {27},
+  pages   = {55--64},
+  doi     = {10.1016/j.irfa.2012.12.008},
+  keywords = {domain:steel-techno, counters:axiom-route-sensitivity, supports:referee-3}
+}
+
+@article{pena2024,
+  author  = {Pe\~na, Juan Ignacio and Rodr\'iguez, Rosa and Mayoral, Silvia},
+  title   = {Hedging Renewable Power Purchase Agreements},
+  journal = {Energy Strategy Reviews},
+  year    = {2024},
+  volume  = {55},
+  pages   = {101513},
+  keywords = {domain:contracts, counters:claim-separately-contractible, counters:contracts-identification}
+}
+
+@article{richstein2022,
+  author  = {Richstein, J\"orn C. and Neuhoff, Karsten},
+  title   = {Carbon Contracts-for-Difference: How to De-Risk Innovative Investments for a Low-Carbon Industry?},
+  journal = {iScience},
+  year    = {2022},
+  volume  = {25},
+  number  = {8},
+  pages   = {104700},
+  keywords = {domain:contracts, supports:claim-separately-contractible, supports:contracts-identification}
+}
+
+@article{richsteinetal2025,
+  author  = {Richstein, J\"orn C. and others},
+  title   = {Carbon Contracts for Difference Design: Managing Carbon Price Risk in a Low-Carbon Industry},
+  journal = {Joule},
+  year    = {2025},
+  note    = {S2542-4351(25)00102-3},
+  keywords = {domain:contracts, supports:contracts-identification}
+}
+
+@article{rissmanetal2020,
+  author  = {Rissman, Jeffrey and Bataille, Chris and Masanet, Eric and Aden, Nate and Morrow III, William R. and Zhou, Nan and Elliott, Neal and Dell, Rebecca and Heeren, Niko and Huckestein, Brigitta and others},
+  title   = {Technologies and Policies to Decarbonize Global Industry: Review and Assessment of Mitigation Drivers through 2070},
+  journal = {Applied Energy},
+  year    = {2020},
+  volume  = {266},
+  pages   = {114848},
+  doi     = {10.1016/j.apenergy.2020.114848},
+  keywords = {domain:steel-techno, counters:axiom-linear-cost}
+}
+
+@article{vogletal2018,
+  author  = {Vogl, Valentin and \r{A}hman, Max and Nilsson, Lars J.},
+  title   = {Assessment of Hydrogen Direct Reduction for Fossil-Free Steelmaking},
+  journal = {Journal of Cleaner Production},
+  year    = {2018},
+  volume  = {203},
+  pages   = {736--745},
+  doi     = {10.1016/j.jclepro.2018.08.279},
+  keywords = {domain:steel-techno, counters:axiom-linear-cost, supports:axiom-route-sensitivity}
+}
+
+@article{vogletal2021,
+  author  = {Vogl, Valentin and Olsson, Olle and Nykvist, Bj\"orn},
+  title   = {Phasing Out the Blast Furnace to Meet Global Climate Targets},
+  journal = {Joule},
+  year    = {2021},
+  volume  = {5},
+  number  = {10},
+  pages   = {2646--2662},
+  doi     = {10.1016/j.joule.2021.09.007},
+  keywords = {domain:steel-techno, supports:axiom-route-sensitivity}
+}
+
+@techreport{wachsmuthetal2021,
+  author      = {Wachsmuth, Jakob and Schaeffer, Roberto and Lechtenb\"ohmer, Stefan and others},
+  title       = {Breakthrough Strategies for Climate-Neutral Industry in Europe: Policy and Technology Pathways for Raising EU Climate Ambition},
+  institution = {Agora Energiewende and Wuppertal Institut},
+  year        = {2021},
+  keywords = {domain:steel-techno, counters:axiom-route-sensitivity, supports:referee-3}
 }

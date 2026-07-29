@@ -1,7 +1,7 @@
 # bartramhoukim2022
 
 > 태그: `domain:carbon-premium, counters:axiom-budget-binds, counters:claim-policy-repricing`
-> 검증: critic 조사 기반, 원문 대조 미완 (2026-07-28) — `PAPER_DIFF.md` D6 참조.
+> 검증: **CONFIRMED (2026-07-29)** — 서지·인용 수치 원문 대조 완료.
 
 - **citekey**: bartramhoukim2022 (Bartram, Hou & Kim, "Real Effects of Climate Policy: Financial Constraints and Spillovers", JFE 143(2), 668–696)
 - **한 줄 주장**: 캘리포니아 cap-and-trade 준실험에서, 재무제약 기업은 배출·생산을 **규제 밖 관할권의 유휴 설비로 이전**하고 비제약 기업은 총배출을 줄이지 않는다.
