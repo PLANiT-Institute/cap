@@ -4,6 +4,38 @@
 
 `+` = 지지(supports), `−` = 반박(counters). 굵은 citekey는 심층 노트가 있다.
 
+## Anchor 대차대조표
+
+공리·주장·referee note마다 지지와 반박이 몇 편인지. 논문 쓸 때 이 표에서 시작할 것 —
+반박이 지지보다 많은 anchor는 그 비대칭 자체가 서술에 들어가야 한다.
+
+| anchor | 지지 | 반박 | 반박 문헌 |
+|---|---|---|---|
+| #axiom-budget-binds | 4 | 3 | atanasovaschwartz2020, bartramhoukim2022, sinn2008 |
+| #axiom-linear-cost ⚠ | 1 | 6 | fischedicketal2014, kesicki2012, rissmanetal2020, vogletal2018, jiangetal2025, shibata2023 |
+| #axiom-route-sensitivity | 8 | 2 | ozorioetal2013, wachsmuthetal2021 |
+| #axiom-uniform-lambda ⚠ | 0 | 10 | adriancrumpmoench2015, boltonkacperczyk2021, boltonkacperczyk2023, chenrollross1986, gorgenetal2021, kanzhang1999, ready2018, ilhansautnervilkov2021, lewellennagelshanken2010, zerbib2022 |
+| #axiom-variance-not-mean ⚠ | 1 | 11 | angchenxing2006, anghodrickxingzhang2006, balicakiciwhitelaw2011, bates1996, bollerslevtodorov2011, merton1976, rothschildstiglitz1970, barnettbrockhansen2020, harveysiddique2000, ilhansautnervilkov2021, meyer1987 |
+| #carbon-jump | 9 | 0 | — |
+| #claim-lambda-invariance ⚠ | 2 | 4 | gourierouxlaurentscaillet2000, meucci2009, roncalliweisang2016, tasche2008 |
+| #claim-policy-repricing ⚠ | 3 | 6 | leecho2021, bartramhoukim2022, englegigliokellyleestroebel2020, honglixu2019, pastorstambaughtaylor2021, pastorstambaughtaylor2022 |
+| #claim-separately-contractible ⚠ | 1 | 2 | leeetal2025, pena2024 |
+| #claim-wedge-conjunction | 5 | 1 | grenadier2002 |
+| #contracts-identification | 4 | 1 | pena2024 |
+| #contribution ⚠ | 0 | 6 | barnettbrockhansen2020, battistonetal2017, desnosetal2023, leguenedaletal2021, leguenedalroncalli2022, roncalliweisang2016 |
+| #proposition1 | 3 | 2 | ready2018, artzneretal1999 |
+| #purpose | 6 | 6 | aswanietal2024, atilganetal2023, gorgenetal2021, leecho2021, pastorstambaughtaylor2021, pastorstambaughtaylor2022 |
+| #referee-1 | 9 | 2 | artzneretal1999, lewellennagelshanken2010 |
+| #referee-2 | 11 | 0 | — |
+| #referee-3 | 2 | 2 | iea2020, kang2022 |
+| #referee-4 | 2 | 1 | campelloetal2011 |
+| #referee-5 | 3 | 0 | — |
+| #referee-6 | 1 | 0 | — |
+| #referee-7 | 2 | 0 | — |
+| #referee-8 | 2 | 0 | — |
+| #variance-premium | 8 | 1 | angchenxing2006 |
+| #wedge | 12 | 1 | grenadier2002 |
+
 ## carbon-premium (22편)
 
 | citekey | 문헌 | anchor |

@@ -47,7 +47,24 @@ def main() -> int:
         "",
         "`+` = 지지(supports), `−` = 반박(counters). 굵은 citekey는 심층 노트가 있다.",
         "",
+        "## Anchor 대차대조표",
+        "",
+        "공리·주장·referee note마다 지지와 반박이 몇 편인지. 논문 쓸 때 이 표에서 시작할 것 —",
+        "반박이 지지보다 많은 anchor는 그 비대칭 자체가 서술에 들어가야 한다.",
+        "",
+        "| anchor | 지지 | 반박 | 반박 문헌 |",
+        "|---|---|---|---|",
     ]
+    gated = re.compile(r"^(axiom-|claim-|referee-\d|proposition|purpose|wedge|carbon-jump|variance-premium|contracts-identification|contribution)")
+    anchor_names = sorted(
+        {a for e in entries for a in e["supports"] + e["counters"] if gated.match(a)}
+    )
+    for a in anchor_names:
+        sup = [e["key"] for e in entries if a in e["supports"]]
+        con = [e["key"] for e in entries if a in e["counters"]]
+        mark = " ⚠" if len(con) > len(sup) else ""
+        lines.append(f"| #{a}{mark} | {len(sup)} | {len(con)} | {', '.join(con) or '—'} |")
+    lines.append("")
     for d in domains:
         rows = sorted((e for e in entries if d in e["domains"]), key=lambda e: e["key"])
         lines += [f"## {d} ({len(rows)}편)", "", "| citekey | 문헌 | anchor |", "|---|---|---|"]

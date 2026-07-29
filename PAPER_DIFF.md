@@ -436,3 +436,45 @@ R7 서술과 노트 교체 완료.
 Midrex는 "t steel" 기준이고 전력 550 kWh/t는 전해조 포함 여부가 불명이다 — 경계 확인 전에는
 바꾸지 않는다(규칙 6·8). 확인되면 `status: measured`(한국 특정)로 승격하고 `make model`
 재실행하며, **결과가 바뀔 것을 전제**한다. route별 CO₂ t/t·gas-DRI·CCUS는 이 보고서에 없다.
+
+---
+
+## 갱신 10 (2026-07-29 — anchor 대차대조표)
+
+`References/INDEX.md` 상단에 자동 생성 대차대조표 추가 (`make ledger`). anchor마다
+지지/반박 편수와 반박 citekey 목록. 반박 > 지지인 anchor에 ⚠.
+
+### D22. A1(분산=리스크)이 1:11로 최악의 비대칭 — A5보다 나쁘다
+
+표를 만들자 드러났다. A5는 0:10으로 이미 D1에 기록했지만, **A1은 지지 1편(French–Schwert–
+Stambaugh 1987) 대 반박 11편**이다. 반박 편수로는 리포 전체에서 가장 공격받는 공리다.
+
+단 질적으로는 결이 다르다. A5 반박은 "λ가 driver마다 다르다"는 동일 방향의 수렴이지만,
+A1 반박 11편은 세 갈래다: ① 하방/왜도 등 고차 모멘트가 가격된다(Ang 계열, Harvey–Siddique),
+② 점프·꼬리는 분산이 못 담는다(Merton, Bollerslev–Todorov, Ilhan 외), ③ 평균-분산의
+효용 정합성 자체가 location-scale 밖에서 깨진다(Meyer, Rothschild–Stiglitz).
+
+대응 방침(논문 서술용): A1을 "리스크는 분산이다"라는 실증 명제로 팔지 말고, **"본 모델은
+2차 모멘트 귀속을 다룬다"는 범위 선언**으로 내린다. ①②는 gross-exposure 범위 선언(R6)과
+점프 분해 artifact(R2 대응)로 흡수하고, ③은 Meyer 노트의 방향대로 share를 효용 기반 조성이
+아니라 분산 귀속으로 서술한다. 이렇게 내리면 반박 11편 중 어느 것도 모델 결과 자체를
+부정하지 않는다 — 부정되는 것은 과잉 해석뿐이다.
+
+### 대차대조표 요약 (⚠ = 반박 우세)
+
+| anchor | 지지:반박 |
+|---|---|
+| #axiom-variance-not-mean ⚠ | 1:11 |
+| #axiom-uniform-lambda ⚠ | 0:10 |
+| #axiom-linear-cost ⚠ | 1:6 |
+| #contribution ⚠ | 0:6 |
+| #claim-policy-repricing ⚠ | 3:6 |
+| #claim-lambda-invariance ⚠ | 2:4 |
+| #claim-separately-contractible ⚠ | 1:2 |
+| #purpose | 6:6 |
+| #carbon-jump | 9:0 |
+| #referee-2 | 11:0 |
+
+읽는 법: 반박 우세가 수치(공리) 쪽에 몰려 있고, **carbon-jump와 referee 대응 문헌은 탄탄**하다.
+논문의 무게중심을 "공리가 참이다"에서 "공리 하에서 무엇이 따라나오는지 + 공리가 깨지는
+방향의 감응도"로 옮기라는 뜻이다. 이는 이미 LEDGER의 conditional 구조와 같은 방향이다.
