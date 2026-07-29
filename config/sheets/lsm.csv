@@ -20,3 +20,4 @@ lambda_k_h2,0.35,"부분 분산가능 기술리스크"
 lambda_k_elec,0.35,
 lambda_k_feedstock,0.40,"commodity/feedstock exposure — provisional systematic-risk weight"
 lambda_k_capex,0.30,
+dp_delta,0.05

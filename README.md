@@ -13,91 +13,107 @@
 > [DATA_INTERFACE.md](DATA_INTERFACE.md) · terms: [GLOSSARY.md](GLOSSARY.md) ·
 > open judgement calls: [DECISIONS.md](DECISIONS.md).
 
-**Transition-risk underwriting + pathway decision system** — 한·일 철강 5사 11개 고로와
-한·일 석유화학 NCC archetype 2개. 석유화학 자산·원료·경로 수치는 현재 명시적
-`assumed/provisional` 입력이며 기업 실측치가 아니다.
+**Transition-risk underwriting + pathway decision system** for 11 blast
+furnaces across 5 Korean/Japanese steelmakers, plus 2 Korean/Japanese
+petrochemical NCC archetypes. Petrochemical asset, feedstock, and route figures
+are explicitly `assumed/provisional` inputs, not company measurements.
 
-> CAP maps the gap between privately optimal and required decarbonization pathways
-> into a conditional distribution of transition cash-flow losses, decomposes its
-> sources, and evaluates which interventions change both transition timing and
-> residual risk.
+> CAP maps the gap between privately optimal and required decarbonization
+> pathways into a conditional distribution of transition cash-flow losses,
+> decomposes its sources, and evaluates which interventions change both
+> transition timing and residual risk.
 
-인과사슬: 자산 구성 → 사적 최적 경로(τ*, LSM) → 요구 경로(T_required) →
-**condition gap**(누적 초과배출) → 개입(파라미터 변환) 후 τ*·경로 재계산 →
-잔여 위험 anatomy → **conditional risk charge**. 수준(bps)은 마지막 단계의
-조건부 결과이지 출발점이 아니다. 현재 구현은 시장위험프리미엄의 실증 식별을
-주장하지 않는다 (P1은 scalar λ·p_bind 소거 항등까지만).
+The causal chain: asset registry → privately optimal pathway (τ\*, LSM) →
+required pathway (T_required) → **condition gap** (cumulative excess
+emissions) → interventions (parameter transformations) → τ\* and pathways
+recomputed → residual-risk anatomy → **conditional risk charge**. The level
+(bps) is the conditional last step, not the starting point. The current
+implementation does not claim empirical identification of a market risk
+premium (P1 covers only the scalar λ·p_bind cancellation identity).
 
-제품은 같은 계산엔진을 투자자·기업재무·거래 화면으로 번역한다.
+The product translates one computation engine into investor, corporate-finance,
+and transaction views:
 
-- **`/underwrite` — CAP Transition Risk Underwriter**: 기술 route → 위험 anatomy →
-  model-implied conditional spread → 계약 전후 잔여위험. 투자자용 상대가치·λ×p_bind
-  민감도, 기업 재무용 계약 우선순위, 그리고 거래용 route NPV·IRR·DSCR·필요 green
-  premium·break-even 가격과 sector 간 위험지도를 제공한다.
-- **`/` — CAP Pathways**: 사적 경로와 요구 경로, 누적 condition gap, 개입의 실제
-  투자시점·배출경로 효과를 본다.
+- **`/underwrite` — CAP Transition Risk Underwriter**: technology route → risk
+  anatomy → model-implied conditional spread → residual risk before/after
+  contracts. Relative value and λ×p_bind sensitivity for investors, contract
+  priorities for corporate finance, and route NPV/IRR/DSCR, required green
+  premium, break-even prices, and a cross-sector risk map for transactions.
+- **`/` — CAP Pathways**: private vs required pathways, cumulative condition
+  gap, and the actual investment-timing and emission-pathway effects of
+  interventions.
 
-Underwriter의 bps는 관측 채권·대출 스프레드가 아니며, 연간 USD 값도 실현될
-금융비용 절감 예측이 아니다. 동일한 conditional risk charge를 EV에 적용한 비교용
-환산치다. 계약가격 데이터가 들어오기 전 순위는 **benefit-only**이다.
+Underwriter bps are not observed bond or loan spreads, and annual USD figures
+are not forecasts of realized financing savings. They are the same conditional
+risk charge applied to EV for comparison. Until contract-price data arrives,
+rankings are **benefit-only**.
 
-세 원칙: ① 코드에 숫자를 쓰지 않는다 ② 모든 출력은 JSON artifact ③ 이론의 모든
-주장은 anchor ID를 갖고 config가 역참조한다. 상세: [PLAN.md](PLAN.md) · [CLAUDE.md](CLAUDE.md)
-· 금융제품 범위와 데이터 게이트: [FINANCIAL_TOOL.md](FINANCIAL_TOOL.md)
+Three principles: ① no numeric literals in code ② every output is a JSON
+artifact ③ every theoretical claim carries an anchor ID that config
+back-references. Details: [PLAN.md](PLAN.md) · [CLAUDE.md](CLAUDE.md) ·
+financial-product scope and data gates: [FINANCIAL_TOOL.md](FINANCIAL_TOOL.md)
 
-현재 release stage는 **INTERNAL_RESEARCH_PREVIEW**다. 10→20 구현·평가 기준은
-[MILESTONE_20.md](MILESTONE_20.md), 숫자 비교 규칙은 [RESULT_CONTRACT.md](RESULT_CONTRACT.md),
-연구 한계는 [MODEL_CARD.md](MODEL_CARD.md), 검증 프로토콜은 [VALIDATION_PLAN.md](VALIDATION_PLAN.md)를
-따른다. 외부 공개는 [PUBLIC_RELEASE_CHECKLIST.md](PUBLIC_RELEASE_CHECKLIST.md)의 90점 gate를
-통과하기 전까지 금지하며, 실제 사례는 [PILOT_CASE_TEMPLATE.md](PILOT_CASE_TEMPLATE.md)로 기록한다.
+The release stage is **INTERNAL_RESEARCH_PREVIEW**. The 10→20 implementation
+bar is [MILESTONE_20.md](MILESTONE_20.md), number-comparison rules are
+[RESULT_CONTRACT.md](RESULT_CONTRACT.md), research limits are
+[MODEL_CARD.md](MODEL_CARD.md), and the validation protocol is
+[VALIDATION_PLAN.md](VALIDATION_PLAN.md). External release is blocked until
+the 90-point gate in [PUBLIC_RELEASE_CHECKLIST.md](PUBLIC_RELEASE_CHECKLIST.md);
+real cases are recorded via [PILOT_CASE_TEMPLATE.md](PILOT_CASE_TEMPLATE.md).
 
-현재 구현 수준은 **30/100 pilot-ready dry run**이다. POSCO·NIPPON 사례를 동일 입력으로
-자동 재실행하고 decision/basis/stress/provenance pack을 생성한다. 상세 상태와 40점 blocker는
-[MILESTONE_30.md](MILESTONE_30.md), 생성 결과는 `outputs/pilot_cases.json`과
-`outputs/pilots/*.md`에 있다. 실제 거래사례와 executable quote가 없으므로 40점 달성으로
-표시하지 않는다.
+The current implementation level is **30/100, pilot-ready dry run**: the
+POSCO/NIPPON cases replay automatically from identical inputs and produce
+decision/basis/stress/provenance packs. Status and the 40-point blockers are
+in [MILESTONE_30.md](MILESTONE_30.md); generated packs live in
+`outputs/pilot_cases.json` and `outputs/pilots/*.md`. With no real transaction
+case and no executable quote, 40 points are not claimed.
 
-## 원커맨드 재현
+## One-command reproduction
 
 ```bash
-uv sync                 # Python 의존성 (최초 1회)
-(cd web && npm install) # 웹 의존성 (최초 1회)
+uv sync                 # Python deps (once)
+(cd web && npm install) # web deps (once)
 make all                # ingest → calibration → model → anchors → ledger → theory → test → web
 ```
 
-개별 단계: `make ingest` / `make model` / `make check-anchors` / `make ledger` /
-`make render-theory` / `make test` / `make web`
+Individual stages: `make ingest` / `make model` / `make check-anchors` /
+`make ledger` / `make render-theory` / `make test` / `make web`
 
-배포: `make web && cd web && npx vercel deploy` (루트 `vercel.json`이 web/만 빌드).
+Deploy: `make web && cd web && npx vercel deploy` (root `vercel.json` builds web/ only).
 
-## 구조
+## Layout
 
-| 경로 | 내용 |
+| Path | Contents |
 |---|---|
-| `data/raw/` | 원본 (수정 금지) — 전 파일 `data/DATA_PROVENANCE.md` 등록 (SHA256), 미등록 시 ingest 실패 |
-| `data/processed/` | `model/s01_ingest.py` 산출 parquet |
-| `config/` | **모든 파라미터** — `calibration.xlsx`(sigmas·correlations·pricing·lsm·carbon_jump), `firms.csv`, `routes.csv`, `scenarios.csv`. 편집 정본은 `config/sheets/*.csv` (xlsx는 `make calibration`으로 조립) |
-| `model/` | s01 ingest → s02 CalibrationSet → s03 LSM → s04 anatomy → s05 robustness → s06 intervention impacts → s07 pathways·condition gap → s08 investor/treasury underwriting → s09 deal & technology screening |
-| `outputs/` | figure 1개 = JSON 1개 + `manifest.json` (config 해시·git SHA·seed). seed 고정 시 diff 0 |
-| `theory/` | 이론 문서 — anchor `{#id}` + 라이브 수치 `{{키}}` (모델 재실행 시 자동 갱신). `LEDGER.md`는 `make ledger` 자동 생성 |
-| `web/` | Next.js SSG — 계산 없음, `outputs/*.json`만 렌더. 상태 배지 measured/banded/assumed·conditional |
+| `data/raw/` | Sources (never modified) — every file registered in `data/DATA_PROVENANCE.md` (SHA256); unregistered files fail ingest |
+| `data/processed/` | Parquet produced by `model/s01_ingest.py` |
+| `config/` | **Every parameter** — `firms.csv`, `routes.csv`, `scenarios.csv`, `interventions.csv`, and the editing SSOT `config/sheets/*.csv` (`calibration.xlsx` is assembled by `make calibration`, untracked) |
+| `model/` | s01 ingest → s02 CalibrationSet → s03 LSM → s04 anatomy → s05 robustness → s06 intervention impacts → s07 pathways & condition gap → s08 underwriting → s09 deal screening → s10 result contract → s11 pilots → s12 LEVEL/WEDGE closed-form lane |
+| `outputs/` | one figure = one JSON + `manifest.json` (config hash, git SHA, seed). Fixed seed ⇒ zero diff |
+| `theory/` | theory documents — anchors `{#id}` + live values `{{key}}` (auto-refreshed on rerun). `LEDGER.md` generated by `make ledger` |
+| `References/` | full-text-verified literature notes with verdicts (CONFIRMED / PARTIAL / UNVERIFIABLE / WRONG) |
+| `web/` | Next.js SSG — no computation; renders `outputs/*.json` with measured/banded/assumed badges |
 
-## 원장 논리 (한 줄)
+## Ledger logic (one line)
 
-share는 scalar λ·p_bind에 **항등 불변**(IDENTITY, P1)이되 노출 모델·시나리오·전환시점에
-**model-conditional**; 절대 수준은 **scenario-conditional risk charge**. 각 artifact의
-`claims` 블록이 result별 상태(IDENTITY/MODEL_CONDITIONAL/SCENARIO_CONDITIONAL/EMPIRICAL/
-PROVISIONAL/OPEN)와 의존 파라미터를 기록하고, manifest가 git dirty·코드/설정/데이터
-해시를 담는다. T_required는 provisional surrogate — 실증 식별된 기업 의무가 아니다.
+Shares are **identity-invariant** to scalar λ·p_bind (P1) but
+**model-conditional** on the exposure model, scenarios, and switch timing;
+absolute levels are **scenario-conditional risk charges**. Each artifact's
+`claims` block records per-result status (IDENTITY / MODEL_CONDITIONAL /
+SCENARIO_CONDITIONAL / EMPIRICAL / PROVISIONAL / OPEN) and parameter
+dependencies; the manifest records git dirty state and code/config/data
+hashes. T_required is a provisional surrogate — not an empirically identified
+corporate obligation.
 
-## 계산기 (툴 원칙)
+## The calculator principle
 
-CAP은 계산기다 — 시나리오·파라미터 in, anatomy·수준 out. 가격 수준·경로는
-시나리오(config)가 구동하고, 실측 시계열은 σ·ρ 캘리브레이션과 연단위 레퍼런스
-(`outputs/reference_prices.json`, 웹 /data)에만 쓴다. `config/scenarios.csv`는
-driver 컬럼으로 탄소 외 전력(elec_kr/elec_jp) 시나리오도 받는다.
+CAP is a calculator — scenarios and parameters in, anatomy and levels out.
+Price levels and paths are driven by scenarios (config); observed series are
+used only for σ·ρ calibration and the annual reference table
+(`outputs/reference_prices.json`, web `/data`). `config/scenarios.csv` accepts
+non-carbon drivers (elec_kr / elec_jp) through its driver column.
 
-프로그램 진입점 (향후 MCP 서버가 감쌀 시임):
+Programmatic entry points:
 
 ```python
 from model.api import compute
@@ -108,17 +124,18 @@ scenario = {
         {"scenario": "REFORM", "level_usd": 60, "prob": 1.0, "binds": 1},
     ],
 }
-compute(scenario, mode="fixed_exposure")       # 최근 τ* 고정: 빠른 가격·위험 민감도
-compute(scenario, mode="full_counterfactual")  # LSM τ*·pathway·condition gap 재계산
+compute(scenario, mode="fixed_exposure")       # τ* held: fast price/risk sensitivity
+compute(scenario, mode="full_counterfactual")  # LSM τ*, pathways, condition gap recomputed
 ```
 
-두 모드는 의사결정 질문이 다르다. `fixed_exposure`는 투자자가 동일 기술·경로에서
-가격조건만 스트레스할 때 쓰며 경로 효과로 해석하지 않는다. `full_counterfactual`은
-연구·정책 분석용으로 기대 탄소가격 이동을 LSM drift에 반영해 사적 전환연도와
-누적 alignment gap까지 다시 푼다. 두 모드 모두 T_required 자체는 바꾸지 않으며,
-현행 surrogate 상태도 그대로 표시한다.
+The two modes answer different questions. `fixed_exposure` stresses price
+terms on an unchanged technology path and must not be read as a pathway
+effect. `full_counterfactual` is for research and policy analysis: expected
+carbon-price shifts enter the LSM drift and private switch years and
+cumulative alignment gaps are re-solved. Neither mode changes T_required
+itself, and its surrogate status stays displayed.
 
-거래조건 override (파일 불변):
+Transaction-term overrides (file-invariant):
 
 ```python
 from model.api import screen_transaction
@@ -128,32 +145,32 @@ screen_transaction({
     "route": "h2_dri",
     "interventions": ["h2_cfd"],
     "terms": {"green_premium_usd_t": 240, "debt_share": 0.5},
-})  # → NPV·IRR·DSCR·필요 premium·잔여 charge before/after
+})  # → NPV, IRR, DSCR, required premium, residual charge before/after
 ```
 
-기본 거래 profile은 `config/transaction_assumptions.csv`의 명시적 가정이며 market
-quote가 아니다. 대안 route는 configured route와 같은 감축심도를 충족하는지 별도
-gate를 통과하고, 기술·원료·인프라 타당성은 `OPEN`으로 남긴다.
-계약별 모델 가격·커버리지·기간과 서명 전 필수 조항은 `config/interventions.csv`에서
-감사 가능하게 관리하며, 실행 가능한 offer나 lender term sheet로 간주하지 않는다.
-웹의 contract efficient frontier는 counterparty-adjusted ΔNPV가 높고 잔여 conditional
-risk charge가 낮은 비지배 집합이다. 증권 포트폴리오의 실측 mean–variance frontier가 아니다.
+The default transaction profile is an explicit assumption set
+(`config/transaction_assumptions.csv`), not a market quote. Alternative routes
+pass a separate decarbonization-depth gate against the configured route, and
+technology/feedstock/infrastructure feasibility stays `OPEN`. Modelled
+contract prices, coverage, and tenor — and the must-have clauses before any
+signature — are auditable in `config/interventions.csv`; nothing is an
+executable offer or a lender term sheet. The web's contract efficient frontier
+is the non-dominated set by counterparty-adjusted ΔNPV and residual
+conditional risk charge — not an observed mean–variance frontier.
 
-석유화학은 `e_cracker`, `ccus_cracker`, `circular_olefins` 세 경로와 feedstock
-가격·전력·탄소·CAPEX 노출을 별도로 계산한다. 철강 수치의 라벨만 바꾼 것이 아니다.
-다만 현 단계의 NCC 용량·EV·WACC·원료가격·CAPEX와 T_required는 archetype 가정이므로,
-기업 의사결정 전 실제 cracker train, feed slate, yield, energy balance, turnaround와
-계약 quote로 교체해야 한다.
+Petrochemicals are computed separately across `e_cracker`, `ccus_cracker`,
+and `circular_olefins` with their own feedstock, power, carbon, and CAPEX
+exposures — not steel numbers with new labels. At this stage NCC capacity, EV,
+WACC, feedstock prices, CAPEX, and T_required are archetype assumptions; before
+any corporate decision they must be replaced with actual cracker trains, feed
+slates, yields, energy balances, turnarounds, and contract quotes.
 
-파일 불변 — 두 계산 모드 모두 config·outputs를 건드리지 않는다. 기본 모드는 기존
-호출과의 호환을 위해 `fixed_exposure`; 경로 결론에는 `full_counterfactual`을 명시한다.
+File-invariant: neither computation mode touches config or outputs. The
+default mode is `fixed_exposure` for compatibility; pathway conclusions must
+state `full_counterfactual` explicitly.
 
-## 미확보 데이터 (도착 시 자동 승격)
+---
 
-`data/raw/{kau,smp,jepx,gcam}/MISSING.md` — 파일을 해당 폴더에 넣고 provenance 등록 후
-`make all` 하면 σ·ρ가 measured로 승격되고 surrogate가 교체된다.
-
-## 논문 대조
-
-[PAPER_DIFF.md](PAPER_DIFF.md) — σ 0.40→0.88 검산·불변성·클러스터 분리는 재현,
-share 수준 수치는 노출 창 정의 차이로 이동 (조용히 맞추지 않고 기록).
+*Theory documents (`theory/*.md`) are currently in Korean; an English
+migration is tracked as an open ticket. Interface documents, decision records,
+and commit messages are in English (see CONTRIBUTING.md, Language).*

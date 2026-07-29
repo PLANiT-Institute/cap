@@ -102,6 +102,17 @@ def build_context() -> dict[str, str]:
     ctx["cluster.grid_route.carbon_range_pct"] = cluster_range("grid_route", "carbon")
     all_carbon = [f["shares"]["carbon"] for f in shares["firms"]]
     ctx["cluster.all.carbon_range_pct"] = f"{pct(min(all_carbon))}–{pct(max(all_carbon))}"
+    lw = art("level_wedge")
+    for f in lw["firms"]:
+        b = f["base"]
+        fid = f["firm_id"]
+        ctx[f"lw.{fid}.level"] = f"{b['level_gap_usd_t']:.0f}"
+        ctx[f"lw.{fid}.wedge"] = f"{b['wedge_usd_t']:.0f}"
+        ctx[f"lw.{fid}.m"] = f"{b['trigger_multiple_project']:.2f}"
+        ctx[f"lw.{fid}.sigma_project"] = f"{b['sigma_project']:.3f}"
+        ctx[f"lw.{fid}.var_h2_pct"] = pct(b["gap_variance_shares"]["h2"])
+        ctx[f"lw.{fid}.var_carbon_pct"] = pct(b["gap_variance_shares"]["carbon"])
+        ctx[f"lw.{fid}.wedge_overstated"] = f"{b['legacy_attribution']['wedge_usd_t_overstated']:.0f}"
     ctx["manifest.config_sha"] = manifest["config_sha256"][:12]
     ctx["manifest.dirty"] = "dirty" if manifest["git_dirty"] else "clean"
     return ctx

@@ -580,3 +580,29 @@ def test_high_basis_never_improves_the_hedge():
     # 문헌 최악 basis에서 감축분이 최소 30% 사라지는 사례가 있어야 한다 —
     # 사라지지 않는다면 basis가 결과에 안 들어간다는 뜻이고 그 자체가 버그다.
     assert any(hi > lo * 0.7 for _, _, lo, hi in shrunk)
+
+
+# --- s12: LEVEL/WEDGE 폐형해 레인 (2026-07-29) ---
+
+
+def test_level_wedge_structure_and_basis_separation():
+    """구조 검산: wedge=(m−1)·LEVEL 항등, var share 합=1, LSM과 basis 격리."""
+    from model.lib.result_contract import LEVEL_WEDGE_BASIS
+
+    lw = art("level_wedge")
+    assert lw["result_contract"]["basis_id"] == LEVEL_WEDGE_BASIS
+    assert lw["result_contract"]["basis_id"] != ENTERPRISE_RISK_BASIS
+    for firm in lw["firms"]:
+        b = firm["base"]
+        assert b["level_gap_usd_t"] >= 0
+        assert b["trigger_multiple_project"] > 1
+        assert b["wedge_usd_t"] == pytest.approx(
+            (b["trigger_multiple_project"] - 1) * b["level_gap_usd_t"]
+        )
+        assert sum(b["gap_variance_shares"].values()) == pytest.approx(1.0, abs=1e-6)
+        # 검증 노트의 핵심: 탄소 단독 귀속(legacy)은 project-σ 방식과 다른 답을 내야 한다
+        # (같다면 교정이 무의미했다는 뜻) — h2-route에서 legacy가 더 크다
+        if firm["base"]["route"] == "h2_dri":
+            assert (
+                b["legacy_attribution"]["wedge_usd_t_overstated"] > b["wedge_usd_t"]
+            )

@@ -13,8 +13,11 @@ ENTERPRISE_FIXED_RISK_BASIS = "enterprise_transition_window.reform_priced.fixed_
 PROJECT_RISK_BASIS = "project_from_base_year.reform_priced.fixed_commissioning.ev_normalized"
 PROJECT_ECONOMICS_BASIS = "project_levelized.expected_scenario.illustrative_terms"
 ALIGNMENT_GAP_BASIS = "enterprise_private_vs_required.full_counterfactual.provisional_required"
+LEVEL_WEDGE_BASIS = "project_levelized.closed_form_approximation.derived_coefficients"
+
 
 RISK_CHARGE_METRIC = "conditional_risk_charge_bps"
+LEVEL_WEDGE_METRIC = "level_wedge_usd_t"
 PROJECT_NPV_METRIC = "project_npv_usd_m"
 ALIGNMENT_GAP_METRIC = "cumulative_alignment_gap_mtco2"
 

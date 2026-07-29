@@ -26,6 +26,7 @@ from model import (  # noqa: E402
     s09_deal_screening,
     s10_result_contract,
     s11_pilot_cases,
+    s12_level_wedge,
 )
 
 
@@ -64,7 +65,8 @@ def git_info() -> tuple[str, bool]:
 def main() -> int:
     for stage in (s02_calibrate, s03_lsm, s04_anatomy, s05_robustness,
                   s06_interventions, s07_pathways, s08_underwriting,
-                  s09_deal_screening, s10_result_contract, s11_pilot_cases):
+                  s09_deal_screening, s10_result_contract, s11_pilot_cases,
+                  s12_level_wedge):
         rc = stage.main()
         if rc:
             return rc

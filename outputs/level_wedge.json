@@ -1,0 +1,279 @@
+{
+  "artifact": "level_wedge",
+  "note": "LEVEL/WEDGE closed-form approximation lane — coefficients derived from routes.csv (no literals); m(σ) fed the exposure-weighted project σ, not σ_carbon (verification note 2026-07-29). Definition of record for private timing is the LSM τ* (s03); do not compare across bases.",
+  "claims": {
+    "firms.level_gap_usd_t": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "carbon_base_jp",
+        "carbon_base_kr",
+        "firms_registry",
+        "routes_sensitivity",
+        "transaction_assumptions"
+      ],
+      "note": "Marshallian gap at base prices — closed by level instruments (subsidy/CCfD strike)"
+    },
+    "firms.wedge_usd_t": {
+      "status": "MODEL_CONDITIONAL",
+      "depends_on": [
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "sigma_carbon_diffusion",
+        "sigma_h2",
+        "transaction_assumptions"
+      ],
+      "note": "waiting premium from the exposure-weighted project σ — cut by σ-truncating contracts; NOT the LSM wedge (separate basis_id)"
+    }
+  },
+  "conditional_on": [
+    "routes_sensitivity",
+    "transaction_assumptions"
+  ],
+  "input_status": {
+    "carbon_base_jp": "banded",
+    "carbon_base_kr": "measured",
+    "firms_registry": "banded",
+    "routes_sensitivity": "assumed",
+    "transaction_assumptions": "assumed",
+    "rho_h2_elec": "banded",
+    "sigma_carbon_diffusion": "measured",
+    "sigma_h2": "banded"
+  },
+  "result_contract": {
+    "metric_id": "level_wedge_usd_t",
+    "basis_id": "project_levelized.closed_form_approximation.derived_coefficients",
+    "evidence_grade": "MODEL_CONDITIONAL",
+    "uncertainty": "perpetual-option closed form; capex annuity life; delta proxy from drifts",
+    "interpretation": "intuition and cross-check for the LSM lane, not a pricing output"
+  },
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "base": {
+        "country": "JP",
+        "route": "scrap_eaf",
+        "wacc": 0.0575,
+        "carbon_price_used_usd_tco2": 3.0,
+        "demis_capacity_weighted_tco2_t": 1.6,
+        "gap_terms_usd_t": {
+          "h2_usd_t": 0.0,
+          "elec_usd_t": 57.0,
+          "feedstock_usd_t": 0.0,
+          "other_opex_usd_t": 500.0,
+          "capex_annuity_usd_t": 15.2756334777,
+          "avoided_opex_usd_t": 436.5
+        },
+        "level_gap_usd_t": 130.9756334777,
+        "driver_dollar_vol_usd_t": {
+          "carbon": 1.9063943843,
+          "h2": 0.0,
+          "elec": 12.54,
+          "feedstock": 0.0,
+          "capex": 2.2913450216
+        },
+        "gap_variance_shares": {
+          "carbon": 0.0598747808,
+          "h2": 0.0,
+          "elec": 0.9110346577,
+          "feedstock": 0.0,
+          "capex": 0.0290905615
+        },
+        "sigma_project": 0.1742999785,
+        "trigger_multiple_project": 1.8229640954,
+        "wedge_usd_t": 107.7882437266,
+        "legacy_attribution": {
+          "note": "toy method — m(sigma_carbon) attributes ALL project volatility to carbon; kept for lineage, do not cite",
+          "sigma_carbon": 0.3971654967,
+          "trigger_multiple_carbon_only": 3.3879677976,
+          "wedge_usd_t_overstated": 312.765595012
+        }
+      },
+      "reform": {
+        "carbon_price_used_usd_tco2": 46.5,
+        "level_gap_usd_t": 61.3756334777,
+        "gap_variance_shares": {
+          "carbon": 0.939377059,
+          "h2": 0.0,
+          "elec": 0.0599597351,
+          "feedstock": 0.0,
+          "capex": 0.000663206
+        },
+        "sigma_project": 0.6066082393,
+        "trigger_multiple_project": 5.6253020945,
+        "wedge_usd_t": 283.8808460748
+      }
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "base": {
+        "country": "JP",
+        "route": "ng_dri",
+        "wacc": 0.0575,
+        "carbon_price_used_usd_tco2": 3.0,
+        "demis_capacity_weighted_tco2_t": 1.15,
+        "gap_terms_usd_t": {
+          "h2_usd_t": 0.0,
+          "elec_usd_t": 66.5,
+          "feedstock_usd_t": 0.0,
+          "other_opex_usd_t": 460.0,
+          "capex_annuity_usd_t": 22.9134502165,
+          "avoided_opex_usd_t": 436.5
+        },
+        "level_gap_usd_t": 109.4634502165,
+        "driver_dollar_vol_usd_t": {
+          "carbon": 1.3702209637,
+          "h2": 0.0,
+          "elec": 14.63,
+          "feedstock": 0.0,
+          "capex": 3.4370175325
+        },
+        "gap_variance_shares": {
+          "carbon": 0.0329144151,
+          "h2": 0.0,
+          "elec": 0.9178141411,
+          "feedstock": 0.0,
+          "capex": 0.0492714438
+        },
+        "sigma_project": 0.1667398045,
+        "trigger_multiple_project": 1.7830646337,
+        "wedge_usd_t": 85.7169565499,
+        "legacy_attribution": {
+          "note": "toy method — m(sigma_carbon) attributes ALL project volatility to carbon; kept for lineage, do not cite",
+          "sigma_carbon": 0.3971654967,
+          "trigger_multiple_carbon_only": 3.3879677976,
+          "wedge_usd_t_overstated": 261.3951941287
+        }
+      },
+      "reform": {
+        "carbon_price_used_usd_tco2": 46.5,
+        "level_gap_usd_t": 59.4384502165,
+        "gap_variance_shares": {
+          "carbon": 0.8890837678,
+          "h2": 0.0,
+          "elec": 0.108253198,
+          "feedstock": 0.0,
+          "capex": 0.0026630342
+        },
+        "sigma_project": 0.466118401,
+        "trigger_multiple_project": 4.0378592586,
+        "wedge_usd_t": 180.5656463083
+      }
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "base": {
+        "country": "JP",
+        "route": "h2_dri",
+        "wacc": 0.0575,
+        "carbon_price_used_usd_tco2": 3.0,
+        "demis_capacity_weighted_tco2_t": 1.8,
+        "gap_terms_usd_t": {
+          "h2_usd_t": 330.0,
+          "elec_usd_t": 76.0,
+          "feedstock_usd_t": 0.0,
+          "other_opex_usd_t": 380.0,
+          "capex_annuity_usd_t": 35.8977386725,
+          "avoided_opex_usd_t": 436.5
+        },
+        "level_gap_usd_t": 379.9977386725,
+        "driver_dollar_vol_usd_t": {
+          "carbon": 2.1446936823,
+          "h2": 99.0,
+          "elec": 16.72,
+          "feedstock": 0.0,
+          "capex": 5.3846608009
+        },
+        "gap_variance_shares": {
+          "carbon": 0.0012332306,
+          "h2": 0.8800805408,
+          "elec": 0.1163579196,
+          "feedstock": 0.0,
+          "capex": 0.002328309
+        },
+        "sigma_project": 0.2494832208,
+        "trigger_multiple_project": 2.2646036411,
+        "wedge_usd_t": 480.5465239383,
+        "legacy_attribution": {
+          "note": "toy method — m(sigma_carbon) attributes ALL project volatility to carbon; kept for lineage, do not cite",
+          "sigma_carbon": 0.3971654967,
+          "trigger_multiple_carbon_only": 3.3879677976,
+          "wedge_usd_t_overstated": 907.4223631024
+        }
+      },
+      "reform": {
+        "carbon_price_used_usd_tco2": 46.5,
+        "level_gap_usd_t": 301.6977386725,
+        "gap_variance_shares": {
+          "carbon": 0.4236965487,
+          "h2": 0.4895043574,
+          "elec": 0.085504079,
+          "feedstock": 0.0,
+          "capex": 0.0012950149
+        },
+        "sigma_project": 0.284686901,
+        "trigger_multiple_project": 2.500571436,
+        "wedge_usd_t": 452.7190089581
+      }
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "base": {
+        "country": "KR",
+        "route": "h2_dri",
+        "wacc": 0.075,
+        "carbon_price_used_usd_tco2": 14.93,
+        "demis_capacity_weighted_tco2_t": 1.9289655172,
+        "gap_terms_usd_t": {
+          "h2_usd_t": 330.0,
+          "elec_usd_t": 60.0,
+          "feedstock_usd_t": 0.0,
+          "other_opex_usd_t": 380.0,
+          "capex_annuity_usd_t": 42.1640156752,
+          "avoided_opex_usd_t": 436.5
+        },
+        "level_gap_usd_t": 346.8645605028,
+        "driver_dollar_vol_usd_t": {
+          "carbon": 11.4381499188,
+          "h2": 99.0,
+          "elec": 7.2,
+          "feedstock": 0.0,
+          "capex": 6.3246023513
+        },
+        "gap_variance_shares": {
+          "carbon": 0.0140491023,
+          "h2": 0.9303545885,
+          "elec": 0.0519832139,
+          "feedstock": 0.0,
+          "capex": 0.0036130953
+        },
+        "sigma_project": 0.2282585248,
+        "trigger_multiple_project": 2.3946137053,
+        "wedge_usd_t": 483.7420699625,
+        "legacy_attribution": {
+          "note": "toy method — m(sigma_carbon) attributes ALL project volatility to carbon; kept for lineage, do not cite",
+          "sigma_carbon": 0.3971654967,
+          "trigger_multiple_carbon_only": 3.6685200913,
+          "wedge_usd_t_overstated": 925.6150486735
+        }
+      },
+      "reform": {
+        "carbon_price_used_usd_tco2": 53.1818181818,
+        "level_gap_usd_t": 273.0781222583,
+        "gap_variance_shares": {
+          "carbon": 0.4288316791,
+          "h2": 0.5306942752,
+          "elec": 0.0384130584,
+          "feedstock": 0.0,
+          "capex": 0.0020609873
+        },
+        "sigma_project": 0.2605222668,
+        "trigger_multiple_project": 2.6023068618,
+        "wedge_usd_t": 437.5549491011
+      }
+    }
+  ]
+}
