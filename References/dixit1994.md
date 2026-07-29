@@ -1,8 +1,8 @@
 # dixit1994
 
 > 태그: `domain:real-options, supports:claim-wedge-conjunction, supports:wedge`
-> 검증: **UNVERIFIABLE (2026-07-29)** — 서지는 대조 완료, 인용 문장은 유료장벽으로 원문 미확인.
-> 표준 결과라 실질 오류 가능성은 낮으나 인용 전 원문 확인 필요.
+> 검증: **PAYWALLED (2026-07-29)** — 단행본. 무료로는 1장(서론)만 접근 가능하며 트리거
+> 가격 내용이 없다. 인용 대상은 **Chapter 5 'The Simplest Case'**로 특정할 것.
 
 - **citekey**: dixit1994
 - **한 줄 주장**: 자산의 비가역성(sunk cost)과 지속적 가격 불확실성이 결합하면, 단순 NPV=0 규칙 대신 옵션 프리미엄만큼 높은 트리거 가격에서만 투자가 최적이 된다.

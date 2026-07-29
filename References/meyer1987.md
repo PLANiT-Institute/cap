@@ -1,8 +1,8 @@
 # meyer1987
 
 > 태그: `domain:variance-premium, counters:axiom-variance-not-mean`
-> 검증: **UNVERIFIABLE (2026-07-29)** — 서지는 대조 완료, 인용 문장은 유료장벽으로 원문 미확인.
-> 표준 결과라 실질 오류 가능성은 낮으나 인용 전 원문 확인 필요.
+> 검증: **CONFIRMED (2차 자료, 2026-07-29)** — AER 원문은 유료. location-scale 조건을
+> 정확히 재진술한 공개 서베이(Statistical Science 28(2))로 확인. 1차 자료 아님을 명시한다.
 
 - **citekey**: meyer1987 (Meyer, "Two-Moment Decision Models and Expected Utility Maximization", AER 77(3), 421–430)
 - **한 줄 주장**: 평균-분산 기준으로 분포를 순위매기는 것이 기대효용 극대화와 정합적인 것은, 비교 대상 분포들이 **하나의 location-scale family에 속할 때뿐**이다.
