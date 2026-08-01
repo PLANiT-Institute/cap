@@ -1,0 +1,517 @@
+{
+  "artifact": "risk_premium_decision",
+  "schema_version": "0.1.0",
+  "purpose": "decision-ready packaging of CAP risk premium and alignment-gap overlay",
+  "one_line": "Translate CAP transition gaps and intervention effects into a decision-ready risk premium without double counting.",
+  "source_artifacts": {
+    "transition_underwriting": {
+      "path": "outputs/transition_underwriting.json",
+      "sha256": "a291202de430cdcda439911c21c352b0ecd8f7282973fd7021409f4e65da3884"
+    },
+    "alignment_gap_loss": {
+      "path": "outputs/alignment_gap_loss.json",
+      "sha256": "3fea6eaa6b2912e74f3d7761e8978653f19953186c59e982b3a0a8ee11535397"
+    }
+  },
+  "publication_policy": {
+    "headline_metric": "conditional enterprise transition risk premium in bps",
+    "gap_metric": "separate provisional alignment-gap overlay in bps",
+    "combined_total_bps": null,
+    "aggregation_status": "SEPARATE_BASES_PENDING_JOINT_COVARIANCE",
+    "materiality_gate": {
+      "headline_reduction_bps": 0.1,
+      "alignment_gap_reduction_mtco2": 1.0,
+      "gap_overlay_reduction_bps": 0.1,
+      "rule": "an option is material when at least one reduction threshold is met"
+    },
+    "unlock_conditions": [
+      "shared annual scenario draws for transition-cost and gap losses",
+      "identified covariance or a joint cash-flow state model",
+      "matched horizon, discounting and EV normalization",
+      "validated T_required benchmark or probability distribution",
+      "external or holdout calibration"
+    ]
+  },
+  "portfolio": {
+    "firm_count": 6,
+    "enterprise_value_usd_bn": 128.0,
+    "ev_weighted_headline_bps": 16.7052923763,
+    "ev_weighted_separate_gap_overlay_bps": 5.7546742173,
+    "combined_total_bps": null,
+    "aggregation_status": "SEPARATE_BASES_PENDING_JOINT_COVARIANCE"
+  },
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "country": "JP",
+      "sector": "steel",
+      "route": "scrap_eaf",
+      "enterprise_value_usd_bn": 15.0,
+      "decision_ready_risk_premium": {
+        "headline_bps": 23.9912439207,
+        "headline_annual_value_usd_m": 35.9868658811,
+        "sensitivity_range": {
+          "low_bps": 4.4983582351,
+          "high_bps": 74.0729656052,
+          "interpretation": "grid envelope across configured lambda and p_bind; not a confidence interval"
+        },
+        "dominant_driver": "carbon",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "interpretation": "conditional enterprise transition risk premium; not an observed spread"
+      },
+      "alignment_gap_overlay": {
+        "overlay_bps": 6.6959287962,
+        "expected_pv_gap_loss_usd_m": 779.6946357137,
+        "sigma_pv_gap_loss_usd_m": 937.4505525102,
+        "cumulative_alignment_gap_mtco2": 137.44,
+        "evidence_grade": "PROVISIONAL",
+        "interpretation": "separate provisional overlay; not additive to the headline"
+      },
+      "final_premium_publication": {
+        "published_headline_bps": 23.9912439207,
+        "separate_gap_overlay_bps": 6.6959287962,
+        "combined_total_bps": null,
+        "aggregation_status": "SEPARATE_BASES_PENDING_JOINT_COVARIANCE",
+        "is_observed_market_spread": false
+      },
+      "decision_options": {
+        "best_de_risker": {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 23.9912439207,
+          "residual_headline_bps": 23.4826025964,
+          "headline_reduction_bps": 0.5086413243,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.9743079812,
+          "annual_headline_value_reduction_usd_m": 0.7629619865,
+          "material_model_effect": true
+        },
+        "best_alignment_safe_de_risker": {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 23.9912439207,
+          "residual_headline_bps": 23.4826025964,
+          "headline_reduction_bps": 0.5086413243,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.9743079812,
+          "annual_headline_value_reduction_usd_m": 0.7629619865,
+          "material_model_effect": true
+        },
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 23.9912439207,
+          "residual_headline_bps": 23.905695796,
+          "headline_reduction_bps": 0.0855481247,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.1283221871,
+          "material_model_effect": false
+        },
+        "best_dual_benefit": null,
+        "decision_status": "MODEL_EFFECT_BELOW_MATERIALITY"
+      }
+    },
+    {
+      "firm_id": "JP_NCC",
+      "firm": "Japan NCC archetype",
+      "country": "JP",
+      "sector": "petrochemicals",
+      "route": "ccus_cracker",
+      "enterprise_value_usd_bn": 10.0,
+      "decision_ready_risk_premium": {
+        "headline_bps": 17.8752201592,
+        "headline_annual_value_usd_m": 17.8752201592,
+        "sensitivity_range": {
+          "low_bps": 3.3516037799,
+          "high_bps": 55.1897422415,
+          "interpretation": "grid envelope across configured lambda and p_bind; not a confidence interval"
+        },
+        "dominant_driver": "feedstock",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "interpretation": "conditional enterprise transition risk premium; not an observed spread"
+      },
+      "alignment_gap_overlay": {
+        "overlay_bps": 2.0086658908,
+        "expected_pv_gap_loss_usd_m": 170.9715458747,
+        "sigma_pv_gap_loss_usd_m": 205.5642847883,
+        "cumulative_alignment_gap_mtco2": 11.83,
+        "evidence_grade": "PROVISIONAL",
+        "interpretation": "separate provisional overlay; not additive to the headline"
+      },
+      "final_premium_publication": {
+        "published_headline_bps": 17.8752201592,
+        "separate_gap_overlay_bps": 2.0086658908,
+        "combined_total_bps": null,
+        "aggregation_status": "SEPARATE_BASES_PENDING_JOINT_COVARIANCE",
+        "is_observed_market_spread": false
+      },
+      "decision_options": {
+        "best_de_risker": {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "before_headline_bps": 17.8752201592,
+          "residual_headline_bps": 13.9987793475,
+          "headline_reduction_bps": 3.8764408117,
+          "alignment_gap_change_mtco2": 2.366,
+          "gap_overlay_change_bps": 0.2969443648,
+          "annual_headline_value_reduction_usd_m": 3.8764408117,
+          "material_model_effect": true
+        },
+        "best_alignment_safe_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 17.8752201592,
+          "residual_headline_bps": 17.8178540084,
+          "headline_reduction_bps": 0.0573661508,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.0573661508,
+          "material_model_effect": false
+        },
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 17.8752201592,
+          "residual_headline_bps": 17.8178540084,
+          "headline_reduction_bps": 0.0573661508,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.0573661508,
+          "material_model_effect": false
+        },
+        "best_dual_benefit": null,
+        "decision_status": "MODEL_EFFECT_BELOW_MATERIALITY"
+      }
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "country": "JP",
+      "sector": "steel",
+      "route": "ng_dri",
+      "enterprise_value_usd_bn": 8.0,
+      "decision_ready_risk_premium": {
+        "headline_bps": 15.8422040637,
+        "headline_annual_value_usd_m": 12.673763251,
+        "sensitivity_range": {
+          "low_bps": 2.9704132619,
+          "high_bps": 48.9128050467,
+          "interpretation": "grid envelope across configured lambda and p_bind; not a confidence interval"
+        },
+        "dominant_driver": "carbon",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "interpretation": "conditional enterprise transition risk premium; not an observed spread"
+      },
+      "alignment_gap_overlay": {
+        "overlay_bps": 0.1463681569,
+        "expected_pv_gap_loss_usd_m": 9.0898988728,
+        "sigma_pv_gap_loss_usd_m": 10.9290616226,
+        "cumulative_alignment_gap_mtco2": 2.99,
+        "evidence_grade": "PROVISIONAL",
+        "interpretation": "separate provisional overlay; not additive to the headline"
+      },
+      "final_premium_publication": {
+        "published_headline_bps": 15.8422040637,
+        "separate_gap_overlay_bps": 0.1463681569,
+        "combined_total_bps": null,
+        "aggregation_status": "SEPARATE_BASES_PENDING_JOINT_COVARIANCE",
+        "is_observed_market_spread": false
+      },
+      "decision_options": {
+        "best_de_risker": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 15.8422040637,
+          "residual_headline_bps": 15.8420067577,
+          "headline_reduction_bps": 0.000197306,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.0001578448,
+          "material_model_effect": false
+        },
+        "best_alignment_safe_de_risker": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 15.8422040637,
+          "residual_headline_bps": 15.8420067577,
+          "headline_reduction_bps": 0.000197306,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.0001578448,
+          "material_model_effect": false
+        },
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 15.8422040637,
+          "residual_headline_bps": 15.8420067577,
+          "headline_reduction_bps": 0.000197306,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.0001578448,
+          "material_model_effect": false
+        },
+        "best_dual_benefit": null,
+        "decision_status": "MODEL_EFFECT_BELOW_MATERIALITY"
+      }
+    },
+    {
+      "firm_id": "KR_NCC",
+      "firm": "Korea NCC archetype",
+      "country": "KR",
+      "sector": "petrochemicals",
+      "route": "e_cracker",
+      "enterprise_value_usd_bn": 15.0,
+      "decision_ready_risk_premium": {
+        "headline_bps": 16.4159292304,
+        "headline_annual_value_usd_m": 24.6238938456,
+        "sensitivity_range": {
+          "low_bps": 2.7981697552,
+          "high_bps": 46.0765286353,
+          "interpretation": "grid envelope across configured lambda and p_bind; not a confidence interval"
+        },
+        "dominant_driver": "feedstock",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "interpretation": "conditional enterprise transition risk premium; not an observed spread"
+      },
+      "alignment_gap_overlay": {
+        "overlay_bps": 1.5970238083,
+        "expected_pv_gap_loss_usd_m": 156.3619847827,
+        "sigma_pv_gap_loss_usd_m": 193.8538211795,
+        "cumulative_alignment_gap_mtco2": 14.04,
+        "evidence_grade": "PROVISIONAL",
+        "interpretation": "separate provisional overlay; not additive to the headline"
+      },
+      "final_premium_publication": {
+        "published_headline_bps": 16.4159292304,
+        "separate_gap_overlay_bps": 1.5970238083,
+        "combined_total_bps": null,
+        "aggregation_status": "SEPARATE_BASES_PENDING_JOINT_COVARIANCE",
+        "is_observed_market_spread": false
+      },
+      "decision_options": {
+        "best_de_risker": {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "before_headline_bps": 16.4159292304,
+          "residual_headline_bps": 12.9061781249,
+          "headline_reduction_bps": 3.5097511055,
+          "alignment_gap_change_mtco2": 2.34,
+          "gap_overlay_change_bps": 0.208651608,
+          "annual_headline_value_reduction_usd_m": 5.2646266582,
+          "material_model_effect": true
+        },
+        "best_alignment_safe_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 16.4159292304,
+          "residual_headline_bps": 16.3659989116,
+          "headline_reduction_bps": 0.0499303188,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.0748954782,
+          "material_model_effect": false
+        },
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 16.4159292304,
+          "residual_headline_bps": 16.3659989116,
+          "headline_reduction_bps": 0.0499303188,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.0748954782,
+          "material_model_effect": false
+        },
+        "best_dual_benefit": null,
+        "decision_status": "MODEL_EFFECT_BELOW_MATERIALITY"
+      }
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "country": "JP",
+      "sector": "steel",
+      "route": "h2_dri",
+      "enterprise_value_usd_bn": 40.0,
+      "decision_ready_risk_premium": {
+        "headline_bps": 11.3254277548,
+        "headline_annual_value_usd_m": 45.3017110192,
+        "sensitivity_range": {
+          "low_bps": 2.123517704,
+          "high_bps": 34.9672581929,
+          "interpretation": "grid envelope across configured lambda and p_bind; not a confidence interval"
+        },
+        "dominant_driver": "h2",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "interpretation": "conditional enterprise transition risk premium; not an observed spread"
+      },
+      "alignment_gap_overlay": {
+        "overlay_bps": 7.139441658,
+        "expected_pv_gap_loss_usd_m": 2216.9030494417,
+        "sigma_pv_gap_loss_usd_m": 2665.4498997013,
+        "cumulative_alignment_gap_mtco2": 241.2,
+        "evidence_grade": "PROVISIONAL",
+        "interpretation": "separate provisional overlay; not additive to the headline"
+      },
+      "final_premium_publication": {
+        "published_headline_bps": 11.3254277548,
+        "separate_gap_overlay_bps": 7.139441658,
+        "combined_total_bps": null,
+        "aggregation_status": "SEPARATE_BASES_PENDING_JOINT_COVARIANCE",
+        "is_observed_market_spread": false
+      },
+      "decision_options": {
+        "best_de_risker": {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "before_headline_bps": 11.3254277548,
+          "residual_headline_bps": 8.5400468373,
+          "headline_reduction_bps": 2.7853809175,
+          "alignment_gap_change_mtco2": 14.4,
+          "gap_overlay_change_bps": 0.2465878444,
+          "annual_headline_value_reduction_usd_m": 11.14152367,
+          "material_model_effect": true
+        },
+        "best_alignment_safe_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 11.3254277548,
+          "residual_headline_bps": 10.9700377531,
+          "headline_reduction_bps": 0.3553900017,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 1.4215600068,
+          "material_model_effect": true
+        },
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 11.3254277548,
+          "residual_headline_bps": 10.9700377531,
+          "headline_reduction_bps": 0.3553900017,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 1.4215600068,
+          "material_model_effect": true
+        },
+        "best_dual_benefit": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "decision_class": "dual_benefit",
+          "before_headline_bps": 11.3254277548,
+          "residual_headline_bps": 11.3202258621,
+          "headline_reduction_bps": 0.0052018927,
+          "alignment_gap_change_mtco2": -14.4,
+          "gap_overlay_change_bps": -0.2607666454,
+          "annual_headline_value_reduction_usd_m": 0.0208075708,
+          "material_model_effect": true
+        },
+        "decision_status": "DUAL_BENEFIT_DUE_DILIGENCE"
+      }
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "country": "KR",
+      "sector": "steel",
+      "route": "h2_dri",
+      "enterprise_value_usd_bn": 40.0,
+      "decision_ready_risk_premium": {
+        "headline_bps": 19.3415720651,
+        "headline_annual_value_usd_m": 77.3662882604,
+        "sensitivity_range": {
+          "low_bps": 3.2968588747,
+          "high_bps": 54.2882761373,
+          "interpretation": "grid envelope across configured lambda and p_bind; not a confidence interval"
+        },
+        "dominant_driver": "h2",
+        "evidence_grade": "SCENARIO_CONDITIONAL",
+        "interpretation": "conditional enterprise transition risk premium; not an observed spread"
+      },
+      "alignment_gap_overlay": {
+        "overlay_bps": 7.6342185067,
+        "expected_pv_gap_loss_usd_m": 1889.2735641293,
+        "sigma_pv_gap_loss_usd_m": 2342.2758426145,
+        "cumulative_alignment_gap_mtco2": 251.61,
+        "evidence_grade": "PROVISIONAL",
+        "interpretation": "separate provisional overlay; not additive to the headline"
+      },
+      "final_premium_publication": {
+        "published_headline_bps": 19.3415720651,
+        "separate_gap_overlay_bps": 7.6342185067,
+        "combined_total_bps": null,
+        "aggregation_status": "SEPARATE_BASES_PENDING_JOINT_COVARIANCE",
+        "is_observed_market_spread": false
+      },
+      "decision_options": {
+        "best_de_risker": {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "decision_class": "de_risking_with_alignment_tradeoff",
+          "before_headline_bps": 19.3415720651,
+          "residual_headline_bps": 15.7673525889,
+          "headline_reduction_bps": 3.5742194762,
+          "alignment_gap_change_mtco2": 21.7,
+          "gap_overlay_change_bps": 0.4342851303,
+          "annual_headline_value_reduction_usd_m": 14.2968779048,
+          "material_model_effect": true
+        },
+        "best_alignment_safe_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 19.3415720651,
+          "residual_headline_bps": 19.169624211,
+          "headline_reduction_bps": 0.1719478541,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.6877914164,
+          "material_model_effect": true
+        },
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "decision_class": "de_risking_only",
+          "before_headline_bps": 19.3415720651,
+          "residual_headline_bps": 19.169624211,
+          "headline_reduction_bps": 0.1719478541,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "annual_headline_value_reduction_usd_m": 0.6877914164,
+          "material_model_effect": true
+        },
+        "best_dual_benefit": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "decision_class": "dual_benefit",
+          "before_headline_bps": 19.3415720651,
+          "residual_headline_bps": 19.3307016805,
+          "headline_reduction_bps": 0.0108703846,
+          "alignment_gap_change_mtco2": -27.97,
+          "gap_overlay_change_bps": -0.6017500796,
+          "annual_headline_value_reduction_usd_m": 0.0434815384,
+          "material_model_effect": true
+        },
+        "decision_status": "DUAL_BENEFIT_DUE_DILIGENCE"
+      }
+    }
+  ]
+}
