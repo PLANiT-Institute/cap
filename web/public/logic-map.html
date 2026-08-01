@@ -1,0 +1,657 @@
+<title>CAP 데이터 맵 — 데이터셋 · 실측 산출물 · GCAM 브리지</title>
+<style>
+  :root {
+    --bg:#f6f8f7; --surface:#ffffff; --ink:#1c2422; --ink-soft:#55625e; --line:#dde4e1;
+    --required:#15825a; --private:#d9722b; --interv:#3b6fb5; --bau:#8a9490;
+    --required-soft:#e2efe9; --private-soft:#f9ebde; --bau-soft:#edf0ef;
+    --c-carbon:#7c53c8; --c-h2:#0d8a70; --c-elec:#a87d15; --c-feed:#c24a80; --c-capex:#4a7ab5;
+    --warn:#b3541e; --miss:#a8332e; --miss-soft:#f7e5e4;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root {
+    --bg:#14181b; --surface:#1c2226; --ink:#e8ecea; --ink-soft:#9aa6a1; --line:#2c353a;
+    --required:#2f9670; --private:#d07a35; --interv:#5b84d6; --bau:#77827e;
+    --required-soft:#1d3229; --private-soft:#37271a; --bau-soft:#242b28;
+    --c-carbon:#9a77dd; --c-h2:#2aa38f; --c-elec:#b58818; --c-feed:#d16a95; --c-capex:#6389cf;
+    --warn:#d98a4a; --miss:#d96560; --miss-soft:#3a2422;
+  } }
+  :root[data-theme="dark"] {
+    --bg:#14181b; --surface:#1c2226; --ink:#e8ecea; --ink-soft:#9aa6a1; --line:#2c353a;
+    --required:#2f9670; --private:#d07a35; --interv:#5b84d6; --bau:#77827e;
+    --required-soft:#1d3229; --private-soft:#37271a; --bau-soft:#242b28;
+    --c-carbon:#9a77dd; --c-h2:#2aa38f; --c-elec:#b58818; --c-feed:#d16a95; --c-capex:#6389cf;
+    --warn:#d98a4a; --miss:#d96560; --miss-soft:#3a2422;
+  }
+  :root[data-theme="light"] {
+    --bg:#f6f8f7; --surface:#ffffff; --ink:#1c2422; --ink-soft:#55625e; --line:#dde4e1;
+    --required:#15825a; --private:#d9722b; --interv:#3b6fb5; --bau:#8a9490;
+    --required-soft:#e2efe9; --private-soft:#f9ebde; --bau-soft:#edf0ef;
+    --c-carbon:#7c53c8; --c-h2:#0d8a70; --c-elec:#a87d15; --c-feed:#c24a80; --c-capex:#4a7ab5;
+    --warn:#b3541e; --miss:#a8332e; --miss-soft:#f7e5e4;
+  }
+  html{background:var(--bg);}
+  body{font-family:"Apple SD Gothic Neo",Pretendard,"Noto Sans KR",system-ui,sans-serif;
+    color:var(--ink);line-height:1.6;margin:0;font-feature-settings:"tnum";}
+  main{max-width:1020px;margin:0 auto;padding:44px 24px 96px;}
+  h1{font-size:1.8rem;line-height:1.3;letter-spacing:-0.01em;text-wrap:balance;margin:8px 0 4px;}
+  h2{font-size:1.2rem;margin:0 0 4px;}
+  p{margin:0 0 10px;max-width:70ch;}
+  .eyebrow{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);}
+  .lede{color:var(--ink-soft);max-width:64ch;}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:26px 26px 20px;margin-top:26px;}
+  .sub{font-size:0.85rem;color:var(--ink-soft);margin-bottom:14px;}
+  code{font-family:var(--mono);font-size:0.84em;background:var(--bau-soft);padding:1px 5px;border-radius:4px;}
+  /* stat tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:22px;}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;}
+  .tile .n{font-size:1.7rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+  .tile .l{font-size:0.8rem;color:var(--ink-soft);}
+  .tile .s{font-family:var(--mono);font-size:0.66rem;color:var(--warn);}
+  /* legend + chips */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:6px 0 10px;font-size:0.82rem;color:var(--ink-soft);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dot{width:10px;height:10px;border-radius:50%;flex:none;}
+  .ln{width:20px;height:0;border-top:2.5px solid;flex:none;}
+  .chip{display:inline-block;font-family:var(--mono);font-size:0.66rem;padding:1px 8px;border-radius:99px;margin-left:6px;vertical-align:middle;}
+  .chip-ok{background:var(--required-soft);color:var(--required);}
+  .chip-miss{background:var(--miss-soft);color:var(--miss);}
+  .chip-part{background:var(--private-soft);color:var(--private);}
+  .chip-sur{background:var(--bau-soft);color:var(--bau);}
+  /* charts */
+  .chart{overflow-x:auto;}
+  svg{display:block;}
+  svg text{font-family:"Apple SD Gothic Neo",Pretendard,system-ui,sans-serif;font-size:11px;fill:var(--ink-soft);}
+  svg .lbl{fill:var(--ink);font-weight:600;}
+  .grid{stroke:var(--line);stroke-width:1;}
+  /* stacked bars (divs) */
+  .bars{display:grid;grid-template-columns:150px 1fr 92px;gap:6px 10px;align-items:center;font-size:0.82rem;}
+  .bars .name{text-align:right;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .bars .meta{font-family:var(--mono);font-size:0.7rem;color:var(--ink-soft);}
+  .stack{display:flex;height:20px;border-radius:4px;overflow:hidden;gap:2px;background:transparent;}
+  .stack i{display:block;height:100%;}
+  .bar1{height:16px;border-radius:0 4px 4px 0;background:var(--required);}
+  /* dataset cards */
+  .dsg{margin-top:18px;}
+  .dsg h3{font-size:0.95rem;margin:0 0 8px;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;}
+  .card{border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:0.8rem;}
+  .card.miss{border-style:dashed;border-color:var(--miss);}
+  .card b{font-family:var(--mono);font-size:0.78rem;font-weight:600;}
+  .card .src{color:var(--ink-soft);display:block;margin-top:3px;line-height:1.45;}
+  .card .row{font-family:var(--mono);font-size:0.68rem;color:var(--ink-soft);margin-top:5px;}
+  .note{font-size:0.85rem;color:var(--ink-soft);border-left:3px solid var(--warn);padding-left:12px;margin-top:14px;max-width:none;}
+  table{border-collapse:collapse;width:100%;font-size:0.85rem;}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-size:0.74rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .tbl-wrap{overflow-x:auto;}
+  #tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:5px 9px;border-radius:5px;
+    font-size:0.75rem;line-height:1.4;opacity:0;transition:opacity .12s;max-width:260px;z-index:9;}
+  .diagram{overflow-x:auto;padding:6px 0;}
+  pre.mermaid{background:transparent;margin:0;min-width:620px;}
+</style>
+
+<main>
+  <div class="eyebrow">PLANiT · CAP · 2026-08-01 · outputs/*.json 실측 렌더 · 16:46 재계산(<span style="font-family:var(--mono)">23fdaea</span> gap-pricing chain) 반영</div>
+  <h1>CAP 데이터 맵 — GCAM 섹터 경로를 자산 단위로 내리는 엔진</h1>
+  <p class="lede">아래 모든 차트는 리포 <code>outputs/*.json</code>의 실제 값이다.
+  T_required는 아직 <strong>surrogate</strong>(GCAM 원시 미도착) — 곡선 형태는 유지되고 도착 시 값만 교체된다.</p>
+
+  <div class="tiles">
+    <div class="tile"><div class="n">14</div><div class="l">raw 데이터셋 (도착 9 · 부분 1 · MISSING 4)</div></div>
+    <div class="tile"><div class="n">13</div><div class="l">가격 대상 자산 — 고로 11기 + NCC 원형 2</div></div>
+    <div class="tile"><div class="n">22</div><div class="l">outputs/*.json 산출 artifact (공개 API)</div></div>
+    <div class="tile"><div class="n">12.4y</div><div class="l">KR 최대 timing gap — POSCO Pohang BF4 (JP 최대 19.2y는 ⚠감사 자산)</div><div class="s">PROVISIONAL · surrogate T_required</div></div>
+  </div>
+
+  <section>
+    <div class="eyebrow">차트 1 · 척추</div>
+    <h2>한국 철강 배출 경로: required vs private</h2>
+    <div class="sub">출처 <code>emissions_pathways_by_firm.json</code> — POSCO+현대제철 합산, MtCO₂/yr, 2026–2061</div>
+    <div class="legend">
+      <span><i class="ln" style="border-color:var(--required)"></i>required (CAP_DOWNSCALED · surrogate)</span>
+      <span><i class="ln" style="border-color:var(--private)"></i>private (CAP_MODELED, LSM τ*)</span>
+      <span><i class="ln" style="border-color:var(--bau);border-top-style:dashed"></i>BAU</span>
+      <span><i class="dot" style="background:var(--private);opacity:.25"></i>정렬 gap (음영)</span>
+    </div>
+    <div class="chart"><svg id="spine" width="940" height="260" viewBox="0 0 940 260"></svg></div>
+    <p class="note">required가 2032·2035·2037·2039년에 계단식 감축하는 동안(16:46 재계산 — 국가·route별 풀 분리로 앞당겨짐)
+    private 최적행동은 2045년에야 움직인다. 음영 면적 = 그 사이 초과 배출(정렬 gap, 신규 <code>alignment_gap_loss</code> artifact가 별도 손실 기준으로 가격화).
+    GCAM 도착 시 진녹 계단만 교체.</p>
+  </section>
+
+  <section style="border-color:var(--required)">
+    <div class="eyebrow" style="color:var(--required)">GCAM 연계 · 핵심 섹션</div>
+    <h2>GCAM ↔ CAP: 섹터가 끝나는 곳에서 자산이 시작된다</h2>
+    <p class="lede" style="margin-bottom:16px">GCAM-KAIST 2.0 (Lee et al. 2024, JCLEPRO 143749)은 한국 철강을
+    <strong>89.17 → 4.78 MtCO₂eq (2015→2050, ≈95% 감축)</strong>까지 말해준다 — 그러나 섹터 합계까지만.
+    어느 고로가 언제 전환해야 하는지는 모델 밖이다. CAP은 그 지점을 넘겨받아 내려가고, 다시 올려보내 검산한다.</p>
+
+    <div class="tbl-wrap"><table style="margin-bottom:18px">
+      <tr><th style="width:33%">GCAM이 주는 것 (IAM_SOURCED)</th><th style="width:33%">CAP이 만드는 것</th><th>CAP이 돌려주는 것</th></tr>
+      <tr>
+        <td>섹터 배출·기술 경로 (BOF / scrap-EAF / DRI-EAF-H2 — CAP 옵션 정의와 기술구조 일치)<br>
+            limCCS 주시나리오 + CurPol·NZ2050·lowH2 밴드<br>탄소 shadow price</td>
+        <td><b>required 자산경로</b> (CAP_DOWNSCALED) — T_required per 고로<br>
+            <b>private 자산경로</b> (CAP_MODELED) — LSM τ*<br>
+            wedge · anatomy · 개입 가격표</td>
+        <td><b>재합산 검산</b> (P6) — 배분이 섹터 합계와 일치함을 증명<br>
+            자산 해상도 결과·정책 캘리브레이션 표 (저자 그룹과 공유 제안됨)</td>
+      </tr>
+    </table></div>
+
+    <div class="eyebrow">GCAM-1 · 배치곡선</div>
+    <h2 style="font-size:1.05rem">H2-DRI 요구 배치: 현행 surrogate와 교체 지점</h2>
+    <div class="sub">현행 <code>Q(t)=38/(1+e^{−0.28(t−2040)})</code> Mt — 문헌 앵커 로지스틱 (<code>legacy_config/model_parameters.yaml</code>).
+    도착한 GCAM 기술경로 CSV가 이 곡선을 자동 대체하고 manifest가 <code>t_gcam_source: surrogate → gcam_raw</code>로 뒤집힌다.</div>
+    <div class="legend">
+      <span><i class="ln" style="border-color:var(--bau);border-top-style:dotted"></i>surrogate (현행)</span>
+      <span><i class="ln" style="border-color:var(--required)"></i>GCAM 원시 (도착 대기 — 형태 미지)</span>
+      <span><i class="dot" style="background:var(--required)"></i>T_required 추출: 요구 배치가 자산 용량을 흡수하는 연도</span>
+    </div>
+    <div class="chart"><svg id="surro" width="940" height="230" viewBox="0 0 940 230"></svg></div>
+    <p class="note">SI Table S5의 2050 종점(95% 감축 ≈ BF-BOF 전면 퇴출)이 surrogate의 "2050년 38Mt" 앵커를 방향 지지 —
+    그래도 연도별 계열은 저자 출력 DB에만 있다(Zenodo 14171830 = 1.0 입력만). 요청 이메일 초안 완성(7/3), 발송 = Phase 0.</p>
+
+    <div class="eyebrow" style="margin-top:26px">GCAM-2 · 탄소가격 사다리</div>
+    <h2 style="font-size:1.05rem">현물 → 정책 시나리오 → shadow price</h2>
+    <div class="sub">실측 KAU(<code>reference_prices.json</code>) + <code>config/scenarios.csv</code>. GCAM shadow price가 도착하면
+    $85 상단이 "가정"에서 "모델 그림자가격 앵커"로 바뀐다 — R2 반론(시나리오 확률에 시장 규율 없음) 부분 해소.</div>
+    <div class="legend">
+      <span><i class="ln" style="border-color:var(--required)"></i>실측 (ICAP)</span>
+      <span><i class="ln" style="border-color:var(--bau)"></i>정책 시나리오 (assumed, p 명기)</span>
+      <span><i class="ln" style="border-color:var(--interv)"></i>CBAM 공통요인 (KR·JP 동시)</span>
+      <span style="font-family:var(--mono)">┄ = GCAM shadow price 도착 대기</span>
+    </div>
+    <div class="chart"><svg id="ladder" width="940" height="300" viewBox="0 0 940 300"></svg></div>
+
+    <div class="eyebrow" style="margin-top:26px">신규 스키마 3표 — 각 표가 먹여 살리는 것</div>
+    <div class="cards" style="margin-top:10px">
+      <div class="card"><b>gcam_technology_pathways</b><span class="src">year × technology × production (Mt) · process_boundary</span>
+        <div class="row">→ 배치곡선(GCAM-1) → T_required 배분 → 차트 1·2</div></div>
+      <div class="card"><b>gcam_sector_pathways</b><span class="src">year × sector × emissions/production</span>
+        <div class="row">→ 재합산 검산의 우변(P6) → reconciliation 패널</div></div>
+      <div class="card"><b>gcam_prices</b><span class="src">year × carbon shadow price (limCCS 등 시나리오별)</span>
+        <div class="row">→ 사다리(GCAM-2) 최상단 → 시나리오 $85 상단 규율. CAP 시장가격과 혼합 금지</div></div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:22px"><table>
+      <tr><th style="width:50%">배분 규칙 — 하드 제약 (gcam_bridge.py, P8: private economics 배제)</th><th>우선순위 (순서대로)</th></tr>
+      <tr><td>
+        ① feasible route 있는 자산만<br>② reline 이전 전환 불가<br>③ 용량 초과 금지<br>④ 중복 배정 금지<br>⑤ 기술별 합계 = GCAM
+      </td><td>
+        ① 기술 가능성 → ② reline window → ③ 폐쇄 필요성 →<br>④ 결정론적 전환비용 → ⑤ 조기 가능 자산<br>
+        <span class="chip chip-sur">WACC·가격 불확실성 배제 — required는 "의무", 가격은 τ*가 담당</span>
+      </td></tr>
+    </table></div>
+
+    <div style="border:1.5px solid var(--required);border-radius:8px;padding:14px 18px;margin-top:18px;background:var(--required-soft)">
+      <div class="eyebrow" style="color:var(--required)">P6 · 재합산 등식 — 이것이 성립해야 "GCAM과 연결됐다"고 말할 수 있다</div>
+      <div style="font-family:var(--mono);font-size:0.92rem;margin:8px 0 6px">
+        Σ<sub>자산</sub> required(t) &nbsp;+&nbsp; residual_sector(t) &nbsp;=&nbsp; GCAM 섹터경로(t)
+      </div>
+      <div style="font-size:0.82rem;color:var(--ink-soft)">
+        허용오차: 기술별·총생산 0.1% · 배출 1%(또는 명시적 residual) · 용량 초과 0 · reline 위반 0 — 회귀 테스트로 강제, 위반 시 빌드 실패.
+        모델 기업 ≠ 한국 철강 100%이므로 residual 없으면 P6 위반. artifact: <code>sector_reconciliation</code> (Phase 3 신설).
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:22px"><table>
+      <tr><th>단계</th><th>일어나는 일</th><th>상태</th></tr>
+      <tr><td>Phase 0</td><td>자산대장 정비(⚠ Kashima·Keihin) → 저자 요청 이메일 발송 — Eom(KAIST)·Lee·Kim(Princeton), 3표 스키마로 확장</td><td><span class="chip chip-miss">4주 미발송</span></td></tr>
+      <tr><td>Phase 3</td><td><code>gcam_bridge.py</code> 분리 + 라벨 3종 + <code>sector_reconciliation</code> — <b>데이터 도착 전 가능</b></td><td><span class="chip chip-part">대기</span></td></tr>
+      <tr><td>도착일</td><td>CSV → <code>data/raw/gcam/</code> + provenance → 재실행 — surrogate 자동 대체, 곡선만 교체</td><td><span class="chip chip-sur">자동</span></td></tr>
+      <tr><td>Phase 4</td><td>순위 안정성 테스트 = 헤드라인 robustness("ranking이 움직이면 코호트 해석 불성립" 선점) · shadow price 앵커 · limCCS+3 시나리오 밴드 · surrogate는 robustness 대안으로 보존</td><td><span class="chip chip-ok">계획</span></td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">차트 2 · 자산 타임라인</div>
+    <h2>자산별 T_required vs 사적 최적 전환 τ*</h2>
+    <div class="sub">출처 <code>wedge.json</code> · <code>tau_star.json</code> — gap = 두 마커 사이 연수</div>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--required)"></i>T_required</span>
+      <span><i class="dot" style="background:var(--private)"></i>τ* (사적 최적)</span>
+      <span style="font-family:var(--mono)">→ = censored (호라이즌 밖, τ* ≥ 표시연도)</span>
+      <span style="color:var(--warn)">⚠ = 8/1 감사 플래그</span>
+    </div>
+    <div class="chart"><svg id="gantt" width="940" height="420" viewBox="0 0 940 420"></svg></div>
+    <p class="note">⚠ Kashima BF1은 2025-03 폐쇄, Keihin BF1은 자산대장 부재 상태로 가격됨 — Phase 0 자산대장 정비 대상.
+    Dangjin BF1·BF2는 feasible route 없음 → T_required 미배정(P8 하드제약).</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">차트 3 · Anatomy</div>
+    <h2>전환비용 불확실성의 구성 — 기업별 위험 분해</h2>
+    <div class="sub">출처 <code>shares_by_firm.json</code> — Euler 분해, 합=1 항등(P1). 막대 위 호버로 정확값.</div>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--c-carbon)"></i>탄소</span>
+      <span><i class="dot" style="background:var(--c-h2)"></i>수소</span>
+      <span><i class="dot" style="background:var(--c-elec)"></i>전력</span>
+      <span><i class="dot" style="background:var(--c-feed)"></i>원료(납사)</span>
+      <span><i class="dot" style="background:var(--c-capex)"></i>자본</span>
+    </div>
+    <div class="bars" id="anatomy"></div>
+    <p class="note">클러스터가 겹치지 않는다: H2 route(POSCO·Nippon)는 수소 위험이,
+    grid/기타 route(JFE·Kobe)는 탄소 위험이, NCC는 원료 위험이 지배. 이 분해가 논문의 대상(레벨 아님).</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">차트 4 · 조건부 프리미엄</div>
+    <h2>기업별 conditional risk charge (bps)</h2>
+    <div class="sub">출처 <code>premium_levels.json</code> — assumed λ·k·EV 조건부. 시장 프리미엄의 실증 식별 아님.</div>
+    <div class="bars" id="premium"></div>
+  </section>
+
+  <section style="border-color:var(--interv)">
+    <div class="eyebrow" style="color:var(--interv)">투자자 뷰 · transition_underwriting.json 실측</div>
+    <h2>기업 리스크 프리미엄 — 레벨은 당신의 가정, 구성은 증명</h2>
+    <p class="lede" style="margin-bottom:16px">Proposition 1의 상품화: 모델 스프레드는 정확히
+    <code>계수 × λ × p_bind</code>로 분해된다. λ(위험가격)와 p_bind(정책 구속 확률)는 투자자마다 다르게 믿어도 되고 —
+    그때에도 <strong>기업별 계수와 위험 구성(anatomy)은 움직이지 않는다.</strong> 논쟁은 레벨에서 하고, 구성은 계약의 근거로 쓴다.</p>
+
+    <div class="eyebrow">INV-1 · 포지셔닝 맵</div>
+    <h2 style="font-size:1.05rem">전환비용 σ/EV vs 모델 스프레드 — 6사</h2>
+    <div class="sub">버블 크기 = EV($bn), 색 = 지배 위험. 스프레드·σ 모두 <code>underwriting</code> 실값 (정본 가정 기준).</div>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--c-carbon)"></i>탄소 지배</span>
+      <span><i class="dot" style="background:var(--c-h2)"></i>수소 지배</span>
+      <span><i class="dot" style="background:var(--c-feed)"></i>원료 지배</span>
+    </div>
+    <div class="chart"><svg id="posmap" width="940" height="320" viewBox="0 0 940 320"></svg></div>
+    <p class="note">읽는 법: 오른쪽 위(JFE)는 EV 대비 전환 불확실성 자체가 큰 기업 — 계약 이전에 경로 문제.
+    왼쪽 아래(Nippon)는 σ/EV가 낮고 스프레드도 낮다 — 수소 위험이 지배하므로 H2 CfD 한 장이 유효.
+    같은 스프레드대(KR·JP NCC)라도 지배 위험이 다르면 처방이 다르다 — 레벨이 아니라 구성이 실사 항목.</p>
+
+    <div class="eyebrow" style="margin-top:26px">INV-2 · 당신의 가정으로 다시 계산</div>
+    <h2 style="font-size:1.05rem">λ · p_bind 슬라이더 — 스프레드는 움직이고 anatomy는 안 움직인다</h2>
+    <div class="sub"><code>sensitivity</code> 그리드(λ 0.15–0.65 × p_bind 0.25–0.95) 실값. 오른쪽 미니 스택 = 위험 구성(불변, P1).</div>
+    <div style="display:flex;gap:28px;flex-wrap:wrap;margin:10px 0 16px;font-size:0.85rem">
+      <label>λ (위험 로딩) <input type="range" id="sl-l" min="0.15" max="0.65" step="0.05" value="0.40" style="vertical-align:middle;accent-color:var(--interv)"> <b id="sl-lv" style="font-family:var(--mono)">0.40</b></label>
+      <label>p_bind (정책 구속 확률) <input type="range" id="sl-p" min="0.25" max="0.95" step="0.05" value="0.50" style="vertical-align:middle;accent-color:var(--interv)"> <b id="sl-pv" style="font-family:var(--mono)">0.50</b></label>
+    </div>
+    <div class="bars" id="invbars" style="grid-template-columns:130px 1fr 120px 110px"></div>
+    <p class="note">모든 값 SCENARIO_CONDITIONAL — assumed k·EV 위의 조건부 요율이지 시장 프리미엄의 실증 식별이 아니다.
+    연간 charge($m) = 스프레드 × EV.</p>
+
+    <div class="eyebrow" style="margin-top:26px">INV-3 · 어떤 계약이 몇 bps를 사는가</div>
+    <h2 style="font-size:1.05rem">개입별 risk buy-down — <span id="cfirm" style="color:var(--interv)">POSCO</span></h2>
+    <div class="sub"><code>contract_options</code> 실값: 조건부 charge 감축(＋) / 증가(−). 기업 선택:</div>
+    <div id="firmbtns" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px"></div>
+    <div class="bars" id="ctrbars" style="grid-template-columns:190px 1fr 150px"></div>
+    <p class="note">⚠ Carbon reform·Integrated package의 음수(위험 증가)는 8/1 감사 fatal 5(A2 부호모순이 §5.1 결과를 생성)의
+    검토 대상 — Phase 1 수정 전까지 해석 보류. H2 CfD가 POSCO·Nippon에서만 applicable한 것은 anatomy(수소 지배)와 정합.</p>
+
+    <div class="tbl-wrap" style="margin-top:24px"><table>
+      <tr><th>고도화 방안 (투자자·기업 평가 관점)</th><th>필요한 것</th></tr>
+      <tr><td><b>① 기업 tearsheet 1장</b> — 스프레드 + anatomy + wedge + best de-risker + deal screen을 기업당 한 페이지로 (위 카드들의 재조합)</td><td><span class="chip chip-ok">지금 데이터로 가능</span></td></tr>
+      <tr><td><b>② 시장 대조 패널</b> — 회사채·CDS 실측 스프레드 옆에 model-implied 병렬 표기 (L1 alignment spread). "모델=조건부 요율, 시장=실측" 라벨 필수</td><td><span class="chip chip-part">KRX/채권 시세 수집</span></td></tr>
+      <tr><td><b>③ λ의 시장 캘리브레이션</b> — λ를 good-deal bound / 자본비용 로딩으로 재명명하고 섹터 ERP·하이일드 스프레드로 밴드 부여 → 슬라이더 기본값에 근거 생김</td><td><span class="chip chip-part">문헌+시장 밴드</span></td></tr>
+      <tr><td><b>④ SLB·CCfD KPI 좌표</b> — wedge 연수를 KPI 스텝다운(연도×감축률)으로 번역, 쿠폰 스텝업 가격 = 조건부 charge (L3)</td><td><span class="chip chip-ok">지금 데이터로 가능</span></td></tr>
+      <tr><td><b>⑤ 포트폴리오 뷰</b> — 은행·자산운용 여신/보유 포트폴리오 가중 합산 (artifact에 <code>portfolio</code> 키 이미 존재)</td><td><span class="chip chip-ok">노출 가중치만</span></td></tr>
+      <tr><td><b>⑥ 순위 안정성 배지</b> — GCAM 도착 후 기업 순위가 시나리오 밴드에서 안 움직임을 tearsheet 배지로 (Phase 4-1)</td><td><span class="chip chip-miss">GCAM 대기</span></td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">데이터셋 맵</div>
+    <h2>리포 <code>data/raw/</code> — 무엇이 있고 무엇이 비었나</h2>
+    <div class="sub">모든 파일은 <code>provenance.yaml</code> 등록 필수(미등록=ingest 실패). 붉은 점선 = MISSING(스키마만 정의, 파이프라인은 banded/assumed로 진행).</div>
+
+    <div class="dsg"><h3>자산·기업 실적 <span class="chip chip-ok">도착</span></h3>
+      <div class="cards">
+        <div class="card"><b>assets/</b> 고로 11기 레지스트리 — 용량·reline·배출강도<span class="src">DART·EDINET FY2024·CDP·ACCR</span><div class="row">11행 · 2026-06-29</div></div>
+        <div class="card"><b>financials/</b> 기업 재무 (POSCO·현대)<span class="src">DART 연결재무제표</span><div class="row">2행 · 2026-06-30</div></div>
+        <div class="card"><b>production/</b> 조강 생산 2021–2024<span class="src">worldsteel·연차보고서</span><div class="row">20행 · 2026-06-29</div></div>
+        <div class="card"><b>dart/</b> 사업보고서 원본 JSON + WACC 입력<span class="src">금융감독원 DART OpenAPI</span><div class="row">30+행 · 2026-07-04</div></div>
+      </div></div>
+
+    <div class="dsg"><h3>비용·가격 파라미터 <span class="chip chip-ok">도착</span><span class="chip chip-miss">1 MISSING</span></h3>
+      <div class="cards">
+        <div class="card"><b>opex_energy/</b> route별 원단위(H2 kg/t·MWh/t) + 가격·σ·μ 밴드<span class="src">SPARK·Midrex·IEA·World Bank·ICAP</span><div class="row">10+14행 · 2026-06-29</div></div>
+        <div class="card"><b>capex_refs/</b> H2-DRI CAPEX K01–K12 + 학습률<span class="src">DIW DP2082·IRENA·LBL·S&amp;P</span><div class="row">12행 · 2026-06-30</div></div>
+        <div class="card miss"><b>route_costs/</b> route 전체 비용 스택<span class="src">MISSING.md — banded로 진행</span></div>
+      </div></div>
+
+    <div class="dsg"><h3>시장 시계열 <span class="chip chip-part">부분</span></h3>
+      <div class="cards">
+        <div class="card"><b>kau/</b> ICAP 시스템 스냅샷 (KAU 현물은 미도착)<span class="src">ICAP 2026-07-22</span><div class="row">부분 · carbon_kr=measured</div></div>
+        <div class="card miss"><b>jepx/</b> 일본 전력 현물<span class="src">MISSING.md</span></div>
+        <div class="card miss"><b>smp/</b> 한국 SMP<span class="src">MISSING.md</span></div>
+      </div></div>
+
+    <div class="dsg"><h3>연구 SSOT (지식기지 승격분) <span class="chip chip-ok">도착</span></h3>
+      <div class="cards">
+        <div class="card"><b>research/</b> params_consolidated 주간 스냅샷 · 상태변수 · instruments · SPARK 비용<span class="src">planit_internal — CAP_DS_params.xlsx export 레인</span><div class="row">36+29+12+25행 · ~2026-07-29</div></div>
+        <div class="card"><b>reference/</b> 기업·CostEngine·문헌·MACC 워크북 4종<span class="src">내부 정리</span></div>
+        <div class="card"><b>legacy_config/</b> 구 파라미터 (계보 보존)<span class="src">2026-07-05 이전 정본</span><div class="row">25행 · 인용 금지</div></div>
+      </div></div>
+
+    <div class="dsg"><h3>GCAM <span class="chip chip-miss">MISSING — 프로젝트 최대 블로커</span></h3>
+      <div class="cards">
+        <div class="card miss"><b>gcam/</b> 섹터·기술 경로 + shadow price<span class="src">신규 스키마 3표: sector_pathways · technology_pathways · prices (process_boundary 포함). 저자 요청 이메일 = Phase 0 (Zenodo 13920489는 v1.0 입력만)</span><div class="row">현재 scenario=surrogate</div></div>
+      </div></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">파라미터 정직성</div>
+    <h2>핵심 artifact의 입력 상태</h2>
+    <div class="sub">출처: 각 artifact의 <code>input_status</code> 필드 — 모든 결과는 이 상태표를 달고 나간다.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>입력</th><th>상태</th><th>비고</th></tr>
+      <tr><td><code>carbon_base_kr</code></td><td><span class="chip chip-ok">measured</span></td><td>KAU 실측 σ (확산+정책점프)</td></tr>
+      <tr><td><code>carbon_base_jp</code> · <code>sigma_h2</code> · <code>firms_registry</code> · <code>rho_h2_elec</code></td><td><span class="chip chip-part">banded</span></td><td>문헌 밴드 — envelope로 전파</td></tr>
+      <tr><td><code>routes_sensitivity(a)</code> · <code>scenarios</code> · <code>λ·k·EV</code> · <code>rho_feedstock_carbon</code></td><td><span class="chip chip-sur">assumed</span></td><td>데이터 요청 대기 (a벡터·σ_H2 = 블로커)</td></tr>
+      <tr><td><code>t_required</code></td><td><span class="chip chip-miss">provisional</span></td><td>surrogate — GCAM 도착 시 교체 + 순위 안정성 테스트</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">흐름</div>
+    <h2>Drive 지식기지 → 리포 → 위 차트들</h2>
+    <div class="diagram">
+<pre class="mermaid">
+flowchart LR
+  D2["Drive 02_Data<br/>CAP_DS_*.xlsx (raw/clean/export)"] -- "export → 날짜 CSV" --> R0["data/raw/ + provenance.yaml"]
+  R0 --> R1["make ingest → parquet"] --> S2["s02 CalibrationSet"]
+  C["config/sheets · firms ·<br/>routes · scenarios (SSOT)"] --> S2
+  S2 --> S3["s03 LSM τ*"] --> O1["차트 2"]
+  S2 --> S4["s04 anatomy"] --> O2["차트 3·4"]
+  S2 --> S7["s07 pathways"] --> O3["차트 1"]
+  G["gcam/ (MISSING)<br/>→ gcam_bridge.py"] -. "surrogate → 교체" .-> S2
+  S3 & S4 & S7 --> M["manifest.json<br/>(git SHA·해시·seed)"]
+</pre>
+    </div>
+  </section>
+</main>
+<div id="tip"></div>
+
+<script>
+const tip = document.getElementById('tip');
+function bindTips(root){
+  root.querySelectorAll('[data-tip]').forEach(el=>{
+    el.addEventListener('mousemove',e=>{tip.textContent=el.dataset.tip;tip.style.opacity=1;
+      tip.style.left=Math.min(e.clientX+14,window.innerWidth-270)+'px';tip.style.top=(e.clientY+14)+'px';});
+    el.addEventListener('mouseleave',()=>tip.style.opacity=0);
+  });
+}
+const NS='http://www.w3.org/2000/svg';
+function E(tag,attrs,parent){const el=document.createElementNS(NS,tag);
+  for(const k in attrs)el.setAttribute(k,attrs[k]);parent.appendChild(el);return el;}
+
+/* ---- 차트 1: spine (실데이터, KR steel 합산) ---- */
+(function(){
+  const years=[...Array(36)].map((_,i)=>2026+i);
+  const bau=45.2;
+  const req=years.map(y=> y<2032?45.2 : y<2035?38.9 : y<2037?32.2 : y<2039?25.6 : 17.2);
+  const pri=years.map(y=> y<2045?45.2 : 17.2);
+  const svg=document.getElementById('spine');
+  const L=52,R=910,T=16,B=228, x=y=>L+(y-2026)/(2061-2026)*(R-L), yy=v=>B-(v/50)*(B-T);
+  for(const g of [0,10,20,30,40,50]){E('line',{x1:L,x2:R,y1:yy(g),y2:yy(g),class:'grid'},svg);
+    E('text',{x:L-8,y:yy(g)+4,'text-anchor':'end'},svg).textContent=g;}
+  for(const g of [2030,2035,2040,2045,2050,2055,2060]){E('text',{x:x(g),y:B+18,'text-anchor':'middle'},svg).textContent=g;}
+  const step=(vals)=>{let d='';years.forEach((y,i)=>{d+=(i?`L${x(y)} ${yy(vals[i-1])} L${x(y)} ${yy(vals[i])}`:`M${x(y)} ${yy(vals[i])}`);});return d+`L${R} ${yy(vals[35])}`;};
+  // gap 음영: private와 required 사이
+  let area='M'+x(2026)+' '+yy(45.2);
+  years.forEach((y,i)=>{area+=`L${x(y)} ${yy(pri[Math.max(i-1,0)])} L${x(y)} ${yy(pri[i])}`});area+=`L${R} ${yy(17.2)}`;
+  let back=`L${R} ${yy(17.2)}`;
+  for(let i=35;i>=0;i--){back+=`L${x(years[i])} ${yy(req[i])} L${x(years[i])} ${yy(req[Math.max(i-1,0)])}`;}
+  E('path',{d:area+back+'Z',fill:'var(--private)',opacity:0.15,stroke:'none'},svg);
+  E('path',{d:step(years.map(()=>bau)),fill:'none',stroke:'var(--bau)','stroke-width':2,'stroke-dasharray':'5 4'},svg);
+  E('path',{d:step(req),fill:'none',stroke:'var(--required)','stroke-width':2.5},svg);
+  E('path',{d:step(pri),fill:'none',stroke:'var(--private)','stroke-width':2.5},svg);
+  const lb=(t,xx,yv,cls,fill)=>{const e=E('text',{x:xx,y:yv,class:cls||''},svg);if(fill)e.style.fill=fill;e.textContent=t;return e;};
+  lb('BAU 45.2',R-90,yy(45.2)-8,'','var(--bau)');
+  lb('required (surrogate)',x(2033),yy(38.9)-10,'lbl','var(--required)');
+  lb('private τ*',x(2046),yy(17.2)-10,'lbl','var(--private)');
+  lb('정렬 gap',x(2038),yy(30)+24,'lbl','var(--private)');
+  const hot=E('rect',{x:L,y:T,width:R-L,height:B-T,fill:'transparent'},svg);
+  hot.dataset.tip='KR 철강(POSCO+현대) 합산. required: 2032→38.9, 2037→32.2, 2040→25.6, 2042→17.2 MtCO₂. private는 2045년 일괄 전환.';
+  bindTips(svg.parentElement);
+})();
+
+/* ---- GCAM-1: surrogate 로지스틱 (model_parameters.yaml 실스펙) ---- */
+(function(){
+  const svg=document.getElementById('surro');
+  const L=52,R=910,T=14,B=196, x=y=>L+(y-2025)/(2060-2025)*(R-L), yy=v=>B-(v/40)*(B-T);
+  for(const g of [0,10,20,30,40]){E('line',{x1:L,x2:R,y1:yy(g),y2:yy(g),class:'grid'},svg);
+    E('text',{x:L-8,y:yy(g)+4,'text-anchor':'end'},svg).textContent=g;}
+  for(const g of [2025,2030,2035,2040,2045,2050,2055,2060]){E('text',{x:x(g),y:B+18,'text-anchor':'middle'},svg).textContent=g;}
+  E('text',{x:L-36,y:T-2},svg).textContent='Mt';
+  const Q=t=>38/(1+Math.exp(-0.28*(t-2040)));
+  let d='';for(let t=2025;t<=2060;t+=0.5){d+=(d?'L':'M')+x(t)+' '+yy(Q(t));}
+  E('path',{d,fill:'none',stroke:'var(--bau)','stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'},svg);
+  // 앵커 마커
+  const m=E('circle',{cx:x(2040),cy:yy(19),r:5.5,fill:'var(--bau)'},svg);
+  m.dataset.tip='변곡점 t0=2040, L=38Mt, k=0.28/yr — 문헌 앵커 (G01 PROVISIONAL)';
+  const m2=E('circle',{cx:x(2050),cy:yy(Q(2050)),r:5.5,fill:'var(--required)'},svg);
+  m2.dataset.tip='2050 ≈ 36Mt — SI Table S5 (89.17→4.78 MtCO₂eq, 95% 감축)와 방향 일치';
+  E('text',{x:x(2040)+10,y:yy(19)+12},svg).textContent='t0=2040 · L=38Mt · k=0.28';
+  const t3=E('text',{x:x(2050)+10,y:yy(Q(2050))+16,class:'lbl'},svg);
+  t3.style.fill='var(--required)';t3.textContent='SI S5 종점과 일치 (2050 ≈ 36Mt)';
+  // 교체 대역
+  E('rect',{x:x(2025),y:T,width:x(2060)-x(2025),height:8,fill:'var(--required)',opacity:0.12},svg);
+  const t4=E('text',{x:x(2026),y:T+22},svg);t4.textContent='GCAM 기술경로 도착 시 이 곡선 전체가 교체 (형태 미지)';
+  bindTips(svg.parentElement);
+})();
+
+/* ---- GCAM-2: 탄소가격 사다리 (reference_prices + scenarios.csv 실값) ---- */
+(function(){
+  const svg=document.getElementById('ladder');
+  const T=18,B=262, yy=v=>B-(v/100)*(B-T);
+  const cols=[{cx:250,name:'한국 (KAU)',rungs:[
+      ['현물 2026 YTD',11,'measured','KAU 연평균 $11.0 (ICAP 실측, n=120일) — 2024 $6.9, 2025 $6.6'],
+      ['SQ',12,'assumed','현상유지 p=0.45 · 비구속 — 얇은 시장 관성'],
+      ['MSR 개혁',35,'assumed','p=0.35 · binds — MSR 도입+이월제한 개혁'],
+      ['CBAM 연계',85,'common','p=0.20 · binds — EUA 수렴, KR·JP 공통요인 (R2: EUA-KAU 스프레드 앵커링 필요)']]},
+    {cx:640,name:'일본 (GX-ETS)',rungs:[
+      ['현물(초기)',5,'assumed','GX-ETS 초기 저가 p=0.50 · 비구속'],
+      ['GX 의무화',30,'assumed','p=0.35 · binds — 2단계+옥션'],
+      ['CBAM 연계',85,'common','p=0.15 · binds — KR과 공통요인']]}];
+  for(const g of [0,25,50,75,100]){E('line',{x1:60,x2:880,y1:yy(g),y2:yy(g),class:'grid'},svg);
+    E('text',{x:52,y:yy(g)+4,'text-anchor':'end'},svg).textContent='$'+g;}
+  cols.forEach(c=>{
+    E('line',{x1:c.cx,x2:c.cx,y1:yy(0),y2:yy(92),stroke:'var(--line)','stroke-width':2},svg);
+    const h=E('text',{x:c.cx,y:B+24,'text-anchor':'middle',class:'lbl'},svg);h.textContent=c.name;
+    c.rungs.forEach((r,i)=>{
+      const col=r[2]==='measured'?'var(--required)':r[2]==='common'?'var(--interv)':'var(--bau)';
+      E('line',{x1:c.cx-26,x2:c.cx+26,y1:yy(r[1]),y2:yy(r[1]),stroke:col,'stroke-width':4,'stroke-linecap':'round'},svg)
+        .dataset.tip=`${r[0]} — $${r[1]}/tCO₂ · ${r[3]}`;
+      const left=(i%2===0); // 좌우 교차 배치 — 인접 레벨 라벨 충돌 방지
+      const t=E('text',{x:left?c.cx-34:c.cx+34,y:yy(r[1])+4,'text-anchor':left?'end':'start'},svg);
+      if(r[2]==='measured'){t.classList.add('lbl');t.style.fill='var(--required)';}
+      t.textContent=`${r[0]} $${r[1]}`;
+    });
+    // shadow price 자리
+    E('rect',{x:c.cx-30,y:yy(100),width:60,height:10,rx:3,fill:'none',stroke:'var(--bau)','stroke-dasharray':'4 3'},svg)
+      .dataset.tip='GCAM shadow price (limCCS) — 도착 대기. $85 상단을 모델 그림자가격으로 규율';
+    const s=E('text',{x:c.cx+38,y:yy(100)+8},svg);s.textContent='shadow price (대기)';
+  });
+  bindTips(svg.parentElement);
+})();
+
+/* ---- 차트 2: 자산 타임라인 (wedge.json 실값) ---- */
+(function(){
+  const rows=[ // [표시명, T_required, tau*, 국가, 플래그] — 23fdaea 재계산 값
+    ['POSCO Pohang BF4',2032,2044.4,'KR',''],
+    ['POSCO Gwangyang BF3',2035,2044.6,'KR',''],
+    ['POSCO Gwangyang BF4',2037,2044.8,'KR',''],
+    ['POSCO Gwangyang BF5',2039,2044.7,'KR',''],
+    ['Hyundai Dangjin BF1',null,2046.8,'KR','no_route'],
+    ['Hyundai Dangjin BF2',null,2046.2,'KR','no_route'],
+    ['Nippon Kashima BF1',2031,2050.2,'JP','audit'],
+    ['Nippon Oita BF1',2036,2050.3,'JP',''],
+    ['JFE Kurashiki BF3',2040,null,'JP','cens'],
+    ['JFE Keihin BF1',2061,null,'JP','cens audit'],
+    ['Kobe Kakogawa BF2',2061,null,'JP','cens'],
+    ['Korea NCC 원형',2032,2037.6,'KR',''],
+    ['Japan NCC 원형',2030,2039.9,'JP','']];
+  const svg=document.getElementById('gantt');
+  const L=178,R=880,T=14,rowH=29, x=y=>L+(y-2028)/(2064-2028)*(R-L);
+  for(const g of [2030,2035,2040,2045,2050,2055,2060]){
+    E('line',{x1:x(g),x2:x(g),y1:T,y2:T+rows.length*rowH,class:'grid'},svg);
+    E('text',{x:x(g),y:T+rows.length*rowH+18,'text-anchor':'middle'},svg).textContent=g;}
+  rows.forEach((r,i)=>{
+    const cy=T+i*rowH+rowH/2;
+    const name=E('text',{x:L-10,y:cy+4,'text-anchor':'end',class:'lbl'},svg);
+    name.textContent=(r[4].includes('audit')?'⚠ ':'')+r[0];
+    if(r[4].includes('audit'))name.style.fill='var(--warn)';
+    if(r[1]!=null&&r[2]!=null){
+      E('line',{x1:x(r[1]),x2:x(r[2]),y1:cy,y2:cy,stroke:'var(--private)','stroke-width':2,opacity:0.45},svg);
+      const g=(r[2]-r[1]).toFixed(1);
+      E('text',{x:(x(r[1])+x(r[2]))/2,y:cy-8,'text-anchor':'middle'},svg).textContent='+'+g+'y';
+    }
+    if(r[1]!=null){const c=E('circle',{cx:x(r[1]),cy:cy,r:5.5,fill:'var(--required)'},svg);
+      c.dataset.tip=`${r[0]} — T_required ${r[1]} (surrogate)`;}
+    if(r[2]!=null){const c=E('circle',{cx:x(r[2]),cy:cy,r:5.5,fill:'var(--private)'},svg);
+      c.dataset.tip=`${r[0]} — τ* ${r[2].toFixed(1)}`;}
+    else if(r[4].includes('cens')){
+      E('path',{d:`M${x(2058)} ${cy} h 26 m -8 -5 l 8 5 l -8 5`,stroke:'var(--private)','stroke-width':2,fill:'none'},svg);
+      E('text',{x:x(2058)-6,y:cy+4,'text-anchor':'end'},svg).textContent='τ* ≥ 2062 (censored)';
+      if(r[1]!=null){} }
+    if(r[4].includes('no_route')){
+      E('text',{x:x(2030),y:cy+4},svg).textContent='feasible route 없음 → T_required 미배정';}
+  });
+  bindTips(svg.parentElement);
+})();
+
+/* ---- 차트 3: anatomy stacked (shares_by_firm.json 실값) ---- */
+(function(){
+  const firms=[ // [이름, route, carbon,h2,elec,feed,capex] — 23fdaea 재계산 값
+    ['POSCO','h2_dri',21.8,73.2,4.7,0,0.3],
+    ['Nippon Steel','h2_dri',6.7,81.4,11.7,0,0.2],
+    ['JFE Steel','scrap_eaf',97.7,0,2.3,0,0.03],
+    ['Kobe Steel','ng_dri',100.0,0,0,0,0.01],
+    ['Korea NCC 원형','e_cracker',2.6,0,1.3,96.0,0.1],
+    ['Japan NCC 원형','ccus_cracker',1.8,0,1.1,97.0,0.1]];
+  const keys=['탄소','수소','전력','원료','자본'];
+  const vars=['--c-carbon','--c-h2','--c-elec','--c-feed','--c-capex'];
+  const host=document.getElementById('anatomy');
+  firms.forEach(f=>{
+    const n=document.createElement('div');n.className='name';n.textContent=f[0];host.appendChild(n);
+    const s=document.createElement('div');s.className='stack';
+    f.slice(2).forEach((v,i)=>{if(v<0.05)return;const seg=document.createElement('i');
+      seg.style.width=v+'%';seg.style.background=`var(${vars[i]})`;
+      seg.dataset.tip=`${f[0]} — ${keys[i]} ${v}%`;s.appendChild(seg);});
+    host.appendChild(s);
+    const m=document.createElement('div');m.className='meta';m.textContent=f[1];host.appendChild(m);
+  });
+  bindTips(host);
+})();
+
+/* ---- 투자자 뷰 (transition_underwriting.json 실값) ---- */
+const INV=[ // [id,이름,σ/EV,정본스프레드bps,EV$bn,지배위험,계수(spread=c·λ·p),anatomy(탄/수/전/원)]
+  ['JFE','JFE Steel',0.448,24.0,15,'carbon',120.0,[97.7,0,2.3,0]],
+  ['POSCO','POSCO',0.270,19.3,40,'h2',88.0,[21.8,73.2,4.7,0]],
+  ['JP_NCC','Japan NCC 원형',0.366,17.9,10,'feedstock',89.3,[1.8,0,1.1,97.0]],
+  ['KR_NCC','Korea NCC 원형',0.242,16.4,15,'feedstock',74.5,[2.6,0,1.3,96.0]],
+  ['KOBE','Kobe Steel',0.296,15.8,8,'carbon',79.2,[99.99,0,0,0]],
+  ['NIPPON','Nippon Steel',0.211,11.3,40,'h2',56.6,[6.7,81.4,11.7,0]]];
+const DRVCOL={carbon:'--c-carbon',h2:'--c-h2',feedstock:'--c-feed'};
+
+/* INV-1 포지셔닝 맵 */
+(function(){
+  const svg=document.getElementById('posmap');
+  const L=64,R=900,T=18,B=270, x=v=>L+(v-0.18)/(0.48-0.18)*(R-L), yy=v=>B-(v/28)*(B-T);
+  for(const g of [0,7,14,21,28]){E('line',{x1:L,x2:R,y1:yy(g),y2:yy(g),class:'grid'},svg);
+    E('text',{x:L-8,y:yy(g)+4,'text-anchor':'end'},svg).textContent=g+'bp';}
+  for(const g of [0.2,0.25,0.3,0.35,0.4,0.45]){E('text',{x:x(g),y:B+18,'text-anchor':'middle'},svg).textContent=g;}
+  E('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle'},svg).textContent='전환비용 σ ÷ EV (불확실성 강도)';
+  INV.forEach(f=>{
+    const r=6+Math.sqrt(f[4])*2.4;
+    const c=E('circle',{cx:x(f[2]),cy:yy(f[3]),r:r,fill:`var(${DRVCOL[f[5]]})`,opacity:0.8},svg);
+    c.dataset.tip=`${f[1]} — 스프레드 ${f[3]}bps · σ/EV ${f[2]} · EV $${f[4]}bn · 지배위험 ${f[5]}`;
+    const t=E('text',{x:x(f[2]),y:yy(f[3])-r-6,'text-anchor':'middle',class:'lbl'},svg);t.textContent=f[1];
+  });
+  bindTips(svg.parentElement);
+})();
+
+/* INV-2 λ×p_bind 슬라이더 */
+(function(){
+  const host=document.getElementById('invbars');
+  const rows=INV.map(f=>{
+    const n=document.createElement('div');n.className='name';n.textContent=f[1];host.appendChild(n);
+    const w=document.createElement('div');const b=document.createElement('div');
+    b.className='bar1';b.style.background='var(--interv)';w.appendChild(b);host.appendChild(w);
+    const m=document.createElement('div');m.className='meta';host.appendChild(m);
+    // anatomy 미니 스택 (불변)
+    const s=document.createElement('div');s.className='stack';s.style.height='10px';
+    const vars=['--c-carbon','--c-h2','--c-elec','--c-feed'];
+    f[7].forEach((v,i)=>{if(v<1)return;const seg=document.createElement('i');
+      seg.style.width=v+'%';seg.style.background=`var(${vars[i]})`;s.appendChild(seg);});
+    s.dataset.tip='위험 구성 — λ·p_bind에 불변 (P1)';host.appendChild(s);
+    return {f,b,m};
+  });
+  const sl=document.getElementById('sl-l'),sp=document.getElementById('sl-p');
+  function upd(){
+    const l=+sl.value,p=+sp.value;
+    document.getElementById('sl-lv').textContent=l.toFixed(2);
+    document.getElementById('sl-pv').textContent=p.toFixed(2);
+    rows.forEach(r=>{
+      const bps=r.f[6]*l*p, usd=bps*r.f[4]/10;
+      r.b.style.width=Math.min(bps/75*100,100)+'%';
+      r.b.dataset.tip=`${r.f[1]} — ${bps.toFixed(1)}bps = ${r.f[6]} × λ${l.toFixed(2)} × p${p.toFixed(2)}`;
+      r.m.textContent=bps.toFixed(1)+'bp · $'+usd.toFixed(0)+'m/yr';
+    });
+    bindTips(host);
+  }
+  sl.addEventListener('input',upd);sp.addEventListener('input',upd);upd();
+})();
+
+/* INV-3 계약 buy-down */
+(function(){
+  const CTR={ // [계약, cut_bps(＋=감축), class] — null = not applicable
+    POSCO:[['H2 CfD (CHPS)',3.57,'trade'],['Long-term PPA',0.17,'de'],['CAPEX subsidy',0.01,'dual'],['Concessional',-0.76,'trade'],['Carbon reform',-7.91,'trade'],['Integrated pkg',-2.63,'trade']],
+    NIPPON:[['H2 CfD (CHPS)',2.79,'trade'],['Long-term PPA',0.36,'de'],['CAPEX subsidy',0.01,'dual'],['Concessional',-0.65,'trade'],['Carbon reform',-5.66,'trade'],['Integrated pkg',-0.94,'trade']],
+    JFE:[['Long-term PPA',0.09,'de'],['CAPEX subsidy',0.0,'de'],['Concessional',0.51,'de'],['Carbon reform',-12.0,'risk'],['Integrated pkg',-11.87,'risk']],
+    KOBE:[['CAPEX subsidy',0.0,'de'],['Concessional',-0.0,'risk'],['Carbon reform',-7.92,'risk'],['Integrated pkg',-7.92,'risk']],
+    KR_NCC:[['Feedstock collar',3.51,'trade'],['Long-term PPA',0.05,'de'],['CAPEX subsidy',0.01,'de'],['Concessional',-1.02,'risk'],['Carbon reform',-6.72,'trade'],['Integrated pkg',-1.68,'risk']],
+    JP_NCC:[['Feedstock collar',3.88,'trade'],['Long-term PPA',0.06,'de'],['CAPEX subsidy',0.0,'de'],['Concessional',-0.69,'risk'],['Carbon reform',-8.94,'risk'],['Integrated pkg',-3.02,'risk']]};
+  const CLS={de:'de-risking only',dual:'dual benefit',trade:'alignment tradeoff',risk:'risk increasing'};
+  const btns=document.getElementById('firmbtns'),host=document.getElementById('ctrbars');
+  function render(id){
+    document.getElementById('cfirm').textContent=INV.find(f=>f[0]===id)[1];
+    host.innerHTML='';
+    const max=12.5;
+    CTR[id].forEach(c=>{
+      const n=document.createElement('div');n.className='name';n.textContent=c[0];host.appendChild(n);
+      const w=document.createElement('div');w.style.position='relative';w.style.height='16px';
+      const mid=document.createElement('div');
+      Object.assign(mid.style,{position:'absolute',left:'50%',top:'-2px',bottom:'-2px',width:'1.5px',background:'var(--line)'});
+      w.appendChild(mid);
+      const b=document.createElement('div');
+      const wpct=Math.min(Math.abs(c[1])/max*50,50);
+      Object.assign(b.style,{position:'absolute',top:0,height:'16px',borderRadius:'3px',
+        width:wpct+'%',[c[1]>=0?'left':'right']:'50%',
+        background:c[1]>=0?'var(--required)':'var(--warn)'});
+      b.dataset.tip=`${c[0]} — ${c[1]>=0?'charge −':'charge +'}${Math.abs(c[1])}bps (${CLS[c[2]]})`;
+      w.appendChild(b);host.appendChild(w);
+      const m=document.createElement('div');m.className='meta';
+      m.textContent=(c[1]>=0?'−':'+')+Math.abs(c[1]).toFixed(2)+'bp · '+CLS[c[2]];host.appendChild(m);
+    });
+    bindTips(host);
+    btns.querySelectorAll('button').forEach(x=>x.style.outline=x.dataset.id===id?'2px solid var(--interv)':'none');
+  }
+  INV.forEach(f=>{
+    const b=document.createElement('button');b.textContent=f[1];b.dataset.id=f[0];
+    Object.assign(b.style,{font:'inherit',fontSize:'0.8rem',padding:'4px 12px',borderRadius:'99px',
+      border:'1px solid var(--line)',background:'var(--surface)',color:'var(--ink)',cursor:'pointer'});
+    b.addEventListener('click',()=>render(f[0]));btns.appendChild(b);
+  });
+  render('POSCO');
+})();
+
+/* ---- 차트 4: premium bps (premium_levels.json 실값) ---- */
+(function(){
+  const data=[['Japan NCC 원형',17.6],['POSCO',17.1],['Korea NCC 원형',16.2],
+              ['JFE Steel',14.3],['Nippon Steel',10.7],['Kobe Steel',9.4]];
+  const host=document.getElementById('premium'),max=20;
+  data.forEach(d=>{
+    const n=document.createElement('div');n.className='name';n.textContent=d[0];host.appendChild(n);
+    const w=document.createElement('div');
+    const b=document.createElement('div');b.className='bar1';b.style.width=(d[1]/max*100)+'%';
+    b.dataset.tip=`${d[0]} — ${d[1]} bps (assumed λ·k·EV 조건부)`;w.appendChild(b);host.appendChild(w);
+    const m=document.createElement('div');m.className='meta';m.textContent=d[1]+' bps';host.appendChild(m);
+  });
+  bindTips(host);
+})();
+</script>
