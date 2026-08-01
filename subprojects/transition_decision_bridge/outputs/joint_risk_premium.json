@@ -1,0 +1,1731 @@
+{
+  "artifact": "joint_risk_premium",
+  "schema_version": "0.2.0",
+  "one_line": "Combine CAP transition-cost and alignment-gap premiums through an explicit shared-carbon covariance without double counting.",
+  "method": {
+    "name": "reconciled aggregate-factor covariance",
+    "formula": "pi_joint = sqrt(pi_transition^2 + pi_gap^2 + 2*rho_transition_gap*pi_transition*pi_gap)",
+    "rho_formula": "rho_transition_gap = ((rho*w)_carbon/sqrt(w' rho w)) * corr(carbon_level, gap_loss_factor)",
+    "probability_control": "transition p_bind remains embedded once in its source component; gap scenario probabilities remain embedded once; covariance adds no probability multiplier",
+    "evidence_grade": "PROVISIONAL",
+    "market_spread": false
+  },
+  "source_artifacts": {
+    "transition_underwriting": {
+      "path": "outputs/transition_underwriting.json",
+      "sha256": "4ffcb550b39d6a529b66ad08430a951d1d52193621a0286c012e27b2f4a02b7a"
+    },
+    "alignment_gap_loss": {
+      "path": "outputs/alignment_gap_loss.json",
+      "sha256": "3fea6eaa6b2912e74f3d7761e8978653f19953186c59e982b3a0a8ee11535397"
+    },
+    "intervention_impacts": {
+      "path": "outputs/intervention_impacts.json",
+      "sha256": "0a1d7ff6fc67b04c6e1e03ea9882196e5d947e07364e035067395582919b9b35"
+    },
+    "tau_star": {
+      "path": "outputs/tau_star.json",
+      "sha256": "0dada1a44cd726afdec5f7217e7227077e558dfd403bd234e88606254131ec54"
+    },
+    "cost_vs_risk": {
+      "path": "outputs/cost_vs_risk.json",
+      "sha256": "b0613a162bc3edb57e769e6864fdf2a2dea00930a448ef5c1ba42b576d0da9cc"
+    },
+    "calibration_resolved": {
+      "path": "outputs/calibration_resolved.json",
+      "sha256": "86df82a2e279cfe40d1de8ce25c99222be4d64b189f3a2f88a3470bf562207c4"
+    },
+    "firms_config": {
+      "path": "config/firms.csv",
+      "sha256": "9f61834a71c28eea24cc5b71c34d1d8196e8ce3c6828f28eb71d3949889838f8"
+    }
+  },
+  "materiality_gate": {
+    "combined_reduction_bps": 0.1,
+    "alignment_gap_reduction_mtco2": 1.0,
+    "gap_overlay_reduction_bps": 0.1,
+    "rule": "at least one reduction threshold"
+  },
+  "portfolio": {
+    "firm_count": 6,
+    "enterprise_value_usd_bn": 128.0,
+    "ev_weighted_transition_bps": 16.7052923763,
+    "ev_weighted_gap_overlay_bps": 5.7546742173,
+    "ev_weighted_combined_bps": 20.7279120248,
+    "ev_weighted_component_sum_upper_bps": 22.4599665936,
+    "interpretation": "EV-weighted average issuer charge; not a portfolio risk measure because cross-firm covariance is not modeled"
+  },
+  "firms": [
+    {
+      "firm_id": "JFE",
+      "firm": "JFE Steel",
+      "country": "JP",
+      "sector": "steel",
+      "route": "scrap_eaf",
+      "enterprise_value_usd_bn": 15.0,
+      "base": {
+        "components": {
+          "transition_headline_bps": 23.9912439207,
+          "gap_overlay_bps": 6.6959287962
+        },
+        "joint_dependence": {
+          "rho_transition_carbon": 0.9992907917,
+          "rho_carbon_gap": 1.0,
+          "rho_transition_gap": 0.9992907917,
+          "method": "reconciled aggregate-factor covariance"
+        },
+        "combined": {
+          "mathematical_lower_bps": 17.2953151245,
+          "independence_bps": 24.9081361668,
+          "central_bps": 30.683459872,
+          "perfect_positive_upper_bps": 30.6871727169,
+          "component_sum_bps": 30.6871727169,
+          "covariance_credit_vs_sum_bps": 0.0037128449,
+          "rho_transition_gap": 0.9992907917,
+          "combined_total_bps": 30.683459872
+        },
+        "reconciliation": {
+          "source_transition_sigma_usd_bn": 6.7176953499,
+          "recomputed_transition_sigma_usd_bn": 6.7176953499,
+          "sigma_abs_error_usd_bn": 0.0,
+          "source_transition_premium_bps": 23.9912439207,
+          "recomputed_transition_premium_bps": 23.9912439207,
+          "premium_abs_error_bps": 0.0,
+          "tolerance": 1e-08
+        },
+        "factor_lineage": {
+          "drivers": [
+            "carbon",
+            "h2",
+            "elec",
+            "feedstock",
+            "capex"
+          ],
+          "exposure_pv_usd_bn": [
+            9.8762731907,
+            0.0,
+            1.1584913704,
+            0.0,
+            0.4654865549
+          ],
+          "effective_sigmas": [
+            0.6719610268,
+            0.3,
+            0.22,
+            0.25,
+            0.15
+          ],
+          "factor_weights_usd_bn": [
+            6.636470674,
+            0.0,
+            0.2548681015,
+            0.0,
+            0.0698229832
+          ],
+          "p_bind": 0.5,
+          "elec_driver": "elec_jp",
+          "probability_treatment": "transition p_bind applied once in source charge; gap probabilities embedded once; correlation changes covariance only"
+        }
+      },
+      "interventions": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": false,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 30.683459872,
+          "after_high_basis_combined_bps": 30.683459872,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9992907917,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9992907917,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 30.599576827,
+          "after_high_basis_combined_bps": 30.6302965824,
+          "combined_reduction_bps": 0.083883045,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0855481248,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9996085305,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9996085305,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 30.6829430974,
+          "after_high_basis_combined_bps": 30.6829430974,
+          "combined_reduction_bps": 0.0005167746,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0006609295,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9993183217,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9993183217,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 42.903873058,
+          "after_high_basis_combined_bps": 42.903873058,
+          "combined_reduction_bps": -12.220413186,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.2251953455,
+          "transition_component_change_bps": 11.9956219604,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9992907917,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9992907917,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 31.2786112426,
+          "after_high_basis_combined_bps": 31.2786112426,
+          "combined_reduction_bps": -0.5951513706,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 1.1058133844,
+          "transition_component_change_bps": -0.5086413244,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9990210244,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9990210244,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": false,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 30.683459872,
+          "after_high_basis_combined_bps": 30.683459872,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9992907917,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9992907917,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 30.683459872,
+          "after_high_basis_combined_bps": 30.683459872,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9992907917,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9992907917,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 42.7765626934,
+          "after_high_basis_combined_bps": 42.8228590634,
+          "combined_reduction_bps": -12.0931028214,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.2251953455,
+          "transition_component_change_bps": 11.8663048311,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9996362667,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9996362667,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        }
+      ],
+      "decision": {
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 30.683459872,
+          "after_combined_bps": 30.599576827,
+          "after_high_basis_combined_bps": 30.6302965824,
+          "combined_reduction_bps": 0.083883045,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0855481248,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9996085305,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9996085305,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        "best_dual_benefit": null,
+        "status": "MODEL_EFFECT_BELOW_MATERIALITY"
+      },
+      "evidence_grade": "PROVISIONAL",
+      "interpretation": "combined conditional transition risk premium; not an observed spread"
+    },
+    {
+      "firm_id": "JP_NCC",
+      "firm": "Japan NCC archetype",
+      "country": "JP",
+      "sector": "petrochemicals",
+      "route": "ccus_cracker",
+      "enterprise_value_usd_bn": 10.0,
+      "base": {
+        "components": {
+          "transition_headline_bps": 17.8752201592,
+          "gap_overlay_bps": 2.0086658908
+        },
+        "joint_dependence": {
+          "rho_transition_carbon": 0.3178840024,
+          "rho_carbon_gap": 1.0,
+          "rho_transition_gap": 0.3178840024,
+          "method": "reconciled aggregate-factor covariance"
+        },
+        "combined": {
+          "mathematical_lower_bps": 15.8665542684,
+          "independence_bps": 17.9877245476,
+          "central_bps": 18.6114401369,
+          "perfect_positive_upper_bps": 19.88388605,
+          "component_sum_bps": 19.88388605,
+          "covariance_credit_vs_sum_bps": 1.2724459131,
+          "rho_transition_gap": 0.3178840024,
+          "combined_total_bps": 18.6114401369
+        },
+        "reconciliation": {
+          "source_transition_sigma_usd_bn": 3.6586540989,
+          "recomputed_transition_sigma_usd_bn": 3.6586540989,
+          "sigma_abs_error_usd_bn": 0.0,
+          "source_transition_premium_bps": 17.8752201592,
+          "recomputed_transition_premium_bps": 17.8752201592,
+          "premium_abs_error_bps": 0.0,
+          "tolerance": 1e-08
+        },
+        "factor_lineage": {
+          "drivers": [
+            "carbon",
+            "h2",
+            "elec",
+            "feedstock",
+            "capex"
+          ],
+          "exposure_pv_usd_bn": [
+            0.5810907818,
+            0.0,
+            1.0297872701,
+            14.091825802,
+            0.5882322695
+          ],
+          "effective_sigmas": [
+            0.6719610268,
+            0.3,
+            0.22,
+            0.25,
+            0.15
+          ],
+          "factor_weights_usd_bn": [
+            0.3904703584,
+            0.0,
+            0.2265531994,
+            3.5229564505,
+            0.0882348404
+          ],
+          "p_bind": 0.5,
+          "elec_driver": "elec_jp",
+          "probability_treatment": "transition p_bind applied once in source charge; gap probabilities embedded once; correlation changes covariance only"
+        }
+      },
+      "interventions": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": false,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 18.6114401369,
+          "after_high_basis_combined_bps": 18.6114401369,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3178840024,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3178840024,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 18.5460941043,
+          "after_high_basis_combined_bps": 18.5696057954,
+          "combined_reduction_bps": 0.0653460326,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0573661508,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3135914208,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3135914208,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 18.6088937158,
+          "after_high_basis_combined_bps": 18.6088937158,
+          "combined_reduction_bps": 0.0025464211,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0026513148,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.317931159,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.317931159,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 27.543263268,
+          "after_high_basis_combined_bps": 27.543263268,
+          "combined_reduction_bps": -8.9318231311,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0675548117,
+          "transition_component_change_bps": 8.9376100796,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3178840024,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3178840024,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 19.2937241304,
+          "after_high_basis_combined_bps": 19.2937241304,
+          "combined_reduction_bps": -0.6822839935,
+          "alignment_gap_change_mtco2": 1.183,
+          "gap_overlay_change_bps": 0.0219208658,
+          "transition_component_change_bps": 0.6935502289,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3093086552,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3093086552,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": true,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 14.9621023925,
+          "after_high_basis_combined_bps": 18.4958900286,
+          "combined_reduction_bps": 3.6493377444,
+          "alignment_gap_change_mtco2": 2.366,
+          "gap_overlay_change_bps": 0.2969443648,
+          "transition_component_change_bps": -3.8764408117,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3498425391,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3498425391,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "de_risking_with_tradeoff"
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 18.6114401369,
+          "after_high_basis_combined_bps": 18.6114401369,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3178840024,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3178840024,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 21.7675841489,
+          "after_high_basis_combined_bps": 27.1753034448,
+          "combined_reduction_bps": -3.156144012,
+          "alignment_gap_change_mtco2": 1.183,
+          "gap_overlay_change_bps": 0.2247634255,
+          "transition_component_change_bps": 3.0212002932,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3447467103,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3447467103,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        }
+      ],
+      "decision": {
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 18.6114401369,
+          "after_combined_bps": 18.5460941043,
+          "after_high_basis_combined_bps": 18.5696057954,
+          "combined_reduction_bps": 0.0653460326,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0573661508,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3135914208,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3135914208,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        "best_dual_benefit": null,
+        "status": "MODEL_EFFECT_BELOW_MATERIALITY"
+      },
+      "evidence_grade": "PROVISIONAL",
+      "interpretation": "combined conditional transition risk premium; not an observed spread"
+    },
+    {
+      "firm_id": "KOBE",
+      "firm": "Kobe Steel",
+      "country": "JP",
+      "sector": "steel",
+      "route": "ng_dri",
+      "enterprise_value_usd_bn": 8.0,
+      "base": {
+        "components": {
+          "transition_headline_bps": 15.8422040637,
+          "gap_overlay_bps": 0.1463681569
+        },
+        "joint_dependence": {
+          "rho_transition_carbon": 0.9999755794,
+          "rho_carbon_gap": 1.0,
+          "rho_transition_gap": 0.9999755794,
+          "method": "reconciled aggregate-factor covariance"
+        },
+        "combined": {
+          "mathematical_lower_bps": 15.6958359068,
+          "independence_bps": 15.8428802064,
+          "central_bps": 15.9885686789,
+          "perfect_positive_upper_bps": 15.9885722206,
+          "component_sum_bps": 15.9885722206,
+          "covariance_credit_vs_sum_bps": 3.5417e-06,
+          "rho_transition_gap": 0.9999755794,
+          "combined_total_bps": 15.9885686789
+        },
+        "reconciliation": {
+          "source_transition_sigma_usd_bn": 2.3658209286,
+          "recomputed_transition_sigma_usd_bn": 2.3658209286,
+          "sigma_abs_error_usd_bn": 0.0,
+          "source_transition_premium_bps": 15.8422040637,
+          "recomputed_transition_premium_bps": 15.8422040637,
+          "premium_abs_error_bps": 0.0,
+          "tolerance": 1e-08
+        },
+        "factor_lineage": {
+          "drivers": [
+            "carbon",
+            "h2",
+            "elec",
+            "feedstock",
+            "capex"
+          ],
+          "exposure_pv_usd_bn": [
+            3.5206850687,
+            0.0,
+            0.0,
+            0.0,
+            0.1102253385
+          ],
+          "effective_sigmas": [
+            0.6719610268,
+            0.3,
+            0.22,
+            0.25,
+            0.15
+          ],
+          "factor_weights_usd_bn": [
+            2.3657631538,
+            0.0,
+            0.0,
+            0.0,
+            0.0165338008
+          ],
+          "p_bind": 0.5,
+          "elec_driver": "elec_jp",
+          "probability_treatment": "transition p_bind applied once in source charge; gap probabilities embedded once; correlation changes covariance only"
+        }
+      },
+      "interventions": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": false,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 15.9885686789,
+          "after_high_basis_combined_bps": 15.9885686789,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999755794,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999755794,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 15.9885686789,
+          "after_high_basis_combined_bps": 15.9885686789,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999755794,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999755794,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 15.9883731791,
+          "after_high_basis_combined_bps": 15.9883731791,
+          "combined_reduction_bps": 0.0001954998,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0001973059,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999880337,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999880337,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 23.9145931885,
+          "after_high_basis_combined_bps": 23.9145931885,
+          "combined_reduction_bps": -7.9260245096,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0049226073,
+          "transition_component_change_bps": 7.9211020318,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999755794,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999755794,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 16.0450893301,
+          "after_high_basis_combined_bps": 16.0450893301,
+          "combined_reduction_bps": -0.0565206512,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0561930005,
+          "transition_component_change_bps": 0.0003331996,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999545479,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999545479,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": false,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 15.9885686789,
+          "after_high_basis_combined_bps": 15.9885686789,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999755794,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999755794,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 15.9885686789,
+          "after_high_basis_combined_bps": 15.9885686789,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999755794,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999755794,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 23.9142991019,
+          "after_high_basis_combined_bps": 23.9142991019,
+          "combined_reduction_bps": -7.925730423,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0049226073,
+          "transition_component_change_bps": 7.9208060729,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999880337,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999880337,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        }
+      ],
+      "decision": {
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 15.9885686789,
+          "after_combined_bps": 15.9883731791,
+          "after_high_basis_combined_bps": 15.9883731791,
+          "combined_reduction_bps": 0.0001954998,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0001973059,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.9999880337,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.9999880337,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        "best_dual_benefit": null,
+        "status": "MODEL_EFFECT_BELOW_MATERIALITY"
+      },
+      "evidence_grade": "PROVISIONAL",
+      "interpretation": "combined conditional transition risk premium; not an observed spread"
+    },
+    {
+      "firm_id": "KR_NCC",
+      "firm": "Korea NCC archetype",
+      "country": "KR",
+      "sector": "petrochemicals",
+      "route": "e_cracker",
+      "enterprise_value_usd_bn": 15.0,
+      "base": {
+        "components": {
+          "transition_headline_bps": 16.4159292304,
+          "gap_overlay_bps": 1.5970238083
+        },
+        "joint_dependence": {
+          "rho_transition_carbon": 0.3396782448,
+          "rho_carbon_gap": 0.9993264459,
+          "rho_transition_gap": 0.3394494531,
+          "method": "reconciled aggregate-factor covariance"
+        },
+        "combined": {
+          "mathematical_lower_bps": 14.8189054221,
+          "independence_bps": 16.4934295264,
+          "central_bps": 17.024442982,
+          "perfect_positive_upper_bps": 18.0129530387,
+          "component_sum_bps": 18.0129530387,
+          "covariance_credit_vs_sum_bps": 0.9885100567,
+          "rho_transition_gap": 0.3394494531,
+          "combined_total_bps": 17.024442982
+        },
+        "reconciliation": {
+          "source_transition_sigma_usd_bn": 3.6229785031,
+          "recomputed_transition_sigma_usd_bn": 3.6229785031,
+          "sigma_abs_error_usd_bn": 0.0,
+          "source_transition_premium_bps": 16.4159292304,
+          "recomputed_transition_premium_bps": 16.4159292304,
+          "premium_abs_error_bps": 0.0,
+          "tolerance": 1e-08
+        },
+        "factor_lineage": {
+          "drivers": [
+            "carbon",
+            "h2",
+            "elec",
+            "feedstock",
+            "capex"
+          ],
+          "exposure_pv_usd_bn": [
+            0.7722051906,
+            0.0,
+            1.8407548442,
+            13.8261141627,
+            0.866244891
+          ],
+          "effective_sigmas": [
+            0.6019005118,
+            0.3,
+            0.135,
+            0.25,
+            0.15
+          ],
+          "factor_weights_usd_bn": [
+            0.4647906994,
+            0.0,
+            0.248501904,
+            3.4565285407,
+            0.1299367336
+          ],
+          "p_bind": 0.55,
+          "elec_driver": "elec_kr_smp",
+          "probability_treatment": "transition p_bind applied once in source charge; gap probabilities embedded once; correlation changes covariance only"
+        }
+      },
+      "interventions": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": false,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 17.024442982,
+          "after_high_basis_combined_bps": 17.024442982,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3396782448,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.3394494531,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 16.9690787365,
+          "after_high_basis_combined_bps": 17.012660114,
+          "combined_reduction_bps": 0.0553642455,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0499303189,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3360204452,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.3357941172,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 17.0192502391,
+          "after_high_basis_combined_bps": 17.0192502391,
+          "combined_reduction_bps": 0.0051927429,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0053852922,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3397897137,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.339560847,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 23.642294076,
+          "after_high_basis_combined_bps": 23.642294076,
+          "combined_reduction_bps": -6.617851094,
+          "alignment_gap_change_mtco2": -2.34,
+          "gap_overlay_change_bps": -0.2000610114,
+          "transition_component_change_bps": 6.7156074125,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3396782448,
+            "rho_carbon_gap": 0.9993586937,
+            "rho_transition_gap": 0.339460407,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 17.9856903154,
+          "after_high_basis_combined_bps": 17.9856903154,
+          "combined_reduction_bps": -0.9612473334,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": -0.0644719352,
+          "transition_component_change_bps": 1.0170853275,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3226027542,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.3223854638,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": true,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 13.6885466905,
+          "after_high_basis_combined_bps": 16.8952645985,
+          "combined_reduction_bps": 3.3358962915,
+          "alignment_gap_change_mtco2": 2.34,
+          "gap_overlay_change_bps": 0.208651608,
+          "transition_component_change_bps": -3.5097511056,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3767156226,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.3764618843,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "de_risking_with_tradeoff"
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 17.024442982,
+          "after_high_basis_combined_bps": 17.024442982,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3396782448,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.3394494531,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 18.7620733033,
+          "after_high_basis_combined_bps": 23.398394917,
+          "combined_reduction_bps": -1.7376303213,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0269659333,
+          "transition_component_change_bps": 1.6808101577,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3725914531,
+            "rho_carbon_gap": 0.9993586937,
+            "rho_transition_gap": 0.3723525079,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        }
+      ],
+      "decision": {
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 17.024442982,
+          "after_combined_bps": 16.9690787365,
+          "after_high_basis_combined_bps": 17.012660114,
+          "combined_reduction_bps": 0.0553642455,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.0499303189,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3360204452,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.3357941172,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        "best_dual_benefit": null,
+        "status": "MODEL_EFFECT_BELOW_MATERIALITY"
+      },
+      "evidence_grade": "PROVISIONAL",
+      "interpretation": "combined conditional transition risk premium; not an observed spread"
+    },
+    {
+      "firm_id": "NIPPON",
+      "firm": "Nippon Steel",
+      "country": "JP",
+      "sector": "steel",
+      "route": "h2_dri",
+      "enterprise_value_usd_bn": 40.0,
+      "base": {
+        "components": {
+          "transition_headline_bps": 11.3254277548,
+          "gap_overlay_bps": 7.139441658
+        },
+        "joint_dependence": {
+          "rho_transition_carbon": 0.4215584262,
+          "rho_carbon_gap": 1.0,
+          "rho_transition_gap": 0.4215584262,
+          "method": "reconciled aggregate-factor covariance"
+        },
+        "combined": {
+          "mathematical_lower_bps": 4.1859860968,
+          "independence_bps": 13.3879401335,
+          "central_bps": 15.7292413948,
+          "perfect_positive_upper_bps": 18.4648694128,
+          "component_sum_bps": 18.4648694128,
+          "covariance_credit_vs_sum_bps": 2.735628018,
+          "rho_transition_gap": 0.4215584262,
+          "combined_total_bps": 15.7292413948
+        },
+        "reconciliation": {
+          "source_transition_sigma_usd_bn": 8.4565045053,
+          "recomputed_transition_sigma_usd_bn": 8.4565045053,
+          "sigma_abs_error_usd_bn": 0.0,
+          "source_transition_premium_bps": 11.3254277548,
+          "recomputed_transition_premium_bps": 11.3254277548,
+          "premium_abs_error_bps": 0.0,
+          "tolerance": 1e-08
+        },
+        "factor_lineage": {
+          "drivers": [
+            "carbon",
+            "h2",
+            "elec",
+            "feedstock",
+            "capex"
+          ],
+          "exposure_pv_usd_bn": [
+            4.7911829728,
+            22.7251644782,
+            5.2336742435,
+            0.0,
+            2.3923958997
+          ],
+          "effective_sigmas": [
+            0.6719610268,
+            0.3,
+            0.22,
+            0.25,
+            0.15
+          ],
+          "factor_weights_usd_bn": [
+            3.2194882299,
+            6.8175493435,
+            1.1514083336,
+            0.0,
+            0.358859385
+          ],
+          "p_bind": 0.5,
+          "elec_driver": "elec_jp",
+          "probability_treatment": "transition p_bind applied once in source charge; gap probabilities embedded once; correlation changes covariance only"
+        }
+      },
+      "interventions": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": true,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 14.0716917558,
+          "after_high_basis_combined_bps": 15.0786287626,
+          "combined_reduction_bps": 1.657549639,
+          "alignment_gap_change_mtco2": 14.4,
+          "gap_overlay_change_bps": 0.2465878444,
+          "transition_component_change_bps": -2.7853809175,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.5590519105,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.5590519105,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "de_risking_with_tradeoff"
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 15.4143191274,
+          "after_high_basis_combined_bps": 15.5298049604,
+          "combined_reduction_bps": 0.3149222674,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.3553900017,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.4231864506,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.4231864506,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 15.5288700672,
+          "after_high_basis_combined_bps": 15.5288700672,
+          "combined_reduction_bps": 0.2003713276,
+          "alignment_gap_change_mtco2": -14.4,
+          "gap_overlay_change_bps": -0.2607666454,
+          "transition_component_change_bps": -0.0052018927,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.4217521415,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.4217521415,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "dual_benefit"
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 20.7362359239,
+          "after_high_basis_combined_bps": 20.7362359239,
+          "combined_reduction_bps": -5.0069945291,
+          "alignment_gap_change_mtco2": -33.84,
+          "gap_overlay_change_bps": -0.4199588503,
+          "transition_component_change_bps": 5.6627138774,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.4215584262,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.4215584262,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 15.9787410291,
+          "after_high_basis_combined_bps": 15.9787410291,
+          "combined_reduction_bps": -0.2494996343,
+          "alignment_gap_change_mtco2": -14.4,
+          "gap_overlay_change_bps": -0.0596127035,
+          "transition_component_change_bps": 0.6461177498,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.3650356557,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.3650356557,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": false,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 15.7292413948,
+          "after_high_basis_combined_bps": 15.7292413948,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.4215584262,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.4215584262,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 15.7292413948,
+          "after_high_basis_combined_bps": 15.7292413948,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.4215584262,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.4215584262,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 17.090756993,
+          "after_high_basis_combined_bps": 19.0353876307,
+          "combined_reduction_bps": -1.3615155982,
+          "alignment_gap_change_mtco2": -28.8,
+          "gap_overlay_change_bps": -0.3144602619,
+          "transition_component_change_bps": 0.9408393814,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.5676997682,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.5676997682,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "risk_increasing_or_unchanged"
+        }
+      ],
+      "decision": {
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 15.4143191274,
+          "after_high_basis_combined_bps": 15.5298049604,
+          "combined_reduction_bps": 0.3149222674,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.3553900017,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.4231864506,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.4231864506,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        "best_dual_benefit": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 15.7292413948,
+          "after_combined_bps": 15.5288700672,
+          "after_high_basis_combined_bps": 15.5288700672,
+          "combined_reduction_bps": 0.2003713276,
+          "alignment_gap_change_mtco2": -14.4,
+          "gap_overlay_change_bps": -0.2607666454,
+          "transition_component_change_bps": -0.0052018927,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.4217521415,
+            "rho_carbon_gap": 1.0,
+            "rho_transition_gap": 0.4217521415,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "dual_benefit"
+        },
+        "status": "DUAL_BENEFIT_DUE_DILIGENCE"
+      },
+      "evidence_grade": "PROVISIONAL",
+      "interpretation": "combined conditional transition risk premium; not an observed spread"
+    },
+    {
+      "firm_id": "POSCO",
+      "firm": "POSCO",
+      "country": "KR",
+      "sector": "steel",
+      "route": "h2_dri",
+      "enterprise_value_usd_bn": 40.0,
+      "base": {
+        "components": {
+          "transition_headline_bps": 19.3415720651,
+          "gap_overlay_bps": 7.6342185067
+        },
+        "joint_dependence": {
+          "rho_transition_carbon": 0.6288840232,
+          "rho_carbon_gap": 0.9993264459,
+          "rho_transition_gap": 0.6284604358,
+          "method": "reconciled aggregate-factor covariance"
+        },
+        "combined": {
+          "mathematical_lower_bps": 11.7073535584,
+          "independence_bps": 20.7936938074,
+          "central_bps": 24.8590397443,
+          "perfect_positive_upper_bps": 26.9757905718,
+          "component_sum_bps": 26.9757905718,
+          "covariance_credit_vs_sum_bps": 2.1167508275,
+          "rho_transition_gap": 0.6284604358,
+          "combined_total_bps": 24.8590397443
+        },
+        "reconciliation": {
+          "source_transition_sigma_usd_bn": 10.7895301724,
+          "recomputed_transition_sigma_usd_bn": 10.7895301724,
+          "sigma_abs_error_usd_bn": 0.0,
+          "source_transition_premium_bps": 19.3415720651,
+          "recomputed_transition_premium_bps": 19.3415720651,
+          "premium_abs_error_bps": 0.0,
+          "tolerance": 1e-08
+        },
+        "factor_lineage": {
+          "drivers": [
+            "carbon",
+            "h2",
+            "elec",
+            "feedstock",
+            "capex"
+          ],
+          "exposure_pv_usd_bn": [
+            10.9846931667,
+            26.5330243306,
+            4.8241862419,
+            0.0,
+            3.3764220244
+          ],
+          "effective_sigmas": [
+            0.6019005118,
+            0.3,
+            0.12,
+            0.25,
+            0.15
+          ],
+          "factor_weights_usd_bn": [
+            6.6116924387,
+            7.9599072992,
+            0.578902349,
+            0.0,
+            0.5064633037
+          ],
+          "p_bind": 0.55,
+          "elec_driver": "elec_kr_regulated",
+          "probability_treatment": "transition p_bind applied once in source charge; gap probabilities embedded once; correlation changes covariance only"
+        }
+      },
+      "interventions": [
+        {
+          "intervention_id": "h2_cfd",
+          "label": "H2 CfD (CHPS-style)",
+          "applicable": true,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 22.5801271814,
+          "after_high_basis_combined_bps": 23.9997615227,
+          "combined_reduction_bps": 2.2789125629,
+          "alignment_gap_change_mtco2": 21.7,
+          "gap_overlay_change_bps": 0.4342851303,
+          "transition_component_change_bps": -3.5742194762,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.7714424845,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.7709228763,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "de_risking_with_tradeoff"
+        },
+        {
+          "intervention_id": "ppa",
+          "label": "Long-term PPA",
+          "applicable": true,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 24.7042984272,
+          "after_high_basis_combined_bps": 24.8465562767,
+          "combined_reduction_bps": 0.1547413171,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": -0.1719478541,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.6309434418,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.6305184672,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "no_tradeoff_de_risking"
+        },
+        {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 24.3741000498,
+          "after_high_basis_combined_bps": 24.3741000498,
+          "combined_reduction_bps": 0.4849396945,
+          "alignment_gap_change_mtco2": -27.97,
+          "gap_overlay_change_bps": -0.6017500796,
+          "transition_component_change_bps": -0.0108703846,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.6292376685,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.6288138429,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "dual_benefit"
+        },
+        {
+          "intervention_id": "carbon_reform",
+          "label": "Carbon reform commitment",
+          "applicable": true,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 31.7394569548,
+          "after_high_basis_combined_bps": 31.7394569548,
+          "combined_reduction_bps": -6.8804172105,
+          "alignment_gap_change_mtco2": -55.94,
+          "gap_overlay_change_bps": -1.1408100323,
+          "transition_component_change_bps": 7.9124612994,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.6288840232,
+            "rho_carbon_gap": 0.9993586937,
+            "rho_transition_gap": 0.6284807159,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "concessional",
+          "label": "Concessional finance",
+          "applicable": true,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 24.8445764884,
+          "after_high_basis_combined_bps": 24.8445764884,
+          "combined_reduction_bps": 0.0144632559,
+          "alignment_gap_change_mtco2": -27.97,
+          "gap_overlay_change_bps": -0.4398342586,
+          "transition_component_change_bps": 0.7618986016,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.5581507799,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.5577748352,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "dual_benefit"
+        },
+        {
+          "intervention_id": "feedstock_hedge",
+          "label": "Naphtha/feedstock collar",
+          "applicable": false,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 24.8590397443,
+          "after_high_basis_combined_bps": 24.8590397443,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.6288840232,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.6284604358,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "circular_feedstock",
+          "label": "Circular-feedstock offtake",
+          "applicable": false,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 24.8590397443,
+          "after_high_basis_combined_bps": 24.8590397443,
+          "combined_reduction_bps": 0.0,
+          "alignment_gap_change_mtco2": 0.0,
+          "gap_overlay_change_bps": 0.0,
+          "transition_component_change_bps": 0.0,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.6288840232,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.6284604358,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": false,
+          "decision_class": "risk_increasing_or_unchanged"
+        },
+        {
+          "intervention_id": "package",
+          "label": "Integrated package",
+          "applicable": true,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 27.3165414824,
+          "after_high_basis_combined_bps": 29.7932713187,
+          "combined_reduction_bps": -2.4575017381,
+          "alignment_gap_change_mtco2": -55.94,
+          "gap_overlay_change_bps": -1.1408100323,
+          "transition_component_change_bps": 2.6320083282,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.7756078856,
+            "rho_carbon_gap": 0.9993586937,
+            "rho_transition_gap": 0.7751104833,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "risk_increasing_or_unchanged"
+        }
+      ],
+      "decision": {
+        "best_no_tradeoff_de_risker": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 24.3741000498,
+          "after_high_basis_combined_bps": 24.3741000498,
+          "combined_reduction_bps": 0.4849396945,
+          "alignment_gap_change_mtco2": -27.97,
+          "gap_overlay_change_bps": -0.6017500796,
+          "transition_component_change_bps": -0.0108703846,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.6292376685,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.6288138429,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "dual_benefit"
+        },
+        "best_dual_benefit": {
+          "intervention_id": "capex_subsidy",
+          "label": "CAPEX subsidy",
+          "applicable": true,
+          "before_combined_bps": 24.8590397443,
+          "after_combined_bps": 24.3741000498,
+          "after_high_basis_combined_bps": 24.3741000498,
+          "combined_reduction_bps": 0.4849396945,
+          "alignment_gap_change_mtco2": -27.97,
+          "gap_overlay_change_bps": -0.6017500796,
+          "transition_component_change_bps": -0.0108703846,
+          "after_joint_dependence": {
+            "rho_transition_carbon": 0.6292376685,
+            "rho_carbon_gap": 0.9993264459,
+            "rho_transition_gap": 0.6288138429,
+            "method": "reconciled aggregate-factor covariance"
+          },
+          "double_count_warning": false,
+          "material_model_effect": true,
+          "decision_class": "dual_benefit"
+        },
+        "status": "DUAL_BENEFIT_DUE_DILIGENCE"
+      },
+      "evidence_grade": "PROVISIONAL",
+      "interpretation": "combined conditional transition risk premium; not an observed spread"
+    }
+  ],
+  "publication_gate": {
+    "status": "SUBPROJECT_PROVISIONAL",
+    "core_or_web_promoted": false,
+    "passed": [
+      "component reconciliation",
+      "single probability treatment",
+      "explicit factor covariance",
+      "correlation bounds",
+      "source lineage"
+    ],
+    "remaining": [
+      "structural joint-state simulation cross-check",
+      "validated T_required",
+      "external or holdout calibration",
+      "separate approval for core/web promotion"
+    ]
+  }
+}

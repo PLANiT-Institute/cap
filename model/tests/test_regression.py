@@ -142,6 +142,31 @@ def test_intervention_gap_direction():
                 assert iv["delta"]["cumulative_gap_mtco2"] <= 1e-6
 
 
+def test_gap_basis_reconciles_across_pathway_and_intervention_artifacts():
+    """s06, s07 and s13 must use the same raw switch map, including τ*=None."""
+    gap_loss = art("alignment_gap_loss")
+    impacts = art("intervention_impacts")
+    pathways = art("emissions_pathways_by_firm")
+    gap_by_firm = {row["firm_id"]: row for row in gap_loss["firms"]}
+    impact_by_firm = {row["firm_id"]: row for row in impacts["firms"]}
+    pathway_by_firm = {row["firm_id"]: row for row in pathways["firms"]}
+
+    for firm_id, impact in impact_by_firm.items():
+        assert impact["before"]["gap_risk_charge_bps"] == pytest.approx(
+            gap_by_firm[firm_id]["gap_risk_charge_bps"]
+        )
+        assert impact["before"]["expected_pv_gap_loss_usd_m"] == pytest.approx(
+            gap_by_firm[firm_id]["expected_pv_gap_loss_usd_m"]
+        )
+        for intervention_id, intervention in impact["interventions"].items():
+            pathway_gap = pathway_by_firm[firm_id]["pathways"]["interventions"][
+                intervention_id
+            ]["cumulative_alignment_gap_mtco2"]
+            assert intervention["after"]["cumulative_gap_mtco2"] == pytest.approx(
+                pathway_gap
+            )
+
+
 # 7. scalar λ/p_bind만 변경 시 고정 exposure 아래 share 불변 (IDENTITY)
 def test_p1_scalar_invariance():
     inv = art("lambda_invariance")

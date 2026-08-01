@@ -40,8 +40,7 @@ def switch_maps(cal: CalibrationSet) -> tuple[dict, dict, dict[str, dict]]:
     private = {a["asset_id"]: a["tau_star_year"] for a in tau_art["assets"]}
     required = {aid: t["year"] for aid, t in cal.t_required.items()}
     interventions = {
-        iid: {aid: (min(y, private[aid]) if (y is not None and private[aid] is not None) else (y or private[aid]))
-              for aid, y in m.items()}
+        iid: dict(m)
         for iid, m in tau_art["interventions"].items()
     }
     return private, required, interventions

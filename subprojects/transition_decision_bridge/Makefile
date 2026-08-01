@@ -1,10 +1,12 @@
-.PHONY: all run test
+.PHONY: all run run-joint test
 
-all: run test
+all: run run-joint test
 
 run:
 	python3 run.py
 
-test:
-	python3 -m unittest discover -s tests -v
+run-joint:
+	cd ../.. && uv run python subprojects/transition_decision_bridge/run_joint.py
 
+test:
+	cd ../.. && uv run python -m unittest discover -s subprojects/transition_decision_bridge/tests -v

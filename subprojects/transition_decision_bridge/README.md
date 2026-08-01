@@ -28,10 +28,16 @@ publication control이다.
 
 ```bash
 python3 subprojects/transition_decision_bridge/run.py
+uv run python subprojects/transition_decision_bridge/run_joint.py
 python3 -m unittest discover -s subprojects/transition_decision_bridge/tests -v
 ```
 
-또는 이 폴더에서 `make all`을 실행한다.
+또는 core calibration을 생성한 뒤 이 폴더에서 `make all`을 실행한다.
+
+```bash
+make calibration
+make -C subprojects/transition_decision_bridge all
+```
 
 ## 범위
 

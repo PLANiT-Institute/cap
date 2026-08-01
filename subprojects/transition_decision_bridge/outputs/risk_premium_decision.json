@@ -6,7 +6,7 @@
   "source_artifacts": {
     "transition_underwriting": {
       "path": "outputs/transition_underwriting.json",
-      "sha256": "a291202de430cdcda439911c21c352b0ecd8f7282973fd7021409f4e65da3884"
+      "sha256": "4ffcb550b39d6a529b66ad08430a951d1d52193621a0286c012e27b2f4a02b7a"
     },
     "alignment_gap_loss": {
       "path": "outputs/alignment_gap_loss.json",
@@ -84,7 +84,7 @@
           "residual_headline_bps": 23.4826025964,
           "headline_reduction_bps": 0.5086413243,
           "alignment_gap_change_mtco2": 0.0,
-          "gap_overlay_change_bps": 0.9743079812,
+          "gap_overlay_change_bps": 1.1058133844,
           "annual_headline_value_reduction_usd_m": 0.7629619865,
           "material_model_effect": true
         },
@@ -96,7 +96,7 @@
           "residual_headline_bps": 23.4826025964,
           "headline_reduction_bps": 0.5086413243,
           "alignment_gap_change_mtco2": 0.0,
-          "gap_overlay_change_bps": 0.9743079812,
+          "gap_overlay_change_bps": 1.1058133844,
           "annual_headline_value_reduction_usd_m": 0.7629619865,
           "material_model_effect": true
         },

@@ -54,6 +54,12 @@ def firm_state(
 
     basis_case="hi"는 계약 잔여 basis를 문헌 최악(Peña 외 2024)으로 두고 다시 푼다.
     """
+    tau_art = json.loads((OUT / "tau_star.json").read_text())
+    private_tau = (
+        {a["asset_id"]: a["tau_star_year"] for a in tau_art["assets"]}
+        if tau_map is None
+        else tau_map
+    )
     frame = firm_frame(cal, tau_map=tau_map)
     g_all = frame[frame["firm_id"] == firm_id]
     g = g_all[g_all["category"] == "priced_route"]
@@ -69,7 +75,11 @@ def firm_state(
     years = np.arange(base_year, base_year + int(cal.lsm["horizon_years"]) + 1)
     residual = dict(zip(cal.routes["route"], cal.routes["residual_intensity_tco2_t"]))
     priced_ids = set(g["asset_id"])
-    pmap = dict(zip(g_all["asset_id"], g_all["tau_star_year"]))
+    # ``firm_frame`` uses the horizon end as a finite exposure proxy when τ* is
+    # None.  Emissions pathways must retain the raw None, which means no switch
+    # within the model horizon.  Mixing the two conventions understated the
+    # base gap and made s06 disagree with s07/s13.
+    pmap = {asset_id: private_tau.get(asset_id) for asset_id in g_all["asset_id"]}
     rmap = {a: cal.t_required[a]["year"] for a in g_all["asset_id"]}
     p_track = firm_pathway(g_all, {a: pmap.get(a) for a in priced_ids}, years, residual)
     r_track = firm_pathway(g_all, {a: rmap.get(a) for a in priced_ids}, years, residual)
