@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1526'/%3E%3Cpath d='M14 45 28 16h9l13 29h-9l-3-8H26l-3 8Zm15-15h7l-3-9Z' fill='%23f59e0b'/%3E%3C/svg%3E">
+  <title>CAP · Joint Risk Premium</title>
+  <style>
+    :root {
+      --ink: #0b1526;
+      --ink-2: #122036;
+      --ink-3: #1a2c47;
+      --line: rgba(148, 163, 184, 0.18);
+      --line-strong: rgba(148, 163, 184, 0.34);
+      --paper: #f6f7f9;
+      --slate: #94a3b8;
+      --slate-dim: #64748b;
+      --molten: #f59e0b;
+      --molten-deep: #d97706;
+      --teal: #50b5c4;
+      --ok: #4ade80;
+      --danger: #fb7185;
+      --white: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--ink); }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 82% -6%, rgba(217, 119, 6, 0.17), transparent 34rem),
+        radial-gradient(circle at -8% 30%, rgba(46, 125, 140, 0.13), transparent 31rem),
+        var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.5;
+    }
+
+    button, select { font: inherit; }
+
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 56px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .eyebrow {
+      margin: 0 0 9px;
+      color: var(--molten);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 5.6vw, 5.3rem);
+      font-weight: 500;
+      letter-spacing: -0.055em;
+      line-height: 0.96;
+    }
+
+    .lede {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: var(--slate);
+      font-size: 0.98rem;
+    }
+
+    .selector label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--slate);
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .selector select {
+      width: 250px;
+      border: 1px solid var(--line-strong);
+      border-radius: 5px;
+      padding: 11px 38px 11px 13px;
+      color: var(--white);
+      background: var(--ink-2);
+      cursor: pointer;
+    }
+
+    .status-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 17px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--slate);
+      background: rgba(18, 32, 54, 0.72);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .pill.provisional { border-color: rgba(245, 158, 11, 0.45); color: #fbbf24; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--line);
+    }
+
+    .metric {
+      min-height: 150px;
+      padding: 24px;
+      background: rgba(18, 32, 54, 0.91);
+    }
+
+    .metric.primary { background: linear-gradient(135deg, rgba(73, 47, 18, 0.96), rgba(18, 32, 54, 0.95)); }
+
+    .metric-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 15px;
+      color: var(--slate);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .swatch { width: 9px; height: 9px; border-radius: 50%; background: var(--teal); }
+    .swatch.gap { background: var(--slate); }
+    .swatch.combined { background: var(--molten); }
+
+    .metric-value {
+      margin-bottom: 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      letter-spacing: -0.05em;
+      line-height: 0.9;
+    }
+
+    .metric-unit { margin-left: 5px; color: var(--slate); font-family: inherit; font-size: 0.85rem; letter-spacing: 0; }
+    .metric-note { margin: 0; color: var(--slate); font-size: 0.76rem; }
+
+    .panel {
+      overflow: hidden;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: rgba(18, 32, 54, 0.88);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.14);
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 22px 24px 17px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin-bottom: 5px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+    }
+
+    .panel-copy { margin: 0; color: var(--slate); font-size: 0.78rem; }
+    .panel-meta { flex: 0 0 auto; color: var(--molten); font-size: 0.75rem; font-weight: 700; text-align: right; }
+    .chart-wrap { overflow-x: auto; padding: 8px 18px 18px; }
+    svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 0 24px 19px;
+      color: var(--slate);
+      font-size: 0.72rem;
+    }
+
+    .legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .legend i { display: inline-block; width: 18px; height: 3px; background: var(--molten); }
+    .legend i.transition { height: 9px; width: 9px; border: 2px solid var(--teal); border-radius: 50%; background: var(--ink-2); }
+    .legend i.upper { height: 13px; width: 1px; border-left: 1px dashed var(--slate); background: transparent; }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+    }
+
+    .detail-grid .panel { margin-bottom: 0; }
+
+    .callout {
+      margin: 0 24px 22px;
+      padding: 14px 15px;
+      border-left: 2px solid var(--molten);
+      color: #dbe3ef;
+      background: rgba(11, 21, 38, 0.7);
+      font-size: 0.79rem;
+    }
+
+    .callout strong { color: var(--white); }
+
+    .readout {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      border-top: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .readout div { padding: 15px 18px; background: var(--ink-2); }
+    .readout span { display: block; color: var(--slate); font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.07em; }
+    .readout strong { display: block; margin-top: 3px; color: var(--white); font-size: 0.9rem; font-weight: 650; }
+
+    .method-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 13px;
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--slate);
+      background: rgba(18, 32, 54, 0.62);
+      font-size: 0.76rem;
+    }
+
+    .method-note b {
+      width: 24px;
+      height: 24px;
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      border-radius: 50%;
+      color: var(--molten);
+      line-height: 22px;
+      text-align: center;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 22px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--slate-dim);
+      font-size: 0.7rem;
+    }
+
+    .error {
+      display: none;
+      margin-bottom: 18px;
+      padding: 13px 15px;
+      border: 1px solid rgba(251, 113, 133, 0.45);
+      border-radius: 6px;
+      color: #fecdd3;
+      background: rgba(127, 29, 29, 0.25);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; align-items: start; }
+      .selector select { width: min(100%, 360px); }
+      .detail-grid { grid-template-columns: 1fr; }
+      h1 { max-width: 600px; }
+    }
+
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 24px, 1180px); padding-top: 30px; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .metric { min-height: 0; padding: 19px; }
+      .metric-value { font-size: 2.7rem; }
+      .panel-head { display: block; padding: 19px 18px 14px; }
+      .panel-meta { margin-top: 9px; text-align: left; }
+      .chart-wrap { padding: 6px 8px 14px; }
+      .legend { padding: 0 18px 17px; }
+      .callout { margin: 0 18px 18px; }
+      .readout { grid-template-columns: 1fr; }
+      footer { display: block; }
+      footer span { display: block; margin-bottom: 5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">CAP · Transition Decision Bridge</p>
+        <h1>Joint risk premium</h1>
+        <p class="lede">전환비용 위험과 alignment-gap 위험을 공분산으로 연결해, 기업별 조건부 리스크 프리미엄과 정책 개입의 방향을 한 화면에서 읽습니다.</p>
+        <div class="status-line">
+          <span class="pill provisional">PROVISIONAL</span>
+          <span class="pill">Model-implied</span>
+          <span class="pill">Not observed spread</span>
+        </div>
+      </div>
+      <div class="selector">
+        <label for="firmSelect">기업 상세 보기</label>
+        <select id="firmSelect" aria-label="분석할 기업 선택"></select>
+      </div>
+    </header>
+
+    <div id="error" class="error" role="alert"></div>
+
+    <section class="summary-grid" aria-label="EV 가중 포트폴리오 요약">
+      <article class="metric primary">
+        <div class="metric-label"><span class="swatch combined"></span>Combined premium</div>
+        <div class="metric-value" id="combinedMetric">—</div>
+        <p class="metric-note">공분산을 반영한 EV 가중 기업 charge</p>
+      </article>
+      <article class="metric">
+        <div class="metric-label"><span class="swatch"></span>Transition component</div>
+        <div class="metric-value" id="transitionMetric">—</div>
+        <p class="metric-note">전환비용 불확실성의 headline component</p>
+      </article>
+      <article class="metric">
+        <div class="metric-label"><span class="swatch gap"></span>Gap component</div>
+        <div class="metric-value" id="gapMetric">—</div>
+        <p class="metric-note">required-path 괴리의 provisional overlay</p>
+      </article>
+    </section>
+
+    <section class="panel" aria-labelledby="comparisonTitle">
+      <div class="panel-head">
+        <div>
+          <h2 id="comparisonTitle">기업별 위험 프리미엄</h2>
+          <p class="panel-copy">막대는 결합값, 점은 전환 component, 점선은 완전 양의존 상한입니다.</p>
+        </div>
+        <div class="panel-meta" id="portfolioUpper">—</div>
+      </div>
+      <div class="chart-wrap"><svg id="comparisonChart" viewBox="0 0 1040 360" role="img"></svg></div>
+      <div class="legend" aria-hidden="true">
+        <span><i></i> 결합 중앙값</span>
+        <span><i class="transition"></i> 전환 component</span>
+        <span><i class="upper"></i> 완전 양의존 상한</span>
+      </div>
+    </section>
+
+    <section class="detail-grid">
+      <article class="panel" aria-labelledby="bridgeTitle">
+        <div class="panel-head">
+          <div>
+            <h2 id="bridgeTitle">두 위험축의 결합</h2>
+            <p class="panel-copy" id="firmDescriptor">—</p>
+          </div>
+          <div class="panel-meta" id="rhoLabel">—</div>
+        </div>
+        <div class="chart-wrap"><svg id="bridgeChart" viewBox="0 0 620 360" role="img"></svg></div>
+        <div class="callout" id="bridgeCallout">—</div>
+        <div class="readout">
+          <div><span>Independence</span><strong id="independenceReadout">—</strong></div>
+          <div><span>Central</span><strong id="centralReadout">—</strong></div>
+          <div><span>Upper</span><strong id="upperReadout">—</strong></div>
+        </div>
+      </article>
+
+      <article class="panel" aria-labelledby="interventionTitle">
+        <div class="panel-head">
+          <div>
+            <h2 id="interventionTitle">개입의 순효과</h2>
+            <p class="panel-copy">오른쪽은 premium 감소, 왼쪽은 증가입니다. 적용 가능한 옵션만 표시합니다.</p>
+          </div>
+          <div class="panel-meta" id="decisionStatus">—</div>
+        </div>
+        <div class="chart-wrap"><svg id="interventionChart" viewBox="0 0 720 430" role="img"></svg></div>
+        <div class="callout" id="decisionCallout">—</div>
+      </article>
+    </section>
+
+    <aside class="method-note">
+      <b>i</b>
+      <div><strong>해석 기준.</strong> Transition과 Gap은 단순히 쌓은 막대가 아닙니다. 중앙값은 두 위험축의 상관계수 ρ를 반영해 결합하며, EV 가중 결과는 기업별 charge의 평균이지 기업 간 공분산까지 포함한 포트폴리오 VaR가 아닙니다.</div>
+    </aside>
+
+    <footer>
+      <span>CAP · Transition Decision Bridge · local analytical preview</span>
+      <span id="dataSource">Loading current JSON…</span>
+    </footer>
+  </main>
+
+  <script>
+    const FALLBACK = {
+      portfolio: {
+        firm_count: 6,
+        enterprise_value_usd_bn: 128.0,
+        ev_weighted_transition_bps: 16.7052923763,
+        ev_weighted_gap_overlay_bps: 5.7546742173,
+        ev_weighted_combined_bps: 20.7279120248,
+        ev_weighted_component_sum_upper_bps: 22.4599665936
+      },
+      firms: [
+        firm("JFE", "JFE Steel", "JP", "steel", "scrap_eaf", 23.9912439207, 6.6959287962, 24.9081361668, 30.683459872, 30.6871727169, 0.9992907917, "MODEL_EFFECT_BELOW_MATERIALITY", "Long-term PPA", 0.083883045, [
+          iv("ppa", "Long-term PPA", 0.083883045, "no_tradeoff_de_risking", false), iv("capex_subsidy", "CAPEX subsidy", 0.0005167746, "no_tradeoff_de_risking", false), iv("carbon_reform", "Carbon reform commitment", -12.220413186, "risk_increasing_or_unchanged", false), iv("concessional", "Concessional finance", -0.5951513706, "risk_increasing_or_unchanged", false), iv("package", "Integrated package", -12.0931028214, "risk_increasing_or_unchanged", false)
+        ]),
+        firm("JP_NCC", "Japan NCC archetype", "JP", "petrochemicals", "ccus_cracker", 17.8752201592, 2.0086658908, 17.9877245476, 18.6114401369, 19.88388605, 0.3178840024, "MODEL_EFFECT_BELOW_MATERIALITY", "Long-term PPA", 0.0653460326, [
+          iv("ppa", "Long-term PPA", 0.0653460326, "no_tradeoff_de_risking", false), iv("capex_subsidy", "CAPEX subsidy", 0.0025464211, "no_tradeoff_de_risking", false), iv("carbon_reform", "Carbon reform commitment", -8.9318231311, "risk_increasing_or_unchanged", false), iv("concessional", "Concessional finance", -0.6822839935, "risk_increasing_or_unchanged", false), iv("feedstock_hedge", "Naphtha/feedstock collar", 3.6493377444, "de_risking_with_tradeoff", true), iv("package", "Integrated package", -3.156144012, "risk_increasing_or_unchanged", false)
+        ]),
+        firm("KOBE", "Kobe Steel", "JP", "steel", "ng_dri", 15.8422040637, 0.1463681569, 15.8428802064, 15.9885686789, 15.9885722206, 0.9999755794, "MODEL_EFFECT_BELOW_MATERIALITY", "CAPEX subsidy", 0.0001954998, [
+          iv("ppa", "Long-term PPA", 0, "risk_increasing_or_unchanged", false), iv("capex_subsidy", "CAPEX subsidy", 0.0001954998, "no_tradeoff_de_risking", false), iv("carbon_reform", "Carbon reform commitment", -7.9260245096, "risk_increasing_or_unchanged", false), iv("concessional", "Concessional finance", -0.0565206512, "risk_increasing_or_unchanged", false), iv("package", "Integrated package", -7.925730423, "risk_increasing_or_unchanged", false)
+        ]),
+        firm("KR_NCC", "Korea NCC archetype", "KR", "petrochemicals", "e_cracker", 16.4159292304, 1.5970238083, 16.4934295264, 17.024442982, 18.0129530387, 0.3394494531, "MODEL_EFFECT_BELOW_MATERIALITY", "Long-term PPA", 0.0553642455, [
+          iv("ppa", "Long-term PPA", 0.0553642455, "no_tradeoff_de_risking", false), iv("capex_subsidy", "CAPEX subsidy", 0.0051927429, "no_tradeoff_de_risking", false), iv("carbon_reform", "Carbon reform commitment", -6.617851094, "risk_increasing_or_unchanged", true), iv("concessional", "Concessional finance", -0.9612473334, "risk_increasing_or_unchanged", false), iv("feedstock_hedge", "Naphtha/feedstock collar", 3.3358962915, "de_risking_with_tradeoff", true), iv("package", "Integrated package", -1.7376303213, "risk_increasing_or_unchanged", false)
+        ]),
+        firm("NIPPON", "Nippon Steel", "JP", "steel", "h2_dri", 11.3254277548, 7.139441658, 13.3879401335, 15.7292413948, 18.4648694128, 0.4215584262, "DUAL_BENEFIT_DUE_DILIGENCE", "Long-term PPA", 0.3149222674, [
+          iv("h2_cfd", "H2 CfD (CHPS-style)", 1.657549639, "de_risking_with_tradeoff", true), iv("ppa", "Long-term PPA", 0.3149222674, "no_tradeoff_de_risking", true), iv("capex_subsidy", "CAPEX subsidy", 0.2003713276, "dual_benefit", true), iv("carbon_reform", "Carbon reform commitment", -5.0069945291, "risk_increasing_or_unchanged", true), iv("concessional", "Concessional finance", -0.2494996343, "risk_increasing_or_unchanged", true), iv("package", "Integrated package", -1.3615155982, "risk_increasing_or_unchanged", true)
+        ], { label: "CAPEX subsidy", reduction: 0.2003713276, gap: -14.4 }),
+        firm("POSCO", "POSCO", "KR", "steel", "h2_dri", 19.3415720651, 7.6342185067, 20.7936938074, 24.8590397443, 26.9757905718, 0.6284604358, "DUAL_BENEFIT_DUE_DILIGENCE", "CAPEX subsidy", 0.4849396945, [
+          iv("h2_cfd", "H2 CfD (CHPS-style)", 2.2789125629, "de_risking_with_tradeoff", true), iv("ppa", "Long-term PPA", 0.1547413171, "no_tradeoff_de_risking", true), iv("capex_subsidy", "CAPEX subsidy", 0.4849396945, "dual_benefit", true), iv("carbon_reform", "Carbon reform commitment", -6.8804172105, "risk_increasing_or_unchanged", true), iv("concessional", "Concessional finance", 0.0144632559, "dual_benefit", true), iv("package", "Integrated package", -2.4575017381, "risk_increasing_or_unchanged", true)
+        ], { label: "CAPEX subsidy", reduction: 0.4849396945, gap: -27.97 })
+      ]
+    };
+
+    function iv(intervention_id, label, combined_reduction_bps, decision_class, material_model_effect) {
+      return { intervention_id, label, applicable: true, combined_reduction_bps, decision_class, material_model_effect };
+    }
+
+    function firm(firm_id, name, country, sector, route, transition, gap, independence, central, upper, rho, status, bestLabel, bestReduction, interventions, dual = null) {
+      const best = { label: bestLabel, combined_reduction_bps: bestReduction, material_model_effect: Math.abs(bestReduction) >= 0.1 };
+      return {
+        firm_id, firm: name, country, sector, route, evidence_grade: "PROVISIONAL",
+        base: {
+          components: { transition_headline_bps: transition, gap_overlay_bps: gap },
+          joint_dependence: { rho_transition_gap: rho },
+          combined: { independence_bps: independence, central_bps: central, perfect_positive_upper_bps: upper }
+        },
+        interventions,
+        decision: {
+          status,
+          best_no_tradeoff_de_risker: best,
+          best_dual_benefit: dual ? { label: dual.label, combined_reduction_bps: dual.reduction, alignment_gap_change_mtco2: dual.gap, material_model_effect: true } : null
+        }
+      };
+    }
+
+    const NS = "http://www.w3.org/2000/svg";
+    const $ = (id) => document.getElementById(id);
+    const fmt = (value, digits = 2) => Number(value).toFixed(digits);
+    const bp = (value) => `${fmt(value)} bp`;
+    const make = (tag, attrs = {}, text = "") => {
+      const node = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+      if (text) node.textContent = text;
+      return node;
+    };
+
+    let model = FALLBACK;
+    let selectedFirmId = "POSCO";
+
+    function normalize(raw) {
+      return raw;
+    }
+
+    function setMetric(id, value) {
+      $(id).innerHTML = `${fmt(value)}<span class="metric-unit">bp</span>`;
+    }
+
+    function renderSummary() {
+      const p = model.portfolio;
+      setMetric("combinedMetric", p.ev_weighted_combined_bps);
+      setMetric("transitionMetric", p.ev_weighted_transition_bps);
+      setMetric("gapMetric", p.ev_weighted_gap_overlay_bps);
+      $("portfolioUpper").textContent = `완전 양의존 상한 ${bp(p.ev_weighted_component_sum_upper_bps)}`;
+    }
+
+    function renderSelect() {
+      const select = $("firmSelect");
+      select.replaceChildren(...model.firms.map((firm) => {
+        const option = document.createElement("option");
+        option.value = firm.firm_id;
+        option.textContent = firm.firm;
+        option.selected = firm.firm_id === selectedFirmId;
+        return option;
+      }));
+    }
+
+    function addSvgTitle(svg, titleText, descText) {
+      const title = make("title", {}, titleText);
+      const desc = make("desc", {}, descText);
+      svg.append(title, desc);
+    }
+
+    function renderComparison() {
+      const svg = $("comparisonChart");
+      svg.replaceChildren();
+      addSvgTitle(svg, "기업별 결합 위험 프리미엄 비교", "각 기업의 결합 중앙값과 전환 component, 완전 양의존 상한을 basis point로 비교합니다.");
+
+      const firms = [...model.firms].sort((a, b) => b.base.combined.central_bps - a.base.combined.central_bps);
+      const max = Math.max(...firms.map((f) => f.base.combined.perfect_positive_upper_bps)) * 1.12;
+      const left = 218, right = 94, top = 37, rowH = 47, chartW = 1040 - left - right;
+      const x = (value) => left + (value / max) * chartW;
+
+      [0, 10, 20, 30].filter((n) => n <= max).forEach((tick) => {
+        svg.append(make("line", { x1: x(tick), y1: top - 13, x2: x(tick), y2: top + rowH * firms.length - 4, stroke: "rgba(148,163,184,.15)", "stroke-width": 1 }));
+        svg.append(make("text", { x: x(tick), y: 16, fill: "#64748b", "font-size": 11, "text-anchor": "middle" }, `${tick} bp`));
+      });
+
+      firms.forEach((firm, index) => {
+        const y = top + index * rowH;
+        const c = firm.base.combined;
+        const t = firm.base.components.transition_headline_bps;
+        if (firm.firm_id === selectedFirmId) {
+          svg.append(make("rect", { x: 4, y: y - 9, width: 1028, height: 38, rx: 4, fill: "rgba(245,158,11,.07)", stroke: "rgba(245,158,11,.20)" }));
+        }
+        svg.append(make("text", { x: left - 18, y: y + 14, fill: firm.firm_id === selectedFirmId ? "#f8fafc" : "#cbd5e1", "font-size": 13, "font-weight": firm.firm_id === selectedFirmId ? 700 : 500, "text-anchor": "end" }, firm.firm));
+        svg.append(make("rect", { x: left, y, width: chartW, height: 18, rx: 3, fill: "rgba(11,21,38,.82)" }));
+        svg.append(make("rect", { x: left, y, width: Math.max(2, x(c.central_bps) - left), height: 18, rx: 3, fill: firm.firm_id === selectedFirmId ? "#f59e0b" : "#d97706", opacity: firm.firm_id === selectedFirmId ? 1 : 0.72 }));
+        svg.append(make("line", { x1: x(c.perfect_positive_upper_bps), y1: y - 5, x2: x(c.perfect_positive_upper_bps), y2: y + 24, stroke: "#94a3b8", "stroke-width": 1.2, "stroke-dasharray": "3 3" }));
+        svg.append(make("circle", { cx: x(t), cy: y + 9, r: 4.2, fill: "#122036", stroke: "#50b5c4", "stroke-width": 2 }));
+        svg.append(make("text", { x: x(c.central_bps) + 9, y: y + 14, fill: "#f8fafc", "font-size": 12, "font-weight": 700 }, fmt(c.central_bps)));
+      });
+    }
+
+    function renderBridge(firm) {
+      const svg = $("bridgeChart");
+      svg.replaceChildren();
+      addSvgTitle(svg, `${firm.firm} 위험축 결합`, "전환 component, gap component, 독립 가정, 중앙 결합값, 완전 양의존 상한을 비교합니다.");
+
+      const transition = firm.base.components.transition_headline_bps;
+      const gap = firm.base.components.gap_overlay_bps;
+      const c = firm.base.combined;
+      const values = [
+        { label: "Transition", value: transition, color: "#50b5c4" },
+        { label: "Gap", value: gap, color: "#94a3b8" },
+        { label: "Independent", value: c.independence_bps, color: "#64748b" },
+        { label: "Central", value: c.central_bps, color: "#f59e0b" },
+        { label: "Upper", value: c.perfect_positive_upper_bps, color: "#f8fafc" }
+      ];
+      const left = 54, bottom = 290, top = 34, chartH = bottom - top, max = Math.max(...values.map((d) => d.value)) * 1.14;
+      const y = (value) => bottom - (value / max) * chartH;
+      const barW = 66, gapW = 38;
+
+      for (let tick = 0; tick <= max; tick += 10) {
+        svg.append(make("line", { x1: left, y1: y(tick), x2: 600, y2: y(tick), stroke: "rgba(148,163,184,.14)" }));
+        svg.append(make("text", { x: left - 10, y: y(tick) + 4, fill: "#64748b", "font-size": 10, "text-anchor": "end" }, `${tick}`));
+      }
+
+      values.forEach((item, index) => {
+        const x = left + 25 + index * (barW + gapW);
+        const height = bottom - y(item.value);
+        svg.append(make("rect", { x, y: y(item.value), width: barW, height: Math.max(2, height), rx: 3, fill: item.color, opacity: item.label === "Central" ? 1 : 0.78 }));
+        svg.append(make("text", { x: x + barW / 2, y: y(item.value) - 9, fill: "#f8fafc", "font-size": 12, "font-weight": 700, "text-anchor": "middle" }, fmt(item.value)));
+        svg.append(make("text", { x: x + barW / 2, y: bottom + 22, fill: item.label === "Central" ? "#fbbf24" : "#94a3b8", "font-size": 10.5, "text-anchor": "middle" }, item.label));
+      });
+
+      const rho = firm.base.joint_dependence.rho_transition_gap;
+      $("firmDescriptor").textContent = `${firm.country} · ${firm.sector} · ${firm.route.replaceAll("_", " ")}`;
+      $("rhoLabel").textContent = `ρ(T,G) = ${fmt(rho, 3)}`;
+      $("independenceReadout").textContent = bp(c.independence_bps);
+      $("centralReadout").textContent = bp(c.central_bps);
+      $("upperReadout").textContent = bp(c.perfect_positive_upper_bps);
+
+      const covarianceLift = c.central_bps - c.independence_bps;
+      const upperCredit = c.perfect_positive_upper_bps - c.central_bps;
+      $("bridgeCallout").innerHTML = `<strong>핵심:</strong> 상관관계를 반영하면 독립 가정보다 <strong>${fmt(covarianceLift)} bp</strong> 높고, 완전 양의존 상한보다 <strong>${fmt(upperCredit)} bp</strong> 낮습니다.`;
+    }
+
+    function classLabel(value) {
+      return {
+        dual_benefit: "dual benefit",
+        no_tradeoff_de_risking: "no trade-off",
+        de_risking_with_tradeoff: "trade-off",
+        risk_increasing_or_unchanged: "risk ↑ / flat"
+      }[value] || value;
+    }
+
+    function renderInterventions(firm) {
+      const svg = $("interventionChart");
+      svg.replaceChildren();
+      addSvgTitle(svg, `${firm.firm} 개입 순효과`, "적용 가능한 개입별 결합 위험 프리미엄 감소 또는 증가를 basis point로 표시합니다.");
+
+      const rows = firm.interventions.filter((item) => item.applicable).sort((a, b) => b.combined_reduction_bps - a.combined_reduction_bps);
+      const maxAbs = Math.max(1, ...rows.map((d) => Math.abs(d.combined_reduction_bps)));
+      const left = 218, right = 79, axis = left + (720 - left - right) / 2, top = 38, rowH = 58, half = (720 - left - right) / 2 - 14;
+      const width = (value) => (Math.abs(value) / maxAbs) * half;
+      const height = Math.max(300, top + rows.length * rowH + 33);
+      svg.setAttribute("viewBox", `0 0 720 ${height}`);
+      svg.append(make("line", { x1: axis, y1: 20, x2: axis, y2: height - 22, stroke: "rgba(248,250,252,.4)", "stroke-width": 1 }));
+      svg.append(make("text", { x: axis - half, y: 14, fill: "#fb7185", "font-size": 10 }, "PREMIUM INCREASE"));
+      svg.append(make("text", { x: axis + half, y: 14, fill: "#4ade80", "font-size": 10, "text-anchor": "end" }, "PREMIUM REDUCTION"));
+
+      rows.forEach((item, index) => {
+        const y = top + index * rowH;
+        const value = item.combined_reduction_bps;
+        const w = width(value);
+        const positive = value >= 0;
+        svg.append(make("text", { x: left - 14, y: y + 8, fill: "#e2e8f0", "font-size": 12, "text-anchor": "end" }, item.label));
+        svg.append(make("text", { x: left - 14, y: y + 25, fill: item.decision_class === "dual_benefit" ? "#4ade80" : "#64748b", "font-size": 9.5, "font-weight": item.decision_class === "dual_benefit" ? 700 : 500, "text-anchor": "end" }, classLabel(item.decision_class)));
+        svg.append(make("rect", { x: positive ? axis : axis - w, y: y - 5, width: Math.max(1.5, w), height: 20, rx: 3, fill: positive ? "#4ade80" : "#fb7185", opacity: item.material_model_effect ? 0.88 : 0.5 }));
+        svg.append(make("text", { x: positive ? axis + w + 8 : axis - w - 8, y: y + 9, fill: positive ? "#bbf7d0" : "#fecdd3", "font-size": 11, "font-weight": 700, "text-anchor": positive ? "start" : "end" }, `${value > 0 ? "+" : ""}${fmt(value)}`));
+      });
+
+      const decision = firm.decision;
+      $("decisionStatus").textContent = decision.status.replaceAll("_", " ");
+      if (decision.best_dual_benefit) {
+        const dual = decision.best_dual_benefit;
+        $("decisionCallout").innerHTML = `<strong>Due diligence 우선:</strong> ${dual.label}는 결합 premium을 <strong>${fmt(dual.combined_reduction_bps)} bp</strong> 낮추고 alignment gap도 <strong>${fmt(Math.abs(dual.alignment_gap_change_mtco2), 1)} MtCO₂</strong> 줄이는 것으로 모델링됩니다.`;
+      } else if (decision.best_no_tradeoff_de_risker) {
+        const best = decision.best_no_tradeoff_de_risker;
+        const material = best.material_model_effect ? "materiality 기준을 통과합니다" : "효과가 0.1 bp materiality 기준보다 작습니다";
+        $("decisionCallout").innerHTML = `<strong>No-trade-off 후보:</strong> ${best.label}가 ${fmt(best.combined_reduction_bps, 3)} bp를 낮추지만, ${material}.`;
+      } else {
+        $("decisionCallout").textContent = "현재 가정에서 no-trade-off de-risker가 식별되지 않았습니다.";
+      }
+    }
+
+    function render() {
+      renderSummary();
+      renderSelect();
+      renderComparison();
+      const firm = model.firms.find((item) => item.firm_id === selectedFirmId) || model.firms[0];
+      renderBridge(firm);
+      renderInterventions(firm);
+    }
+
+    $("firmSelect").addEventListener("change", (event) => {
+      selectedFirmId = event.target.value;
+      render();
+    });
+
+    render();
+
+    fetch("joint_risk_premium.json", { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((raw) => {
+        model = normalize(raw);
+        $("dataSource").textContent = "Live source · joint_risk_premium.json";
+        render();
+      })
+      .catch(() => {
+        $("dataSource").textContent = "Embedded snapshot · direct-file mode";
+      });
+  </script>
+</body>
+</html>

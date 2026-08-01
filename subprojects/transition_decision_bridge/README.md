@@ -39,6 +39,19 @@ make calibration
 make -C subprojects/transition_decision_bridge all
 ```
 
+## 로컬 시각화
+
+`outputs/index.html`은 기업별 결합 프리미엄, 위험축 공분산, 개입의 순효과를
+한 화면에서 보여주는 독립형 대시보드다. 파일을 직접 열어도 내장 snapshot으로
+동작한다. 최신 JSON을 읽어 보려면 저장소 루트에서 로컬 서버를 실행한다.
+
+```bash
+python3 -m http.server 8877 --bind 127.0.0.1 \
+  --directory subprojects/transition_decision_bridge/outputs
+```
+
+브라우저에서 `http://127.0.0.1:8877/`을 연다.
+
 ## 범위
 
 포함:
