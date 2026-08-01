@@ -73,6 +73,13 @@ registry:
     units: "mixed — unit column per row"
     license: "internal analysis, research use"
 
+  - pattern: "intensities/intensities_*.csv"
+    contents: "candidate input intensities per route with explicit process boundary"
+    source: "planit_internal — CAP_DS_intensities export"
+    collected: "filename date"
+    units: "kg/t, MWh/t, tCO2/t (row unit column)"
+    license: "internal analysis, research use"
+
   - pattern: "research/SPARK_cost_inputs_2026-07-01.csv"
     contents: "SPARK 비용 입력 (기술 비용 구성요소)"
     source: "SPARK CostEngine 프로젝트 내부 정리"

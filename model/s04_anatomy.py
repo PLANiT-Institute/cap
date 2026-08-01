@@ -23,7 +23,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from model.lib.anatomy import DRIVERS, euler_shares  # noqa: E402
+from model.lib.anatomy import DRIVERS, euler_shares, risk_charge_annual_usd  # noqa: E402
 from model.lib.artifacts import (  # noqa: E402
     IDENTITY,
     MODEL_CONDITIONAL,
@@ -132,7 +132,7 @@ def firm_exposures(
 
 def anatomy_for(cal: CalibrationSet, meta: dict, reform: bool) -> dict:
     ps: ParamSet = meta["params"]
-    carbon_sigma = ps.carbon.sigma_reform if reform else cal.sigma("carbon_diffusion")
+    carbon_sigma = ps.carbon.sigma_binding if reform else cal.sigma("carbon_diffusion")
     sig, rho = cal.rho_matrix(meta["elec_driver"], carbon_sigma=carbon_sigma)
     sig = sig.copy()
     sig[1], sig[2], sig[3] = ps.sigma_h2, ps.sigma_elec, ps.sigma_feedstock
@@ -140,8 +140,10 @@ def anatomy_for(cal: CalibrationSet, meta: dict, reform: bool) -> dict:
     sigma_b, shares = euler_shares(w, rho)
     horizon = float(cal.lsm["horizon_years"])
     sigma_b_bn = sigma_b / 1e9
-    scale = cal.pricing["k"] * cal.pricing["lambda"] * ps.carbon.p_bind
-    pi_annual = scale * sigma_b / annuity(meta["wacc"], horizon)
+    pi_annual = risk_charge_annual_usd(
+        cal.pricing["k"], cal.pricing["lambda"], ps.carbon.p_bind,
+        sigma_b, meta["wacc"], horizon,
+    )
     return {
         "shares": dict(zip(DRIVERS, shares.tolist())),
         "sigma_b_usd_bn": sigma_b_bn,

@@ -22,7 +22,13 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from model.lib.artifacts import MODEL_CONDITIONAL, SCENARIO_CONDITIONAL, claim, write_artifact  # noqa: E402
+from model.lib.artifacts import (  # noqa: E402
+    MODEL_CONDITIONAL,
+    PROVISIONAL,
+    SCENARIO_CONDITIONAL,
+    claim,
+    write_artifact,
+)
 from model.lib.underwriting import (  # noqa: E402
     annual_charge_usd_m,
     classify_intervention,
@@ -30,6 +36,9 @@ from model.lib.underwriting import (  # noqa: E402
     dominant_driver,
 )
 from model.lib.result_contract import (  # noqa: E402
+    ALIGNMENT_GAP_LOSS_BASIS,
+    ALIGNMENT_GAP_LOSS_METRIC,
+    ALIGNMENT_GAP_RISK_CHARGE_METRIC,
     ENTERPRISE_RISK_BASIS,
     RISK_CHARGE_METRIC,
     result_descriptor,
@@ -97,6 +106,9 @@ def build(cal: CalibrationSet) -> dict:
     shares = {f["firm_id"]: f for f in _artifact("shares_by_firm")["firms"]}
     envelopes = {f["firm_id"]: f for f in _artifact("share_envelopes")["firms"]}
     impact_by_firm = {f["firm_id"]: f for f in impacts["firms"]}
+    gap_loss_by_firm = {
+        f["firm_id"]: f for f in _artifact("alignment_gap_loss")["firms"]
+    }
     iv_table = cal.interventions.set_index("intervention_id")
 
     firm_rows = []
@@ -111,6 +123,7 @@ def build(cal: CalibrationSet) -> dict:
         base = impact["before"]
         base_charge = float(base["risk_charge_bps"])
         base_sigma = float(base["sigma_b_usd_bn"])
+        gap_loss = gap_loss_by_firm[firm_id]
 
         options = []
         for intervention_id, iv in impact["interventions"].items():
@@ -155,6 +168,24 @@ def build(cal: CalibrationSet) -> dict:
                     "dominant_residual_driver": dominant_driver(iv["residual"]["shares"]),
                     "delta_tau_years": float(iv["delta"]["tau_star_years"]),
                     "delta_gap_mtco2": float(iv["delta"]["cumulative_gap_mtco2"]),
+                    "gap_loss_before_usd_m": float(
+                        iv["before"]["expected_pv_gap_loss_usd_m"]
+                    ),
+                    "gap_loss_after_usd_m": float(
+                        iv["after"]["expected_pv_gap_loss_usd_m"]
+                    ),
+                    "gap_risk_charge_before_bps": float(
+                        iv["before"]["gap_risk_charge_bps"]
+                    ),
+                    "gap_risk_charge_after_bps": float(
+                        iv["after"]["gap_risk_charge_bps"]
+                    ),
+                    "gap_risk_charge_delta_bps": float(
+                        iv["delta"]["gap_risk_charge_bps"]
+                    ),
+                    "gap_charge_basis_warning": (
+                        "separate from transition-cost spread; do not add"
+                    ),
                     "decision_class": classify_intervention(
                         float(iv["delta"]["risk_charge_bps"]),
                         float(iv["delta"]["cumulative_gap_mtco2"]),
@@ -200,6 +231,31 @@ def build(cal: CalibrationSet) -> dict:
                     "share_envelope": envelopes[firm_id]["envelope"],
                     "share_envelope_perspective": "base-regime covariance band; current anatomy is reform-priced and may sit outside it",
                     "sensitivity": _sensitivity(cal, firm_id, base_charge, country),
+                },
+                "alignment_gap_loss": {
+                    "loss_result_contract": result_descriptor(
+                        ALIGNMENT_GAP_LOSS_METRIC,
+                        ALIGNMENT_GAP_LOSS_BASIS,
+                        "PROVISIONAL",
+                        uncertainty="surrogate required path and assumed carbon scenarios",
+                        interpretation="reduced-form scenario PV loss implied by the physical gap",
+                    ),
+                    "risk_result_contract": result_descriptor(
+                        ALIGNMENT_GAP_RISK_CHARGE_METRIC,
+                        ALIGNMENT_GAP_LOSS_BASIS,
+                        "PROVISIONAL",
+                        uncertainty="gap-loss distribution plus assumed lambda and k",
+                        interpretation="separate gap-linked charge; not additive to transition-cost charge",
+                    ),
+                    "cumulative_alignment_gap_mtco2": gap_loss[
+                        "cumulative_alignment_gap_mtco2"
+                    ],
+                    "expected_pv_gap_loss_usd_m": gap_loss[
+                        "expected_pv_gap_loss_usd_m"
+                    ],
+                    "sigma_pv_gap_loss_usd_m": gap_loss["sigma_pv_gap_loss_usd_m"],
+                    "gap_risk_charge_bps": gap_loss["gap_risk_charge_bps"],
+                    "aggregation_warning": gap_loss["aggregation_rule"],
                 },
                 "contract_options": options,
                 "decision_summary": {
@@ -247,6 +303,10 @@ def build(cal: CalibrationSet) -> dict:
             "annual_risk_charge_value": "bps change applied to enterprise value; not a forecast financing saving",
             "risk_anatomy": "Euler decomposition of transition-cost uncertainty under the calibrated exposure model",
             "contract_ranking": "benefit-only ranking until observed contract premiums/support costs are supplied",
+            "gap_linked_charge": (
+                "scenario-valued physical-gap loss on a separate basis; never added to the "
+                "transition-cost charge without a joint covariance model"
+            ),
         },
         "portfolio": portfolio,
         "firms": firm_rows,
@@ -275,6 +335,12 @@ def main() -> int:
                 MODEL_CONDITIONAL,
                 LEVEL_DEPS + ["interventions"],
                 "coverage, tenor and basis retained; benefit-only ranking pending observed contract cost",
+            ),
+            "firms.alignment_gap_loss": claim(
+                PROVISIONAL,
+                ["t_required", "scenarios", "carbon_base_kr", "carbon_base_jp",
+                 "lambda", "k", "ev_usd_bn"],
+                "physical gap mapped to a separate scenario-loss basis; not added to enterprise charge",
             ),
         },
         note="paper-to-product layer: investor underwriting and corporate contract decision views",

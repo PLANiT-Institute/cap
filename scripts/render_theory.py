@@ -43,9 +43,15 @@ def build_context() -> dict[str, str]:
     for c in ("KR", "JP"):
         lc = c.lower()
         ctx[f"sigma.carbon_reform_{lc}"] = f"{d['sigma_carbon_reform'][c]:.2f}"
+        ctx[f"sigma.carbon_binding_{lc}"] = f"{d['sigma_carbon_binding'][c]:.2f}"
         ctx[f"derived.l_bind_{lc}"] = f"{d['l_bind'][c]:.1f}"
         ctx[f"derived.p_bind_{lc}"] = f"{d['p_bind'][c]:.2f}"
-        ctx[f"derived.jump_share_{lc}"] = pct(d["carbon_variance_decomposition"][c]["jump_share"], 0)
+        ctx[f"derived.jump_share_{lc}"] = pct(
+            d["carbon_variance_decomposition"][c]["binding_conditional_jump_share"], 0
+        )
+        ctx[f"derived.unconditional_jump_share_{lc}"] = pct(
+            d["carbon_variance_decomposition"][c]["unconditional_jump_share"], 0
+        )
     for p, obj in cal["pricing"].items():
         ctx[f"pricing.{p}"] = f"{obj['value']:g}"
 

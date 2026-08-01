@@ -73,6 +73,16 @@
       "normalization": "cumulative MtCO2",
       "allowed_use": "scenario comparison and research diagnosis",
       "prohibited_use": "empirically identified firm mandate while required path is surrogate"
+    },
+    "enterprise_private_vs_required.scenario_gap_loss.provisional_required": {
+      "label": "Scenario-valued private-versus-required alignment-gap loss",
+      "exposure_scope": "discounted annual excess emissions on the private path",
+      "transition_rule": "private tau* versus required pathway",
+      "regime": "unconditional country carbon-scenario distribution",
+      "path_mode": "full_counterfactual",
+      "normalization": "PV USD and enterprise-value bps",
+      "allowed_use": "reduced-form gap valuation and like-for-like intervention comparison",
+      "prohibited_use": "addition to transition-cost charge without a joint covariance model, or verified compliance-loss interpretation while required path is surrogate"
     }
   },
   "metrics": {
@@ -90,6 +100,16 @@
       "unit": "MtCO2",
       "public_label": "surrogate-conditioned alignment gap",
       "prohibited_label": "verified compliance gap"
+    },
+    "alignment_gap_loss_pv_usd": {
+      "unit": "PV USD",
+      "public_label": "scenario-valued alignment-gap loss",
+      "prohibited_label": "verified compliance liability"
+    },
+    "alignment_gap_loss_risk_charge_bps": {
+      "unit": "bps",
+      "public_label": "alignment-gap loss risk charge",
+      "prohibited_label": "observed spread or additive total premium"
     }
   }
 }

@@ -12,4 +12,4 @@ $$\sigma^2_{carbon} = \sigma^2_{diff} + \sum_j p_j(\ell_j - \bar\ell)^2/\bar\ell
 
 `status: CLAIM · conditional-on: scenarios.csv 확률 (시장 규율 미비) · challenged-by: #referee-2`
 
-**구현 주의 (근사 2건, 상시 표기)**: ① 점프는 분산 계층에만 추가 (regime-switching LSM 아님). ② 점프에 확산과 **동일한 상관·동일 연σ**를 적용 — Merton식 점프리스크 분리는 미구현(OPEN). 분해는 `calibration_resolved.json`의 carbon_variance_decomposition (KR jump share {{derived.jump_share_kr}}, JP {{derived.jump_share_jp}})로 별도 기록.
+**구현 주의 (근사 2건, 상시 표기)**: ① 점프는 분산 계층에만 추가 (regime-switching LSM 아님). ② 점프에 확산과 **동일한 상관·동일 연σ**를 적용 — Merton식 점프리스크 분리는 미구현(OPEN). transition-cost charge는 `E[level|bind]`와 일치하는 조건부 분산을 쓰며 그 jump share는 KR {{derived.jump_share_kr}}, JP {{derived.jump_share_jp}}다. 전체 시나리오의 무조건부 jump share(KR {{derived.unconditional_jump_share_kr}}, JP {{derived.unconditional_jump_share_jp}})는 진단용으로 별도 기록하고 같은 charge 식에 섞지 않는다.

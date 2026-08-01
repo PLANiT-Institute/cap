@@ -52,7 +52,7 @@ def build(cal: CalibrationSet) -> tuple[dict, dict]:
     years = np.arange(base_year, base_year + int(cal.lsm["horizon_years"]) + 1)
     residual = dict(zip(cal.routes["route"], cal.routes["residual_intensity_tco2_t"]))
     private, required, interventions = switch_maps(cal)
-    prov = cal.t_required_source == "surrogate"
+    prov = cal.required_path_provisional
 
     pathways_out: dict = {
         "base_year": base_year,
@@ -115,6 +115,8 @@ def build(cal: CalibrationSet) -> tuple[dict, dict]:
                     "tau_star_year": tau,
                     "t_required": tr["year"],
                     "t_required_status": tr["status"],
+                    "t_required_pathway_kind": tr["pathway_kind"],
+                    "t_required_headline_eligible": tr["headline_eligible"],
                     "timing_gap_years": tg,
                 }
             )

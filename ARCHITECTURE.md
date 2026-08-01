@@ -19,7 +19,7 @@ data/raw/                ▼
       │                  │
       │ make ingest      │
       ▼                  ▼
-data/processed/*.parquet ──→ s02 CalibrationSet ──→ s03 … s11 ──→ outputs/*.json
+data/processed/*.parquet ──→ s02 CalibrationSet ──→ s03 … s13 ──→ outputs/*.json
                                                                       │
                                      theory/*.md ──{{substitution}}───┤
                                                                       ▼
@@ -60,17 +60,18 @@ Three principles govern the whole picture:
 | Stage | What it does | Key outputs |
 |---|---|---|
 | `s01_ingest` | raw → processed. ISO dates, USD plus original currency, **missing values stay NaN (no interpolation)**, pandera validation. Builds time-series parquet when KAU/SMP/JEPX files exist | `data/processed/*.parquet` |
-| `s02_calibrate` | config + processed → one validated `CalibrationSet`. Splits carbon into country factors (carbon_kr / carbon_jp / cbam_common), derives `p_bind` from scenarios, resolves `T_required` per route pool | `calibration_resolved.json` |
+| `s02_calibrate` | config + processed → one validated `CalibrationSet`. Splits carbon into country factors, derives `p_bind`, resolves `T_required` in country×route pools, and tags source/pathway kind/headline eligibility per asset | `calibration_resolved.json` |
 | `s03_lsm` | Exchange-option LSM → asset-level τ\* (base and per intervention), wedge = τ\* − T_required, WACC-equalized variants | `tau_star`, `wedge`, `sigma_linearity` |
-| `s04_anatomy` | Euler decomposition → composition of transition-cost uncertainty. Asset exposures aggregated to firms | `shares_by_firm`, `cost_vs_risk`, `premium_levels`, `stranding` |
+| `s04_anatomy` | Euler decomposition of transition-cost uncertainty. Carbon uses the matched conditional pair `E[level|bind]` and `sigma_binding`, then multiplies `p_bind` once | `shares_by_firm`, `cost_vs_risk`, `premium_levels`, `stranding` |
 | `s05_robustness` | Share envelopes over σ·ρ band draws, λ×p_bind grid invariance (P1 demo), cluster separation, per-driver λ_k sensitivity | `share_envelopes`, `lambda_invariance`, `cluster_separation`, `lambda_k_sensitivity` |
 | `s06_interventions` | Interventions change τ\*, pathways, anatomy, and level **together**. Basis solved as a lo/hi band | `intervention_impacts` |
 | `s07_pathways` | Emission pathways per firm (BAU / private / required / per intervention) and the cumulative alignment gap | `emissions_pathways_by_firm`, `condition_gap` |
+| `s13_gap_pricing` | Explicit reduced-form bridge: annual physical gap → country scenario-loss distribution → separate gap-linked risk charge. `p_bind` is embedded in scenario probabilities and is not multiplied again | `alignment_gap_loss` |
 | `s08_underwriting` | Investor view (model-implied spread, λ×p_bind sensitivity surface) and corporate-finance view (contract priorities) | `transition_underwriting` |
 | `s09_deal_screening` | Pre-deal screen — NPV, IRR, DSCR, required green premium per route and intervention | `deal_screening` |
 | `s10_result_contract` | Emits the metric/basis/evidence contract as an artifact | `result_contract` |
 | `s11_pilot_cases` | Regenerates POSCO/NIPPON dry-run evidence packs; verifies deterministic replay | `pilot_cases`, `outputs/pilots/*.md` |
-| `run_all` | Runs s02–s11, then writes `manifest.json` (run time, git SHA, dirty flag, config/code/data hashes, seed) | `manifest` |
+| `run_all` | Runs s02–s13 in dependency order, then writes `manifest.json` (run time, git SHA, dirty flag, config/code/data hashes, seed) | `manifest` |
 
 ### Output layer
 
@@ -141,9 +142,10 @@ make all                 # ingest → calibration → model → anchors → ledg
 Individual stages: `make ingest` / `make calibration` / `make model` /
 `make check-anchors` / `make ledger` / `make render-theory` / `make test` / `make web`
 
-The `seed` is pinned in `config/sheets/lsm.csv`, so identical inputs give a JSON
-diff of zero. `outputs/manifest.json` records the lineage of each run (git SHA,
-dirty flag, config/code/data hashes).
+The `seed` is pinned in `config/sheets/lsm.csv`, so identical inputs make the
+numerical artifacts deterministic. `outputs/manifest.json` itself includes a
+run timestamp and is therefore expected to differ. It records the git SHA,
+dirty state before and after artifact generation, and config/code/data hashes.
 
 Programmatic access is `model/api.py`:
 

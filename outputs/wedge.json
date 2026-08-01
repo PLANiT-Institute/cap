@@ -37,11 +37,11 @@
       "emission_intensity_tco2_t": 2.1,
       "country": "KR",
       "category": "priced_route",
-      "t_required": 2042.0,
+      "t_required": 2039.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2050.6755,
-      "timing_gap_years": 8.6755,
-      "tau_star_year_wacc_eq": 2050.63125
+      "tau_star_year": 2044.71625,
+      "timing_gap_years": 5.71625,
+      "tau_star_year_wacc_eq": 2044.5695
     },
     {
       "asset_id": "A02",
@@ -52,11 +52,11 @@
       "emission_intensity_tco2_t": 2.0,
       "country": "KR",
       "category": "priced_route",
-      "t_required": 2037.0,
+      "t_required": 2035.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2050.6305,
-      "timing_gap_years": 13.6305,
-      "tau_star_year_wacc_eq": 2050.62275
+      "tau_star_year": 2044.62475,
+      "timing_gap_years": 9.62475,
+      "tau_star_year_wacc_eq": 2044.38675
     },
     {
       "asset_id": "A06",
@@ -69,9 +69,9 @@
       "category": "priced_route",
       "t_required": 2032.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2050.372,
-      "timing_gap_years": 18.372,
-      "tau_star_year_wacc_eq": 2050.30525
+      "tau_star_year": 2044.3545,
+      "timing_gap_years": 12.3545,
+      "tau_star_year_wacc_eq": 2044.0605
     },
     {
       "asset_id": "A07",
@@ -82,11 +82,11 @@
       "emission_intensity_tco2_t": 2.0,
       "country": "KR",
       "category": "priced_route",
-      "t_required": 2040.0,
+      "t_required": 2037.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2050.70625,
-      "timing_gap_years": 10.70625,
-      "tau_star_year_wacc_eq": 2050.631
+      "tau_star_year": 2044.80525,
+      "timing_gap_years": 7.80525,
+      "tau_star_year_wacc_eq": 2044.51825
     },
     {
       "asset_id": "A03",
@@ -99,9 +99,9 @@
       "category": "no_feasible_route",
       "t_required": null,
       "t_required_status": "UNAVAILABLE",
-      "tau_star_year": null,
+      "tau_star_year": 2046.85,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year_wacc_eq": 2044.48075
     },
     {
       "asset_id": "A08",
@@ -114,9 +114,9 @@
       "category": "no_feasible_route",
       "t_required": null,
       "t_required_status": "UNAVAILABLE",
-      "tau_star_year": null,
+      "tau_star_year": 2046.2495,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year_wacc_eq": 2044.03025
     },
     {
       "asset_id": "A04",
@@ -127,11 +127,11 @@
       "emission_intensity_tco2_t": 1.9,
       "country": "JP",
       "category": "priced_route",
-      "t_required": 2039.0,
+      "t_required": 2036.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": null,
-      "timing_gap_years": null,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year": 2050.29775,
+      "timing_gap_years": 14.29775,
+      "tau_star_year_wacc_eq": 2050.76975
     },
     {
       "asset_id": "A09",
@@ -142,11 +142,11 @@
       "emission_intensity_tco2_t": 1.9,
       "country": "JP",
       "category": "priced_route",
-      "t_required": 2035.0,
+      "t_required": 2031.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2053.7695,
-      "timing_gap_years": 18.7695,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year": 2050.2395,
+      "timing_gap_years": 19.2395,
+      "tau_star_year_wacc_eq": 2050.81
     },
     {
       "asset_id": "A05",
@@ -204,9 +204,9 @@
       "category": "priced_route",
       "t_required": 2032.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2039.3205,
-      "timing_gap_years": 7.3205,
-      "tau_star_year_wacc_eq": 2039.319
+      "tau_star_year": 2037.577,
+      "timing_gap_years": 5.577,
+      "tau_star_year_wacc_eq": 2037.57875
     },
     {
       "asset_id": "P02",
@@ -219,9 +219,9 @@
       "category": "priced_route",
       "t_required": 2030.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2040.36825,
-      "timing_gap_years": 10.36825,
-      "tau_star_year_wacc_eq": 2039.81025
+      "tau_star_year": 2039.8515,
+      "timing_gap_years": 9.8515,
+      "tau_star_year_wacc_eq": 2039.33425
     }
   ]
 }

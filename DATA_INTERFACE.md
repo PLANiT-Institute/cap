@@ -65,7 +65,15 @@ In the external working folder, each dataset is maintained as one spreadsheet
 ```
 
 4. Run `make ingest` — provenance and schema checks pass, and
-   `data/processed/` gains a parquet.
+   `data/processed/` gains a parquet. For parameter and intensity candidates,
+   this is an **evidence-only** parquet: it does not change model results.
+5. Review conflicts in `DECISIONS.md`; only an explicit decision may promote
+   selected values into `config/sheets/*.csv` or `config/routes.csv`. That
+   config change, followed by `make all`, is what changes artifacts and theory.
+
+`data/processed/candidate_input_contract.json` records this distinction in a
+machine-readable form. Importing a workbook export and changing the model are
+two separate gates; provenance registration is never treated as consumption.
 
 ### 2.3 The filename is the version
 
@@ -184,3 +192,4 @@ silently ignored.
 | bps from different bases in one table | `metric_id` + `basis_id` rule |
 | Overwritten values erase history | filename-as-version; old files to `data/archive/` |
 | Build-artifact bytes pollute lineage | `calibration.xlsx` excluded from git, hashes, and fingerprints |
+| Registered candidate data is mistaken for an active parameter | candidate parquet + `candidate_input_contract.json`; model effect remains `none` until DECISIONS/config promotion |

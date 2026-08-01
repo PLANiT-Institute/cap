@@ -16,9 +16,9 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from model.lib.anatomy import DRIVERS, euler_shares, lambda_k_shares  # noqa: E402
+from model.lib.anatomy import DRIVERS, euler_shares, lambda_k_shares, risk_charge_annual_usd  # noqa: E402
 from model.lib.artifacts import IDENTITY, MODEL_CONDITIONAL, SCENARIO_CONDITIONAL, claim, write_artifact  # noqa: E402
-from model.lib.finance import annuity, nearest_psd  # noqa: E402
+from model.lib.finance import nearest_psd  # noqa: E402
 from model.s02_calibrate import CalibrationSet, load_calibration  # noqa: E402
 from model.s04_anatomy import ANATOMY_DEPS, BPS, anatomy_for, firm_exposures, firm_frame  # noqa: E402
 
@@ -113,8 +113,11 @@ def main() -> int:
                 dev = float(np.max(np.abs(shares - base_shares)))
                 max_share_dev = max(max_share_dev, dev)
                 pi = (
-                    cal.pricing["k"] * lam * pb * base["sigma_b_usd_bn"]
-                    / annuity(meta["wacc"], horizon) / meta["ev_usd_bn"] * BPS
+                    risk_charge_annual_usd(
+                        cal.pricing["k"], lam, pb, base["sigma_b_usd_bn"],
+                        meta["wacc"], horizon,
+                    )
+                    / meta["ev_usd_bn"] * BPS
                 )
                 grid_rows.append({"firm_id": fid, "lambda": float(lam), "p_bind": float(pb), "premium_bps": pi})
     levels = [r["premium_bps"] for r in grid_rows]

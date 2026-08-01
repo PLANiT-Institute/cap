@@ -9,6 +9,7 @@
 """
 from __future__ import annotations
 
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -81,6 +82,72 @@ def ingest_simple_tables() -> None:
     pd.read_csv(RAW / "production" / "company_production.csv").to_parquet(
         PROCESSED / "production.parquet", index=False
     )
+
+
+def ingest_candidate_tables() -> list[dict]:
+    """Import promoted research CSVs without silently making them model inputs.
+
+    Candidate tables are auditable evidence.  They affect model results only
+    after a DECISIONS entry promotes specific rows into config, the actual
+    calibration SSOT.  The machine-readable contract prevents provenance
+    registration from being mistaken for model consumption.
+    """
+    contracts: list[dict] = []
+    params_files = sorted(RAW.glob("research/params_consolidated_*.csv"))
+    if params_files:
+        source = params_files[-1]
+        df = pd.read_csv(source)
+        df["source_file"] = source.relative_to(RAW).as_posix()
+        output = PROCESSED / "params_candidates.parquet"
+        df.to_parquet(output, index=False)
+        contracts.append(
+            {
+                "dataset": "params_consolidated",
+                "source_file": source.relative_to(RAW).as_posix(),
+                "processed_file": output.relative_to(ROOT).as_posix(),
+                "pipeline_role": "calibration_evidence_only",
+                "model_effect": "none_until_DECISIONS_promotion_to_config",
+                "consumer": "human review via DECISIONS.md and PAPER_DIFF.md",
+            }
+        )
+
+    intensity_files = sorted(RAW.glob("intensities/intensities_*.csv"))
+    if intensity_files:
+        source = intensity_files[-1]
+        df = pd.read_csv(source)
+        if "process_boundary" not in df.columns:
+            raise ValueError(
+                f"{source.relative_to(ROOT)}: intensity candidates require process_boundary"
+            )
+        df["source_file"] = source.relative_to(RAW).as_posix()
+        output = PROCESSED / "intensity_candidates.parquet"
+        df.to_parquet(output, index=False)
+        contracts.append(
+            {
+                "dataset": "intensities",
+                "source_file": source.relative_to(RAW).as_posix(),
+                "processed_file": output.relative_to(ROOT).as_posix(),
+                "pipeline_role": "calibration_evidence_only",
+                "model_effect": "none_until_DECISIONS_promotion_to_config_routes",
+                "consumer": "human review via DECISIONS.md and config/routes.csv",
+            }
+        )
+
+    (PROCESSED / "candidate_input_contract.json").write_text(
+        json.dumps(
+            {
+                "rule": (
+                    "raw registration and parquet creation do not imply model consumption; "
+                    "only config promotion changes model results"
+                ),
+                "datasets": contracts,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n"
+    )
+    return contracts
     pd.read_csv(RAW / "opex_energy" / "intensity_coefficients.csv").to_parquet(
         PROCESSED / "intensities.parquet", index=False
     )
@@ -162,9 +229,13 @@ def main() -> int:
     ingest_assets()
     ingest_financials(fx)
     ingest_simple_tables()
+    candidates = ingest_candidate_tables()
     made = ingest_optional_timeseries()
     n = len(list(PROCESSED.glob("*.parquet")))
-    print(f"OK — processed {n} tables; optional timeseries: {made or 'none (MISSING.md 참조)'}")
+    print(
+        f"OK — processed {n} tables; optional timeseries: {made or 'none (MISSING.md 참조)'}; "
+        f"candidate inputs: {[c['dataset'] for c in candidates] or 'none'} (evidence-only)"
+    )
     return 0
 
 

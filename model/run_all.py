@@ -1,4 +1,4 @@
-"""make model 진입점: s02→s11 + outputs/manifest.json (lineage 포함).
+"""make model entry point: stages in dependency order + lineage manifest.
 
 manifest: 실행 시각, config/코드/raw/processed/lock 해시, git SHA+dirty,
 seed, T_required 출처, artifact 목록. dirty tree는 숨기지 않는다.
@@ -27,6 +27,7 @@ from model import (  # noqa: E402
     s10_result_contract,
     s11_pilot_cases,
     s12_level_wedge,
+    s13_gap_pricing,
 )
 
 
@@ -63,25 +64,33 @@ def git_info() -> tuple[str, bool]:
 
 
 def main() -> int:
+    input_sha, dirty_before = git_info()
     for stage in (s02_calibrate, s03_lsm, s04_anatomy, s05_robustness,
-                  s06_interventions, s07_pathways, s08_underwriting,
+                  s06_interventions, s07_pathways, s13_gap_pricing, s08_underwriting,
                   s09_deal_screening, s10_result_contract, s11_pilot_cases,
                   s12_level_wedge):
         rc = stage.main()
         if rc:
             return rc
     cal = s02_calibrate.load_calibration()
-    sha, dirty = git_info()
+    sha, dirty_after = git_info()
     manifest = {
         "run_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "git_sha": sha,
-        "git_dirty": dirty,
+        "git_sha_before_run": input_sha,
+        "git_dirty": dirty_before,
+        "git_dirty_before_run": dirty_before,
+        "git_dirty_after_run": dirty_after,
         "code_sha256": tree_hash([ROOT / "model", ROOT / "scripts"], ("*.py",)),
         "config_sha256": tree_hash([ROOT / "config"]),
         "raw_data_sha256": tree_hash([ROOT / "data" / "raw"]),
         "processed_data_sha256": tree_hash([ROOT / "data" / "processed"]),
         "dependency_lock_sha256": hashlib.sha256((ROOT / "uv.lock").read_bytes()).hexdigest()
         if (ROOT / "uv.lock").exists() else None,
+        "web_dependency_lock_sha256": hashlib.sha256(
+            (ROOT / "web" / "package-lock.json").read_bytes()
+        ).hexdigest()
+        if (ROOT / "web" / "package-lock.json").exists() else None,
         "seed": int(cal.lsm["seed"]),
         "t_required_source": cal.t_required_source,
         "measured_overrides": cal.measured_overrides,
@@ -97,7 +106,8 @@ def main() -> int:
     )
     print(
         f"OK — manifest (config {manifest['config_sha256'][:12]}…, "
-        f"dirty={dirty}, T_required={manifest['t_required_source']})"
+        f"dirty before/after={dirty_before}/{dirty_after}, "
+        f"T_required={manifest['t_required_source']})"
     )
     return 0
 

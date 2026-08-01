@@ -22,6 +22,14 @@
         "sigma_carbon_diffusion"
       ]
     },
+    "derived.sigma_carbon_binding": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "scenarios",
+        "sigma_carbon_diffusion"
+      ],
+      "note": "E[level|bind]와 짝을 이루는 조건부 σ; charge에 p_bind를 한 번만 곱함"
+    },
     "derived.t_required": {
       "status": "PROVISIONAL",
       "depends_on": [
@@ -533,98 +541,172 @@
       "KR": 0.8788408164,
       "JP": 1.1340731875
     },
+    "sigma_carbon_binding": {
+      "KR": 0.6019005118,
+      "JP": 0.6719610268
+    },
     "carbon_variance_decomposition": {
       "KR": {
         "diffusion_var": 0.1577404318,
-        "jump_var": 0.6146207488,
-        "jump_share": 0.7957685656
+        "unconditional_jump_var": 0.6146207488,
+        "unconditional_jump_share": 0.7957685656,
+        "binding_conditional_jump_var": 0.2045437943,
+        "binding_conditional_jump_share": 0.5645948114
       },
       "JP": {
         "diffusion_var": 0.1577404318,
-        "jump_var": 1.1283815628,
-        "jump_share": 0.8773518901
+        "unconditional_jump_var": 1.1283815628,
+        "unconditional_jump_share": 0.8773518901,
+        "binding_conditional_jump_var": 0.2937911897,
+        "binding_conditional_jump_share": 0.6506547399
       }
     },
     "jump_correlation_note": "점프에 확산과 동일 ρ·연σ 적용 — 근사 (Merton 비판 R2)",
     "k_offcycle_mult": 1.4893617021,
     "t_required_source": "surrogate",
+    "t_required_provisional": true,
     "t_required": {
       "P02": {
         "year": 2030.0,
         "status": "PROVISIONAL",
-        "pool": "petrochemicals:ccus_cracker",
+        "pool": "petrochemicals:JP:ccus_cracker",
+        "benchmark_source": "asset investment-cycle surrogate",
+        "intended_benchmark": "sector pathway not yet supplied",
+        "pathway_kind": "INVESTMENT_CYCLE_SURROGATE",
+        "allocation_rule": "asset next_investment_year clipped to model horizon",
+        "headline_eligible": false,
         "note": "petrochemical investment-cycle surrogate (PROVISIONAL; not a firm mandate or validated sector pathway)"
       },
       "P01": {
         "year": 2032.0,
         "status": "PROVISIONAL",
-        "pool": "petrochemicals:e_cracker",
+        "pool": "petrochemicals:KR:e_cracker",
+        "benchmark_source": "asset investment-cycle surrogate",
+        "intended_benchmark": "sector pathway not yet supplied",
+        "pathway_kind": "INVESTMENT_CYCLE_SURROGATE",
+        "allocation_rule": "asset next_investment_year clipped to model horizon",
+        "headline_eligible": false,
         "note": "petrochemical investment-cycle surrogate (PROVISIONAL; not a firm mandate or validated sector pathway)"
       },
-      "A06": {
-        "year": 2032.0,
-        "status": "PROVISIONAL",
-        "pool": "steel:h2_dri",
-        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
-      },
       "A09": {
-        "year": 2035.0,
+        "year": 2031.0,
         "status": "PROVISIONAL",
-        "pool": "steel:h2_dri",
-        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
-      },
-      "A02": {
-        "year": 2037.0,
-        "status": "PROVISIONAL",
-        "pool": "steel:h2_dri",
-        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
+        "pool": "steel:JP:h2_dri",
+        "benchmark_source": "legacy-config logistic H2-DRI surrogate",
+        "intended_benchmark": "TZ-OSeMOSYS-STEEL",
+        "pathway_kind": "SURROGATE",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "JP H2-DRI logistic surrogate; intended IAM not supplied · investment-cycle allocation (approximation, not LCOA merit order)"
       },
       "A04": {
-        "year": 2039.0,
+        "year": 2036.0,
         "status": "PROVISIONAL",
-        "pool": "steel:h2_dri",
-        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
-      },
-      "A07": {
-        "year": 2040.0,
-        "status": "PROVISIONAL",
-        "pool": "steel:h2_dri",
-        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
-      },
-      "A01": {
-        "year": 2042.0,
-        "status": "PROVISIONAL",
-        "pool": "steel:h2_dri",
-        "note": "H2-DRI deployment curve (surrogate) · investment-cycle allocation (approximation, not LCOA merit order)"
+        "pool": "steel:JP:h2_dri",
+        "benchmark_source": "legacy-config logistic H2-DRI surrogate",
+        "intended_benchmark": "TZ-OSeMOSYS-STEEL",
+        "pathway_kind": "SURROGATE",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "JP H2-DRI logistic surrogate; intended IAM not supplied · investment-cycle allocation (approximation, not LCOA merit order)"
       },
       "A11": {
         "year": 2061.0,
         "status": "PROVISIONAL",
-        "pool": "steel:ng_dri",
-        "note": "route pathway unavailable — h2 curve rescaled to ng_dri pool (PROVISIONAL) · investment-cycle allocation (approximation, not LCOA merit order)"
+        "pool": "steel:JP:ng_dri",
+        "benchmark_source": "legacy-config H2 curve rescaled to route-country pool",
+        "intended_benchmark": "route-specific sector pathway not yet supplied",
+        "pathway_kind": "SURROGATE_RESCALED",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "route pathway unavailable — H2 curve rescaled to JP:ng_dri pool (PROVISIONAL; endpoint/ranking partly constructed) · investment-cycle allocation (approximation, not LCOA merit order)"
       },
       "A10": {
         "year": 2040.0,
         "status": "PROVISIONAL",
-        "pool": "steel:scrap_eaf",
-        "note": "route pathway unavailable — h2 curve rescaled to scrap_eaf pool (PROVISIONAL) · investment-cycle allocation (approximation, not LCOA merit order)"
+        "pool": "steel:JP:scrap_eaf",
+        "benchmark_source": "legacy-config H2 curve rescaled to route-country pool",
+        "intended_benchmark": "route-specific sector pathway not yet supplied",
+        "pathway_kind": "SURROGATE_RESCALED",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "route pathway unavailable — H2 curve rescaled to JP:scrap_eaf pool (PROVISIONAL; endpoint/ranking partly constructed) · investment-cycle allocation (approximation, not LCOA merit order)"
       },
       "A05": {
         "year": 2061.0,
         "status": "PROVISIONAL",
-        "pool": "steel:scrap_eaf",
-        "note": "route pathway unavailable — h2 curve rescaled to scrap_eaf pool (PROVISIONAL) · investment-cycle allocation (approximation, not LCOA merit order)"
+        "pool": "steel:JP:scrap_eaf",
+        "benchmark_source": "legacy-config H2 curve rescaled to route-country pool",
+        "intended_benchmark": "route-specific sector pathway not yet supplied",
+        "pathway_kind": "SURROGATE_RESCALED",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "route pathway unavailable — H2 curve rescaled to JP:scrap_eaf pool (PROVISIONAL; endpoint/ranking partly constructed) · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A06": {
+        "year": 2032.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:KR:h2_dri",
+        "benchmark_source": "legacy-config logistic H2-DRI surrogate",
+        "intended_benchmark": "GCAM-KAIST",
+        "pathway_kind": "SURROGATE",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "KR H2-DRI logistic surrogate; intended IAM not supplied · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A02": {
+        "year": 2035.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:KR:h2_dri",
+        "benchmark_source": "legacy-config logistic H2-DRI surrogate",
+        "intended_benchmark": "GCAM-KAIST",
+        "pathway_kind": "SURROGATE",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "KR H2-DRI logistic surrogate; intended IAM not supplied · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A07": {
+        "year": 2037.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:KR:h2_dri",
+        "benchmark_source": "legacy-config logistic H2-DRI surrogate",
+        "intended_benchmark": "GCAM-KAIST",
+        "pathway_kind": "SURROGATE",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "KR H2-DRI logistic surrogate; intended IAM not supplied · investment-cycle allocation (approximation, not LCOA merit order)"
+      },
+      "A01": {
+        "year": 2039.0,
+        "status": "PROVISIONAL",
+        "pool": "steel:KR:h2_dri",
+        "benchmark_source": "legacy-config logistic H2-DRI surrogate",
+        "intended_benchmark": "GCAM-KAIST",
+        "pathway_kind": "SURROGATE",
+        "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+        "headline_eligible": false,
+        "note": "KR H2-DRI logistic surrogate; intended IAM not supplied · investment-cycle allocation (approximation, not LCOA merit order)"
       },
       "A03": {
         "year": null,
         "status": "UNAVAILABLE",
         "pool": "stranding",
+        "benchmark_source": "none",
+        "intended_benchmark": "stranding/closure branch",
+        "pathway_kind": "UNAVAILABLE",
+        "allocation_rule": "excluded from priced-route deployment pools",
+        "headline_eligible": false,
         "note": "no_feasible_route — priced-route 풀을 소비하지 않음; stranding/closure branch"
       },
       "A08": {
         "year": null,
         "status": "UNAVAILABLE",
         "pool": "stranding",
+        "benchmark_source": "none",
+        "intended_benchmark": "stranding/closure branch",
+        "pathway_kind": "UNAVAILABLE",
+        "allocation_rule": "excluded from priced-route deployment pools",
+        "headline_eligible": false,
         "note": "no_feasible_route — priced-route 풀을 소비하지 않음; stranding/closure branch"
       }
     }

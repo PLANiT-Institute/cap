@@ -15,6 +15,7 @@ CAP의 숫자는 단위만 같다고 비교할 수 없다. 직접 비교는 `met
 | `project_from_base_year.reform_priced.fixed_commissioning.ev_normalized` | 선택 기술이 기준연도에 가동된 프로젝트 위험 | 기술·계약 pre-deal 비교 | 기업 transition-window bps와 무보정 비교 |
 | `project_levelized.expected_scenario.illustrative_terms` | 기대가격과 평준화 현금흐름에 따른 프로젝트 경제성 | NPV/DSCR/break-even 사전 스크린 | lender-grade valuation, executable quote |
 | `enterprise_private_vs_required.full_counterfactual.provisional_required` | 사적 경로와 provisional required path 사이 누적 gap | 연구 진단·시나리오 비교 | 검증된 규제 의무 또는 compliance gap 주장 |
+| `enterprise_private_vs_required.scenario_gap_loss.provisional_required` | 연도별 gap에 국가 탄소 시나리오의 기준가격 대비 추가가격을 곱한 할인 손실분포와 별도 charge | gap의 reduced-form 가치화·동일 basis 개입 비교 | transition-cost charge와 합산, 검증된 규제부채 또는 관측 스프레드 주장 |
 
 ## Evidence grade
 
@@ -35,6 +36,7 @@ CAP의 숫자는 단위만 같다고 비교할 수 없다. 직접 비교는 `met
 3. before/after 효과는 동일 basis와 동일 입력 버전에서 한 변수군만 바꾼 counterfactual이어야 한다.
 4. observed, verified, bankable, compliance 같은 단어는 각각의 외부 증거가 없는 한 사용하지 않는다.
 5. 모든 결과팩은 artifact hash, config hash, git 상태와 release stage를 포함한다.
+6. `alignment_gap_loss`와 transition-cost anatomy는 공분산이 식별되기 전까지 합산하지 않는다.
 
 ## 알려진 예시
 

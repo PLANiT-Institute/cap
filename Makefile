@@ -24,7 +24,7 @@ ledger:
 render-theory:
 	$(PY) scripts/render_theory.py
 
-test:
+test: calibration
 	uv run pytest model/tests/ -q
 
 web: render-theory

@@ -13,6 +13,7 @@ ENTERPRISE_FIXED_RISK_BASIS = "enterprise_transition_window.reform_priced.fixed_
 PROJECT_RISK_BASIS = "project_from_base_year.reform_priced.fixed_commissioning.ev_normalized"
 PROJECT_ECONOMICS_BASIS = "project_levelized.expected_scenario.illustrative_terms"
 ALIGNMENT_GAP_BASIS = "enterprise_private_vs_required.full_counterfactual.provisional_required"
+ALIGNMENT_GAP_LOSS_BASIS = "enterprise_private_vs_required.scenario_gap_loss.provisional_required"
 LEVEL_WEDGE_BASIS = "project_levelized.closed_form_approximation.derived_coefficients"
 
 
@@ -20,6 +21,8 @@ RISK_CHARGE_METRIC = "conditional_risk_charge_bps"
 LEVEL_WEDGE_METRIC = "level_wedge_usd_t"
 PROJECT_NPV_METRIC = "project_npv_usd_m"
 ALIGNMENT_GAP_METRIC = "cumulative_alignment_gap_mtco2"
+ALIGNMENT_GAP_LOSS_METRIC = "alignment_gap_loss_pv_usd"
+ALIGNMENT_GAP_RISK_CHARGE_METRIC = "alignment_gap_loss_risk_charge_bps"
 
 
 def result_descriptor(
@@ -97,6 +100,19 @@ def catalog() -> dict:
                 "allowed_use": "scenario comparison and research diagnosis",
                 "prohibited_use": "empirically identified firm mandate while required path is surrogate",
             },
+            ALIGNMENT_GAP_LOSS_BASIS: {
+                "label": "Scenario-valued private-versus-required alignment-gap loss",
+                "exposure_scope": "discounted annual excess emissions on the private path",
+                "transition_rule": "private tau* versus required pathway",
+                "regime": "unconditional country carbon-scenario distribution",
+                "path_mode": "full_counterfactual",
+                "normalization": "PV USD and enterprise-value bps",
+                "allowed_use": "reduced-form gap valuation and like-for-like intervention comparison",
+                "prohibited_use": (
+                    "addition to transition-cost charge without a joint covariance model, or "
+                    "verified compliance-loss interpretation while required path is surrogate"
+                ),
+            },
         },
         "metrics": {
             RISK_CHARGE_METRIC: {
@@ -113,6 +129,16 @@ def catalog() -> dict:
                 "unit": "MtCO2",
                 "public_label": "surrogate-conditioned alignment gap",
                 "prohibited_label": "verified compliance gap",
+            },
+            ALIGNMENT_GAP_LOSS_METRIC: {
+                "unit": "PV USD",
+                "public_label": "scenario-valued alignment-gap loss",
+                "prohibited_label": "verified compliance liability",
+            },
+            ALIGNMENT_GAP_RISK_CHARGE_METRIC: {
+                "unit": "bps",
+                "public_label": "alignment-gap loss risk charge",
+                "prohibited_label": "observed spread or additive total premium",
             },
         },
     }

@@ -27,3 +27,26 @@ def sigma_carbon_combined(
     l_bar = scenario_mean_level(levels, probs)
     jump_var = float(np.dot(probs, (levels - l_bar) ** 2)) / l_bar**2
     return float(np.sqrt(sigma_diff**2 + jump_var))
+
+
+def sigma_carbon_binding(
+    sigma_diff: float,
+    levels: np.ndarray,
+    probs: np.ndarray,
+    binds: np.ndarray,
+) -> float:
+    """Conditional-on-binding carbon sigma.
+
+    This statistic pairs with ``E[level | bind]``.  Binding probabilities are
+    normalized inside the conditional distribution; a downstream unconditional
+    charge may then multiply by ``p_bind`` exactly once.
+    """
+    mask = binds.astype(bool)
+    bind_probs = probs[mask]
+    conditional_probs = bind_probs / bind_probs.sum()
+    bind_levels = levels[mask]
+    l_bind = float(np.dot(conditional_probs, bind_levels))
+    jump_var = float(
+        np.dot(conditional_probs, (bind_levels - l_bind) ** 2) / l_bind**2
+    )
+    return float(np.sqrt(sigma_diff**2 + jump_var))

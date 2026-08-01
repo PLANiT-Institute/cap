@@ -509,3 +509,91 @@ archetype 가정이므로 유지. KR(7.5% vs 조사 7.75%)은 차이 경미로 �
 정렬(gap)이 반대로 움직일 수 있음을 다시 보여준다 — 타이밍 지표와 리스크 지표는 같지 않다.
 
 검증: 회귀 36개 통과, KR 기업 전 지표 불변(통제), λ 불변성·share 합=1 유지.
+
+---
+
+## 갱신 5 (2026-07-31 — LSM 행사가치 drift 일치 수정)
+
+### 원인
+
+`lib/lsm_engine.exercise_value`가 행사시점 **현물가격을 잔여기간 전체에 동결**
+(`annual × annuity`)한 반면, 시뮬레이션 경로는 config μ로 drift했다
+(carbon +0.086/yr, h2 −0.05/yr, elec −0.015/yr, capex −0.03/yr). 계속가치(회귀 대상
+실현 cashflow)는 drift를 보고 행사 payoff는 못 보는 비대칭 — 조기 행사일수록 잔여창이
+길어 과소평가가 커지므로 **τ*가 체계적으로 늦어지고 wedge가 과대**되는 편향이었다.
+
+### 수정
+
+행사가치의 가격 드라이버 항을 드라이버별 `growth_annuity(rate, μ_k, 잔여연수)`
+(= Σ e^{μs}/(1+r)^s, GBM의 E[P_{t+s}]=P_t·e^{μs}와 일치)로 교체. 상수 opex 항은
+무성장 annuity 유지. 회귀 테스트 `test_exercise_value_is_drift_consistent` 추가.
+동시에 `lib/anatomy.premium_bps`(호출자 0, 연율화 누락으로 정본 공식과 ~12배 불일치
+위험)를 삭제하고 s04/s05가 공유하는 `risk_charge_annual_usd`로 단일화 — **premium 수치
+자체는 불변** (공식 동일, 위치만 이동).
+
+### 수치 이동 (τ* 앞당김 — 방향은 전부 예측대로)
+
+| 항목 | 이전 (동결 payoff) | 이후 (drift 일치) |
+|---|---|---|
+| POSCO 광양 (A01) | 2050.7 | **2044.7** (−6.0y) |
+| Nippon 기미츠 (A04) | None (p_ex 0.49) | **2050.3** (문턱 통과) |
+| JFE 후쿠야마 (A03/A08) | None (p_ex 0.42–0.44) | **2046–2047** (문턱 통과) |
+| Kobe (A05/A10/A11) | None (p_ex 0.12–0.14) | None 유지 (p_ex 0.19–0.20) |
+| 옵션가치 | 42–3095 USD/t | 87–3236 USD/t (~1.1–3.1×) |
+| timing gap (양수 유지) | 7.3–18.8y | **2.7–15.2y** |
+| σ-linearity R² | 0.957 | 재계산 (구조 유지) |
+
+**해석 주의**: "요구 경로만이 전환을 만든다"는 갱신 3·4의 발견이 **약화**된다 —
+drift 일치 payoff에서는 JFE 고로·Nippon 기미츠도 지평 내 사적 전환이 살아난다
+(Kobe scrap/NG route만 여전히 None). wedge는 전 자산 양수 유지되나 크기가 절반 안팎으로
+줄어듦. 논문 서술이 동결-payoff 수치에 기대고 있다면 **저자 확인 필요** — 동결이 의도된
+보수적 가정이었는지(그렇다면 config μ=0으로 명시하는 게 정합), 아니면 버그였는지.
+
+검증: 회귀 38개 통과 (신규 1 포함), anchors 그린, KR/JP regime 분리·λ 불변성·share 합=1 유지.
+
+---
+
+## 갱신 11 (2026-08-01 — 논리 감사: gap-loss bridge, benchmark pool, 탄소 regime)
+
+### 1. condition gap을 손실분포로 직접 사상
+
+새 `s13_gap_pricing`은 연도별 초과배출 `G_t`를
+`PV_loss_j = Σ DF_t·G_t·max(P_j−P_reference, 0)`로 국가 탄소 시나리오에 사상한다.
+전체 시나리오 확률을 한 번 사용하므로 p_bind를 다시 곱하지 않는다. 산출물
+`alignment_gap_loss.json`은 transition-cost anatomy와 **별도 basis**이며, joint covariance가
+없으므로 두 charge를 합산하지 않는다.
+
+현행 surrogate run의 예시: POSCO gap 251.6 MtCO2 → 기대 PV loss $1,889m,
+loss sigma $2,342m, gap-linked charge 7.63 bps. 이는 검증된 규제부채나 관측 spread가 아니다.
+
+### 2. required deployment pool을 country x route로 분리
+
+기존 `sector x route` pool은 한국·일본 H2 자산이 같은 배치곡선을 소비했다. 이를
+`sector x country x route`로 분리하고, asset마다 benchmark source, intended benchmark,
+pathway kind, allocation rule, headline eligibility를 기록한다. surrogate row는 모두
+`headline_eligible=false`다.
+
+이 구조 수정만으로 POSCO cumulative gap이 193.2 → 251.6 MtCO2, NIPPON이
+193.0 → 241.2 MtCO2로 이동했다. POSCO base anatomy도 carbon/H2 31.6%/63.8% →
+21.8%/73.2%로 이동했다. 따라서 구 deck의 gap·cluster 수치는 benchmark pool 구성에
+민감한 것으로 판정하고 외부 헤드라인에서 철회한다.
+
+### 3. 탄소 조건부/무조건부 통계량 정합
+
+기존은 `E[level|bind]`에 전체 시나리오 sigma를 붙이고 p_bind를 다시 곱했다. 이제
+transition-cost charge는 `E[level|bind]`와 `sigma_binding`을 짝지은 뒤 p_bind를 한 번
+곱한다. 전체 시나리오 sigma는 진단용으로만 유지한다. KR sigma는 unconditional 0.88,
+binding-conditional 0.60; JP는 1.13 / 0.67이다.
+
+### 4. 데이터·재현성 fail-closed
+
+`params_consolidated`와 향후 intensity export는 candidate parquet로 ingest되지만
+`candidate_input_contract.json`에 `model_effect=none_until_DECISIONS...`로 기록된다.
+모델 값은 config 승격 전에는 바뀌지 않는다. manifest는 실행 전/후 dirty를 분리하고,
+`make test`는 calibration에 의존하도록 수정했다.
+
+검증: 회귀 38개 통과. full `make all` 결과는 아래 최종 실행 기록에서 갱신한다.
+
+최종 실행: `make all` 42개 회귀 + Next.js static build 통과. Next 15.5.22로
+patch update하고 postcss 8.5.25 / sharp 0.35.3을 override해 `npm audit` high 3건을
+0건으로 닫았다. manifest에 web package-lock hash를 추가했다.

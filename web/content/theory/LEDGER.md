@@ -85,7 +85,7 @@ p_bind는 파라미터가 아니라 파생이다 (Option A: Σ prob(binds=1), �
 - T_required 출처: **surrogate** — surrogate이면 'provisional; 실증 식별된 기업 의무 아님'. route별 경로 부재 시 h2 곡선 rescale (PROVISIONAL)
 - 점프에 확산과 동일 ρ·연σ 적용 — 근사 (Merton 분리 OPEN)
 - 개입 coverage·tenor 결합은 1차 근사; residual risk는 0이 되지 않음
-- working tree dirty: **False**
+- working tree dirty: **True**
 - s05 envelope은 공분산 불확실성만 반영 (τ* 재계산 없음)
 - measured 승격 이력: ['carbon_diffusion']
 - provenance UNKNOWN 출처 파일: 0개

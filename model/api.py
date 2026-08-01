@@ -30,8 +30,12 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from model.lib.interventions import apply_interventions, carbon_regime  # noqa: E402
+from model.lib.gap_pricing import price_alignment_gap  # noqa: E402
 from model.lib.pathways import condition_gap, firm_pathway  # noqa: E402
 from model.lib.result_contract import (  # noqa: E402
+    ALIGNMENT_GAP_LOSS_BASIS,
+    ALIGNMENT_GAP_LOSS_METRIC,
+    ALIGNMENT_GAP_RISK_CHARGE_METRIC,
     ENTERPRISE_FIXED_RISK_BASIS,
     ENTERPRISE_RISK_BASIS,
     RISK_CHARGE_METRIC,
@@ -92,12 +96,16 @@ def _refresh_carbon_regimes(cal) -> None:
         cal.l_bar[country] = reg.l_bar
         cal.l_bind[country] = reg.l_bind
         cal.p_bind[country] = reg.p_bind
-        cal.sigma_carbon_reform[country] = reg.sigma_reform
-        jump_var = reg.sigma_reform**2 - sigma_diff**2
+        cal.sigma_carbon_reform[country] = reg.sigma_unconditional
+        cal.sigma_carbon_binding[country] = reg.sigma_binding
+        jump_var = reg.sigma_unconditional**2 - sigma_diff**2
+        bind_jump_var = reg.sigma_binding**2 - sigma_diff**2
         cal.carbon_var_decomp[country] = {
             "diffusion_var": sigma_diff**2,
-            "jump_var": jump_var,
-            "jump_share": jump_var / reg.sigma_reform**2,
+            "unconditional_jump_var": jump_var,
+            "unconditional_jump_share": jump_var / reg.sigma_unconditional**2,
+            "binding_conditional_jump_var": bind_jump_var,
+            "binding_conditional_jump_share": bind_jump_var / reg.sigma_binding**2,
         }
 
 
@@ -187,6 +195,7 @@ def _pathway_summary(cal, firm_id: str, tau_map: dict[str, float | None]) -> dic
         "peak_annual_gap_mtco2": gap["peak_annual_gap_mtco2"],
         "first_misalignment_year": gap["first_misalignment_year"],
         "alignment_restored_year": gap["alignment_restored_year"],
+        "annual_alignment_gap_mtco2": gap["annual_alignment_gap_mtco2"].tolist(),
         "t_required_source": cal.t_required_source,
     }
 
@@ -222,6 +231,24 @@ def _calculate(
         base = anatomy_for(cal, meta, reform=False)
         reform = anatomy_for(cal, meta, reform=True)
         path = _pathway_summary(cal, firm_id, tau_map)
+        years = np.arange(
+            int(cal.lsm["base_year"]),
+            int(cal.lsm["base_year"] + cal.lsm["horizon_years"]) + 1,
+        )
+        gap_loss = price_alignment_gap(
+            np.asarray(path["annual_alignment_gap_mtco2"], dtype=float),
+            years,
+            base_year=float(cal.lsm["base_year"]),
+            rate=float(meta["wacc"]),
+            horizon_years=float(cal.lsm["horizon_years"]),
+            reference_price_usd_tco2=float(
+                cal.pricing[f"carbon_base_{meta['country'].lower()}"]
+            ),
+            scenarios=meta["params"].carbon.scenarios,
+            risk_price_lambda=float(cal.pricing["lambda"]),
+            risk_scale_k=float(cal.pricing["k"]),
+            enterprise_value_usd_bn=float(meta["ev_usd_bn"]),
+        )
         firms.append(
             {
                 "firm_id": firm_id,
@@ -249,6 +276,24 @@ def _calculate(
                 ),
                 "dominant_driver": dominant_driver(base["shares"]),
                 "p_bind": meta["params"].carbon.p_bind,
+                "alignment_gap_loss_result_contract": result_descriptor(
+                    ALIGNMENT_GAP_LOSS_METRIC,
+                    ALIGNMENT_GAP_LOSS_BASIS,
+                    "PROVISIONAL",
+                    uncertainty="surrogate required path and assumed carbon scenarios",
+                    interpretation="reduced-form PV loss implied by the physical gap",
+                ),
+                "alignment_gap_risk_result_contract": result_descriptor(
+                    ALIGNMENT_GAP_RISK_CHARGE_METRIC,
+                    ALIGNMENT_GAP_LOSS_BASIS,
+                    "PROVISIONAL",
+                    uncertainty="gap-loss distribution plus assumed lambda and k",
+                    interpretation="separate gap-linked charge; not additive to transition-cost charge",
+                ),
+                "expected_pv_gap_loss_usd_m": gap_loss["expected_pv_gap_loss_usd_m"],
+                "sigma_pv_gap_loss_usd_m": gap_loss["sigma_pv_gap_loss_usd_m"],
+                "gap_risk_charge_bps": gap_loss["gap_risk_charge_bps"],
+                "gap_charge_aggregation_warning": gap_loss["aggregation_rule"],
                 "private_transition_year_capacity_weighted": float(
                     np.average(group["tau_star_year"], weights=group["capacity_mt_yr"])
                 ),
@@ -266,13 +311,14 @@ def _calculate(
             "l_bind": dict(cal.l_bind),
             "p_bind": dict(cal.p_bind),
             "sigma_carbon_reform": dict(cal.sigma_carbon_reform),
+            "sigma_carbon_binding": dict(cal.sigma_carbon_binding),
         },
         "epistemics": {
             "shares": "MODEL_CONDITIONAL — scalar λ·p_bind에 항등 불변(P1), 노출모델·시나리오·캘리브레이션에 조건부",
             "risk_charge": "SCENARIO_CONDITIONAL — assumed λ·k·EV, 파생 p_bind에 조건부",
             "t_required": (
                 "PROVISIONAL — surrogate; empirically identified firm mandate가 아님"
-                if cal.t_required_source == "surrogate"
+                if cal.required_path_provisional
                 else "EMPIRICAL — raw pathway 기반"
             ),
         },

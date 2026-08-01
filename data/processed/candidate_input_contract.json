@@ -1,0 +1,13 @@
+{
+  "rule": "raw registration and parquet creation do not imply model consumption; only config promotion changes model results",
+  "datasets": [
+    {
+      "dataset": "params_consolidated",
+      "source_file": "research/params_consolidated_2026-07-26.csv",
+      "processed_file": "data/processed/params_candidates.parquet",
+      "pipeline_role": "calibration_evidence_only",
+      "model_effect": "none_until_DECISIONS_promotion_to_config",
+      "consumer": "human review via DECISIONS.md and PAPER_DIFF.md"
+    }
+  ]
+}

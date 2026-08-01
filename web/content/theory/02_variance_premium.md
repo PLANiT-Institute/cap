@@ -6,11 +6,11 @@
 
 `status: AXIOM`
 
-이 공리의 경험적 발톱이 Figure 4다: POSCO의 탄소는 비용 share 29.0% vs 위험 share 31.6% — 평균으로 나누면 anatomy를 잘못 말한다. (`outputs/cost_vs_risk.json`)
+이 공리의 경험적 발톱이 Figure 4다: POSCO의 탄소는 비용 share 24.0% vs 위험 share 21.8% — 평균으로 나누면 anatomy를 잘못 말한다. (`outputs/cost_vs_risk.json`)
 
 ## 공리 A2 — 부호 규약 (단일 실패 지점) {#axiom-budget-binds}
 
-미전환을 short volatility(σ↑ = 악화)로 취급하는 것은 넷제로 예산이 구속력을 가질 때만 성립한다. 예산이 없으면 표준 실물옵션 결과대로 변동성은 대기 옵션 보유자에게 이익이다. 심사자가 "예산이 구속한다"를 기각하면 노출은 옵션 가치로 뒤집힌다. 우리는 이를 숨기지 않고 공리로 명시한다. 구속확률 p_bind는 국가별 시나리오에서 파생되며(Option A: Σ prob(binds=1)) scalar 곱으로 수준에 들어간다 — scalar인 한 share에서 소거되지만(P1), 시나리오 자체가 바뀌면 ℓ_bind를 통해 share도 움직인다.
+미전환을 short volatility(σ↑ = 악화)로 취급하는 것은 넷제로 예산이 구속력을 가질 때만 성립한다. 예산이 없으면 표준 실물옵션 결과대로 변동성은 대기 옵션 보유자에게 이익이다. 심사자가 "예산이 구속한다"를 기각하면 노출은 옵션 가치로 뒤집힌다. 우리는 이를 숨기지 않고 공리로 명시한다. 구속확률 p_bind는 국가별 시나리오에서 파생된다(Option A: Σ prob(binds=1)). transition-cost charge는 **조건부 수준 E[level|bind]와 조건부 σ_binding**을 짝지은 뒤 p_bind를 한 번만 곱한다. 별도 gap-loss 레인은 전체 시나리오 손실분포를 직접 사용하므로 p_bind를 다시 곱하지 않는다. scalar인 p_bind는 share에서 소거되지만(P1), 시나리오 자체가 바뀌면 ℓ_bind와 σ_binding을 통해 share도 움직인다.
 
 `status: AXIOM · referenced-by: config/scenarios.csv binds 컬럼 (p_bind 파생)`
 

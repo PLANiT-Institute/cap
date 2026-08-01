@@ -198,15 +198,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 48.8972099672,
-              "risk_charge_usd_t": 8.9446115794,
-              "sigma_b_usd_bn": 13.6915185017,
+              "risk_charge_bps": 48.8196955416,
+              "risk_charge_usd_t": 8.9304321113,
+              "sigma_b_usd_bn": 13.6698139874,
               "shares": {
-                "carbon": 0.0043405303,
-                "h2": 0.8767090906,
-                "elec": 0.1171675788,
+                "carbon": 0.0020412184,
+                "h2": 0.8794953248,
+                "elec": 0.1166749906,
                 "feedstock": 0.0,
-                "capex": 0.0017828003
+                "capex": 0.0017884662
               }
             }
           },
@@ -308,18 +308,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 33.8633021679,
-                "risk_charge_usd_t": 6.1945064941,
-                "sigma_b_usd_bn": 9.481932169,
+                "risk_charge_bps": 33.7512779596,
+                "risk_charge_usd_t": 6.1740142609,
+                "sigma_b_usd_bn": 9.450564704,
                 "shares": {
-                  "carbon": 0.0090500783,
-                  "h2": 0.811015689,
-                  "elec": 0.1762170642,
+                  "carbon": 0.0042707011,
+                  "h2": 0.8164083243,
+                  "elec": 0.1755790898,
                   "feedstock": 0.0,
-                  "capex": 0.0037171685
+                  "capex": 0.0037418849
                 }
               },
-              "risk_cut_bps": 15.0339077993,
+              "risk_cut_bps": 15.0684175819,
               "gross_incremental_value_usd_m": 6603.8817913615,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -426,18 +426,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 47.2807465787,
-                "risk_charge_usd_t": 8.6489170571,
-                "sigma_b_usd_bn": 13.238898845,
+                "risk_charge_bps": 47.2130342385,
+                "risk_charge_usd_t": 8.6365306534,
+                "sigma_b_usd_bn": 13.2199389747,
                 "shares": {
-                  "carbon": 0.0039968471,
-                  "h2": 0.9094028371,
-                  "elec": 0.0846935286,
+                  "carbon": 0.0017989084,
+                  "h2": 0.9120132159,
+                  "elec": 0.0842756152,
                   "feedstock": 0.0,
-                  "capex": 0.0019067871
+                  "capex": 0.0019122604
                 }
               },
-              "risk_cut_bps": 1.6164633885,
+              "risk_cut_bps": 1.6066613031,
               "gross_incremental_value_usd_m": 905.675217101,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -544,18 +544,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.8749755518,
-                "risk_charge_usd_t": 8.9405443083,
-                "sigma_b_usd_bn": 13.6852927291,
+                "risk_charge_bps": 48.797425807,
+                "risk_charge_usd_t": 8.9263583793,
+                "sigma_b_usd_bn": 13.6635783253,
                 "shares": {
-                  "carbon": 0.0043444804,
-                  "h2": 0.8775069446,
-                  "elec": 0.1172742078,
+                  "carbon": 0.002043082,
+                  "h2": 0.8802982604,
+                  "elec": 0.1167815091,
                   "feedstock": 0.0,
-                  "capex": 0.0008743672
+                  "capex": 0.0008771485
                 }
               },
-              "risk_cut_bps": 0.0222344154,
+              "risk_cut_bps": 0.0222697346,
               "gross_incremental_value_usd_m": 1156.2,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -661,18 +661,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 73.2779706061,
-                "risk_charge_usd_t": 13.4045068182,
-                "sigma_b_usd_bn": 13.6788539468,
+                "risk_charge_bps": 73.2295433124,
+                "risk_charge_usd_t": 13.3956481669,
+                "sigma_b_usd_bn": 13.6698139874,
                 "shares": {
-                  "carbon": 0.0029753398,
-                  "h2": 0.8783332428,
-                  "elec": 0.1169053144,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017861031
+                  "capex": 0.0017884662
                 }
               },
-              "risk_cut_bps": -24.3807606389,
+              "risk_cut_bps": -24.4098477708,
               "gross_incremental_value_usd_m": 2066.3336478129,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -779,18 +779,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.8834656316,
-                "risk_charge_usd_t": 8.9420973716,
-                "sigma_b_usd_bn": 16.5415121017,
+                "risk_charge_bps": 48.805929377,
+                "risk_charge_usd_t": 8.9279139104,
+                "sigma_b_usd_bn": 16.5152748683,
                 "shares": {
-                  "carbon": 0.0043429714,
-                  "h2": 0.8772021603,
-                  "elec": 0.117233475,
+                  "carbon": 0.0020423701,
+                  "h2": 0.8799915344,
+                  "elec": 0.1167408184,
                   "feedstock": 0.0,
-                  "capex": 0.0012213933
+                  "capex": 0.0012252771
                 }
               },
-              "risk_cut_bps": 0.0137443356,
+              "risk_cut_bps": 0.0137661646,
               "gross_incremental_value_usd_m": -5039.9793799058,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -896,15 +896,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.8972099672,
-                "risk_charge_usd_t": 8.9446115794,
-                "sigma_b_usd_bn": 13.6915185017,
+                "risk_charge_bps": 48.8196955416,
+                "risk_charge_usd_t": 8.9304321113,
+                "sigma_b_usd_bn": 13.6698139874,
                 "shares": {
-                  "carbon": 0.0043405303,
-                  "h2": 0.8767090906,
-                  "elec": 0.1171675788,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017828003
+                  "capex": 0.0017884662
                 }
               },
               "risk_cut_bps": 0.0,
@@ -1013,15 +1013,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.8972099672,
-                "risk_charge_usd_t": 8.9446115794,
-                "sigma_b_usd_bn": 13.6915185017,
+                "risk_charge_bps": 48.8196955416,
+                "risk_charge_usd_t": 8.9304321113,
+                "sigma_b_usd_bn": 13.6698139874,
                 "shares": {
-                  "carbon": 0.0043405303,
-                  "h2": 0.8767090906,
-                  "elec": 0.1171675788,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017828003
+                  "capex": 0.0017884662
                 }
               },
               "risk_cut_bps": 0.0,
@@ -1134,18 +1134,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 48.1369164302,
-                "risk_charge_usd_t": 8.8055334933,
-                "sigma_b_usd_bn": 8.9857544342,
+                "risk_charge_bps": 48.0754156004,
+                "risk_charge_usd_t": 8.7942833415,
+                "sigma_b_usd_bn": 8.974274028,
                 "shares": {
-                  "carbon": 0.005810445,
-                  "h2": 0.8632953394,
-                  "elec": 0.1288660989,
+                  "carbon": 0.0039036359,
+                  "h2": 0.865505506,
+                  "elec": 0.1285575491,
                   "feedstock": 0.0,
-                  "capex": 0.0020281166
+                  "capex": 0.0020333089
                 }
               },
-              "risk_cut_bps": 0.760293537,
+              "risk_cut_bps": 0.7442799412,
               "gross_incremental_value_usd_m": 10732.0906562754,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -1247,15 +1247,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 12.0955951812,
-              "risk_charge_usd_t": 2.2126088746,
-              "sigma_b_usd_bn": 3.3868407896,
+              "risk_charge_bps": 8.8719146086,
+              "risk_charge_usd_t": 1.6229112089,
+              "sigma_b_usd_bn": 2.48419047,
               "shares": {
-                "carbon": 0.6854121051,
+                "carbon": 0.4938336895,
                 "h2": 0.0,
-                "elec": 0.3093121881,
+                "elec": 0.4963601176,
                 "feedstock": 0.0,
-                "capex": 0.0052757068
+                "capex": 0.0098061929
               }
             }
           },
@@ -1355,15 +1355,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0955951812,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 3.3868407896,
+                "risk_charge_bps": 8.8719146086,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 2.48419047,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -1473,18 +1473,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 11.0875485331,
-                "risk_charge_usd_t": 2.0282100975,
-                "sigma_b_usd_bn": 3.1045815494,
+                "risk_charge_bps": 7.672639886,
+                "risk_charge_usd_t": 1.4035316865,
+                "sigma_b_usd_bn": 2.1483861968,
                 "shares": {
-                  "carbon": 0.7804921657,
+                  "carbon": 0.6167018396,
                   "h2": 0.0,
-                  "elec": 0.2132292161,
+                  "elec": 0.3701868679,
                   "feedstock": 0.0,
-                  "capex": 0.0062786181
+                  "capex": 0.0131112925
                 }
               },
-              "risk_cut_bps": 1.0080466481,
+              "risk_cut_bps": 1.1992747225,
               "gross_incremental_value_usd_m": 679.2564128257,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -1591,18 +1591,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0793119534,
-                "risk_charge_usd_t": 2.2096302354,
-                "sigma_b_usd_bn": 3.382281386,
+                "risk_charge_bps": 8.8497018764,
+                "risk_charge_usd_t": 1.6188479042,
+                "sigma_b_usd_bn": 2.4779707688,
                 "shares": {
-                  "carbon": 0.6872612574,
+                  "carbon": 0.4963158436,
                   "h2": 0.0,
-                  "elec": 0.310146672,
+                  "elec": 0.4988549703,
                   "feedstock": 0.0,
-                  "capex": 0.0025920706
+                  "capex": 0.004829186
                 }
               },
-              "risk_cut_bps": 0.0162832278,
+              "risk_cut_bps": 0.0222127322,
               "gross_incremental_value_usd_m": 492.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -1708,18 +1708,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 15.3928607874,
-                "risk_charge_usd_t": 2.8157672172,
-                "sigma_b_usd_bn": 2.8733969131,
+                "risk_charge_bps": 13.3078719128,
+                "risk_charge_usd_t": 2.4343668133,
+                "sigma_b_usd_bn": 2.48419047,
                 "shares": {
-                  "carbon": 0.5955287978,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3971416242,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.007329578
+                  "capex": 0.0098061929
                 }
               },
-              "risk_cut_bps": -3.2972656062,
+              "risk_cut_bps": -4.4359573043,
               "gross_incremental_value_usd_m": 1740.0704402635,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -1826,18 +1826,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0855313225,
-                "risk_charge_usd_t": 2.2107679248,
-                "sigma_b_usd_bn": 4.0895824394,
+                "risk_charge_bps": 8.8581890576,
+                "risk_charge_usd_t": 1.6204004374,
+                "sigma_b_usd_bn": 2.9974929069,
                 "shares": {
-                  "carbon": 0.6865540926,
+                  "carbon": 0.495365242,
                   "h2": 0.0,
-                  "elec": 0.3098275432,
+                  "elec": 0.4978995054,
                   "feedstock": 0.0,
-                  "capex": 0.0036183642
+                  "capex": 0.0067352526
                 }
               },
-              "risk_cut_bps": 0.0100638587,
+              "risk_cut_bps": 0.0137255509,
               "gross_incremental_value_usd_m": -1329.6859846179,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -1943,15 +1943,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0955951812,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 3.3868407896,
+                "risk_charge_bps": 8.8719146086,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 2.48419047,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -2060,15 +2060,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0955951812,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 3.3868407896,
+                "risk_charge_bps": 8.8719146086,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 2.48419047,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -2180,18 +2180,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 13.7068482821,
-                "risk_charge_usd_t": 2.5073502955,
-                "sigma_b_usd_bn": 2.5586676892,
+                "risk_charge_bps": 11.4704164669,
+                "risk_charge_usd_t": 2.0982469147,
+                "sigma_b_usd_bn": 2.1411912784,
                 "shares": {
-                  "carbon": 0.7109211984,
+                  "carbon": 0.6208533363,
                   "h2": 0.0,
-                  "elec": 0.2845494241,
+                  "elec": 0.3726788818,
                   "feedstock": 0.0,
-                  "capex": 0.0045293776
+                  "capex": 0.0064677818
                 }
               },
-              "risk_cut_bps": -1.6112531009,
+              "risk_cut_bps": -2.5985018584,
               "gross_incremental_value_usd_m": 2911.3268530892,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -2293,15 +2293,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 21.3050297499,
-              "risk_charge_usd_t": 3.8972615396,
-              "sigma_b_usd_bn": 5.9655389172,
+              "risk_charge_bps": 14.2880741361,
+              "risk_charge_usd_t": 2.6136720981,
+              "sigma_b_usd_bn": 4.0007483355,
               "shares": {
-                "carbon": 0.8279649533,
+                "carbon": 0.6881839408,
                 "h2": 0.0,
-                "elec": 0.1682089727,
+                "elec": 0.30330918,
                 "feedstock": 0.0,
-                "capex": 0.003826074
+                "capex": 0.0085068792
               }
             }
           },
@@ -2401,15 +2401,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.3050297499,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 5.9655389172,
+                "risk_charge_bps": 14.2880741361,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 4.0007483355,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -2519,18 +2519,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 20.3390614726,
-                "risk_charge_usd_t": 3.7205600255,
-                "sigma_b_usd_bn": 5.6950618787,
+                "risk_charge_bps": 13.1207741713,
+                "risk_charge_usd_t": 2.4001416167,
+                "sigma_b_usd_bn": 3.6738971905,
                 "shares": {
-                  "carbon": 0.8840586319,
+                  "carbon": 0.7813124205,
                   "h2": 0.0,
-                  "elec": 0.1117432386,
+                  "elec": 0.2085997268,
                   "feedstock": 0.0,
-                  "capex": 0.0041981296
+                  "capex": 0.0100878528
                 }
               },
-              "risk_cut_bps": 0.9659682773,
+              "risk_cut_bps": 1.1672999648,
               "gross_incremental_value_usd_m": 792.4658149634,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -2637,18 +2637,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.2842333717,
-                "risk_charge_usd_t": 3.8934573241,
-                "sigma_b_usd_bn": 5.9597158038,
+                "risk_charge_bps": 14.2570459808,
+                "risk_charge_usd_t": 2.607996216,
+                "sigma_b_usd_bn": 3.9920602619,
                 "shares": {
-                  "carbon": 0.8295837181,
+                  "carbon": 0.6911826425,
                   "h2": 0.0,
-                  "elec": 0.1685378402,
+                  "elec": 0.3046308234,
                   "feedstock": 0.0,
-                  "capex": 0.0018784417
+                  "capex": 0.0041865341
                 }
               },
-              "risk_cut_bps": 0.0207963782,
+              "risk_cut_bps": 0.0310281553,
               "gross_incremental_value_usd_m": 738.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -2754,18 +2754,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.0394426608,
-                "risk_charge_usd_t": 4.7633126818,
-                "sigma_b_usd_bn": 4.8608023676,
+                "risk_charge_bps": 21.4321112042,
+                "risk_charge_usd_t": 3.9205081471,
+                "sigma_b_usd_bn": 4.0007483355,
                 "shares": {
-                  "carbon": 0.7674515038,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.226785653,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.0057628432
+                  "capex": 0.0085068792
                 }
               },
-              "risk_cut_bps": -4.7344129109,
+              "risk_cut_bps": -7.1440370681,
               "gross_incremental_value_usd_m": 1305.0528301976,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -2872,18 +2872,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.2921756263,
-                "risk_charge_usd_t": 3.8949101755,
-                "sigma_b_usd_bn": 7.2049879493,
+                "risk_charge_bps": 14.2689001951,
+                "risk_charge_usd_t": 2.6101646698,
+                "sigma_b_usd_bn": 4.8284053147,
                 "shares": {
-                  "carbon": 0.8289649428,
+                  "carbon": 0.690034688,
                   "h2": 0.0,
-                  "elec": 0.1684121301,
+                  "elec": 0.3041248756,
                   "feedstock": 0.0,
-                  "capex": 0.0026229271
+                  "capex": 0.0058404363
                 }
               },
-              "risk_cut_bps": 0.0128541236,
+              "risk_cut_bps": 0.019173941,
               "gross_incremental_value_usd_m": -990.9765660898,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -2989,15 +2989,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.3050297499,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 5.9655389172,
+                "risk_charge_bps": 14.2880741361,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 4.0007483355,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -3106,15 +3106,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.3050297499,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 5.9655389172,
+                "risk_charge_bps": 14.2880741361,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 4.0007483355,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -3226,18 +3226,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 24.4095819772,
-                "risk_charge_usd_t": 4.4651674349,
-                "sigma_b_usd_bn": 4.5565550466,
+                "risk_charge_bps": 19.6304681039,
+                "risk_charge_usd_t": 3.5909392873,
+                "sigma_b_usd_bn": 3.6644342615,
                 "shares": {
-                  "carbon": 0.8438391476,
+                  "carbon": 0.7853529079,
                   "h2": 0.0,
-                  "elec": 0.1529473727,
+                  "elec": 0.2096784817,
                   "feedstock": 0.0,
-                  "capex": 0.0032134798
+                  "capex": 0.0049686104
                 }
               },
-              "risk_cut_bps": -3.1045522273,
+              "risk_cut_bps": -5.3423939678,
               "gross_incremental_value_usd_m": 2835.518645161,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -3362,15 +3362,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 22.7198026831,
-              "risk_charge_usd_t": 17.4767712947,
-              "sigma_b_usd_bn": 4.6502307929,
+              "risk_charge_bps": 22.6437220403,
+              "risk_charge_usd_t": 17.4182477233,
+              "sigma_b_usd_bn": 4.6346588025,
               "shares": {
-                "carbon": 0.0084048228,
+                "carbon": 0.0047741845,
                 "h2": 0.0,
-                "elec": 0.0358214933,
-                "feedstock": 0.9550307556,
-                "capex": 0.0007429283
+                "elec": 0.0355084019,
+                "feedstock": 0.9589694845,
+                "capex": 0.000747929
               }
             }
           },
@@ -3470,15 +3470,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.7198026831,
-                "risk_charge_usd_t": 17.4767712947,
-                "sigma_b_usd_bn": 4.6502307929,
+                "risk_charge_bps": 22.6437220403,
+                "risk_charge_usd_t": 17.4182477233,
+                "sigma_b_usd_bn": 4.6346588025,
                 "shares": {
-                  "carbon": 0.0084048228,
+                  "carbon": 0.0047741845,
                   "h2": 0.0,
-                  "elec": 0.0358214933,
-                  "feedstock": 0.9550307556,
-                  "capex": 0.0007429283
+                  "elec": 0.0355084019,
+                  "feedstock": 0.9589694845,
+                  "capex": 0.000747929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -3588,18 +3588,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.5056778052,
-                "risk_charge_usd_t": 17.3120598501,
-                "sigma_b_usd_bn": 4.6064042635,
+                "risk_charge_bps": 22.4324845159,
+                "risk_charge_usd_t": 17.2557573199,
+                "sigma_b_usd_bn": 4.5914232492,
                 "shares": {
-                  "carbon": 0.0081727791,
+                  "carbon": 0.004630296,
                   "h2": 0.0,
-                  "elec": 0.0218140855,
-                  "feedstock": 0.969256003,
-                  "capex": 0.0007571324
+                  "elec": 0.0215530512,
+                  "feedstock": 0.9730545715,
+                  "capex": 0.0007620813
                 }
               },
-              "risk_cut_bps": 0.2141248779,
+              "risk_cut_bps": 0.2112375244,
               "gross_incremental_value_usd_m": 245.424461734,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -3706,18 +3706,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.7154980831,
-                "risk_charge_usd_t": 17.4734600639,
-                "sigma_b_usd_bn": 4.6493497384,
+                "risk_charge_bps": 22.6394029745,
+                "risk_charge_usd_t": 17.414925365,
+                "sigma_b_usd_bn": 4.6337747873,
                 "shares": {
-                  "carbon": 0.0084080085,
+                  "carbon": 0.0047760063,
                   "h2": 0.0,
-                  "elec": 0.0358350709,
-                  "feedstock": 0.9553927477,
-                  "capex": 0.0003641729
+                  "elec": 0.0355219516,
+                  "feedstock": 0.9593354171,
+                  "capex": 0.0003666251
                 }
               },
-              "risk_cut_bps": 0.0043046,
+              "risk_cut_bps": 0.0043190658,
               "gross_incremental_value_usd_m": 253.5,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -3823,18 +3823,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 34.0157367766,
-                "risk_charge_usd_t": 26.1659513666,
-                "sigma_b_usd_bn": 4.6415023583,
+                "risk_charge_bps": 33.9655830605,
+                "risk_charge_usd_t": 26.127371585,
+                "sigma_b_usd_bn": 4.6346588025,
                 "shares": {
-                  "carbon": 0.006355942,
+                  "carbon": 0.0047741845,
                   "h2": 0.0,
-                  "elec": 0.0356497246,
-                  "feedstock": 0.9572486082,
-                  "capex": 0.0007457251
+                  "elec": 0.0355084019,
+                  "feedstock": 0.9589694845,
+                  "capex": 0.000747929
                 }
               },
-              "risk_cut_bps": -11.2959340935,
+              "risk_cut_bps": -11.3218610202,
               "gross_incremental_value_usd_m": 183.8979126465,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -3941,18 +3941,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.7170194835,
-                "risk_charge_usd_t": 17.4746303719,
-                "sigma_b_usd_bn": 5.6794425973,
+                "risk_charge_bps": 22.6409294882,
+                "risk_charge_usd_t": 17.4160996063,
+                "sigma_b_usd_bn": 5.6604194698,
                 "shares": {
-                  "carbon": 0.0084068824,
+                  "carbon": 0.0047753623,
                   "h2": 0.0,
-                  "elec": 0.0358302712,
-                  "feedstock": 0.9552647832,
-                  "capex": 0.0004980633
+                  "elec": 0.0355171618,
+                  "feedstock": 0.9592060594,
+                  "capex": 0.0005014166
                 }
               },
-              "risk_cut_bps": 0.0027831997,
+              "risk_cut_bps": 0.0027925521,
               "gross_incremental_value_usd_m": -16.8716294857,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -4060,18 +4060,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.7899888654,
-                "risk_charge_usd_t": 13.6846068195,
-                "sigma_b_usd_bn": 3.6412091769,
+                "risk_charge_bps": 17.7091649584,
+                "risk_charge_usd_t": 13.6224345834,
+                "sigma_b_usd_bn": 3.6246663474,
                 "shares": {
-                  "carbon": 0.0114514756,
+                  "carbon": 0.0064559642,
                   "h2": 0.0,
-                  "elec": 0.0532649536,
-                  "feedstock": 0.9340718441,
-                  "capex": 0.0012117267
+                  "elec": 0.0528461678,
+                  "feedstock": 0.9394750556,
+                  "capex": 0.0012228125
                 }
               },
-              "risk_cut_bps": 4.9298138177,
+              "risk_cut_bps": 4.9345570819,
               "gross_incremental_value_usd_m": 0.0,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -4177,15 +4177,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.7198026831,
-                "risk_charge_usd_t": 17.4767712947,
-                "sigma_b_usd_bn": 4.6502307929,
+                "risk_charge_bps": 22.6437220403,
+                "risk_charge_usd_t": 17.4182477233,
+                "sigma_b_usd_bn": 4.6346588025,
                 "shares": {
-                  "carbon": 0.0084048228,
+                  "carbon": 0.0047741845,
                   "h2": 0.0,
-                  "elec": 0.0358214933,
-                  "feedstock": 0.9550307556,
-                  "capex": 0.0007429283
+                  "elec": 0.0355084019,
+                  "feedstock": 0.9589694845,
+                  "capex": 0.000747929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -4298,18 +4298,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.2398393998,
-                "risk_charge_usd_t": 20.184491846,
-                "sigma_b_usd_bn": 3.5804685712,
+                "risk_charge_bps": 26.1890240929,
+                "risk_charge_usd_t": 20.1454031484,
+                "sigma_b_usd_bn": 3.5735347403,
                 "shares": {
-                  "carbon": 0.0083717007,
+                  "carbon": 0.006255373,
                   "h2": 0.0,
-                  "elec": 0.0319232486,
-                  "feedstock": 0.9590909886,
-                  "capex": 0.0006140621
+                  "elec": 0.0317506789,
+                  "feedstock": 0.9613775008,
+                  "capex": 0.0006164474
                 }
               },
-              "risk_cut_bps": -3.5200367167,
+              "risk_cut_bps": -3.5453020526,
               "gross_incremental_value_usd_m": 682.8223743806,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -4413,15 +4413,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 22.723213026,
-              "risk_charge_usd_t": 17.4793946354,
-              "sigma_b_usd_bn": 4.6509288131,
+              "risk_charge_bps": 22.4717052322,
+              "risk_charge_usd_t": 17.2859271017,
+              "sigma_b_usd_bn": 4.5994508446,
               "shares": {
-                "carbon": 0.0288177112,
+                "carbon": 0.015272059,
                 "h2": 0.0,
-                "elec": 0.0116331394,
-                "feedstock": 0.9590173899,
-                "capex": 0.0005317595
+                "elec": 0.0111634535,
+                "feedstock": 0.9730207583,
+                "capex": 0.0005437292
               }
             }
           },
@@ -4521,15 +4521,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.723213026,
-                "risk_charge_usd_t": 17.4793946354,
-                "sigma_b_usd_bn": 4.6509288131,
+                "risk_charge_bps": 22.4717052322,
+                "risk_charge_usd_t": 17.2859271017,
+                "sigma_b_usd_bn": 4.5994508446,
                 "shares": {
-                  "carbon": 0.0288177112,
+                  "carbon": 0.015272059,
                   "h2": 0.0,
-                  "elec": 0.0116331394,
-                  "feedstock": 0.9590173899,
-                  "capex": 0.0005317595
+                  "elec": 0.0111634535,
+                  "feedstock": 0.9730207583,
+                  "capex": 0.0005437292
                 }
               },
               "risk_cut_bps": 0.0,
@@ -4639,18 +4639,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.6512699452,
-                "risk_charge_usd_t": 17.424053804,
-                "sigma_b_usd_bn": 4.6362036883,
+                "risk_charge_bps": 22.403658282,
+                "risk_charge_usd_t": 17.2335832939,
+                "sigma_b_usd_bn": 4.5855231698,
                 "shares": {
-                  "carbon": 0.0284970443,
+                  "carbon": 0.0150596956,
                   "h2": 0.0,
-                  "elec": 0.0075745245,
-                  "feedstock": 0.9633932886,
-                  "capex": 0.0005351427
+                  "elec": 0.0072168274,
+                  "feedstock": 0.9771764399,
+                  "capex": 0.0005470371
                 }
               },
-              "risk_cut_bps": 0.0719430808,
+              "risk_cut_bps": 0.0680469502,
               "gross_incremental_value_usd_m": 106.3506000847,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -4757,18 +4757,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.7201315798,
-                "risk_charge_usd_t": 17.4770242922,
-                "sigma_b_usd_bn": 4.6502981106,
+                "risk_charge_bps": 22.4685892931,
+                "risk_charge_usd_t": 17.2835302255,
+                "sigma_b_usd_bn": 4.5988130822,
                 "shares": {
-                  "carbon": 0.0288255286,
+                  "carbon": 0.0152762952,
                   "h2": 0.0,
-                  "elec": 0.0116362952,
-                  "feedstock": 0.9592775434,
-                  "capex": 0.0002606328
+                  "elec": 0.01116655,
+                  "feedstock": 0.9732906537,
+                  "capex": 0.0002665012
                 }
               },
-              "risk_cut_bps": 0.0030814462,
+              "risk_cut_bps": 0.0031159391,
               "gross_incremental_value_usd_m": 214.5,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -4874,18 +4874,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 33.8697667861,
-                "risk_charge_usd_t": 26.0536667586,
-                "sigma_b_usd_bn": 4.6215845168,
+                "risk_charge_bps": 33.7075578483,
+                "risk_charge_usd_t": 25.9288906526,
+                "sigma_b_usd_bn": 4.5994508446,
                 "shares": {
-                  "carbon": 0.0210157478,
+                  "carbon": 0.015272059,
                   "h2": 0.0,
-                  "elec": 0.0113792845,
-                  "feedstock": 0.9670664341,
-                  "capex": 0.0005385336
+                  "elec": 0.0111634535,
+                  "feedstock": 0.9730207583,
+                  "capex": 0.0005437292
                 }
               },
-              "risk_cut_bps": -11.1465537601,
+              "risk_cut_bps": -11.2358526161,
               "gross_incremental_value_usd_m": 143.0317098362,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -4992,18 +4992,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.7212206547,
-                "risk_charge_usd_t": 17.4778620421,
-                "sigma_b_usd_bn": 5.6804929249,
+                "risk_charge_bps": 22.4696905599,
+                "risk_charge_usd_t": 17.2843773538,
+                "sigma_b_usd_bn": 5.6176083226,
                 "shares": {
-                  "carbon": 0.0288227654,
+                  "carbon": 0.0152747978,
                   "h2": 0.0,
-                  "elec": 0.0116351797,
-                  "feedstock": 0.9591855853,
-                  "capex": 0.0003564696
+                  "elec": 0.0111654554,
+                  "feedstock": 0.9731952517,
+                  "capex": 0.0003644951
                 }
               },
-              "risk_cut_bps": 0.0019923713,
+              "risk_cut_bps": 0.0020146723,
               "gross_incremental_value_usd_m": 38.1771392194,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -5111,18 +5111,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.7660497484,
-                "risk_charge_usd_t": 13.6661921141,
-                "sigma_b_usd_bn": 3.63630938,
+                "risk_charge_bps": 17.4931977329,
+                "risk_charge_usd_t": 13.4563059484,
+                "sigma_b_usd_bn": 3.580462731,
                 "shares": {
-                  "carbon": 0.0403540107,
+                  "carbon": 0.0210527048,
                   "h2": 0.0,
-                  "elec": 0.0167884865,
-                  "feedstock": 0.9419875956,
-                  "capex": 0.0008699072
+                  "elec": 0.0161091055,
+                  "feedstock": 0.9619409339,
+                  "capex": 0.0008972558
                 }
               },
-              "risk_cut_bps": 4.9571632776,
+              "risk_cut_bps": 4.9785074993,
               "gross_incremental_value_usd_m": 0.0,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -5228,15 +5228,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.723213026,
-                "risk_charge_usd_t": 17.4793946354,
-                "sigma_b_usd_bn": 4.6509288131,
+                "risk_charge_bps": 22.4717052322,
+                "risk_charge_usd_t": 17.2859271017,
+                "sigma_b_usd_bn": 4.5994508446,
                 "shares": {
-                  "carbon": 0.0288177112,
+                  "carbon": 0.015272059,
                   "h2": 0.0,
-                  "elec": 0.0116331394,
-                  "feedstock": 0.9590173899,
-                  "capex": 0.0005317595
+                  "elec": 0.0111634535,
+                  "feedstock": 0.9730207583,
+                  "capex": 0.0005437292
                 }
               },
               "risk_cut_bps": 0.0,
@@ -5349,18 +5349,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.2916580868,
-                "risk_charge_usd_t": 20.2243523745,
-                "sigma_b_usd_bn": 3.587539315,
+                "risk_charge_bps": 26.1199084208,
+                "risk_charge_usd_t": 20.0922372468,
+                "sigma_b_usd_bn": 3.564103795,
                 "shares": {
-                  "carbon": 0.0288273625,
+                  "carbon": 0.0207410841,
                   "h2": 0.0,
-                  "elec": 0.0105265073,
-                  "feedstock": 0.9602082076,
-                  "capex": 0.0004379226
+                  "elec": 0.010277807,
+                  "feedstock": 0.9685374083,
+                  "capex": 0.0004437006
                 }
               },
-              "risk_cut_bps": -3.5684450608,
+              "risk_cut_bps": -3.6482031886,
               "gross_incremental_value_usd_m": 463.8823099209,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -5464,15 +5464,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 24.0603655857,
-              "risk_charge_usd_t": 18.5079735274,
-              "sigma_b_usd_bn": 4.9246137607,
+              "risk_charge_bps": 23.9024638166,
+              "risk_charge_usd_t": 18.3865106281,
+              "sigma_b_usd_bn": 4.8922948327,
               "shares": {
-                "carbon": 0.0167684139,
+                "carbon": 0.0092080634,
                 "h2": 0.0,
-                "elec": 0.021274261,
-                "feedstock": 0.9606873071,
-                "capex": 0.001270018
+                "elec": 0.0208267855,
+                "feedstock": 0.9686782979,
+                "capex": 0.0012868532
               }
             }
           },
@@ -5572,15 +5572,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 24.0603655857,
-                "risk_charge_usd_t": 18.5079735274,
-                "sigma_b_usd_bn": 4.9246137607,
+                "risk_charge_bps": 23.9024638166,
+                "risk_charge_usd_t": 18.3865106281,
+                "sigma_b_usd_bn": 4.8922948327,
                 "shares": {
-                  "carbon": 0.0167684139,
+                  "carbon": 0.0092080634,
                   "h2": 0.0,
-                  "elec": 0.021274261,
-                  "feedstock": 0.9606873071,
-                  "capex": 0.001270018
+                  "elec": 0.0208267855,
+                  "feedstock": 0.9686782979,
+                  "capex": 0.0012868532
                 }
               },
               "risk_cut_bps": 0.0,
@@ -5690,18 +5690,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 23.9236346297,
-                "risk_charge_usd_t": 18.402795869,
-                "sigma_b_usd_bn": 4.8966280202,
+                "risk_charge_bps": 23.7698263726,
+                "risk_charge_usd_t": 18.2844818251,
+                "sigma_b_usd_bn": 4.8651469417,
                 "shares": {
-                  "carbon": 0.0164508795,
+                  "carbon": 0.0090051517,
                   "h2": 0.0,
-                  "elec": 0.0133437168,
-                  "feedstock": 0.9689208271,
-                  "capex": 0.0012845766
+                  "elec": 0.0129897278,
+                  "feedstock": 0.9767038657,
+                  "capex": 0.0013012547
                 }
               },
-              "risk_cut_bps": 0.136730956,
+              "risk_cut_bps": 0.132637444,
               "gross_incremental_value_usd_m": 179.977938605,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -5808,18 +5808,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 24.0525722634,
-                "risk_charge_usd_t": 18.5019786641,
-                "sigma_b_usd_bn": 4.9230186436,
+                "risk_charge_bps": 23.8946189941,
+                "risk_charge_usd_t": 18.3804761493,
+                "sigma_b_usd_bn": 4.8906891746,
                 "shares": {
-                  "carbon": 0.0167792819,
+                  "carbon": 0.0092141106,
                   "h2": 0.0,
-                  "elec": 0.0212880494,
-                  "feedstock": 0.9613099564,
-                  "capex": 0.0006227122
+                  "elec": 0.020840463,
+                  "feedstock": 0.9693144543,
+                  "capex": 0.0006309722
                 }
               },
-              "risk_cut_bps": 0.0077933223,
+              "risk_cut_bps": 0.0078448225,
               "gross_incremental_value_usd_m": 351.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -5925,18 +5925,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 35.9567039922,
-                "risk_charge_usd_t": 27.6590030709,
-                "sigma_b_usd_bn": 4.9063504775,
+                "risk_charge_bps": 35.8536957249,
+                "risk_charge_usd_t": 27.5797659422,
+                "sigma_b_usd_bn": 4.8922948327,
                 "shares": {
-                  "carbon": 0.0124545386,
+                  "carbon": 0.0092080634,
                   "h2": 0.0,
-                  "elec": 0.0210304671,
-                  "feedstock": 0.9652355036,
-                  "capex": 0.0012794906
+                  "elec": 0.0208267855,
+                  "feedstock": 0.9686782979,
+                  "capex": 0.0012868532
                 }
               },
-              "risk_cut_bps": -11.8963384066,
+              "risk_cut_bps": -11.9512319083,
               "gross_incremental_value_usd_m": 163.4648112414,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -6043,18 +6043,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 24.0553268233,
-                "risk_charge_usd_t": 18.5040975564,
-                "sigma_b_usd_bn": 6.0140304917,
+                "risk_charge_bps": 23.8973917607,
+                "risk_charge_usd_t": 18.3826090467,
+                "sigma_b_usd_bn": 5.9745454209,
                 "shares": {
-                  "carbon": 0.0167754394,
+                  "carbon": 0.0092119725,
                   "h2": 0.0,
-                  "elec": 0.0212831744,
-                  "feedstock": 0.9610898111,
-                  "capex": 0.0008515752
+                  "elec": 0.0208356271,
+                  "feedstock": 0.9690895321,
+                  "capex": 0.0008628683
                 }
               },
-              "risk_cut_bps": 0.0050387624,
+              "risk_cut_bps": 0.0050720559,
               "gross_incremental_value_usd_m": -148.1087636914,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -6162,18 +6162,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.9171661199,
-                "risk_charge_usd_t": 13.7824354768,
-                "sigma_b_usd_bn": 3.6672394903,
+                "risk_charge_bps": 17.7453236017,
+                "risk_charge_usd_t": 13.6502489244,
+                "sigma_b_usd_bn": 3.6320672056,
                 "shares": {
-                  "carbon": 0.0247147825,
+                  "carbon": 0.013370007,
                   "h2": 0.0,
-                  "elec": 0.0337328441,
-                  "feedstock": 0.9392621614,
-                  "capex": 0.0022902121
+                  "elec": 0.0330658062,
+                  "feedstock": 0.951229404,
+                  "capex": 0.0023347828
                 }
               },
-              "risk_cut_bps": 6.1431994658,
+              "risk_cut_bps": 6.1571402148,
               "gross_incremental_value_usd_m": 951.2470340913,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -6281,18 +6281,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 18.825138182,
-                "risk_charge_usd_t": 14.4808755246,
-                "sigma_b_usd_bn": 3.8530808773,
+                "risk_charge_bps": 18.6559155324,
+                "risk_charge_usd_t": 14.3507042557,
+                "sigma_b_usd_bn": 3.8184448205,
                 "shares": {
-                  "carbon": 0.0231302436,
+                  "carbon": 0.0125443754,
                   "h2": 0.0,
-                  "elec": 0.0311794389,
-                  "feedstock": 0.9436157002,
-                  "capex": 0.0020746173
+                  "elec": 0.0305501666,
+                  "feedstock": 0.9547930335,
+                  "capex": 0.0021124245
                 }
               },
-              "risk_cut_bps": 5.2352274037,
+              "risk_cut_bps": 5.2465482842,
               "gross_incremental_value_usd_m": 883.3008173705,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -6403,18 +6403,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 21.6117422595,
-                "risk_charge_usd_t": 16.6244171227,
-                "sigma_b_usd_bn": 2.948957223,
+                "risk_charge_bps": 21.4969538814,
+                "risk_charge_usd_t": 16.5361183703,
+                "sigma_b_usd_bn": 2.933294163,
                 "shares": {
-                  "carbon": 0.0232903175,
+                  "carbon": 0.0169589676,
                   "h2": 0.0,
-                  "elec": 0.0281756053,
-                  "feedstock": 0.9467986222,
-                  "capex": 0.0017354551
+                  "elec": 0.0278317332,
+                  "feedstock": 0.9534552608,
+                  "capex": 0.0017540384
                 }
               },
-              "risk_cut_bps": 2.4486233262,
+              "risk_cut_bps": 2.4055099352,
               "gross_incremental_value_usd_m": 2158.0042580125,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -6538,15 +6538,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 29.0699876329,
-              "risk_charge_usd_t": 8.9446115794,
-              "sigma_b_usd_bn": 4.3412131835,
+              "risk_charge_bps": 29.0239043616,
+              "risk_charge_usd_t": 8.9304321113,
+              "sigma_b_usd_bn": 4.3343312643,
               "shares": {
-                "carbon": 0.0043405303,
-                "h2": 0.8767090906,
-                "elec": 0.1171675788,
+                "carbon": 0.0020412184,
+                "h2": 0.8794953248,
+                "elec": 0.1166749906,
                 "feedstock": 0.0,
-                "capex": 0.0017828003
+                "capex": 0.0017884662
               }
             }
           },
@@ -6648,18 +6648,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 20.1321461059,
-                "risk_charge_usd_t": 6.1945064941,
-                "sigma_b_usd_bn": 3.0064662975,
+                "risk_charge_bps": 20.0655463479,
+                "risk_charge_usd_t": 6.1740142609,
+                "sigma_b_usd_bn": 2.9965205159,
                 "shares": {
-                  "carbon": 0.0090500783,
-                  "h2": 0.811015689,
-                  "elec": 0.1762170642,
+                  "carbon": 0.0042707011,
+                  "h2": 0.8164083243,
+                  "elec": 0.1755790898,
                   "feedstock": 0.0,
-                  "capex": 0.0037171685
+                  "capex": 0.0037418849
                 }
               },
-              "risk_cut_bps": 8.937841527,
+              "risk_cut_bps": 8.9583580137,
               "gross_incremental_value_usd_m": 2093.9137387244,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -6766,18 +6766,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 28.1089804355,
-                "risk_charge_usd_t": 8.6489170571,
-                "sigma_b_usd_bn": 4.1976996338,
+                "risk_charge_bps": 28.0687246235,
+                "risk_charge_usd_t": 8.6365306534,
+                "sigma_b_usd_bn": 4.1916879676,
                 "shares": {
-                  "carbon": 0.0039968471,
-                  "h2": 0.9094028371,
-                  "elec": 0.0846935286,
+                  "carbon": 0.0017989084,
+                  "h2": 0.9120132159,
+                  "elec": 0.0842756152,
                   "feedstock": 0.0,
-                  "capex": 0.0019067871
+                  "capex": 0.0019122604
                 }
               },
-              "risk_cut_bps": 0.9610071975,
+              "risk_cut_bps": 0.9551797381,
               "gross_incremental_value_usd_m": 287.1653127393,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -6884,18 +6884,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 29.0567690018,
-                "risk_charge_usd_t": 8.9405443083,
-                "sigma_b_usd_bn": 4.339239158,
+                "risk_charge_bps": 29.0106647328,
+                "risk_charge_usd_t": 8.9263583793,
+                "sigma_b_usd_bn": 4.3323541031,
                 "shares": {
-                  "carbon": 0.0043444804,
-                  "h2": 0.8775069446,
-                  "elec": 0.1172742078,
+                  "carbon": 0.002043082,
+                  "h2": 0.8802982604,
+                  "elec": 0.1167815091,
                   "feedstock": 0.0,
-                  "capex": 0.0008743672
+                  "capex": 0.0008771485
                 }
               },
-              "risk_cut_bps": 0.0132186311,
+              "risk_cut_bps": 0.0132396288,
               "gross_incremental_value_usd_m": 366.6,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -7001,18 +7001,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 43.5646471591,
-                "risk_charge_usd_t": 13.4045068182,
-                "sigma_b_usd_bn": 4.3371975929,
+                "risk_charge_bps": 43.5358565424,
+                "risk_charge_usd_t": 13.3956481669,
+                "sigma_b_usd_bn": 4.3343312643,
                 "shares": {
-                  "carbon": 0.0029753398,
-                  "h2": 0.8783332428,
-                  "elec": 0.1169053144,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017861031
+                  "capex": 0.0017884662
                 }
               },
-              "risk_cut_bps": -14.4946595262,
+              "risk_cut_bps": -14.5119521808,
               "gross_incremental_value_usd_m": 637.9374098832,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -7119,18 +7119,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 29.0618164578,
-                "risk_charge_usd_t": 8.9420973716,
-                "sigma_b_usd_bn": 5.2448696908,
+                "risk_charge_bps": 29.0157202089,
+                "risk_charge_usd_t": 8.9279139104,
+                "sigma_b_usd_bn": 5.236550568,
                 "shares": {
-                  "carbon": 0.0043429714,
-                  "h2": 0.8772021603,
-                  "elec": 0.117233475,
+                  "carbon": 0.0020423701,
+                  "h2": 0.8799915344,
+                  "elec": 0.1167408184,
                   "feedstock": 0.0,
-                  "capex": 0.0012213933
+                  "capex": 0.0012252771
                 }
               },
-              "risk_cut_bps": 0.0081711751,
+              "risk_cut_bps": 0.0081841527,
               "gross_incremental_value_usd_m": -1604.887387172,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -7236,15 +7236,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 29.0699876329,
-                "risk_charge_usd_t": 8.9446115794,
-                "sigma_b_usd_bn": 4.3412131835,
+                "risk_charge_bps": 29.0239043616,
+                "risk_charge_usd_t": 8.9304321113,
+                "sigma_b_usd_bn": 4.3343312643,
                 "shares": {
-                  "carbon": 0.0043405303,
-                  "h2": 0.8767090906,
-                  "elec": 0.1171675788,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017828003
+                  "capex": 0.0017884662
                 }
               },
               "risk_cut_bps": 0.0,
@@ -7353,15 +7353,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 29.0699876329,
-                "risk_charge_usd_t": 8.9446115794,
-                "sigma_b_usd_bn": 4.3412131835,
+                "risk_charge_bps": 29.0239043616,
+                "risk_charge_usd_t": 8.9304321113,
+                "sigma_b_usd_bn": 4.3343312643,
                 "shares": {
-                  "carbon": 0.0043405303,
-                  "h2": 0.8767090906,
-                  "elec": 0.1171675788,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017828003
+                  "capex": 0.0017884662
                 }
               },
               "risk_cut_bps": 0.0,
@@ -7474,18 +7474,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 28.6179838533,
-                "risk_charge_usd_t": 8.8055334933,
-                "sigma_b_usd_bn": 2.8491416499,
+                "risk_charge_bps": 28.58142086,
+                "risk_charge_usd_t": 8.7942833415,
+                "sigma_b_usd_bn": 2.8455015211,
                 "shares": {
-                  "carbon": 0.005810445,
-                  "h2": 0.8632953394,
-                  "elec": 0.1288660989,
+                  "carbon": 0.0039036359,
+                  "h2": 0.865505506,
+                  "elec": 0.1285575491,
                   "feedstock": 0.0,
-                  "capex": 0.0020281166
+                  "capex": 0.0020333089
                 }
               },
-              "risk_cut_bps": 0.4520037796,
+              "risk_cut_bps": 0.4424835016,
               "gross_incremental_value_usd_m": 3385.6164613469,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -7587,15 +7587,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 7.1909788425,
-              "risk_charge_usd_t": 2.2126088746,
-              "sigma_b_usd_bn": 1.0738763479,
+              "risk_charge_bps": 5.2744614289,
+              "risk_charge_usd_t": 1.6229112089,
+              "sigma_b_usd_bn": 0.787670149,
               "shares": {
-                "carbon": 0.6854121051,
+                "carbon": 0.4938336895,
                 "h2": 0.0,
-                "elec": 0.3093121881,
+                "elec": 0.4963601176,
                 "feedstock": 0.0,
-                "capex": 0.0052757068
+                "capex": 0.0098061929
               }
             }
           },
@@ -7695,15 +7695,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1909788425,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 1.0738763479,
+                "risk_charge_bps": 5.2744614289,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 0.787670149,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -7813,18 +7813,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 6.5916828169,
-                "risk_charge_usd_t": 2.0282100975,
-                "sigma_b_usd_bn": 0.9843795157,
+                "risk_charge_bps": 4.561477981,
+                "risk_charge_usd_t": 1.4035316865,
+                "sigma_b_usd_bn": 0.6811956234,
                 "shares": {
-                  "carbon": 0.7804921657,
+                  "carbon": 0.6167018396,
                   "h2": 0.0,
-                  "elec": 0.2132292161,
+                  "elec": 0.3701868679,
                   "feedstock": 0.0,
-                  "capex": 0.0062786181
+                  "capex": 0.0131112925
                 }
               },
-              "risk_cut_bps": 0.5992960255,
+              "risk_cut_bps": 0.7129834479,
               "gross_incremental_value_usd_m": 215.3739845545,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -7931,18 +7931,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.181298265,
-                "risk_charge_usd_t": 2.2096302354,
-                "sigma_b_usd_bn": 1.0724306834,
+                "risk_charge_bps": 5.2612556887,
+                "risk_charge_usd_t": 1.6188479042,
+                "sigma_b_usd_bn": 0.7856980486,
                 "shares": {
-                  "carbon": 0.6872612574,
+                  "carbon": 0.4963158436,
                   "h2": 0.0,
-                  "elec": 0.310146672,
+                  "elec": 0.4988549703,
                   "feedstock": 0.0,
-                  "capex": 0.0025920706
+                  "capex": 0.004829186
                 }
               },
-              "risk_cut_bps": 0.0096805775,
+              "risk_cut_bps": 0.0132057402,
               "gross_incremental_value_usd_m": 156.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -8048,18 +8048,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 9.1512434559,
-                "risk_charge_usd_t": 2.8157672172,
-                "sigma_b_usd_bn": 0.91107707,
+                "risk_charge_bps": 7.9116921433,
+                "risk_charge_usd_t": 2.4343668133,
+                "sigma_b_usd_bn": 0.787670149,
                 "shares": {
-                  "carbon": 0.5955287978,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3971416242,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.007329578
+                  "capex": 0.0098061929
                 }
               },
-              "risk_cut_bps": -1.9602646134,
+              "risk_cut_bps": -2.6372307144,
               "gross_incremental_value_usd_m": 534.4881001724,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -8166,18 +8166,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1849957557,
-                "risk_charge_usd_t": 2.2107679248,
-                "sigma_b_usd_bn": 1.296696871,
+                "risk_charge_bps": 5.2663014215,
+                "risk_charge_usd_t": 1.6204004374,
+                "sigma_b_usd_bn": 0.9504245802,
                 "shares": {
-                  "carbon": 0.6865540926,
+                  "carbon": 0.495365242,
                   "h2": 0.0,
-                  "elec": 0.3098275432,
+                  "elec": 0.4978995054,
                   "feedstock": 0.0,
-                  "capex": 0.0036183642
+                  "capex": 0.0067352526
                 }
               },
-              "risk_cut_bps": 0.0059830867,
+              "risk_cut_bps": 0.0081600074,
               "gross_incremental_value_usd_m": -428.4528959832,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -8283,15 +8283,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1909788425,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 1.0738763479,
+                "risk_charge_bps": 5.2744614289,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 0.787670149,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -8400,15 +8400,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.1909788425,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 1.0738763479,
+                "risk_charge_bps": 5.2744614289,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 0.787670149,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -8520,18 +8520,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 8.1488884604,
-                "risk_charge_usd_t": 2.5073502955,
-                "sigma_b_usd_bn": 0.8112848771,
+                "risk_charge_bps": 6.8193024727,
+                "risk_charge_usd_t": 2.0982469147,
+                "sigma_b_usd_bn": 0.6789143078,
                 "shares": {
-                  "carbon": 0.7109211984,
+                  "carbon": 0.6208533363,
                   "h2": 0.0,
-                  "elec": 0.2845494241,
+                  "elec": 0.3726788818,
                   "feedstock": 0.0,
-                  "capex": 0.0045293776
+                  "capex": 0.0064677818
                 }
               },
-              "risk_cut_bps": -0.9579096179,
+              "risk_cut_bps": -1.5448410439,
               "gross_incremental_value_usd_m": 905.8620847269,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -8633,15 +8633,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 12.6661000037,
-              "risk_charge_usd_t": 3.8972615396,
-              "sigma_b_usd_bn": 1.8915123396,
+              "risk_charge_bps": 8.4944343187,
+              "risk_charge_usd_t": 2.6136720981,
+              "sigma_b_usd_bn": 1.26852996,
               "shares": {
-                "carbon": 0.8279649533,
+                "carbon": 0.6881839408,
                 "h2": 0.0,
-                "elec": 0.1682089727,
+                "elec": 0.30330918,
                 "feedstock": 0.0,
-                "capex": 0.003826074
+                "capex": 0.0085068792
               }
             }
           },
@@ -8741,15 +8741,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6661000037,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 1.8915123396,
+                "risk_charge_bps": 8.4944343187,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 1.26852996,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -8859,18 +8859,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.0918200828,
-                "risk_charge_usd_t": 3.7205600255,
-                "sigma_b_usd_bn": 1.8057513274,
+                "risk_charge_bps": 7.8004602543,
+                "risk_charge_usd_t": 2.4001416167,
+                "sigma_b_usd_bn": 1.1648942311,
                 "shares": {
-                  "carbon": 0.8840586319,
+                  "carbon": 0.7813124205,
                   "h2": 0.0,
-                  "elec": 0.1117432386,
+                  "elec": 0.2085997268,
                   "feedstock": 0.0,
-                  "capex": 0.0041981296
+                  "capex": 0.0100878528
                 }
               },
-              "risk_cut_bps": 0.574279921,
+              "risk_cut_bps": 0.6939740644,
               "gross_incremental_value_usd_m": 251.2696486469,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -8977,18 +8977,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6537363033,
-                "risk_charge_usd_t": 3.8934573241,
-                "sigma_b_usd_bn": 1.8896659866,
+                "risk_charge_bps": 8.475987702,
+                "risk_charge_usd_t": 2.607996216,
+                "sigma_b_usd_bn": 1.265775205,
                 "shares": {
-                  "carbon": 0.8295837181,
+                  "carbon": 0.6911826425,
                   "h2": 0.0,
-                  "elec": 0.1685378402,
+                  "elec": 0.3046308234,
                   "feedstock": 0.0,
-                  "capex": 0.0018784417
+                  "capex": 0.0041865341
                 }
               },
-              "risk_cut_bps": 0.0123637004,
+              "risk_cut_bps": 0.0184466167,
               "gross_incremental_value_usd_m": 234.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -9094,18 +9094,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 15.480766216,
-                "risk_charge_usd_t": 4.7633126818,
-                "sigma_b_usd_bn": 1.541230019,
+                "risk_charge_bps": 12.7416514781,
+                "risk_charge_usd_t": 3.9205081471,
+                "sigma_b_usd_bn": 1.26852996,
                 "shares": {
-                  "carbon": 0.7674515038,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.226785653,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.0057628432
+                  "capex": 0.0085068792
                 }
               },
-              "risk_cut_bps": -2.8146662123,
+              "risk_cut_bps": -4.2472171594,
               "gross_incremental_value_usd_m": 396.5556872247,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -9212,18 +9212,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6584580705,
-                "risk_charge_usd_t": 3.8949101755,
-                "sigma_b_usd_bn": 2.2845083742,
+                "risk_charge_bps": 8.4830351769,
+                "risk_charge_usd_t": 2.6101646698,
+                "sigma_b_usd_bn": 1.5309577827,
                 "shares": {
-                  "carbon": 0.8289649428,
+                  "carbon": 0.690034688,
                   "h2": 0.0,
-                  "elec": 0.1684121301,
+                  "elec": 0.3041248756,
                   "feedstock": 0.0,
-                  "capex": 0.0026229271
+                  "capex": 0.0058404363
                 }
               },
-              "risk_cut_bps": 0.0076419332,
+              "risk_cut_bps": 0.0113991418,
               "gross_incremental_value_usd_m": -321.0572266938,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -9329,15 +9329,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6661000037,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 1.8915123396,
+                "risk_charge_bps": 8.4944343187,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 1.26852996,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -9446,15 +9446,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.6661000037,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 1.8915123396,
+                "risk_charge_bps": 8.4944343187,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 1.26852996,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -9566,18 +9566,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 14.5117941633,
-                "risk_charge_usd_t": 4.4651674349,
-                "sigma_b_usd_bn": 1.4447613562,
+                "risk_charge_bps": 11.6705526837,
+                "risk_charge_usd_t": 3.5909392873,
+                "sigma_b_usd_bn": 1.1618937902,
                 "shares": {
-                  "carbon": 0.8438391476,
+                  "carbon": 0.7853529079,
                   "h2": 0.0,
-                  "elec": 0.1529473727,
+                  "elec": 0.2096784817,
                   "feedstock": 0.0,
-                  "capex": 0.0032134798
+                  "capex": 0.0049686104
                 }
               },
-              "risk_cut_bps": -1.8456941595,
+              "risk_cut_bps": -3.176118365,
               "gross_incremental_value_usd_m": 881.8253358716,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -9702,15 +9702,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 25.2092805917,
-              "risk_charge_usd_t": 18.9069604438,
-              "sigma_b_usd_bn": 5.5636620005,
+              "risk_charge_bps": 25.1549281329,
+              "risk_charge_usd_t": 18.8661960997,
+              "sigma_b_usd_bn": 5.5516664694,
               "shares": {
-                "carbon": 0.0069606288,
+                "carbon": 0.0046144701,
                 "h2": 0.0,
-                "elec": 0.0125468678,
-                "feedstock": 0.9792640809,
-                "capex": 0.0012284225
+                "elec": 0.0124113463,
+                "feedstock": 0.9817404468,
+                "capex": 0.0012337367
               }
             }
           },
@@ -9810,15 +9810,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.2092805917,
-                "risk_charge_usd_t": 18.9069604438,
-                "sigma_b_usd_bn": 5.5636620005,
+                "risk_charge_bps": 25.1549281329,
+                "risk_charge_usd_t": 18.8661960997,
+                "sigma_b_usd_bn": 5.5516664694,
                 "shares": {
-                  "carbon": 0.0069606288,
+                  "carbon": 0.0046144701,
                   "h2": 0.0,
-                  "elec": 0.0125468678,
-                  "feedstock": 0.9792640809,
-                  "capex": 0.0012284225
+                  "elec": 0.0124113463,
+                  "feedstock": 0.9817404468,
+                  "capex": 0.0012337367
                 }
               },
               "risk_cut_bps": 0.0,
@@ -9928,18 +9928,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.1405094256,
-                "risk_charge_usd_t": 18.8553820692,
-                "sigma_b_usd_bn": 5.5484842757,
+                "risk_charge_bps": 25.0870967621,
+                "risk_charge_usd_t": 18.8153225716,
+                "sigma_b_usd_bn": 5.5366961564,
                 "shares": {
-                  "carbon": 0.0068616221,
+                  "carbon": 0.0045451326,
                   "h2": 0.0,
-                  "elec": 0.0088636791,
-                  "feedstock": 0.9830395465,
-                  "capex": 0.0012351523
+                  "elec": 0.0087540341,
+                  "feedstock": 0.9854604159,
+                  "capex": 0.0012404174
                 }
               },
-              "risk_cut_bps": 0.0687711661,
+              "risk_cut_bps": 0.0678313708,
               "gross_incremental_value_usd_m": 106.0838597334,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -10046,18 +10046,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.2013826047,
-                "risk_charge_usd_t": 18.9010369535,
-                "sigma_b_usd_bn": 5.561918923,
+                "risk_charge_bps": 25.1470130753,
+                "risk_charge_usd_t": 18.8602598064,
+                "sigma_b_usd_bn": 5.5499196244,
                 "shares": {
-                  "carbon": 0.0069649923,
+                  "carbon": 0.0046173754,
                   "h2": 0.0,
-                  "elec": 0.0125547333,
-                  "feedstock": 0.97987797,
-                  "capex": 0.0006023043
+                  "elec": 0.0124191605,
+                  "feedstock": 0.9823585524,
+                  "capex": 0.0006049116
                 }
               },
-              "risk_cut_bps": 0.007897987,
+              "risk_cut_bps": 0.0079150576,
               "gross_incremental_value_usd_m": 390.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -10163,18 +10163,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 35.4826816481,
-                "risk_charge_usd_t": 26.6120112361,
-                "sigma_b_usd_bn": 5.5574774313,
+                "risk_charge_bps": 35.4455805509,
+                "risk_charge_usd_t": 26.5841854132,
+                "sigma_b_usd_bn": 5.5516664694,
                 "shares": {
-                  "carbon": 0.0057439467,
+                  "carbon": 0.0046144701,
                   "h2": 0.0,
-                  "elec": 0.0124779788,
-                  "feedstock": 0.9805469165,
-                  "capex": 0.001231158
+                  "elec": 0.0124113463,
+                  "feedstock": 0.9817404468,
+                  "capex": 0.0012337367
                 }
               },
-              "risk_cut_bps": -10.2734010564,
+              "risk_cut_bps": -10.290652418,
               "gross_incremental_value_usd_m": 212.9754033989,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -10281,18 +10281,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.2047549149,
-                "risk_charge_usd_t": 18.9035661862,
-                "sigma_b_usd_bn": 6.6121891382,
+                "risk_charge_bps": 25.1503926757,
+                "risk_charge_usd_t": 18.8627945068,
+                "sigma_b_usd_bn": 6.597927805,
                 "shares": {
-                  "carbon": 0.0069631287,
+                  "carbon": 0.0046161346,
                   "h2": 0.0,
-                  "elec": 0.012551374,
-                  "feedstock": 0.9796157789,
-                  "capex": 0.0008697185
+                  "elec": 0.0124158231,
+                  "feedstock": 0.98209456,
+                  "capex": 0.0008734823
                 }
               },
-              "risk_cut_bps": 0.0045256768,
+              "risk_cut_bps": 0.0045354572,
               "gross_incremental_value_usd_m": 87.5154465438,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -10400,18 +10400,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 19.5873230123,
-                "risk_charge_usd_t": 14.6904922592,
-                "sigma_b_usd_bn": 4.3229018115,
+                "risk_charge_bps": 19.5303262749,
+                "risk_charge_usd_t": 14.6477447062,
+                "sigma_b_usd_bn": 4.3103226908,
                 "shares": {
-                  "carbon": 0.009429482,
+                  "carbon": 0.0062082401,
                   "h2": 0.0,
-                  "elec": 0.0181580093,
-                  "feedstock": 0.9703777239,
-                  "capex": 0.0020347848
+                  "elec": 0.0179492828,
+                  "feedstock": 0.9737957985,
+                  "capex": 0.0020466786
                 }
               },
-              "risk_cut_bps": 5.6219575794,
+              "risk_cut_bps": 5.624601858,
               "gross_incremental_value_usd_m": 0.0,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -10517,15 +10517,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.2092805917,
-                "risk_charge_usd_t": 18.9069604438,
-                "sigma_b_usd_bn": 5.5636620005,
+                "risk_charge_bps": 25.1549281329,
+                "risk_charge_usd_t": 18.8661960997,
+                "sigma_b_usd_bn": 5.5516664694,
                 "shares": {
-                  "carbon": 0.0069606288,
+                  "carbon": 0.0046144701,
                   "h2": 0.0,
-                  "elec": 0.0125468678,
-                  "feedstock": 0.9792640809,
-                  "capex": 0.0012284225
+                  "elec": 0.0124113463,
+                  "feedstock": 0.9817404468,
+                  "capex": 0.0012337367
                 }
               },
               "risk_cut_bps": 0.0,
@@ -10638,18 +10638,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 27.4369944328,
-                "risk_charge_usd_t": 20.5777458246,
-                "sigma_b_usd_bn": 4.2973211229,
+                "risk_charge_bps": 27.3989598438,
+                "risk_charge_usd_t": 20.5492198828,
+                "sigma_b_usd_bn": 4.2913639528,
                 "shares": {
-                  "carbon": 0.0076318833,
+                  "carbon": 0.0061062025,
                   "h2": 0.0,
-                  "elec": 0.0125991069,
-                  "feedstock": 0.9787600597,
-                  "capex": 0.0010089501
+                  "elec": 0.0125141632,
+                  "feedstock": 0.9803678811,
+                  "capex": 0.0010117532
                 }
               },
-              "risk_cut_bps": -2.2277138411,
+              "risk_cut_bps": -2.2440317109,
               "gross_incremental_value_usd_m": 709.0592631324,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -10753,15 +10753,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 25.4191317625,
-              "risk_charge_usd_t": 19.0643488219,
-              "sigma_b_usd_bn": 5.6099759356,
+              "risk_charge_bps": 25.233098269,
+              "risk_charge_usd_t": 18.9248237018,
+              "sigma_b_usd_bn": 5.5689185371,
               "shares": {
-                "carbon": 0.0242553789,
+                "carbon": 0.0153073878,
                 "h2": 0.0,
-                "elec": 0.0046519599,
-                "feedstock": 0.9702276019,
-                "capex": 0.0008650593
+                "elec": 0.0044755928,
+                "feedstock": 0.9793391575,
+                "capex": 0.0008778618
               }
             }
           },
@@ -10861,15 +10861,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.4191317625,
-                "risk_charge_usd_t": 19.0643488219,
-                "sigma_b_usd_bn": 5.6099759356,
+                "risk_charge_bps": 25.233098269,
+                "risk_charge_usd_t": 18.9248237018,
+                "sigma_b_usd_bn": 5.5689185371,
                 "shares": {
-                  "carbon": 0.0242553789,
+                  "carbon": 0.0153073878,
                   "h2": 0.0,
-                  "elec": 0.0046519599,
-                  "feedstock": 0.9702276019,
-                  "capex": 0.0008650593
+                  "elec": 0.0044755928,
+                  "feedstock": 0.9793391575,
+                  "capex": 0.0008778618
                 }
               },
               "risk_cut_bps": 0.0,
@@ -10979,18 +10979,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.3928316841,
-                "risk_charge_usd_t": 19.0446237631,
-                "sigma_b_usd_bn": 5.6041715357,
+                "risk_charge_bps": 25.2080127437,
+                "risk_charge_usd_t": 18.9060095578,
+                "sigma_b_usd_bn": 5.5633821878,
                 "shares": {
-                  "carbon": 0.0241308924,
+                  "carbon": 0.0152164203,
                   "h2": 0.0,
-                  "elec": 0.003438932,
-                  "feedstock": 0.9715633234,
-                  "capex": 0.0008668522
+                  "elec": 0.0032997211,
+                  "feedstock": 0.9806042487,
+                  "capex": 0.0008796099
                 }
               },
-              "risk_cut_bps": 0.0263000784,
+              "risk_cut_bps": 0.0250855253,
               "gross_incremental_value_usd_m": 45.9696725512,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -11097,18 +11097,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.4135239344,
-                "risk_charge_usd_t": 19.0601429508,
-                "sigma_b_usd_bn": 5.6087382938,
+                "risk_charge_bps": 25.2274490874,
+                "risk_charge_usd_t": 18.9205868156,
+                "sigma_b_usd_bn": 5.5676717686,
                 "shares": {
-                  "carbon": 0.0242660846,
+                  "carbon": 0.0153142442,
                   "h2": 0.0,
-                  "elec": 0.0046540132,
-                  "feedstock": 0.9706558361,
-                  "capex": 0.0004240662
+                  "elec": 0.0044775975,
+                  "feedstock": 0.9797778134,
+                  "capex": 0.000430345
                 }
               },
-              "risk_cut_bps": 0.0056078281,
+              "risk_cut_bps": 0.0056491816,
               "gross_incremental_value_usd_m": 330.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -11214,18 +11214,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 35.6809359946,
-                "risk_charge_usd_t": 26.760701996,
-                "sigma_b_usd_bn": 5.5885290318,
+                "risk_charge_bps": 35.5557293791,
+                "risk_charge_usd_t": 26.6667970343,
+                "sigma_b_usd_bn": 5.5689185371,
                 "shares": {
-                  "carbon": 0.019540181,
+                  "carbon": 0.0153073878,
                   "h2": 0.0,
-                  "elec": 0.0045632499,
-                  "feedstock": 0.9750248574,
-                  "capex": 0.0008717117
+                  "elec": 0.0044755928,
+                  "feedstock": 0.9793391575,
+                  "capex": 0.0008778618
                 }
               },
-              "risk_cut_bps": -10.2618042321,
+              "risk_cut_bps": -10.32263111,
               "gross_incremental_value_usd_m": 165.647535977,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -11332,18 +11332,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.4159183209,
-                "risk_charge_usd_t": 19.0619387407,
-                "sigma_b_usd_bn": 6.667585526,
+                "risk_charge_bps": 25.229861133,
+                "risk_charge_usd_t": 18.9223958497,
+                "sigma_b_usd_bn": 6.6187754773,
                 "shares": {
-                  "carbon": 0.0242615127,
+                  "carbon": 0.0153113161,
                   "h2": 0.0,
-                  "elec": 0.0046531363,
-                  "feedstock": 0.9704729573,
-                  "capex": 0.0006123937
+                  "elec": 0.0044767414,
+                  "feedstock": 0.9795904833,
+                  "capex": 0.0006214592
                 }
               },
-              "risk_cut_bps": 0.0032134416,
+              "risk_cut_bps": 0.003237136,
               "gross_incremental_value_usd_m": 100.0730873805,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -11451,18 +11451,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 19.8041876526,
-                "risk_charge_usd_t": 14.8531407395,
-                "sigma_b_usd_bn": 4.370763612,
+                "risk_charge_bps": 19.6037332634,
+                "risk_charge_usd_t": 14.7027999475,
+                "sigma_b_usd_bn": 4.3265235368,
                 "shares": {
-                  "carbon": 0.0337955615,
+                  "carbon": 0.0210528649,
                   "h2": 0.0,
-                  "elec": 0.0065511092,
-                  "feedstock": 0.9582282033,
-                  "capex": 0.001425126
+                  "elec": 0.0062795041,
+                  "feedstock": 0.9712132114,
+                  "capex": 0.0014544197
                 }
               },
-              "risk_cut_bps": 5.6149441099,
+              "risk_cut_bps": 5.6293650056,
               "gross_incremental_value_usd_m": 0.0,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -11568,15 +11568,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 25.4191317625,
-                "risk_charge_usd_t": 19.0643488219,
-                "sigma_b_usd_bn": 5.6099759356,
+                "risk_charge_bps": 25.233098269,
+                "risk_charge_usd_t": 18.9248237018,
+                "sigma_b_usd_bn": 5.5689185371,
                 "shares": {
-                  "carbon": 0.0242553789,
+                  "carbon": 0.0153073878,
                   "h2": 0.0,
-                  "elec": 0.0046519599,
-                  "feedstock": 0.9702276019,
-                  "capex": 0.0008650593
+                  "elec": 0.0044755928,
+                  "feedstock": 0.9793391575,
+                  "capex": 0.0008778618
                 }
               },
               "risk_cut_bps": 0.0,
@@ -11689,18 +11689,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 27.7081608412,
-                "risk_charge_usd_t": 20.7811206309,
-                "sigma_b_usd_bn": 4.3397925801,
+                "risk_charge_bps": 27.5748129755,
+                "risk_charge_usd_t": 20.6811097316,
+                "sigma_b_usd_bn": 4.3189069615,
                 "shares": {
-                  "carbon": 0.0269139302,
+                  "carbon": 0.0209256634,
                   "h2": 0.0,
-                  "elec": 0.004703255,
-                  "feedstock": 0.9676745005,
-                  "capex": 0.0007083143
+                  "elec": 0.0045949043,
+                  "feedstock": 0.9737642508,
+                  "capex": 0.0007151815
                 }
               },
-              "risk_cut_bps": -2.2890290787,
+              "risk_cut_bps": -2.3417147065,
               "gross_incremental_value_usd_m": 541.6172085281,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -11804,15 +11804,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 26.8432523777,
-              "risk_charge_usd_t": 20.1324392833,
-              "sigma_b_usd_bn": 5.9242778738,
+              "risk_charge_bps": 26.7282553011,
+              "risk_charge_usd_t": 20.0461914758,
+              "sigma_b_usd_bn": 5.8988981387,
               "shares": {
-                "carbon": 0.0140103114,
+                "carbon": 0.0090639616,
                 "h2": 0.0,
-                "elec": 0.0079176748,
-                "feedstock": 0.9759949172,
-                "capex": 0.0020770966
+                "elec": 0.0077393862,
+                "feedstock": 0.981101644,
+                "capex": 0.0020950082
               }
             }
           },
@@ -11912,15 +11912,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.8432523777,
-                "risk_charge_usd_t": 20.1324392833,
-                "sigma_b_usd_bn": 5.9242778738,
+                "risk_charge_bps": 26.7282553011,
+                "risk_charge_usd_t": 20.0461914758,
+                "sigma_b_usd_bn": 5.8988981387,
                 "shares": {
-                  "carbon": 0.0140103114,
+                  "carbon": 0.0090639616,
                   "h2": 0.0,
-                  "elec": 0.0079176748,
-                  "feedstock": 0.9759949172,
-                  "capex": 0.0020770966
+                  "elec": 0.0077393862,
+                  "feedstock": 0.981101644,
+                  "capex": 0.0020950082
                 }
               },
               "risk_cut_bps": 0.0,
@@ -12030,18 +12030,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.7965202004,
-                "risk_charge_usd_t": 20.0973901503,
-                "sigma_b_usd_bn": 5.9139641309,
+                "risk_charge_bps": 26.6828231201,
+                "risk_charge_usd_t": 20.0121173401,
+                "sigma_b_usd_bn": 5.8888713036,
                 "shares": {
-                  "carbon": 0.0138821747,
+                  "carbon": 0.0089725629,
                   "h2": 0.0,
-                  "elec": 0.0057204497,
-                  "feedstock": 0.9783130279,
-                  "capex": 0.0020843476
+                  "elec": 0.0055781648,
+                  "feedstock": 0.9833471238,
+                  "capex": 0.0021021485
                 }
               },
-              "risk_cut_bps": 0.0467321773,
+              "risk_cut_bps": 0.045432181,
               "gross_incremental_value_usd_m": 77.7948304712,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -12148,18 +12148,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.8290308235,
-                "risk_charge_usd_t": 20.1217731176,
-                "sigma_b_usd_bn": 5.9211391916,
+                "risk_charge_bps": 26.7139725266,
+                "risk_charge_usd_t": 20.035479395,
+                "sigma_b_usd_bn": 5.8957459452,
                 "shares": {
-                  "carbon": 0.0140251686,
+                  "carbon": 0.0090736564,
                   "h2": 0.0,
-                  "elec": 0.007926071,
-                  "feedstock": 0.9770299038,
-                  "capex": 0.0010188566
+                  "elec": 0.0077476642,
+                  "feedstock": 0.9821510273,
+                  "capex": 0.001027652
                 }
               },
-              "risk_cut_bps": 0.0142215542,
+              "risk_cut_bps": 0.0142827745,
               "gross_incremental_value_usd_m": 540.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -12265,18 +12265,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 37.7405016355,
-                "risk_charge_usd_t": 28.3053762266,
-                "sigma_b_usd_bn": 5.9111086407,
+                "risk_charge_bps": 37.6625415607,
+                "risk_charge_usd_t": 28.2469061705,
+                "sigma_b_usd_bn": 5.8988981387,
                 "shares": {
-                  "carbon": 0.011422665,
+                  "carbon": 0.0090639616,
                   "h2": 0.0,
-                  "elec": 0.0078274603,
-                  "feedstock": 0.9786635128,
-                  "capex": 0.0020863619
+                  "elec": 0.0077393862,
+                  "feedstock": 0.981101644,
+                  "capex": 0.0020950082
                 }
               },
-              "risk_cut_bps": -10.8972492578,
+              "risk_cut_bps": -10.9342862595,
               "gross_incremental_value_usd_m": 189.311469688,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -12383,18 +12383,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.8351035695,
-                "risk_charge_usd_t": 20.1263276771,
-                "sigma_b_usd_bn": 7.0398931052,
+                "risk_charge_bps": 26.7200714223,
+                "risk_charge_usd_t": 20.0400535667,
+                "sigma_b_usd_bn": 7.0097156916,
                 "shares": {
-                  "carbon": 0.0140188215,
+                  "carbon": 0.0090695147,
                   "h2": 0.0,
-                  "elec": 0.0079224841,
-                  "feedstock": 0.9765877529,
-                  "capex": 0.0014709415
+                  "elec": 0.0077441278,
+                  "feedstock": 0.9817027237,
+                  "capex": 0.0014836338
                 }
               },
-              "risk_cut_bps": 0.0081488082,
+              "risk_cut_bps": 0.0081838788,
               "gross_incremental_value_usd_m": -88.6371847624,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -12502,18 +12502,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 19.8692588013,
-                "risk_charge_usd_t": 14.901944101,
-                "sigma_b_usd_bn": 4.3851247468,
+                "risk_charge_bps": 19.7455715786,
+                "risk_charge_usd_t": 14.809178684,
+                "sigma_b_usd_bn": 4.3578271054,
                 "shares": {
-                  "carbon": 0.0205044372,
+                  "carbon": 0.0130942141,
                   "h2": 0.0,
-                  "elec": 0.0121292357,
-                  "feedstock": 0.9635752412,
-                  "capex": 0.0037910859
+                  "elec": 0.0118298795,
+                  "feedstock": 0.9712371767,
+                  "capex": 0.0038387297
                 }
               },
-              "risk_cut_bps": 6.9739935764,
+              "risk_cut_bps": 6.9826837225,
               "gross_incremental_value_usd_m": 1233.5195467894,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -12621,18 +12621,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 20.9018037373,
-                "risk_charge_usd_t": 15.676352803,
-                "sigma_b_usd_bn": 4.61300634,
+                "risk_charge_bps": 20.7797637612,
+                "risk_charge_usd_t": 15.5848228209,
+                "sigma_b_usd_bn": 4.5860722442,
                 "shares": {
-                  "carbon": 0.0192076865,
+                  "carbon": 0.0122938118,
                   "h2": 0.0,
-                  "elec": 0.0112716485,
-                  "feedstock": 0.9660948853,
-                  "capex": 0.0034257797
+                  "elec": 0.0109964974,
+                  "feedstock": 0.9732435537,
+                  "capex": 0.0034661372
                 }
               },
-              "risk_cut_bps": 5.9414486404,
+              "risk_cut_bps": 5.9484915399,
               "gross_incremental_value_usd_m": 1145.411007733,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -12743,18 +12743,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.6244191546,
-                "risk_charge_usd_t": 16.9683143659,
-                "sigma_b_usd_bn": 3.5435511919,
+                "risk_charge_bps": 22.5373570279,
+                "risk_charge_usd_t": 16.903017771,
+                "sigma_b_usd_bn": 3.5299150804,
                 "shares": {
-                  "carbon": 0.0214288877,
+                  "carbon": 0.0167917335,
                   "h2": 0.0,
-                  "elec": 0.0114674492,
-                  "feedstock": 0.9642588996,
-                  "capex": 0.0028447636
+                  "elec": 0.0112962112,
+                  "feedstock": 0.9690452706,
+                  "capex": 0.0028667848
                 }
               },
-              "risk_cut_bps": 4.2188332232,
+              "risk_cut_bps": 4.1908982732,
               "gross_incremental_value_usd_m": 2704.9642314337,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -12878,15 +12878,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 17.8892231587,
-              "risk_charge_usd_t": 8.9446115794,
-              "sigma_b_usd_bn": 13.3575790261,
+              "risk_charge_bps": 17.8608642225,
+              "risk_charge_usd_t": 8.9304321113,
+              "sigma_b_usd_bn": 13.3364038902,
               "shares": {
-                "carbon": 0.0043405303,
-                "h2": 0.8767090906,
-                "elec": 0.1171675788,
+                "carbon": 0.0020412184,
+                "h2": 0.8794953248,
+                "elec": 0.1166749906,
                 "feedstock": 0.0,
-                "capex": 0.0017828003
+                "capex": 0.0017884662
               }
             }
           },
@@ -12988,18 +12988,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.3890129883,
-                "risk_charge_usd_t": 6.1945064941,
-                "sigma_b_usd_bn": 9.2506655307,
+                "risk_charge_bps": 12.3480285218,
+                "risk_charge_usd_t": 6.1740142609,
+                "sigma_b_usd_bn": 9.2200631259,
                 "shares": {
-                  "carbon": 0.0090500783,
-                  "h2": 0.811015689,
-                  "elec": 0.1762170642,
+                  "carbon": 0.0042707011,
+                  "h2": 0.8164083243,
+                  "elec": 0.1755790898,
                   "feedstock": 0.0,
-                  "capex": 0.0037171685
+                  "capex": 0.0037418849
                 }
               },
-              "risk_cut_bps": 5.5002101705,
+              "risk_cut_bps": 5.5128357007,
               "gross_incremental_value_usd_m": 6442.8115037673,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -13106,18 +13106,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.2978341141,
-                "risk_charge_usd_t": 8.6489170571,
-                "sigma_b_usd_bn": 12.9159988732,
+                "risk_charge_bps": 17.2730613068,
+                "risk_charge_usd_t": 8.6365306534,
+                "sigma_b_usd_bn": 12.8975014387,
                 "shares": {
-                  "carbon": 0.0039968471,
-                  "h2": 0.9094028371,
-                  "elec": 0.0846935286,
+                  "carbon": 0.0017989084,
+                  "h2": 0.9120132159,
+                  "elec": 0.0842756152,
                   "feedstock": 0.0,
-                  "capex": 0.0019067871
+                  "capex": 0.0019122604
                 }
               },
-              "risk_cut_bps": 0.5913890446,
+              "risk_cut_bps": 0.5878029158,
               "gross_incremental_value_usd_m": 883.5855776595,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -13224,18 +13224,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.8810886165,
-                "risk_charge_usd_t": 8.9405443083,
-                "sigma_b_usd_bn": 13.3515051016,
+                "risk_charge_bps": 17.8527167586,
+                "risk_charge_usd_t": 8.9263583793,
+                "sigma_b_usd_bn": 13.3303203173,
                 "shares": {
-                  "carbon": 0.0043444804,
-                  "h2": 0.8775069446,
-                  "elec": 0.1172742078,
+                  "carbon": 0.002043082,
+                  "h2": 0.8802982604,
+                  "elec": 0.1167815091,
                   "feedstock": 0.0,
-                  "capex": 0.0008743672
+                  "capex": 0.0008771485
                 }
               },
-              "risk_cut_bps": 0.0081345422,
+              "risk_cut_bps": 0.0081474639,
               "gross_incremental_value_usd_m": 1128.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -13341,18 +13341,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 26.8090136364,
-                "risk_charge_usd_t": 13.4045068182,
-                "sigma_b_usd_bn": 13.3452233628,
+                "risk_charge_bps": 26.7912963338,
+                "risk_charge_usd_t": 13.3956481669,
+                "sigma_b_usd_bn": 13.3364038902,
                 "shares": {
-                  "carbon": 0.0029753398,
-                  "h2": 0.8783332428,
-                  "elec": 0.1169053144,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017861031
+                  "capex": 0.0017884662
                 }
               },
-              "risk_cut_bps": -8.9197904776,
+              "risk_cut_bps": -8.9304321113,
               "gross_incremental_value_usd_m": 1909.8334100453,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -13459,18 +13459,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.8841947433,
-                "risk_charge_usd_t": 8.9420973716,
-                "sigma_b_usd_bn": 16.138060587,
+                "risk_charge_bps": 17.8558278208,
+                "risk_charge_usd_t": 8.9279139104,
+                "sigma_b_usd_bn": 16.1124632862,
                 "shares": {
-                  "carbon": 0.0043429714,
-                  "h2": 0.8772021603,
-                  "elec": 0.117233475,
+                  "carbon": 0.0020423701,
+                  "h2": 0.8799915344,
+                  "elec": 0.1167408184,
                   "feedstock": 0.0,
-                  "capex": 0.0012213933
+                  "capex": 0.0012252771
                 }
               },
-              "risk_cut_bps": 0.0050284155,
+              "risk_cut_bps": 0.0050364017,
               "gross_incremental_value_usd_m": -4959.1770213382,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -13576,15 +13576,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.8892231587,
-                "risk_charge_usd_t": 8.9446115794,
-                "sigma_b_usd_bn": 13.3575790261,
+                "risk_charge_bps": 17.8608642225,
+                "risk_charge_usd_t": 8.9304321113,
+                "sigma_b_usd_bn": 13.3364038902,
                 "shares": {
-                  "carbon": 0.0043405303,
-                  "h2": 0.8767090906,
-                  "elec": 0.1171675788,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017828003
+                  "capex": 0.0017884662
                 }
               },
               "risk_cut_bps": 0.0,
@@ -13693,15 +13693,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.8892231587,
-                "risk_charge_usd_t": 8.9446115794,
-                "sigma_b_usd_bn": 13.3575790261,
+                "risk_charge_bps": 17.8608642225,
+                "risk_charge_usd_t": 8.9304321113,
+                "sigma_b_usd_bn": 13.3364038902,
                 "shares": {
-                  "carbon": 0.0043405303,
-                  "h2": 0.8767090906,
-                  "elec": 0.1171675788,
+                  "carbon": 0.0020412184,
+                  "h2": 0.8794953248,
+                  "elec": 0.1166749906,
                   "feedstock": 0.0,
-                  "capex": 0.0017828003
+                  "capex": 0.0017884662
                 }
               },
               "risk_cut_bps": 0.0,
@@ -13814,18 +13814,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 17.6110669867,
-                "risk_charge_usd_t": 8.8055334933,
-                "sigma_b_usd_bn": 8.7665896919,
+                "risk_charge_bps": 17.5885666831,
+                "risk_charge_usd_t": 8.7942833415,
+                "sigma_b_usd_bn": 8.7553892956,
                 "shares": {
-                  "carbon": 0.005810445,
-                  "h2": 0.8632953394,
-                  "elec": 0.1288660989,
+                  "carbon": 0.0039036359,
+                  "h2": 0.865505506,
+                  "elec": 0.1285575491,
                   "feedstock": 0.0,
-                  "capex": 0.0020281166
+                  "capex": 0.0020333089
                 }
               },
-              "risk_cut_bps": 0.2781561721,
+              "risk_cut_bps": 0.2722975394,
               "gross_incremental_value_usd_m": 10364.2304914721,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -13927,15 +13927,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 4.4252177492,
-              "risk_charge_usd_t": 2.2126088746,
-              "sigma_b_usd_bn": 3.3042349167,
+              "risk_charge_bps": 3.2458224178,
+              "risk_charge_usd_t": 1.6229112089,
+              "sigma_b_usd_bn": 2.4236004585,
               "shares": {
-                "carbon": 0.6854121051,
+                "carbon": 0.4938336895,
                 "h2": 0.0,
-                "elec": 0.3093121881,
+                "elec": 0.4963601176,
                 "feedstock": 0.0,
-                "capex": 0.0052757068
+                "capex": 0.0098061929
               }
             }
           },
@@ -14035,15 +14035,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4252177492,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 3.3042349167,
+                "risk_charge_bps": 3.2458224178,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 2.4236004585,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -14153,18 +14153,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.056420195,
-                "risk_charge_usd_t": 2.0282100975,
-                "sigma_b_usd_bn": 3.0288600482,
+                "risk_charge_bps": 2.8070633729,
+                "risk_charge_usd_t": 1.4035316865,
+                "sigma_b_usd_bn": 2.0959865335,
                 "shares": {
-                  "carbon": 0.7804921657,
+                  "carbon": 0.6167018396,
                   "h2": 0.0,
-                  "elec": 0.2132292161,
+                  "elec": 0.3701868679,
                   "feedstock": 0.0,
-                  "capex": 0.0062786181
+                  "capex": 0.0131112925
                 }
               },
-              "risk_cut_bps": 0.3687975542,
+              "risk_cut_bps": 0.4387590448,
               "gross_incremental_value_usd_m": 662.6891832446,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -14271,18 +14271,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4192604707,
-                "risk_charge_usd_t": 2.2096302354,
-                "sigma_b_usd_bn": 3.299786718,
+                "risk_charge_bps": 3.2376958084,
+                "risk_charge_usd_t": 1.6188479042,
+                "sigma_b_usd_bn": 2.4175324574,
                 "shares": {
-                  "carbon": 0.6872612574,
+                  "carbon": 0.4963158436,
                   "h2": 0.0,
-                  "elec": 0.310146672,
+                  "elec": 0.4988549703,
                   "feedstock": 0.0,
-                  "capex": 0.0025920706
+                  "capex": 0.004829186
                 }
               },
-              "risk_cut_bps": 0.0059572785,
+              "risk_cut_bps": 0.0081266093,
               "gross_incremental_value_usd_m": 480.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -14388,18 +14388,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 5.6315344344,
-                "risk_charge_usd_t": 2.8157672172,
-                "sigma_b_usd_bn": 2.8033140615,
+                "risk_charge_bps": 4.8687336266,
+                "risk_charge_usd_t": 2.4343668133,
+                "sigma_b_usd_bn": 2.4236004585,
                 "shares": {
-                  "carbon": 0.5955287978,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3971416242,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.007329578
+                  "capex": 0.0098061929
                 }
               },
-              "risk_cut_bps": -1.2063166852,
+              "risk_cut_bps": -1.6229112089,
               "gross_incremental_value_usd_m": 1591.5278417044,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -14506,18 +14506,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4215358497,
-                "risk_charge_usd_t": 2.2107679248,
-                "sigma_b_usd_bn": 3.9898365263,
+                "risk_charge_bps": 3.2408008747,
+                "risk_charge_usd_t": 1.6204004374,
+                "sigma_b_usd_bn": 2.9243833238,
                 "shares": {
-                  "carbon": 0.6865540926,
+                  "carbon": 0.495365242,
                   "h2": 0.0,
-                  "elec": 0.3098275432,
+                  "elec": 0.4978995054,
                   "feedstock": 0.0,
-                  "capex": 0.0036183642
+                  "capex": 0.0067352526
                 }
               },
-              "risk_cut_bps": 0.0036818995,
+              "risk_cut_bps": 0.005021543,
               "gross_incremental_value_usd_m": -1339.378586911,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -14623,15 +14623,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4252177492,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 3.3042349167,
+                "risk_charge_bps": 3.2458224178,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 2.4236004585,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -14740,15 +14740,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 4.4252177492,
-                "risk_charge_usd_t": 2.2126088746,
-                "sigma_b_usd_bn": 3.3042349167,
+                "risk_charge_bps": 3.2458224178,
+                "risk_charge_usd_t": 1.6229112089,
+                "sigma_b_usd_bn": 2.4236004585,
                 "shares": {
-                  "carbon": 0.6854121051,
+                  "carbon": 0.4938336895,
                   "h2": 0.0,
-                  "elec": 0.3093121881,
+                  "elec": 0.4963601176,
                   "feedstock": 0.0,
-                  "capex": 0.0052757068
+                  "capex": 0.0098061929
                 }
               },
               "risk_cut_bps": 0.0,
@@ -14860,18 +14860,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 5.014700591,
-                "risk_charge_usd_t": 2.5073502955,
-                "sigma_b_usd_bn": 2.4962611602,
+                "risk_charge_bps": 4.1964938294,
+                "risk_charge_usd_t": 2.0982469147,
+                "sigma_b_usd_bn": 2.0889671009,
                 "shares": {
-                  "carbon": 0.7109211984,
+                  "carbon": 0.6208533363,
                   "h2": 0.0,
-                  "elec": 0.2845494241,
+                  "elec": 0.3726788818,
                   "feedstock": 0.0,
-                  "capex": 0.0045293776
+                  "capex": 0.0064677818
                 }
               },
-              "risk_cut_bps": -0.5894828418,
+              "risk_cut_bps": -0.9506714116,
               "gross_incremental_value_usd_m": 2734.2170249491,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -14973,15 +14973,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 7.7945230792,
-              "risk_charge_usd_t": 3.8972615396,
-              "sigma_b_usd_bn": 5.820037968,
+              "risk_charge_bps": 5.2273441961,
+              "risk_charge_usd_t": 2.6136720981,
+              "sigma_b_usd_bn": 3.9031691078,
               "shares": {
-                "carbon": 0.8279649533,
+                "carbon": 0.6881839408,
                 "h2": 0.0,
-                "elec": 0.1682089727,
+                "elec": 0.30330918,
                 "feedstock": 0.0,
-                "capex": 0.003826074
+                "capex": 0.0085068792
               }
             }
           },
@@ -15081,15 +15081,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7945230792,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 5.820037968,
+                "risk_charge_bps": 5.2273441961,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 3.9031691078,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -15199,18 +15199,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.4411200509,
-                "risk_charge_usd_t": 3.7205600255,
-                "sigma_b_usd_bn": 5.5561579304,
+                "risk_charge_bps": 4.8002832334,
+                "risk_charge_usd_t": 2.4001416167,
+                "sigma_b_usd_bn": 3.584289942,
                 "shares": {
-                  "carbon": 0.8840586319,
+                  "carbon": 0.7813124205,
                   "h2": 0.0,
-                  "elec": 0.1117432386,
+                  "elec": 0.2085997268,
                   "feedstock": 0.0,
-                  "capex": 0.0041981296
+                  "capex": 0.0100878528
                 }
               },
-              "risk_cut_bps": 0.3534030283,
+              "risk_cut_bps": 0.4270609627,
               "gross_incremental_value_usd_m": 773.1373804521,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -15317,18 +15317,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7869146482,
-                "risk_charge_usd_t": 3.8934573241,
-                "sigma_b_usd_bn": 5.8143568818,
+                "risk_charge_bps": 5.215992432,
+                "risk_charge_usd_t": 2.607996216,
+                "sigma_b_usd_bn": 3.8946929384,
                 "shares": {
-                  "carbon": 0.8295837181,
+                  "carbon": 0.6911826425,
                   "h2": 0.0,
-                  "elec": 0.1685378402,
+                  "elec": 0.3046308234,
                   "feedstock": 0.0,
-                  "capex": 0.0018784417
+                  "capex": 0.0041865341
                 }
               },
-              "risk_cut_bps": 0.007608431,
+              "risk_cut_bps": 0.0113517641,
               "gross_incremental_value_usd_m": 720.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -15434,18 +15434,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 9.5266253637,
-                "risk_charge_usd_t": 4.7633126818,
-                "sigma_b_usd_bn": 4.7422462123,
+                "risk_charge_bps": 7.8410162942,
+                "risk_charge_usd_t": 3.9205081471,
+                "sigma_b_usd_bn": 3.9031691078,
                 "shares": {
-                  "carbon": 0.7674515038,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.226785653,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.0057628432
+                  "capex": 0.0085068792
                 }
               },
-              "risk_cut_bps": -1.7321022845,
+              "risk_cut_bps": -2.6136720981,
               "gross_incremental_value_usd_m": 1167.1204172499,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -15552,18 +15552,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7898203511,
-                "risk_charge_usd_t": 3.8949101755,
-                "sigma_b_usd_bn": 7.0292565359,
+                "risk_charge_bps": 5.2203293397,
+                "risk_charge_usd_t": 2.6101646698,
+                "sigma_b_usd_bn": 4.7106393314,
                 "shares": {
-                  "carbon": 0.8289649428,
+                  "carbon": 0.690034688,
                   "h2": 0.0,
-                  "elec": 0.1684121301,
+                  "elec": 0.3041248756,
                   "feedstock": 0.0,
-                  "capex": 0.0026229271
+                  "capex": 0.0058404363
                 }
               },
-              "risk_cut_bps": 0.0047027281,
+              "risk_cut_bps": 0.0070148565,
               "gross_incremental_value_usd_m": -1008.9303737128,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -15669,15 +15669,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7945230792,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 5.820037968,
+                "risk_charge_bps": 5.2273441961,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 3.9031691078,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -15786,15 +15786,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.7945230792,
-                "risk_charge_usd_t": 3.8972615396,
-                "sigma_b_usd_bn": 5.820037968,
+                "risk_charge_bps": 5.2273441961,
+                "risk_charge_usd_t": 2.6136720981,
+                "sigma_b_usd_bn": 3.9031691078,
                 "shares": {
-                  "carbon": 0.8279649533,
+                  "carbon": 0.6881839408,
                   "h2": 0.0,
-                  "elec": 0.1682089727,
+                  "elec": 0.30330918,
                   "feedstock": 0.0,
-                  "capex": 0.003826074
+                  "capex": 0.0085068792
                 }
               },
               "risk_cut_bps": 0.0,
@@ -15906,18 +15906,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 8.9303348697,
-                "risk_charge_usd_t": 4.4651674349,
-                "sigma_b_usd_bn": 4.4454195577,
+                "risk_charge_bps": 7.1818785746,
+                "risk_charge_usd_t": 3.5909392873,
+                "sigma_b_usd_bn": 3.5750578161,
                 "shares": {
-                  "carbon": 0.8438391476,
+                  "carbon": 0.7853529079,
                   "h2": 0.0,
-                  "elec": 0.1529473727,
+                  "elec": 0.2096784817,
                   "feedstock": 0.0,
-                  "capex": 0.0032134798
+                  "capex": 0.0049686104
                 }
               },
-              "risk_cut_bps": -1.1358117905,
+              "risk_cut_bps": -1.9545343784,
               "gross_incremental_value_usd_m": 2660.257797702,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -16042,15 +16042,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 33.3439631207,
-              "risk_charge_usd_t": 9.198334654,
-              "sigma_b_usd_bn": 18.6006439883,
+              "risk_charge_bps": 33.3165449413,
+              "risk_charge_usd_t": 9.1907710183,
+              "sigma_b_usd_bn": 18.585348992,
               "shares": {
-                "carbon": 0.0029233771,
-                "h2": 0.9427194563,
-                "elec": 0.0513368096,
+                "carbon": 0.0015732454,
+                "h2": 0.9442717353,
+                "elec": 0.051129689,
                 "feedstock": 0.0,
-                "capex": 0.003020357
+                "capex": 0.0030253303
               }
             }
           },
@@ -16152,18 +16152,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 22.2964139644,
-                "risk_charge_usd_t": 6.1507348867,
-                "sigma_b_usd_bn": 12.4378633957,
+                "risk_charge_bps": 22.2553895923,
+                "risk_charge_usd_t": 6.1394178186,
+                "sigma_b_usd_bn": 12.4149783014,
                 "shares": {
-                  "carbon": 0.006538065,
-                  "h2": 0.9078729727,
-                  "elec": 0.078834004,
+                  "carbon": 0.0035257051,
+                  "h2": 0.9112231047,
+                  "elec": 0.0784713055,
                   "feedstock": 0.0,
-                  "capex": 0.0067549583
+                  "capex": 0.0067798847
                 }
               },
-              "risk_cut_bps": 11.0475491563,
+              "risk_cut_bps": 11.0611553491,
               "gross_incremental_value_usd_m": 8291.8760566525,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -16270,18 +16270,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 32.9681946181,
-                "risk_charge_usd_t": 9.0946743774,
-                "sigma_b_usd_bn": 18.3910247504,
+                "risk_charge_bps": 32.9426309189,
+                "risk_charge_usd_t": 9.0876223224,
+                "sigma_b_usd_bn": 18.3767642599,
                 "shares": {
-                  "carbon": 0.0027819547,
-                  "h2": 0.9540298922,
-                  "elec": 0.0400985522,
+                  "carbon": 0.0014661822,
+                  "h2": 0.9555111337,
+                  "elec": 0.0399282863,
                   "feedstock": 0.0,
-                  "capex": 0.0030896009
+                  "capex": 0.0030943978
                 }
               },
-              "risk_cut_bps": 0.3757685026,
+              "risk_cut_bps": 0.3739140225,
               "gross_incremental_value_usd_m": 379.0571911613,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -16388,18 +16388,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 33.318272002,
-                "risk_charge_usd_t": 9.1912474488,
-                "sigma_b_usd_bn": 18.586312418,
+                "risk_charge_bps": 33.2908326635,
+                "risk_charge_usd_t": 9.1836779761,
+                "sigma_b_usd_bn": 18.5710056182,
                 "shares": {
-                  "carbon": 0.0029278871,
-                  "h2": 0.9441738448,
-                  "elec": 0.0514160099,
+                  "carbon": 0.0015756766,
+                  "h2": 0.945730921,
+                  "elec": 0.0512086998,
                   "feedstock": 0.0,
-                  "capex": 0.0014822582
+                  "capex": 0.0014847026
                 }
               },
-              "risk_cut_bps": 0.0256911187,
+              "risk_cut_bps": 0.0257122778,
               "gross_incremental_value_usd_m": 2044.5,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -16505,18 +16505,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 46.9637618949,
-                "risk_charge_usd_t": 12.9555205227,
-                "sigma_b_usd_bn": 18.5923646308,
+                "risk_charge_bps": 46.9460405992,
+                "risk_charge_usd_t": 12.9506318894,
+                "sigma_b_usd_bn": 18.585348992,
                 "shares": {
-                  "carbon": 0.0021841541,
-                  "h2": 0.9435592472,
-                  "elec": 0.0512335512,
+                  "carbon": 0.0015732454,
+                  "h2": 0.9442717353,
+                  "elec": 0.051129689,
                   "feedstock": 0.0,
-                  "capex": 0.0030230476
+                  "capex": 0.0030253303
                 }
               },
-              "risk_cut_bps": -13.6197987742,
+              "risk_cut_bps": -13.6294956578,
               "gross_incremental_value_usd_m": 2352.4735626281,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -16623,18 +16623,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 33.3296859666,
-                "risk_charge_usd_t": 9.1943961287,
-                "sigma_b_usd_bn": 21.9646362864,
+                "risk_charge_bps": 33.3022560327,
+                "risk_charge_usd_t": 9.1868292504,
+                "sigma_b_usd_bn": 21.9465596527,
                 "shares": {
-                  "carbon": 0.0029258821,
-                  "h2": 0.9435272787,
-                  "elec": 0.0513808005,
+                  "carbon": 0.0015745958,
+                  "h2": 0.9450822214,
+                  "elec": 0.0511735745,
                   "feedstock": 0.0,
-                  "capex": 0.0021660387
+                  "capex": 0.0021696083
                 }
               },
-              "risk_cut_bps": 0.0142771541,
+              "risk_cut_bps": 0.0142889086,
               "gross_incremental_value_usd_m": -4474.2269810452,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -16740,15 +16740,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 33.3439631207,
-                "risk_charge_usd_t": 9.198334654,
-                "sigma_b_usd_bn": 18.6006439883,
+                "risk_charge_bps": 33.3165449413,
+                "risk_charge_usd_t": 9.1907710183,
+                "sigma_b_usd_bn": 18.585348992,
                 "shares": {
-                  "carbon": 0.0029233771,
-                  "h2": 0.9427194563,
-                  "elec": 0.0513368096,
+                  "carbon": 0.0015732454,
+                  "h2": 0.9442717353,
+                  "elec": 0.051129689,
                   "feedstock": 0.0,
-                  "capex": 0.003020357
+                  "capex": 0.0030253303
                 }
               },
               "risk_cut_bps": 0.0,
@@ -16857,15 +16857,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 33.3439631207,
-                "risk_charge_usd_t": 9.198334654,
-                "sigma_b_usd_bn": 18.6006439883,
+                "risk_charge_bps": 33.3165449413,
+                "risk_charge_usd_t": 9.1907710183,
+                "sigma_b_usd_bn": 18.585348992,
                 "shares": {
-                  "carbon": 0.0029233771,
-                  "h2": 0.9427194563,
-                  "elec": 0.0513368096,
+                  "carbon": 0.0015732454,
+                  "h2": 0.9442717353,
+                  "elec": 0.051129689,
                   "feedstock": 0.0,
-                  "capex": 0.003020357
+                  "capex": 0.0030253303
                 }
               },
               "risk_cut_bps": 0.0,
@@ -16978,18 +16978,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 30.7902302783,
-                "risk_charge_usd_t": 8.4938566285,
-                "sigma_b_usd_bn": 12.1894662034,
+                "risk_charge_bps": 30.7654456268,
+                "risk_charge_usd_t": 8.4870194832,
+                "sigma_b_usd_bn": 12.1796542705,
                 "shares": {
-                  "carbon": 0.0046833456,
-                  "h2": 0.9300611986,
-                  "elec": 0.0618092522,
+                  "carbon": 0.0033377678,
+                  "h2": 0.9315603173,
+                  "elec": 0.0616501565,
                   "feedstock": 0.0,
-                  "capex": 0.0034462037
+                  "capex": 0.0034517585
                 }
               },
-              "risk_cut_bps": 2.5537328424,
+              "risk_cut_bps": 2.5510993146,
               "gross_incremental_value_usd_m": 13067.9068104419,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -17091,15 +17091,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 6.7310073324,
-              "risk_charge_usd_t": 1.8568296089,
-              "sigma_b_usd_bn": 3.7548347394,
+              "risk_charge_bps": 4.9477381525,
+              "risk_charge_usd_t": 1.3648932835,
+              "sigma_b_usd_bn": 2.7600533143,
               "shares": {
-                "carbon": 0.853058366,
+                "carbon": 0.7677211756,
                 "h2": 0.0,
-                "elec": 0.1335202636,
+                "elec": 0.2074392831,
                 "feedstock": 0.0,
-                "capex": 0.0134213703
+                "capex": 0.0248395413
               }
             }
           },
@@ -17199,15 +17199,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 6.7310073324,
-                "risk_charge_usd_t": 1.8568296089,
-                "sigma_b_usd_bn": 3.7548347394,
+                "risk_charge_bps": 4.9477381525,
+                "risk_charge_usd_t": 1.3648932835,
+                "sigma_b_usd_bn": 2.7600533143,
                 "shares": {
-                  "carbon": 0.853058366,
+                  "carbon": 0.7677211756,
                   "h2": 0.0,
-                  "elec": 0.1335202636,
+                  "elec": 0.2074392831,
                   "feedstock": 0.0,
-                  "capex": 0.0134213703
+                  "capex": 0.0248395413
                 }
               },
               "risk_cut_bps": 0.0,
@@ -17317,18 +17317,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 6.5408445948,
-                "risk_charge_usd_t": 1.8043709227,
-                "sigma_b_usd_bn": 3.6487540863,
+                "risk_charge_bps": 4.7312426356,
+                "risk_charge_usd_t": 1.3051703822,
+                "sigma_b_usd_bn": 2.639283146,
                 "shares": {
-                  "carbon": 0.8874949398,
+                  "carbon": 0.8187933416,
                   "h2": 0.0,
-                  "elec": 0.0982919434,
+                  "elec": 0.1540418563,
                   "feedstock": 0.0,
-                  "capex": 0.0142131168
+                  "capex": 0.0271648021
                 }
               },
-              "risk_cut_bps": 0.1901627376,
+              "risk_cut_bps": 0.216495517,
               "gross_incremental_value_usd_m": 284.2928933709,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -17435,18 +17435,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 6.707931244,
-                "risk_charge_usd_t": 1.8504637915,
-                "sigma_b_usd_bn": 3.7419619413,
+                "risk_charge_bps": 4.9162988814,
+                "risk_charge_usd_t": 1.3562203811,
+                "sigma_b_usd_bn": 2.7425151864,
                 "shares": {
-                  "carbon": 0.8589377078,
+                  "carbon": 0.7775715816,
                   "h2": 0.0,
-                  "elec": 0.1344404952,
+                  "elec": 0.2101008758,
                   "feedstock": 0.0,
-                  "capex": 0.006621797
+                  "capex": 0.0123275426
                 }
               },
-              "risk_cut_bps": 0.0230760884,
+              "risk_cut_bps": 0.0314392711,
               "gross_incremental_value_usd_m": 870.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -17552,18 +17552,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 8.1893257074,
-                "risk_charge_usd_t": 2.2591243331,
-                "sigma_b_usd_bn": 3.2420513921,
+                "risk_charge_bps": 6.9718128513,
+                "risk_charge_usd_t": 1.9232587176,
+                "sigma_b_usd_bn": 2.7600533143,
                 "shares": {
-                  "carbon": 0.8175996495,
+                  "carbon": 0.7677211756,
                   "h2": 0.0,
-                  "elec": 0.1643976057,
+                  "elec": 0.2074392831,
                   "feedstock": 0.0,
-                  "capex": 0.0180027448
+                  "capex": 0.0248395413
                 }
               },
-              "risk_cut_bps": -1.4583183749,
+              "risk_cut_bps": -2.0240746988,
               "gross_incremental_value_usd_m": 1986.6079924661,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -17670,18 +17670,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 6.7181910004,
-                "risk_charge_usd_t": 1.8532940691,
-                "sigma_b_usd_bn": 4.4273631013,
+                "risk_charge_bps": 4.9302883724,
+                "risk_charge_usd_t": 1.360079551,
+                "sigma_b_usd_bn": 3.2491152481,
                 "shares": {
-                  "carbon": 0.8563162394,
+                  "carbon": 0.773165187,
                   "h2": 0.0,
-                  "elec": 0.1340301843,
+                  "elec": 0.2089102622,
                   "feedstock": 0.0,
-                  "capex": 0.0096535763
+                  "capex": 0.0179245508
                 }
               },
-              "risk_cut_bps": 0.012816332,
+              "risk_cut_bps": 0.0174497801,
               "gross_incremental_value_usd_m": -873.4370657013,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -17787,15 +17787,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 6.7310073324,
-                "risk_charge_usd_t": 1.8568296089,
-                "sigma_b_usd_bn": 3.7548347394,
+                "risk_charge_bps": 4.9477381525,
+                "risk_charge_usd_t": 1.3648932835,
+                "sigma_b_usd_bn": 2.7600533143,
                 "shares": {
-                  "carbon": 0.853058366,
+                  "carbon": 0.7677211756,
                   "h2": 0.0,
-                  "elec": 0.1335202636,
+                  "elec": 0.2074392831,
                   "feedstock": 0.0,
-                  "capex": 0.0134213703
+                  "capex": 0.0248395413
                 }
               },
               "risk_cut_bps": 0.0,
@@ -17904,15 +17904,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 6.7310073324,
-                "risk_charge_usd_t": 1.8568296089,
-                "sigma_b_usd_bn": 3.7548347394,
+                "risk_charge_bps": 4.9477381525,
+                "risk_charge_usd_t": 1.3648932835,
+                "sigma_b_usd_bn": 2.7600533143,
                 "shares": {
-                  "carbon": 0.853058366,
+                  "carbon": 0.7677211756,
                   "h2": 0.0,
-                  "elec": 0.1335202636,
+                  "elec": 0.2074392831,
                   "feedstock": 0.0,
-                  "capex": 0.0134213703
+                  "capex": 0.0248395413
                 }
               },
               "risk_cut_bps": 0.0,
@@ -18024,18 +18024,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 7.86593901,
-                "risk_charge_usd_t": 2.1699142096,
-                "sigma_b_usd_bn": 3.1140266524,
+                "risk_charge_bps": 6.6204091737,
+                "risk_charge_usd_t": 1.826319772,
+                "sigma_b_usd_bn": 2.6209370032,
                 "shares": {
-                  "carbon": 0.867911111,
+                  "carbon": 0.8302963074,
                   "h2": 0.0,
-                  "elec": 0.1225273028,
+                  "elec": 0.1562059411,
                   "feedstock": 0.0,
-                  "capex": 0.0095615862
+                  "capex": 0.0134977515
                 }
               },
-              "risk_cut_bps": -1.1349316775,
+              "risk_cut_bps": -1.6726710211,
               "gross_incremental_value_usd_m": 3140.900885837,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -18138,15 +18138,15 @@
                 "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                 "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
               },
-              "risk_charge_bps": 12.7301976974,
-              "risk_charge_usd_t": 3.5117786752,
-              "sigma_b_usd_bn": 7.1014316569,
+              "risk_charge_bps": 9.0548250777,
+              "risk_charge_usd_t": 2.4978827801,
+              "sigma_b_usd_bn": 5.0511565478,
               "shares": {
-                "carbon": 0.9222602189,
+                "carbon": 0.8739816033,
                 "h2": 0.0,
-                "elec": 0.0692973172,
+                "elec": 0.1093313541,
                 "feedstock": 0.0,
-                "capex": 0.0084424638
+                "capex": 0.0166870426
               }
             }
           },
@@ -18246,15 +18246,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.7301976974,
-                "risk_charge_usd_t": 3.5117786752,
-                "sigma_b_usd_bn": 7.1014316569,
+                "risk_charge_bps": 9.0548250777,
+                "risk_charge_usd_t": 2.4978827801,
+                "sigma_b_usd_bn": 5.0511565478,
                 "shares": {
-                  "carbon": 0.9222602189,
+                  "carbon": 0.8739816033,
                   "h2": 0.0,
-                  "elec": 0.0692973172,
+                  "elec": 0.1093313541,
                   "feedstock": 0.0,
-                  "capex": 0.0084424638
+                  "capex": 0.0166870426
                 }
               },
               "risk_cut_bps": 0.0,
@@ -18364,18 +18364,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.5419760418,
-                "risk_charge_usd_t": 3.4598554598,
-                "sigma_b_usd_bn": 6.9964338198,
+                "risk_charge_bps": 8.8449185155,
+                "risk_charge_usd_t": 2.4399775215,
+                "sigma_b_usd_bn": 4.9340619715,
                 "shares": {
-                  "carbon": 0.9400673435,
+                  "carbon": 0.9020726828,
                   "h2": 0.0,
-                  "elec": 0.0512348935,
+                  "elec": 0.0804388466,
                   "feedstock": 0.0,
-                  "capex": 0.008697763
+                  "capex": 0.0174884706
                 }
               },
-              "risk_cut_bps": 0.1882216556,
+              "risk_cut_bps": 0.2099065622,
               "gross_incremental_value_usd_m": 331.6750422661,
               "counterparty_adjustment": {
                 "tenor_years": 15,
@@ -18482,18 +18482,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.7027622041,
-                "risk_charge_usd_t": 3.5042102632,
-                "sigma_b_usd_bn": 7.0861270021,
+                "risk_charge_bps": 9.0162126963,
+                "risk_charge_usd_t": 2.4872310886,
+                "sigma_b_usd_bn": 5.0296169618,
                 "shares": {
-                  "carbon": 0.9262483261,
+                  "carbon": 0.8814833721,
                   "h2": 0.0,
-                  "elec": 0.0695969779,
+                  "elec": 0.1102697932,
                   "feedstock": 0.0,
-                  "capex": 0.004154696
+                  "capex": 0.0082468347
                 }
               },
-              "risk_cut_bps": 0.0274354934,
+              "risk_cut_bps": 0.0386123814,
               "gross_incremental_value_usd_m": 1305.0,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -18599,18 +18599,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 15.2803060552,
-                "risk_charge_usd_t": 4.2152568428,
-                "sigma_b_usd_bn": 6.0492816245,
+                "risk_charge_bps": 12.7590717004,
+                "risk_charge_usd_t": 3.5197439173,
+                "sigma_b_usd_bn": 5.0511565478,
                 "shares": {
-                  "carbon": 0.9027177885,
+                  "carbon": 0.8739816033,
                   "h2": 0.0,
-                  "elec": 0.0856475587,
+                  "elec": 0.1093313541,
                   "feedstock": 0.0,
-                  "capex": 0.0116346527
+                  "capex": 0.0166870426
                 }
               },
-              "risk_cut_bps": -2.5501083578,
+              "risk_cut_bps": -3.7042466227,
               "gross_incremental_value_usd_m": 1498.78723225,
               "counterparty_adjustment": {
                 "tenor_years": 34,
@@ -18717,18 +18717,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.7149558507,
-                "risk_charge_usd_t": 3.5075740278,
-                "sigma_b_usd_bn": 8.379298291,
+                "risk_charge_bps": 9.033383976,
+                "risk_charge_usd_t": 2.4919679934,
+                "sigma_b_usd_bn": 5.9531011983,
                 "shares": {
-                  "carbon": 0.9244726331,
+                  "carbon": 0.8781353883,
                   "h2": 0.0,
-                  "elec": 0.0694635549,
+                  "elec": 0.1098509748,
                   "feedstock": 0.0,
-                  "capex": 0.006063812
+                  "capex": 0.0120136369
                 }
               },
-              "risk_cut_bps": 0.0152418467,
+              "risk_cut_bps": 0.0214411017,
               "gross_incremental_value_usd_m": -560.6823581129,
               "counterparty_adjustment": {
                 "tenor_years": 35,
@@ -18834,15 +18834,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.7301976974,
-                "risk_charge_usd_t": 3.5117786752,
-                "sigma_b_usd_bn": 7.1014316569,
+                "risk_charge_bps": 9.0548250777,
+                "risk_charge_usd_t": 2.4978827801,
+                "sigma_b_usd_bn": 5.0511565478,
                 "shares": {
-                  "carbon": 0.9222602189,
+                  "carbon": 0.8739816033,
                   "h2": 0.0,
-                  "elec": 0.0692973172,
+                  "elec": 0.1093313541,
                   "feedstock": 0.0,
-                  "capex": 0.0084424638
+                  "capex": 0.0166870426
                 }
               },
               "risk_cut_bps": 0.0,
@@ -18951,15 +18951,15 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 12.7301976974,
-                "risk_charge_usd_t": 3.5117786752,
-                "sigma_b_usd_bn": 7.1014316569,
+                "risk_charge_bps": 9.0548250777,
+                "risk_charge_usd_t": 2.4978827801,
+                "sigma_b_usd_bn": 5.0511565478,
                 "shares": {
-                  "carbon": 0.9222602189,
+                  "carbon": 0.8739816033,
                   "h2": 0.0,
-                  "elec": 0.0692973172,
+                  "elec": 0.1093313541,
                   "feedstock": 0.0,
-                  "capex": 0.0084424638
+                  "capex": 0.0166870426
                 }
               },
               "risk_cut_bps": 0.0,
@@ -19071,18 +19071,18 @@
                   "uncertainty": "immediate commissioning, route, covariance and pricing assumptions",
                   "interpretation": "project-at-base-year charge; not enterprise transition-window charge"
                 },
-                "risk_charge_bps": 14.955672328,
-                "risk_charge_usd_t": 4.1257027112,
-                "sigma_b_usd_bn": 5.9207632013,
+                "risk_charge_bps": 12.4075889744,
+                "risk_charge_usd_t": 3.4227831653,
+                "sigma_b_usd_bn": 4.9120089425,
                 "shares": {
-                  "carbon": 0.9305225731,
+                  "carbon": 0.9101907836,
                   "h2": 0.0,
-                  "elec": 0.0635262655,
+                  "elec": 0.0811627469,
                   "feedstock": 0.0,
-                  "capex": 0.0059511614
+                  "capex": 0.0086464695
                 }
               },
-              "risk_cut_bps": -2.2254746306,
+              "risk_cut_bps": -3.3527638967,
               "gross_incremental_value_usd_m": 3135.4622745161,
               "counterparty_adjustment": {
                 "tenor_years": 35,

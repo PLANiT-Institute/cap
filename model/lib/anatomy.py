@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import numpy as np
 
+from .finance import annuity
+
 DRIVERS = ["carbon", "h2", "elec", "feedstock", "capex"]
 
 
@@ -29,8 +31,11 @@ def lambda_k_shares(w: np.ndarray, rho: np.ndarray, lambdas: np.ndarray) -> np.n
     return weighted / total if total > 0 else np.zeros_like(w)
 
 
-def premium_bps(
-    k: float, lam: float, p_bind: float, sigma_b_usd: float, ev_usd: float, bps_scale: float
+def risk_charge_annual_usd(
+    k: float, lam: float, p_bind: float, sigma_b_usd: float, rate: float, horizon: float
 ) -> float:
-    """π = k·λ·p_bind·σ_B, EV 대비 bps. 곱 구조가 Prop 1의 전제."""
-    return k * lam * p_bind * sigma_b_usd / ev_usd * bps_scale
+    """π_annual = k·λ·p_bind·σ_B / annuity(rate, horizon).
+
+    PV 불확실성 σ_B를 연율화한 conditional risk charge — s04/s05가 공유하는 정본.
+    곱 구조가 Prop 1의 전제."""
+    return k * lam * p_bind * sigma_b_usd / annuity(rate, horizon)

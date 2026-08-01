@@ -15,6 +15,20 @@ def annuity(rate: float, n_years: float) -> float:
     return float((1.0 - (1.0 + rate) ** -n_years) / rate)
 
 
+def growth_annuity(rate: float, mu: float, n_years: float) -> float:
+    """연말 지급, 기대수준이 e^{μs}로 자라는 연금의 PV 계수.
+
+    GBM 아래 E[P_{t+s}] = P_t·e^{μs} — 시뮬레이션 measure와 일치하는 행사가치용.
+    μ=0이면 annuity()와 동일.
+    """
+    if n_years <= 0:
+        return 0.0
+    q = float(np.exp(mu)) / (1.0 + rate)
+    if abs(q - 1.0) < np.finfo(float).eps:
+        return float(n_years)
+    return float(q * (1.0 - q**n_years) / (1.0 - q))
+
+
 def pv_window(rate: float, t_start: float, t_end: float) -> float:
     """t_start~t_end 사이 연 1달러 흐름의 PV (t=0 기준)."""
     if t_end <= t_start:

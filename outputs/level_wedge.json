@@ -93,15 +93,15 @@
         "carbon_price_used_usd_tco2": 46.5,
         "level_gap_usd_t": 61.3756334777,
         "gap_variance_shares": {
-          "carbon": 0.939377059,
+          "carbon": 0.8846038177,
           "h2": 0.0,
-          "elec": 0.0599597351,
+          "elec": 0.1136680117,
           "feedstock": 0.0,
-          "capex": 0.000663206
+          "capex": 0.0017281706
         },
-        "sigma_project": 0.6066082393,
-        "trigger_multiple_project": 5.6253020945,
-        "wedge_usd_t": 283.8808460748
+        "sigma_project": 0.3757847947,
+        "trigger_multiple_project": 3.203116811,
+        "wedge_usd_t": 135.2176899023
       }
     },
     {
@@ -150,15 +150,15 @@
         "carbon_price_used_usd_tco2": 46.5,
         "level_gap_usd_t": 59.4384502165,
         "gap_variance_shares": {
-          "carbon": 0.8890837678,
+          "carbon": 0.790685473,
           "h2": 0.0,
-          "elec": 0.108253198,
+          "elec": 0.2028679516,
           "feedstock": 0.0,
-          "capex": 0.0026630342
+          "capex": 0.0064465753
         },
-        "sigma_project": 0.466118401,
-        "trigger_multiple_project": 4.0378592586,
-        "wedge_usd_t": 180.5656463083
+        "sigma_project": 0.2995850176,
+        "trigger_multiple_project": 2.6062678467,
+        "wedge_usd_t": 95.4740714413
       }
     },
     {
@@ -207,15 +207,15 @@
         "carbon_price_used_usd_tco2": 46.5,
         "level_gap_usd_t": 301.6977386725,
         "gap_variance_shares": {
-          "carbon": 0.4236965487,
-          "h2": 0.4895043574,
-          "elec": 0.085504079,
+          "carbon": 0.2132788541,
+          "h2": 0.6784313098,
+          "elec": 0.106495003,
           "feedstock": 0.0,
-          "capex": 0.0012950149
+          "capex": 0.0017948331
         },
-        "sigma_project": 0.284686901,
-        "trigger_multiple_project": 2.500571436,
-        "wedge_usd_t": 452.7190089581
+        "sigma_project": 0.2418203384,
+        "trigger_multiple_project": 2.215761935,
+        "wedge_usd_t": 366.792626565
       }
     },
     {
@@ -264,15 +264,15 @@
         "carbon_price_used_usd_tco2": 53.1818181818,
         "level_gap_usd_t": 273.0781222583,
         "gap_variance_shares": {
-          "carbon": 0.4288316791,
-          "h2": 0.5306942752,
-          "elec": 0.0384130584,
+          "carbon": 0.2635916556,
+          "h2": 0.6880338313,
+          "elec": 0.045702487,
           "feedstock": 0.0,
-          "capex": 0.0020609873
+          "capex": 0.0026720262
         },
-        "sigma_project": 0.2605222668,
-        "trigger_multiple_project": 2.6023068618,
-        "wedge_usd_t": 437.5549491011
+        "sigma_project": 0.228803231,
+        "trigger_multiple_project": 2.3979836532,
+        "wedge_usd_t": 381.7587509711
       }
     }
   ]

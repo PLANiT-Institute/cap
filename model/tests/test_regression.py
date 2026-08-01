@@ -18,11 +18,15 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 OUT = ROOT / "outputs"
 
 from model.lib.anatomy import DRIVERS, euler_shares  # noqa: E402
+from model.lib.gap_pricing import price_alignment_gap  # noqa: E402
 from model.lib.interventions import apply_interventions  # noqa: E402
-from model.lib.jump import sigma_carbon_combined  # noqa: E402
+from model.lib.jump import sigma_carbon_binding, sigma_carbon_combined  # noqa: E402
 from model.lib.pathways import asset_annual_emissions, condition_gap, firm_pathway  # noqa: E402
 from model.lib.result_contract import (  # noqa: E402
     ALIGNMENT_GAP_BASIS,
+    ALIGNMENT_GAP_LOSS_BASIS,
+    ALIGNMENT_GAP_LOSS_METRIC,
+    ALIGNMENT_GAP_RISK_CHARGE_METRIC,
     ENTERPRISE_FIXED_RISK_BASIS,
     ENTERPRISE_RISK_BASIS,
     PROJECT_ECONOMICS_BASIS,
@@ -97,6 +101,38 @@ def test_gap_nonnegative(fresh):
         assert all(g >= 0 for g in f["annual_alignment_gap_mtco2"])
 
 
+def test_gap_pricing_bridge_is_zero_at_zero_and_linear_in_gap(cal):
+    """The physical gap must be a live input to both loss and charge."""
+    base_year = int(cal.lsm["base_year"])
+    horizon = int(cal.lsm["horizon_years"])
+    years = np.arange(base_year, base_year + horizon + 1)
+    common = {
+        "base_year": base_year,
+        "rate": float(cal.firms[cal.firms["firm_id"] == "POSCO"]["wacc"].iloc[0]),
+        "horizon_years": horizon,
+        "reference_price_usd_tco2": float(cal.pricing["carbon_base_kr"]),
+        "scenarios": cal.carbon_scenarios("KR"),
+        "risk_price_lambda": float(cal.pricing["lambda"]),
+        "risk_scale_k": float(cal.pricing["k"]),
+        "enterprise_value_usd_bn": float(
+            cal.firms[cal.firms["firm_id"] == "POSCO"]["ev_usd_bn"].iloc[0]
+        ),
+    }
+    zero = price_alignment_gap(np.zeros_like(years, dtype=float), years, **common)
+    one = price_alignment_gap(np.ones_like(years, dtype=float), years, **common)
+    two = price_alignment_gap(np.full_like(years, 2.0, dtype=float), years, **common)
+
+    assert zero["expected_pv_gap_loss_usd_m"] == 0
+    assert zero["gap_risk_charge_bps"] == 0
+    assert one["expected_pv_gap_loss_usd_m"] > 0
+    assert one["sigma_pv_gap_loss_usd_m"] > 0
+    assert two["expected_pv_gap_loss_usd_m"] == pytest.approx(
+        2 * one["expected_pv_gap_loss_usd_m"]
+    )
+    assert two["gap_risk_charge_bps"] == pytest.approx(2 * one["gap_risk_charge_bps"])
+    assert "not multiplied again" in one["probability_treatment"]
+
+
 # 6. τ*를 앞당기는 개입은 cumulative gap을 늘리지 않는다 (일반적으로 감소)
 def test_intervention_gap_direction():
     imp = art("intervention_impacts")
@@ -156,6 +192,20 @@ def test_stranding_not_in_deployment_pool(cal):
             assert t["pool"] != "stranding"
 
 
+def test_required_path_pools_never_mix_countries_and_surrogates_are_not_headline(cal):
+    for aid, t in cal.t_required.items():
+        row = cal.firms.set_index("asset_id").loc[aid]
+        if t["pool"] != "stranding":
+            assert f":{row['country']}:" in t["pool"]
+        if t["status"] == "PROVISIONAL":
+            assert t["headline_eligible"] is False
+            assert t["pathway_kind"] in {
+                "SURROGATE",
+                "SURROGATE_RESCALED",
+                "INVESTMENT_CYCLE_SURROGATE",
+            }
+
+
 # 12. 기업 평균 전환연도 방식 미사용 — 자산별 전환이 계단으로 나타남
 def test_asset_level_steps(fresh):
     pathways, _ = fresh
@@ -188,11 +238,23 @@ def test_claims_carry_assumed_deps():
 # 15. manifest가 dirty tree·lineage를 기록
 def test_manifest_lineage():
     m = art("manifest")
-    for k in ("git_sha", "git_dirty", "code_sha256", "config_sha256",
+    for k in ("git_sha", "git_dirty", "git_dirty_before_run", "git_dirty_after_run",
+              "code_sha256", "config_sha256",
               "raw_data_sha256", "processed_data_sha256", "seed",
-              "t_required_source", "artifacts"):
+              "t_required_source", "dependency_lock_sha256",
+              "web_dependency_lock_sha256", "artifacts"):
         assert k in m
     assert isinstance(m["git_dirty"], bool)
+    assert m["git_dirty"] == m["git_dirty_before_run"]
+
+
+def test_candidate_inputs_are_ingested_but_fail_closed_as_evidence_only():
+    contract = json.loads((ROOT / "data/processed/candidate_input_contract.json").read_text())
+    params = next(d for d in contract["datasets"] if d["dataset"] == "params_consolidated")
+    assert (ROOT / params["processed_file"]).is_file()
+    assert params["pipeline_role"] == "calibration_evidence_only"
+    assert params["model_effect"].startswith("none_until_DECISIONS")
+    assert "do not imply model consumption" in contract["rule"]
 
 
 # 16. theory live-value 치환 unresolved 없음
@@ -210,6 +272,22 @@ def test_sigma_carbon_kr(cal):
     assert sigma_carbon_combined(
         0.40, scen["level_usd"].to_numpy(float), scen["prob"].to_numpy(float)
     ) == pytest.approx(0.88, abs=0.005)
+
+
+def test_binding_charge_uses_matching_conditional_level_and_sigma(cal):
+    for country in ("KR", "JP"):
+        scen = cal.carbon_scenarios(country)
+        conditional = sigma_carbon_binding(
+            cal.sigma("carbon_diffusion"),
+            scen["level_usd"].to_numpy(float),
+            scen["prob"].to_numpy(float),
+            scen["binds"].to_numpy(int),
+        )
+        assert cal.sigma_carbon_binding[country] == pytest.approx(conditional)
+        assert cal.sigma_carbon_binding[country] < cal.sigma_carbon_reform[country]
+
+    posco = next(f for f in art("premium_levels")["firms"] if f["firm_id"] == "POSCO")
+    assert posco["p_bind"] == pytest.approx(cal.p_bind["KR"])
 
 
 # 구조 유지: share 합=1 (IDENTITY), 클러스터 분리
@@ -243,6 +321,10 @@ def test_underwriting_translation_and_ranking():
             annual_charge_usd_m(u["model_implied_spread_bps"], firm["enterprise_value_usd_bn"])
         )
         assert sum(u["risk_anatomy"].values()) == pytest.approx(1.0)
+        gap_loss = firm["alignment_gap_loss"]
+        assert gap_loss["risk_result_contract"]["basis_id"] == ALIGNMENT_GAP_LOSS_BASIS
+        assert gap_loss["risk_result_contract"]["basis_id"] != u["result_contract"]["basis_id"]
+        assert "not add" in gap_loss["aggregation_warning"]
         assert u["sensitivity"]["range_bps"]["lo"] > 0
         assert u["sensitivity"]["range_bps"]["hi"] > u["sensitivity"]["range_bps"]["lo"]
         sensitivity_base = u["sensitivity"]["base"]
@@ -345,6 +427,13 @@ def test_api_separates_fixed_exposure_from_full_counterfactual():
     assert full_posco["cumulative_alignment_gap_mtco2"] == pytest.approx(
         fixed_posco["cumulative_alignment_gap_mtco2"]
     )
+    assert full_posco["gap_risk_charge_bps"] == pytest.approx(
+        fixed_posco["gap_risk_charge_bps"]
+    )
+    assert (
+        full_posco["alignment_gap_risk_result_contract"]["basis_id"]
+        == ALIGNMENT_GAP_LOSS_BASIS
+    )
 
     hard_reform = {
         "carbon_scenarios_kr": [
@@ -424,6 +513,17 @@ def test_result_contract_prevents_cross_basis_bps_comparison():
     assert project["basis_id"] == PROJECT_RISK_BASIS
     assert enterprise["basis_id"] != project["basis_id"]
     assert economics["basis_id"] == PROJECT_ECONOMICS_BASIS
+
+    gap_loss = art("alignment_gap_loss")
+    gap_firm = gap_loss["firms"][0]
+    assert gap_firm["loss_result_contract"]["metric_id"] == ALIGNMENT_GAP_LOSS_METRIC
+    assert (
+        gap_firm["risk_result_contract"]["metric_id"]
+        == ALIGNMENT_GAP_RISK_CHARGE_METRIC
+    )
+    assert gap_firm["risk_result_contract"]["basis_id"] == ALIGNMENT_GAP_LOSS_BASIS
+    assert gap_firm["risk_result_contract"]["basis_id"] != ENTERPRISE_RISK_BASIS
+    assert "not multiplied again" in gap_firm["probability_treatment"]
 
 
 def test_result_contract_is_attached_across_research_and_investor_artifacts():
@@ -606,3 +706,32 @@ def test_level_wedge_structure_and_basis_separation():
             assert (
                 b["legacy_attribution"]["wedge_usd_t_overstated"] > b["wedge_usd_t"]
             )
+
+
+# --- LSM drift 일치 (2026-07-31): 행사가치와 시뮬레이션 measure가 같은 μ를 봐야 한다 ---
+
+
+def test_exercise_value_is_drift_consistent(cal):
+    """growth_annuity(μ=0)=annuity 항등 + μ_carbon>0이면 행사가치가 무성장 대비 커진다.
+
+    (F1 회귀 방지: payoff가 현물가를 동결하면 조기 행사가 체계적으로 저평가되어
+    τ*가 늦어지고 wedge가 과대된다.)"""
+    from model.lib.finance import annuity, growth_annuity
+    from model.lib.lsm_engine import exercise_value
+    from model.s03_lsm import build_spec
+
+    wacc = float(cal.firms["wacc"].iloc[0])
+    for n in (1, 5, 20):
+        assert growth_annuity(wacc, 0.0, n) == pytest.approx(annuity(wacc, n))
+
+    asset = cal.firms[cal.firms["category"] == "priced_route"].iloc[0].to_dict()
+    spec = build_spec(cal, asset, asset["wacc"], 0)
+    assert spec.mu[0] > 0, "carbon μ가 양수라는 전제 (config sigmas.mu) — 바뀌면 이 테스트 재검토"
+    x = spec.x0[None, :]
+    t = 1
+    with_drift = exercise_value(spec, x, t)[0]
+    flat_spec = build_spec(cal, asset, asset["wacc"], 0)
+    flat_spec.mu = np.zeros_like(spec.mu)
+    without_drift = exercise_value(flat_spec, x, t)[0]
+    # carbon 절감(+μ)과 h2/elec/capex 비용 하락(−μ) 모두 행사가치를 올린다
+    assert with_drift > without_drift

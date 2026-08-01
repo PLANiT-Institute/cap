@@ -13,6 +13,12 @@ $$\text{timing gap}_i = \tau^*_i - T_i^{required}$$
 
 시간 gap만으로 끝나지 않는다 — 핵심 상태는 자산 용량·배출강도를 반영한 **누적 초과배출 gap** = Σ_t max(E_private − E_required, 0)이다 (`outputs/condition_gap.json`).
 
+물리 gap과 가격 사이의 명시적 reduced-form bridge는
+`PV loss_j = Σ_t DF_t · G_t · max(P_j − P_reference, 0)`이다
+(`outputs/alignment_gap_loss.json`). 국가 탄소 시나리오 확률로 무조건부 손실분포를
+구하므로 `p_bind`를 다시 곱하지 않는다. 이 gap-linked charge는 별도 basis이며,
+공분산을 식별하기 전에는 transition-cost charge와 합산하지 않는다.
+
 사적 최적 전환연도가 시나리오 요구연도보다 늦은 만큼이 노출이다. "오늘 합리적, 내일 노출됨(rational today, exposed tomorrow)"의 형식적 내용.
 
 `status: CLAIM`

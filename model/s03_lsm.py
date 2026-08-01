@@ -221,7 +221,8 @@ def main() -> int:
         cal.param_status,
         claims={
             "assets.tau_star_year": claim(MODEL_CONDITIONAL, lsm_deps,
-                                          "LSM drift-flat GBM; 예산 없는 measure (A2)"),
+                                          "LSM GBM (config μ drift; 행사가치도 동일 μ로 성장 — "
+                                          "measure 일치); 예산 없는 measure (A2)"),
             "interventions": claim(MODEL_CONDITIONAL, lsm_deps + ["interventions"],
                                    "coverage·tenor 1차 근사 후 τ* 재계산"),
         },

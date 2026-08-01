@@ -94,7 +94,7 @@ def firm_level_wedge(cal: CalibrationSet, firm_rows, reform: bool) -> dict:
 
     # driver dollar-vol: |per-tonne exposure| × σ_k  (verification-note method)
     elec_driver = meta["elec_driver"]
-    sigma_carbon = cal.sigma_carbon_reform[country] if reform else cal.sigma("carbon_diffusion")
+    sigma_carbon = cal.sigma_carbon_binding[country] if reform else cal.sigma("carbon_diffusion")
     sig, rho = cal.rho_matrix(elec_driver, carbon_sigma=sigma_carbon)
     exposure = np.array([
         demis_cw * carbon_price,

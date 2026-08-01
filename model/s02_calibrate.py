@@ -42,7 +42,12 @@ from model.lib.artifacts import (  # noqa: E402
     claim,
     write_artifact,
 )
-from model.lib.jump import binding_level, scenario_mean_level, sigma_carbon_combined  # noqa: E402
+from model.lib.jump import (  # noqa: E402
+    binding_level,
+    scenario_mean_level,
+    sigma_carbon_binding,
+    sigma_carbon_combined,
+)
 
 CFG = ROOT / "config"
 PROCESSED = ROOT / "data" / "processed"
@@ -68,11 +73,21 @@ class CalibrationSet:
     l_bind: dict[str, float]
     p_bind: dict[str, float]
     sigma_carbon_reform: dict[str, float]
+    sigma_carbon_binding: dict[str, float]
     carbon_var_decomp: dict[str, dict[str, float]]
     k_offcycle_mult: float
     t_required: dict[str, dict]  # asset_id → {year, status, pool}
     t_required_source: str
     measured_overrides: list[str] = field(default_factory=list)
+
+    @property
+    def required_path_provisional(self) -> bool:
+        """True when any priced asset still depends on a surrogate benchmark."""
+        return any(
+            row["status"] == PROVISIONAL
+            for row in self.t_required.values()
+            if row["year"] is not None
+        )
 
     def sigma(self, driver: str) -> float:
         return float(self.sigmas.set_index("driver").loc[driver, "value"])
@@ -142,39 +157,66 @@ def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, d
     s = legacy["gcam_nz2050"]["surrogate"]
     base_year = int(lsm["base_year"])
     years = np.arange(base_year, base_year + int(lsm["horizon_years"]) + 1, dtype=float)
+    surrogate_q = s["L_Mt"] / (
+        1.0 + np.exp(-s["k_steepness"] * (years - s["t0_inflection_yr"]))
+    )
     if raw_csv.exists():
         q = pd.read_csv(raw_csv).sort_values("year")
-        years_h2, q_h2 = q["year"].to_numpy(float), q["Q_h2dri_Mt"].to_numpy(float)
-        source = "gcam_raw"
+        years_raw, q_raw = q["year"].to_numpy(float), q["Q_h2dri_Mt"].to_numpy(float)
+        source = "mixed"  # KR H2 raw; JP and non-H2 pools remain surrogate until supplied
     else:
-        years_h2 = years
-        q_h2 = s["L_Mt"] / (1.0 + np.exp(-s["k_steepness"] * (years - s["t0_inflection_yr"])))
+        years_raw, q_raw = years, surrogate_q
         source = "surrogate"
 
     out: dict[str, dict] = {}
     priced = firms[firms["category"] == "priced_route"]
-    for (sector, route), g in priced.groupby(["sector", "route"]):
+    for (sector, country, route), g in priced.groupby(["sector", "country", "route"]):
+        pool_id = f"{sector}:{country}:{route}"
         if sector == "petrochemicals":
             for _, row in g.iterrows():
                 year = float(np.clip(row["next_investment_year"], years[0], years[-1]))
                 out[row["asset_id"]] = {
                     "year": year,
                     "status": PROVISIONAL,
-                    "pool": f"{sector}:{route}",
+                    "pool": pool_id,
+                    "benchmark_source": "asset investment-cycle surrogate",
+                    "intended_benchmark": "sector pathway not yet supplied",
+                    "pathway_kind": "INVESTMENT_CYCLE_SURROGATE",
+                    "allocation_rule": "asset next_investment_year clipped to model horizon",
+                    "headline_eligible": False,
                     "note": "petrochemical investment-cycle surrogate (PROVISIONAL; not a firm mandate or validated sector pathway)",
                 }
             continue
         pool_cap = float(g["capacity_mt_yr"].sum())
-        if route == "h2_dri":
-            yrs, curve = years_h2, q_h2
-            route_status = PROVISIONAL if source == "surrogate" else EMPIRICAL
-            pool_note = f"H2-DRI deployment curve ({source})"
+        if route == "h2_dri" and country == "KR" and raw_csv.exists():
+            yrs, curve = years_raw, q_raw
+            route_status = EMPIRICAL
+            benchmark_source = "GCAM-KAIST Q_gcam_h2dri.csv"
+            intended_benchmark = "GCAM-KAIST"
+            pathway_kind = "IAM_SOURCED"
+            headline_eligible = True
+            pool_note = "Korean H2-DRI deployment curve (GCAM raw)"
+        elif route == "h2_dri":
+            yrs, curve = years, surrogate_q
+            route_status = PROVISIONAL
+            benchmark_source = "legacy-config logistic H2-DRI surrogate"
+            intended_benchmark = "GCAM-KAIST" if country == "KR" else "TZ-OSeMOSYS-STEEL"
+            pathway_kind = "SURROGATE"
+            headline_eligible = False
+            pool_note = f"{country} H2-DRI logistic surrogate; intended IAM not supplied"
         else:
             # 동형 곡선을 자기 풀 용량으로 정규화 — route별 경로 부재의 명시적 대용
-            yrs = years_h2
-            curve = q_h2 / max(q_h2[-1], np.finfo(float).tiny) * pool_cap
+            yrs = years
+            curve = surrogate_q / max(surrogate_q[-1], np.finfo(float).tiny) * pool_cap
             route_status = PROVISIONAL
-            pool_note = f"route pathway unavailable — h2 curve rescaled to {route} pool (PROVISIONAL)"
+            benchmark_source = "legacy-config H2 curve rescaled to route-country pool"
+            intended_benchmark = "route-specific sector pathway not yet supplied"
+            pathway_kind = "SURROGATE_RESCALED"
+            headline_eligible = False
+            pool_note = (
+                f"route pathway unavailable — H2 curve rescaled to {country}:{route} pool "
+                "(PROVISIONAL; endpoint/ranking partly constructed)"
+            )
         ordered = g.sort_values("next_investment_year")
         cum = ordered["capacity_mt_yr"].cumsum()
         for (_, row), need in zip(ordered.iterrows(), cum):
@@ -182,7 +224,12 @@ def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, d
             out[row["asset_id"]] = {
                 "year": float(reached[0]) if len(reached) else float(yrs[-1]),
                 "status": route_status,
-                "pool": f"{sector}:{route}",
+                "pool": pool_id,
+                "benchmark_source": benchmark_source,
+                "intended_benchmark": intended_benchmark,
+                "pathway_kind": pathway_kind,
+                "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+                "headline_eligible": headline_eligible,
                 "note": pool_note + " · investment-cycle allocation (approximation, not LCOA merit order)",
             }
     for _, row in firms[firms["category"] == "no_feasible_route"].iterrows():
@@ -190,6 +237,11 @@ def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, d
             "year": None,
             "status": "UNAVAILABLE",
             "pool": "stranding",
+            "benchmark_source": "none",
+            "intended_benchmark": "stranding/closure branch",
+            "pathway_kind": "UNAVAILABLE",
+            "allocation_rule": "excluded from priced-route deployment pools",
+            "headline_eligible": False,
             "note": "no_feasible_route — priced-route 풀을 소비하지 않음; stranding/closure branch",
         }
     return out, source
@@ -203,6 +255,17 @@ def load_calibration() -> CalibrationSet:
     lsm_df = lsm_schema.validate(pd.read_excel(xlsx, sheet_name="lsm"))
     scenarios = scenarios_schema.validate(pd.read_csv(CFG / "scenarios.csv"))  # csv 우선
     firms = firms_schema.validate(pd.read_csv(CFG / "firms.csv"))
+    invariant_cols = ["sector", "country", "route", "wacc", "ev_usd_bn", "elec_driver"]
+    inconsistent = {
+        firm_id: [c for c in invariant_cols if group[c].nunique(dropna=False) > 1]
+        for firm_id, group in firms[firms["category"] == "priced_route"].groupby("firm_id")
+    }
+    inconsistent = {firm_id: cols for firm_id, cols in inconsistent.items() if cols}
+    if inconsistent:
+        raise ValueError(
+            "priced-route firm rows must agree on fields consumed at firm level: "
+            f"{inconsistent}"
+        )
     routes = routes_schema.validate(pd.read_csv(CFG / "routes.csv"))
     interventions = interventions_schema.validate(pd.read_csv(CFG / "interventions.csv"))
     transaction_assumptions = transaction_assumptions_schema.validate(
@@ -258,6 +321,7 @@ def load_calibration() -> CalibrationSet:
     l_bind: dict[str, float] = {}
     p_bind: dict[str, float] = {}
     sigma_reform: dict[str, float] = {}
+    sigma_binding: dict[str, float] = {}
     var_decomp: dict[str, dict[str, float]] = {}
     sigma_diff = float(sigmas.set_index("driver").loc["carbon_diffusion", "value"])
     for c in COUNTRIES:
@@ -269,12 +333,22 @@ def load_calibration() -> CalibrationSet:
         l_bind[c] = binding_level(levels, probs, binds)
         p_bind[c] = float(probs[binds.astype(bool)].sum())  # Option A 파생
         sigma_reform[c] = sigma_carbon_combined(sigma_diff, levels, probs)
+        sigma_binding[c] = sigma_carbon_binding(sigma_diff, levels, probs, binds)
         lb = l_bar[c]
         jump_var = float(np.dot(probs, (levels - lb) ** 2)) / lb**2
+        mask = binds.astype(bool)
+        cond_probs = probs[mask] / probs[mask].sum()
+        bind_jump_var = float(
+            np.dot(cond_probs, (levels[mask] - l_bind[c]) ** 2) / l_bind[c] ** 2
+        )
         var_decomp[c] = {
             "diffusion_var": sigma_diff**2,
-            "jump_var": jump_var,
-            "jump_share": jump_var / (sigma_diff**2 + jump_var),
+            "unconditional_jump_var": jump_var,
+            "unconditional_jump_share": jump_var / (sigma_diff**2 + jump_var),
+            "binding_conditional_jump_var": bind_jump_var,
+            "binding_conditional_jump_share": (
+                bind_jump_var / (sigma_diff**2 + bind_jump_var)
+            ),
         }
 
     status: dict[str, str] = {}
@@ -314,6 +388,7 @@ def load_calibration() -> CalibrationSet:
         l_bind=l_bind,
         p_bind=p_bind,
         sigma_carbon_reform=sigma_reform,
+        sigma_carbon_binding=sigma_binding,
         carbon_var_decomp=var_decomp,
         k_offcycle_mult=k_off,
         t_required=t_required,
@@ -378,10 +453,12 @@ def main() -> int:
                 "p_bind": cal.p_bind,
                 "p_bind_definition": "Option A — p_bind(country) = Σ prob(binds=1); 별도 파라미터 없음",
                 "sigma_carbon_reform": cal.sigma_carbon_reform,
+                "sigma_carbon_binding": cal.sigma_carbon_binding,
                 "carbon_variance_decomposition": cal.carbon_var_decomp,
                 "jump_correlation_note": "점프에 확산과 동일 ρ·연σ 적용 — 근사 (Merton 비판 R2)",
                 "k_offcycle_mult": cal.k_offcycle_mult,
                 "t_required_source": cal.t_required_source,
+                "t_required_provisional": cal.required_path_provisional,
                 "t_required": cal.t_required,
             },
             "measured_overrides": cal.measured_overrides,
@@ -392,13 +469,19 @@ def main() -> int:
             "derived.p_bind": claim(SCENARIO_CONDITIONAL, ["scenarios"], "Option A 파생"),
             "derived.sigma_carbon_reform": claim(SCENARIO_CONDITIONAL,
                                                  ["scenarios", "sigma_carbon_diffusion"]),
+            "derived.sigma_carbon_binding": claim(
+                SCENARIO_CONDITIONAL,
+                ["scenarios", "sigma_carbon_diffusion"],
+                "E[level|bind]와 짝을 이루는 조건부 σ; charge에 p_bind를 한 번만 곱함",
+            ),
             "derived.t_required": claim(PROVISIONAL, ["t_required"],
                                         "surrogate — 실증 식별된 기업 의무로 해석 금지"),
         },
         note="s02 캘리브레이션 해상본 — 이후 단계의 유일한 파라미터 소스",
     )
     print(
-        f"OK — σ_reform KR {cal.sigma_carbon_reform['KR']:.2f} / JP {cal.sigma_carbon_reform['JP']:.2f}, "
+        f"OK — σ_unconditional KR {cal.sigma_carbon_reform['KR']:.2f} / JP {cal.sigma_carbon_reform['JP']:.2f}; "
+        f"σ_binding KR {cal.sigma_carbon_binding['KR']:.2f} / JP {cal.sigma_carbon_binding['JP']:.2f}, "
         f"p_bind KR {cal.p_bind['KR']:.2f} / JP {cal.p_bind['JP']:.2f}, T_required={cal.t_required_source}"
     )
     return 0

@@ -15,7 +15,12 @@ from dataclasses import dataclass, replace
 import numpy as np
 import pandas as pd
 
-from .jump import binding_level, scenario_mean_level, sigma_carbon_combined
+from .jump import (
+    binding_level,
+    scenario_mean_level,
+    sigma_carbon_binding,
+    sigma_carbon_combined,
+)
 
 
 @dataclass
@@ -23,7 +28,9 @@ class CarbonRegime:
     l_bar: float
     l_bind: float
     p_bind: float
-    sigma_reform: float
+    sigma_unconditional: float
+    sigma_binding: float
+    scenarios: pd.DataFrame
 
 
 @dataclass
@@ -55,7 +62,9 @@ def carbon_regime(scen: pd.DataFrame, sigma_diff: float) -> CarbonRegime:
         l_bar=scenario_mean_level(levels, probs),
         l_bind=binding_level(levels, probs, binds),
         p_bind=float(probs[binds.astype(bool)].sum()),
-        sigma_reform=sigma_carbon_combined(sigma_diff, levels, probs),
+        sigma_unconditional=sigma_carbon_combined(sigma_diff, levels, probs),
+        sigma_binding=sigma_carbon_binding(sigma_diff, levels, probs, binds),
+        scenarios=scen.copy(),
     )
 
 
@@ -87,7 +96,9 @@ def base_params(cal, route_row: pd.Series, country: str, elec_driver: str) -> Pa
             l_bar=cal.l_bar[country],
             l_bind=cal.l_bind[country],
             p_bind=cal.p_bind[country],
-            sigma_reform=cal.sigma_carbon_reform[country],
+            sigma_unconditional=cal.sigma_carbon_reform[country],
+            sigma_binding=cal.sigma_carbon_binding[country],
+            scenarios=cal.carbon_scenarios(country).copy(),
         ),
     )
 

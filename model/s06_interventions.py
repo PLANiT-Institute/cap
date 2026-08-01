@@ -21,11 +21,21 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from model.lib.anatomy import DRIVERS  # noqa: E402
-from model.lib.artifacts import MODEL_CONDITIONAL, SCENARIO_CONDITIONAL, claim, write_artifact  # noqa: E402
+from model.lib.artifacts import (  # noqa: E402
+    MODEL_CONDITIONAL,
+    PROVISIONAL,
+    SCENARIO_CONDITIONAL,
+    claim,
+    write_artifact,
+)
+from model.lib.gap_pricing import price_alignment_gap  # noqa: E402
 from model.lib.interventions import apply_interventions  # noqa: E402
 from model.lib.pathways import condition_gap, firm_pathway  # noqa: E402
 from model.lib.result_contract import (  # noqa: E402
     ALIGNMENT_GAP_BASIS,
+    ALIGNMENT_GAP_LOSS_BASIS,
+    ALIGNMENT_GAP_LOSS_METRIC,
+    ALIGNMENT_GAP_RISK_CHARGE_METRIC,
     ALIGNMENT_GAP_METRIC,
     ENTERPRISE_RISK_BASIS,
     RISK_CHARGE_METRIC,
@@ -64,6 +74,19 @@ def firm_state(
     p_track = firm_pathway(g_all, {a: pmap.get(a) for a in priced_ids}, years, residual)
     r_track = firm_pathway(g_all, {a: rmap.get(a) for a in priced_ids}, years, residual)
     gap = condition_gap(p_track["emissions_mtco2"], r_track["emissions_mtco2"], years)
+    country = str(g["country"].iloc[0])
+    gap_loss = price_alignment_gap(
+        gap["annual_alignment_gap_mtco2"],
+        years,
+        base_year=base_year,
+        rate=float(meta["wacc"]),
+        horizon_years=float(cal.lsm["horizon_years"]),
+        reference_price_usd_tco2=float(cal.pricing[f"carbon_base_{country.lower()}"]),
+        scenarios=ps.carbon.scenarios,
+        risk_price_lambda=float(cal.pricing["lambda"]),
+        risk_scale_k=float(cal.pricing["k"]),
+        enterprise_value_usd_bn=float(meta["ev_usd_bn"]),
+    )
     tau_capw = float(np.average(g["tau_star_year"], weights=g["capacity_mt_yr"]))
     tg = [
         (t - rmap[a]) for a, t in zip(g["asset_id"], g["tau_star_year"]) if rmap.get(a) is not None
@@ -79,13 +102,30 @@ def firm_state(
         "alignment_result_contract": result_descriptor(
             ALIGNMENT_GAP_METRIC,
             ALIGNMENT_GAP_BASIS,
-            "PROVISIONAL" if cal.t_required_source == "surrogate" else "MODEL_CONDITIONAL",
+            "PROVISIONAL" if cal.required_path_provisional else "MODEL_CONDITIONAL",
             uncertainty="required pathway source and private transition model",
-            interpretation="surrogate-conditioned central case" if cal.t_required_source == "surrogate" else "raw-pathway comparison",
+            interpretation="surrogate-conditioned central case" if cal.required_path_provisional else "raw-pathway comparison",
+        ),
+        "alignment_gap_loss_result_contract": result_descriptor(
+            ALIGNMENT_GAP_LOSS_METRIC,
+            ALIGNMENT_GAP_LOSS_BASIS,
+            "PROVISIONAL",
+            uncertainty="surrogate required path and assumed carbon scenario distribution",
+            interpretation="scenario-valued PV loss implied by the annual physical gap",
+        ),
+        "alignment_gap_risk_result_contract": result_descriptor(
+            ALIGNMENT_GAP_RISK_CHARGE_METRIC,
+            ALIGNMENT_GAP_LOSS_BASIS,
+            "PROVISIONAL",
+            uncertainty="gap-loss distribution plus assumed lambda and k",
+            interpretation="separate gap-linked charge; not additive to transition-cost charge",
         ),
         "tau_star_cap_weighted": tau_capw,
         "timing_gap_mean_years": float(np.mean(tg)) if tg else None,
         "cumulative_gap_mtco2": gap["cumulative_alignment_gap_mtco2"],
+        "expected_pv_gap_loss_usd_m": gap_loss["expected_pv_gap_loss_usd_m"],
+        "sigma_pv_gap_loss_usd_m": gap_loss["sigma_pv_gap_loss_usd_m"],
+        "gap_risk_charge_bps": gap_loss["gap_risk_charge_bps"],
         "shares": an["shares"],
         "sigma_b_usd_bn": an["sigma_b_usd_bn"],
         "risk_charge_bps": an["premium_bps"],
@@ -112,12 +152,21 @@ def main() -> int:
             ivs[iid] = {
                 "label": cal.interventions.set_index("intervention_id").loc[iid, "label"],
                 "before": {k: before[k] for k in ("tau_star_cap_weighted", "timing_gap_mean_years",
-                                                  "cumulative_gap_mtco2", "risk_charge_bps", "sigma_b_usd_bn")},
+                                                  "cumulative_gap_mtco2", "expected_pv_gap_loss_usd_m",
+                                                  "gap_risk_charge_bps", "risk_charge_bps", "sigma_b_usd_bn")},
                 "after": {k: after[k] for k in ("tau_star_cap_weighted", "timing_gap_mean_years",
-                                                "cumulative_gap_mtco2", "risk_charge_bps", "sigma_b_usd_bn")},
+                                                "cumulative_gap_mtco2", "expected_pv_gap_loss_usd_m",
+                                                "gap_risk_charge_bps", "risk_charge_bps", "sigma_b_usd_bn")},
                 "delta": {
                     "tau_star_years": after["tau_star_cap_weighted"] - before["tau_star_cap_weighted"],
                     "cumulative_gap_mtco2": after["cumulative_gap_mtco2"] - before["cumulative_gap_mtco2"],
+                    "expected_pv_gap_loss_usd_m": (
+                        after["expected_pv_gap_loss_usd_m"]
+                        - before["expected_pv_gap_loss_usd_m"]
+                    ),
+                    "gap_risk_charge_bps": (
+                        after["gap_risk_charge_bps"] - before["gap_risk_charge_bps"]
+                    ),
                     "risk_charge_bps": after["risk_charge_bps"] - before["risk_charge_bps"],
                     "risk_charge_bps_high_basis": high["risk_charge_bps"] - before["risk_charge_bps"],
                 },
@@ -126,6 +175,10 @@ def main() -> int:
                     "sigma_b_usd_bn": after["sigma_b_usd_bn"],
                     "risk_charge_bps": after["risk_charge_bps"],
                     "risk_charge_bps_high_basis": high["risk_charge_bps"],
+                    "gap_risk_charge_bps": after["gap_risk_charge_bps"],
+                    "gap_charge_aggregation_warning": (
+                        "separate basis; do not add to transition-cost risk_charge_bps"
+                    ),
                     "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. "
                             "high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계",
                 },
@@ -197,6 +250,12 @@ def main() -> int:
             "firms.interventions.residual.risk_charge_bps": claim(
                 SCENARIO_CONDITIONAL, ANATOMY_DEPS + ["interventions", "lambda", "k", "ev_usd_bn"],
                 "잔여 conditional risk charge — fully-hedged 0 주장 금지",
+            ),
+            "firms.interventions.delta.gap_risk_charge_bps": claim(
+                PROVISIONAL,
+                ["t_required", "scenarios", "carbon_base_kr", "carbon_base_jp",
+                 "lambda", "k", "ev_usd_bn", "interventions"],
+                "연도별 condition gap을 시나리오 손실분포로 직접 사상; p_bind 재곱 없음",
             ),
         },
         note="개입 = 파라미터 변환: τ* before/after, gap before/after, residual anatomy, charge",

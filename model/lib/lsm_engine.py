@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from .finance import annuity
+from .finance import annuity, growth_annuity
 
 
 @dataclass
@@ -53,19 +53,26 @@ def simulate_paths(spec: LsmSpec, sigma_scale: float = 1.0) -> np.ndarray:
 
 
 def exercise_value(spec: LsmSpec, x: np.ndarray, t: int) -> np.ndarray:
-    """t에 전환 시 즉시가치 (USD/t output). x: (n_paths, 5)."""
+    """t에 전환 시 즉시가치 (USD/t output). x: (n_paths, 5).
+
+    가격 드라이버 항은 드라이버별 growth_annuity(μ_k) — 시뮬레이션 measure의
+    기대성장 E[P_{t+s}]=P_t·e^{μs}와 일치. 상수 opex 항은 무성장 annuity.
+    """
     p_c, p_h2, p_elec, p_feedstock, k = x[:, 0], x[:, 1], x[:, 2], x[:, 3], x[:, 4]
-    remaining = annuity(spec.rate, spec.horizon - t)
-    annual = (
-        spec.delta_intensity * p_c
-        + spec.avoided_opex
-        - spec.route_opex_other
-        - spec.q_h2 * p_h2      # kg/t × USD/kg = USD/t
-        - spec.q_elec * p_elec  # MWh/t × USD/MWh = USD/t
-        - spec.q_feedstock * p_feedstock
+    n_rem = spec.horizon - t
+    flat = annuity(spec.rate, n_rem)
+    ga_c, ga_h2, ga_elec, ga_feed = (
+        growth_annuity(spec.rate, float(spec.mu[i]), n_rem) for i in range(4)
+    )
+    pv = (
+        spec.delta_intensity * p_c * ga_c
+        + (spec.avoided_opex - spec.route_opex_other) * flat
+        - spec.q_h2 * p_h2 * ga_h2          # kg/t × USD/kg = USD/t
+        - spec.q_elec * p_elec * ga_elec    # MWh/t × USD/MWh = USD/t
+        - spec.q_feedstock * p_feedstock * ga_feed
     )
     k_mult = spec.k_reline_mult if t >= spec.reline_t else spec.k_offcycle_mult
-    return annual * remaining - k * k_mult
+    return pv - k * k_mult
 
 
 def lsm_tau_star(

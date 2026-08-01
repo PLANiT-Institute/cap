@@ -23,12 +23,14 @@ required path, 누적 alignment gap, 조건부 위험부담 사이의 구조를 
 1. asset/route/config와 캘리브레이션을 읽는다.
 2. LSM으로 사적 전환시점 `tau*`를 구한다.
 3. provisional `T_required`와 비교해 경로 및 alignment gap을 구한다.
-4. route별 현금흐름 driver 노출과 covariance로 transition cost uncertainty를 분해한다.
-5. `lambda × p(bind)`로 conditional risk charge를 정규화한다.
-6. 계약·정책 개입을 파라미터 변환으로 적용하고 경로와 잔여위험을 다시 계산한다.
-7. 별도의 levelized transaction screen에서 NPV, IRR, DSCR, break-even, counterparty EL을 계산한다.
+4. 연도별 gap을 국가 시나리오의 추가 탄소가격에 사상해 별도 gap-loss 분포와 charge를 구한다.
+5. route별 현금흐름 driver 노출과 covariance로 transition cost uncertainty를 독립적으로 분해한다.
+6. 조건부 탄소 수준·조건부 sigma와 `lambda × p(bind)`로 transition-cost charge를 정규화한다.
+7. 계약·정책 개입을 파라미터 변환으로 적용하고 경로와 두 risk basis를 다시 계산한다.
+8. 별도의 levelized transaction screen에서 NPV, IRR, DSCR, break-even, counterparty EL을 계산한다.
 
 기업 transition-window 결과와 base-year 프로젝트 결과는 동일 계산이 아니며 `basis_id`로 분리된다.
+gap-loss charge 역시 별도 basis이며 joint covariance가 없으므로 transition-cost charge와 합산하지 않는다.
 
 ## 4. 주요 입력과 현재 증거 상태
 
@@ -49,6 +51,7 @@ empirical claim을 구분한다.
 | conditional risk charge | bps | `SCENARIO_CONDITIONAL` | 관측 spread가 아님 |
 | risk anatomy share | % | `MODEL_CONDITIONAL` | 노출·covariance·전환 규칙에 조건부 |
 | cumulative alignment gap | MtCO₂ | `PROVISIONAL` | required path가 surrogate |
+| scenario-valued gap loss / charge | USDm / bps | `PROVISIONAL` | 별도 reduced-form basis; transition-cost charge와 합산 금지 |
 | project NPV/IRR/DSCR | USDm/%/x | `SCENARIO_CONDITIONAL` | illustrative levelized screen |
 | required green premium | USD/t | `SCENARIO_CONDITIONAL` | 계약 가능 가격 예측이 아닌 break-even |
 
@@ -72,6 +75,6 @@ holdout backtest, executable quote, 독립적인 외부 모델 검토, 사용자
 
 ## 8. 변경 통제
 
-모든 결과에는 config/code/raw/processed hash와 git dirty 상태를 남긴다. basis 변경은 단순 UI
+모든 결과에는 config/code/raw/processed hash와 실행 전·후 git dirty 상태를 남긴다. basis 변경은 단순 UI
 변경이 아니라 result-contract major 변경으로 취급한다. 모델 결론을 바꾸는 config·formula·scope
 변경은 최소 한 개의 회귀 또는 검증 테스트와 변경 이유를 동반해야 한다.
