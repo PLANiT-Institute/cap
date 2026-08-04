@@ -812,3 +812,68 @@ CC BY 4.0) 다운로드 후 실제 입력 파일 검사.
 **현 시점 `premium_bps`는 방어 불가**: 출처 없는 분모(B1) × 통제되지 않은 함대 커버리지(B6).
 $/t와 Δ·순위는 살아남는다 (외부 리뷰 Step 8과 동일 결론이 데이터 쪽에서 재확인됨).
 B2·B4·B5·B12는 **원고 진입 차단** 항목. B12는 이 문서 자체의 오류이므로 즉시 정정 대상.
+
+### D. 엔진 감사 — BLOCKER 3건 수정 후 수치 재이동 (갱신 14 이어서)
+
+갱신 13의 S3 수치는 **정정된다** (내가 S3에서 넣은 정규화 버그 때문).
+
+| 기업 | 갱신 13 (버그) | **정정 후** | 비고 |
+|---|---|---|---|
+| POSCO 누적 gap | 448.1 Mt | **274.1 Mt** | first_misalign 2026 → **2027** |
+| NIPPON | 272.7 Mt | **148.9 Mt** | timing gap None → **10.1y** (T_required 유한화) |
+| JFE | 281.4 Mt | **277.6 Mt** | |
+| KOBE | 64.1 Mt | **63.3 Mt** | |
+| KR_NCC / JP_NCC | 18.7 / 11.8 | 18.7 / 11.8 | 계단 폴백 — 불변 |
+
+**B3 (BLOCKER)**: S3에서 풀 q(t) = 전국 곡선 ÷ **풀 용량**으로 만들었다. 결과 ①
+q(2026)=0.05~0.09 — 요구 경로가 2026년에 이미 함대의 5~9%가 전환됐다고 주장 →
+전 기업 first_misalignment_year가 기준연도로 붕괴. ② 작은 풀이 더 빠른 요구 경로
+(JP h2 풀은 2036년 100%, KR는 2039) — 순수 나눗셈 아티팩트. ③ h2 분기는 ÷pool_cap,
+비h2 분기는 ÷L_Mt — **비교 불가능한 두 객체**. 수정: 포화값 대비 **비율 곡선** +
+기준연도 재기준(q(base)=0) + 전 풀 동일 일정(pro_rata 규약). 회귀 테스트 2종 신설.
+
+**B8 (BLOCKER)**: 갱신 13의 S2 표에 실린 금융 채널 점추정은 **잡음이었다**.
+τ*는 이산 행사규칙의 MC 평균이라 수 bp 이동의 미분이 아니다 — ±5bp 프로브로 측정한
+봉투가 ±0.017y이고 보고값 전부가 그 안이었다. 더 심각하게 POSCO h2_cfd의 +2.22y는
+**p_ex 문턱 플립**(0.1bp 이동에 τ*→None)이었다. 게이트 3종 도입(문턱 플립 감지·해상도
+바닥·λ 밴드 부호 일관성) 후 48개 중 **2개만 생존**: carbon_reform POSCO +0.030y /
+NIPPON +0.021y. 둘 다 charge를 올리는 개입이므로 **지연**이 정상 부호.
+→ **갱신 13 판독 정정**: "금융 채널은 2차적"이 아니라 **"이 배선·이 λ에서 0과 구별되지
+않는다"**. H₂ CfD 지연(+1.11y)이 잔존한다는 결론은 오히려 강해진다 (해상도의 65배).
+
+**B11 (BLOCKER)**: 계약 coverage가 **지평** 기준으로 가중되는데 s04는 [t_sw, H]를
+가격했다. S4 이후 t_sw≈2050이므로 h2_cfd(tenor 2030–2045)·ppa(2028–2043)가
+**만료 후 구매를 헤지한 것으로 계산**됐다. 노출창 기준 가중으로 교체 →
+POSCO h2_cfd의 anatomy 효과가 0이 되고, 남은 Δcharge +0.19bps는 순수 **타이밍** 효과다.
+**이것은 발견이다**: 현재 제시된 계약 조건은 문제가 되는 연도(2050년대)에 도달하지 못한다.
+LSM 레인은 전 지평을 보므로 지평 기준을 유지 — 두 레인의 창이 다른 이유를 명시.
+
+**B10 (SERIOUS)**: Shapley·sequential이 null-player 공리를 위반했다. 공집합만 base τ*,
+나머지는 package τ*로 평가돼 base→package 타이밍 점프 전체가 S=∅ 항에 실렸고 그 항의
+가중이 모든 참가자에게 1/n이라 **적용조차 안 되는 계약에 1/n씩 배분**됐다 (POSCO
+feedstock_hedge 0.0303bps 등). 특성함수를 package τ*로 고정 → 비적용 계약 정확히 0.
+W4 폭포 figure의 입력이므로 출판 전 필수 수정이었다.
+
+**A1·A2 (SERIOUS, 규칙 1)**: carbon_reform의 "절반 이전"이 `reform_shift`에 0.5로
+하드코드돼 있었다 (config value=1.0은 곱수일 뿐) → config value=0.5가 유일 출처로.
+요구 경로 surrogate(L·t0·k)는 읽기전용 raw yaml에서 직접 읽혀 status·anchor·PAPER_DIFF
+추적 밖이었다 → **`config/pathways.csv` 신설**(status=assumed, theory_anchor, pandera 검증).
+anchor 검증의 config 참조가 10 → 11개로 늘었다.
+
+**C1·C2 (SERIOUS, 서술)**: 산출물과 모순되던 서술 정정 — README(조성 vs 집중),
+theory/05(H₂ CfD "거의 앞당기지 못한다" → **늦춘다** + tenor 미달), theory/06(두 클러스터
+서사를 "전환한 세계"로 이동), theory/10(H₂ CfD 최대 risk cut 주장 철회, δ=r은 **앵커
+이후만** 해소임을 명시, 하드코딩 1.9배 → 렌더값), GLOSSARY(수소 63.8% → 탄소 92.0%).
+`cluster_separation`에 `separation_is_material` 병기 — S4 이후 두 클러스터 모두 탄소
+지배라 "분리됐다"만으로는 공허하다.
+
+### 미해결로 남긴 것 (저자 판단 필요)
+
+- **X12**: EV 5개 미출처 + 함대 커버리지 33%(기업별 21~48%) → `premium_bps` 기업간 비교 불가.
+- **B2·B4·B5**: NIPPON 강도 1.90 vs raw 2.14, JFE Keihin 실재 의심, Kurashiki 2034 vs 2028.
+- **C3**: JFE·KOBE가 전 개입에 무반응(τ*=None) — 정정 후에도 누적 gap의 **31%**(340.9/958.6 Mt)를
+  차지하는데 개입 엔진이 할 말이 없다. concessional이 NCC archetype의 τ*를 **늦추는**
+  퍼버스 부호(JP μ_carbon > WACC의 앵커 전 잔재). `decision_class`가 1e-4 bps 차이에
+  라벨을 붙인다(`lib/underwriting.py` tol=sqrt(eps) — 재료성 문턱 아님).
+- **A2 잔여**: `q_feedstock` 활성화는 X11로 종결됐으나 `total_bf_capacity_Mt: 78`은 여전히
+  미사용 — 정규화 기준을 국가 용량으로 바꿀지는 X10 데이터 도착 후 결정.
