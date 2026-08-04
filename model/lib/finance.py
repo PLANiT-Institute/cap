@@ -29,6 +29,25 @@ def growth_annuity(rate: float, mu: float, n_years: float) -> float:
     return float(q * (1.0 - q**n_years) / (1.0 - q))
 
 
+def anchored_growth_annuity(
+    rate: float, mu: float, n_years: float, growth_years: float
+) -> float:
+    """성장이 growth_years년 후 멈추는(수준 유지) 연금의 PV 계수 — X9 시나리오-앵커 경로.
+
+    E[P_{t+s}] = P_t·e^{μ·min(s, g)} : 앵커까지는 e^{μs}로 자라고, 도달 후 수준 유지.
+    g=0 → annuity()와 동일, g≥n → growth_annuity()와 동일, μ=0 → annuity()와 동일.
+    CAP은 수익률을 전망하지 않는다 — μ는 시나리오 수준 도달 궤도의 파생값 (DECISIONS X9).
+    """
+    if n_years <= 0:
+        return 0.0
+    g = min(max(growth_years, 0.0), n_years)
+    head = growth_annuity(rate, mu, g)
+    if n_years <= g:
+        return head
+    level = float(np.exp(mu * g))
+    return head + level * (annuity(rate, n_years) - annuity(rate, g))
+
+
 def pv_window(rate: float, t_start: float, t_end: float) -> float:
     """t_start~t_end 사이 연 1달러 흐름의 PV (t=0 기준)."""
     if t_end <= t_start:

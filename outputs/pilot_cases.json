@@ -94,7 +94,7 @@
         "comparison_rule": "Do not compare enterprise and project bps directly; metric_id and basis_id must both match."
       },
       "research_summary": {
-        "cumulative_alignment_gap_mtco2": 251.61,
+        "cumulative_alignment_gap_mtco2": 404.38,
         "alignment_result_contract": {
           "metric_id": "cumulative_alignment_gap_mtco2",
           "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
@@ -105,7 +105,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "774e8bb31a67dff90bc5b326b12fa26251a1e9c811636540638aed609a0ee90f",
+        "input_fingerprint_sha256": "105a519d70f1de5b8ced31f33ec59333cbf30efb039720fa3b5383c582746563",
         "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {
@@ -341,7 +341,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "774e8bb31a67dff90bc5b326b12fa26251a1e9c811636540638aed609a0ee90f",
+        "input_fingerprint_sha256": "105a519d70f1de5b8ced31f33ec59333cbf30efb039720fa3b5383c582746563",
         "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {

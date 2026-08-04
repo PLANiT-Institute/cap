@@ -641,8 +641,8 @@
           "uncertainty": "gap-loss distribution plus assumed lambda and k",
           "interpretation": "separate gap-linked charge; not additive to transition-cost charge"
         },
-        "tau_star_cap_weighted": 2039.8515,
-        "timing_gap_mean_years": 9.8515,
+        "tau_star_cap_weighted": 2039.8755,
+        "timing_gap_mean_years": 9.8755,
         "cumulative_gap_mtco2": 11.83,
         "expected_pv_gap_loss_usd_m": 170.9715458747,
         "sigma_pv_gap_loss_usd_m": 205.5642847883,
@@ -662,8 +662,8 @@
         "h2_cfd": {
           "label": "H2 CfD (CHPS-style)",
           "before": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -671,8 +671,8 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "after": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -708,8 +708,8 @@
         "ppa": {
           "label": "Long-term PPA",
           "before": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -717,8 +717,8 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "after": {
-            "tau_star_cap_weighted": 2039.74125,
-            "timing_gap_mean_years": 9.74125,
+            "tau_star_cap_weighted": 2039.78075,
+            "timing_gap_mean_years": 9.78075,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -726,7 +726,7 @@
             "sigma_b_usd_bn": 3.6469125427
           },
           "delta": {
-            "tau_star_years": -0.11025,
+            "tau_star_years": -0.09475,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -754,8 +754,8 @@
         "capex_subsidy": {
           "label": "CAPEX subsidy",
           "before": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -763,8 +763,8 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "after": {
-            "tau_star_cap_weighted": 2039.58875,
-            "timing_gap_mean_years": 9.58875,
+            "tau_star_cap_weighted": 2039.6395,
+            "timing_gap_mean_years": 9.6395,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -772,7 +772,7 @@
             "sigma_b_usd_bn": 3.6581114346
           },
           "delta": {
-            "tau_star_years": -0.26275,
+            "tau_star_years": -0.236,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -800,8 +800,8 @@
         "carbon_reform": {
           "label": "Carbon reform commitment",
           "before": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -809,8 +809,8 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "after": {
-            "tau_star_cap_weighted": 2039.43775,
-            "timing_gap_mean_years": 9.43775,
+            "tau_star_cap_weighted": 2039.66475,
+            "timing_gap_mean_years": 9.66475,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 248.9420860264,
             "gap_risk_charge_bps": 2.0762207026,
@@ -818,7 +818,7 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "delta": {
-            "tau_star_years": -0.41375,
+            "tau_star_years": -0.21075,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 77.9705401517,
             "gap_risk_charge_bps": 0.0675548117,
@@ -846,8 +846,8 @@
         "concessional": {
           "label": "Concessional finance",
           "before": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -855,8 +855,8 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "after": {
-            "tau_star_cap_weighted": 2040.2635,
-            "timing_gap_mean_years": 10.2635,
+            "tau_star_cap_weighted": 2040.2965,
+            "timing_gap_mean_years": 10.2965,
             "cumulative_gap_mtco2": 13.013,
             "expected_pv_gap_loss_usd_m": 211.1164597973,
             "gap_risk_charge_bps": 2.0305867566,
@@ -864,7 +864,7 @@
             "sigma_b_usd_bn": 4.6423460436
           },
           "delta": {
-            "tau_star_years": 0.412,
+            "tau_star_years": 0.421,
             "cumulative_gap_mtco2": 1.183,
             "expected_pv_gap_loss_usd_m": 40.1449139226,
             "gap_risk_charge_bps": 0.0219208658,
@@ -892,8 +892,8 @@
         "feedstock_hedge": {
           "label": "Naphtha/feedstock collar",
           "before": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -901,8 +901,8 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "after": {
-            "tau_star_cap_weighted": 2041.013,
-            "timing_gap_mean_years": 11.013,
+            "tau_star_cap_weighted": 2041.04825,
+            "timing_gap_mean_years": 11.04825,
             "cumulative_gap_mtco2": 14.196,
             "expected_pv_gap_loss_usd_m": 196.2465492092,
             "gap_risk_charge_bps": 2.3056102556,
@@ -910,7 +910,7 @@
             "sigma_b_usd_bn": 2.8652341613
           },
           "delta": {
-            "tau_star_years": 1.1615,
+            "tau_star_years": 1.17275,
             "cumulative_gap_mtco2": 2.366,
             "expected_pv_gap_loss_usd_m": 25.2750033344,
             "gap_risk_charge_bps": 0.2969443648,
@@ -938,8 +938,8 @@
         "circular_feedstock": {
           "label": "Circular-feedstock offtake",
           "before": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -947,8 +947,8 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "after": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -984,8 +984,8 @@
         "package": {
           "label": "Integrated package",
           "before": {
-            "tau_star_cap_weighted": 2039.8515,
-            "timing_gap_mean_years": 9.8515,
+            "tau_star_cap_weighted": 2039.8755,
+            "timing_gap_mean_years": 9.8755,
             "cumulative_gap_mtco2": 11.83,
             "expected_pv_gap_loss_usd_m": 170.9715458747,
             "gap_risk_charge_bps": 2.0086658908,
@@ -993,8 +993,8 @@
             "sigma_b_usd_bn": 3.6586540989
           },
           "after": {
-            "tau_star_cap_weighted": 2040.07275,
-            "timing_gap_mean_years": 10.07275,
+            "tau_star_cap_weighted": 2040.38075,
+            "timing_gap_mean_years": 10.38075,
             "cumulative_gap_mtco2": 13.013,
             "expected_pv_gap_loss_usd_m": 267.7916429221,
             "gap_risk_charge_bps": 2.2334293164,
@@ -1002,7 +1002,7 @@
             "sigma_b_usd_bn": 2.8513504043
           },
           "delta": {
-            "tau_star_years": 0.22125,
+            "tau_star_years": 0.50525,
             "cumulative_gap_mtco2": 1.183,
             "expected_pv_gap_loss_usd_m": 96.8200970474,
             "gap_risk_charge_bps": 0.2247634255,
@@ -1635,12 +1635,12 @@
           "uncertainty": "gap-loss distribution plus assumed lambda and k",
           "interpretation": "separate gap-linked charge; not additive to transition-cost charge"
         },
-        "tau_star_cap_weighted": 2037.577,
-        "timing_gap_mean_years": 5.577,
-        "cumulative_gap_mtco2": 14.04,
-        "expected_pv_gap_loss_usd_m": 156.3619847827,
-        "sigma_pv_gap_loss_usd_m": 193.8538211795,
-        "gap_risk_charge_bps": 1.5970238083,
+        "tau_star_cap_weighted": 2039.00625,
+        "timing_gap_mean_years": 7.00625,
+        "cumulative_gap_mtco2": 18.72,
+        "expected_pv_gap_loss_usd_m": 195.8829995779,
+        "sigma_pv_gap_loss_usd_m": 242.8510230606,
+        "gap_risk_charge_bps": 2.000676919,
         "shares": {
           "carbon": 0.0435772083,
           "h2": 0.0,
@@ -1656,20 +1656,20 @@
         "h2_cfd": {
           "label": "H2 CfD (CHPS-style)",
           "before": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
           "after": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
@@ -1692,7 +1692,7 @@
             "sigma_b_usd_bn": 3.6229785031,
             "risk_charge_bps": 16.4159292304,
             "risk_charge_bps_high_basis": 16.4159292304,
-            "gap_risk_charge_bps": 1.5970238083,
+            "gap_risk_charge_bps": 2.000676919,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -1702,28 +1702,28 @@
         "ppa": {
           "label": "Long-term PPA",
           "before": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
           "after": {
-            "tau_star_cap_weighted": 2037.57925,
-            "timing_gap_mean_years": 5.57925,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2038.91425,
+            "timing_gap_mean_years": 6.91425,
+            "cumulative_gap_mtco2": 16.38,
+            "expected_pv_gap_loss_usd_m": 176.7907218991,
+            "gap_risk_charge_bps": 1.8056754163,
             "risk_charge_bps": 16.3659989116,
             "sigma_b_usd_bn": 3.6119589337
           },
           "delta": {
-            "tau_star_years": 0.00225,
-            "cumulative_gap_mtco2": 0.0,
-            "expected_pv_gap_loss_usd_m": 0.0,
-            "gap_risk_charge_bps": 0.0,
+            "tau_star_years": -0.092,
+            "cumulative_gap_mtco2": -2.34,
+            "expected_pv_gap_loss_usd_m": -19.0922776788,
+            "gap_risk_charge_bps": -0.1950015028,
             "risk_charge_bps": -0.0499303189,
             "risk_charge_bps_high_basis": -0.0106700802
           },
@@ -1738,7 +1738,7 @@
             "sigma_b_usd_bn": 3.6119589337,
             "risk_charge_bps": 16.3659989116,
             "risk_charge_bps_high_basis": 16.4052591502,
-            "gap_risk_charge_bps": 1.5970238083,
+            "gap_risk_charge_bps": 1.8056754163,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -1748,28 +1748,28 @@
         "capex_subsidy": {
           "label": "CAPEX subsidy",
           "before": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
           "after": {
-            "tau_star_cap_weighted": 2037.24375,
-            "timing_gap_mean_years": 5.24375,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2038.59925,
+            "timing_gap_mean_years": 6.59925,
+            "cumulative_gap_mtco2": 16.38,
+            "expected_pv_gap_loss_usd_m": 176.7907218991,
+            "gap_risk_charge_bps": 1.8056754163,
             "risk_charge_bps": 16.4105439383,
             "sigma_b_usd_bn": 3.6217899747
           },
           "delta": {
-            "tau_star_years": -0.33325,
-            "cumulative_gap_mtco2": 0.0,
-            "expected_pv_gap_loss_usd_m": 0.0,
-            "gap_risk_charge_bps": 0.0,
+            "tau_star_years": -0.407,
+            "cumulative_gap_mtco2": -2.34,
+            "expected_pv_gap_loss_usd_m": -19.0922776788,
+            "gap_risk_charge_bps": -0.1950015028,
             "risk_charge_bps": -0.0053852922,
             "risk_charge_bps_high_basis": -0.0053852922
           },
@@ -1784,7 +1784,7 @@
             "sigma_b_usd_bn": 3.6217899747,
             "risk_charge_bps": 16.4105439383,
             "risk_charge_bps_high_basis": 16.4105439383,
-            "gap_risk_charge_bps": 1.5970238083,
+            "gap_risk_charge_bps": 1.8056754163,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -1794,28 +1794,28 @@
         "carbon_reform": {
           "label": "Carbon reform commitment",
           "before": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
           "after": {
-            "tau_star_cap_weighted": 2036.91625,
-            "timing_gap_mean_years": 4.91625,
-            "cumulative_gap_mtco2": 11.7,
-            "expected_pv_gap_loss_usd_m": 189.527287187,
-            "gap_risk_charge_bps": 1.3969627969,
+            "tau_star_cap_weighted": 2038.8785,
+            "timing_gap_mean_years": 6.8785,
+            "cumulative_gap_mtco2": 16.38,
+            "expected_pv_gap_loss_usd_m": 249.1141990396,
+            "gap_risk_charge_bps": 1.8361644563,
             "risk_charge_bps": 23.1315366429,
             "sigma_b_usd_bn": 3.6229785031
           },
           "delta": {
-            "tau_star_years": -0.66075,
+            "tau_star_years": -0.12775,
             "cumulative_gap_mtco2": -2.34,
-            "expected_pv_gap_loss_usd_m": 33.1653024043,
-            "gap_risk_charge_bps": -0.2000610114,
+            "expected_pv_gap_loss_usd_m": 53.2311994617,
+            "gap_risk_charge_bps": -0.1645124627,
             "risk_charge_bps": 6.7156074125,
             "risk_charge_bps_high_basis": 6.7156074125
           },
@@ -1830,7 +1830,7 @@
             "sigma_b_usd_bn": 3.6229785031,
             "risk_charge_bps": 23.1315366429,
             "risk_charge_bps_high_basis": 23.1315366429,
-            "gap_risk_charge_bps": 1.3969627969,
+            "gap_risk_charge_bps": 1.8361644563,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -1840,28 +1840,28 @@
         "concessional": {
           "label": "Concessional finance",
           "before": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
           "after": {
-            "tau_star_cap_weighted": 2037.721,
-            "timing_gap_mean_years": 5.721,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 178.3600026676,
-            "gap_risk_charge_bps": 1.5325518731,
+            "tau_star_cap_weighted": 2039.37625,
+            "timing_gap_mean_years": 7.37625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 226.1688222647,
+            "gap_risk_charge_bps": 1.9433474266,
             "risk_charge_bps": 17.433014558,
             "sigma_b_usd_bn": 4.573358872
           },
           "delta": {
-            "tau_star_years": 0.144,
+            "tau_star_years": 0.37,
             "cumulative_gap_mtco2": 0.0,
-            "expected_pv_gap_loss_usd_m": 21.9980178849,
-            "gap_risk_charge_bps": -0.0644719352,
+            "expected_pv_gap_loss_usd_m": 30.2858226868,
+            "gap_risk_charge_bps": -0.0573294924,
             "risk_charge_bps": 1.0170853275,
             "risk_charge_bps_high_basis": 1.0170853275
           },
@@ -1876,7 +1876,7 @@
             "sigma_b_usd_bn": 4.573358872,
             "risk_charge_bps": 17.433014558,
             "risk_charge_bps_high_basis": 17.433014558,
-            "gap_risk_charge_bps": 1.5325518731,
+            "gap_risk_charge_bps": 1.9433474266,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -1886,28 +1886,28 @@
         "feedstock_hedge": {
           "label": "Naphtha/feedstock collar",
           "before": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
           "after": {
-            "tau_star_cap_weighted": 2038.29575,
-            "timing_gap_mean_years": 6.29575,
-            "cumulative_gap_mtco2": 16.38,
-            "expected_pv_gap_loss_usd_m": 176.7907218991,
-            "gap_risk_charge_bps": 1.8056754163,
+            "tau_star_cap_weighted": 2040.16475,
+            "timing_gap_mean_years": 8.16475,
+            "cumulative_gap_mtco2": 21.06,
+            "expected_pv_gap_loss_usd_m": 213.726249745,
+            "gap_risk_charge_bps": 2.1829213141,
             "risk_charge_bps": 12.9061781249,
             "sigma_b_usd_bn": 2.8483800854
           },
           "delta": {
-            "tau_star_years": 0.71875,
+            "tau_star_years": 1.1585,
             "cumulative_gap_mtco2": 2.34,
-            "expected_pv_gap_loss_usd_m": 20.4287371164,
-            "gap_risk_charge_bps": 0.208651608,
+            "expected_pv_gap_loss_usd_m": 17.8432501671,
+            "gap_risk_charge_bps": 0.1822443951,
             "risk_charge_bps": -3.5097511056,
             "risk_charge_bps_high_basis": -0.2224591691
           },
@@ -1922,7 +1922,7 @@
             "sigma_b_usd_bn": 2.8483800854,
             "risk_charge_bps": 12.9061781249,
             "risk_charge_bps_high_basis": 16.1934700614,
-            "gap_risk_charge_bps": 1.8056754163,
+            "gap_risk_charge_bps": 2.1829213141,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -1932,20 +1932,20 @@
         "circular_feedstock": {
           "label": "Circular-feedstock offtake",
           "before": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
           "after": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
@@ -1968,7 +1968,7 @@
             "sigma_b_usd_bn": 3.6229785031,
             "risk_charge_bps": 16.4159292304,
             "risk_charge_bps_high_basis": 16.4159292304,
-            "gap_risk_charge_bps": 1.5970238083,
+            "gap_risk_charge_bps": 2.000676919,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -1978,28 +1978,28 @@
         "package": {
           "label": "Integrated package",
           "before": {
-            "tau_star_cap_weighted": 2037.577,
-            "timing_gap_mean_years": 5.577,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 156.3619847827,
-            "gap_risk_charge_bps": 1.5970238083,
+            "tau_star_cap_weighted": 2039.00625,
+            "timing_gap_mean_years": 7.00625,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 195.8829995779,
+            "gap_risk_charge_bps": 2.000676919,
             "risk_charge_bps": 16.4159292304,
             "sigma_b_usd_bn": 3.6229785031
           },
           "after": {
-            "tau_star_cap_weighted": 2037.342,
-            "timing_gap_mean_years": 5.342,
-            "cumulative_gap_mtco2": 14.04,
-            "expected_pv_gap_loss_usd_m": 220.3282512847,
-            "gap_risk_charge_bps": 1.6239897416,
+            "tau_star_cap_weighted": 2039.382,
+            "timing_gap_mean_years": 7.382,
+            "cumulative_gap_mtco2": 18.72,
+            "expected_pv_gap_loss_usd_m": 276.0169539507,
+            "gap_risk_charge_bps": 2.0344585822,
             "risk_charge_bps": 18.0967393881,
             "sigma_b_usd_bn": 2.83440304
           },
           "delta": {
-            "tau_star_years": -0.235,
+            "tau_star_years": 0.37575,
             "cumulative_gap_mtco2": 0.0,
-            "expected_pv_gap_loss_usd_m": 63.966266502,
-            "gap_risk_charge_bps": 0.0269659333,
+            "expected_pv_gap_loss_usd_m": 80.1339543728,
+            "gap_risk_charge_bps": 0.0337816631,
             "risk_charge_bps": 1.6808101577,
             "risk_charge_bps_high_basis": 6.3793069504
           },
@@ -2014,7 +2014,7 @@
             "sigma_b_usd_bn": 2.83440304,
             "risk_charge_bps": 18.0967393881,
             "risk_charge_bps_high_basis": 22.7952361809,
-            "gap_risk_charge_bps": 1.6239897416,
+            "gap_risk_charge_bps": 2.0344585822,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2132,8 +2132,8 @@
           "uncertainty": "gap-loss distribution plus assumed lambda and k",
           "interpretation": "separate gap-linked charge; not additive to transition-cost charge"
         },
-        "tau_star_cap_weighted": 2050.2773625,
-        "timing_gap_mean_years": 16.768625,
+        "tau_star_cap_weighted": 2050.34355,
+        "timing_gap_mean_years": 16.80275,
         "cumulative_gap_mtco2": 241.2,
         "expected_pv_gap_loss_usd_m": 2216.9030494417,
         "sigma_pv_gap_loss_usd_m": 2665.4498997013,
@@ -2153,8 +2153,8 @@
         "h2_cfd": {
           "label": "H2 CfD (CHPS-style)",
           "before": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2162,8 +2162,8 @@
             "sigma_b_usd_bn": 8.4565045053
           },
           "after": {
-            "tau_star_cap_weighted": 2051.3163625,
-            "timing_gap_mean_years": 17.838375,
+            "tau_star_cap_weighted": 2051.4994375,
+            "timing_gap_mean_years": 17.968875,
             "cumulative_gap_mtco2": 255.6,
             "expected_pv_gap_loss_usd_m": 2293.4722505495,
             "gap_risk_charge_bps": 7.3860295023,
@@ -2171,7 +2171,7 @@
             "sigma_b_usd_bn": 6.376707893
           },
           "delta": {
-            "tau_star_years": 1.039,
+            "tau_star_years": 1.1558875,
             "cumulative_gap_mtco2": 14.4,
             "expected_pv_gap_loss_usd_m": 76.5692011079,
             "gap_risk_charge_bps": 0.2465878444,
@@ -2199,8 +2199,8 @@
         "ppa": {
           "label": "Long-term PPA",
           "before": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2208,8 +2208,8 @@
             "sigma_b_usd_bn": 8.4565045053
           },
           "after": {
-            "tau_star_cap_weighted": 2050.7142,
-            "timing_gap_mean_years": 17.21075,
+            "tau_star_cap_weighted": 2050.7041875,
+            "timing_gap_mean_years": 17.186375,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2217,7 +2217,7 @@
             "sigma_b_usd_bn": 8.1911408285
           },
           "delta": {
-            "tau_star_years": 0.4368375,
+            "tau_star_years": 0.3606375,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -2245,8 +2245,8 @@
         "capex_subsidy": {
           "label": "CAPEX subsidy",
           "before": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2254,19 +2254,19 @@
             "sigma_b_usd_bn": 8.4565045053
           },
           "after": {
-            "tau_star_cap_weighted": 2049.2729125,
-            "timing_gap_mean_years": 15.753375,
-            "cumulative_gap_mtco2": 226.8,
-            "expected_pv_gap_loss_usd_m": 2135.9311192701,
-            "gap_risk_charge_bps": 6.8786750126,
+            "tau_star_cap_weighted": 2049.2133125,
+            "timing_gap_mean_years": 15.661375,
+            "cumulative_gap_mtco2": 221.76,
+            "expected_pv_gap_loss_usd_m": 2105.9613836153,
+            "gap_risk_charge_bps": 6.7821587579,
             "risk_charge_bps": 11.3202258621,
             "sigma_b_usd_bn": 8.4526203404
           },
           "delta": {
-            "tau_star_years": -1.00445,
-            "cumulative_gap_mtco2": -14.4,
-            "expected_pv_gap_loss_usd_m": -80.9719301716,
-            "gap_risk_charge_bps": -0.2607666454,
+            "tau_star_years": -1.1302375,
+            "cumulative_gap_mtco2": -19.44,
+            "expected_pv_gap_loss_usd_m": -110.9416658263,
+            "gap_risk_charge_bps": -0.3572829,
             "risk_charge_bps": -0.0052018927,
             "risk_charge_bps_high_basis": -0.0052018927
           },
@@ -2281,7 +2281,7 @@
             "sigma_b_usd_bn": 8.4526203404,
             "risk_charge_bps": 11.3202258621,
             "risk_charge_bps_high_basis": 11.3202258621,
-            "gap_risk_charge_bps": 6.8786750126,
+            "gap_risk_charge_bps": 6.7821587579,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2291,8 +2291,8 @@
         "carbon_reform": {
           "label": "Carbon reform commitment",
           "before": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2300,19 +2300,19 @@
             "sigma_b_usd_bn": 8.4565045053
           },
           "after": {
-            "tau_star_cap_weighted": 2048.2387875,
-            "timing_gap_mean_years": 14.667125,
-            "cumulative_gap_mtco2": 207.36,
-            "expected_pv_gap_loss_usd_m": 2939.1853380745,
-            "gap_risk_charge_bps": 6.7194828076,
+            "tau_star_cap_weighted": 2049.1035375,
+            "timing_gap_mean_years": 15.531875,
+            "cumulative_gap_mtco2": 221.76,
+            "expected_pv_gap_loss_usd_m": 3066.3723442751,
+            "gap_risk_charge_bps": 7.010254162,
             "risk_charge_bps": 16.9881416322,
             "sigma_b_usd_bn": 8.4565045053
           },
           "delta": {
-            "tau_star_years": -2.038575,
-            "cumulative_gap_mtco2": -33.84,
-            "expected_pv_gap_loss_usd_m": 722.2822886329,
-            "gap_risk_charge_bps": -0.4199588503,
+            "tau_star_years": -1.2400125,
+            "cumulative_gap_mtco2": -19.44,
+            "expected_pv_gap_loss_usd_m": 849.4692948334,
+            "gap_risk_charge_bps": -0.1291874959,
             "risk_charge_bps": 5.6627138774,
             "risk_charge_bps_high_basis": 5.6627138774
           },
@@ -2327,7 +2327,7 @@
             "sigma_b_usd_bn": 8.4565045053,
             "risk_charge_bps": 16.9881416322,
             "risk_charge_bps_high_basis": 16.9881416322,
-            "gap_risk_charge_bps": 6.7194828076,
+            "gap_risk_charge_bps": 7.010254162,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2337,8 +2337,8 @@
         "concessional": {
           "label": "Concessional finance",
           "before": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2346,8 +2346,8 @@
             "sigma_b_usd_bn": 8.4565045053
           },
           "after": {
-            "tau_star_cap_weighted": 2049.6719875,
-            "timing_gap_mean_years": 16.159875,
+            "tau_star_cap_weighted": 2049.8286875,
+            "timing_gap_mean_years": 16.279375,
             "cumulative_gap_mtco2": 226.8,
             "expected_pv_gap_loss_usd_m": 2656.7512769967,
             "gap_risk_charge_bps": 7.0798289544,
@@ -2355,7 +2355,7 @@
             "sigma_b_usd_bn": 10.8026964281
           },
           "delta": {
-            "tau_star_years": -0.605375,
+            "tau_star_years": -0.5148625,
             "cumulative_gap_mtco2": -14.4,
             "expected_pv_gap_loss_usd_m": 439.8482275551,
             "gap_risk_charge_bps": -0.0596127035,
@@ -2383,8 +2383,8 @@
         "feedstock_hedge": {
           "label": "Naphtha/feedstock collar",
           "before": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2392,8 +2392,8 @@
             "sigma_b_usd_bn": 8.4565045053
           },
           "after": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2429,8 +2429,8 @@
         "circular_feedstock": {
           "label": "Circular-feedstock offtake",
           "before": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2438,8 +2438,8 @@
             "sigma_b_usd_bn": 8.4565045053
           },
           "after": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2475,8 +2475,8 @@
         "package": {
           "label": "Integrated package",
           "before": {
-            "tau_star_cap_weighted": 2050.2773625,
-            "timing_gap_mean_years": 16.768625,
+            "tau_star_cap_weighted": 2050.34355,
+            "timing_gap_mean_years": 16.80275,
             "cumulative_gap_mtco2": 241.2,
             "expected_pv_gap_loss_usd_m": 2216.9030494417,
             "gap_risk_charge_bps": 7.139441658,
@@ -2484,19 +2484,19 @@
             "sigma_b_usd_bn": 8.4565045053
           },
           "after": {
-            "tau_star_cap_weighted": 2048.5451875,
-            "timing_gap_mean_years": 14.977125,
-            "cumulative_gap_mtco2": 212.4,
-            "expected_pv_gap_loss_usd_m": 2985.3317325556,
-            "gap_risk_charge_bps": 6.8249813961,
+            "tau_star_cap_weighted": 2049.4278875,
+            "timing_gap_mean_years": 15.854125,
+            "cumulative_gap_mtco2": 226.8,
+            "expected_pv_gap_loss_usd_m": 3110.0095967394,
+            "gap_risk_charge_bps": 7.1100164206,
             "risk_charge_bps": 12.2662671362,
             "sigma_b_usd_bn": 6.1060088588
           },
           "delta": {
-            "tau_star_years": -1.732175,
-            "cumulative_gap_mtco2": -28.8,
-            "expected_pv_gap_loss_usd_m": 768.4286831139,
-            "gap_risk_charge_bps": -0.3144602619,
+            "tau_star_years": -0.9156625,
+            "cumulative_gap_mtco2": -14.4,
+            "expected_pv_gap_loss_usd_m": 893.1065472977,
+            "gap_risk_charge_bps": -0.0294252374,
             "risk_charge_bps": 0.9408393814,
             "risk_charge_bps_high_basis": 3.4974078831
           },
@@ -2511,7 +2511,7 @@
             "sigma_b_usd_bn": 6.1060088588,
             "risk_charge_bps": 12.2662671362,
             "risk_charge_bps_high_basis": 14.8228356379,
-            "gap_risk_charge_bps": 6.8249813961,
+            "gap_risk_charge_bps": 7.1100164206,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2629,12 +2629,12 @@
           "uncertainty": "gap-loss distribution plus assumed lambda and k",
           "interpretation": "separate gap-linked charge; not additive to transition-cost charge"
         },
-        "tau_star_cap_weighted": 2044.6333172414,
-        "timing_gap_mean_years": 8.8751875,
-        "cumulative_gap_mtco2": 251.61,
-        "expected_pv_gap_loss_usd_m": 1889.2735641293,
-        "sigma_pv_gap_loss_usd_m": 2342.2758426145,
-        "gap_risk_charge_bps": 7.6342185067,
+        "tau_star_cap_weighted": 2049.978462069,
+        "timing_gap_mean_years": 14.22975,
+        "cumulative_gap_mtco2": 404.38,
+        "expected_pv_gap_loss_usd_m": 2536.3499391509,
+        "sigma_pv_gap_loss_usd_m": 3144.5055410108,
+        "gap_risk_charge_bps": 10.2489390698,
         "shares": {
           "carbon": 0.385372456,
           "h2": 0.5719737544,
@@ -2650,28 +2650,28 @@
         "h2_cfd": {
           "label": "H2 CfD (CHPS-style)",
           "before": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
           "after": {
-            "tau_star_cap_weighted": 2045.1298103448,
-            "timing_gap_mean_years": 9.3768125,
-            "cumulative_gap_mtco2": 273.31,
-            "expected_pv_gap_loss_usd_m": 1996.748011615,
-            "gap_risk_charge_bps": 8.068503637,
+            "tau_star_cap_weighted": 2051.0837689655,
+            "timing_gap_mean_years": 15.333375,
+            "cumulative_gap_mtco2": 440.75,
+            "expected_pv_gap_loss_usd_m": 2656.6903508079,
+            "gap_risk_charge_bps": 10.7352132734,
             "risk_charge_bps": 15.7673525889,
             "sigma_b_usd_bn": 8.7956824773
           },
           "delta": {
-            "tau_star_years": 0.4964931034,
-            "cumulative_gap_mtco2": 21.7,
-            "expected_pv_gap_loss_usd_m": 107.4744474858,
-            "gap_risk_charge_bps": 0.4342851303,
+            "tau_star_years": 1.1053068966,
+            "cumulative_gap_mtco2": 36.37,
+            "expected_pv_gap_loss_usd_m": 120.3404116571,
+            "gap_risk_charge_bps": 0.4862742036,
             "risk_charge_bps": -3.5742194762,
             "risk_charge_bps_high_basis": -1.6007767819
           },
@@ -2686,7 +2686,7 @@
             "sigma_b_usd_bn": 8.7956824773,
             "risk_charge_bps": 15.7673525889,
             "risk_charge_bps_high_basis": 17.7407952832,
-            "gap_risk_charge_bps": 8.068503637,
+            "gap_risk_charge_bps": 10.7352132734,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2696,28 +2696,28 @@
         "ppa": {
           "label": "Long-term PPA",
           "before": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
           "after": {
-            "tau_star_cap_weighted": 2044.7343396552,
-            "timing_gap_mean_years": 8.967625,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2050.1300224138,
+            "timing_gap_mean_years": 14.3778125,
+            "cumulative_gap_mtco2": 412.78,
+            "expected_pv_gap_loss_usd_m": 2565.3288762425,
+            "gap_risk_charge_bps": 10.3660378013,
             "risk_charge_bps": 19.169624211,
             "sigma_b_usd_bn": 10.6936105359
           },
           "delta": {
-            "tau_star_years": 0.1010224138,
-            "cumulative_gap_mtco2": 0.0,
-            "expected_pv_gap_loss_usd_m": 0.0,
-            "gap_risk_charge_bps": 0.0,
+            "tau_star_years": 0.1515603448,
+            "cumulative_gap_mtco2": 8.4,
+            "expected_pv_gap_loss_usd_m": 28.9789370916,
+            "gap_risk_charge_bps": 0.1170987315,
             "risk_charge_bps": -0.1719478541,
             "risk_charge_bps_high_basis": -0.0138681962
           },
@@ -2732,7 +2732,7 @@
             "sigma_b_usd_bn": 10.6936105359,
             "risk_charge_bps": 19.169624211,
             "risk_charge_bps_high_basis": 19.3277038689,
-            "gap_risk_charge_bps": 7.6342185067,
+            "gap_risk_charge_bps": 10.3660378013,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2742,28 +2742,28 @@
         "capex_subsidy": {
           "label": "CAPEX subsidy",
           "before": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
           "after": {
-            "tau_star_cap_weighted": 2043.5815517241,
-            "timing_gap_mean_years": 7.819625,
-            "cumulative_gap_mtco2": 223.64,
-            "expected_pv_gap_loss_usd_m": 1740.3558305629,
-            "gap_risk_charge_bps": 7.0324684271,
+            "tau_star_cap_weighted": 2048.7175,
+            "timing_gap_mean_years": 12.9676875,
+            "cumulative_gap_mtco2": 363.49,
+            "expected_pv_gap_loss_usd_m": 2388.0476411796,
+            "gap_risk_charge_bps": 9.649675856,
             "risk_charge_bps": 19.3307016805,
             "sigma_b_usd_bn": 10.7834662215
           },
           "delta": {
-            "tau_star_years": -1.0517655172,
-            "cumulative_gap_mtco2": -27.97,
-            "expected_pv_gap_loss_usd_m": -148.9177335664,
-            "gap_risk_charge_bps": -0.6017500796,
+            "tau_star_years": -1.260962069,
+            "cumulative_gap_mtco2": -40.89,
+            "expected_pv_gap_loss_usd_m": -148.3022979713,
+            "gap_risk_charge_bps": -0.5992632138,
             "risk_charge_bps": -0.0108703846,
             "risk_charge_bps_high_basis": -0.0108703846
           },
@@ -2778,7 +2778,7 @@
             "sigma_b_usd_bn": 10.7834662215,
             "risk_charge_bps": 19.3307016805,
             "risk_charge_bps_high_basis": 19.3307016805,
-            "gap_risk_charge_bps": 7.0324684271,
+            "gap_risk_charge_bps": 9.649675856,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2788,28 +2788,28 @@
         "carbon_reform": {
           "label": "Carbon reform commitment",
           "before": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
           "after": {
-            "tau_star_cap_weighted": 2042.607462069,
-            "timing_gap_mean_years": 6.849625,
-            "cumulative_gap_mtco2": 195.67,
-            "expected_pv_gap_loss_usd_m": 2226.7430580159,
-            "gap_risk_charge_bps": 6.4934084744,
+            "tau_star_cap_weighted": 2048.9600517241,
+            "timing_gap_mean_years": 13.203875,
+            "cumulative_gap_mtco2": 378.54,
+            "expected_pv_gap_loss_usd_m": 3443.6241238948,
+            "gap_risk_charge_bps": 10.0419570136,
             "risk_charge_bps": 27.2540333644,
             "sigma_b_usd_bn": 10.7895301724
           },
           "delta": {
-            "tau_star_years": -2.0258551724,
-            "cumulative_gap_mtco2": -55.94,
-            "expected_pv_gap_loss_usd_m": 337.4694938867,
-            "gap_risk_charge_bps": -1.1408100323,
+            "tau_star_years": -1.0184103448,
+            "cumulative_gap_mtco2": -25.84,
+            "expected_pv_gap_loss_usd_m": 907.2741847439,
+            "gap_risk_charge_bps": -0.2069820562,
             "risk_charge_bps": 7.9124612994,
             "risk_charge_bps_high_basis": 7.9124612994
           },
@@ -2824,7 +2824,7 @@
             "sigma_b_usd_bn": 10.7895301724,
             "risk_charge_bps": 27.2540333644,
             "risk_charge_bps_high_basis": 27.2540333644,
-            "gap_risk_charge_bps": 6.4934084744,
+            "gap_risk_charge_bps": 10.0419570136,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2834,28 +2834,28 @@
         "concessional": {
           "label": "Concessional finance",
           "before": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
           "after": {
-            "tau_star_cap_weighted": 2043.70915,
-            "timing_gap_mean_years": 7.939625,
-            "cumulative_gap_mtco2": 223.64,
-            "expected_pv_gap_loss_usd_m": 2103.3227625103,
-            "gap_risk_charge_bps": 7.1943842481,
+            "tau_star_cap_weighted": 2049.463062069,
+            "timing_gap_mean_years": 13.71375,
+            "cumulative_gap_mtco2": 391.46,
+            "expected_pv_gap_loss_usd_m": 3117.0719459339,
+            "gap_risk_charge_bps": 10.661898263,
             "risk_charge_bps": 20.1034706667,
             "sigma_b_usd_bn": 13.2484122931
           },
           "delta": {
-            "tau_star_years": -0.9241672414,
-            "cumulative_gap_mtco2": -27.97,
-            "expected_pv_gap_loss_usd_m": 214.049198381,
-            "gap_risk_charge_bps": -0.4398342586,
+            "tau_star_years": -0.5154,
+            "cumulative_gap_mtco2": -12.92,
+            "expected_pv_gap_loss_usd_m": 580.7220067831,
+            "gap_risk_charge_bps": 0.4129591932,
             "risk_charge_bps": 0.7618986016,
             "risk_charge_bps_high_basis": 0.7618986016
           },
@@ -2870,7 +2870,7 @@
             "sigma_b_usd_bn": 13.2484122931,
             "risk_charge_bps": 20.1034706667,
             "risk_charge_bps_high_basis": 20.1034706667,
-            "gap_risk_charge_bps": 7.1943842481,
+            "gap_risk_charge_bps": 10.661898263,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2880,20 +2880,20 @@
         "feedstock_hedge": {
           "label": "Naphtha/feedstock collar",
           "before": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
           "after": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
@@ -2916,7 +2916,7 @@
             "sigma_b_usd_bn": 10.7895301724,
             "risk_charge_bps": 19.3415720651,
             "risk_charge_bps_high_basis": 19.3415720651,
-            "gap_risk_charge_bps": 7.6342185067,
+            "gap_risk_charge_bps": 10.2489390698,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2926,20 +2926,20 @@
         "circular_feedstock": {
           "label": "Circular-feedstock offtake",
           "before": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
           "after": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
@@ -2962,7 +2962,7 @@
             "sigma_b_usd_bn": 10.7895301724,
             "risk_charge_bps": 19.3415720651,
             "risk_charge_bps_high_basis": 19.3415720651,
-            "gap_risk_charge_bps": 7.6342185067,
+            "gap_risk_charge_bps": 10.2489390698,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },
@@ -2972,28 +2972,28 @@
         "package": {
           "label": "Integrated package",
           "before": {
-            "tau_star_cap_weighted": 2044.6333172414,
-            "timing_gap_mean_years": 8.8751875,
-            "cumulative_gap_mtco2": 251.61,
-            "expected_pv_gap_loss_usd_m": 1889.2735641293,
-            "gap_risk_charge_bps": 7.6342185067,
+            "tau_star_cap_weighted": 2049.978462069,
+            "timing_gap_mean_years": 14.22975,
+            "cumulative_gap_mtco2": 404.38,
+            "expected_pv_gap_loss_usd_m": 2536.3499391509,
+            "gap_risk_charge_bps": 10.2489390698,
             "risk_charge_bps": 19.3415720651,
             "sigma_b_usd_bn": 10.7895301724
           },
           "after": {
-            "tau_star_cap_weighted": 2042.4415810345,
-            "timing_gap_mean_years": 6.7021875,
-            "cumulative_gap_mtco2": 195.67,
-            "expected_pv_gap_loss_usd_m": 2226.7430580159,
-            "gap_risk_charge_bps": 6.4934084744,
+            "tau_star_cap_weighted": 2048.9251293103,
+            "timing_gap_mean_years": 13.161125,
+            "cumulative_gap_mtco2": 378.54,
+            "expected_pv_gap_loss_usd_m": 3443.6241238948,
+            "gap_risk_charge_bps": 10.0419570136,
             "risk_charge_bps": 21.9735803933,
             "sigma_b_usd_bn": 8.699065033
           },
           "delta": {
-            "tau_star_years": -2.1917362069,
-            "cumulative_gap_mtco2": -55.94,
-            "expected_pv_gap_loss_usd_m": 337.4694938867,
-            "gap_risk_charge_bps": -1.1408100323,
+            "tau_star_years": -1.0533327586,
+            "cumulative_gap_mtco2": -25.84,
+            "expected_pv_gap_loss_usd_m": 907.2741847439,
+            "gap_risk_charge_bps": -0.2069820562,
             "risk_charge_bps": 2.6320083282,
             "risk_charge_bps_high_basis": 5.6209833301
           },
@@ -3008,7 +3008,7 @@
             "sigma_b_usd_bn": 8.699065033,
             "risk_charge_bps": 21.9735803933,
             "risk_charge_bps_high_basis": 24.9625553952,
-            "gap_risk_charge_bps": 6.4934084744,
+            "gap_risk_charge_bps": 10.0419570136,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
           },

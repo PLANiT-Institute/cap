@@ -39,9 +39,9 @@
       "category": "priced_route",
       "t_required": 2039.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2044.71625,
-      "timing_gap_years": 5.71625,
-      "tau_star_year_wacc_eq": 2044.5695
+      "tau_star_year": 2049.969,
+      "timing_gap_years": 10.969,
+      "tau_star_year_wacc_eq": 2049.8445
     },
     {
       "asset_id": "A02",
@@ -54,9 +54,9 @@
       "category": "priced_route",
       "t_required": 2035.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2044.62475,
-      "timing_gap_years": 9.62475,
-      "tau_star_year_wacc_eq": 2044.38675
+      "tau_star_year": 2049.77175,
+      "timing_gap_years": 14.77175,
+      "tau_star_year_wacc_eq": 2049.57625
     },
     {
       "asset_id": "A06",
@@ -69,9 +69,9 @@
       "category": "priced_route",
       "t_required": 2032.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2044.3545,
-      "timing_gap_years": 12.3545,
-      "tau_star_year_wacc_eq": 2044.0605
+      "tau_star_year": 2050.0355,
+      "timing_gap_years": 18.0355,
+      "tau_star_year_wacc_eq": 2049.89025
     },
     {
       "asset_id": "A07",
@@ -84,9 +84,9 @@
       "category": "priced_route",
       "t_required": 2037.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2044.80525,
-      "timing_gap_years": 7.80525,
-      "tau_star_year_wacc_eq": 2044.51825
+      "tau_star_year": 2050.14275,
+      "timing_gap_years": 13.14275,
+      "tau_star_year_wacc_eq": 2049.97975
     },
     {
       "asset_id": "A03",
@@ -99,9 +99,9 @@
       "category": "no_feasible_route",
       "t_required": null,
       "t_required_status": "UNAVAILABLE",
-      "tau_star_year": 2046.85,
+      "tau_star_year": null,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": 2044.48075
+      "tau_star_year_wacc_eq": null
     },
     {
       "asset_id": "A08",
@@ -114,9 +114,9 @@
       "category": "no_feasible_route",
       "t_required": null,
       "t_required_status": "UNAVAILABLE",
-      "tau_star_year": 2046.2495,
+      "tau_star_year": null,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": 2044.03025
+      "tau_star_year_wacc_eq": null
     },
     {
       "asset_id": "A04",
@@ -129,9 +129,9 @@
       "category": "priced_route",
       "t_required": 2036.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2050.29775,
-      "timing_gap_years": 14.29775,
-      "tau_star_year_wacc_eq": 2050.76975
+      "tau_star_year": 2050.43875,
+      "timing_gap_years": 14.43875,
+      "tau_star_year_wacc_eq": 2050.83
     },
     {
       "asset_id": "A09",
@@ -144,9 +144,9 @@
       "category": "priced_route",
       "t_required": 2031.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2050.2395,
-      "timing_gap_years": 19.2395,
-      "tau_star_year_wacc_eq": 2050.81
+      "tau_star_year": 2050.16675,
+      "timing_gap_years": 19.16675,
+      "tau_star_year_wacc_eq": 2050.73625
     },
     {
       "asset_id": "A05",
@@ -204,9 +204,9 @@
       "category": "priced_route",
       "t_required": 2032.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2037.577,
-      "timing_gap_years": 5.577,
-      "tau_star_year_wacc_eq": 2037.57875
+      "tau_star_year": 2039.00625,
+      "timing_gap_years": 7.00625,
+      "tau_star_year_wacc_eq": 2038.988
     },
     {
       "asset_id": "P02",
@@ -219,9 +219,9 @@
       "category": "priced_route",
       "t_required": 2030.0,
       "t_required_status": "PROVISIONAL",
-      "tau_star_year": 2039.8515,
-      "timing_gap_years": 9.8515,
-      "tau_star_year_wacc_eq": 2039.33425
+      "tau_star_year": 2039.8755,
+      "timing_gap_years": 9.8755,
+      "tau_star_year_wacc_eq": 2039.36975
     }
   ]
 }

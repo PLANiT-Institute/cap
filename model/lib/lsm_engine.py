@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from .finance import annuity, growth_annuity
+from .finance import annuity, anchored_growth_annuity
 
 
 @dataclass
@@ -19,7 +19,8 @@ class LsmSpec:
     """자산 하나의 LSM 입력. 전 필드 config 유래 — 리터럴 없음."""
     x0: np.ndarray          # [p_C, p_H2, p_elec, p_feedstock, K] 초기 수준
     sigma: np.ndarray       # 드라이버 연변동성
-    mu: np.ndarray          # 드라이버 drift (config sigmas.mu)
+    mu: np.ndarray          # 드라이버 drift. carbon은 s02 파생 ln(ℓ̄/현물)/anchor (X9)
+    mu_anchor_t: np.ndarray  # 드라이버별 drift 지속 연수 — 이후 drift=0, 수준 유지 (np.inf = 영구; X9)
     rho: np.ndarray         # 5×5 상관
     delta_intensity: float  # 회피 배출강도 (현재 − 잔여) tCO2/t
     q_h2: float             # kg/t
@@ -38,14 +39,20 @@ class LsmSpec:
 
 
 def simulate_paths(spec: LsmSpec, sigma_scale: float = 1.0) -> np.ndarray:
-    """(n_paths, horizon+1, 5) GBM 경로. drift = config sigmas.mu."""
+    """(n_paths, horizon+1, 5) GBM 경로.
+
+    drift는 시나리오-앵커 경로(X9): 스텝 t ≤ mu_anchor_t[k]까지만 μ_k, 이후 0
+    (기대수준이 시나리오 수준에 도달하면 유지 — 영구 복리 상승 없음). σ는 전 구간 유지.
+    """
     rng = np.random.default_rng(spec.seed)
     n_d = len(spec.x0)
     chol = np.linalg.cholesky(spec.rho + np.eye(n_d) * np.finfo(float).eps)
     sig = spec.sigma * sigma_scale
     z = rng.standard_normal((spec.n_paths, spec.horizon, n_d))
     dw = z @ chol.T
-    log_inc = spec.mu - sig**2 / 2.0 + sig * dw
+    steps = np.arange(1, spec.horizon + 1, dtype=float)
+    mu_t = np.where(steps[:, None] <= spec.mu_anchor_t[None, :], spec.mu, 0.0)
+    log_inc = mu_t - sig**2 / 2.0 + sig * dw
     log_paths = np.concatenate(
         [np.zeros((spec.n_paths, 1, n_d)), np.cumsum(log_inc, axis=1)], axis=1
     )
@@ -55,14 +62,21 @@ def simulate_paths(spec: LsmSpec, sigma_scale: float = 1.0) -> np.ndarray:
 def exercise_value(spec: LsmSpec, x: np.ndarray, t: int) -> np.ndarray:
     """t에 전환 시 즉시가치 (USD/t output). x: (n_paths, 5).
 
-    가격 드라이버 항은 드라이버별 growth_annuity(μ_k) — 시뮬레이션 measure의
-    기대성장 E[P_{t+s}]=P_t·e^{μs}와 일치. 상수 opex 항은 무성장 annuity.
+    가격 드라이버 항은 드라이버별 anchored_growth_annuity — 시뮬레이션 measure의
+    기대성장 E[P_{t+s}]=P_t·e^{μ·min(s, 잔여앵커연수)}와 일치 (X9: 앵커 후 성장 0).
+    상수 opex 항은 무성장 annuity.
     """
     p_c, p_h2, p_elec, p_feedstock, k = x[:, 0], x[:, 1], x[:, 2], x[:, 3], x[:, 4]
     n_rem = spec.horizon - t
     flat = annuity(spec.rate, n_rem)
     ga_c, ga_h2, ga_elec, ga_feed = (
-        growth_annuity(spec.rate, float(spec.mu[i]), n_rem) for i in range(4)
+        anchored_growth_annuity(
+            spec.rate,
+            float(spec.mu[i]),
+            n_rem,
+            max(0.0, float(spec.mu_anchor_t[i]) - t),
+        )
+        for i in range(4)
     )
     pv = (
         spec.delta_intensity * p_c * ga_c

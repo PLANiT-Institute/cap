@@ -271,7 +271,7 @@
       "firm_id": "KR_NCC",
       "firm": "Korea NCC archetype",
       "country": "KR",
-      "cumulative_alignment_gap_mtco2": 14.04,
+      "cumulative_alignment_gap_mtco2": 18.72,
       "loss_result_contract": {
         "metric_id": "alignment_gap_loss_pv_usd",
         "basis_id": "enterprise_private_vs_required.scenario_gap_loss.provisional_required",
@@ -286,7 +286,7 @@
         "uncertainty": "loss distribution plus assumed lambda and k",
         "interpretation": "gap-linked charge on its own basis; not additive to transition-cost charge"
       },
-      "discounted_gap_mtco2": 7.4321831301,
+      "discounted_gap_mtco2": 9.3106922821,
       "reference_price_usd_tco2": 14.93,
       "scenario_losses": [
         {
@@ -303,7 +303,7 @@
           "binds": true,
           "level_usd_tco2": 35.0,
           "incremental_price_usd_tco2": 20.07,
-          "pv_gap_loss_usd_m": 149.1639154212
+          "pv_gap_loss_usd_m": 186.8655941026
         },
         {
           "scenario": "CBAM",
@@ -311,13 +311,13 @@
           "binds": true,
           "level_usd_tco2": 85.0,
           "incremental_price_usd_tco2": 70.07,
-          "pv_gap_loss_usd_m": 520.7730719264
+          "pv_gap_loss_usd_m": 652.4002082098
         }
       ],
-      "expected_pv_gap_loss_usd_m": 156.3619847827,
-      "sigma_pv_gap_loss_usd_m": 193.8538211795,
-      "annual_gap_risk_charge_usd_m": 2.3955357124,
-      "gap_risk_charge_bps": 1.5970238083,
+      "expected_pv_gap_loss_usd_m": 195.8829995779,
+      "sigma_pv_gap_loss_usd_m": 242.8510230606,
+      "annual_gap_risk_charge_usd_m": 3.0010153785,
+      "gap_risk_charge_bps": 2.000676919,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
       "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
     },
@@ -379,7 +379,7 @@
       "firm_id": "POSCO",
       "firm": "POSCO",
       "country": "KR",
-      "cumulative_alignment_gap_mtco2": 251.61,
+      "cumulative_alignment_gap_mtco2": 404.38,
       "loss_result_contract": {
         "metric_id": "alignment_gap_loss_pv_usd",
         "basis_id": "enterprise_private_vs_required.scenario_gap_loss.provisional_required",
@@ -394,7 +394,7 @@
         "uncertainty": "loss distribution plus assumed lambda and k",
         "interpretation": "gap-linked charge on its own basis; not additive to transition-cost charge"
       },
-      "discounted_gap_mtco2": 89.8007730651,
+      "discounted_gap_mtco2": 120.5575463627,
       "reference_price_usd_tco2": 14.93,
       "scenario_losses": [
         {
@@ -411,7 +411,7 @@
           "binds": true,
           "level_usd_tco2": 35.0,
           "incremental_price_usd_tco2": 20.07,
-          "pv_gap_loss_usd_m": 1802.3015154158
+          "pv_gap_loss_usd_m": 2419.5899554986
         },
         {
           "scenario": "CBAM",
@@ -419,13 +419,13 @@
           "binds": true,
           "level_usd_tco2": 85.0,
           "incremental_price_usd_tco2": 70.07,
-          "pv_gap_loss_usd_m": 6292.3401686688
+          "pv_gap_loss_usd_m": 8447.4672736318
         }
       ],
-      "expected_pv_gap_loss_usd_m": 1889.2735641293,
-      "sigma_pv_gap_loss_usd_m": 2342.2758426145,
-      "annual_gap_risk_charge_usd_m": 30.5368740268,
-      "gap_risk_charge_bps": 7.6342185067,
+      "expected_pv_gap_loss_usd_m": 2536.3499391509,
+      "sigma_pv_gap_loss_usd_m": 3144.5055410108,
+      "annual_gap_risk_charge_usd_m": 40.9957562792,
+      "gap_risk_charge_bps": 10.2489390698,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
       "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
     }

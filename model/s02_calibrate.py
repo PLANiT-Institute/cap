@@ -75,6 +75,10 @@ class CalibrationSet:
     sigma_carbon_reform: dict[str, float]
     sigma_carbon_binding: dict[str, float]
     carbon_var_decomp: dict[str, dict[str, float]]
+    # X9: 탄소 drift는 파라미터가 아니라 파생값 — 현물이 anchor 연한에 걸쳐
+    # 시나리오 기대수준(ℓ̄)에 도달하는 궤도. 도달 후 성장 0 (수준 유지).
+    # CAP은 수익률을 전망하지 않는다; sigmas.mu의 carbon 행은 미사용.
+    mu_carbon: dict[str, float]
     k_offcycle_mult: float
     t_required: dict[str, dict]  # asset_id → {year, status, pool}
     t_required_source: str
@@ -351,6 +355,13 @@ def load_calibration() -> CalibrationSet:
             ),
         }
 
+    # X9: 탄소 drift 파생 — 현물 → ℓ̄ 수렴 궤도 (anchor 연한), 도달 후 0
+    anchor_years = float(lsm["mu_anchor_years"])
+    mu_carbon = {
+        c: float(np.log(l_bar[c] / pricing[f"carbon_base_{c.lower()}"]) / anchor_years)
+        for c in COUNTRIES
+    }
+
     status: dict[str, str] = {}
     for _, r in sigmas.iterrows():
         status[f"sigma_{r['driver']}"] = r["status"]
@@ -390,6 +401,7 @@ def load_calibration() -> CalibrationSet:
         sigma_carbon_reform=sigma_reform,
         sigma_carbon_binding=sigma_binding,
         carbon_var_decomp=var_decomp,
+        mu_carbon=mu_carbon,
         k_offcycle_mult=k_off,
         t_required=t_required,
         t_required_source=t_source,
@@ -456,6 +468,11 @@ def main() -> int:
                 "sigma_carbon_binding": cal.sigma_carbon_binding,
                 "carbon_variance_decomposition": cal.carbon_var_decomp,
                 "jump_correlation_note": "점프에 확산과 동일 ρ·연σ 적용 — 근사 (Merton 비판 R2)",
+                "mu_carbon": cal.mu_carbon,
+                "mu_carbon_definition": (
+                    "X9 — ln(ℓ̄/현물)/mu_anchor_years; anchor 이후 drift 0 (수준 유지). "
+                    "수익률 전망 아님: 시나리오 수준 도달 궤도의 파생값"
+                ),
                 "k_offcycle_mult": cal.k_offcycle_mult,
                 "t_required_source": cal.t_required_source,
                 "t_required_provisional": cal.required_path_provisional,

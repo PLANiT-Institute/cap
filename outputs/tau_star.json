@@ -51,10 +51,10 @@
       "country": "KR",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2044.71625,
-      "tau_star_year_wacc_eq": 2044.5695,
-      "p_exercised": 0.7435,
-      "option_value_usd_t": 664.0146642348
+      "tau_star_year": 2049.969,
+      "tau_star_year_wacc_eq": 2049.8445,
+      "p_exercised": 0.54875,
+      "option_value_usd_t": 171.5547949435
     },
     {
       "asset_id": "A02",
@@ -66,10 +66,10 @@
       "country": "KR",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2044.62475,
-      "tau_star_year_wacc_eq": 2044.38675,
-      "p_exercised": 0.75275,
-      "option_value_usd_t": 698.3660718279
+      "tau_star_year": 2049.77175,
+      "tau_star_year_wacc_eq": 2049.57625,
+      "p_exercised": 0.56275,
+      "option_value_usd_t": 173.4950395132
     },
     {
       "asset_id": "A06",
@@ -81,10 +81,10 @@
       "country": "KR",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2044.3545,
-      "tau_star_year_wacc_eq": 2044.0605,
-      "p_exercised": 0.74725,
-      "option_value_usd_t": 642.5020621997
+      "tau_star_year": 2050.0355,
+      "tau_star_year_wacc_eq": 2049.89025,
+      "p_exercised": 0.55225,
+      "option_value_usd_t": 155.3117149842
     },
     {
       "asset_id": "A07",
@@ -96,10 +96,10 @@
       "country": "KR",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2044.80525,
-      "tau_star_year_wacc_eq": 2044.51825,
-      "p_exercised": 0.743,
-      "option_value_usd_t": 659.4083142501
+      "tau_star_year": 2050.14275,
+      "tau_star_year_wacc_eq": 2049.97975,
+      "p_exercised": 0.55,
+      "option_value_usd_t": 171.0069012093
     },
     {
       "asset_id": "A03",
@@ -111,10 +111,10 @@
       "country": "KR",
       "route": "scrap_eaf",
       "category": "no_feasible_route",
-      "tau_star_year": 2046.85,
-      "tau_star_year_wacc_eq": 2044.48075,
-      "p_exercised": 0.6005,
-      "option_value_usd_t": 257.2310119899
+      "tau_star_year": null,
+      "tau_star_year_wacc_eq": null,
+      "p_exercised": 0.24175,
+      "option_value_usd_t": 70.2571710052
     },
     {
       "asset_id": "A08",
@@ -126,10 +126,10 @@
       "country": "KR",
       "route": "scrap_eaf",
       "category": "no_feasible_route",
-      "tau_star_year": 2046.2495,
-      "tau_star_year_wacc_eq": 2044.03025,
-      "p_exercised": 0.63075,
-      "option_value_usd_t": 250.7879303245
+      "tau_star_year": null,
+      "tau_star_year_wacc_eq": null,
+      "p_exercised": 0.2605,
+      "option_value_usd_t": 64.6565355744
     },
     {
       "asset_id": "A04",
@@ -141,10 +141,10 @@
       "country": "JP",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2050.29775,
-      "tau_star_year_wacc_eq": 2050.76975,
-      "p_exercised": 0.578,
-      "option_value_usd_t": 119.0181786233
+      "tau_star_year": 2050.43875,
+      "tau_star_year_wacc_eq": 2050.83,
+      "p_exercised": 0.5525,
+      "option_value_usd_t": 131.3009209893
     },
     {
       "asset_id": "A09",
@@ -156,10 +156,10 @@
       "country": "JP",
       "route": "h2_dri",
       "category": "priced_route",
-      "tau_star_year": 2050.2395,
-      "tau_star_year_wacc_eq": 2050.81,
-      "p_exercised": 0.58725,
-      "option_value_usd_t": 134.2221625431
+      "tau_star_year": 2050.16675,
+      "tau_star_year_wacc_eq": 2050.73625,
+      "p_exercised": 0.5585,
+      "option_value_usd_t": 130.3875172058
     },
     {
       "asset_id": "A05",
@@ -173,8 +173,8 @@
       "category": "priced_route",
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
-      "p_exercised": 0.19,
-      "option_value_usd_t": 91.5680598177
+      "p_exercised": 0.155,
+      "option_value_usd_t": 93.9387995669
     },
     {
       "asset_id": "A10",
@@ -188,8 +188,8 @@
       "category": "priced_route",
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
-      "p_exercised": 0.205,
-      "option_value_usd_t": 105.6688394882
+      "p_exercised": 0.164,
+      "option_value_usd_t": 98.9493319528
     },
     {
       "asset_id": "A11",
@@ -203,8 +203,8 @@
       "category": "priced_route",
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
-      "p_exercised": 0.205,
-      "option_value_usd_t": 86.7980721828
+      "p_exercised": 0.1595,
+      "option_value_usd_t": 72.2827048195
     },
     {
       "asset_id": "P01",
@@ -216,10 +216,10 @@
       "country": "KR",
       "route": "e_cracker",
       "category": "priced_route",
-      "tau_star_year": 2037.577,
-      "tau_star_year_wacc_eq": 2037.57875,
-      "p_exercised": 0.91325,
-      "option_value_usd_t": 2739.1802607908
+      "tau_star_year": 2039.00625,
+      "tau_star_year_wacc_eq": 2038.988,
+      "p_exercised": 0.881,
+      "option_value_usd_t": 2400.5980363749
     },
     {
       "asset_id": "P02",
@@ -231,132 +231,132 @@
       "country": "JP",
       "route": "ccus_cracker",
       "category": "priced_route",
-      "tau_star_year": 2039.8515,
-      "tau_star_year_wacc_eq": 2039.33425,
-      "p_exercised": 0.8785,
-      "option_value_usd_t": 3235.9173053648
+      "tau_star_year": 2039.8755,
+      "tau_star_year_wacc_eq": 2039.36975,
+      "p_exercised": 0.87475,
+      "option_value_usd_t": 3254.1460611569
     }
   ],
   "interventions": {
     "h2_cfd": {
-      "A01": 2045.11625,
-      "A02": 2045.25925,
-      "A06": 2044.8725,
-      "A07": 2045.25925,
-      "A03": 2046.85,
-      "A08": 2046.2495,
-      "A04": 2051.265,
-      "A09": 2051.41175,
+      "A01": 2051.136,
+      "A02": 2050.7655,
+      "A06": 2051.239,
+      "A07": 2051.193,
+      "A03": null,
+      "A08": null,
+      "A04": 2051.57075,
+      "A09": 2051.367,
       "A05": null,
       "A10": null,
       "A11": null,
-      "P01": 2037.577,
-      "P02": 2039.8515
+      "P01": 2039.00625,
+      "P02": 2039.8755
     },
     "ppa": {
-      "A01": 2044.95175,
-      "A02": 2044.7765,
-      "A06": 2044.32525,
-      "A07": 2044.817,
-      "A03": 2046.72825,
-      "A08": 2046.08125,
-      "A04": 2050.72225,
-      "A09": 2050.69925,
+      "A01": 2050.194,
+      "A02": 2049.854,
+      "A06": 2050.19925,
+      "A07": 2050.264,
+      "A03": null,
+      "A08": null,
+      "A04": 2050.74575,
+      "A09": 2050.627,
       "A05": null,
       "A10": null,
       "A11": null,
-      "P01": 2037.57925,
-      "P02": 2039.74125
+      "P01": 2038.91425,
+      "P02": 2039.78075
     },
     "capex_subsidy": {
-      "A01": 2043.7465,
-      "A02": 2043.4635,
-      "A06": 2043.324,
-      "A07": 2043.7445,
-      "A03": 2046.12875,
-      "A08": 2045.62275,
-      "A04": 2049.3185,
-      "A09": 2049.18825,
+      "A01": 2048.71875,
+      "A02": 2048.502,
+      "A06": 2048.735,
+      "A07": 2048.915,
+      "A03": null,
+      "A08": null,
+      "A04": 2049.3345,
+      "A09": 2048.98825,
       "A05": null,
       "A10": null,
       "A11": null,
-      "P01": 2037.24375,
-      "P02": 2039.58875
+      "P01": 2038.59925,
+      "P02": 2039.6395
     },
     "carbon_reform": {
-      "A01": 2042.672,
-      "A02": 2042.57625,
-      "A06": 2042.28475,
-      "A07": 2042.8655,
-      "A03": 2043.38675,
-      "A08": 2042.523,
-      "A04": 2048.406,
-      "A09": 2047.92825,
+      "A01": 2049.0645,
+      "A02": 2048.68675,
+      "A06": 2048.89325,
+      "A07": 2049.171,
+      "A03": null,
+      "A08": null,
+      "A04": 2049.27075,
+      "A09": 2048.793,
       "A05": null,
       "A10": null,
       "A11": null,
-      "P01": 2036.91625,
-      "P02": 2039.43775
+      "P01": 2038.8785,
+      "P02": 2039.66475
     },
     "concessional": {
-      "A01": 2043.99875,
-      "A02": 2043.683,
-      "A06": 2043.356,
-      "A07": 2043.72075,
-      "A03": 2045.81775,
-      "A08": 2045.129,
-      "A04": 2049.70025,
-      "A09": 2049.6195,
+      "A01": 2049.4685,
+      "A02": 2049.26125,
+      "A06": 2049.53025,
+      "A07": 2049.595,
+      "A03": null,
+      "A08": null,
+      "A04": 2049.94375,
+      "A09": 2049.615,
       "A05": null,
       "A10": null,
       "A11": null,
-      "P01": 2037.721,
-      "P02": 2040.2635
+      "P01": 2039.37625,
+      "P02": 2040.2965
     },
     "feedstock_hedge": {
-      "A01": 2044.71625,
-      "A02": 2044.62475,
-      "A06": 2044.3545,
-      "A07": 2044.80525,
-      "A03": 2046.85,
-      "A08": 2046.2495,
-      "A04": 2050.29775,
-      "A09": 2050.2395,
+      "A01": 2049.969,
+      "A02": 2049.77175,
+      "A06": 2050.0355,
+      "A07": 2050.14275,
+      "A03": null,
+      "A08": null,
+      "A04": 2050.43875,
+      "A09": 2050.16675,
       "A05": null,
       "A10": null,
       "A11": null,
-      "P01": 2038.29575,
-      "P02": 2041.013
+      "P01": 2040.16475,
+      "P02": 2041.04825
     },
     "circular_feedstock": {
-      "A01": 2044.71625,
-      "A02": 2044.62475,
-      "A06": 2044.3545,
-      "A07": 2044.80525,
-      "A03": 2046.85,
-      "A08": 2046.2495,
-      "A04": 2050.29775,
-      "A09": 2050.2395,
+      "A01": 2049.969,
+      "A02": 2049.77175,
+      "A06": 2050.0355,
+      "A07": 2050.14275,
+      "A03": null,
+      "A08": null,
+      "A04": 2050.43875,
+      "A09": 2050.16675,
       "A05": null,
       "A10": null,
       "A11": null,
-      "P01": 2037.577,
-      "P02": 2039.8515
+      "P01": 2039.00625,
+      "P02": 2039.8755
     },
     "package": {
-      "A01": 2042.2585,
-      "A02": 2042.55575,
-      "A06": 2042.54325,
-      "A07": 2042.45125,
-      "A03": 2042.41125,
-      "A08": 2041.91025,
-      "A04": 2048.704,
-      "A09": 2048.25025,
+      "A01": 2049.14475,
+      "A02": 2048.7745,
+      "A06": 2048.7135,
+      "A07": 2049.01175,
+      "A03": null,
+      "A08": null,
+      "A04": 2049.6,
+      "A09": 2049.10825,
       "A05": null,
       "A10": null,
       "A11": null,
-      "P01": 2037.342,
-      "P02": 2040.07275
+      "P01": 2039.382,
+      "P02": 2040.38075
     }
   }
 }

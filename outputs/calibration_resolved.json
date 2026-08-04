@@ -562,6 +562,11 @@
       }
     },
     "jump_correlation_note": "점프에 확산과 동일 ρ·연σ 적용 — 근사 (Merton 비판 R2)",
+    "mu_carbon": {
+      "KR": 0.0561283409,
+      "JP": 0.1433214892
+    },
+    "mu_carbon_definition": "X9 — ln(ℓ̄/현물)/mu_anchor_years; anchor 이후 drift 0 (수준 유지). 수익률 전망 아님: 시나리오 수준 도달 궤도의 파생값",
     "k_offcycle_mult": 1.4893617021,
     "t_required_source": "surrogate",
     "t_required_provisional": true,

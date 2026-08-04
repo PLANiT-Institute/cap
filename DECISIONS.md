@@ -17,7 +17,7 @@ Rules:
    Abstract-based summaries stay in `refs.bib` as a map, not as support
    (the lesson of `PAPER_DIFF.md` D8 and D18).
 
-Status: **OPEN 2 (X1, X3 — boundary check pending) · RESOLVED 6** (updated 2026-07-29)
+Status: **OPEN 2 (X1, X3 — boundary check pending) · RESOLVED 7** (updated 2026-08-03)
 
 ---
 
@@ -109,6 +109,17 @@ uniform λ and λ_k side by side. POSCO's carbon share moves 31.6% → 39.8%
 
 ---
 
+### X9. Carbon-price process in the LSM `RESOLVED (2026-08-03)`
+
+| | |
+|---|---|
+| Problem | μ_carbon (0.086) entered as a scenario anchor (ln(ℓ̄/spot)/15y, PAPER_DIFF 갱신 2026-07-22) and was propagated into the exercise value by the drift-consistency fix (갱신 5). Net effect: a **perpetual compound growth forecast the project never made**. Simulated KR carbon mean reaches ~$300 by 2061 vs scenario max $85; μ > WACC for every priced firm except Hyundai (δ = r − μ < 0, supercritical waiting); σ↑ **accelerates** τ* (12/12 seeds, all three τ definitions); σ-cutting contracts (H₂ CfD) delay τ* by collapsing p_exercised (0.74→0.58) — opposite sign to theory/01·10; s12 meanwhile assumes `dp_delta = +0.05` (the opposite regime). Full audit: `FORMULA_LEDGER_2026-08-03.md` §D (R-1, R-2, R-5) |
+| Decision | Replace the perpetual GBM drift with a **scenario-anchored convergence path**: μ_t = ln(target/spot)/T_anchor for t ≤ anchor year, **0 after** — target and anchor horizon derived from the scenario table (the SSOT for price levels, per the calculator principle). μ_carbon is demoted from parameter to derived value. `dp_delta` is deleted; s12 derives δ from the same path so both lanes live in one world |
+| Rejected (a) | Keep the physical perpetual drift and headline "expectation-driven waiting" — rejected: it treats a mistranslation of a *level* scenario into a *growth* forecast as an economic finding. CAP forecasts no returns; scenarios drive levels |
+| Rejected (b) | Risk-adjusted drift (μ − risk premium) — rejected for now: imports an unidentified risk-price estimate (λ identification is OPEN); revisit in 2차 연구 if contract-price data arrives |
+| Blocks | S1 implementation; the sign of every intervention timing effect; View 1 waterfall (W4); theory/01·10 WEDGE prose |
+| Numeric shift | Pending implementation — τ*, wedge, intervention_impacts, level_wedge all recompute. Record in PAPER_DIFF on rerun (rule 8: no silent reconciliation) |
+
 ## Tier 3 — deferrable
 
 - **Paper spine**: whether anatomy is the main text and LEVEL/WEDGE the policy
@@ -134,4 +145,5 @@ uniform λ and λ_k side by side. POSCO's carbon share moves 31.6% → 39.8%
 | 2026-07-29 | X6 | Carbon-price prose must carry a reference date; config uses the 2026-06-30 KAU close ($14.93) | Undated citation — rejected: the break-even multiple moves 1/7↔1/3.3 with the date | none (rule) |
 | 2026-07-29 | X7 | Approve TZ-OSeMOSYS-STEEL as the Japanese required-pathway benchmark, normalized through state variables. Implementation ticket: extend `t_required_source` to record per-country sources | Forcing a single global IAM — rejected: GCAM-KAIST is Korea-specific | none yet (implementation pending) |
 | 2026-07-29 | X8 | Promote λ_k to a headline result: report shares under uniform λ and λ_k side by side | Keeping λ_k as side-robustness — rejected: A5 has zero supporting papers, seven against (D1) | presentation change; implementation with s12 |
+| 2026-08-03 | X9 | LSM carbon price: scenario-anchored convergence path (drift → 0 after anchor year); μ demoted to derived; `dp_delta` deleted, s12 δ from the same path | (a) keep perpetual physical drift — mistranslates a level scenario into a return forecast; (b) risk-adjusted drift — imports unidentified λ | pending rerun — τ*/wedge/interventions/level_wedge recompute; PAPER_DIFF on implementation |
 

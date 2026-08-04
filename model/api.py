@@ -339,12 +339,9 @@ def compute_fixed_exposure(overrides: dict | None = None) -> dict:
 
 def compute_full_counterfactual(overrides: dict | None = None) -> dict:
     """override 후 LSM τ*·pathway·condition gap까지 다시 푸는 순수 계산."""
-    cal, reference_l_bar, intervention_ids = _prepare_calibration(overrides)
-    tau_map, diagnostics = solve_tau_map(
-        cal,
-        intervention_ids=intervention_ids,
-        reference_l_bar=reference_l_bar,
-    )
+    cal, _, intervention_ids = _prepare_calibration(overrides)
+    # X9: drift는 build_spec이 유효 시나리오에서 직접 파생 — reference_l_bar 불필요
+    tau_map, diagnostics = solve_tau_map(cal, intervention_ids=intervention_ids)
     return _calculate(cal, tau_map, diagnostics, intervention_ids, "full_counterfactual")
 
 

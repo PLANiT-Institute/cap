@@ -585,11 +585,10 @@ def test_result_contract_is_attached_across_research_and_investor_artifacts():
 
 def test_internal_release_controls_and_validation_docs_exist():
     required_docs = {
-        "MILESTONE_20.md",
+        "STATUS.md",  # absorbs MILESTONE_20/30 + PUBLIC_RELEASE_CHECKLIST (2026-08-03)
         "RESULT_CONTRACT.md",
         "MODEL_CARD.md",
         "VALIDATION_PLAN.md",
-        "PUBLIC_RELEASE_CHECKLIST.md",
         "PILOT_CASE_TEMPLATE.md",
         ".github/workflows/ci.yml",
     }
@@ -751,7 +750,7 @@ def test_exercise_value_is_drift_consistent(cal):
 
     asset = cal.firms[cal.firms["category"] == "priced_route"].iloc[0].to_dict()
     spec = build_spec(cal, asset, asset["wacc"], 0)
-    assert spec.mu[0] > 0, "carbon μ가 양수라는 전제 (config sigmas.mu) — 바뀌면 이 테스트 재검토"
+    assert spec.mu[0] > 0, "X9: 현물 < ℓ̄이므로 파생 μ_carbon > 0 — 시나리오가 바뀌면 재검토"
     x = spec.x0[None, :]
     t = 1
     with_drift = exercise_value(spec, x, t)[0]
@@ -760,3 +759,45 @@ def test_exercise_value_is_drift_consistent(cal):
     without_drift = exercise_value(flat_spec, x, t)[0]
     # carbon 절감(+μ)과 h2/elec/capex 비용 하락(−μ) 모두 행사가치를 올린다
     assert with_drift > without_drift
+
+
+# --- X9 (2026-08-03): 탄소 drift는 시나리오-앵커 수렴 경로 — 수익률 전망 금지 ---
+
+
+def test_carbon_drift_is_scenario_anchored(cal):
+    """X9 회귀 3종.
+
+    1. 파생 μ_carbon = ln(ℓ̄/현물)/anchor — 시나리오 표가 유일한 원천.
+    2. anchored_growth_annuity 항등: g=0→annuity, g≥n→growth_annuity, μ=0→annuity.
+    3. 시뮬레이션 E[P_carbon]가 anchor에서 ℓ̄에 도달하고 이후 복리 상승하지 않는다
+       (지평말 기대가가 ℓ̄의 배수로 발산하던 R-5 회귀 방지)."""
+    from model.lib.finance import annuity, anchored_growth_annuity, growth_annuity
+    from model.lib.lsm_engine import simulate_paths
+    from model.s03_lsm import build_spec
+
+    anchor = float(cal.lsm["mu_anchor_years"])
+    for country, spot_key in (("KR", "carbon_base_kr"), ("JP", "carbon_base_jp")):
+        expected = float(np.log(cal.l_bar[country] / cal.pricing[spot_key]) / anchor)
+        assert cal.mu_carbon[country] == pytest.approx(expected)
+
+    r = float(cal.firms["wacc"].iloc[0])
+    mu = cal.mu_carbon["KR"]
+    for n in (1.0, 10.0, 35.0):
+        assert anchored_growth_annuity(r, mu, n, 0.0) == pytest.approx(annuity(r, n))
+        assert anchored_growth_annuity(r, mu, n, n) == pytest.approx(growth_annuity(r, mu, n))
+        assert anchored_growth_annuity(r, 0.0, n, anchor) == pytest.approx(annuity(r, n))
+
+    asset = cal.firms[cal.firms["category"] == "priced_route"].iloc[0].to_dict()
+    spec = build_spec(cal, asset, asset["wacc"], 0)
+    country = asset["country"]
+    paths = simulate_paths(spec)
+    e_anchor = float(paths[:, int(anchor), 0].mean())
+    e_end = float(paths[:, -1, 0].mean())
+    # 이론 기대값: anchor 시점 E[P] = 현물·e^{μ·anchor} = ℓ̄ (정확 항등)
+    assert spec.x0[0] * np.exp(spec.mu[0] * anchor) == pytest.approx(cal.l_bar[country])
+    # MC 허용오차 내 도달 + 이후 발산 없음 (E[P]는 anchor 후 평평 — martingale)
+    mc_tol = 0.15
+    assert abs(e_anchor - cal.l_bar[country]) / cal.l_bar[country] < mc_tol
+    assert abs(e_end - e_anchor) / e_anchor < mc_tol
+    # 앵커 벡터: 탄소만 유한, 비탄소(학습곡선 μ)는 영구 — X9 범위 명시
+    assert np.isfinite(spec.mu_anchor_t[0]) and np.isinf(spec.mu_anchor_t[1:]).all()

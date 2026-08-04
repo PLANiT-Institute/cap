@@ -33,7 +33,6 @@ def build_spec(
     rate: float,
     seed_offset: int,
     ps: ParamSet | None = None,
-    reference_l_bar: dict[str, float] | None = None,
 ) -> LsmSpec:
     route = cal.routes.set_index("route").loc[asset["route"]]
     country = asset["country"]
@@ -44,15 +43,12 @@ def build_spec(
     sig = sig.copy()
     sig[1], sig[2], sig[3] = ps.sigma_h2, ps.sigma_elec, ps.sigma_feedstock
     mu = cal.mu_vector(asset["elec_driver"]).copy()
-    # carbon_reform → ℓ̄ 이동을 drift 재앵커로 반영 (근사; mu_anchor_years는 config)
-    base_regime = base_params(cal, route, country, asset["elec_driver"]).carbon
-    reference_level = (
-        base_regime.l_bar
-        if reference_l_bar is None
-        else float(reference_l_bar[country])
-    )
-    if ps.carbon.l_bar != reference_level:
-        mu[0] += float(np.log(ps.carbon.l_bar / reference_level)) / cal.lsm["mu_anchor_years"]
+    # X9: 탄소 drift = 현물 → ps.carbon.l_bar (개입·오버라이드 반영) 수렴 궤도의 파생값.
+    # anchor 연한 도달 후 drift 0 (수준 유지) — 수익률 전망 아님, 시나리오 번역.
+    anchor_years = float(cal.lsm["mu_anchor_years"])
+    mu[0] = float(np.log(ps.carbon.l_bar / p_carbon)) / anchor_years
+    # 비탄소 드라이버(학습곡선 μ)는 현행 유지 — 앵커 없음 (np.inf). 별도 결정 대상.
+    mu_anchor_t = np.array([anchor_years, np.inf, np.inf, np.inf, np.inf])
     base_year = int(cal.lsm["base_year"])
     return LsmSpec(
         x0=np.array([
@@ -64,6 +60,7 @@ def build_spec(
         ]),
         sigma=sig,
         mu=mu,
+        mu_anchor_t=mu_anchor_t,
         rho=rho,
         delta_intensity=asset["emission_intensity_tco2_t"] - route["residual_intensity_tco2_t"],
         q_h2=route["q_h2_kg_t"],
@@ -93,12 +90,11 @@ def tau_year_of(cal: CalibrationSet, res: dict) -> float | None:
 def solve_tau_map(
     cal: CalibrationSet,
     intervention_ids: list[str] | None = None,
-    reference_l_bar: dict[str, float] | None = None,
 ) -> tuple[dict[str, float | None], list[dict]]:
     """파일을 읽거나 쓰지 않고 자산별 τ*를 다시 푼다.
 
-    ``reference_l_bar``는 API scenario override 전의 기대 탄소가격이다. 이를 넘기면
-    override가 만든 기대가격 이동이 LSM drift에 반영된다. 배치 의무(T_required)는
+    탄소 drift는 build_spec이 유효 시나리오(ps.carbon.l_bar)에서 직접 파생하므로
+    (X9), 오버라이드·개입에 의한 기대수준 이동이 자동 반영된다. 배치 의무(T_required)는
     별도 층이므로 사적 최적 전환을 푸는 이 함수가 변경하지 않는다.
     """
     ids = intervention_ids or []
@@ -119,14 +115,7 @@ def solve_tau_map(
             else None
         )
         result = lsm_tau_star(
-            build_spec(
-                cal,
-                asset,
-                asset["wacc"],
-                seed_offset,
-                ps,
-                reference_l_bar=reference_l_bar,
-            ),
+            build_spec(cal, asset, asset["wacc"], seed_offset, ps),
             tau_threshold=threshold,
         )
         tau_year = tau_year_of(cal, result)

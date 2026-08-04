@@ -109,7 +109,10 @@ def firm_level_wedge(cal: CalibrationSet, firm_rows, reform: bool) -> dict:
     sigma_gap_usd = float(np.sqrt(max(total_var, 0.0)))
     sigma_project = sigma_gap_usd / gross if gross > 0 else 0.0
 
-    delta = float(cal.lsm["dp_delta"])  # engine parameter (config/sheets/lsm.csv) — DP standard illustration value
+    # X9: δ는 가정 상수(dp_delta)가 아니라 파생 — 시나리오-앵커 경로에서 앵커 도달
+    # 이후 기대성장 0 ⇒ δ = r − 0 = r. 이 폐형해 레인은 수렴 후 세계(정상상태)의
+    # 대기 프리미엄을 근사한다. 수렴 전 구간의 타이밍은 LSM(s03)의 소관.
+    delta = wacc
     m_project = dp_multiple(sigma_project, wacc, delta) if sigma_project > 0 else 1.0
     m_carbon_only = dp_multiple(sigma_carbon, wacc, delta)
 
@@ -164,7 +167,7 @@ def build(cal: CalibrationSet) -> dict:
             "metric_id": LEVEL_WEDGE_METRIC,
             "basis_id": LEVEL_WEDGE_BASIS,
             "evidence_grade": "MODEL_CONDITIONAL",
-            "uncertainty": "perpetual-option closed form; capex annuity life; delta proxy from drifts",
+            "uncertainty": "perpetual-option closed form; capex annuity life; delta = r (X9 post-anchor steady state, no assumed dp_delta)",
             "interpretation": "intuition and cross-check for the LSM lane, not a pricing output",
         },
         "firms": firms,

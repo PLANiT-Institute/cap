@@ -43,7 +43,7 @@
     "metric_id": "level_wedge_usd_t",
     "basis_id": "project_levelized.closed_form_approximation.derived_coefficients",
     "evidence_grade": "MODEL_CONDITIONAL",
-    "uncertainty": "perpetual-option closed form; capex annuity life; delta proxy from drifts",
+    "uncertainty": "perpetual-option closed form; capex annuity life; delta = r (X9 post-anchor steady state, no assumed dp_delta)",
     "interpretation": "intuition and cross-check for the LSM lane, not a pricing output"
   },
   "firms": [
@@ -80,13 +80,13 @@
           "capex": 0.0290905615
         },
         "sigma_project": 0.1742999785,
-        "trigger_multiple_project": 1.8229640954,
-        "wedge_usd_t": 107.7882437266,
+        "trigger_multiple_project": 1.6627731666,
+        "wedge_usd_t": 86.8071353489,
         "legacy_attribution": {
           "note": "toy method — m(sigma_carbon) attributes ALL project volatility to carbon; kept for lineage, do not cite",
           "sigma_carbon": 0.3971654967,
-          "trigger_multiple_carbon_only": 3.3879677976,
-          "wedge_usd_t_overstated": 312.765595012
+          "trigger_multiple_carbon_only": 3.0430368374,
+          "wedge_usd_t_overstated": 267.5880439912
         }
       },
       "reform": {
@@ -100,8 +100,8 @@
           "capex": 0.0017281706
         },
         "sigma_project": 0.3757847947,
-        "trigger_multiple_project": 3.203116811,
-        "wedge_usd_t": 135.2176899023
+        "trigger_multiple_project": 2.8808271408,
+        "wedge_usd_t": 115.4369572263
       }
     },
     {
@@ -137,13 +137,13 @@
           "capex": 0.0492714438
         },
         "sigma_project": 0.1667398045,
-        "trigger_multiple_project": 1.7830646337,
-        "wedge_usd_t": 85.7169565499,
+        "trigger_multiple_project": 1.627208562,
+        "wedge_usd_t": 68.656413206,
         "legacy_attribution": {
           "note": "toy method — m(sigma_carbon) attributes ALL project volatility to carbon; kept for lineage, do not cite",
           "sigma_carbon": 0.3971654967,
-          "trigger_multiple_carbon_only": 3.3879677976,
-          "wedge_usd_t_overstated": 261.3951941287
+          "trigger_multiple_carbon_only": 3.0430368374,
+          "wedge_usd_t_overstated": 223.6378611366
         }
       },
       "reform": {
@@ -157,8 +157,8 @@
           "capex": 0.0064465753
         },
         "sigma_project": 0.2995850176,
-        "trigger_multiple_project": 2.6062678467,
-        "wedge_usd_t": 95.4740714413
+        "trigger_multiple_project": 2.355996158,
+        "wedge_usd_t": 80.5983101325
       }
     },
     {
@@ -194,13 +194,13 @@
           "capex": 0.002328309
         },
         "sigma_project": 0.2494832208,
-        "trigger_multiple_project": 2.2646036411,
-        "wedge_usd_t": 480.5465239383,
+        "trigger_multiple_project": 2.0544964417,
+        "wedge_usd_t": 400.7062632812,
         "legacy_attribution": {
           "note": "toy method — m(sigma_carbon) attributes ALL project volatility to carbon; kept for lineage, do not cite",
           "sigma_carbon": 0.3971654967,
-          "trigger_multiple_carbon_only": 3.3879677976,
-          "wedge_usd_t_overstated": 907.4223631024
+          "trigger_multiple_carbon_only": 3.0430368374,
+          "wedge_usd_t_overstated": 776.3493782206
         }
       },
       "reform": {
@@ -214,8 +214,8 @@
           "capex": 0.0017948331
         },
         "sigma_project": 0.2418203384,
-        "trigger_multiple_project": 2.215761935,
-        "wedge_usd_t": 366.792626565
+        "trigger_multiple_project": 2.0113072292,
+        "wedge_usd_t": 305.1091041439
       }
     },
     {
@@ -251,13 +251,13 @@
           "capex": 0.0036130953
         },
         "sigma_project": 0.2282585248,
-        "trigger_multiple_project": 2.3946137053,
-        "wedge_usd_t": 483.7420699625,
+        "trigger_multiple_project": 1.7880905748,
+        "wedge_usd_t": 273.360690862,
         "legacy_attribution": {
           "note": "toy method — m(sigma_carbon) attributes ALL project volatility to carbon; kept for lineage, do not cite",
           "sigma_carbon": 0.3971654967,
-          "trigger_multiple_carbon_only": 3.6685200913,
-          "wedge_usd_t_overstated": 925.6150486735
+          "trigger_multiple_carbon_only": 2.6782206478,
+          "wedge_usd_t_overstated": 582.1152674198
         }
       },
       "reform": {
@@ -271,8 +271,8 @@
           "capex": 0.0026720262
         },
         "sigma_project": 0.228803231,
-        "trigger_multiple_project": 2.3979836532,
-        "wedge_usd_t": 381.7587509711
+        "trigger_multiple_project": 1.7905042321,
+        "wedge_usd_t": 215.8694113292
       }
     }
   ]
