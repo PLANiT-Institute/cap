@@ -44,12 +44,13 @@
     }
   },
   "conditional_on": [
+    "firms_registry",
     "interventions",
     "routes_sensitivity"
   ],
   "input_status": {
     "exposure_model": "model",
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "routes_sensitivity": "assumed",
     "t_required": "provisional",
     "carbon_base_jp": "banded",

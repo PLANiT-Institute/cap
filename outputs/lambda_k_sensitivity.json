@@ -21,6 +21,7 @@
     }
   },
   "conditional_on": [
+    "firms_registry",
     "lambda",
     "rho_feedstock_carbon",
     "routes_sensitivity",
@@ -29,7 +30,7 @@
   ],
   "input_status": {
     "exposure_model": "model",
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "lambda": "assumed",
     "rho_feedstock_carbon": "assumed",
     "rho_h2_elec": "banded",

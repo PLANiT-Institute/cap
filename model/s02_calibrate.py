@@ -146,6 +146,18 @@ def _annualized_sigma(returns: pd.Series) -> float:
     return float(returns.std() * np.sqrt(TRADING_DAYS))
 
 
+# status 집계는 최악 우선 — 한 행이라도 assumed면 테이블 전체가 assumed로 흐른다
+STATUS_RANK = ("measured", "banded", "provisional", "assumed")
+
+
+def _worst_status(col: pd.Series) -> str:
+    present = {str(v) for v in col.dropna()}
+    for s in reversed(STATUS_RANK):
+        if s in present:
+            return s
+    return "assumed"
+
+
 def _t_required(
     firms: pd.DataFrame, lsm: dict[str, float]
 ) -> tuple[dict[str, dict], str, dict[str, dict]]:
@@ -392,8 +404,10 @@ def load_calibration() -> CalibrationSet:
     status["scenarios"] = "assumed"  # 시나리오 확률에 시장 규율 부재 (R2)
     status["p_bind"] = "assumed"  # 파생이지만 원천(시나리오 확률)이 assumed
     status["ev_usd_bn"] = "assumed"
-    status["firms_registry"] = str(firms["status"].mode()[0])
-    status["routes_sensitivity"] = str(routes["status"].mode()[0])
+    # 최악 status로 집계 — mode()는 소수의 assumed 행(archetype)을 삼켜 배지를 지웠다
+    # (감사 2026-08-04). 규칙 4: assumed가 하나라도 있으면 결과에 conditional_on이 붙는다.
+    status["firms_registry"] = _worst_status(firms["status"])
+    status["routes_sensitivity"] = _worst_status(routes["status"])
     status["interventions"] = "assumed"
     status["transaction_assumptions"] = str(transaction_assumptions["status"].mode()[0])
     status["t_required"] = "provisional"

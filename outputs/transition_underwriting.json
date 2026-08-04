@@ -75,6 +75,7 @@
   },
   "conditional_on": [
     "ev_usd_bn",
+    "firms_registry",
     "interventions",
     "k",
     "lambda",
@@ -86,7 +87,7 @@
   ],
   "input_status": {
     "exposure_model": "model",
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "rho_feedstock_carbon": "assumed",
     "rho_h2_elec": "banded",
     "routes_sensitivity": "assumed",

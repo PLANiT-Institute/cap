@@ -150,6 +150,20 @@ registry:
     units: "n/a"
     license: "internal"
 
+  - pattern: "gcam/gcam_kaist_1p0_NZ2050_korea_ghg_constraint*.xml"
+    contents: "GCAM-KAIST 1.0 한국 NZ2050 정책 입력 XML — South Korea GHG market 배출 제약 (2025 691 → 2050 66 MtCO2e). NZ2050·NZ2050_Nuc·NZ2050_limCCS·NZ2050_Nuc_NoCCS 네 config 전부 _LUC 판을 로드. noLUC 판은 대조용"
+    source: "Zenodo 10.5281/zenodo.14171830 — Kim, Hanwoong (Princeton), 'GCAM KAIST 1.0 input files and database', 2024-11-15, CC BY 4.0 (Input_Korea_GCAM-KAIST_1.0.zip 내부)"
+    collected: "2026-08-04"
+    units: "MtCO2e/yr"
+    license: "CC BY 4.0 — 저작자 표시 필수"
+
+  - pattern: "gcam/gcam_kaist_NZ2050_korea_ghg_constraint.csv"
+    contents: "위 XML의 기계판독 파생 (year, ghg_constraint_mtco2e) — 파생값이며 원본은 XML"
+    source: "본 리포 파생 (Zenodo 14171830에서 추출)"
+    collected: "2026-08-04"
+    units: "MtCO2e/yr"
+    license: "CC BY 4.0 (원자료 상속)"
+
   - pattern: "kau/icap_systems_*.json"
     contents: "ICAP Allowance Price Explorer 전체 덤프 — KEA(id 8) secondary 시장 KAU 일별 [USD, EUR, KRW] 2015-01-12~"
     source: "allowancepriceexplorer.icapcarbonaction.com /api/systems (ICAP)"

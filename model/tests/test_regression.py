@@ -275,6 +275,52 @@ def test_tau_threshold_fragility_is_flagged(cal):
         assert a["tau_threshold_fragile"] == (abs(a["p_exercised"] - thr) <= band)
 
 
+# 감사 2026-08-04: config/firms.csv가 raw 자산 레지스트리에서 조용히 이탈하지 않는다
+def test_config_firms_match_raw_asset_registry():
+    """raw ↔ config drift 가드. config의 capacity_mt_yr는 raw의 crude_steel_mt_yr
+    (nameplate가 아니라 실생산)이라는 규약도 함께 고정 — 이름과 내용이 다른 것이
+    발견된 지점이므로 테스트가 그 규약의 문서다."""
+    raw = pd.read_csv(ROOT / "data/raw/assets/assets_blast_furnace.csv").set_index("asset_id")
+    cfg = pd.read_csv(ROOT / "config/firms.csv").set_index("asset_id")
+    steel = cfg[cfg["sector"] == "steel"]
+    assert set(steel.index) == set(raw.index), "config 철강 자산 집합이 raw와 다르다"
+    for aid, row in steel.iterrows():
+        r = raw.loc[aid]
+        assert row["facility"] == r["facility"], f"{aid} facility"
+        assert row["unit_number"] == r["bf_number"], f"{aid} unit_number"
+        assert float(row["capacity_mt_yr"]) == pytest.approx(float(r["crude_steel_mt_yr"])), (
+            f"{aid}: config capacity_mt_yr는 raw crude_steel_mt_yr 규약"
+        )
+        assert float(row["emission_intensity_tco2_t"]) == pytest.approx(
+            float(r["emission_intensity_tCO2_t"])
+        ), f"{aid} emission intensity drift"
+        assert int(row["next_investment_year"]) == int(r["next_reline_year_est"]), f"{aid} reline"
+
+
+# 감사 2026-08-04: 소수 status가 mode()에 삼켜지지 않는다 (규칙 4 전파)
+def test_minority_assumed_status_is_not_swallowed(cal):
+    """archetype 행이 assumed면 firms_registry status도 assumed여야 한다 —
+    mode()는 11 banded vs 2 assumed에서 banded를 골라 배지를 지웠다."""
+    firms = cal.firms
+    if (firms["status"] == "assumed").any():
+        assert cal.param_status["firms_registry"] == "assumed", (
+            "assumed 행이 있는데 firms_registry가 assumed가 아니다 — status 전파 유실"
+        )
+
+
+# 감사 2026-08-04: s02가 소비하는 processed 파일이 raw와 동기화된다 (ingest 도달성)
+def test_consumed_processed_tables_track_raw():
+    """capex_refs·prices는 s02가 읽는다. 이 둘을 쓰는 코드가 도달불가 상태로
+    방치되면 raw 수정이 모델에 반영되지 않는다 (2026-08-04에 발견된 실제 결함)."""
+    for raw_rel, proc_rel, key in [
+        ("data/raw/capex_refs/capex_h2dri_references.csv", "data/processed/capex_refs.parquet", "item_id"),
+        ("data/raw/opex_energy/price_parameters.csv", "data/processed/prices.parquet", "price_id"),
+    ]:
+        raw = pd.read_csv(ROOT / raw_rel)
+        proc = pd.read_parquet(ROOT / proc_rel)
+        assert set(raw[key]) == set(proc[key]), f"{proc_rel}가 {raw_rel}와 불일치 — ingest 미도달"
+
+
 # S2 수용 기준: 실물옵션 채널과 금융 채널의 Δτ*가 별도 필드 — 합산 전 부호 판독 가능
 def test_financing_channel_is_separate_and_conditional():
     imp = art("intervention_impacts")

@@ -82,6 +82,21 @@ def ingest_simple_tables() -> None:
     pd.read_csv(RAW / "production" / "company_production.csv").to_parquet(
         PROCESSED / "production.parquet", index=False
     )
+    # 아래 4개는 s02가 소비한다 (capex_refs → k_offcycle_mult, prices → reference_prices).
+    # 2026-08-04 감사: 이 블록이 ingest_candidate_tables의 `return` 뒤 도달불가 코드로
+    # 방치돼 7-26 스냅샷에 동결돼 있었다 — raw를 고쳐도 모델이 안 따라오는 잠재 drift.
+    pd.read_csv(RAW / "opex_energy" / "intensity_coefficients.csv").to_parquet(
+        PROCESSED / "intensities.parquet", index=False
+    )
+    pd.read_csv(RAW / "opex_energy" / "price_parameters.csv").to_parquet(
+        PROCESSED / "prices.parquet", index=False
+    )
+    pd.read_csv(RAW / "capex_refs" / "capex_h2dri_references.csv").to_parquet(
+        PROCESSED / "capex_refs.parquet", index=False
+    )
+    pd.read_csv(RAW / "research" / "CAP_instruments_2026-07-03.csv").to_parquet(
+        PROCESSED / "instruments.parquet", index=False
+    )
 
 
 def ingest_candidate_tables() -> list[dict]:
@@ -148,18 +163,6 @@ def ingest_candidate_tables() -> list[dict]:
         + "\n"
     )
     return contracts
-    pd.read_csv(RAW / "opex_energy" / "intensity_coefficients.csv").to_parquet(
-        PROCESSED / "intensities.parquet", index=False
-    )
-    pd.read_csv(RAW / "opex_energy" / "price_parameters.csv").to_parquet(
-        PROCESSED / "prices.parquet", index=False
-    )
-    pd.read_csv(RAW / "capex_refs" / "capex_h2dri_references.csv").to_parquet(
-        PROCESSED / "capex_refs.parquet", index=False
-    )
-    pd.read_csv(RAW / "research" / "CAP_instruments_2026-07-03.csv").to_parquet(
-        PROCESSED / "instruments.parquet", index=False
-    )
 
 
 def ingest_optional_timeseries() -> list[str]:

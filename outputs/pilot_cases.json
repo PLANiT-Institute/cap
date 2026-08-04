@@ -31,12 +31,13 @@
     }
   },
   "conditional_on": [
+    "firms_registry",
     "interventions",
     "routes_sensitivity",
     "transaction_assumptions"
   ],
   "input_status": {
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "interventions": "assumed",
     "routes_sensitivity": "assumed",
     "transaction_assumptions": "assumed",
@@ -105,7 +106,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "32f170ea575412494f884cff0b54c0578171c7c8d6e49244556933fd83682a2d",
+        "input_fingerprint_sha256": "c6bea47031ad76d70ff4a2535fbb97ee6dbf5832de26bd51f61e6b90ec4eef8a",
         "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {
@@ -341,7 +342,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "32f170ea575412494f884cff0b54c0578171c7c8d6e49244556933fd83682a2d",
+        "input_fingerprint_sha256": "c6bea47031ad76d70ff4a2535fbb97ee6dbf5832de26bd51f61e6b90ec4eef8a",
         "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {

@@ -54,6 +54,7 @@
   },
   "conditional_on": [
     "ev_usd_bn",
+    "firms_registry",
     "interventions",
     "k",
     "lambda",
@@ -65,7 +66,7 @@
     "transaction_assumptions"
   ],
   "input_status": {
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "routes_sensitivity": "assumed",
     "scenarios": "assumed",
     "transaction_assumptions": "assumed",

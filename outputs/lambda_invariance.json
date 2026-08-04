@@ -28,6 +28,7 @@
   },
   "conditional_on": [
     "ev_usd_bn",
+    "firms_registry",
     "k",
     "rho_feedstock_carbon",
     "routes_sensitivity",
@@ -37,7 +38,7 @@
   "input_status": {
     "ev_usd_bn": "assumed",
     "exposure_model": "model",
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "k": "assumed",
     "rho_feedstock_carbon": "assumed",
     "rho_h2_elec": "banded",

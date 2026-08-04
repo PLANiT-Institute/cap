@@ -27,6 +27,7 @@
     }
   },
   "conditional_on": [
+    "firms_registry",
     "interventions",
     "routes_sensitivity"
   ],
@@ -34,7 +35,7 @@
     "carbon_base_jp": "banded",
     "carbon_base_kr": "measured",
     "exposure_model": "model",
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "routes_sensitivity": "assumed",
     "interventions": "assumed"
   },

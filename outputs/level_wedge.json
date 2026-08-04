@@ -26,13 +26,14 @@
     }
   },
   "conditional_on": [
+    "firms_registry",
     "routes_sensitivity",
     "transaction_assumptions"
   ],
   "input_status": {
     "carbon_base_jp": "banded",
     "carbon_base_kr": "measured",
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "routes_sensitivity": "assumed",
     "transaction_assumptions": "assumed",
     "rho_h2_elec": "banded",

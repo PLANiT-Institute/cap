@@ -41,7 +41,10 @@
 | `dart/dart_portfolio.json` | DART 포트폴리오 집계 JSON | DART OpenAPI 집계 (기존 repo 스크립트 산출) | 2026-07-04 | KRW tn, % | DART open data (derived) | `6017fb299bb0c015…` |
 | `dart/dart_portfolio_all.csv` | DART 포트폴리오 집계 (WACC 산출 입력) | DART OpenAPI 집계 (기존 repo 스크립트 산출) | 2026-07-04 | KRW tn, % | DART open data (derived) | `b42f2099187886de…` |
 | `financials/company_financials.csv` | 기업 재무 (매출·영업이익·이자부부채·자본·이자) | DART 연결재무제표 (005490, 004020) | 2026-06-30 | KRW tn | DART open data | `73af3663ad569d98…` |
-| `gcam/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `23ed9913817a9a19…` |
+| `gcam/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `05da043464dbacc4…` |
+| `gcam/gcam_kaist_1p0_NZ2050_korea_ghg_constraint.xml` | GCAM-KAIST 1.0 한국 NZ2050 정책 입력 XML — South Korea GHG market 배출 제약 (2025 691 → 2050 66 MtCO2e). NZ2050·NZ2050_Nuc·NZ2050_limCCS·NZ2050_Nuc_NoCCS 네 config 전부 _LUC 판을 로드. noLUC 판은 대조용 | Zenodo 10.5281/zenodo.14171830 — Kim, Hanwoong (Princeton), 'GCAM KAIST 1.0 input files and database', 2024-11-15, CC BY 4.0 (Input_Korea_GCAM-KAIST_1.0.zip 내부) | 2026-08-04 | MtCO2e/yr | CC BY 4.0 — 저작자 표시 필수 | `0b6d25cb72a50935…` |
+| `gcam/gcam_kaist_1p0_NZ2050_korea_ghg_constraint_noLUC.xml` | GCAM-KAIST 1.0 한국 NZ2050 정책 입력 XML — South Korea GHG market 배출 제약 (2025 691 → 2050 66 MtCO2e). NZ2050·NZ2050_Nuc·NZ2050_limCCS·NZ2050_Nuc_NoCCS 네 config 전부 _LUC 판을 로드. noLUC 판은 대조용 | Zenodo 10.5281/zenodo.14171830 — Kim, Hanwoong (Princeton), 'GCAM KAIST 1.0 input files and database', 2024-11-15, CC BY 4.0 (Input_Korea_GCAM-KAIST_1.0.zip 내부) | 2026-08-04 | MtCO2e/yr | CC BY 4.0 — 저작자 표시 필수 | `24b53b74bc0da904…` |
+| `gcam/gcam_kaist_NZ2050_korea_ghg_constraint.csv` | 위 XML의 기계판독 파생 (year, ghg_constraint_mtco2e) — 파생값이며 원본은 XML | 본 리포 파생 (Zenodo 14171830에서 추출) | 2026-08-04 | MtCO2e/yr | CC BY 4.0 (원자료 상속) | `091a4ef148198f86…` |
 | `jepx/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `75f2cc50f87d7ba8…` |
 | `kau/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `6218aaeaf8efb56e…` |
 | `kau/icap_systems_20260722.json` | ICAP Allowance Price Explorer 전체 덤프 — KEA(id 8) secondary 시장 KAU 일별 [USD, EUR, KRW] 2015-01-12~ | allowancepriceexplorer.icapcarbonaction.com /api/systems (ICAP) | 2026-07-22 | USD·EUR·KRW /tCO2 | ICAP published data, research use | `c5d0f5d465ff9445…` |
@@ -61,4 +64,4 @@
 | `route_costs/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `09f31dcc44f80e9e…` |
 | `smp/MISSING.md` | 미확보 데이터 명세 (KAU/SMP/JEPX/GCAM) | 본 리포 작성 (2026-07-22 자동수집 시도 실패 기록) | 2026-07-22 | n/a | internal | `e726de16cba20153…` |
 
-등록 파일 55개 · 출처불명 0개
+등록 파일 58개 · 출처불명 0개

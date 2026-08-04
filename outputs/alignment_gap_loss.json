@@ -33,6 +33,7 @@
   },
   "conditional_on": [
     "ev_usd_bn",
+    "firms_registry",
     "k",
     "lambda",
     "scenarios"
@@ -41,7 +42,7 @@
     "carbon_base_jp": "banded",
     "carbon_base_kr": "measured",
     "ev_usd_bn": "assumed",
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "k": "assumed",
     "lambda": "assumed",
     "scenarios": "assumed",

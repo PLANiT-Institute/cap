@@ -25,6 +25,7 @@
   },
   "conditional_on": [
     "ev_usd_bn",
+    "firms_registry",
     "k",
     "lambda",
     "p_bind",
@@ -36,7 +37,7 @@
   "input_status": {
     "ev_usd_bn": "assumed",
     "exposure_model": "model",
-    "firms_registry": "banded",
+    "firms_registry": "assumed",
     "k": "assumed",
     "lambda": "assumed",
     "p_bind": "assumed",
