@@ -275,6 +275,41 @@ def test_tau_threshold_fragility_is_flagged(cal):
         assert a["tau_threshold_fragile"] == (abs(a["p_exercised"] - thr) <= band)
 
 
+# S2 수용 기준: 실물옵션 채널과 금융 채널의 Δτ*가 별도 필드 — 합산 전 부호 판독 가능
+def test_financing_channel_is_separate_and_conditional():
+    imp = art("intervention_impacts")
+    key = "firms.interventions.delta.delta_tau_financing_channel_years"
+    deps = imp["claims"][key]["depends_on"]
+    for p in ("lambda", "k", "ev_usd_bn", "transaction_assumptions"):
+        assert p in deps, f"금융 채널 claim에 {p} 의존성 누락 — λ 오염이 은폐된다"
+    for p in ("lambda", "k", "transaction_assumptions"):
+        assert p in imp["conditional_on"]
+    saw_active = False
+    for f in imp["firms"]:
+        for iid, iv in f["interventions"].items():
+            fc = iv["financing_channel"]
+            assert iv["delta"]["delta_tau_total_years"] == pytest.approx(
+                iv["delta"]["tau_star_years"] + fc["delta_tau_financing_channel_years"]
+            )
+            if fc["excluded_direct_wacc_intervention"]:
+                # concessional 등 직접 WACC 개입: 이중계상 상호배제
+                assert fc["delta_tau_financing_channel_years"] == 0.0
+                continue
+            dc = iv["delta"]["risk_charge_bps"]
+            if dc != 0.0:
+                assert np.sign(fc["delta_wacc_bps"]) == np.sign(dc)
+            if fc["delta_tau_financing_channel_years"] != 0.0:
+                saw_active = True
+                # 점추정 금지: λ 밴드 존재
+                assert set(fc["band_years"]) == {"lambda_lo", "lambda_hi"}
+    assert saw_active, "금융 채널이 어디서도 작동하지 않으면 배선이 죽은 것"
+    # concessional은 반드시 제외돼야 한다 (직접 WACC 변환)
+    posco = next(f for f in imp["firms"] if f["firm_id"] == "POSCO")
+    assert posco["interventions"]["concessional"]["financing_channel"][
+        "excluded_direct_wacc_intervention"
+    ] is True
+
+
 # S3 수용 기준: 풀 마지막 자산 T_required가 지평말에 고정되는 성질 제거 (R-6)
 def test_required_endpoint_artifact_removed(cal):
     horizon_end = float(cal.lsm["base_year"] + cal.lsm["horizon_years"])

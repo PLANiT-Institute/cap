@@ -17,7 +17,28 @@
         "sigma_h2",
         "t_required"
       ],
-      "note": "coverage·tenor 1차 근사; τ*·경로·anatomy·수준 동시 재계산"
+      "note": "coverage·tenor 1차 근사; τ*·경로·anatomy·수준 동시 재계산 — tau_star_years는 실물옵션 채널만 (금융 채널 분리)"
+    },
+    "firms.interventions.delta.delta_tau_financing_channel_years": {
+      "status": "SCENARIO_CONDITIONAL",
+      "depends_on": [
+        "ev_usd_bn",
+        "exposure_model",
+        "firms_registry",
+        "interventions",
+        "k",
+        "lambda",
+        "rho_feedstock_carbon",
+        "rho_h2_elec",
+        "routes_sensitivity",
+        "scenarios",
+        "sigma_carbon_diffusion",
+        "sigma_feedstock",
+        "sigma_h2",
+        "t_required",
+        "transaction_assumptions"
+      ],
+      "note": "S2 금융 채널 1회 전파 — Δcharge(λ·k·p_bind 스케일)×debt_share 경유 ΔWACC로 τ* 재解. λ-free가 아님: 점추정 금지, financing_channel.band_years 밴드로 읽을 것. 직접 WACC 개입은 상호배제로 제외"
     },
     "firms.interventions.residual.risk_charge_bps_high_basis": {
       "status": "SCENARIO_CONDITIONAL",
@@ -82,7 +103,8 @@
     "rho_feedstock_carbon",
     "routes_sensitivity",
     "scenarios",
-    "sigma_feedstock"
+    "sigma_feedstock",
+    "transaction_assumptions"
   ],
   "input_status": {
     "exposure_model": "model",
@@ -99,6 +121,7 @@
     "ev_usd_bn": "assumed",
     "k": "assumed",
     "lambda": "assumed",
+    "transaction_assumptions": "assumed",
     "carbon_base_jp": "banded",
     "carbon_base_kr": "measured"
   },
@@ -184,6 +207,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -204,6 +229,23 @@
             "gap_risk_charge_bps": 15.0382822462,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -230,6 +272,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -250,6 +294,23 @@
             "gap_risk_charge_bps": 15.0382822462,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -276,6 +337,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -296,6 +359,23 @@
             "gap_risk_charge_bps": 15.0382822462,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": -8.62894e-05,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -322,6 +402,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 798.5804159653,
             "gap_risk_charge_bps": 0.5057627207,
@@ -342,6 +424,23 @@
             "gap_risk_charge_bps": 15.544044967,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 8.1990842621,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -368,6 +467,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 643.192323317,
             "gap_risk_charge_bps": 1.9761909295,
@@ -388,6 +489,23 @@
             "gap_risk_charge_bps": 17.0144731757,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": true,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "직접 WACC 개입 — 금융 채널 미적용 (이중계상 상호배제); WACC 효과는 실물옵션 채널 τ*에 이미 반영"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -414,6 +532,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -434,6 +554,23 @@
             "gap_risk_charge_bps": 15.0382822462,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -460,6 +597,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -480,6 +619,23 @@
             "gap_risk_charge_bps": 15.0382822462,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -506,6 +662,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 798.5804159653,
             "gap_risk_charge_bps": 0.5057627207,
@@ -526,6 +684,23 @@
             "gap_risk_charge_bps": 15.544044967,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 8.198954828,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -681,6 +856,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -701,6 +878,23 @@
             "gap_risk_charge_bps": 2.0086658908,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -727,6 +921,8 @@
           },
           "delta": {
             "tau_star_years": -0.09475,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": -0.09475,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -747,6 +943,23 @@
             "gap_risk_charge_bps": 2.0086658908,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0117997833,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -773,6 +986,8 @@
           },
           "delta": {
             "tau_star_years": -0.236,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": -0.236,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -793,6 +1008,23 @@
             "gap_risk_charge_bps": 2.0086658908,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0838932973,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": -0.0005
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -819,6 +1051,8 @@
           },
           "delta": {
             "tau_star_years": -0.21075,
+            "delta_tau_financing_channel_years": -0.01425,
+            "delta_tau_total_years": -0.225,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 77.9705401517,
             "gap_risk_charge_bps": 0.0675548117,
@@ -839,6 +1073,23 @@
             "gap_risk_charge_bps": 2.0762207026,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 3.1030294162,
+            "delta_tau_financing_channel_years": -0.01425,
+            "band_years": {
+              "lambda_lo": 0.00075,
+              "lambda_hi": 0.0205
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -865,6 +1116,8 @@
           },
           "delta": {
             "tau_star_years": 0.421,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.421,
             "cumulative_gap_mtco2": 1.183,
             "expected_pv_gap_loss_usd_m": 40.1449139226,
             "gap_risk_charge_bps": 0.0219208658,
@@ -885,6 +1138,23 @@
             "gap_risk_charge_bps": 2.0305867566,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": true,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "직접 WACC 개입 — 금융 채널 미적용 (이중계상 상호배제); WACC 효과는 실물옵션 채널 τ*에 이미 반영"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -911,6 +1181,8 @@
           },
           "delta": {
             "tau_star_years": 1.17275,
+            "delta_tau_financing_channel_years": 0.00725,
+            "delta_tau_total_years": 1.18,
             "cumulative_gap_mtco2": 2.366,
             "expected_pv_gap_loss_usd_m": 25.2750033344,
             "gap_risk_charge_bps": 0.2969443648,
@@ -931,6 +1203,23 @@
             "gap_risk_charge_bps": 2.3056102556,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": -1.4135978494,
+            "delta_tau_financing_channel_years": 0.00725,
+            "band_years": {
+              "lambda_lo": -0.00825,
+              "lambda_hi": 0.01125
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -957,6 +1246,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -977,6 +1268,23 @@
             "gap_risk_charge_bps": 2.0086658908,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -1003,6 +1311,8 @@
           },
           "delta": {
             "tau_star_years": 0.50525,
+            "delta_tau_financing_channel_years": 0.0025,
+            "delta_tau_total_years": 0.50775,
             "cumulative_gap_mtco2": 1.183,
             "expected_pv_gap_loss_usd_m": 96.8200970474,
             "gap_risk_charge_bps": 0.2247634255,
@@ -1023,6 +1333,23 @@
             "gap_risk_charge_bps": 2.2334293164,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 1.0760433389,
+            "delta_tau_financing_channel_years": 0.0025,
+            "band_years": {
+              "lambda_lo": 0.001,
+              "lambda_hi": 0.00025
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -1178,6 +1505,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -1198,6 +1527,23 @@
             "gap_risk_charge_bps": 6.4259428234,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -1224,6 +1570,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -1244,6 +1592,23 @@
             "gap_risk_charge_bps": 6.4259428234,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -1270,6 +1635,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -1290,6 +1657,23 @@
             "gap_risk_charge_bps": 6.4259428234,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": -0.0001183836,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -1316,6 +1700,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 181.9935551628,
             "gap_risk_charge_bps": 0.2161152632,
@@ -1336,6 +1722,23 @@
             "gap_risk_charge_bps": 6.6420580866,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 4.7526612191,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -1362,6 +1765,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 146.5811773413,
             "gap_risk_charge_bps": 0.8444375304,
@@ -1382,6 +1787,23 @@
             "gap_risk_charge_bps": 7.2703803538,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": true,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "직접 WACC 개입 — 금융 채널 미적용 (이중계상 상호배제); WACC 효과는 실물옵션 채널 τ*에 이미 반영"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -1408,6 +1830,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -1428,6 +1852,23 @@
             "gap_risk_charge_bps": 6.4259428234,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -1454,6 +1895,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -1474,6 +1917,23 @@
             "gap_risk_charge_bps": 6.4259428234,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -1500,6 +1960,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 181.9935551628,
             "gap_risk_charge_bps": 0.2161152632,
@@ -1520,6 +1982,23 @@
             "gap_risk_charge_bps": 6.6420580866,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 4.7524836438,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -1675,6 +2154,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -1695,6 +2176,23 @@
             "gap_risk_charge_bps": 2.000676919,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -1721,6 +2219,8 @@
           },
           "delta": {
             "tau_star_years": -0.092,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": -0.092,
             "cumulative_gap_mtco2": -2.34,
             "expected_pv_gap_loss_usd_m": -19.0922776788,
             "gap_risk_charge_bps": -0.1950015028,
@@ -1741,6 +2241,23 @@
             "gap_risk_charge_bps": 1.8056754163,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0159475381,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": -0.0025
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -1767,6 +2284,8 @@
           },
           "delta": {
             "tau_star_years": -0.407,
+            "delta_tau_financing_channel_years": -0.00325,
+            "delta_tau_total_years": -0.41025,
             "cumulative_gap_mtco2": -2.34,
             "expected_pv_gap_loss_usd_m": -19.0922776788,
             "gap_risk_charge_bps": -0.1950015028,
@@ -1787,6 +2306,23 @@
             "gap_risk_charge_bps": 1.8056754163,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.1629206197,
+            "delta_tau_financing_channel_years": -0.00325,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": -0.00425
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -1813,6 +2349,8 @@
           },
           "delta": {
             "tau_star_years": -0.12775,
+            "delta_tau_financing_channel_years": -0.016,
+            "delta_tau_total_years": -0.14375,
             "cumulative_gap_mtco2": -2.34,
             "expected_pv_gap_loss_usd_m": 53.2311994617,
             "gap_risk_charge_bps": -0.1645124627,
@@ -1833,6 +2371,23 @@
             "gap_risk_charge_bps": 1.8361644563,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 2.5604249227,
+            "delta_tau_financing_channel_years": -0.016,
+            "band_years": {
+              "lambda_lo": -0.00825,
+              "lambda_hi": -0.0195
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -1859,6 +2414,8 @@
           },
           "delta": {
             "tau_star_years": 0.37,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.37,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 30.2858226868,
             "gap_risk_charge_bps": -0.0573294924,
@@ -1879,6 +2436,23 @@
             "gap_risk_charge_bps": 1.9433474266,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": true,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "직접 WACC 개입 — 금융 채널 미적용 (이중계상 상호배제); WACC 효과는 실물옵션 채널 τ*에 이미 반영"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -1905,6 +2479,8 @@
           },
           "delta": {
             "tau_star_years": 1.1585,
+            "delta_tau_financing_channel_years": -0.005,
+            "delta_tau_total_years": 1.1535,
             "cumulative_gap_mtco2": 2.34,
             "expected_pv_gap_loss_usd_m": 17.8432501671,
             "gap_risk_charge_bps": 0.1822443951,
@@ -1925,6 +2501,23 @@
             "gap_risk_charge_bps": 2.1829213141,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": -1.4203228816,
+            "delta_tau_financing_channel_years": -0.005,
+            "band_years": {
+              "lambda_lo": -0.00025,
+              "lambda_hi": 0.00225
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -1951,6 +2544,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -1971,6 +2566,23 @@
             "gap_risk_charge_bps": 2.000676919,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -1997,6 +2609,8 @@
           },
           "delta": {
             "tau_star_years": 0.37575,
+            "delta_tau_financing_channel_years": -0.00275,
+            "delta_tau_total_years": 0.373,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 80.1339543728,
             "gap_risk_charge_bps": 0.0337816631,
@@ -2017,6 +2631,23 @@
             "gap_risk_charge_bps": 2.0344585822,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.7416562798,
+            "delta_tau_financing_channel_years": -0.00275,
+            "band_years": {
+              "lambda_lo": -0.00275,
+              "lambda_hi": -0.005
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -2172,6 +2803,8 @@
           },
           "delta": {
             "tau_star_years": 1.1558875,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 1.1558875,
             "cumulative_gap_mtco2": 14.4,
             "expected_pv_gap_loss_usd_m": 76.5692011079,
             "gap_risk_charge_bps": 0.2465878444,
@@ -2192,6 +2825,23 @@
             "gap_risk_charge_bps": 8.9754502713,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": -0.0379085364,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -2218,6 +2868,8 @@
           },
           "delta": {
             "tau_star_years": 0.3606375,
+            "delta_tau_financing_channel_years": -0.0001625,
+            "delta_tau_total_years": 0.360475,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -2238,6 +2890,23 @@
             "gap_risk_charge_bps": 8.728862427,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": -0.0171072482,
+            "delta_tau_financing_channel_years": -0.0001625,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": -0.0001625
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -2264,6 +2933,8 @@
           },
           "delta": {
             "tau_star_years": -1.1302375,
+            "delta_tau_financing_channel_years": -0.012675,
+            "delta_tau_total_years": -1.1429125,
             "cumulative_gap_mtco2": -19.44,
             "expected_pv_gap_loss_usd_m": -110.9416658263,
             "gap_risk_charge_bps": -0.3572829,
@@ -2284,6 +2955,23 @@
             "gap_risk_charge_bps": 8.3715795269,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": -0.030982992,
+            "delta_tau_financing_channel_years": -0.012675,
+            "band_years": {
+              "lambda_lo": -0.012675,
+              "lambda_hi": -0.0132
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -2310,6 +2998,8 @@
           },
           "delta": {
             "tau_star_years": -1.2400125,
+            "delta_tau_financing_channel_years": 0.020625,
+            "delta_tau_total_years": -1.2193875,
             "cumulative_gap_mtco2": -19.44,
             "expected_pv_gap_loss_usd_m": 1074.544699604,
             "gap_risk_charge_bps": -0.0757326027,
@@ -2330,6 +3020,23 @@
             "gap_risk_charge_bps": 8.6531298243,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 2.5712454316,
+            "delta_tau_financing_channel_years": 0.020625,
+            "band_years": {
+              "lambda_lo": 0.01895,
+              "lambda_hi": 0.0346125
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -2356,6 +3063,8 @@
           },
           "delta": {
             "tau_star_years": -0.5148625,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": -0.5148625,
             "cumulative_gap_mtco2": -14.4,
             "expected_pv_gap_loss_usd_m": 487.730584813,
             "gap_risk_charge_bps": -0.2062301896,
@@ -2376,6 +3085,23 @@
             "gap_risk_charge_bps": 8.5226322374,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": true,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "직접 WACC 개입 — 금융 채널 미적용 (이중계상 상호배제); WACC 효과는 실물옵션 채널 τ*에 이미 반영"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -2402,6 +3128,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -2422,6 +3150,23 @@
             "gap_risk_charge_bps": 8.728862427,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -2448,6 +3193,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -2468,6 +3215,23 @@
             "gap_risk_charge_bps": 8.728862427,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -2494,6 +3258,8 @@
           },
           "delta": {
             "tau_star_years": -0.9156625,
+            "delta_tau_financing_channel_years": -0.016075,
+            "delta_tau_total_years": -0.9317375,
             "cumulative_gap_mtco2": -14.4,
             "expected_pv_gap_loss_usd_m": 1118.1819520684,
             "gap_risk_charge_bps": 0.0240296559,
@@ -2514,6 +3280,23 @@
             "gap_risk_charge_bps": 8.7528920829,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 2.3387039375,
+            "delta_tau_financing_channel_years": -0.016075,
+            "band_years": {
+              "lambda_lo": -0.0018125,
+              "lambda_hi": -0.007925
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
@@ -2669,6 +3452,8 @@
           },
           "delta": {
             "tau_star_years": 1.1053068966,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 1.1053068966,
             "cumulative_gap_mtco2": 36.37,
             "expected_pv_gap_loss_usd_m": 120.3404116571,
             "gap_risk_charge_bps": 0.4862742036,
@@ -2689,6 +3474,23 @@
             "gap_risk_charge_bps": 12.9008311045,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0363809014,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.05; original volatility returns after tenor"
@@ -2715,6 +3517,8 @@
           },
           "delta": {
             "tau_star_years": 0.1515603448,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.1515603448,
             "cumulative_gap_mtco2": 8.4,
             "expected_pv_gap_loss_usd_m": 28.9789370916,
             "gap_risk_charge_bps": 0.1170987315,
@@ -2735,6 +3539,23 @@
             "gap_risk_charge_bps": 12.5316556324,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0026351965,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 40% plus basis sigma 0.03; spot exposure returns after tenor"
@@ -2761,6 +3582,8 @@
           },
           "delta": {
             "tau_star_years": -1.260962069,
+            "delta_tau_financing_channel_years": -6.72414e-05,
+            "delta_tau_total_years": -1.2610293103,
             "cumulative_gap_mtco2": -40.89,
             "expected_pv_gap_loss_usd_m": -148.3022979713,
             "gap_risk_charge_bps": -0.5992632138,
@@ -2781,6 +3604,23 @@
             "gap_risk_charge_bps": 11.8152936871,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": -0.1318531925,
+            "delta_tau_financing_channel_years": -6.72414e-05,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": -7.93103e-05
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "CAPEX level reduced 30%; capex volatility retained"
@@ -2807,6 +3647,8 @@
           },
           "delta": {
             "tau_star_years": -1.0184103448,
+            "delta_tau_financing_channel_years": 0.0304086207,
+            "delta_tau_total_years": -0.9880017241,
             "cumulative_gap_mtco2": -25.84,
             "expected_pv_gap_loss_usd_m": 1126.5203009005,
             "gap_risk_charge_bps": -0.1704153466,
@@ -2827,6 +3669,23 @@
             "gap_risk_charge_bps": 12.2441415543,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 4.5252161648,
+            "delta_tau_financing_channel_years": 0.0304086207,
+            "band_years": {
+              "lambda_lo": 0.0063948276,
+              "lambda_hi": 0.0406534483
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Moves half of status-quo probability to binding scenarios; recomputes level and jump variance"
@@ -2853,6 +3712,8 @@
           },
           "delta": {
             "tau_star_years": -0.5154,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": -0.5154,
             "cumulative_gap_mtco2": -12.92,
             "expected_pv_gap_loss_usd_m": 636.8469494927,
             "gap_risk_charge_bps": 0.2724734275,
@@ -2873,6 +3734,23 @@
             "gap_risk_charge_bps": 12.6870303284,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": true,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "직접 WACC 개입 — 금융 채널 미적용 (이중계상 상호배제); WACC 효과는 실물옵션 채널 τ*에 이미 반영"
           },
           "double_count_warning": false,
           "assumptions": "Avoid joint use with capex support without a double-counting review"
@@ -2899,6 +3777,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -2919,6 +3799,23 @@
             "gap_risk_charge_bps": 12.4145569009,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 30% plus basis sigma 0.06; grade and yield basis need diligence"
@@ -2945,6 +3842,8 @@
           },
           "delta": {
             "tau_star_years": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "delta_tau_total_years": 0.0,
             "cumulative_gap_mtco2": 0.0,
             "expected_pv_gap_loss_usd_m": 0.0,
             "gap_risk_charge_bps": 0.0,
@@ -2965,6 +3864,23 @@
             "gap_risk_charge_bps": 12.4145569009,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 0.0,
+            "delta_tau_financing_channel_years": 0.0,
+            "band_years": {
+              "lambda_lo": 0.0,
+              "lambda_hi": 0.0
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Residual 35% plus basis sigma 0.08; taxonomy and mass-balance verification required"
@@ -2991,6 +3907,8 @@
           },
           "delta": {
             "tau_star_years": -1.0533327586,
+            "delta_tau_financing_channel_years": 0.0064068966,
+            "delta_tau_total_years": -1.0469258621,
             "cumulative_gap_mtco2": -25.84,
             "expected_pv_gap_loss_usd_m": 1126.5203009005,
             "gap_risk_charge_bps": -0.1704153466,
@@ -3011,6 +3929,23 @@
             "gap_risk_charge_bps": 12.2441415543,
             "gap_charge_aggregation_warning": "separate basis; do not add to transition-cost risk_charge_bps",
             "note": "coverage·tenor·basis 반영 잔여 — 0으로 만들지 않음. high_basis는 헤지 유효성 실측이 낮다는 문헌(Peña 외 2024)의 최악 경계"
+          },
+          "financing_channel": {
+            "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
+            "excluded_direct_wacc_intervention": false,
+            "debt_share": 0.6,
+            "lambda_presets": {
+              "lo": 0.15,
+              "base": 0.4,
+              "hi": 0.65
+            },
+            "delta_wacc_bps": 4.2968419455,
+            "delta_tau_financing_channel_years": 0.0064068966,
+            "band_years": {
+              "lambda_lo": -0.0088672414,
+              "lambda_hi": 0.0140741379
+            },
+            "note": "λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"
           },
           "double_count_warning": false,
           "assumptions": "Concessional debt excluded; engine skips sector or route-inapplicable components"
