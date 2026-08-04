@@ -1,4 +1,12 @@
-# CAP — Carbon-transition Asset Pricing
+# CAP — Capital Allocation Pathway
+
+> **Name note (2026-08-03).** CAP has always been the Capital Allocation
+> Pathway project (knowledge-base reset 2026-06-09). The expansion
+> "Carbon-transition Asset Pricing" was introduced at the 2026-07-22 repo
+> rebuild around the paper's anatomy frame and is retired: asset pricing is
+> one translation layer of this engine, not its identity. Final plan:
+> [RESTRUCTURE_2026-08.md](RESTRUCTURE_2026-08.md) · review:
+> [REVIEW_2026-08.md](REVIEW_2026-08.md).
 
 > **Canonical-source declaration.** This repository is the single source of
 > truth (SSOT) for CAP's logic, theory, parameters, and code. Documents in the
@@ -13,61 +21,52 @@
 > [DATA_INTERFACE.md](DATA_INTERFACE.md) · terms: [GLOSSARY.md](GLOSSARY.md) ·
 > open judgement calls: [DECISIONS.md](DECISIONS.md).
 
-**Transition-risk underwriting + pathway decision system** for 11 blast
-furnaces across 5 Korean/Japanese steelmakers, plus 2 Korean/Japanese
-petrochemical NCC archetypes. Petrochemical asset, feedstock, and route figures
-are explicitly `assumed/provisional` inputs, not company measurements.
+## The question
 
-> CAP maps the gap between privately optimal and required decarbonization
-> pathways into a separate reduced-form scenario-loss distribution, independently
-> decomposes transition-cost uncertainty, and evaluates which interventions
-> change timing and each risk basis. The two charges are not added without a
-> joint covariance model.
+**Why does transition capital not flow to net zero, when and how much is
+needed, and what moves it?** Computed bottom-up for 11 blast furnaces across
+5 Korean/Japanese steelmakers (plus 2 petrochemical NCC archetypes kept as
+explicitly `assumed/provisional` calculation examples, not measurements).
 
-The causal chain: asset registry → privately optimal pathway (τ\*, LSM) →
-required pathway (T_required) → **condition gap** (cumulative excess
-emissions) → interventions (parameter transformations) → τ\* and pathways
-recomputed → residual-risk anatomy → **conditional risk charge**. The level
-(bps) is the conditional last step, not the starting point. The current
-implementation does not claim empirical identification of a market risk
-premium (P1 covers only the scalar λ·p_bind cancellation identity).
+The causal chain: asset registry → privately optimal switch timing (τ\*, LSM)
+→ required pathway (T_required, surrogate; sector pool allocated pro-rata by
+capacity under the reline investment-window constraint) → **condition gap**
+(cumulative excess emissions) → why capital waits (**LEVEL** = break-even
+shortfall · **WEDGE** = the extra waiting created by uncertainty through the
+m(σ) hurdle) → interventions as parameter transformations → τ\*, pathways and
+residual-risk anatomy recomputed → investor translation (conditional bps).
+The bps level is the conditional last step, not the starting point; waiting
+does not remove risk — it accumulates it as the gap.
 
-The product translates one computation engine into investor, corporate-finance,
-and transaction views:
+## Three views, one engine
 
-- **`/underwrite` — CAP Transition Risk Underwriter**: technology route → risk
-  anatomy → model-implied conditional spread → residual risk before/after
-  contracts. Relative value and λ×p_bind sensitivity for investors, contract
-  priorities for corporate finance, and route NPV/IRR/DSCR, required green
-  premium, break-even prices, and a cross-sector risk map for transactions.
-- **`/` — CAP Pathways**: private vs required pathways, cumulative condition
-  gap, and the actual investment-timing and emission-pathway effects of
-  interventions.
-
-Underwriter bps are not observed bond or loan spreads, and annual USD figures
-are not forecasts of realized financing savings. They are the same conditional
-risk charge applied to EV for comparison. Until contract-price data arrives,
-rankings are **benefit-only**.
+1. **LEVEL / WEDGE** — why and how late capital moves; emission effects of
+   interventions attributed by lever class (LEVEL levers / σ-cutting contract
+   levers / dual), order-averaged.
+2. **Risk anatomy** — what the uncertainty is made of, by driver, shown as
+   bands; each component carries its contract name and decision owner
+   (joint / public / lender). H₂-route firms read as a *composition*,
+   non-transitioning firms as a *concentration* (single carbon-policy
+   exposure no private contract can touch).
+3. **Investor translation** — σ_B, Δσ, Δbps, rankings and deal gates are
+   engine outputs; the pricing scale (λ, k, p_bind, EV) is the user's input
+   (`model/api.py compute`, defaults = config with status badges). Levels are
+   quoted only with their conditionality; Δ and rank are robust to the scale.
 
 Three principles: ① no numeric literals in code ② every output is a JSON
 artifact ③ every theoretical claim carries an anchor ID that config
-back-references. Details: [PLAN.md](PLAN.md) · [CLAUDE.md](CLAUDE.md) ·
-financial-product scope and data gates: [FINANCIAL_TOOL.md](FINANCIAL_TOOL.md)
+back-references. Details: [PLAN.md](PLAN.md) (original build spec) ·
+[CLAUDE.md](CLAUDE.md) · [RESTRUCTURE_2026-08.md](RESTRUCTURE_2026-08.md)
+(final update plan).
 
-The release stage is **INTERNAL_RESEARCH_PREVIEW**. The 10→20 implementation
-bar is [MILESTONE_20.md](MILESTONE_20.md), number-comparison rules are
-[RESULT_CONTRACT.md](RESULT_CONTRACT.md), research limits are
-[MODEL_CARD.md](MODEL_CARD.md), and the validation protocol is
-[VALIDATION_PLAN.md](VALIDATION_PLAN.md). External release is blocked until
-the 90-point gate in [PUBLIC_RELEASE_CHECKLIST.md](PUBLIC_RELEASE_CHECKLIST.md);
-real cases are recorded via [PILOT_CASE_TEMPLATE.md](PILOT_CASE_TEMPLATE.md).
-
-The current implementation level is **30/100, pilot-ready dry run**: the
-POSCO/NIPPON cases replay automatically from identical inputs and produce
-decision/basis/stress/provenance packs. Status and the 40-point blockers are
-in [MILESTONE_30.md](MILESTONE_30.md); generated packs live in
-`outputs/pilot_cases.json` and `outputs/pilots/*.md`. With no real transaction
-case and no executable quote, 40 points are not claimed.
+Release stage, implementation level (30/100), gates and external-release
+blockers: **[STATUS.md](STATUS.md)**. Number-comparison rules:
+[RESULT_CONTRACT.md](RESULT_CONTRACT.md) · research limits:
+[MODEL_CARD.md](MODEL_CARD.md) · validation protocol:
+[VALIDATION_PLAN.md](VALIDATION_PLAN.md) · real cases via
+[PILOT_CASE_TEMPLATE.md](PILOT_CASE_TEMPLATE.md). Underwriter bps are not
+observed bond or loan spreads; rankings are benefit-only until contract-price
+data arrives.
 
 ## One-command reproduction
 
@@ -93,7 +92,7 @@ Deploy: `make web && cd web && npx vercel deploy` (root `vercel.json` builds web
 | `outputs/` | one figure = one JSON + `manifest.json` (config hash, git SHA, seed). Fixed inputs make numerical artifacts deterministic; manifest run time is expected to change |
 | `theory/` | theory documents — anchors `{#id}` + live values `{{key}}` (auto-refreshed on rerun). `LEDGER.md` generated by `make ledger` |
 | `References/` | full-text-verified literature notes with verdicts (CONFIRMED / PARTIAL / UNVERIFIABLE / WRONG) |
-| `subprojects/` | isolated decision-layer experiments that consume core artifacts without changing the core model; currently `transition_decision_bridge/` |
+| `archive/` | superseded records, code and data — each batch carries a `TOMBSTONE.md`; never cite as current evidence |
 | `web/` | Next.js SSG — no computation; renders `outputs/*.json` with measured/banded/assumed badges |
 
 ## Ledger logic (one line)
@@ -103,9 +102,9 @@ Shares are **identity-invariant** to scalar λ·p_bind (P1) but
 absolute levels are **scenario-conditional risk charges**. Each artifact's
 `claims` block records per-result status (IDENTITY / MODEL_CONDITIONAL /
 SCENARIO_CONDITIONAL / EMPIRICAL / PROVISIONAL / OPEN) and parameter
-dependencies; the manifest records dirty state before and after generation plus code/config/data
-hashes. T_required is a provisional surrogate — not an empirically identified
-corporate obligation.
+dependencies; the manifest records dirty state before and after generation
+plus code/config/data hashes. T_required is a provisional surrogate — not an
+empirically identified corporate obligation.
 
 ## The calculator principle
 
@@ -156,16 +155,13 @@ pass a separate decarbonization-depth gate against the configured route, and
 technology/feedstock/infrastructure feasibility stays `OPEN`. Modelled
 contract prices, coverage, and tenor — and the must-have clauses before any
 signature — are auditable in `config/interventions.csv`; nothing is an
-executable offer or a lender term sheet. The web's contract efficient frontier
-is the non-dominated set by counterparty-adjusted ΔNPV and residual
-conditional risk charge — not an observed mean–variance frontier.
+executable offer or a lender term sheet.
 
 Petrochemicals are computed separately across `e_cracker`, `ccus_cracker`,
 and `circular_olefins` with their own feedstock, power, carbon, and CAPEX
-exposures — not steel numbers with new labels. At this stage NCC capacity, EV,
-WACC, feedstock prices, CAPEX, and T_required are archetype assumptions; before
-any corporate decision they must be replaced with actual cracker trains, feed
-slates, yields, energy balances, turnarounds, and contract quotes.
+exposures. NCC capacity, EV, WACC, feedstock prices, CAPEX, and T_required
+are archetype assumptions; the final plan (W1) schedules their demotion from
+headline outputs to calculation examples.
 
 File-invariant: neither computation mode touches config or outputs. The
 default mode is `fixed_exposure` for compatibility; pathway conclusions must

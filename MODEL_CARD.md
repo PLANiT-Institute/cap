@@ -2,7 +2,7 @@
 
 ## 1. 모델 정체성
 
-- 이름: CAP — Carbon-transition Asset Pricing
+- 이름: CAP — Capital Allocation Pathway (구명 "Carbon-transition Asset Pricing"은 2026-08-03 폐기 — README name note)
 - 릴리스 단계: `INTERNAL_RESEARCH_PREVIEW`
 - 현재 구현 수준: 30/100 pilot-ready dry run
 - 외부 공개 최소선: 90/100
@@ -71,7 +71,7 @@ API mode 분리, 거래 gate, artifact lineage, theory anchor, 정적 웹 build�
 dry-run 재실행을 포함한다. 자동 재실행은 독립 분석가 검토가 아니다. 아직 없는 것은 실제 거래
 holdout backtest, executable quote, 독립적인 외부 모델 검토, 사용자 오류율 측정, 다기관 재현이다.
 
-세부 프로토콜은 `VALIDATION_PLAN.md`, 공개 조건은 `PUBLIC_RELEASE_CHECKLIST.md`를 따른다.
+세부 프로토콜은 `VALIDATION_PLAN.md`, 공개 조건과 게이트는 `STATUS.md`를 따른다.
 
 ## 8. 변경 통제
 

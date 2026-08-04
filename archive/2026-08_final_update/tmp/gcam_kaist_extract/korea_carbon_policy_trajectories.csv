@@ -1,0 +1,195 @@
+file,region,policy,type,year,value_raw,value_2020USD_per_tCO2 (fixedTax only; deflator=1.73 ASSUMED)
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2025,673.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2030,538.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2035,403.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2040,269.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2045,134.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2045,130.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,fixedTax,2050,950.0,448.2
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2050,30.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2055,30.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2060,10.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2065,64.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2070,45.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2075,32.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2080,23.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2085,16.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2090,12.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2095,8.0,
+1p5_incr_UC_kor 원본.xml,South Korea,GHG,constraint,2100,6.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2025,675.5,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2030,548.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2035,420.5,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2040,293.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2045,165.5,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2050,37.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2055,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2060,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2065,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2070,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2075,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2080,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2085,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2090,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2095,5.0,
+1p5_incr_UC_kor.xml,South Korea,GHG,constraint,2100,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2025,691.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2030,558.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2035,435.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2040,312.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2045,189.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2050,66.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2055,5.10806,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2060,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2065,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2070,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2075,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2080,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2085,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2090,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2095,5.0,
+1p5_incr_UC_kor_LUC.xml,South Korea,GHG,constraint,2100,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2025,696.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2030,572.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2035,448.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2040,324.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2045,198.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2050,74.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2055,5.10806,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2060,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2065,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2070,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2075,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2080,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2085,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2090,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2095,5.0,
+1p5_incr_UC_kor_LUC_KEMF.xml,South Korea,GHG,constraint,2100,5.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,fixedTax,2025,155.0,73.1
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,fixedTax,2030,245.0,115.6
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,fixedTax,2035,262.0,123.6
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,fixedTax,2040,278.0,131.2
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,fixedTax,2045,292.0,137.8
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,fixedTax,2050,306.0,144.4
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2055,223.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2060,178.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2065,142.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2070,114.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2075,91.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2080,72.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2085,58.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2090,46.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2095,37.0,
+LEDS_incr_UC_kor_Med - 최근 버전.xml,South Korea,GHG,constraint,2100,29.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,fixedTax,2025,170.0,80.2
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,fixedTax,2030,260.0,122.7
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,fixedTax,2035,278.0,131.2
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,fixedTax,2040,295.0,139.2
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,fixedTax,2045,309.0,145.8
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,fixedTax,2050,325.0,153.3
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2055,223.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2060,178.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2065,142.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2070,114.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2075,91.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2080,72.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2085,58.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2090,46.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2095,37.0,
+LEDS_incr_UC_kor_Med.xml,South Korea,GHG,constraint,2100,29.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,fixedTax,2025,110.0,51.9
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,fixedTax,2030,200.0,94.4
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,fixedTax,2035,214.0,101.0
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,fixedTax,2040,227.0,107.1
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,fixedTax,2045,238.0,112.3
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,fixedTax,2050,250.0,118.0
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2055,223.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2060,178.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2065,142.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2070,114.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2075,91.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2080,72.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2085,58.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2090,46.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2095,37.0,
+LEDS_incr_UC_kor_Med_New - final.xml,South Korea,GHG,constraint,2100,29.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2025,697.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,fixedTax,2030,120.0,56.6
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,fixedTax,2035,123.0,58.0
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,fixedTax,2040,126.0,59.4
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,fixedTax,2045,129.0,60.9
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,fixedTax,2050,133.0,62.8
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2055,223.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2060,178.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2065,142.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2070,114.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2075,91.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2080,72.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2085,58.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2090,46.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2095,37.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_HighCCS.xml,South Korea,GHG,constraint,2100,29.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2025,697.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,fixedTax,2030,170.0,80.2
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,fixedTax,2035,174.0,82.1
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,fixedTax,2040,179.0,84.5
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,fixedTax,2045,183.0,86.3
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,fixedTax,2050,188.0,88.7
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2055,223.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2060,178.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2065,142.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2070,114.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2075,91.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2080,72.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2085,58.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2090,46.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2095,37.0,
+LEDS_incr_UC_kor_Med_New_HighNuc_lowCCS.xml,South Korea,GHG,constraint,2100,29.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2025,697.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,fixedTax,2030,215.0,101.4
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,fixedTax,2035,220.0,103.8
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,fixedTax,2040,226.0,106.6
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,fixedTax,2045,232.0,109.5
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,fixedTax,2050,238.0,112.3
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2055,223.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2060,178.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2065,142.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2070,114.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2075,91.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2080,72.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2085,58.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2090,46.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2095,37.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_LowCCS.xml,South Korea,GHG,constraint,2100,29.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2025,697.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,fixedTax,2030,180.0,84.9
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,fixedTax,2035,184.0,86.8
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,fixedTax,2040,189.0,89.2
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,fixedTax,2045,194.0,91.5
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,fixedTax,2050,199.0,93.9
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2055,223.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2060,178.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2065,142.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2070,114.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2075,91.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2080,72.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2085,58.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2090,46.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2095,37.0,
+LEDS_incr_UC_kor_Med_New_LowNuc_highCCS.xml,South Korea,GHG,constraint,2100,29.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2025,681.6,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2030,617.4,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2035,553.2,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2040,479.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2045,401.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2050,337.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2055,223.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2060,178.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2065,142.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2070,114.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2075,91.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2080,72.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2085,58.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2090,46.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2095,37.0,
+LEDS_incr_UC_kor_Med_ext.xml,South Korea,GHG,constraint,2100,29.0,

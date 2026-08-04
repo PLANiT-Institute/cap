@@ -1,6 +1,7 @@
-# CAP — Carbon-transition Asset Pricing
+# CAP — Capital Allocation Pathway
 
-한·일 철강 transition-risk premium의 anatomy. 상세 계획: `PLAN.md`. 이론: `theory/`.
+한·일 철강 전환자본이 언제·왜 움직이지 않는가의 anatomy — 리스크 프리미엄은 그 번역층.
+현행 계획: `RESTRUCTURE_2026-08.md` · 수준·게이트: `STATUS.md` · 역사: `PLAN.md`. 이론: `theory/`.
 
 ## 작업 규칙 (위반 시 빌드 실패)
 

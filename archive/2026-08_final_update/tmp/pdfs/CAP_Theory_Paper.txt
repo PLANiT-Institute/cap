@@ -1,0 +1,827 @@
+The Technology Bet Is the Risk Bet: Energy-Cost
+Certainty and the Transition-Risk Premium in
+Steel
+Why deep decarbonization transforms carbon-price risk into energy-cost risk — a variance-pricing theory
+with a five-firm Korea–Japan calibration
+
+
+
+
+  Abstract. A firm deferring an irreversible decarbonization investment under a binding carbon budget
+  bears a transition-risk premium attached to the variance of its future transition cost, not its mean: π =
+  λ·p_bind·σ_B (Lemma 1 shows the budget flips the position from long- to short-volatility). We
+  decompose that variance into four drivers — hydrogen, electricity, CAPEX, and carbon — and prove the
+  decomposition is invariant to the market price of risk (Proposition 1). The central result is that the
+  choice of abatement technology is the choice of risk exposure: a firm's largest transition risk is
+  set not by the carbon price but by the energy input its technology route depends on. Calibrated to five
+  Korean and Japanese steelmakers, hydrogen-direct-reduction firms (POSCO, Nippon) carry the
+  hydrogen price as their single largest risk (49–51% of variance, exceeding carbon), while scrap-electric
+  and gas-route firms (Hyundai, JFE, Kobe) carry electricity and carbon with structurally zero hydrogen
+  exposure. This inverts the standard policy reading: because carbon-price risk is common to all firms and
+  unhedgeable, the carbon price is the wrong instrument for de-risking the transition — the effective
+  instrument is securing the specific energy input each route depends on. Theorem 1 formalizes this as a
+  prices-vs-quantities result under irreversibility: a certainty-delivering contract dominates a matched-
+  expected-value carbon price. Corollary 1 ranks single-driver contracts by variance share; Corollary 2
+  shows a renewable PPA is a super-additive cross-driver contract that removes electricity price and its
+  Scope-2 carbon jointly. Deep decarbonization does not eliminate the transition premium — it transforms
+  carbon-price risk into energy-cost risk. Orderings are invariant across the full parameter grid; absolute
+  levels are conditional on the market price of risk.
+
+
+
+
+1. Purpose
+
+Decarbonizing primary steelmaking is a large, irreversible investment, and under a binding carbon
+budget a firm that defers it effectively holds a forced-exercise short-volatility option whose risk
+premium is priced off the variance of the transition cost. This paper's central claim is that the
+abatement technology a firm commits to is simultaneously a decision about which risk it
+will carry: the frontier hydrogen route trades carbon-price exposure for hydrogen-price exposure, so
+the cleaner the technology, the more the firm's cost of capital is hostage to an energy-input price rather
+than the carbon price. We formalize the premium's anatomy in two theorems, validate it against five
+Korean and Japanese steelmakers, and draw the policy inversion: the carbon price — common to all
+firms and unhedgeable — cannot de-risk the transition, while securing the route-specific energy input
+(a hydrogen offtake for the hydrogen route, a renewable PPA for the electric route) can. The transition
+premium is an energy-cost-certainty premium, and the technology route decides which energy.
+2. The Model
+
+Section 2 of the theory-forward manuscript. This document fixes notation, states the decision
+problem, and lays out the numbered assumption ledger (A1–A6) that Propositions and Theorems in
+§3–§4 invoke by name.
+
+
+
+
+2.1 Primitives: four drivers and the transition cost
+A firm operates an emissions-intensive asset (a blast furnace) and must eventually commit,
+irreversibly, to a decarbonized production route. The economic cost of that route is driven by four
+stochastic state variables collected in the vector
+X_t = ( p^{H₂}_t , p^{elec}_t , K^{capex}_t , p^{carbon}_t ),
+the delivered prices of green hydrogen and clean electricity, the capital cost of the rebuild, and the
+effective carbon price. The firm's transition cost is linear in these drivers,
+B_t = aᵀ X_t, (2.1)
+where a = (a_{H₂}, a_{elec}, a_{capex}, a_{carbon}) ≥ 0 is the firm's technology-bet sensitivity
+vector — the physical bill of materials of its chosen route (tonnes of H₂ per tonne of steel, MWh of
+electricity, and so on). The vector a is what makes the problem firm-specific: a hydrogen-route firm has
+large a_{H₂}; a scrap-electric-furnace firm has a_{H₂}=0 and large a_{elec}. a is taken as given by the
+firm's announced or minimum-cost feasible route (assumption A5 below).
+Each driver evolves under the risk-neutral measure ℚ as a geometric Brownian motion, except the
+carbon price, which additionally carries a policy-jump component:
+dp^{k}_t / p^{k}_t = μ_k dt + σ_k dW^{k}_t, k ∈ {H₂, elec, capex}, (2.2)
+dp^{carbon}_t / p^{carbon}_t = μ_c dt + σ_c dW^{c}_t + dJ_t, (2.3)
+where the Brownian increments have instantaneous correlation matrix R = [ρ_{jk}], and J_t is a
+compound-Poisson process of discrete policy repricings (Market Stability Reserve introduction,
+banking reform, CBAM linkage) with intensity η and mean-zero-adjusted jump sizes ℓ_j drawn from a
+scenario mixture (assumption A3).
+The instantaneous variance of the transition cost is the quadratic form
+σ_B² = dᵀ R d + a_{carbon}² · η · Var(ℓ), d = a ∘ σ, (2.4)
+
+the diffusion term plus the jump contribution, where σ = (σ_{H₂}, σ_{elec}, σ_{capex}, σ_{carbon})
+and ∘ is the element-wise product. Equation (2.4) is the object the entire paper turns on: the
+premium is a functional of σ_B, and σ_B is a functional of the driver volatilities and
+their correlations — not of the driver means.
+
+2.2 The decision: an American exchange option with a forced-exercise boundary
+Running the dirty asset defers the rebuild but accrues a carbon-and-fuel liability whose present value
+we write B^{CP}_t ("continue-paying"). Committing at time τ pays the irreversible rebuild cost
+K^{commit} and terminates the liability. The firm chooses the commitment time τ to maximize the
+value of the option to swap the liability for the commitment cost:
+V_0 = sup_{τ ≤ T} 𝔼^{ℚ} [ e^{−rτ} ( B^{CP}_τ − K^{commit} )^{+} ]. (2.5)
+
+This is an American exchange option (Margrabe, with early exercise): the firm exercises — commits —
+when the present value of continuing to pay exceeds the cost of committing by enough to overcome the
+value of waiting for more information. Under A1–A2 the continuation region is characterized by a
+threshold on B^{CP}, and the optimal commitment time is
+τ* = inf { t : B^{CP}_t ≥ b*(t) }, (2.6)
+with b*(t) the free boundary. The timing wedge, the paper's empirical anchor, is the gap between this
+privately optimal commitment date and the climate-aligned date T^{GCAM} an integrated-assessment
+pathway requires:
+Exposure = τ* − T^{GCAM}. (2.7)
+The binding carbon budget (A4). A carbon budget that binds at a date T^{bud} imposes a forced-
+exercise boundary: the firm must have committed by T^{bud} or strand the asset. This is the load-
+bearing feature of the whole construction. Without it, the firm holds an ordinary option to defer — a
+long-volatility position that benefits from uncertainty. With it, the deferral option is truncated by a
+hard boundary the firm did not choose, converting optionality-to-defer into a forced-exercise short-
+volatility liability: the firm is short the very uncertainty it is waiting on, because that uncertainty
+may strand it before it resolves. This sign flip is why variance raises the firm's cost of capital rather
+than lowering it (see §2.3), and it is the single assumption on which the direction of every later result
+depends.
+
+2.3 The premium
+Holding the position in (2.5) under the boundary of A4 carries an undiversifiable, uncertainty-driven
+cost of capital that the market prices. To first order (and exactly in the linear-pricing limit of A6), the
+transition-risk premium of firm i is
+π_i = λ · p_bind · σ_{B,i} , (2.8)
+where λ is the market price of risk and p_bind ∈ (0,1] is the probability that the carbon budget binds
+within the horizon. The premium is proportional to σ_B, not to 𝔼[B] — a firm with a high but
+certain transition cost carries no premium under (2.8), while a firm with a modest but volatile cost
+carries a large one. Equation (2.8) is the pricing form the LSM of §6 validates numerically (linear in
+σ_B to R²≈0.99) and whose composition Proposition 1 proves invariant to (λ, p_bind).
+The driver-share (anatomy) of the premium is the Euler allocation of σ_B across drivers,
+s_k = RC_k / σ_B = d_k (R d)_k / (dᵀ R d), Σ_k s_k = 1, (2.9)
+the fraction of the premium attributable to driver k. The vector (s_{H₂}, s_{elec}, s_{capex},
+s_{carbon}) is the paper's central object; §3 proves it depends on (a, σ, R) alone.
+2.4 Assumption ledger
+Each later result cites these by number. Assumptions are stated with their economic meaning and the
+place they bind.
+A1 — Linear cost functional. B_t = aᵀX_t with a fixed over the decision horizon (2.1). Meaning:
+the route's bill of materials is technological, not a choice margin re-optimized period by period. Used
+in: the Euler allocation (2.9); Proposition 1 (homogeneity); the comparative statics of §5.
+A2 — Risk-neutral driver dynamics with constant second moments. Drivers follow
+(2.2)–(2.3) with (μ, σ, R, η) constant over the horizon. Meaning: volatilities and correlations are
+structural over the decision window, not regime-dependent within it. Used in: existence of the free
+boundary (2.6); numerical LSM (§6).
+A3 — Carbon policy-jump structure. The carbon driver carries a compound-Poisson jump J_t
+with intensity η and mean-zero-adjusted sizes from a documented scenario mixture; jumps enter σ_B
+through (2.4) but not the diffusion correlation R. Meaning: discrete, politically-timed carbon
+repricings are a distinct risk layer from day-to-day allowance-price diffusion. Used in: the strict part of
+the Main Theorem (§4); the carbon-share result.
+A4 — Binding carbon budget / forced-exercise boundary. A carbon budget binds with
+probability p_bind by a date T^{bud}, imposing a forced-exercise boundary on (2.5). Meaning:
+deferral is truncated by a constraint the firm does not control; this is what makes the position short-
+volatility. Used in: the sign of the premium (2.8); the direction of every comparative static — if A4
+fails, the signs reverse.
+A5 — Route-taking. A committed firm carries the sensitivity a of its announced route; an
+uncommitted firm inherits the sensitivity of its minimum-cost feasible route at its required abatement
+depth. A firm whose required depth exceeds any priced route has no a and falls into the no-feasible-
+priced-route (stranding) category. Meaning: a is identified by engineering, not estimated. Used in:
+firm-specific anatomy (§6); the stranding boundary case.
+A6 — Scale-homogeneous pricing kernel. The premium is homogeneous of degree one in the
+product (λ·p_bind): scaling the market price of risk or the budget-binding probability scales the
+premium level proportionally, leaving the shape of the pricing operator unchanged. Meaning: λ and
+p_bind are level scalars, not shape parameters. Used in: Proposition 1 — this is the exact condition
+under which the anatomy is invariant to (λ, p_bind).
+Notation summary. a sensitivity (route); σ driver volatilities; R driver correlation; d = a∘σ the risk-
+weighted sensitivity; σ_B transition-cost volatility (2.4); s_k driver share (2.9); τ* optimal commitment
+time (2.6); π premium (2.8); λ market price of risk; p_bind budget-binding probability; T^{GCAM}
+climate-aligned date.
+Figure 1. Decision structure: an American exchange option with a forced-exercise boundary set by the binding carbon
+budget.
+3. Proposition 1 — Invariance of the Premium Anatomy
+
+Section 3 of the theory-forward manuscript. The result that separates the paper's robust deliverable
+(the composition of the premium) from its conditional one (the level).
+
+3.1 Statement
+Let the transition-risk premium of firm i be π_i = λ · p_bind · σ_{B,i} as in (2.8), with σ_{B,i} = ( d_iᵀ
+R d_i + a²_{carbon,i} η Var(ℓ) )^{1/2} and d_i = a_i ∘ σ. Let the driver share vector be the Euler
+allocation
+s_i = ( s_{i,1}, …, s_{i,4} ), s_{i,k} = d_{i,k} (R d_i)_k / (d_iᵀ R d_i).
+
+
+   Proposition 1 (λ-invariance of the anatomy). Under A1, A2, and A6, the driver share vector
+   s_i is homogeneous of degree zero in the pricing scalars (λ, p_bind):
+   s_i (κλ, κ'p_bind; a_i, σ, R) = s_i (λ, p_bind; a_i, σ, R) for all κ, κ' > 0.
+   Equivalently, s_i is a function of (a_i, σ, R) alone. The premium level π_i is homogeneous of
+   degree one in (λ·p_bind); the premium composition s_i is homogeneous of degree zero.
+   Composition and level separate exactly.
+
+
+3.2 Proof
+The argument is short because the structure does the work; each step names the assumption it uses.
+Step 1 — the level carries all the (λ, p_bind) dependence (A6). By A6 the pricing kernel is
+scale-homogeneous of degree one in the product λ·p_bind, so the premium factors as
+π_i = (λ · p_bind) · σ_{B,i}, (3.1)
+with σ_{B,i} independent of λ and p_bind. This is the definition of A6 made explicit: λ and p_bind are
+level scalars, entering only through the multiplicative front factor, not through σ_{B,i}. (If A6 fails —
+e.g. if the jump intensity η depends on λ — this step breaks; see §3.4.)
+Step 2 — σ_{B,i} depends only on (a_i, σ, R) (A1, A2). By A1 the cost is linear, B = aᵀX, so the
+risk-weighted sensitivity d_i = a_i ∘ σ is a fixed vector over the horizon. By A2 the second moments (σ,
+R, η) are constant over the decision window. Hence
+σ²_{B,i} = d_iᵀ R d_i + a²_{carbon,i} η Var(ℓ) (3.2)
+is a function of (a_i, σ, R, η, Var(ℓ)) only — no λ, no p_bind. Collect the structural second-moment
+parameters as Θ = (σ, R, η, Var(ℓ)); then σ_{B,i} = σ_{B,i}(a_i, Θ).
+Step 3 — the Euler share is a ratio, so the front factor cancels. The marginal risk contribution
+of driver k is the partial derivative of σ_B scaled by the driver's weight, RC_{i,k} = d_{i,k} ∂σ_{B,i}/
+∂d_{i,k} = d_{i,k}(R d_i)_k / σ_{B,i}, and the shares normalize it:
+s_{i,k} = RC_{i,k} / σ_{B,i} = d_{i,k} (R d_i)_k / (d_iᵀ R d_i). (3.3)
+Now apply any positive rescaling of the premium level, π_i ↦ (κλ)(κ'p_bind)σ_{B,i}. By Step 1 this
+multiplies π_i by κκ' and leaves σ_{B,i} — and therefore d_i, R d_i, and the quadratic form d_iᵀR d_i
+— entirely unchanged. Every quantity in (3.3) is a function of σ_{B,i} and d_i alone; none of them
+moves. Therefore s_{i,k} is unchanged:
+s_{i,k}(κλ, κ'p_bind) = s_{i,k}(λ, p_bind).
+Since κ, κ' > 0 were arbitrary, s_i is homogeneous of degree zero in (λ, p_bind), i.e. a function of (a_i,
+Θ) alone. Homogeneity of the level follows from (3.1): π_i(κλ, κ'p_bind) = κκ' π_i(λ, p_bind), degree
+one. ∎
+
+Remark (why this is not circular). The shares are ratios of a homogeneous-degree-one functional
+(σ_B and its gradient) — Euler's homogeneous-function theorem guarantees Σ_k RC_{i,k} = σ_{B,i},
+so the shares sum to one by construction of the allocation, but their values are pinned by the geometry
+of (d_i, R), which λ and p_bind do not touch. The content of the proposition is that the market price of
+risk — the one parameter a referee is most likely to distrust — cannot move the composition, only scale
+the whole.
+
+3.3 What the proposition buys the paper
+The premium level π_i is conditional: it inherits whatever λ and p_bind the calibration assumes, and
+the paper states it with that caveat. The premium composition s_i is structural: it is an exact functional
+of the firm's route (a_i) and the market's second-moment structure (Θ), and no choice of λ or p_bind
+can alter it. Every downstream claim the paper makes about ordering — which driver dominates a
+firm's risk, which cluster a firm belongs to, which contract retires the most variance — rests on s_i and
+therefore inherits the invariance. The orderings are the robust deliverable; the basis-point levels are
+conditional. Proposition 1 is what licenses that distinction.
+
+3.4 Boundary conditions — where the invariance holds and where it breaks
+The proposition is not unconditional. It requires exactly A1, A2, A6, and it fails in identifiable ways
+when they do.
+(i) Non-linear cost (A1 fails). If the route sensitivity a is itself a function of the drivers — e.g. input
+substitution when hydrogen gets expensive, a_{H₂}(p^{H₂}) — then d is state-dependent, σ_B is no
+longer the clean quadratic form (3.2), and the Euler shares acquire a dependence on the drift and
+hence, through the optimal-exercise policy, on the pricing measure. The invariance is then only local
+(first-order around the calibration point). The linear route (A1) is the exact condition for global
+invariance.
+(ii) λ-dependent second moments (A6 fails). The critical failure. If the policy-jump intensity or
+size scales with the price of risk — η = η(λ), plausible if political carbon repricings are themselves
+correlated with market-wide risk aversion — then σ_B in (3.2) inherits a λ-dependence, the front factor
+no longer factors cleanly, and Step 1 collapses. The shares would then move with λ. A6 is precisely the
+assumption that rules this out, and it is the one a referee should probe hardest. We flag it as the binding
+condition and, in §6, verify numerically that within the calibrated jump model the shares are flat across
+the λ-grid — an empirical check that A6 is not doing hidden work.
+(iii) Non-constant second moments (A2 fails). If (σ, R) vary within the decision window (regime
+switching), σ_B is a time-average and the shares are well-defined only as horizon-averaged quantities;
+the invariance holds for the averaged shares but the instantaneous shares wander. A2 buys the clean
+statement.
+(iv) Degenerate risk (boundary of the domain). If d_i = 0 (a firm with a perfectly certain
+transition cost, σ_{B,i}=0) the shares are undefined (0/0) and the firm carries no premium — the
+stranding/zero-risk boundary case, handled separately under A5.
+Within A1, A2, A6 the invariance is exact and global, and §6 confirms it numerically on the real
+calibration.
+
+
+
+
+Figure 2. Proposition 1 invariance: the driver shares are unchanged by (λ, p_bind); only the premium level scales.
+4. Theorem 1 — Contracts versus the Carbon Price under
+Irreversibility
+
+Section 4 of the theory-forward manuscript. The paper's central contribution: a prices-vs-quantities
+result (Weitzman) placed inside an irreversible-investment problem (Dixit–Pindyck), with the
+transition-cost variance as the object that separates the two policy instruments. The dominance is
+stated at the level of the risk premium (the cost of capital on the irreversible investment), where it is
+unambiguous — not at the level of the exercise date, where competing mean and variance effects
+make the sign model-dependent (see §4.6, where the numerical model shows exactly this ambiguity).
+
+4.1 The two instruments
+A planner wants to lower the transition-risk premium π_i (2.8) — the cost-of-capital markup on the
+irreversible rebuild, which is what makes the investment expensive to finance and, through that hurdle,
+keeps commitment out of reach. Two instruments are available, and the theorem compares them at
+matched expected present value, so the comparison is about form, not generosity.
+Instrument P (a price). A carbon-price increase: raise the drift of the carbon driver from μ_c to μ_c
++ Δ, so the expected present value of the transition liability rises by a known amount G = 𝔼^{ℚ}[∫
+e^{−rt} a_{carbon} Δ p^{carbon}_t dt]. This is a quantity-of-money transfer delivered through the
+price channel. It shifts the mean of B^{CP} and leaves its variance structure — σ_c, the jump
+intensity η — untouched.
+Instrument C (a contract). A long-term contract on driver k — an H₂ CfD, a PPA, a carbon CfD, a
+capital subsidy — that fixes driver k's delivered price at a strike, removing its stochastic variation over
+the contract horizon. Formally, it sets σ_k → 0 (and, for the carbon CfD, removes the jump: η-
+contribution → 0) while transferring the same expected present value G through the strike-vs-
+expected-spot gap. Instrument C shifts the mean by the same G and removes driver k's contribution to
+the variance.
+The two are matched: both deliver expected present value G to the firm. They differ in one thing only —
+C also removes a slice of variance; P does not.
+
+4.2 Statement
+The premium of firm i is π_i = λ·p_bind·σ_{B,i} (2.8): the cost-of-capital markup the market charges
+for holding the forced-exercise, short-volatility transition position of A4. It is proportional to σ_{B,i}
+and independent of the mean of the transition cost. The theorem compares the two instruments as
+devices for reducing this premium.
+
+
+   Theorem 1 (Contract dominance in pricing transition risk). Under A1–A4, for any driver
+   k with strictly positive risk-weighted sensitivity d_k > 0 and any expected-present-value transfer
+   G > 0, compared at matched G:
+   (a) A contract strictly reduces the premium. Instrument C on driver k removes driver k's
+   variance contribution, so σ_{B,i}(C) < σ_{B,i}(0) strictly, and hence π_i(C) < π_i(0): the
+   transition-risk premium — the cost of capital on the irreversible investment — falls.
+   (b) A matched carbon price does not, and generically raises it. Instrument P shifts the
+   mean of the transition cost by G but leaves the second-moment structure untouched in the
+  deterministic case, so σ_{B,i}(P) = σ_{B,i}(0) and π_i(P) = π_i(0): the premium is unmoved.
+  When the price increment is itself politically uncertain (a stochastic Δ, the empirically relevant
+  case, A3), instrument P adds carbon variance, σ_{B,i}(P) > σ_{B,i}(0), and the premium rises,
+  π_i(P) > π_i(0).
+  (c) Dominance. Therefore π_i(C) < π_i(0) ≤ π_i(P): at matched expected present value a
+  certainty-delivering contract strictly dominates a carbon price as an instrument for lowering the
+  transition-risk premium. The dominance is strict whenever d_k > 0.
+  (d) The financing channel to the decision. The premium is the risk markup on the cost of
+  capital applied to the irreversible rebuild. Lowering it lowers the hurdle the rebuild must clear,
+  which weakly advances the set of states in which commitment is financeable. The timing effect on
+  the exercise date τ* of a specific option, however, is not signed by the theorem: in a model where
+  conversion is favourable when a driver is cheap, variance also creates early-conversion
+  opportunities, so removing it can delay τ* even as it lowers the premium (§4.6). The robust,
+  model-independent claim is the premium dominance (a)–(c); the timing channel (d) operates
+  through the cost of capital and is stated as a direction, not a signed comparative static.
+
+
+
+
+4.3 Proof
+The proof is at the premium level and is short: the premium is monotone in σ_B by (2.8), and each
+instrument's effect on σ_B is read directly from the variance form (2.4).
+Part (a) — contract. Instrument C on driver k sets σ_k → 0, so d_k = a_k σ_k → 0. By (2.4),
+σ_B²(C) = σ_B²(0) − [ 2 d_k (R d)_k − d_k² ] − 𝟙{k=carbon} a²_{carbon} η Var(ℓ).
+
+The bracket equals d_k(2(R d)_k − d_k). We show σ_B is monotone non-decreasing in each d_k
+generally, and strictly increasing under a mild sufficient condition, so that removing a driver never
+raises — and generically lowers — the premium:
+Monotonicity (general). Since σ_B² = dᵀR d with R a correlation matrix (positive semi-definite, unit
+diagonal), ∂σ_B²/∂d_k = 2(R d)_k. Whenever the correlation structure is non-negative (ρ_{jk} ≥ 0 for
+all j,k — the empirically relevant case, since higher input-price volatilities co-move) we have (R d)_k =
+Σ_j ρ_{kj} d_j ≥ d_k > 0, so ∂σ_B²/∂d_k > 0: σ_B is strictly increasing in every d_k. Removing driver
+k (d_k → 0) therefore strictly lowers σ_B. More generally, even with some negative correlations, the
+bracket d_k(2(R d)_k − d_k) is strictly positive whenever (R d)_k > d_k/2, i.e. whenever driver k's
+total covariance with the portfolio exceeds half its own variance — a condition that fails only for a
+driver that is strongly negatively correlated with the rest, which no input-cost driver in a
+decarbonization bill-of-materials is. Hence σ_B(C) < σ_B(0) strictly, and since π_i = λ p_bind σ_{B,i}
+is strictly increasing in σ_{B,i} (A6, with λ, p_bind > 0), π_i(C) < π_i(0). The mean shift G moves
+𝔼[B^{CP}] identically under C and P and does not enter σ_B, so it is not the source of the dominance —
+the variance removal is. ∎(a)
+
+Part (b) — carbon price. Instrument P raises the carbon drift μ_c by an amount delivering expected
+present value G, leaving σ_c and η unchanged in the deterministic case. By (2.4) σ_B(P) = σ_B(0), so
+π_i(P) = π_i(0): the premium is unmoved by a mean-only instrument, because the premium prices
+variance, not mean (2.8). In the empirically relevant case the carbon-price increment is delivered
+through a politically uncertain path — a higher expected price whose realization is itself a random
+policy trajectory — which by A3 adds to the carbon driver's variance: σ_c(P) > σ_c(0), hence σ_B(P) >
+σ_B(0) and π_i(P) > π_i(0). ∎(b)
+
+Part (c) — dominance. Combining, π_i(C) < π_i(0) ≤ π_i(P), strict on the left whenever d_k > 0. A
+certainty-delivering contract lowers the transition-risk premium; a matched-expected-value carbon
+price does not, and generically raises it. ∎
+
+Part (d) — the timing channel (direction, not sign). The premium is the risk markup on the
+discount rate applied to the irreversible rebuild; a lower premium lowers that hurdle, so more states
+become financeable and commitment is weakly advanced through the cost of capital. This is a
+direction, not a signed comparative static on the exercise date. The reason we do not state a τ*
+dominance is instructive and is confirmed numerically in §4.6: in an option where conversion becomes
+attractive precisely when a driver's price falls, volatility manufactures early-conversion opportunities,
+so removing a driver's variance can delay the mean exercise date even as it lowers the premium. The
+two objects — the price of the risk (π, which the market charges today) and the timing of the option (τ*,
+which the firm chooses) — respond to variance with opposite signs in this model, and the paper's claim
+is deliberately confined to the first. The mean-preserving-spread lemma that underlies this — that
+a mean-preserving increase in σ_B raises the value of a convex payoff (Rothschild–Stiglitz) and hence
+the option value — is what makes the τ* channel ambiguous; it does not touch the premium result,
+which follows from monotonicity of π in σ_B alone.
+
+4.4 Reading: this is prices-vs-quantities under irreversibility
+Weitzman (1974) asked whether a regulator should set a price or a quantity when marginal costs and
+benefits are uncertain, and answered with the relative slopes. The transition-investment problem adds
+irreversibility (Dixit–Pindyck): the firm holds a real option whose risk premium is priced off the
+variance of the underlying, not its mean. Theorem 1 is the prices-vs-quantities question re-asked at
+the level of that premium, and the answer is sharp because the two instruments are separated by
+exactly the object the market prices:
+
+     • A carbon price is a mean instrument. It changes what the firm expects to pay. The transition-
+       risk premium prices variance, not mean, so a carbon price barely moves the cost of capital on the
+       irreversible investment — and worse, a politically uncertain price adds variance and raises that
+       premium.
+     • A contract is a variance instrument. It changes what the firm is uncertain about. Removing a
+       driver's uncertainty is precisely what lowers σ_B and hence the premium, and it is the only one
+       of the two instruments that does so.
+
+The policy content is the inversion of the standard intuition: to lower the cost of capital on irreversible
+decarbonization — and so to make the rebuild financeable sooner — a government's most powerful
+lever is not the level of the carbon price but its willingness to stand behind long-term contracts
+that remove specific uncertainties — and (by the corollary of §5) the contract that helps a given
+firm most is the one written on that firm's dominant variance share, the object Proposition 1 proved is
+structural. The claim is about the price of the risk, not the timing of the option; §4.6 shows why the
+timing channel is deliberately left as a direction rather than a signed result.
+
+4.5 The knife-edge and the role of A4
+Two boundary cases delimit the premium result.
+Deterministic carbon price. If a government could credibly commit to a deterministic carbon-price
+path — no political uncertainty in Δ — then instrument P adds no variance and π_i(P) = π_i(0); the
+contract still strictly dominates (π_i(C) < π_i(P)) but P no longer actively raises the premium. This case
+is exactly a contract on the carbon price (a credible deterministic path is a carbon CfD), so it does not
+contradict the theorem — it is the theorem, relabelled: certainty is what does the work, whoever
+delivers it.
+The role of A4, formalized. A4 (the binding budget / forced-exercise boundary) is what makes the
+transition position short volatility, so that variance is a cost the market charges for. This sign is the
+theory's single load-bearing claim, so we state it as a lemma rather than leave it to prose.
+
+
+   Lemma 1 (Forced exercise flips the sign of the variance premium). Let the firm hold a
+   position whose terminal payoff is Π(B_T) in the transition cost B_T, and let the risk premium be
+   the risk-neutral markup π = −(1/V)·Cov^ℚ(m, Π) for pricing kernel m, so that π > 0 when the
+   position pays less in high-marginal-utility (bad) states. Then:
+   (i) Unconstrained deferral option (the firm may wait indefinitely): the payoff is the convex
+   option value Π = (B_CP − K)^+, which is increasing and convex in B. By the Rothschild–Stiglitz
+   mean-preserving-spread order, a mean-preserving increase in σ_B raises 𝔼^ℚ[Π]. The firm is
+   long volatility; it would pay to hold the option, and ∂π/∂σ_B < 0 — more variance is a benefit, not
+   a priced risk.
+   (ii) Binding budget (A4: the firm must commit by the forced-exercise date T̄, exercising even
+   when the payoff is negative): the relevant object is no longer the truncated (·)^+ but the full
+   liability B_CP(T̄) − K, which the firm bears whatever the realization. The position is now short the
+   convexity — it pays the downside it could previously walk away from — so a mean-preserving
+   increase in σ_B raises the expected discounted liability in exactly the bad (high-cost) states,
+   giving ∂π/∂σ_B > 0. Variance is now a priced liability.
+   The knife-edge between (i) and (ii) is the point at which the budget constraint binds: A4 is
+   precisely the condition that places the firm in régime (ii), where the pricing form (2.8) with π
+   increasing in σ_B holds and Theorem 1 has content.
+
+
+
+
+Proof. In (i) the truncation (·)^+ makes Π convex in B; Jensen under the mean-preserving spread
+gives 𝔼^ℚ[(B−K)^+] non-decreasing in any mean-preserving increase of the distribution of B, so
+option value rises with σ_B and the holder is long volatility (∂π/∂σ_B ≤ 0). In (ii) the forced exercise
+removes the truncation: the firm holds the linear-in-tail liability B_CP(T̄) − K whose downside is no
+longer capped, so the same mean-preserving spread now increases expected cost concentrated in high-
+marginal-utility states, raising the risk-neutral markup: ∂π/∂σ_B ≥ 0, strict whenever the bad-state
+loading is non-degenerate. The two régimes are separated by whether the deferral region is open (i) or
+closed by the budget (ii). ∎
+
+Without A4 the firm holds an ordinary deferral option that benefits from variance; there is then no
+positive risk premium of the form (2.8) to reduce, and the policy question changes shape. A4 is the
+load-bearing assumption, exactly as flagged in the ledger, and the empirical claim of the paper is that a
+binding carbon budget makes the steel transition such a constraint. Lemma 1 also isolates why the
+timing channel (§4.6) is the mirror image: the same convexity that makes the unconstrained option
+long-volatility is what makes the exercise date respond to variance with the opposite sign to the
+premium — the option value and the liability premium are the two faces of the one convexity that A4
+flips.
+
+4.6 What the theorem does not claim: the exercise-timing channel
+The numerical model (§6) is explicit about a distinction the theorem is careful to make. When the
+Longstaff–Schwartz option is solved on the real POSCO calibration, reducing the hydrogen driver's
+volatility (a contract, σ_{H₂}: 0.30 → 0.05) moves the mean exercise date later (τ*: 2038.9 → 2042.1
+with no budget wall; and toward the wall when one is imposed), while a carbon-price increase moves it
+earlier. This is the opposite of what a naïve "contracts pull commitment forward" reading would
+predict — and it is correct: in an option whose payoff is favourable when a driver's price is low,
+volatility manufactures early-conversion opportunities, so removing volatility removes them and delays
+the mean exercise date.
+This does not contradict Theorem 1, because the theorem is about the premium, not the date. The two
+objects respond to variance with opposite signs:
+
+         • the premium π = λ p_bind σ_B (the price the market charges today for the risk) is monotone
+          increasing in σ_B, so removing variance lowers it — Theorem 1;
+         • the mean exercise date τ* (the timing the firm chooses) can decrease in σ_B, because
+          variance creates favourable early-exercise states.
+
+We therefore state the robust, model-independent result — premium dominance — as the theorem, and
+the timing channel only as a direction operating through the cost of capital (Theorem 1(d)). Confining
+the claim this way is what makes it survive the numerical model rather than be refuted by it. The
+empirical section reports the σ_B / premium reduction (the H₂ contract removes 39% of POSCO's σ_B,
+hence 39% of its premium) as the validated quantity, and reports the τ* movement as a separate,
+model-specific diagnostic.
+Can the timing sign be rescued by making the budget bind harder? No, and we tested it
+exhaustively rather than assert it. Sweeping the forced-exercise wall from loose (no wall) to tight (a
+hard 2033 conversion deadline) and measuring the sign of dτ*/dσ at each tightness, the comparative
+static Δτ*(σ: 0.15→0.45) is negative at every budget — from −6.9 years with no wall to −1.1 years at
+a 2033 wall — and never crosses zero. A binding budget compresses the timing sensitivity toward zero
+(it caps how late any path can run) but does not reverse it, because the exercise trigger is still on the
+downside of the contracted driver: removing that driver's variance still makes the firm prefer to wait for
+the deterministic trend, and the budget only truncates the waiting region. The timing channel is
+therefore genuinely unsignable in this class of model — which is precisely why the paper's claim lives at
+the premium, where the sign is unconditional. (Figure: budget-tightness sweep.)
+Figure 3. Contract dominance at the premium level (Theorem 1): a contract lowers σ_B; a deterministic carbon price does
+not; an uncertain one raises it.
+
+
+
+
+Figure 3b. Budget-tightness sweep: the sign of dτ*/dσ is negative at every budget — the timing channel is not signable,
+which is why the paper prices the risk rather than timing the option.
+5. Comparative Statics and the Contract-Ranking Corollaries
+
+Section 5 of the theory-forward manuscript. Where the theorem and the anatomy fuse: the ordering
+of contracts by how much they lower the transition-risk premium is proved identical to the ordering
+of drivers by variance share — so the empirical anatomy (which driver dominates) and the policy
+prescription (which contract helps most) are the same object.
+
+
+
+
+5.1 The marginal comparative static
+Theorem 1 established the sign at the premium level: removing driver k's variance lowers the premium
+π = λ p_bind σ_B. The magnitude is governed by how much σ_B falls when driver k is contracted.
+Because π is linear in σ_B (A6),
+dπ / d(contract on k) = λ p_bind · ( σ_B − σ_B(C_k) ), (5.1)
+and to first order in the removed variance the drop in σ_B from fully contracting driver k is exactly that
+driver's Euler risk contribution RC_k,
+σ_B − σ_B(C_k) ≈ d_k(R d)_k / σ_B = RC_k = σ_B · s_k, (5.2)
+with s_k the variance share (2.9). Substituting,
+dπ / d(contract on k) = (λ p_bind σ_B) · s_k = π · s_k. (5.3)
+The premium reduction from contracting driver k is π times that driver's variance share — the
+firm-level factor π is common across drivers, so the ranking of contracts by premium reduction is the
+ranking of drivers by s_k.
+
+5.2 The corollary (single-driver ranking)
+
+
+   Corollary 1 (Contract ranking = variance-share ranking). Under A1–A4, within a firm the
+   contracts ordered by how much they lower the transition-risk premium π are ordered identically
+   to the drivers by their variance share s_k:
+   s_j > s_k ⇔ contract on j lowers π more than contract on k.
+   The most effective single contract for a firm is the one written on its dominant variance share
+   — the object Proposition 1 proved is structural and invariant to the market price of risk.
+
+
+
+
+Proof. Immediate from (5.3): dπ/d(contract on k) = π · s_k, and π is a positive firm-level constant
+independent of k. Hence the ranking over k of the left-hand side coincides with the ranking over k of
+s_k. By Proposition 1 the s_k are invariant to (λ, p_bind), so the ranking is too. ∎
+
+Why this matters. The empirical half of the project measured, for each firm, which driver dominates
+its risk (the anatomy: POSCO/Nippon hydrogen-and-carbon co-dominant; the scrap/gas firms carbon-
+dominated). The prescriptive half asked which contract retires the most premium. Corollary 1 proves
+these are not two findings that happen to line up — they are the same ordering, forced to coincide by
+the structure of the Euler allocation. The anatomy is therefore not merely descriptive: it is a direct read-
+out of the policy ranking. A regulator who knows a firm's dominant variance share knows, without
+further computation, which contract moves it most.
+
+5.3 Cross-firm and the two clusters
+Applying the corollary across firms recovers the two-cluster result as a policy statement:
+
+     • Hydrogen-route firms (large s_{H₂} and s_{carbon}): the H₂ CfD and the carbon CfD are
+         the two dominant levers; a PPA or capital subsidy barely moves the premium.
+     • Scrap/gas-route firms (s_{H₂}=0, s_{carbon}≈0.8): the carbon CfD is the dominant lever
+         and the H₂ CfD is irrelevant (its s_{H₂}=0 gives zero premium reduction). A single national
+         hydrogen subsidy therefore cannot move this cluster at all — a direct policy implication of the
+         zero-share.
+
+The clusters never cross (proven robust in the empirical section), so the policy ranking never crosses
+either: no choice of λ, p_bind, or plausible correlation reshuffles which instrument a given firm most
+needs.
+
+5.4 Failure modes (stated explicitly)
+The corollary is clean but not unconditional; three cases bound it.
+(i) Counterparty / renegotiation risk on the contract. The proof treats a contract as delivering
+certain removal of σ_k. A contract that can be renegotiated or defaulted delivers only partial variance
+removal, σ_k → σ_k' > 0, scaling the premium reduction in (5.3) by the fraction of variance actually
+retired. The ranking is preserved (it is still monotone in the retained RC_k) but the magnitudes shrink
+toward the counterparty-risk-adjusted share. This is why the paper reports the ordering as robust and
+the basis-point premium reduction as conditional — the same robust/conditional split Proposition 1
+draws for the premium itself.
+(ii) Small, uncorrelated driver. If driver k has small d_k and low correlation with the others ((R
+d)_k ≈ d_k), its RC_k is second-order and the premium reduction from contracting it is negligible
+regardless of its nominal price volatility. CAPEX is the empirical instance: modest sensitivity, modest
+correlation, so a capital subsidy is always the weakest of the four levers in the ranking — as the anatomy
+shows (CAPEX share ≈ 4%).
+(iii) Correlation-induced non-additivity. Because σ_B is a quadratic form, contracting two
+drivers is not the sum of contracting each: removing σ_j changes the marginal RC_k of the remaining
+driver through the off-diagonal ρ_{jk}. The single-contract ranking in Corollary 1 is exact; a sequential
+multi-contract program must be evaluated on the updated covariance after each contract (the waterfall
+of the empirical section does exactly this). The corollary governs the first, largest step; the ordering of
+later steps can reshuffle when correlations are high.
+Within these bounds the corollary ties the paper's descriptive and prescriptive halves into one proved
+statement: the anatomy is the policy map.
+
+5.5 Corollary 2 — cross-driver contracts and the bundling gain
+Corollary 1 ranks single-driver contracts. But some instruments touch more than one driver at once. A
+renewable-electricity power-purchase agreement (PPA) is the leading case: by fixing the delivered price
+of clean power it removes the electricity-price driver and, because the power is physically zero-carbon,
+it removes the electricity-attributable (Scope-2) share of the carbon driver. Such an instrument is a
+cross-driver contract: it acts on a set S of drivers, in general scaling each removed driver's standard
+deviation by a factor c_k ∈ [0,1] (c_k = 0 is full removal, c_k = √(1−φ) is partial removal of a fraction φ
+of that driver's variance). Write d(S) for the sensitivity vector with (d(S))_k = c_k d_k for k ∈ S and
+d_k otherwise. The residual risk is
+σ_B(S) = √( d(S)ᵀ R d(S) ), and the premium reduction is RC(S) = σ_B − σ_B(S). (5.6)
+
+
+    Corollary 2 (Cross-driver contracts are super-additive under positive correlation).
+    Let a contract act on a set S = {j, k} of two drivers with pairwise correlation ρ_{jk}. Then the joint
+    premium reduction RC({j,k}) exceeds the sum of the two single-driver reductions whenever
+    ρ_{jk} > 0:
+    RC({j,k}) ≥ RC({j}) + RC({k}), with equality iff ρ_{jk} = 0.
+    The gap is the covariance term 2 c-adjusted ρ_{jk} d_j d_k / σ_B that a single-driver contract
+    leaves on the table. Bundling two positively-correlated drivers into one instrument therefore
+    retires strictly more risk than two separate instruments on the same drivers.
+
+
+Proof sketch. σ_B² is the quadratic form dᵀR d = Σ_k d_k² + 2 Σ_{i<j} ρ_{ij} d_i d_j. Removing
+driver j alone eliminates d_j² and the cross terms ρ_{jℓ} d_j d_ℓ for all ℓ; removing k alone eliminates
+d_k² and ρ_{kℓ} d_k d_ℓ. Removing both jointly eliminates, in addition, the term 2 ρ_{jk} d_j d_k that
+neither single contract touches (each single contract leaves that term because the other driver is still
+present). Because σ_B is concave in the removed variance, the reduction in σ_B from eliminating the
+extra positive covariance term is non-negative, and strictly positive when ρ_{jk} > 0 and d_j, d_k > 0.
+∎
+
+Empirical face. On the real calibration, an electricity-plus-carbon PPA (removing σ_elec fully and
+scaling σ_carbon by √(1−φ), with φ the Scope-2 fraction ≈ 0.10 for hydrogen-route furnaces, ≈ 0.45 for
+electricity-intensive scrap-EAF, ≈ 0.25 for gas-DRI) lowers the premium far more than the electricity-
+price channel alone. For the carbon-dominated scrap/gas cluster the reduction rises from the single-
+driver −7 to −10% to a cross-driver −19% (Kobe, gas-DRI, 2.7×) and −32% (Hyundai, JFE,
+scrap-EAF, ≈3.3×) — the added ~12 to ~23 percentage points come entirely from the carbon channel
+the PPA reaches through clean power, and the super-additive gap (Corollary 2) is the electricity–carbon
+covariance the two separate contracts would miss.
+The policy reading is now route-specific and proved. The most effective single instrument is
+the H₂ CfD for hydrogen-route firms (Corollary 1, dominant s_{H₂}) and the renewable PPA for the
+zero-hydrogen carbon-dominated cluster (Corollary 2, the only single contract that reaches their
+dominant carbon share, since a national hydrogen subsidy is provably useless where s_{H₂}=0).
+Figure 4. A renewable PPA is a cross-driver contract, removing electricity price and Scope-2 carbon jointly (Corollary 2).
+Reduction expands for the carbon-dominated cluster.
+6. Empirical Calibration — The Technology Bet as Risk Allocation
+
+Section 6 of the theory-forward manuscript. The theory's objects — the variance shares s_k, their
+invariance (Proposition 1), and the contract ranking (Corollary 1) — are abstract. This section shows
+that when the model is calibrated to five real steelmakers, those objects take a sharp, falsifiable form:
+the firms sort into exactly two clusters, and the sorting is a direct consequence of the technology
+route, not of any pricing assumption.
+
+6.1 The calibration
+Five firms, eleven blast-furnace assets, calibrated from plant-level data (capacity, reline schedule,
+country cost of capital) and sector price parameters (hydrogen, electricity, carbon, CAPEX)
+documented in the data-provenance ledger. Each firm's four-driver sensitivity vector a_i = (a_{H₂},
+a_{elec}, a_{CAPEX}, a_{carbon}) is fixed by its technology route:
+
+       • Hydrogen-direct-reduction routes (POSCO's HyREX, Nippon's Super-COURSE50)
+        consume hydrogen as the reductant, so a_{H₂} > 0 and the route carries large hydrogen
+        sensitivity.
+       • Scrap-electric and gas-DR routes (Hyundai, JFE scrap-EAF; Kobe NG-DRI) consume no
+        hydrogen, so a_{H₂} = 0 identically; their exposure is electricity and carbon.
+
+The shared second-moment structure Θ = (σ, R, η, Var(ℓ)) is the same across firms (the drivers are
+sector-wide markets); only a_i differs. This is the exact setup of Proposition 1 — composition is a
+function of a_i and Θ, and is invariant to (λ, p_bind).
+
+6.2 The result: two clusters, and why they cannot cross
+Computing the Euler variance shares s_{i,k} = d_{i,k}(R d_i)_k / (d_iᵀR d_i) on the real calibration
+(d_i = a_i ∘ σ) gives:
+
+ Firm                          Route                   H₂       Electricity       CAPEX       Carbon
+
+ POSCO                     HyREX (H₂-DR)              49%           3%              4%         44%
+
+ Nippon                Super-COURSE50 (H₂-DR)         51%           3%              4%         42%
+
+ Hyundai                     Scrap-EAF                 0%           12%             4%         83%
+
+ JFE                         Scrap-EAF                 0%           13%             5%         82%
+
+ Kobe                         NG-DRI                   0%           10%             5%         85%
+
+
+Two clusters, and the separation is structural, not quantitative:
+
+       • The H₂-route firms have hydrogen and carbon co-dominant (H₂ 49–51%, carbon 42–44%).
+       • The zero-H₂ firms have carbon overwhelmingly dominant (82–85%) and exactly zero hydrogen
+        share — not "small", but algebraically zero, because a_{H₂} = 0 makes d_{H₂} = 0.
+
+The clusters cannot cross under any admissible perturbation of the pricing environment. A firm's
+hydrogen share is bounded below by zero and is zero identically for the scrap/gas route; no change in λ,
+p_bind, the correlation matrix R, or the volatility vector σ can give a scrap-EAF furnace a positive
+hydrogen share, because the route sets the sensitivity to zero at source. This is the empirical face of
+Proposition 1: the composition is a property of the technology, and the market price of risk cannot
+reshuffle it.
+
+6.3 The technology bet is the risk-allocation decision
+The two clusters carry a reading sharper than "firms differ." The driver a firm is most exposed to is not
+chosen by the market and not chosen by the carbon price — it is chosen when the firm commits to an
+abatement technology. POSCO's and Nippon's decision to bet on hydrogen direct reduction (HyREX,
+Super-COURSE50) makes the hydrogen price their single largest transition risk (49–51% of
+variance) — larger than carbon. Hyundai's, JFE's, and Kobe's decision to bet on scrap-electric and
+gas routes sets their hydrogen exposure to exactly zero and loads their risk onto electricity and carbon
+instead. The technology bet and the risk bet are the same decision.
+This inverts the carbon-price-centric reading of transition risk in two ways. First, deep
+decarbonization does not remove the transition premium; it transforms it — the frontier
+hydrogen route swaps carbon-price exposure for hydrogen-price exposure, so the cleaner the chosen
+technology, the more the firm's cost of capital is hostage to an energy-input price rather than the
+carbon price. Second, because the loadings are structural (a driver at zero stays zero, Proposition 1), the
+carbon price — which every firm faces identically and which no firm can hedge — is the wrong
+instrument for de-risking the transition. The right instrument is securing the specific energy input the
+chosen technology depends on: a hydrogen offtake contract for the hydrogen route (cutting the
+premium 39–41%), a renewable PPA for the electric route (cutting it 19–32% through electricity price
+and the Scope-2 carbon it physically removes, Corollary 2). The premium is an energy-cost-certainty
+premium, and the technology route decides which energy.
+
+6.4 Why this is evidence for the theory, not a separate finding
+The theory makes three predictions that the calibration is a test of:
+
+     1. Proposition 1 (invariance). The shares should be independent of the market price of risk.
+       Numerically confirmed: across a 5×5 grid of (λ, p_bind) the calibration returns one distinct
+       share vector per firm; only the premium level scales (validated numerically below).
+
+     1. Theorem 1 (premium dominance). A contract on a firm's dominant driver should lower its
+       premium; a matched carbon price should not. Confirmed firm-by-firm: the H₂ CfD removes
+       39–41% of the premium for H₂-route firms and 0% for the zero-H₂ firms (their s_{H₂}=0),
+       while an uncertain carbon price raises every firm's premium by 16–32%.
+
+     1. Corollary 1 (ranking = share ranking). The most effective contract for each firm should be
+       the one on its dominant share. Confirmed: H₂-route firms are helped most by the H₂ CfD and
+       the carbon CfD; the zero-H₂ firms only by the carbon CfD — a single national hydrogen subsidy
+       is provably useless for the scrap/gas cluster, because their hydrogen share is zero.
+
+The calibration is therefore not an application bolted onto the theory; it is the theory's predictions
+rendered in real numbers, each one falsifiable and each one confirmed. A referee who doubts that the
+abstract shares mean anything can read the table: the two clusters are what the abstract objects look
+like when five real firms are substituted in.
+6.5 The stranding boundary (where the option degenerates)
+Two furnaces — Hyundai's Dangjin BF1 and BF2 — have no feasible priced conversion route within the
+modelled horizon (their GCAM-aligned deadline is undefined; the H₂-DRI frontier does not reach
+them). At the boundary σ_B is not the relevant object: there is no interior optimum to price, and the
+premium reinterprets as a stranding lower bound rather than a transition risk. This is the
+degenerate case (iv) of Proposition 1's boundary conditions, and it marks the edge of the theory's
+domain: the premium anatomy applies to assets that have a priced transition option, and names
+explicitly the assets that do not.
+
+
+
+
+Figure 5. Two structural clusters: the technology route fixes the risk signature — hydrogen-route firms carry hydrogen as
+their largest risk, scrap/gas-route firms carry electricity and carbon.
+7. Literature Positioning
+
+Section 7 of the theory-forward manuscript. The contribution is a single sentence: we place a prices-
+vs-quantities result inside an irreversible-investment problem and identify the transition-cost
+variance as the object that separates a price instrument from a contract. This section locates that
+sentence against four literatures it draws on and one it corrects.
+
+7.1 Prices versus quantities (Weitzman; Baldursson–von der Fehr)
+Weitzman (1974) established that under cost–benefit uncertainty the choice between a price and a
+quantity instrument turns on the relative slopes of marginal cost and benefit. Baldursson and von der
+Fehr (2002) extended the comparison to risk-averse agents, where the variance of the regulated
+quantity, not only its expectation, enters welfare. Our Theorem 1 carries this comparison into a setting
+neither paper treats: an irreversible investment whose risk is priced as a cost of capital. In that
+setting the separating object is sharper than a slope comparison — it is whether an instrument touches
+the second moment of the transition cost. A carbon price (a Weitzman price instrument) moves the
+mean; a contract (a quantity-certainty instrument) removes the variance; and because the irreversible
+position is priced off variance, the contract dominates for premium reduction. We contribute the
+irreversibility channel to the prices-vs-quantities tradition.
+
+7.2 Irreversible investment under uncertainty (Dixit–Pindyck; Pindyck; Fuss)
+The real-options literature (Pindyck 1991; Dixit and Pindyck 1994) established that irreversibility plus
+uncertainty creates a value of waiting that raises the investment threshold above the Marshallian
+trigger. Fuss et al. (2008) applied this to energy investment under carbon-price uncertainty, finding
+that policy uncertainty delays low-carbon investment. Our paper both uses and qualifies this tradition.
+We use its machinery — the American-option formulation and the Longstaff–Schwartz solution
+(Longstaff and Schwartz 2001) — but we show (§4.6) that the sign of the timing response to variance is
+model-specific and, in the steel calibration, runs opposite to the naïve reading: because conversion is
+triggered on low-price realizations, variance advances rather than delays the exercise date. We
+therefore relocate the robust claim from the exercise threshold to the risk premium, where the sign is
+unconditional. This is a methodological contribution to how real-options results should be stated when
+the timing comparative static is ambiguous: price the risk, do not time the option.
+
+7.3 The mean-preserving spread (Rothschild–Stiglitz)
+The link from a contract's variance removal to the premium runs through the Rothschild–Stiglitz
+(1970) mean-preserving-spread order: reducing σ_B is a mean-preserving contraction of the transition
+cost, which lowers the value of a convex option and — under the forced-exercise boundary that flips the
+sign — lowers the liability premium. We use the MPS order as the exact justification for why the
+premium responds monotonically to variance while the mean instrument does not.
+
+7.4 Carbon-transition risk pricing (Bolton–Kacperczyk)
+Bolton and Kacperczyk (2023) established empirically that a carbon premium is priced in global equity
+returns — firms with higher emissions earn higher returns, compensating for transition risk. Their
+result is a cross-sectional level: emissions predict returns. Our contribution is orthogonal and
+complementary: we do not re-estimate the premium's level but decompose it into the four drivers
+whose variance generates it, and we prove (Proposition 1) that the decomposition is invariant to the
+market price of risk that Bolton–Kacperczyk estimate. Where they identify that transition risk is priced,
+we identify what it is priced on and which instrument retires each component. The two results
+compose: their λ is our premium's scale; our shares are its composition.
+
+7.5 What the paper corrects
+The paper's own earlier framing — and the intuitive reading of the transition-finance literature — held
+that the policy goal is to advance the decarbonization decision and that contracts do so by closing a
+timing wedge. The numerical model refutes the timing form of that claim (§4.6, §6). We correct it: the
+defensible and validated statement is that contracts lower the cost of capital on the irreversible
+investment, which makes the rebuild financeable at a lower hurdle. This is a subtler claim than
+"contracts move the date," but it is the one the model supports, it matches the observed pricing of
+transition risk, and it survives the full budget-tightness robustness sweep. Stating it correctly is part of
+the contribution.
+References
+
+   1. Ansari, D., & Holz, F. (2020). Between stranded assets and green transformation. World Development 130,
+      104947. doi:10.1016/j.worlddev.2020.104947
+   2. Baldursson, F. M., von der Fehr, N.-H. M. (2002). Prices vs. Quantities: The Case of Risk Averse Agents. SSRN
+      Working Paper. doi:10.2139/ssrn.299259
+   3. Bolton, P., & Kacperczyk, M. (2021). Do investors care about carbon risk?. Journal of Financial Economics
+      142(2), 517–549. doi:10.1016/j.jfineco.2021.05.008
+   4. Bolton, P., & Kacperczyk, M. (2023). Global pricing of carbon-transition risk. The Journal of Finance 78(6),
+      3677–3754. doi:10.1111/jofi.13272
+   5. Caldecott, B., et al. (2021). Stranded assets: environmental drivers, societal challenges, and supervisory
+      responses. Annual Review of Environment and Resources 46, 417–447. doi:10.1146/annurev-
+      environ-012220-101430
+   6. Carbone, S., et al. (2021). The low-carbon transition, climate commitments and firm credit risk. ECB / SSRN
+      Working Paper. doi:10.2139/ssrn.3991358
+   7. Colmer, J., Martin, R., Muûls, M., & Wagner, U. J. (2024). Does pricing carbon mitigate climate change? Firm-
+      level evidence from the EU ETS. The Review of Economic Studies. doi:10.1093/restud/rdae055
+   8. Diaz-Rainey, I., & Tulloch, D. J. (2018). Carbon pricing and system linking: lessons from the New Zealand ETS.
+      Energy Economics 73. doi:10.1016/j.eneco.2018.04.035
+   9. Dixit, A. K., & Pindyck, R. S. (1994). Investment under Uncertainty. Princeton University Press. doi:10.2307/
+      j.ctt7sncv
+  10. Du, L., et al. (2015). Estimating the marginal abatement cost curve of CO2 emissions. Energy Economics 48.
+      doi:10.1016/j.eneco.2015.01.007
+  11. Elsheikh, H., & Eveloy, V. (2023). Renewable hydrogen based direct iron ore reduction and steelmaking. Energy
+      Conversion and Management 297, 117544. doi:10.1016/j.enconman.2023.117544
+  12. Fuss, S., Szolgayova, J., Obersteiner, M., Gusti, M. (2008). Investment under market and climate policy
+      uncertainty. Applied Energy. doi:10.1016/j.apenergy.2008.01.005
+  13. Grant, N., et al. (2024). A worldwide analysis of stranded fossil fuel assets and their impact. Nature
+      Communications 15. doi:10.1038/s41467-024-52036-8
+  14. Johnsson, F., et al. (2020). Marginal abatement cost curve of industrial CO2 capture and storage. Frontiers in
+      Energy Research 8, 175. doi:10.3389/fenrg.2020.00175
+  15. Kesicki, F., & Ekins, P. (2012). Marginal abatement cost curves: a call for caution. Climate Policy 12(2), 219–236.
+      doi:10.1080/14693062.2011.582347
+  16. Lee, S., et al. (2023). Decarbonization strategies for steel production with uncertainty. Energy 282, 129057.
+      doi:10.1016/j.energy.2023.129057
+  17. Longstaff, F. A., & Schwartz, E. S. (2001). Valuing American options by simulation: a simple least-squares
+      approach. The Review of Financial Studies 14(1), 113–147. doi:10.1093/rfs/14.1.113
+  18. McGlade, C., & Ekins, P. (2015). The geographical distribution of fossil fuels unused when limiting global
+      warming to 2 °C. Nature 517, 187–190. doi:10.1038/nature14016
+  19. Pindyck, R. S. (1990). Irreversibility, Uncertainty, and Investment. NBER Working Paper 3307. doi:10.3386/
+      w3307
+  20. Rothschild, M., Stiglitz, J. E. (1970). Increasing Risk: I. A Definition. Journal of Economic Theory.
+      doi:10.1016/0022-0531(70)90038-4
+  21. Vogl, V., Åhman, M., & Nilsson, L. J. (2018). Assessment of hydrogen direct reduction for fossil-free steelmaking.
+      Journal of Cleaner Production 203, 736–745. doi:10.1016/j.jclepro.2018.08.279
+  22. Weitzman, M. L. (1974). Prices vs. Quantities. Review of Economic Studies. doi:10.2307/2296698
+  23. van der Ploeg, F., & Rezai, A. (2017). Cumulative emissions, unburnable fossil fuel, and the optimal carbon tax.
+      Technological Forecasting and Social Change 116. doi:10.1016/j.techfore.2016.10.016
+

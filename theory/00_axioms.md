@@ -4,9 +4,18 @@
 
 > "이 기업의 전환리스크 프리미엄은 탄소정책 repricing C%, 수소 H%, 전력 E%, 원료 F%, 자본 K%로 구성되며 — 그 이유는 이 기업이 보유한(혹은 보유를 거부한) 기술 포지션이고 — 각 성분은 실재하는 계약으로 개별 변환 가능하다."
 
-CAP의 핵심 문장은 이것이다:
+CAP(Capital Allocation Pathway)의 핵심 질문은 이것이다:
+
+> **"전환 자본은 왜 탄소중립으로 흐르지 않는가, 언제·얼마나 필요한가, 무엇이 그것을 움직이는가."**
+
+그 계산적 형태:
 
 > **"CAP maps the gap between privately optimal and required decarbonization pathways into a conditional distribution of transition cash-flow losses, decomposes its sources, and evaluates which interventions change both transition timing and residual risk."**
+
+격차의 언어: **LEVEL**(불확실성이 없어도 남는 본전 격차 — 보조금의 영역)과
+**WEDGE**(불확실성이 m(σ) 문턱을 통해 만드는 추가 기다림 — 계약의 영역)([[10_level_wedge]]).
+기다림은 사적으로 합리적이지만 리스크를 없애지 않는다 — gap으로 쌓는다.
+리스크 프리미엄(bps)은 이 구조의 투자자 번역층이며 헤드라인이 아니다.
 
 인과 순서: 현재 자산 구성 → 사적 최적 감축경로(τ*) → 요구 감축경로(T_required) → **condition gap** (누적 초과배출) → gap의 경제적 원인 → 개입 후 바뀐 전환시점·경로 → 잔여 위험 anatomy → **conditional risk charge**. 감축경로가 원인이고, condition gap이 핵심 상태이며, anatomy는 설명이고, premium은 조건부 결과다.
 

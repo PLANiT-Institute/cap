@@ -1,6 +1,10 @@
-# CAP 재구축 계획 — Claude Code 실행 지시서
+# CAP 재구축 계획 — Claude Code 실행 지시서 (역사 문서)
 
-> **프로젝트**: CAP (Carbon-transition Asset Pricing) — 한·일 철강 transition-risk premium의 anatomy
+> **상태 (2026-08-03)**: 이 문서는 2026-07-22 재구축 당시의 실행 지시서로 보존된다.
+> 프로젝트 정체는 **Capital Allocation Pathway**로 정정되었고(README name note),
+> 현행 계획은 `RESTRUCTURE_2026-08.md`, 구현 수준은 `STATUS.md`가 정본이다.
+
+> **프로젝트**: CAP (Capital Allocation Pathway) — 한·일 철강 전환자본 배분의 anatomy
 > **목표**: 논문의 모든 수치가 재현 가능한 파이프라인에서 나오고, 파라미터는 전부 config 파일에 살고, 결과는 Vercel에 배포되며, 이론(.md)과 모델 출력이 서로를 참조하는 살아있는 리포지토리.
 > **원칙 세 줄**: ① 코드에 숫자를 쓰지 않는다(모든 파라미터는 config에서 온다). ② 모든 출력은 JSON artifact로 떨어지고 웹은 그것만 읽는다. ③ 이론 문서의 모든 주장은 anchor ID를 갖고, config와 코드가 그 ID를 역참조한다.
 
