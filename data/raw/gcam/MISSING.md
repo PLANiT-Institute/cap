@@ -61,3 +61,31 @@ S3(2026-08-04) 이후 비H₂ 풀은 endpoint 재정규화 없이 **비율 곡�
 
 `Q_gcam_h2dri.csv` (컬럼: year, Q_h2dri_Mt) 를 이 폴더에 저장 → provenance 등록 →
 s02가 자동으로 surrogate를 대체, manifest `t_required_source`가 `mixed`/`gcam_raw`로 바뀐다.
+
+---
+
+## 저자 요청 명세 (2026-08-04 작성 — 발송은 저자 판단)
+
+**대상**: Hanju Lee · Haewon McJeon · Sha Yu · Yang Liu · Hanwoong Kim · **Jiyong Eom**,
+"Decarbonization pathways for Korea's industrial sector towards its 2050 carbon neutrality
+goal", *Journal of Cleaner Production* **476** (2024) 143749.
+(공개 연락처: hmcjeon@kaist.ac.kr — GCAM-ROK 논문 교신저자로 공개돼 있음. Eom 교수는
+KAIST Green Growth & Sustainability.)
+
+**요청 항목** (CAP이 실제로 소비하는 형태로):
+
+1. `Q_gcam_h2dri.csv` — 컬럼 `year, Q_h2dri_Mt`. 한국 iron & steel 부문의
+   **DRI-EAF-H₂ 배치 경로** (조강 Mt/yr 또는 부문 점유율). 시나리오별로 분리.
+   → CAP의 요구 경로 surrogate(logistic L=38, t0=2040, k=0.28)를 대체한다.
+2. 같은 시나리오의 **탄소 shadow price 경로** (연도 × USD/tCO2, 실질 기준연도 명기).
+   → X10. CAP의 시나리오 표(SQ/MSR/CBAM)를 근거 있는 경로로 교체.
+3. 시나리오 정의 (CCS 가용성·수소 가용성 제약의 구체적 수치)와 GCAM 버전.
+4. 가능하면 iron & steel 기술별(BF, BF-CCS, DRI-EAF, DRI-EAF-H₂, EAF-scrap) 산출 분해.
+
+**요청 시 밝힐 것**: CAP은 이 경로를 **요구 경로 벤치마크**로만 쓰고 기업별 사적 최적
+전환시점(τ*)과의 격차를 계산한다. 재배포는 하지 않으며 출처·라이선스를 명기한다.
+현행 대용물이 GCAM 출력이 아니라 분석자 가정이라는 점을 이미 문서화했다
+(PAPER_DIFF 갱신 14 §A).
+
+**대안 (요청 불가 시)**: NGFS Phase V Scenario Explorer (IIASA) — GCAM/REMIND/MESSAGE,
+한국·일본, shadow carbon price 다운로드 가능. 철강 기술 해상도는 없다.
