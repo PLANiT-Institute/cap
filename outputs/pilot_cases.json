@@ -74,8 +74,8 @@
       "basis_separation": {
         "enterprise_transition_window": {
           "before_bps": 19.0424938593,
-          "after_bps": 19.1031286949,
-          "delta_bps": 0.0606348356,
+          "after_bps": 19.2348936533,
+          "delta_bps": 0.192399794,
           "metric_id": "conditional_risk_charge_bps",
           "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
           "evidence_grade": "SCENARIO_CONDITIONAL",
@@ -95,7 +95,7 @@
         "comparison_rule": "Do not compare enterprise and project bps directly; metric_id and basis_id must both match."
       },
       "research_summary": {
-        "cumulative_alignment_gap_mtco2": 448.1350126889,
+        "cumulative_alignment_gap_mtco2": 274.0837345491,
         "alignment_result_contract": {
           "metric_id": "cumulative_alignment_gap_mtco2",
           "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
@@ -106,7 +106,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "c6bea47031ad76d70ff4a2535fbb97ee6dbf5832de26bd51f61e6b90ec4eef8a",
+        "input_fingerprint_sha256": "0b63b70f859cb0ddac99e010acad30ef933f3e1315ccecf612bb785336a454c8",
         "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {
@@ -242,19 +242,19 @@
         "enterprise_fixed_exposure_pricing": [
           {
             "lambda": 0.25,
-            "risk_charge_reform_bps": 11.7889987323,
+            "risk_charge_reform_bps": 11.901558662,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.4,
-            "risk_charge_reform_bps": 18.8623979717,
+            "risk_charge_reform_bps": 19.0424938593,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.55,
-            "risk_charge_reform_bps": 25.9357972111,
+            "risk_charge_reform_bps": 26.1834290565,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           }
@@ -310,8 +310,8 @@
       "basis_separation": {
         "enterprise_transition_window": {
           "before_bps": 8.7345132914,
-          "after_bps": 8.6713323974,
-          "delta_bps": -0.063180894,
+          "after_bps": 8.7981765215,
+          "delta_bps": 0.0636632301,
           "metric_id": "conditional_risk_charge_bps",
           "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
           "evidence_grade": "SCENARIO_CONDITIONAL",
@@ -331,7 +331,7 @@
         "comparison_rule": "Do not compare enterprise and project bps directly; metric_id and basis_id must both match."
       },
       "research_summary": {
-        "cumulative_alignment_gap_mtco2": 272.6988942322,
+        "cumulative_alignment_gap_mtco2": 148.8568386667,
         "alignment_result_contract": {
           "metric_id": "cumulative_alignment_gap_mtco2",
           "basis_id": "enterprise_private_vs_required.full_counterfactual.provisional_required",
@@ -342,7 +342,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "c6bea47031ad76d70ff4a2535fbb97ee6dbf5832de26bd51f61e6b90ec4eef8a",
+        "input_fingerprint_sha256": "0b63b70f859cb0ddac99e010acad30ef933f3e1315ccecf612bb785336a454c8",
         "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {
@@ -464,19 +464,19 @@
         "enterprise_fixed_exposure_pricing": [
           {
             "lambda": 0.25,
-            "risk_charge_reform_bps": 5.3509478088,
+            "risk_charge_reform_bps": 5.4590708072,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.4,
-            "risk_charge_reform_bps": 8.5615164941,
+            "risk_charge_reform_bps": 8.7345132914,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.55,
-            "risk_charge_reform_bps": 11.7720851794,
+            "risk_charge_reform_bps": 12.0099557757,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           }

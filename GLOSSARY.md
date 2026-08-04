@@ -54,7 +54,11 @@ model's central state variable.
 ### anatomy — the composition of the risk
 
 The **uncertainty** of transition cost split by driver, via Euler variance
-decomposition. The output reads like "hydrogen 63.8%, carbon 31.6%, power 4.4%".
+decomposition. The output reads like "carbon 92.0%, hydrogen 7.0%, power 0.9%"
+(POSCO, private path). Numbers move with the exposure window — see
+`outputs/shares_by_firm.json` for the current values rather than trusting this
+sentence; the earlier hydrogen-dominated reading came from the pre-2026-08-04
+required-window definition (`PAPER_DIFF.md` update 13).
 
 ### mix vs level
 
@@ -63,7 +67,7 @@ The distinction this model cares most about.
 | | mix (composition) | level |
 |---|---|---|
 | What | shares by driver | how many bps |
-| Example | hydrogen 63.8% | 15.7 bps |
+| Example | carbon 92.0% | 12.9 bps |
 | Property | unchanged when λ·p_bind change | scales one-for-one with them |
 | Read as | comparatively robust | conditional on assumptions |
 

@@ -41,7 +41,7 @@ prototype은 m(σ)에 σ_carbon(0.50)을 넣었다. 이는 프로젝트 변동�
 
 따라서 s12는 m에 **노출가중 비용 바스켓의 변동계수 σ_project**를 넣고, σ_carbon 단독
 귀속치는 `legacy_attribution`으로 병기만 한다(계보 — 인용 금지). POSCO 기준 탄소 단독
-귀속은 WEDGE를 약 1.9배 과대평가한다.
+귀속은 WEDGE를 {{lw.POSCO.legacy_overstatement_x}}배 과대평가한다.
 
 `status: CLAIM · 검증 노트 재현 가능 · challenged-by 없음`
 
@@ -58,17 +58,30 @@ prototype은 m(σ)에 σ_carbon(0.50)을 넣었다. 이는 프로젝트 변동�
 - 탄소 **collar**는 기대수준을 올리며(LEVEL↓) σ_carbon을 동시에 자르므로(WEDGE↓) 변동성
   spot 탄소가격을 **탄소 성분에 한해** 약우월한다. GX-ETS의 floor/ceiling이 실증 사례다.
 
-단, 우선순위는 var share가 정한다: base에서 지배 성분은 탄소가 아니라 **수소**(h2-route)
-또는 **전력**(grid-route)이므로, σ-절단 계약의 1순위 대상도 그쪽이다 — s06의 개입 결과
-(H₂ CfD가 최대 risk cut)와 정합. "collar가 wedge 전체를 붕괴시킨다"는 prototype의 정량
-서술은 이 문서로 대체된다.
+단, 우선순위는 var share가 정한다: 이 레인의 base에서 지배 성분은 탄소가 아니라
+**수소**(h2-route) 또는 **전력**(grid-route)이다. 그러나 **s06의 개입 결과는 σ-절단
+계약을 1순위로 지지하지 않는다** (2026-08-04 정정):
 
-`status: CLAIM · s06 intervention_impacts와 방향 정합 · 정량은 s12 artifact`
+- H₂ CfD 단독은 τ*를 **늦추고**(POSCO {{iv.POSCO.h2_cfd_dtau}}y) charge를 줄이지 못한다 —
+  유리한 실현(싼 수소)이 행사 트리거인데 σ-절단이 그것을 함께 제거한다.
+- 게다가 사적 경로에서 노출창은 [τ*, H]≈[2050, 2061]인데 h2_cfd tenor는 2030–2045로
+  **겹치지 않는다**. 즉 현재 제시된 계약 조건은 문제가 되는 연도에 도달하지 못한다
+  (감사 2026-08-04 B11 — coverage는 이제 노출창 기준으로 가중된다).
+- 실제 최대 risk cut은 LEVEL 레버(capex_subsidy·concessional)다.
+
+이 불일치는 두 레인의 **노출창 차이**에서 온다: s12는 전환 후 levelized 바스켓만 보고,
+s04는 전환 전 탄소 레그(24년)를 포함한다. "collar가 wedge 전체를 붕괴시킨다"는
+prototype 서술은 폐기되고, 이 문서의 서술도 s06 산출에 종속된다.
+
+`status: CLAIM · s06 intervention_impacts와 **부분 불일치** (위 정정 참조) · 정량은 s12 artifact`
 
 ## 한계 (명시)
 
 1. 영구옵션·GBM·단일 복합자산 가정 — 유한지평·다요인·reline 격자는 LSM 레인(§03)만 다룬다.
-2. δ(convenience yield 유사항)는 엔진 파라미터(`lsm.csv dp_delta`)다 — m은 δ에 민감하므로
-   이 레인의 수치는 수준이 아니라 **비교·방향** 용도다.
+2. δ(convenience yield 유사항)는 X9(2026-08-03) 이후 파라미터가 아니라 **파생값 δ = r**이다
+   (`dp_delta` 삭제; 앵커 이후 정상상태). 단 **앵커 전 구간(15년)에는 여전히 δ = r − μ_carbon**
+   이고 일본은 μ_JP > WACC이므로 δ < 0이다 — LSM 레인은 그 구간에서 초임계 대기 세계에 있고
+   s12는 δ = r을 전 구간에 쓴다. 즉 R-2는 **앵커 이후만** 해소됐다 (감사 2026-08-04).
+   m은 δ에 민감하므로 이 레인의 수치는 수준이 아니라 **비교·방향** 용도다.
 3. WEDGE의 경로 기반 정의(행사확률 50% 기준)는 미구현 — prototype docstring과 구현의
    불일치를 승계하지 않기 위해 여기 명시해둔다.

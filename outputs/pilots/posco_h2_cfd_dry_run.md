@@ -14,7 +14,7 @@
 
 ## Basis separation
 
-- Enterprise transition-window charge: 19.10 bps (`enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized`)
+- Enterprise transition-window charge: 19.23 bps (`enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized`)
 - Project-from-base-year charge: 22.26 bps (`project_from_base_year.reform_priced.fixed_commissioning.ev_normalized`)
 - These bps values are not directly comparable; only within-basis before/after deltas are effects.
 

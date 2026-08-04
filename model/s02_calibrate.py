@@ -19,7 +19,6 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -29,6 +28,7 @@ from config.schema.config_schemas import (  # noqa: E402
     firms_schema,
     interventions_schema,
     lsm_schema,
+    pathways_schema,
     pricing_schema,
     routes_schema,
     scenarios_schema,
@@ -67,6 +67,7 @@ class CalibrationSet:
     routes: pd.DataFrame
     interventions: pd.DataFrame
     transaction_assumptions: pd.DataFrame
+    pathways: dict[str, float]  # 요구 경로 파라미터 (config/pathways.csv)
     param_status: dict[str, str]
     # 국가별 탄소 구조 (Option A: p_bind 파생)
     l_bar: dict[str, float]
@@ -158,8 +159,28 @@ def _worst_status(col: pd.Series) -> str:
     return "assumed"
 
 
+def _pool_share_curve(
+    years: np.ndarray, curve: np.ndarray, saturation: float, rebase: bool
+) -> np.ndarray:
+    """배치 곡선(Mt) → 풀 전환 **비율** q(t) ∈ [0,1].
+
+    설계 결정 (S3 정정, 2026-08-04):
+    - 곡선을 **자기 포화값**으로 나눈다 — 풀 용량으로 나누면 작은 풀이 더 빠른 요구
+      경로를 갖는 나눗셈 아티팩트가 생기고, 두 분기(h2/비h2)의 q가 서로 다른 객체가 된다.
+      비율로 정규화하면 pro_rata 규약대로 모든 풀이 같은 배치 **일정**을 공유한다.
+    - `rebase`면 기준연도 비율을 빼고 재정규화 — 기준연도에 H₂-DRI 설비는 0이므로
+      q(base_year)=0이어야 한다. 이 항이 없으면 요구 경로가 2026년에 이미 몇 %가
+      전환된 것으로 주장해 first_misalignment_year가 전부 기준연도로 붕괴한다.
+    """
+    q = curve / max(float(saturation), np.finfo(float).tiny)
+    if rebase:
+        q0 = float(q[0])
+        q = (q - q0) / max(1.0 - q0, np.finfo(float).tiny)
+    return np.clip(q, 0.0, 1.0)
+
+
 def _t_required(
-    firms: pd.DataFrame, lsm: dict[str, float]
+    firms: pd.DataFrame, lsm: dict[str, float], pathways: dict[str, float]
 ) -> tuple[dict[str, dict], str, dict[str, dict]]:
     """route별 배치 풀로 T_required + 풀 연속 경로(q-곡선) 산출 (S3).
 
@@ -177,12 +198,18 @@ def _t_required(
     - 풀 내 순서는 reline 연도순 — LCOA merit order가 아니라 근사 (명시).
     """
     raw_csv = RAW / "gcam" / "Q_gcam_h2dri.csv"
-    legacy = yaml.safe_load((RAW / "legacy_config" / "model_parameters.yaml").read_text())
-    s = legacy["gcam_nz2050"]["surrogate"]
     base_year = int(lsm["base_year"])
     years = np.arange(base_year, base_year + int(lsm["horizon_years"]) + 1, dtype=float)
-    surrogate_q = s["L_Mt"] / (
-        1.0 + np.exp(-s["k_steepness"] * (years - s["t0_inflection_yr"]))
+    # 파라미터는 config/pathways.csv에서만 온다 (규칙 1·3·4 — 이전에는 읽기전용 raw yaml에서
+    # 직접 읽어 status·anchor·PAPER_DIFF 추적 밖에 있었다: 갱신 14 §C)
+    sat = float(pathways["required_saturation_mt"])
+    rebase = bool(pathways["required_rebase_to_base_year"])
+    surrogate_q = sat / (
+        1.0
+        + np.exp(
+            -float(pathways["required_steepness_per_yr"])
+            * (years - float(pathways["required_inflection_year"]))
+        )
     )
     if raw_csv.exists():
         q = pd.read_csv(raw_csv).sort_values("year")
@@ -214,7 +241,8 @@ def _t_required(
             continue
         pool_cap = float(g["capacity_mt_yr"].sum())
         if route == "h2_dri" and country == "KR" and raw_csv.exists():
-            yrs, q_frac = years_raw, np.clip(q_raw / pool_cap, 0.0, 1.0)
+            yrs = years_raw
+            q_frac = _pool_share_curve(years_raw, q_raw, float(np.max(q_raw)), rebase)
             route_status = EMPIRICAL
             benchmark_source = "GCAM-KAIST Q_gcam_h2dri.csv"
             intended_benchmark = "GCAM-KAIST"
@@ -222,7 +250,7 @@ def _t_required(
             headline_eligible = True
             pool_note = "Korean H2-DRI deployment curve (GCAM raw)"
         elif route == "h2_dri":
-            yrs, q_frac = years, np.clip(surrogate_q / pool_cap, 0.0, 1.0)
+            yrs, q_frac = years, _pool_share_curve(years, surrogate_q, sat, rebase)
             route_status = PROVISIONAL
             benchmark_source = "legacy-config logistic H2-DRI surrogate"
             intended_benchmark = "GCAM-KAIST" if country == "KR" else "TZ-OSeMOSYS-STEEL"
@@ -232,7 +260,7 @@ def _t_required(
         else:
             # 동형 logistic의 비율 곡선 — endpoint 재정규화 금지 (S3, R-6 해소)
             yrs = years
-            q_frac = surrogate_q / float(s["L_Mt"])
+            q_frac = _pool_share_curve(years, surrogate_q, sat, rebase)
             route_status = PROVISIONAL
             benchmark_source = "legacy-config H2 logistic fraction applied to route-country pool"
             intended_benchmark = "route-specific sector pathway not yet supplied"
@@ -304,6 +332,7 @@ def load_calibration() -> CalibrationSet:
         )
     routes = routes_schema.validate(pd.read_csv(CFG / "routes.csv"))
     interventions = interventions_schema.validate(pd.read_csv(CFG / "interventions.csv"))
+    pathways_df = pathways_schema.validate(pd.read_csv(CFG / "pathways.csv"))
     transaction_assumptions = transaction_assumptions_schema.validate(
         pd.read_csv(CFG / "transaction_assumptions.csv")
     )
@@ -411,13 +440,16 @@ def load_calibration() -> CalibrationSet:
     status["interventions"] = "assumed"
     status["transaction_assumptions"] = str(transaction_assumptions["status"].mode()[0])
     status["t_required"] = "provisional"
+    for _, r in pathways_df.iterrows():
+        status[r["param"]] = r["status"]
     # 노출 정의·전환시점 규칙 — MODEL_CONDITIONAL 근원. S4: t_sw = τ* (사적 경로 정합)
     status["exposure_model"] = "model"
 
     capex = pd.read_parquet(PROCESSED / "capex_refs.parquet").set_index("item_id")
     k_off = float(capex.loc["K12", "mid"]) / float(capex.loc["K11", "mid"])
 
-    t_required, t_source, pool_paths = _t_required(firms, lsm)
+    pathways = dict(zip(pathways_df["param"], pathways_df["value"].astype(float)))
+    t_required, t_source, pool_paths = _t_required(firms, lsm, pathways)
 
     return CalibrationSet(
         sigmas=sigmas,
@@ -429,6 +461,7 @@ def load_calibration() -> CalibrationSet:
         routes=routes,
         interventions=interventions,
         transaction_assumptions=transaction_assumptions,
+        pathways=pathways,
         param_status=status,
         l_bar=l_bar,
         l_bind=l_bind,
@@ -495,6 +528,9 @@ def main() -> int:
             "scenarios": cal.scenarios.to_dict(orient="records"),
             "interventions": cal.interventions.to_dict(orient="records"),
             "transaction_assumptions": cal.transaction_assumptions.to_dict(orient="records"),
+            "pathways": {
+                k: {"value": v, "status": cal.param_status.get(k)} for k, v in cal.pathways.items()
+            },
             "derived": {
                 "l_bar": cal.l_bar,
                 "l_bind": cal.l_bind,

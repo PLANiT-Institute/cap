@@ -17,7 +17,10 @@ Rules:
    Abstract-based summaries stay in `refs.bib` as a map, not as support
    (the lesson of `PAPER_DIFF.md` D8 and D18).
 
-Status: **OPEN 3 (X1, X3, X10 — data pending) · RESOLVED 8** (updated 2026-08-04)
+Status: **OPEN 5 (X1, X3, X10, X7-reopened, X12) · RESOLVED 8** (updated 2026-08-04)
+
+> 2026-08-04 데이터 감사 결과 X7이 재개되고 X12가 신설됐다. 검증된 결함 목록은
+> PAPER_DIFF 갱신 14 (§A GCAM 출처, §B 기업 데이터 13건, §C 코드 3건).
 
 ---
 
@@ -120,14 +123,41 @@ uniform λ and λ_k side by side. POSCO's carbon share moves 31.6% → 39.8%
 | Blocks | S1 implementation; the sign of every intervention timing effect; View 1 waterfall (W4); theory/01·10 WEDGE prose |
 | Numeric shift | Pending implementation — τ*, wedge, intervention_impacts, level_wedge all recompute. Record in PAPER_DIFF on rerun (rule 8: no silent reconciliation) |
 
-### X10. Carbon-price anchor source: replace assumed scenario levels with GCAM-KAIST / NGFS `OPEN`
+### X10. Carbon-price anchor source: replace assumed scenario levels with a published model path `OPEN — investigated 2026-08-04`
 
 | | |
 |---|---|
 | Current | X9 anchors the LSM carbon path to `config/scenarios.csv` levels (SQ/MSR/CBAM 12–85 USD, **assumed**) |
-| Direction (author, 2026-08-04) | Anchor to a published model path instead — **GCAM-KAIST (Jee-Yeon Uhm group; the same model already used for T_required) first choice**, NGFS scenarios as the fallback/comparison. Put one price path in first, keep the scenario table as the probability mixture over paths |
-| Blocks | Data: GCAM-KAIST carbon-price series not in `data/raw/` (provenance rule 5 — no entry without registered source). Need the price output file from the GCAM-KAIST run or an NGFS download |
-| Recommendation | Register the raw file via `s01_ingest`, then re-derive mu_carbon; record shifts in PAPER_DIFF (rule 8). Until then X9's derived anchor stays `assumed` |
+| Direction (author, 2026-08-04) | Anchor to a published model path — GCAM (Eom group) first choice, NGFS as fallback |
+| **Investigation result** | **GCAM-KAIST 1.0 cannot supply a carbon price.** Its Korea policy enters as an economy-wide GHG **constraint** (691→66 MtCO2e, 2025→2050 — now registered in `data/raw/gcam/`), so the carbon price is the model's endogenous **shadow price**, i.e. an output. The Zenodo deposit (14171830, CC BY 4.0) is inputs only; no output database is published. Verified by downloading and reading the actual input files |
+| Correct Eom-group source | **Lee, McJeon, Yu, Liu, Kim, Eom (2024), J. Cleaner Production 476:143749** — industry-sector GCAM with DRI-EAF-H₂ explicit. Paywalled, no public data → **author request** for (a) iron & steel technology deployment by year, (b) scenario carbon shadow-price path |
+| Public alternative found | GCAM-ROK (Choi, Park, McJeon 2025 preprint, SNU+KAIST): KR ETS **8,870 KRW/tCO2** held at 2023 level (current policies) → **30,411 KRW/tCO2** by 2035 (enhanced, via CCfD). At fx 1300 that is $6.8 → $23.4 — **below** CAP's SQ $12 / MSR $35. Caution: the same paper's $42→$84/tCO2 is a **CCS subsidy** (IRA 45Q analogue), not a carbon price. Its stated data-availability GitHub contains only stock GCAM Core diagnostics (2017); Korea scenario outputs live in an unpublished local database |
+| Recommendation | Two tracks: (1) request the 2024 J Clean Prod outputs from the authors — that is the only Eom-group source with a steel sector; (2) meanwhile, if a published anchor is wanted now, NGFS Phase V (GCAM/REMIND/MESSAGE, Korea + Japan, shadow carbon price) is downloadable from the NGFS Scenario Explorer. Until either lands, X9's derived anchor stays `assumed` |
+
+### X7 (reopened 2026-08-04). Japanese/Korean required-pathway benchmark
+
+The 2026-07-29 resolution recorded "Korea uses GCAM-KAIST NZ2050_limCCS" as the required-pathway
+benchmark. **That claim is not supportable as written**: GCAM-KAIST 1.0 is a GCAM v5.2 extension
+whose industry sector is aggregate (`industry` / `industrial energy use` / `industrial feedstocks`
+— zero steel technologies, verified by direct inspection of `industry_New_HW.xml`). It cannot
+produce a steel H₂-DRI deployment curve. Consequently the attribution in
+`data/raw/legacy_config/model_parameters.yaml` — `deployment_2050_Mt: 38`,
+source `"GCAM NZ2050 Korea scenario"`, and `deployment_onset_yr_source: "Eom et al. 2022"` —
+is a **false citation**: 38 Mt is an analyst assumption ("~half of Korea's output"), not a GCAM
+output. Full record: PAPER_DIFF update 14 §A. Raw files are read-only, so the correction lives
+here and in `data/raw/gcam/MISSING.md`; the surrogate values are unchanged pending the author
+request in X10. Every affected `t_required` is already `PROVISIONAL` with
+`headline_eligible: False`, so no shipped artifact claims otherwise — but the prose must not say
+"GCAM-KAIST gives the Korean steel pathway" until the 2024 paper's outputs arrive.
+
+### X12. Enterprise value and fleet coverage — the two inputs that make `premium_bps` indefensible `OPEN`
+
+| | |
+|---|---|
+| Finding (audit 2026-08-04) | (a) `ev_usd_bn` (POSCO 40 / HYUNDAI 18 / NIPPON 40 / JFE 15 / KOBE 8, $bn) traces to **no raw file** — `data/raw/` contains no enterprise-value field at all. (b) The 11-furnace registry covers **33%** of the five firms' crude steel, ranging 21% (NIPPON) to 48% (KOBE). `premium_bps` divides asset-summed π by **firm-wide** EV, so the denominator is whole-firm while the numerator is a minority subset — and the mismatch varies 2.3× across firms |
+| Consequence | Cross-firm bps comparison, which is the headline of the investor view, is distorted in an uncontrolled way. `premium_usd_t` is coverage-invariant and unaffected |
+| Options | (1) Lead with `$/t` and Δ/rank; quote bps only within-firm (cheapest, consistent with the external review's Step 8); (2) scale EV by coverage ratio and document it; (3) register a dated market EV snapshot per firm and extend the registry toward full fleet |
+| Recommendation | (1) now — it costs nothing and removes the indefensible claim — plus (3) as the data-fix track. Do not ship a cross-firm bps table before this resolves |
 
 ### X11. Feedstock (scrap/NG/ore) as stochastic driver — scope of the transition frame `RESOLVED (2026-08-04)`
 

@@ -211,7 +211,12 @@ def _calculate(
     frame = firm_frame(cal, tau_map=tau_map)
     priced = frame[frame["category"] == "priced_route"]
     firms = []
+    horizon_end = float(cal.lsm["base_year"] + cal.lsm["horizon_years"])
     for firm_id, group in priced.groupby("firm_id", sort=True):
+        # coverage는 노출창 [t_sw, H] 기준 (s06과 동일 규약 — 감사 2026-08-04 B11)
+        t_sw_capw = float(
+            np.average(group["t_switch_year"], weights=group["capacity_mt_yr"])
+        )
         ps = (
             apply_interventions(
                 cal,
@@ -219,6 +224,8 @@ def _calculate(
                 group["country"].iloc[0],
                 group["elec_driver"].iloc[0],
                 intervention_ids,
+                base_year_override=t_sw_capw,
+                horizon_override=max(0.0, horizon_end - t_sw_capw),
             )
             if intervention_ids
             else None

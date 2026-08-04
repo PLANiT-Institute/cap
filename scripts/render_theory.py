@@ -95,6 +95,10 @@ def build_context() -> dict[str, str]:
         if pk:
             ctx[f"iv.{f['firm_id']}.package_dtau"] = f"{pk['delta']['tau_star_years']:+.1f}"
             ctx[f"iv.{f['firm_id']}.package_dgap"] = f"{pk['delta']['cumulative_gap_mtco2']:+.0f}"
+        cfd = f["interventions"].get("h2_cfd")
+        if cfd:
+            ctx[f"iv.{f['firm_id']}.h2_cfd_dtau"] = f"{cfd['delta']['tau_star_years']:+.2f}"
+            ctx[f"iv.{f['firm_id']}.h2_cfd_dcharge"] = f"{cfd['delta']['risk_charge_bps']:+.2f}"
 
     tau = art("tau_star")
     ctx["lsm.p_bind_in_exercise"] = "ON" if tau["p_bind_in_exercise"] else "OFF"
@@ -119,6 +123,12 @@ def build_context() -> dict[str, str]:
         ctx[f"lw.{fid}.var_h2_pct"] = pct(b["gap_variance_shares"]["h2"])
         ctx[f"lw.{fid}.var_carbon_pct"] = pct(b["gap_variance_shares"]["carbon"])
         ctx[f"lw.{fid}.wedge_overstated"] = f"{b['legacy_attribution']['wedge_usd_t_overstated']:.0f}"
+        # 규칙 7: 배수를 문서에 하드코딩하지 않는다 (감사 2026-08-04에서 1.9× 하드코드 발견)
+        ctx[f"lw.{fid}.legacy_overstatement_x"] = (
+            f"{b['legacy_attribution']['wedge_usd_t_overstated'] / b['wedge_usd_t']:.2f}"
+            if b["wedge_usd_t"] > 0
+            else "n/a"
+        )
     ctx["manifest.config_sha"] = manifest["config_sha256"][:12]
     ctx["manifest.dirty"] = "dirty" if manifest["git_dirty"] else "clean"
     return ctx

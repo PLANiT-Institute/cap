@@ -54,15 +54,17 @@ OUT = ROOT / "outputs"
 def _firm_tau_capw_at_wacc_shift(
     cal: CalibrationSet, assets: "pd.DataFrame", ids: list[str], dwacc: float,
     positions: dict[str, int],
-) -> float:
-    """개입 ids 하에서 WACC를 dwacc만큼 이동시킨 뒤 기업 τ*(용량가중, None→지평말).
+) -> tuple[float, frozenset]:
+    """개입 ids 하에서 WACC를 dwacc만큼 이동시킨 뒤 (기업 τ* 용량가중, 행사 자산 집합).
 
     seed offset은 s03과 동일(cal.firms 행 순서) — dwacc=0이면 tau_star artifact와
     동일한 난수 경로이므로, 차이는 전적으로 dwacc에 귀속된다.
+    두 번째 반환값은 τ*가 유한한(=p_ex ≥ threshold) 자산 집합 — 이 집합이 바뀌면
+    Δτ*는 연속 반응이 아니라 **문턱 플립**이므로 금융 채널로 읽으면 안 된다.
     """
     thr = float(cal.lsm["tau_exercise_threshold"])
     horizon_end = float(cal.lsm["base_year"] + cal.lsm["horizon_years"])
-    taus, caps = [], []
+    taus, caps, exercised = [], [], []
     for _, a in assets.iterrows():
         asset = a.to_dict()
         ps = apply_interventions(
@@ -73,9 +75,11 @@ def _firm_tau_capw_at_wacc_shift(
             tau_threshold=thr,
         )
         ty = tau_year_of(cal, res)
+        if ty is not None:
+            exercised.append(asset["asset_id"])
         taus.append(ty if ty is not None else horizon_end)
         caps.append(float(asset["capacity_mt_yr"]))
-    return float(np.average(taus, weights=caps))
+    return float(np.average(taus, weights=caps)), frozenset(exercised)
 
 
 def financing_channel(
@@ -102,13 +106,19 @@ def financing_channel(
     lam = float(cal.pricing["lambda"])
     lam_grid = {"lo": float(cal.lsm["lambda_grid_lo"]), "base": lam,
                 "hi": float(cal.lsm["lambda_grid_hi"])}
+    resolution = float(cal.pathways["financing_channel_resolution_years"])
     out = {
         "channel": "sigma_B -> spread -> WACC -> tau* (one-pass; fixed point out of scope)",
         "excluded_direct_wacc_intervention": excluded,
         "debt_share": debt_share,
         "lambda_presets": lam_grid,
+        "mc_resolution_years": resolution,
         "delta_wacc_bps": 0.0,
         "delta_tau_financing_channel_years": 0.0,
+        "delta_tau_raw_years": 0.0,
+        "below_mc_resolution": False,
+        "threshold_flip": False,
+        "lambda_band_sign_consistent": True,
         "band_years": {"lambda_lo": 0.0, "lambda_hi": 0.0},
         "note": ("λ·k·p_bind·debt_share(전부 assumed)에 정비례 — 점추정이 아니라 "
                  "밴드로 읽을 것; 실물옵션 채널(delta.tau_star_years)과 분리 판독"),
@@ -118,14 +128,44 @@ def financing_channel(
             out["note"] = ("직접 WACC 개입 — 금융 채널 미적용 (이중계상 상호배제); "
                            "WACC 효과는 실물옵션 채널 τ*에 이미 반영")
         return out
-    deltas = {}
+    # dwacc=0 기준선을 같은 추정기로 잡아 행사 자산 집합을 비교한다
+    _, ref_set = _firm_tau_capw_at_wacc_shift(cal, assets, [iid], 0.0, positions)
+    deltas, flips = {}, False
     for tag, lam_x in lam_grid.items():
         dwacc = debt_share * (delta_charge_bps * lam_x / lam) / 1e4
-        tau_fin = _firm_tau_capw_at_wacc_shift(cal, assets, [iid], dwacc, positions)
+        tau_fin, ex_set = _firm_tau_capw_at_wacc_shift(cal, assets, [iid], dwacc, positions)
         deltas[tag] = tau_fin - iv_tau_capw
+        flips = flips or (ex_set != ref_set)
+    signs = {np.sign(v) for v in deltas.values() if v != 0.0}
     out["delta_wacc_bps"] = debt_share * delta_charge_bps
-    out["delta_tau_financing_channel_years"] = deltas["base"]
+    out["delta_tau_raw_years"] = deltas["base"]
     out["band_years"] = {"lambda_lo": deltas["lo"], "lambda_hi": deltas["hi"]}
+    out["threshold_flip"] = bool(flips)
+    out["lambda_band_sign_consistent"] = len(signs) <= 1
+    # 세 가지 이유로 금융 채널을 0으로 보고한다 (감사 2026-08-04):
+    # ① 문턱 플립 — p_ex가 임계를 넘으면 τ*가 유한↔지평말로 점프한다. 0.1bp 이동에
+    #    수 년이 움직이는 것은 금융 효과가 아니라 위상 전환이다 (p_ex 절벽).
+    # ② MC 해상도 — τ*는 이산 행사규칙의 몬테카를로 평균이므로 미분이 아니다.
+    # ③ λ 밴드 부호 불일치 — dwacc ∝ λ이므로 진짜 반응은 λ에 단조여야 한다.
+    if flips:
+        out["note"] = (
+            "문턱 플립 감지 (p_ex가 tau_exercise_threshold를 교차) — Δτ*가 위상 전환이므로 "
+            f"금융 채널로 읽지 않는다. 원값 {deltas['base']:+.4f}y는 delta_tau_raw_years에 보존"
+        )
+    elif abs(deltas["base"]) <= resolution:
+        out["below_mc_resolution"] = True
+        out["note"] = (
+            f"금융 채널 |Δτ*| = {abs(deltas['base']):.4f}y ≤ MC 해상도 {resolution}y — "
+            "0으로 보고. 이 배선·이 λ에서 금융 채널은 이 추정기로 0과 구별되지 않는다 "
+            "(실물옵션 채널과의 비교는 여전히 유효: 그쪽은 해상도의 수십 배)"
+        )
+    elif not out["lambda_band_sign_consistent"]:
+        out["note"] = (
+            "λ 밴드에서 부호가 뒤집힘 — dwacc ∝ λ이므로 진짜 반응은 λ에 단조여야 한다. "
+            f"추정 잡음으로 판정하고 0으로 보고 (원값 {deltas['base']:+.4f}y 보존)"
+        )
+    else:
+        out["delta_tau_financing_channel_years"] = deltas["base"]
     return out
 
 
@@ -147,8 +187,15 @@ def firm_state(
     g = g_all[g_all["category"] == "priced_route"]
     if g.empty:
         return {}
+    # 계약 coverage는 **가격이 매겨지는 노출창** [t_sw, H] 기준으로 가중한다.
+    # S4 이후 t_sw=τ*이므로 지평 기준 가중은 만료된 계약이 만료 후 구매를 헤지한 것으로
+    # 계산했다 (감사 2026-08-04 B11). LSM 레인은 전 지평을 보므로 그대로 둔다.
+    horizon_end = float(cal.lsm["base_year"] + cal.lsm["horizon_years"])
+    t_sw_capw = float(np.average(g["t_switch_year"], weights=g["capacity_mt_yr"]))
     ps = apply_interventions(
         cal, g["route"].iloc[0], g["country"].iloc[0], g["elec_driver"].iloc[0], ids,
+        base_year_override=t_sw_capw,
+        horizon_override=max(0.0, horizon_end - t_sw_capw),
         basis_case=basis_case,
     )
     meta = firm_exposures(cal, g, ps=ps)
@@ -296,8 +343,11 @@ def main() -> int:
             }
 
         # sequential (package 구성 순서대로 누적) — 순서 의존성 명시
+        # 첫 단계가 base→package 타이밍 점프를 전부 흡수하지 않도록 기준선도
+        # package τ*(빈 집합)에서 잡는다 — Shapley와 같은 특성함수 (감사 2026-08-04)
         seq = []
-        prev_charge = before["risk_charge_bps"]
+        prev_charge = firm_state(cal, fid, tau_map=iv_tau["package"], ids=[])["risk_charge_bps"]
+        seq_baseline_bps = prev_charge
         for j in range(1, len(components) + 1):
             ids_j = components[:j]
             st = firm_state(cal, fid, tau_map=iv_tau["package"], ids=ids_j)
@@ -311,9 +361,12 @@ def main() -> int:
         charge_cache: dict[frozenset, float] = {}
 
         def charge_of(subset: frozenset) -> float:
+            # 노출창(t_sw)을 package τ*로 **고정**한 채 charge를 비교한다.
+            # 공집합만 base τ*로 두면 base→package 타이밍 점프가 전부 S=∅ 항에 실리고,
+            # 그 항의 Shapley 가중이 모든 참가자에게 1/n로 같아서 **적용조차 안 되는
+            # 계약에도 1/n씩 배분된다** (null player 공리 위반, 감사 2026-08-04).
             if subset not in charge_cache:
-                st = firm_state(cal, fid, tau_map=iv_tau["package"] if subset else None,
-                                ids=sorted(subset))
+                st = firm_state(cal, fid, tau_map=iv_tau["package"], ids=sorted(subset))
                 charge_cache[subset] = st["risk_charge_bps"]
             return charge_cache[subset]
 
@@ -336,9 +389,16 @@ def main() -> int:
                 "sequential_package": {
                     "order": components,
                     "steps": seq,
-                    "note": "순차 소거는 적용 순서에 따라 배분이 달라진다 — order-averaged 참조",
+                    "baseline_bps": seq_baseline_bps,
+                    "note": "순차 소거는 적용 순서에 따라 배분이 달라진다 — order-averaged 참조. "
+                            "기준선은 package τ*의 무계약 charge (타이밍 점프 분리)",
                 },
                 "order_averaged_contribution_bps": shapley,
+                "attribution_basis": (
+                    "charge at fixed exposure window (package τ*); base→package timing effect is "
+                    "NOT distributed here — read delta.tau_star_years for it. Non-applicable "
+                    "instruments receive exactly 0 (null-player axiom)"
+                ),
             }
         )
 

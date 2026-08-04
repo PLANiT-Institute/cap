@@ -536,9 +536,14 @@ archetype 가정이므로 유지. KR(7.5% vs 조사 7.75%)은 차이 경미로 �
 | 항목 | 이전 (동결 payoff) | 이후 (drift 일치) |
 |---|---|---|
 | POSCO 광양 (A01) | 2050.7 | **2044.7** (−6.0y) |
-| Nippon 기미츠 (A04) | None (p_ex 0.49) | **2050.3** (문턱 통과) |
-| JFE 후쿠야마 (A03/A08) | None (p_ex 0.42–0.44) | **2046–2047** (문턱 통과) |
-| Kobe (A05/A10/A11) | None (p_ex 0.12–0.14) | None 유지 (p_ex 0.19–0.20) |
+| Nippon 오이타 (A04) | None (p_ex 0.49) | **2050.3** (문턱 통과) |
+| 현대제철 당진 (A03/A08) | None (p_ex 0.42–0.44) | **2046–2047** (문턱 통과) |
+| JFE·Kobe (A05/A10/A11) | None (p_ex 0.12–0.14) | None 유지 (p_ex 0.19–0.20) |
+
+> 정정 (2026-08-04, 갱신 14 B12): 위 표의 설비·기업 귀속이 틀려 있었다 —
+> A04는 기미츠가 아니라 **오이타**, A03/A08은 JFE 후쿠야마가 아니라 **현대제철 당진**,
+> A05/A10은 Kobe가 아니라 **JFE**(A11만 Kobe). 기미츠·후쿠야마는 레지스트리에 없다.
+> 수치는 원래 값을 유지하고 이름만 정정한다.
 | 옵션가치 | 42–3095 USD/t | 87–3236 USD/t (~1.1–3.1×) |
 | timing gap (양수 유지) | 7.3–18.8y | **2.7–15.2y** |
 | σ-linearity R² | 0.957 | 재계산 (구조 유지) |
@@ -732,3 +737,78 @@ POSCO·NIPPON의 H₂ 자산 6개 전부 `tau_threshold_fragile=true` (p_ex 0.55
   이제 "사적 τ* 창"으로 **결정됨** (S4, R-7 해소가 근거).
 - gap 수준(JFE +105%, KOBE +21배)은 surrogate 비율 곡선에 조건부 (PROVISIONAL 유지,
   X10의 GCAM-KAIST 가격·경로 도착 시 재계산).
+
+## 갱신 14 (2026-08-04 — 데이터 진실성 감사 + GCAM 출처 검증)
+
+세 가지 질문에 대한 감사: ① GCAM 데이터 확보 ② 엔진·서사 정합 ③ 기업 데이터의 거짓.
+아래는 **직접 파일 검증을 통과한 것만** 기록한다 (에이전트 주장은 재확인 후 채택).
+
+### A. GCAM 출처 — 표기가 사실과 다르다 (BLOCKER)
+
+직접 확인: `Input_Korea_GCAM-KAIST_1.0.zip`·`Input_default_...zip` (Zenodo 14171830,
+CC BY 4.0) 다운로드 후 실제 입력 파일 검사.
+
+1. GCAM-KAIST 1.0 = **GCAM v5.2** 확장. 모든 NZ2050 config가 로드하는 산업 입력
+   `industry_New_HW.xml`의 supplysector는 `industry`·`industrial energy use`·
+   `industrial feedstocks` **3개뿐** — 철강·iron·DRI·EAF·blast furnace 기술 **0건**.
+   논문 본문도 산업부문을 집계 부문으로 명시.
+   → **GCAM-KAIST NZ2050(_limCCS)은 철강 H₂-DRI 배치 경로를 산출할 수 없다.**
+2. 따라서 `legacy_config/model_parameters.yaml`의
+   `deployment_2050_Mt: 38` + `deployment_2050_Mt_source: "GCAM NZ2050 Korea scenario"`,
+   `deployment_onset_yr_source: "Eom et al. 2022; KAIST EPRG"`는 **거짓 출처**다.
+   38 Mt는 "한국 조강의 약 절반"이라는 **분석자 가정**이며 GCAM 출력이 아니다.
+   영향: KR h2_dri 자산 4개(POSCO)의 T_required → condition gap → wedge 전부.
+   raw는 읽기전용이므로 파일은 수정하지 않고 이 항목과 MISSING.md로 정정 기록.
+   **DECISIONS X7 재개** — "Korea = GCAM-KAIST NZ2050_limCCS" 문장은 현재 근거 없음.
+3. 실제로 확보한 것(등록 완료): 같은 시나리오의 **경제 전체 GHG 배출 제약**
+   2025 **691** → 2030 558 → 2035 435 → 2040 312 → 2045 189 → 2050 **66** MtCO2e.
+   철강 경로가 아니라 국가 배출 봉투다.
+4. GCAM-KAIST의 탄소가격은 제약의 **내생 shadow price** = 모델 출력. Zenodo는
+   input only, 출력 DB 미공개 → X10은 저자 요청 또는 타 출처 필요.
+5. 철강 분해가 있는 올바른 출처: **Lee, McJeon, Yu, Liu, Kim, Eom (2024),
+   J. Cleaner Production 476:143749** (DRI-EAF-H₂ 명시, 엄지용 공저). 유료·데이터 미공개.
+6. 공개 대안(탄소가격, 2035 지평): GCAM-ROK — Choi·Park·McJeon 2025 preprint.
+   KR ETS **8,870 KRW/tCO2**(현행정책 2023 수준 고정) → **30,411 KRW/tCO2**(강화, 2035).
+   fx 1300 환산 $6.8 → $23.4. **CAP config의 SQ $12 / MSR $35보다 낮다.**
+   주의: 같은 논문의 $42→$84/tCO2는 **CCS 보조금**(IRA 45Q 유사)이며 탄소가격 아님.
+   같은 논문의 data-availability GitHub은 표준 GCAM Core 진단자료(2017)만 담고 있고
+   한국 시나리오 출력은 비공개 로컬 DB — 즉 공개 출력 없음.
+
+### B. 기업 데이터 — 검증된 결함
+
+| # | 항목 | 현행 | 검증 결과 |
+|---|---|---|---|
+| B1 | `ev_usd_bn` 5개 | 40/18/40/15/8 | **UNTRACED** — `data/raw/` 전체에 EV 필드 없음(grep 0건). 전 bps의 분모. status=assumed로 배지는 흐름 |
+| B2 | NIPPON 배출강도 | 1.90 | **raw와 모순** — `reference/CAP_Company_Data.xlsx`는 ~2.14(5사 중 최고). config는 최저로 배치 → −11%·순위 역전 |
+| B3 | JFE/KOBE 강도 | 2.00/1.95 | 같은 raw는 2.08/2.0 |
+| B4 | A05 JFE Keihin BF1 | 2036 reline, priced | **실재 의심** — Keihin 상공정 폐쇄(2023 취풍정지)가 사실이면 존재하지 않는 설비를 모델링. 같은 raw 워크북의 JFE 서사는 전부 서일본(Kurashiki) |
+| B5 | A10 Kurashiki 투자연도 | 2034 | raw 워크북은 **2028**(2Mtpa EAF, FID 2025-04)·BF 폐쇄창 2027–2030 |
+| B6 | 함대 커버리지 | 11기 | 조강 대비 **33%**, 기업별 21%(NIPPON)~48%(KOBE) = **2.3배 편차**. `premium_bps`는 자산합 π ÷ 기업 전체 EV → **기업간 bps 비교가 통제되지 않은 채 왜곡**. $/t는 무영향 |
+| B7 | A08 당진 BF2 | start 2012, reline 2013 | **물리적 불가** 1년 캠페인. 2028 투자연도가 여기서 파생 |
+| B8 | A06 포항 BF4 | start 2010, reline 2016 | 6년 캠페인 — 2031 파생값 오염 |
+| B9 | HYUNDAI WACC/hurdle | 10.5%/12% | **UNTRACED** — raw에 없음. legacy_config은 국가 단위 KR 7.5%/10%만 보유 |
+| B10 | POSCO WACC 출처 | "DART WACC" | **오귀속** — legacy_config 실제 출처는 GuruFocus·RMI, `[VERIFY]` 플래그가 config 진입 시 탈락 |
+| B11 | config `capacity_mt_yr` | 4.2 등 | 내용은 raw의 `crude_steel_mt_yr`(실생산). nameplate(4.5)가 아님 — **이름이 내용과 다름**. 회귀 테스트로 규약 고정 |
+| B12 | PAPER_DIFF 갱신 11 표 | 536–539행 | **귀속 오류**: A04는 Oita(기미츠 아님), A03/A08은 **현대 당진**(JFE 후쿠야마 아님), A05/A10은 **JFE**(Kobe 아님). 원고 진입 시 조작된 귀속이 된다 |
+| B13 | `dart_portfolio.csv` | POSCO 2023 매출 1.45조 | 같은 raw의 `company_financials.csv`는 77.13조 — 항목 추출 오류. `verified=True` 표기. **모델 미사용**이나 거짓 재무가 등록 상태 |
+
+미등록·미조사(저자 확인 필요): POSCO 광양 2고로(같은 워크북이 "CAP Gap 5 anchor"로 지목,
+누적 137 MtCO2 고정)가 레지스트리에 **없음**; Nippon Oita BF1 5.2Mt/2004는 **2고로** 제원으로 보임.
+
+### C. 코드 결함 — 수정 완료 (수치 불변)
+
+1. `s01_ingest.py`: `intensities/prices/capex_refs/instruments` 기록이
+   `ingest_candidate_tables()`의 `return` **뒤 도달불가 코드**로 07-26 스냅샷에 동결.
+   `capex_refs`(→k_offcycle_mult)와 `prices`(→reference_prices)는 s02가 **소비**하므로
+   raw를 고쳐도 모델이 따라오지 않는 잠재 drift였다. 도달 위치로 이동 + 신선도 테스트.
+   (동결 parquet이 raw와 일치했으므로 현재 수치 이동 없음 — 잠재 결함이 실현 전에 잡힘.)
+2. `s02_calibrate.py`: `firms_registry`·`routes_sensitivity` status가 `mode()`였다 —
+   11 banded 뒤에 2 assumed(archetype)가 삼켜져 배지가 사라졌다. **최악 우선 집계**로
+   교체 → `premium_levels.conditional_on`에 `firms_registry` 등장 (규칙 4 복구).
+3. drift 가드 테스트 3종 신설: config↔raw 자산 일치, 소수 status 전파, 소비 parquet 신선도.
+
+### 판정
+
+**현 시점 `premium_bps`는 방어 불가**: 출처 없는 분모(B1) × 통제되지 않은 함대 커버리지(B6).
+$/t와 Δ·순위는 살아남는다 (외부 리뷰 Step 8과 동일 결론이 데이터 쪽에서 재확인됨).
+B2·B4·B5·B12는 **원고 진입 차단** 항목. B12는 이 문서 자체의 오류이므로 즉시 정정 대상.

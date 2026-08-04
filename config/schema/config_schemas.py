@@ -57,6 +57,20 @@ lsm_schema = pa.DataFrameSchema(
     strict=False,
 )
 
+# 요구 경로(required pathway) 파라미터 — 2026-08-04까지 data/raw/legacy_config yaml에서
+# 직접 읽혀 규칙 1·3·4 밖에 있었다 (PAPER_DIFF 갱신 14 §C). config로 승격.
+pathways_schema = pa.DataFrameSchema(
+    coerce=True,
+    columns={
+        "param": Column(str, unique=True),
+        "value": Column(float),
+        "status": Column(str, STATUS),
+        "source": Column(str),
+        "theory_anchor": Column(str, ANCHOR),
+    },
+    strict=False,
+)
+
 # p_bind 정의 = Option A (PLAN 개편 §5): p_bind(country) = Σ prob where binds=1.
 # 별도 p_bind 파라미터는 존재하지 않는다 — 혼합 금지를 스키마 주석으로 명시.
 scenarios_schema = pa.DataFrameSchema(

@@ -1,6 +1,6 @@
 {
   "artifact": "cluster_separation",
-  "note": "두 클러스터 불교차 — 은폐하지 않음",
+  "note": "두 클러스터 불교차 — 은폐하지 않음 (간격의 실질성도 병기)",
   "claims": {
     "separated": {
       "status": "MODEL_CONDITIONAL",
@@ -16,7 +16,7 @@
         "sigma_h2",
         "t_required"
       ],
-      "note": "절반은 A4 배정의 귀결 — route 감응도 0 구성"
+      "note": "절반은 A4 배정의 귀결 — route 감응도 0 구성. S4 이후 두 클러스터 모두 탄소 지배 — separation_is_material 병독 필수"
     }
   },
   "conditional_on": [
@@ -47,5 +47,7 @@
     "hi": 0.9999788647
   },
   "separated": true,
-  "gap": 0.0373551313
+  "gap": 0.0373551313,
+  "separation_is_material": false,
+  "reading": "both clusters are carbon-dominated on the private path; the gap sits near the unit-interval ceiling, so read this as a concentration ordering, not as the composition-vs-concentration contrast of earlier drafts (PAPER_DIFF update 13)"
 }

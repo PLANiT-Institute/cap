@@ -348,12 +348,46 @@ def test_financing_channel_is_separate_and_conditional():
                 saw_active = True
                 # 점추정 금지: λ 밴드 존재
                 assert set(fc["band_years"]) == {"lambda_lo", "lambda_hi"}
-    assert saw_active, "금융 채널이 어디서도 작동하지 않으면 배선이 죽은 것"
+    assert saw_active or any(
+        iv["financing_channel"]["delta_tau_raw_years"] != 0.0
+        for f in imp["firms"] for iv in f["interventions"].values()
+    ), "금융 채널이 어디서도 계산조차 안 되면 배선이 죽은 것"
     # concessional은 반드시 제외돼야 한다 (직접 WACC 변환)
     posco = next(f for f in imp["firms"] if f["firm_id"] == "POSCO")
     assert posco["interventions"]["concessional"]["financing_channel"][
         "excluded_direct_wacc_intervention"
     ] is True
+
+
+# 감사 2026-08-04: 금융 채널이 잡음·문턱 플립을 점추정으로 출판하지 않는다
+def test_financing_channel_suppresses_noise_and_threshold_flips(cal):
+    imp = art("intervention_impacts")
+    resolution = float(cal.pathways["financing_channel_resolution_years"])
+    for f in imp["firms"]:
+        for iid, iv in f["interventions"].items():
+            fc = iv["financing_channel"]
+            reported = fc["delta_tau_financing_channel_years"]
+            if reported == 0.0:
+                continue
+            assert not fc["threshold_flip"], f"{f['firm_id']}/{iid}: 위상 전환을 금융 효과로 보고"
+            assert abs(reported) > resolution, f"{f['firm_id']}/{iid}: 해상도 이하를 보고"
+            assert fc["lambda_band_sign_consistent"], f"{f['firm_id']}/{iid}: λ 밴드 부호 불일치"
+            assert reported == pytest.approx(fc["delta_tau_raw_years"])
+
+
+# 감사 2026-08-04: Shapley null player — 적용 안 되는 계약은 정확히 0
+def test_shapley_gives_zero_to_inapplicable_instruments(cal):
+    imp = art("intervention_impacts")
+    for f in imp["firms"]:
+        fid = f["firm_id"]
+        g = cal.firms[(cal.firms["firm_id"] == fid) & (cal.firms["category"] == "priced_route")]
+        route, country, elec = g["route"].iloc[0], g["country"].iloc[0], g["elec_driver"].iloc[0]
+        for iid, value in f["order_averaged_contribution_bps"].items():
+            applied = apply_interventions(cal, route, country, elec, [iid]).applied
+            if not applied:
+                assert value == pytest.approx(0.0, abs=1e-12), (
+                    f"{fid}/{iid}: 적용되지 않는 계약에 {value} bps 배분 — null player 위반"
+                )
 
 
 # S3 수용 기준: 풀 마지막 자산 T_required가 지평말에 고정되는 성질 제거 (R-6)
@@ -373,11 +407,24 @@ def test_required_endpoint_artifact_removed(cal):
         cal.t_required[aid]["year"] is not None and cal.t_required[aid]["year"] < horizon_end
         for aid in non_h2["asset_id"]
     )
-    # 풀 q-곡선이 존재하고 [0,1] 범위
+    # 풀 q-곡선이 존재하고 [0,1] 범위, 단조, 기준연도 0
     for pool_id, pp in cal.required_pool_paths.items():
         q = np.asarray(pp["q_fraction"])
         assert (q >= 0).all() and (q <= 1 + 1e-12).all(), pool_id
         assert (np.diff(q) >= -1e-12).all(), f"{pool_id}: q(t)가 단조 아님"
+        assert q[0] == pytest.approx(0.0), (
+            f"{pool_id}: q(base_year) ≠ 0 — 요구 경로가 기준연도에 이미 전환된 설비를 "
+            "가정하면 first_misalignment_year가 전부 기준연도로 붕괴한다 (감사 2026-08-04)"
+        )
+    # 풀 배치 일정은 크기와 무관해야 한다 (pro_rata) — 나눗셈 아티팩트 회귀 방지
+    shapes = {pid: tuple(np.round(pp["q_fraction"], 9)) for pid, pp in cal.required_pool_paths.items()}
+    surrogate_pools = [
+        pid for pid, pp in cal.required_pool_paths.items() if pp["status"] == "PROVISIONAL"
+    ]
+    assert len({shapes[p] for p in surrogate_pools}) == 1, (
+        "surrogate 풀들의 q(t)가 서로 다르다 — 풀 용량으로 나누면 작은 풀이 더 빠른 "
+        "요구 경로를 갖는 아티팩트가 생긴다"
+    )
 
 
 # 13. intervention 후 residual risk가 근거 없이 0이 되지 않음
@@ -462,6 +509,9 @@ def test_shares_identity_and_clusters():
         assert sum(f["shares"].values()) == pytest.approx(1.0, abs=1e-9)
     sep = art("cluster_separation")
     assert sep["separated"] is True
+    # S4 이후 두 클러스터 모두 탄소 지배 → "분리됐다"만으로는 공허하다.
+    # 간격의 실질성 플래그가 함께 산출되는지 고정 (감사 2026-08-04)
+    assert "separation_is_material" in sep and isinstance(sep["separation_is_material"], bool)
 
 
 # 개입 coverage 근사: h2_cfd가 σ_h2를 0으로 만들지 않음

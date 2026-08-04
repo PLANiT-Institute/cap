@@ -25,8 +25,11 @@
 
 **Why does transition capital not flow to net zero, when and how much is
 needed, and what moves it?** Computed bottom-up for 11 blast furnaces across
-5 Korean/Japanese steelmakers (plus 2 petrochemical NCC archetypes kept as
-explicitly `assumed/provisional` calculation examples, not measurements).
+5 Korean/Japanese steelmakers — a **partial fleet**, about one third of those
+firms' crude steel (21–48% by firm), so enterprise-value basis points are not
+comparable across firms; use $/t and deltas (see `DECISIONS.md` X12). Plus 2
+petrochemical NCC archetypes kept as explicitly `assumed/provisional`
+calculation examples, not measurements.
 
 The causal chain: asset registry → privately optimal switch timing (τ\*, LSM)
 → required pathway (T_required, surrogate; sector pool allocated pro-rata by
@@ -45,8 +48,12 @@ does not remove risk — it accumulates it as the gap.
    levers / dual), order-averaged.
 2. **Risk anatomy** — what the uncertainty is made of, by driver, shown as
    bands; each component carries its contract name and decision owner
-   (joint / public / lender). H₂-route firms read as a *composition*,
-   non-transitioning firms as a *concentration* (single carbon-policy
+   (joint / public / lender). On the private path every firm now reads as a
+   *concentration* in carbon policy, because the pre-switch carbon leg runs to
+   τ*≈2050 and dominates; the *composition* reading (hydrogen-dominated) belongs
+   to the post-transition world, i.e. under a required path or an intervention
+   package (see `PAPER_DIFF.md` update 13). Non-transitioning firms are a
+   *concentration* for a second reason (single carbon-policy
    exposure no private contract can touch).
 3. **Investor translation** — σ_B, Δσ, Δbps, rankings and deal gates are
    engine outputs; the pricing scale (λ, k, p_bind, EV) is the user's input

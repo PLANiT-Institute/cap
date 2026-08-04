@@ -23,7 +23,9 @@ CAP(Capital Allocation Pathway)의 핵심 질문은 이것이다:
 
 **왜 조성인가.** 배분자(allocator)에게 수준은 "얼마나 위험한가"를 말하지만, 조성은 두 가지 실행 가능한 답을 준다: (1) 어떤 노출이 섹터 공통요인이라 종목선택으로 벗을 수 없고 직접 헤지(탄소상품)가 필요한가, (2) 어떤 노출이 종목선택으로 다이얼을 돌릴 수 있는가. 그리고 계약 지도([[05_contracts_identification]])를 통해 각 성분을 소거하는 단일 상품의 이름을 댄다.
 
-**Phase 1의 대상**: 한·일 철강 5사(POSCO, Nippon, Hyundai, JFE, Kobe) 11개 고로. 철강을 먼저 하는 이유 — 전환 route가 이산적이고 공개돼 있으며(수소환원 vs scrap-EAF), 자산이 크고 수명이 길어 타이밍 문제가 실재하고, 한국 관점에서 K-ETS·CBAM 정책 채널이 직접 물린다.
+**Phase 1의 대상**: 한·일 철강 5사(POSCO, Nippon, Hyundai, JFE, Kobe) 11개 고로 —
+5사 조강 생산의 **약 1/3(기업별 21–48%)에 해당하는 부분 함대**이며 전 설비가 아니다.
+따라서 기업 전체 EV로 나눈 bps는 기업 간 비교에 쓸 수 없다 (DECISIONS X12); $/t와 Δ·순위는 무영향. 철강을 먼저 하는 이유 — 전환 route가 이산적이고 공개돼 있으며(수소환원 vs scrap-EAF), 자산이 크고 수명이 길어 타이밍 문제가 실재하고, 한국 관점에서 K-ETS·CBAM 정책 채널이 직접 물린다.
 
 **Sector extension**: 동일한 CAP 구조를 석유화학 NCC에 적용하되, 노출벡터에 원료를 추가하고 e-cracker·cracker+CCUS·circular-olefins를 별도 route로 둔다. 현행 두 NCC는 제품 검증용 archetype이며 용량·EV·WACC·기술경제성·T_required가 `assumed/provisional`이다. 따라서 석유화학 숫자는 기업 실증 결과가 아니라 모델이 어떤 데이터를 요구하고 어떤 계약을 비교하는지 보여주는 계산 사례다.
 

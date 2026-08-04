@@ -158,11 +158,23 @@ def main() -> int:
             "grid_route_carbon_share": {"lo": float(grid_carbon.min()), "hi": float(grid_carbon.max())},
             "separated": bool(h2_carbon.max() < grid_carbon.min()),
             "gap": float(grid_carbon.min() - h2_carbon.max()),
+            # S4 이후 두 클러스터 모두 탄소 지배 → 분리는 [0,1] 천장 근처의 좁은 간격이다.
+            # 간격의 크기를 병기해 "분리됐다"가 실질적 대비를 뜻하는지 독자가 판단하게 한다
+            # (감사 2026-08-04: separated=True가 공허해질 수 있음).
+            "separation_is_material": bool(
+                (grid_carbon.min() - h2_carbon.max()) > (1.0 - h2_carbon.max())
+            ),
+            "reading": (
+                "both clusters are carbon-dominated on the private path; the gap sits near the "
+                "unit-interval ceiling, so read this as a concentration ordering, not as the "
+                "composition-vs-concentration contrast of earlier drafts (PAPER_DIFF update 13)"
+            ),
         },
         cal.param_status,
         claims={"separated": claim(MODEL_CONDITIONAL, ANATOMY_DEPS,
-                                   "절반은 A4 배정의 귀결 — route 감응도 0 구성")},
-        note="두 클러스터 불교차 — 은폐하지 않음",
+                                   "절반은 A4 배정의 귀결 — route 감응도 0 구성. "
+                                   "S4 이후 두 클러스터 모두 탄소 지배 — separation_is_material 병독 필수")},
+        note="두 클러스터 불교차 — 은폐하지 않음 (간격의 실질성도 병기)",
     )
 
     # λ_k 감응도 (R1): driver별 위험가격 허용 시 share 이동

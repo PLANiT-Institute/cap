@@ -50,8 +50,19 @@ class ParamSet:
 
 
 def _window_frac(row: pd.Series, base_year: float, horizon: float) -> float:
-    span = max(0.0, min(float(row["end_year"]), base_year + horizon) - max(float(row["start_year"]), base_year))
-    return min(1.0, span / horizon)
+    """계약 창(tenor)이 **가격이 매겨지는 창**을 덮는 비율.
+
+    [base_year, base_year+horizon]으로 호출하면 지평 기준(LSM 레인 — 옵션은 전 지평을 본다).
+    노출 레인(s04 anatomy)은 [t_sw, H]를 가격하므로 그 창으로 호출해야 한다: S4 이후
+    t_sw=τ*≈2050이라 2045년 만료 계약을 지평 기준으로 가중하면 **만료 후 구매를
+    헤지한 것으로 계산된다** (감사 2026-08-04, B11).
+    """
+    window = max(horizon, np.finfo(float).tiny)
+    span = max(
+        0.0,
+        min(float(row["end_year"]), base_year + horizon) - max(float(row["start_year"]), base_year),
+    )
+    return min(1.0, span / window)
 
 
 def carbon_regime(scen: pd.DataFrame, sigma_diff: float) -> CarbonRegime:
@@ -69,11 +80,16 @@ def carbon_regime(scen: pd.DataFrame, sigma_diff: float) -> CarbonRegime:
 
 
 def reform_shift(scen: pd.DataFrame, shift: float) -> pd.DataFrame:
-    """carbon_reform: 비구속(SQ) 확률의 shift 비율을 구속 시나리오로 비례 재배분."""
+    """carbon_reform: 비구속(SQ) 확률의 `shift` 비율을 구속 시나리오로 비례 재배분.
+
+    shift는 config `interventions.csv` value가 유일한 출처다 — 2026-08-04 감사까지
+    여기에 0.5가 하드코드돼 있어 "절반 이전"이라는 정책 강도가 config로 표현 불가였다
+    (규칙 1 위반). 지금은 value=0.5가 그 절반을 뜻한다.
+    """
     out = scen.copy()
     nonbind = out["binds"] == 0
-    moved = float(out.loc[nonbind, "prob"].sum()) * shift * 0.5  # 절반 이전 (notes 정의)
-    out.loc[nonbind, "prob"] = out.loc[nonbind, "prob"] * (1 - shift * 0.5)
+    moved = float(out.loc[nonbind, "prob"].sum()) * shift
+    out.loc[nonbind, "prob"] = out.loc[nonbind, "prob"] * (1 - shift)
     bind_probs = out.loc[~nonbind, "prob"]
     out.loc[~nonbind, "prob"] = bind_probs + moved * bind_probs / bind_probs.sum()
     return out
