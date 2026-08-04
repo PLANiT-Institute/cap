@@ -17,7 +17,7 @@ Rules:
    Abstract-based summaries stay in `refs.bib` as a map, not as support
    (the lesson of `PAPER_DIFF.md` D8 and D18).
 
-Status: **OPEN 4 (X1, X3, X10, X11) · RESOLVED 7** (updated 2026-08-04)
+Status: **OPEN 3 (X1, X3, X10 — data pending) · RESOLVED 8** (updated 2026-08-04)
 
 ---
 
@@ -129,16 +129,15 @@ uniform λ and λ_k side by side. POSCO's carbon share moves 31.6% → 39.8%
 | Blocks | Data: GCAM-KAIST carbon-price series not in `data/raw/` (provenance rule 5 — no entry without registered source). Need the price output file from the GCAM-KAIST run or an NGFS download |
 | Recommendation | Register the raw file via `s01_ingest`, then re-derive mu_carbon; record shifts in PAPER_DIFF (rule 8). Until then X9's derived anchor stays `assumed` |
 
-### X11. Feedstock (scrap/NG/ore) as stochastic driver — scope of the transition frame `OPEN`
+### X11. Feedstock (scrap/NG/ore) as stochastic driver — scope of the transition frame `RESOLVED (2026-08-04)`
 
 | | |
 |---|---|
 | Current | Steel feedstock prices are deterministic constants inside `avoided`/`other_opex` (FORMULA_LEDGER R-9); `q_feedstock = 0` for steel rows |
-| Plan S5 | Activate q_feedstock·p_feedstock for steel; acceptance "feedstock component appears in JFE anatomy" |
-| Author intent (2026-08-04) | Feedstock was excluded **deliberately** — the project prices the *transition*, not commodity-cost risk |
-| Tension | (a) Scrap is the input of the destination route (scrap_eaf): its price risk is transition-conditional, not pure commodity noise — JFE's cost base is ~88% scrap. (b) Review 2026-08-04 found S5's acceptance criterion is mechanically unreachable under S4 anyway (t_sw = tau* = None for JFE → zero post-switch window) |
-| Options | (1) Keep deterministic, reframe JFE/KOBE anatomy as *concentration* (carbon-only exposure) — consistent with author intent and View 2 prose; (2) activate the driver as S5 planned |
-| Recommendation | Decide before S5 is scheduled; if (1), S5 shrinks to the annualization fix (R-8) only |
+| Decision | **Keep feedstock deterministic** — the project prices the *transition*, not commodity-cost risk (author, 2026-08-04). JFE/KOBE carbon-dominant anatomy is reported as **concentration** (single-driver exposure of non-transitioning firms), not as a degenerate composition. Plan S5 is thereby reduced: no feedstock activation |
+| Rejected | Activating q_feedstock per original S5 — rejected: (a) out of the transition frame; (b) its acceptance criterion was mechanically unreachable under S4 anyway (tau* = None for JFE → zero post-switch window, review 2026-08-04) |
+| Carried tension | Scrap is the input of the destination route (scrap_eaf), so its price risk is transition-conditional — JFE's cost base is ~88% scrap. Recorded as a known scope limit; revisit only if a referee or the LNG pack forces it (2차) |
+| R-8 (annualization) adjudication | After S4 (t_sw = tau*), every firm's carbon leg spans the full horizon (pre- + post-switch), so sigma_B is a full-horizon PV quantity and annuity(WACC, horizon) **is** the matching annualization window. R-8's short-window premise dissolved — no code change; recorded here |
 
 ## Tier 3 — deferrable
 
@@ -165,5 +164,6 @@ uniform λ and λ_k side by side. POSCO's carbon share moves 31.6% → 39.8%
 | 2026-07-29 | X6 | Carbon-price prose must carry a reference date; config uses the 2026-06-30 KAU close ($14.93) | Undated citation — rejected: the break-even multiple moves 1/7↔1/3.3 with the date | none (rule) |
 | 2026-07-29 | X7 | Approve TZ-OSeMOSYS-STEEL as the Japanese required-pathway benchmark, normalized through state variables. Implementation ticket: extend `t_required_source` to record per-country sources | Forcing a single global IAM — rejected: GCAM-KAIST is Korea-specific | none yet (implementation pending) |
 | 2026-07-29 | X8 | Promote λ_k to a headline result: report shares under uniform λ and λ_k side by side | Keeping λ_k as side-robustness — rejected: A5 has zero supporting papers, seven against (D1) | presentation change; implementation with s12 |
-| 2026-08-03 | X9 | LSM carbon price: scenario-anchored convergence path (drift → 0 after anchor year); μ demoted to derived; `dp_delta` deleted, s12 δ from the same path | (a) keep perpetual physical drift — mistranslates a level scenario into a return forecast; (b) risk-adjusted drift — imports unidentified λ | pending rerun — τ*/wedge/interventions/level_wedge recompute; PAPER_DIFF on implementation |
+| 2026-08-03 | X9 | LSM carbon price: scenario-anchored convergence path (drift → 0 after anchor year); μ demoted to derived; `dp_delta` deleted, s12 δ from the same path | (a) keep perpetual physical drift — mistranslates a level scenario into a return forecast; (b) risk-adjusted drift — imports unidentified λ | PAPER_DIFF update 12 — POSCO τ* 2044.6→2050.0, HYUNDAI private transition gone |
+| 2026-08-04 | X11 | Steel feedstock stays deterministic (transition frame); JFE/KOBE anatomy = concentration, not composition; S5 reduced to nothing (R-8 dissolved by S4) | Activating q_feedstock (original S5) — out of frame and unreachable under S4 | none (no code change) |
 

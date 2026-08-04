@@ -664,3 +664,71 @@ LSM 탄소경로를 시나리오-앵커 수렴 경로로 교체: μ_t = ln(targe
 4. 검증: 43/44 통과 (실패 1건은 샌드박스 환경의 uv 호출 문제 — macOS에서 재확인
    필요). 신규 회귀 test_carbon_drift_is_scenario_anchored: 파생 μ 항등,
    anchored_growth_annuity 항등 3종, E[P] anchor 도달·후 발산 없음.
+
+## 갱신 13 (2026-08-04 — S2·S3·S4 구현: 금융 채널, 풀 연속 required, t_sw=τ*)
+
+RESTRUCTURE §6의 구조 수정 잔여분 구현 (S5는 X11로 축소·해소 — DECISIONS 참조).
+동일 config·seed. 커밋: S3 `8296986`, S4 `e7a7be4`, S2 `af85d76`.
+
+### S3 — required 경로: 자산 배정 계단 → 풀 연속 q(t) (R-6 해소)
+
+| 항목 | before | after |
+|---|---|---|
+| JFE A05 T_required | **2061 (endpoint 아티팩트)** | **2044** |
+| KOBE A11 T_required | **2061 (동일)** | **2040** |
+| JFE 누적 gap | 137.4 Mt | **281.4 Mt (+105%)** |
+| KOBE 누적 gap | 3.0 Mt | **64.1 Mt (+21배)** |
+| NIPPON / POSCO gap | 241.2 / 404.4 Mt | 272.7 / 448.1 Mt |
+
+비H₂ 풀은 endpoint 재정규화 대신 logistic 비율 곡선; 자산 T_required는 용량 중점
+교차의 보고용 파생값 (미도달 시 None — 지평말 고정 없음). required **배출 경로**는
+q(t)로 직접 계산 (pro-rata), 사적 경로는 자산 계단 유지.
+
+### S4 — 노출 전환연도 t_sw = τ* (R-7 해소)
+
+| 기업 | carbon share (before → after) | h2 share | t_sw |
+|---|---|---|---|
+| POSCO | 0.218 → **0.920** | 0.732 → 0.070 | 2036.0 → 2050.0 |
+| NIPPON | 0.067 → **0.797** | 0.883 → 0.164 | 2034.2 → 2050.3 |
+| JFE / KOBE | 0.977/1.000 → **1.000/1.000** | 0 | → 2061 (τ*=None) |
+| KR_NCC / JP_NCC | 0.026/0.018 → 0.099/0.076 | — | feedstock 지배 유지 |
+
+**판독 (중대)**: required 시점 전환 가정이 사라지자 **H₂ 기업조차 탄소 지배**로 —
+사적 경로(τ*≈2050)에서는 전환 전 탄소 노출(강도×ℓ_bind×24년)이 압도한다.
+"조성(H₂ 58–83%) vs 집중"의 두 클러스터 서사는 **노출창을 required로 두었을 때의
+산물**이었다. View 2 서술 재작성 필요: 조성 서사는 "전환한 세계의 잔여 리스크"
+(개입 후 or required-조건부)로 옮겨야 하고, 사적 경로의 anatomy는 "전환 전
+탄소정책 집중 + 늦은 전환"이 헤드라인이다. σ-linearity R² 0.814 → **0.998**
+(노출창 정합의 부수 효과). τ*=None 기업(JFE·KOBE)의 100%는 아티팩트가 아니라
+**집중이라는 발견** (X11).
+
+### S2 — 금융 채널 (σ_B → 스프레드 → WACC → τ*, 1회 전파)
+
+| 기업·개입 | 실물옵션 Δτ* | 금융 Δτ* (λ 밴드) | ΔWACC |
+|---|---|---|---|
+| POSCO h2_cfd | **+1.11y (지연 잔존)** | +0.00y (0/0) | +0.04bp |
+| POSCO carbon_reform | −1.02y | +0.03y (+0.006/+0.041) | +4.5bp |
+| POSCO capex_subsidy | −1.26y | −0.00y | −0.13bp |
+| NIPPON package | −0.92y | −0.02y | +2.3bp |
+
+**판독**: 금융 채널은 현행 배선(Δcharge×debt_share, λ=0.40)에서 **2차적**(<0.05y).
+갱신 12 판독 3의 유보 조건("S2 배선 후 재판정")이 닫혔다 — **H₂ CfD 단독의 τ*
+지연(+1.1y)은 두 채널 합산 후에도 잔존**한다. σ-절단이 자본비용 경로로 회수하는
+이득이 위험 charge 몇 bps 수준이라 실물옵션 손실을 상쇄하지 못한다. 단 이 결론은
+charge→스프레드 번역(λ·k·p_bind·debt_share 전부 assumed)에 조건부 —
+`delta_tau_financing_channel_years`에 conditional_on 자동 전파, λ 밴드 병기.
+concessional은 직접 WACC 개입이므로 상호배제(금융 채널 미적용).
+
+### 부수: p_ex 절벽 표기
+
+POSCO·NIPPON의 H₂ 자산 6개 전부 `tau_threshold_fragile=true` (p_ex 0.55 vs 임계
+0.5±0.1) — X1(수소 원단위 ±49%)·X3(잔여강도) 결정에 따라 τ* 위상이 유한↔None으로
+불연속 점프할 수 있음을 artifact가 명시. 서술 시 반드시 병기.
+
+### 논문 대비 함의
+
+- 논문의 H₂ share 58–83% 문장은 **required-시점 노출창 정의에 조건부**였다 —
+  갱신 7의 "share 수준은 노출 창 정의에 민감"이 정점에 도달. 저자 항목 1(창 정의)은
+  이제 "사적 τ* 창"으로 **결정됨** (S4, R-7 해소가 근거).
+- gap 수준(JFE +105%, KOBE +21배)은 surrogate 비율 곡선에 조건부 (PROVISIONAL 유지,
+  X10의 GCAM-KAIST 가격·경로 도착 시 재계산).

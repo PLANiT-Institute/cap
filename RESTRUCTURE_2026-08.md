@@ -204,5 +204,17 @@ X9 커밋 완료 (`feat(X9): scenario-anchored carbon path`). S2–S5는 **아�
 
 - **X10 (OPEN)**: X9 앵커를 assumed 시나리오 수준 대신 **GCAM-KAIST(엄지용 그룹) 탄소가격
   경로**(1순위) 또는 NGFS로 교체. raw 데이터 provenance 등록이 선행 조건.
-- **X11 (OPEN)**: 철강 원료 확률 드라이버화(S5)의 범위 — 저자 의도는 전환 프레임 유지
-  (원료 제외). 결정 전 S5 보류.
+- **X11 (RESOLVED 2026-08-04)**: 원료는 결정론 유지 (전환 프레임). JFE·KOBE anatomy는
+  집중으로 보고. S5 소멸 (R-8은 S4가 해소 — DECISIONS X11 참조).
+
+### 구현 완료 (2026-08-04) — S2·S3·S4, 수치는 PAPER_DIFF 갱신 13
+
+- **S3** `8296986`: required = 풀 연속 q(t) pro-rata; endpoint 아티팩트 제거
+  (JFE gap +105%, KOBE +21배).
+- **S4** `e7a7be4`: t_sw = τ*; H₂ 기업조차 탄소 지배로 (POSCO carbon 0.92) —
+  조성 서사는 노출창 정의의 산물이었음이 확정. p_ex fragile 표기 추가.
+- **S2** `af85d76`: 금융 채널 1회 전파, 별도 필드 + λ 밴드 + concessional 상호배제.
+  발견: 금융 채널은 2차적 — **H₂ CfD 지연은 두 채널 합산 후에도 잔존**.
+
+S-시리즈 종료. 다음: X10 데이터 → W1·W2·W4·W6 + theory/01·06·10 서술 재작성
+(조성 서사를 "전환한 세계의 잔여 리스크"로 이동 — 갱신 13 판독).
