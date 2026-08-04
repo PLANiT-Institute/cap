@@ -17,7 +17,7 @@ Rules:
    Abstract-based summaries stay in `refs.bib` as a map, not as support
    (the lesson of `PAPER_DIFF.md` D8 and D18).
 
-Status: **OPEN 2 (X1, X3 — boundary check pending) · RESOLVED 7** (updated 2026-08-03)
+Status: **OPEN 4 (X1, X3, X10, X11) · RESOLVED 7** (updated 2026-08-04)
 
 ---
 
@@ -119,6 +119,26 @@ uniform λ and λ_k side by side. POSCO's carbon share moves 31.6% → 39.8%
 | Rejected (b) | Risk-adjusted drift (μ − risk premium) — rejected for now: imports an unidentified risk-price estimate (λ identification is OPEN); revisit in 2차 연구 if contract-price data arrives |
 | Blocks | S1 implementation; the sign of every intervention timing effect; View 1 waterfall (W4); theory/01·10 WEDGE prose |
 | Numeric shift | Pending implementation — τ*, wedge, intervention_impacts, level_wedge all recompute. Record in PAPER_DIFF on rerun (rule 8: no silent reconciliation) |
+
+### X10. Carbon-price anchor source: replace assumed scenario levels with GCAM-KAIST / NGFS `OPEN`
+
+| | |
+|---|---|
+| Current | X9 anchors the LSM carbon path to `config/scenarios.csv` levels (SQ/MSR/CBAM 12–85 USD, **assumed**) |
+| Direction (author, 2026-08-04) | Anchor to a published model path instead — **GCAM-KAIST (Jee-Yeon Uhm group; the same model already used for T_required) first choice**, NGFS scenarios as the fallback/comparison. Put one price path in first, keep the scenario table as the probability mixture over paths |
+| Blocks | Data: GCAM-KAIST carbon-price series not in `data/raw/` (provenance rule 5 — no entry without registered source). Need the price output file from the GCAM-KAIST run or an NGFS download |
+| Recommendation | Register the raw file via `s01_ingest`, then re-derive mu_carbon; record shifts in PAPER_DIFF (rule 8). Until then X9's derived anchor stays `assumed` |
+
+### X11. Feedstock (scrap/NG/ore) as stochastic driver — scope of the transition frame `OPEN`
+
+| | |
+|---|---|
+| Current | Steel feedstock prices are deterministic constants inside `avoided`/`other_opex` (FORMULA_LEDGER R-9); `q_feedstock = 0` for steel rows |
+| Plan S5 | Activate q_feedstock·p_feedstock for steel; acceptance "feedstock component appears in JFE anatomy" |
+| Author intent (2026-08-04) | Feedstock was excluded **deliberately** — the project prices the *transition*, not commodity-cost risk |
+| Tension | (a) Scrap is the input of the destination route (scrap_eaf): its price risk is transition-conditional, not pure commodity noise — JFE's cost base is ~88% scrap. (b) Review 2026-08-04 found S5's acceptance criterion is mechanically unreachable under S4 anyway (t_sw = tau* = None for JFE → zero post-switch window) |
+| Options | (1) Keep deterministic, reframe JFE/KOBE anatomy as *concentration* (carbon-only exposure) — consistent with author intent and View 2 prose; (2) activate the driver as S5 planned |
+| Recommendation | Decide before S5 is scheduled; if (1), S5 shrinks to the annualization fix (R-8) only |
 
 ## Tier 3 — deferrable
 

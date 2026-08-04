@@ -176,3 +176,33 @@ q_feedstock·p_feedstock(고철 1.1t/t·$400, NG 등) 활성화, route_opex_othe
 이후 §2의 W1·W2·W4·W6 재개 (W3는 S3가 대체, W5는 grant-equivalent 회계 규약 결정
 전 보류). 서술 재작성 대상: theory/01·06·10의 WEDGE·σ-절단 문장 (X9·S2 결과 반영,
 PAPER_DIFF 갱신 12 판독 3의 "두 채널 합산 후 확정" 원칙).
+
+---
+
+## 7. 검토 반영 (2026-08-04) — T0 통과, S-패키지 수정 3건 + 저자 결정 2건
+
+**T0 완료**: macOS `uv sync && make all` — 44/44 테스트, anchors, ledger, 웹 빌드 전부 통과.
+X9 커밋 완료 (`feat(X9): scenario-anchored carbon path`). S2–S5는 **아직 미구현** (계획 상태).
+
+외부 검토(REVIEW·FORMULA_LEDGER 대조)에서 §6의 S-패키지에 수정 3건:
+
+1. **S5 수용 기준 분리 + 순서 재고**: S4(t_sw=τ*) 이후 τ*=None 기업(JFE·KOBE·HYUNDAI)은
+   전환후 창=0 → "JFE anatomy에 feedstock 등장"은 기계적으로 불가. 수용 기준을
+   (a) 배관 기준(드라이버가 상태·노출에 들어감, τ* 유한한 케이스에서 성분 등장)과
+   (b) 서술 기준(τ*=None의 탄소 100%는 퇴행이 아니라 **집중이라는 발견**)으로 분리.
+   순서는 S3→S5→S4→S2 권고 (σ_B 측정을 고친 뒤 배선). **단 S5 자체가 X11로 OPEN** —
+   저자 의도는 원료 제외(전환 프레임). X11 결정 전 S5 착수 금지.
+2. **S2 식별 경계 명문화**: 금융 채널 Δτ*는 λ·k·p_bind·debt_share(전부 assumed)에
+   정비례 — τ*의 λ-free 지위가 이 채널에서 끝난다. 요구사항: ① `delta_tau_financing_channel`에
+   conditional_on 자동 전파, ② 점추정 금지 — λ 프리셋 3종 밴드로 출력, ③ concessional(직접
+   WACC 변환)과 charge-유도 WACC 변환의 이중계상 상호배제 규약을 코드 전에 확정.
+3. **p_ex 임계 절벽 테스트**: POSCO p_ex 0.55 vs threshold 0.5 — X1(±49%)·X3 어느 쪽이
+   움직여도 τ* 위상이 불연속 점프 가능. threshold 밴드(0.4/0.5/0.6)에서 위상이 바뀌는
+   기업을 표기하는 회귀 테스트 1건 추가 (S2 착수 전).
+
+저자 결정 2건 등록 (DECISIONS):
+
+- **X10 (OPEN)**: X9 앵커를 assumed 시나리오 수준 대신 **GCAM-KAIST(엄지용 그룹) 탄소가격
+  경로**(1순위) 또는 NGFS로 교체. raw 데이터 provenance 등록이 선행 조건.
+- **X11 (OPEN)**: 철강 원료 확률 드라이버화(S5)의 범위 — 저자 의도는 전환 프레임 유지
+  (원료 제외). 결정 전 S5 보류.
