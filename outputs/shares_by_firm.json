@@ -43,6 +43,16 @@
     "sigma_h2": "banded",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "drivers": [
     "carbon",
     "h2",
@@ -74,7 +84,8 @@
         "elec": 0.0,
         "feedstock": 0.0,
         "capex": 2.06358e-05
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
@@ -99,7 +110,8 @@
         "elec": 0.0133751345,
         "feedstock": 0.8336225194,
         "capex": 0.0007140729
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
@@ -124,7 +136,8 @@
         "elec": 0.0,
         "feedstock": 0.0,
         "capex": 4.88407e-05
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
@@ -149,7 +162,8 @@
         "elec": 0.0154037523,
         "feedstock": 0.812705782,
         "capex": 0.0013069233
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
@@ -174,7 +188,8 @@
         "elec": 0.0203641609,
         "feedstock": 0.0,
         "capex": 0.0004916885
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
@@ -199,7 +214,8 @@
         "elec": 0.0054497256,
         "feedstock": 0.0,
         "capex": 0.00028869
-      }
+      },
+      "headline_eligible": true
     }
   ]
 }

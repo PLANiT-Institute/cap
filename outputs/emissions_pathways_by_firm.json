@@ -57,6 +57,16 @@
     "carbon_base_kr": "measured",
     "interventions": "assumed"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "base_year": 2026,
   "years": [
     2026,
@@ -1823,7 +1833,8 @@
             "status": "MODEL_CONDITIONAL"
           }
         }
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "JFE",
@@ -3549,7 +3560,8 @@
             "status": "MODEL_CONDITIONAL"
           }
         }
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
@@ -5275,7 +5287,8 @@
             "status": "MODEL_CONDITIONAL"
           }
         }
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
@@ -7001,7 +7014,8 @@
             "status": "MODEL_CONDITIONAL"
           }
         }
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
@@ -8727,7 +8741,8 @@
             "status": "MODEL_CONDITIONAL"
           }
         }
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
@@ -10453,7 +10468,8 @@
             "status": "MODEL_CONDITIONAL"
           }
         }
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
@@ -12179,7 +12195,8 @@
             "status": "MODEL_CONDITIONAL"
           }
         }
-      }
+      },
+      "headline_eligible": true
     }
   ]
 }

@@ -38,6 +38,16 @@
     "sigma_h2": "banded",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "drivers": [
     "carbon",
     "h2",
@@ -49,6 +59,7 @@
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
+      "sector": "steel",
       "cost_shares": {
         "carbon": 0.9800557189,
         "h2": 0.0,
@@ -69,11 +80,13 @@
         "elec": 0.0,
         "feedstock": 0.0,
         "capex": 0.2317558398
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
       "firm": "Japan NCC archetype",
+      "sector": "petrochemicals",
       "cost_shares": {
         "carbon": 0.1030610282,
         "h2": 0.0,
@@ -94,11 +107,13 @@
         "elec": 0.5247656654,
         "feedstock": 7.1810038428,
         "capex": 0.3633238625
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
+      "sector": "steel",
       "cost_shares": {
         "carbon": 0.9696425067,
         "h2": 0.0,
@@ -119,11 +134,13 @@
         "elec": 0.0,
         "feedstock": 0.0,
         "capex": 0.1102253385
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
       "firm": "Korea NCC archetype",
+      "sector": "petrochemicals",
       "cost_shares": {
         "carbon": 0.1156530275,
         "h2": 0.0,
@@ -144,11 +161,13 @@
         "elec": 1.0321909439,
         "feedstock": 7.7529008674,
         "capex": 0.5392257135
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
+      "sector": "steel",
       "cost_shares": {
         "carbon": 0.5524282018,
         "h2": 0.3168103706,
@@ -169,11 +188,13 @@
         "elec": 1.21704647,
         "feedstock": 0.0,
         "capex": 0.9641147736
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
+      "sector": "steel",
       "cost_shares": {
         "carbon": 0.6698186322,
         "h2": 0.2399134138,
@@ -194,7 +215,8 @@
         "elec": 1.1251857469,
         "feedstock": 0.0,
         "capex": 1.2032592336
-      }
+      },
+      "headline_eligible": true
     }
   ]
 }

@@ -218,3 +218,24 @@ X9 커밋 완료 (`feat(X9): scenario-anchored carbon path`). S2–S5는 **아�
 
 S-시리즈 종료. 다음: X10 데이터 → W1·W2·W4·W6 + theory/01·06·10 서술 재작성
 (조성 서사를 "전환한 세계의 잔여 리스크"로 이동 — 갱신 13 판독).
+
+### W1 완료 (2026-08-04) — 섹터 스코프
+
+- **`config/sectors.csv` 신설** (SSOT): `sector, headline_enabled, status, source, theory_anchor`.
+  steel=1(banded) / petrochemicals=0(assumed). pandera 스키마 + anchor 검증 대상.
+  firms.csv에 sectors.csv에 없는 섹터가 있으면 s02가 실패한다 (스코프 결정 없는 섹터 금지).
+- **전 artifact 레코드에 `headline_eligible` 자동 표기**: `lib/artifacts.write_artifact`가
+  페이로드를 순회하며 `sector` 키를 가진 모든 레코드에 찍고, 상단에 `headline_scope` 블록을
+  붙인다 (12개 artifact·66개 레코드). 이전에는 `sector` 문자열만이 archetype 구분자여서
+  JSON을 직접 읽는 소비자가 계산 예시를 실증 결과로 오독할 수 있었다.
+- **계산에서 빼지 않는다** — archetype은 "모델이 어떤 데이터를 요구하고 어떤 계약을
+  비교하는지" 보여주는 예시로 남기고 표기로 강등한다 (계획의 "archetype 예시로 강등").
+- 웹: archetype 배지를 섹터명 하드코딩 대신 `headline_eligible`로 구동.
+- 고아 파일 `web/content/sample_petchem.json` 삭제 — 참조 0건인데 실제 기업명
+  (LG Chem 여수·LOTTE 대산·YNCC·Mitsubishi 가시마·Sumitomo 지바)을 담고 있었다.
+- **Hyundai는 stranding annex 유지** (계획대로): anatomy·premium_levels에서 제외되고
+  `stranding.json`으로 분리. 철강이므로 `headline_eligible=true` — annex지만 실증 대상이다.
+- 테스트 2종 신설: 전 레코드 플래그 일치, 헤드라인 집계가 archetype을 포함하지 않음. 55개 통과.
+
+부수 효과: 감사에서 확인된 NCC archetype의 퍼버스 dτ*/dWACC 부호(PAPER_DIFF 갱신 14 §E1)가
+헤드라인 밖으로 격리된다.

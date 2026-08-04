@@ -18,6 +18,16 @@
     "firms_registry": "assumed",
     "routes_sensitivity": "assumed"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "assets": [
     {
       "asset_id": "A03",
@@ -30,7 +40,8 @@
       "capacity_mt_yr": 3.8,
       "emission_intensity_tco2_t": 2.1,
       "route": "scrap_eaf",
-      "source": "assets_blast_furnace.csv A03; 요구 심도 > scrap-EAF 심도 (A4) — stranding 분리"
+      "source": "assets_blast_furnace.csv A03; 요구 심도 > scrap-EAF 심도 (A4) — stranding 분리",
+      "headline_eligible": true
     },
     {
       "asset_id": "A08",
@@ -43,7 +54,8 @@
       "capacity_mt_yr": 3.7,
       "emission_intensity_tco2_t": 2.1,
       "route": "scrap_eaf",
-      "source": "assets_blast_furnace.csv A08; 요구 심도 > scrap-EAF 심도 (A4) — stranding 분리"
+      "source": "assets_blast_furnace.csv A08; 요구 심도 > scrap-EAF 심도 (A4) — stranding 분리",
+      "headline_eligible": true
     }
   ],
   "rule": "요구 감축심도가 모든 priced route의 심도를 초과 — anatomy 제외, stranding/closure branch (A4/R3)"

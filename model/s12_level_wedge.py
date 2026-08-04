@@ -159,6 +159,7 @@ def build(cal: CalibrationSet) -> dict:
         firms.append({
             "firm_id": fid,
             "firm": rows.iloc[0]["firm"],
+            "sector": str(rows.iloc[0]["sector"]),
             "base": base,
             "reform": {k: reform[k] for k in REFORM_KEYS},
         })
@@ -202,6 +203,7 @@ def main() -> int:
             "(verification note 2026-07-29). Definition of record for private timing is the "
             "LSM τ* (s03); do not compare across bases."
         ),
+        sector_enabled=cal.sector_enabled,
     )
     print(
         f"OK — level/wedge closed-form lane for {len(data['firms'])} steel firms "

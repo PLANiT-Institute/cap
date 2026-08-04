@@ -57,6 +57,20 @@ lsm_schema = pa.DataFrameSchema(
     strict=False,
 )
 
+# 섹터 스코프 (W1) — 어느 섹터가 헤드라인 산출에 들어가는가의 SSOT.
+# 석유화학 archetype이 실증 결과로 오독되지 않게 artifact 레코드까지 플래그가 흐른다.
+sectors_schema = pa.DataFrameSchema(
+    coerce=True,
+    columns={
+        "sector": Column(str, Check.isin(["steel", "petrochemicals"]), unique=True),
+        "headline_enabled": Column(int, Check.isin([0, 1])),
+        "status": Column(str, STATUS),
+        "source": Column(str),
+        "theory_anchor": Column(str, ANCHOR),
+    },
+    strict=False,
+)
+
 # 요구 경로(required pathway) 파라미터 — 2026-08-04까지 data/raw/legacy_config yaml에서
 # 직접 읽혀 규칙 1·3·4 밖에 있었다 (PAPER_DIFF 갱신 14 §C). config로 승격.
 pathways_schema = pa.DataFrameSchema(

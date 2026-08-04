@@ -221,6 +221,7 @@ def main() -> int:
                                    "coverage·tenor 1차 근사 후 τ* 재계산"),
         },
         note="사적 최적 전환연도 — base + intervention별",
+        sector_enabled=cal.sector_enabled,
     )
     write_artifact(
         "wedge",
@@ -233,6 +234,7 @@ def main() -> int:
             ),
         },
         note="timing gap = τ* − T_required (#claim-wedge-conjunction)",
+        sector_enabled=cal.sector_enabled,
     )
 
     rep = cal.firms[cal.firms["category"] == "priced_route"].iloc[0].to_dict()
@@ -261,6 +263,7 @@ def main() -> int:
         claims={"r_squared": claim(MODEL_CONDITIONAL, ["routes_sensitivity", "exposure_model"],
                                    "band 범위 내 선형 근사의 수치 근거")},
         note="risk-charge 선형화 π≈k·λ·p_bind·σ_B의 유효성 체크",
+        sector_enabled=cal.sector_enabled,
     )
     print(f"OK — τ* base+{len(intervention_ids)} interventions × {len(tau_rows)} assets, σ-linearity R²={r2:.4f}")
     return 0

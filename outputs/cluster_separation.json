@@ -38,6 +38,16 @@
     "sigma_h2": "banded",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "h2_route_carbon_share": {
     "lo": 0.6497216575,
     "hi": 0.9586553345

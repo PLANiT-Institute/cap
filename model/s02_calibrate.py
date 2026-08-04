@@ -32,6 +32,7 @@ from config.schema.config_schemas import (  # noqa: E402
     pricing_schema,
     routes_schema,
     scenarios_schema,
+    sectors_schema,
     sigmas_schema,
     transaction_assumptions_schema,
 )
@@ -68,6 +69,9 @@ class CalibrationSet:
     interventions: pd.DataFrame
     transaction_assumptions: pd.DataFrame
     pathways: dict[str, float]  # 요구 경로 파라미터 (config/pathways.csv)
+    # W1: 섹터 스코프 — headline 산출 대상 여부 (config/sectors.csv). archetype 섹터는
+    # 계산에서 빼지 않고 artifact 레코드에 headline_eligible=false로 표기한다.
+    sector_enabled: dict[str, bool]
     param_status: dict[str, str]
     # 국가별 탄소 구조 (Option A: p_bind 파생)
     l_bar: dict[str, float]
@@ -352,6 +356,13 @@ def load_calibration() -> CalibrationSet:
     routes = routes_schema.validate(pd.read_csv(CFG / "routes.csv"))
     interventions = interventions_schema.validate(pd.read_csv(CFG / "interventions.csv"))
     pathways_df = pathways_schema.validate(pd.read_csv(CFG / "pathways.csv"))
+    sectors_df = sectors_schema.validate(pd.read_csv(CFG / "sectors.csv"))
+    missing_sectors = sorted(set(firms["sector"]) - set(sectors_df["sector"]))
+    if missing_sectors:
+        raise ValueError(
+            f"config/sectors.csv에 없는 섹터가 firms.csv에 있다: {missing_sectors} — "
+            "스코프 결정 없이 산출에 들어가는 섹터를 만들지 않는다 (W1)"
+        )
     transaction_assumptions = transaction_assumptions_schema.validate(
         pd.read_csv(CFG / "transaction_assumptions.csv")
     )
@@ -461,6 +472,8 @@ def load_calibration() -> CalibrationSet:
     status["t_required"] = "provisional"
     for _, r in pathways_df.iterrows():
         status[r["param"]] = r["status"]
+    # W1: 섹터 스코프 자체의 status — archetype 섹터가 켜져 있으면 assumed가 흐른다
+    status["sector_scope"] = _worst_status(sectors_df["status"])
     # 노출 정의·전환시점 규칙 — MODEL_CONDITIONAL 근원. S4: t_sw = τ* (사적 경로 정합)
     status["exposure_model"] = "model"
 
@@ -468,6 +481,9 @@ def load_calibration() -> CalibrationSet:
     k_off = float(capex.loc["K12", "mid"]) / float(capex.loc["K11", "mid"])
 
     pathways = dict(zip(pathways_df["param"], pathways_df["value"].astype(float)))
+    sector_enabled = {
+        str(r["sector"]): bool(int(r["headline_enabled"])) for _, r in sectors_df.iterrows()
+    }
     t_required, t_source, pool_paths = _t_required(firms, lsm, pathways)
 
     return CalibrationSet(
@@ -481,6 +497,7 @@ def load_calibration() -> CalibrationSet:
         interventions=interventions,
         transaction_assumptions=transaction_assumptions,
         pathways=pathways,
+        sector_enabled=sector_enabled,
         param_status=status,
         l_bar=l_bar,
         l_bind=l_bind,
@@ -550,6 +567,10 @@ def main() -> int:
             "pathways": {
                 k: {"value": v, "status": cal.param_status.get(k)} for k, v in cal.pathways.items()
             },
+            "sector_scope": {
+                s: {"headline_enabled": on, "status": cal.param_status["sector_scope"]}
+                for s, on in cal.sector_enabled.items()
+            },
             "derived": {
                 "l_bar": cal.l_bar,
                 "l_bind": cal.l_bind,
@@ -592,6 +613,7 @@ def main() -> int:
                                         "surrogate — 실증 식별된 기업 의무로 해석 금지"),
         },
         note="s02 캘리브레이션 해상본 — 이후 단계의 유일한 파라미터 소스",
+        sector_enabled=cal.sector_enabled,
     )
     print(
         f"OK — σ_unconditional KR {cal.sigma_carbon_reform['KR']:.2f} / JP {cal.sigma_carbon_reform['JP']:.2f}; "

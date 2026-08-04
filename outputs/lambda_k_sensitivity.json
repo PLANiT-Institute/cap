@@ -41,6 +41,16 @@
     "sigma_h2": "banded",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "lambda_k": {
     "carbon": 0.5,
     "h2": 0.35,
@@ -51,6 +61,7 @@
   "firms": [
     {
       "firm_id": "JFE",
+      "sector": "steel",
       "shares_uniform_lambda": {
         "carbon": 0.9999409324,
         "h2": 0.0,
@@ -65,10 +76,12 @@
         "feedstock": 0.0,
         "capex": 3.54414e-05
       },
-      "max_shift": 2.36262e-05
+      "max_shift": 2.36262e-05,
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
+      "sector": "petrochemicals",
       "shares_uniform_lambda": {
         "carbon": 0.0757020976,
         "h2": 0.0,
@@ -83,10 +96,12 @@
         "feedstock": 0.8955120491,
         "capex": 0.000590905
       },
-      "max_shift": 0.0173303455
+      "max_shift": 0.0173303455,
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
+      "sector": "steel",
       "shares_uniform_lambda": {
         "carbon": 0.9998602064,
         "h2": 0.0,
@@ -101,10 +116,12 @@
         "feedstock": 0.0,
         "capex": 8.38809e-05
       },
-      "max_shift": 5.59128e-05
+      "max_shift": 5.59128e-05,
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
+      "sector": "petrochemicals",
       "shares_uniform_lambda": {
         "carbon": 0.0986226574,
         "h2": 0.0,
@@ -119,10 +136,12 @@
         "feedstock": 0.8656415624,
         "capex": 0.001069479
       },
-      "max_shift": 0.0219507315
+      "max_shift": 0.0219507315,
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
+      "sector": "steel",
       "shares_uniform_lambda": {
         "carbon": 0.7966370424,
         "h2": 0.163571028,
@@ -137,10 +156,12 @@
         "feedstock": 0.0,
         "capex": 0.0007778696
       },
-      "max_shift": 0.0518697342
+      "max_shift": 0.0518697342,
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
+      "sector": "steel",
       "shares_uniform_lambda": {
         "carbon": 0.9198637273,
         "h2": 0.0703439382,
@@ -155,7 +176,8 @@
         "feedstock": 0.0,
         "capex": 0.0003889501
       },
-      "max_shift": 0.0227201785
+      "max_shift": 0.0227201785,
+      "headline_eligible": true
     }
   ]
 }

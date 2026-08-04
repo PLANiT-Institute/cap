@@ -40,6 +40,16 @@
     "sigma_carbon_diffusion": "measured",
     "sigma_h2": "banded"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "result_contract": {
     "metric_id": "level_wedge_usd_t",
     "basis_id": "project_levelized.closed_form_approximation.derived_coefficients",
@@ -51,6 +61,7 @@
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
+      "sector": "steel",
       "base": {
         "country": "JP",
         "route": "scrap_eaf",
@@ -103,11 +114,13 @@
         "sigma_project": 0.3757847947,
         "trigger_multiple_project": 2.8808271408,
         "wedge_usd_t": 115.4369572263
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
+      "sector": "steel",
       "base": {
         "country": "JP",
         "route": "ng_dri",
@@ -160,11 +173,13 @@
         "sigma_project": 0.2995850176,
         "trigger_multiple_project": 2.355996158,
         "wedge_usd_t": 80.5983101325
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
+      "sector": "steel",
       "base": {
         "country": "JP",
         "route": "h2_dri",
@@ -217,11 +232,13 @@
         "sigma_project": 0.2418203384,
         "trigger_multiple_project": 2.0113072292,
         "wedge_usd_t": 305.1091041439
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
+      "sector": "steel",
       "base": {
         "country": "KR",
         "route": "h2_dri",
@@ -274,7 +291,8 @@
         "sigma_project": 0.228803231,
         "trigger_multiple_project": 1.7905042321,
         "wedge_usd_t": 215.8694113292
-      }
+      },
+      "headline_eligible": true
     }
   ]
 }

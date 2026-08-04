@@ -48,6 +48,16 @@
     "scenarios": "assumed",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "formula": "PV_loss_j = sum_t DF_t * G_t * max(P_j - P_reference, 0)",
   "status": "PROVISIONAL",
   "aggregation_warning": "Gap-linked and transition-cost charges are alternative result bases. Do not sum them until their covariance and joint state model are specified.",
@@ -55,6 +65,7 @@
     {
       "firm_id": "HYUNDAI",
       "firm": "Hyundai Steel",
+      "sector": "steel",
       "country": "KR",
       "cumulative_alignment_gap_mtco2": 0.0,
       "loss_result_contract": {
@@ -104,11 +115,13 @@
       "annual_gap_risk_charge_usd_m": 0.0,
       "gap_risk_charge_bps": 0.0,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
-      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
+      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance",
+      "headline_eligible": true
     },
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
+      "sector": "steel",
       "country": "JP",
       "cumulative_alignment_gap_mtco2": 277.6063678538,
       "loss_result_contract": {
@@ -158,11 +171,13 @@
       "annual_gap_risk_charge_usd_m": 21.8555280854,
       "gap_risk_charge_bps": 14.5703520569,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
-      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
+      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance",
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
       "firm": "Japan NCC archetype",
+      "sector": "petrochemicals",
       "country": "JP",
       "cumulative_alignment_gap_mtco2": 11.83,
       "loss_result_contract": {
@@ -212,11 +227,13 @@
       "annual_gap_risk_charge_usd_m": 2.0086658908,
       "gap_risk_charge_bps": 2.0086658908,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
-      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
+      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance",
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
+      "sector": "steel",
       "country": "JP",
       "cumulative_alignment_gap_mtco2": 63.2654756008,
       "loss_result_contract": {
@@ -266,11 +283,13 @@
       "annual_gap_risk_charge_usd_m": 4.9807948914,
       "gap_risk_charge_bps": 6.2259936143,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
-      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
+      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance",
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
       "firm": "Korea NCC archetype",
+      "sector": "petrochemicals",
       "country": "KR",
       "cumulative_alignment_gap_mtco2": 18.72,
       "loss_result_contract": {
@@ -320,11 +339,13 @@
       "annual_gap_risk_charge_usd_m": 3.0010153785,
       "gap_risk_charge_bps": 2.000676919,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
-      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
+      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance",
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
+      "sector": "steel",
       "country": "JP",
       "cumulative_alignment_gap_mtco2": 148.8568386667,
       "loss_result_contract": {
@@ -374,11 +395,13 @@
       "annual_gap_risk_charge_usd_m": 15.8085814072,
       "gap_risk_charge_bps": 3.9521453518,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
-      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
+      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance",
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
+      "sector": "steel",
       "country": "KR",
       "cumulative_alignment_gap_mtco2": 274.0837345491,
       "loss_result_contract": {
@@ -428,7 +451,8 @@
       "annual_gap_risk_charge_usd_m": 26.0162295916,
       "gap_risk_charge_bps": 6.5040573979,
       "probability_treatment": "unconditional scenario distribution; p_bind is embedded in scenario probabilities and is not multiplied again",
-      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance"
+      "aggregation_rule": "separate basis; do not add to transition-cost charge without an explicit covariance",
+      "headline_eligible": true
     }
   ]
 }

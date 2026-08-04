@@ -99,7 +99,8 @@ export function InvestorPortfolioMap({
         <text className="deal-chart__axis-label" transform={`translate(15 ${(margin.top + height - margin.bottom) / 2}) rotate(-90)`} textAnchor="middle">Conditional charge (bps) →</text>
       </svg>
       <div className="sector-map-legend" aria-hidden="true">
-        <span><i className={portfolio[0]?.sector === "petrochemicals" ? "petro" : "steel"} />{portfolio[0]?.sector === "petrochemicals" ? "petrochemicals · archetypes" : "steel"}</span>
+        {/* W1: archetype 여부는 섹터명 하드코딩이 아니라 artifact의 headline_eligible로 판정 */}
+        <span><i className={portfolio[0]?.headline_eligible === false ? "petro" : "steel"} />{portfolio[0]?.headline_eligible === false ? `${portfolio[0]?.sector} · archetypes (not headline)` : portfolio[0]?.sector ?? "steel"}</span>
         <span>bubble area ≈ annual charge equivalent</span>
       </div>
     </section>

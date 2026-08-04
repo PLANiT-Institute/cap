@@ -38,11 +38,22 @@
     "sigma_h2": "banded",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "n_draws": 200,
   "firms": [
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
+      "sector": "steel",
       "cluster": "grid_route",
       "envelope": {
         "carbon": {
@@ -70,11 +81,13 @@
           "hi": 0.0023116015,
           "median": 0.0007760147
         }
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
       "firm": "Japan NCC archetype",
+      "sector": "petrochemicals",
       "cluster": "capture_route",
       "envelope": {
         "carbon": {
@@ -102,11 +115,13 @@
           "hi": 0.0100334007,
           "median": 0.0040877754
         }
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
+      "sector": "steel",
       "cluster": "grid_route",
       "envelope": {
         "carbon": {
@@ -134,11 +149,13 @@
           "hi": 0.0039895342,
           "median": 0.0012320964
         }
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
       "firm": "Korea NCC archetype",
+      "sector": "petrochemicals",
       "cluster": "electric_route",
       "envelope": {
         "carbon": {
@@ -166,11 +183,13 @@
           "hi": 0.0148911608,
           "median": 0.0053007569
         }
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
+      "sector": "steel",
       "cluster": "h2_route",
       "envelope": {
         "carbon": {
@@ -198,11 +217,13 @@
           "hi": 0.0169689475,
           "median": 0.0061622921
         }
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
+      "sector": "steel",
       "cluster": "h2_route",
       "envelope": {
         "carbon": {
@@ -230,7 +251,8 @@
           "hi": 0.0112407731,
           "median": 0.0037945308
         }
-      }
+      },
+      "headline_eligible": true
     }
   ]
 }

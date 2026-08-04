@@ -104,6 +104,16 @@
     "carbon_base_jp": "banded",
     "carbon_base_kr": "measured"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "perspective": "reform-priced transition-cost risk; fixed-exposure scalar sensitivity",
   "definitions": {
     "model_implied_spread": "conditional risk charge, not an observed bond or loan spread",
@@ -128,7 +138,8 @@
       },
       "annual_risk_charge_usd_m": 40.9954213103,
       "sigma_to_enterprise_value": 0.5101764109,
-      "dominant_driver": "carbon"
+      "dominant_driver": "carbon",
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
@@ -145,7 +156,8 @@
       },
       "annual_risk_charge_usd_m": 76.1699754372,
       "sigma_to_enterprise_value": 0.265567299,
-      "dominant_driver": "carbon"
+      "dominant_driver": "carbon",
+      "headline_eligible": true
     },
     {
       "firm_id": "KOBE",
@@ -162,7 +174,8 @@
       },
       "annual_risk_charge_usd_m": 12.673763251,
       "sigma_to_enterprise_value": 0.2957276161,
-      "dominant_driver": "carbon"
+      "dominant_driver": "carbon",
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
@@ -179,7 +192,8 @@
       },
       "annual_risk_charge_usd_m": 15.2064479332,
       "sigma_to_enterprise_value": 0.1491576551,
-      "dominant_driver": "feedstock"
+      "dominant_driver": "feedstock",
+      "headline_eligible": false
     },
     {
       "firm_id": "JP_NCC",
@@ -196,7 +210,8 @@
       },
       "annual_risk_charge_usd_m": 9.9642348043,
       "sigma_to_enterprise_value": 0.2039453958,
-      "dominant_driver": "feedstock"
+      "dominant_driver": "feedstock",
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
@@ -213,7 +228,8 @@
       },
       "annual_risk_charge_usd_m": 34.9380531656,
       "sigma_to_enterprise_value": 0.1630478173,
-      "dominant_driver": "carbon"
+      "dominant_driver": "carbon",
+      "headline_eligible": true
     }
   ],
   "firms": [
@@ -1163,7 +1179,8 @@
           "carbon_reform": -13.6651044829
         },
         "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
@@ -2120,7 +2137,8 @@
           "carbon_reform": -4.6966919447
         },
         "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
@@ -3068,7 +3086,8 @@
           "carbon_reform": -7.9210527053
         },
         "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
@@ -3982,7 +4001,8 @@
           "carbon_reform": -3.8996209062
         },
         "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
@@ -4940,7 +4960,8 @@
           "carbon_reform": -4.3460004809
         },
         "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
@@ -5855,7 +5876,8 @@
           "carbon_reform": -7.7154981832
         },
         "note": "Shapley allocation of package risk-charge change; negative means the component adds charge"
-      }
+      },
+      "headline_eligible": true
     }
   ]
 }

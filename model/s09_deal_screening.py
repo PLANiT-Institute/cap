@@ -329,6 +329,7 @@ def main() -> int:
             ),
         },
         note="pre-deal screen: contract value, project investability, debt service and technology alternatives",
+        sector_enabled=cal.sector_enabled,
     )
     route_case_count = sum(len(firm["route_cases"]) for firm in data["firms"])
     print(f"OK — deal screening for {len(data['firms'])} firms / {route_case_count} sector-valid route cases")

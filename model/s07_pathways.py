@@ -182,6 +182,7 @@ def main() -> int:
             "firms.pathways.interventions": claim(MODEL_CONDITIONAL, PATH_DEPS + ["interventions"]),
         },
         note="인과사슬의 원인층 — 자산별 연간 배출, 기업 합산",
+        sector_enabled=cal.sector_enabled,
     )
     write_artifact(
         "condition_gap",
@@ -193,6 +194,7 @@ def main() -> int:
             ),
         },
         note="condition gap — timing gap + cumulative excess emissions",
+        sector_enabled=cal.sector_enabled,
     )
     for f in gaps["firms"]:
         print(

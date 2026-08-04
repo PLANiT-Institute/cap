@@ -70,6 +70,7 @@ def build(cal: CalibrationSet, gaps: dict | None = None) -> dict:
             {
                 "firm_id": firm_id,
                 "firm": gap["firm"],
+                "sector": str(g["sector"].iloc[0]),
                 "country": country,
                 "cumulative_alignment_gap_mtco2": gap[
                     "cumulative_alignment_gap_mtco2"
@@ -131,6 +132,7 @@ def main() -> int:
             "Explicit gap-to-loss bridge. Separate from transition-cost anatomy pending a joint "
             "state/covariance model."
         ),
+        sector_enabled=cal.sector_enabled,
     )
     print(f"OK — alignment-gap loss bridge for {len(data['firms'])} firms")
     return 0

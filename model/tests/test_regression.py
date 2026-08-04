@@ -321,6 +321,50 @@ def test_consumed_processed_tables_track_raw():
         assert set(raw[key]) == set(proc[key]), f"{proc_rel}가 {raw_rel}와 불일치 — ingest 미도달"
 
 
+# W1: 섹터 스코프 — archetype이 실증 결과로 오독될 수 없다
+def test_headline_scope_flags_every_firm_record(cal):
+    """모든 기업 레코드가 headline_eligible을 갖고, config/sectors.csv와 일치한다.
+
+    이전에는 `sector` 문자열만이 archetype 구분자였다 — JSON을 직접 읽는 소비자는
+    석유화학 계산 예시를 실증 결과와 구별할 수 없었다 (감사 2026-08-04).
+    """
+    assert cal.sector_enabled["steel"] is True
+    assert cal.sector_enabled["petrochemicals"] is False
+    checked = 0
+    for path in sorted(OUT.glob("*.json")):
+        payload = json.loads(path.read_text())
+        rows = [r for r in (payload.get("firms") or []) if isinstance(r, dict)]
+        if not rows:
+            continue
+        scope = payload.get("headline_scope")
+        assert scope, f"{path.name}: headline_scope 블록 없음"
+        assert scope["headline_sectors"] == ["steel"]
+        assert scope["archetype_sectors"] == ["petrochemicals"]
+        for row in rows:
+            assert "headline_eligible" in row, f"{path.name}/{row.get('firm_id')}: 플래그 없음"
+            assert row["headline_eligible"] == cal.sector_enabled[row["sector"]]
+            checked += 1
+    assert checked >= 60, f"검사한 레코드가 너무 적다 ({checked}) — 스탬프 배선 확인"
+
+
+def test_archetype_sectors_are_never_aggregated_into_headline_figures(cal):
+    """헤드라인 집계(누적 gap 합)는 archetype을 포함하지 않는다."""
+    gaps = art("condition_gap")
+    steel_only = sum(
+        f["cumulative_alignment_gap_mtco2"] for f in gaps["firms"] if f["headline_eligible"]
+    )
+    everything = sum(f["cumulative_alignment_gap_mtco2"] for f in gaps["firms"])
+    assert steel_only < everything, "archetype이 gap을 전혀 안 만들면 이 테스트가 무의미"
+    archetype = everything - steel_only
+    assert archetype == pytest.approx(
+        sum(
+            f["cumulative_alignment_gap_mtco2"]
+            for f in gaps["firms"]
+            if not cal.sector_enabled[f["sector"]]
+        )
+    )
+
+
 # S2 수용 기준: 실물옵션 채널과 금융 채널의 Δτ*가 별도 필드 — 합산 전 부호 판독 가능
 def test_financing_channel_is_separate_and_conditional():
     imp = art("intervention_impacts")

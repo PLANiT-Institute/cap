@@ -384,6 +384,7 @@ def main() -> int:
         out_firms.append(
             {
                 "firm_id": fid,
+                "sector": str(g_assets["sector"].iloc[0]),
                 "before": before,
                 "interventions": ivs,
                 "sequential_package": {
@@ -437,6 +438,7 @@ def main() -> int:
             ),
         },
         note="개입 = 파라미터 변환: τ* before/after, gap before/after, residual anatomy, charge",
+        sector_enabled=cal.sector_enabled,
     )
     for f in out_firms:
         pk = f["interventions"].get("package", {})

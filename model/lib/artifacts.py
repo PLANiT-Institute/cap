@@ -39,6 +39,24 @@ def _round(obj: Any) -> Any:
     return obj
 
 
+def _stamp_headline(obj: Any, sector_enabled: dict[str, bool]) -> Any:
+    """W1: `sector` 키를 가진 모든 레코드에 `headline_eligible`을 찍는다.
+
+    한 곳에서 페이로드를 순회하므로 단계별로 필드를 추가할 필요가 없다.
+    목적: JSON을 직접 읽는 소비자가 archetype(석유화학 계산 예시)을 실증 결과로
+    오독하지 못하게 하는 것 — 이전에는 `sector` 문자열만이 구분자였다.
+    """
+    if isinstance(obj, dict):
+        out = {k: _stamp_headline(v, sector_enabled) for k, v in obj.items()}
+        sector = obj.get("sector")
+        if isinstance(sector, str) and sector in sector_enabled:
+            out.setdefault("headline_eligible", sector_enabled[sector])
+        return out
+    if isinstance(obj, (list, tuple)):
+        return [_stamp_headline(v, sector_enabled) for v in obj]
+    return obj
+
+
 def claim(status: str, depends_on: list[str], note: str | None = None) -> dict:
     """result block 하나의 epistemic 상태 선언."""
     out: dict[str, Any] = {"status": status, "depends_on": sorted(depends_on)}
@@ -53,9 +71,13 @@ def write_artifact(
     param_status: dict[str, str],
     claims: dict[str, dict],
     note: str | None = None,
+    sector_enabled: dict[str, bool] | None = None,
 ) -> Path:
     """claims: {field_or_block: claim(...)}. depends_on의 assumed 파라미터가
-    conditional_on으로 집계된다 (하위호환 필드)."""
+    conditional_on으로 집계된다 (하위호환 필드).
+
+    sector_enabled를 주면 (W1) 페이로드의 모든 `sector` 레코드에 headline_eligible이
+    찍히고, 상단에 headline_scope 블록이 붙는다."""
     assumed = sorted(
         {
             d
@@ -74,7 +96,20 @@ def write_artifact(
         for c in claims.values()
         for d in c.get("depends_on", [])
     }
-    payload.update(_round(data))
+    body = _round(data)
+    if sector_enabled is not None:
+        payload["headline_scope"] = {
+            "headline_sectors": sorted(s for s, on in sector_enabled.items() if on),
+            "archetype_sectors": sorted(s for s, on in sector_enabled.items() if not on),
+            "rule": (
+                "records carry headline_eligible; archetype sectors are calculation examples "
+                "showing what data the model needs and which contracts it compares — never "
+                "firm-level empirical findings. Do not aggregate them into headline figures"
+            ),
+            "source": "config/sectors.csv (W1)",
+        }
+        body = _stamp_headline(body, sector_enabled)
+    payload.update(body)
     path = OUT_DIR / f"{name}.json"
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=False) + "\n")
     return path

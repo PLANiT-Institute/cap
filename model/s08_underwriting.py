@@ -349,6 +349,7 @@ def main() -> int:
             ),
         },
         note="paper-to-product layer: investor underwriting and corporate contract decision views",
+        sector_enabled=cal.sector_enabled,
     )
     print(f"OK — transition underwriting for {len(data['firms'])} priced-route firms")
     return 0

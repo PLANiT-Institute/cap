@@ -198,6 +198,7 @@ def main() -> int:
             {
                 "firm_id": firm_id,
                 "firm": meta["firm"],
+                "sector": meta["sector"],
                 "premium_bps": base["premium_bps"],
                 "premium_reform_bps": reform["premium_bps"],
                 "premium_usd_t": base["premium_usd_t"],
@@ -215,6 +216,7 @@ def main() -> int:
             {
                 "firm_id": firm_id,
                 "firm": meta["firm"],
+                "sector": meta["sector"],
                 "cost_shares": dict(zip(DRIVERS, (meta["E"] / cost_total).tolist())),
                 "risk_shares": base["shares"],
                 "exposure_pv_usd_bn": dict(zip(DRIVERS, (meta["E"] / 1e9).tolist())),
@@ -234,6 +236,7 @@ def main() -> int:
             "shares_sum_to_one": claim(IDENTITY, [], "Euler 분해 항등"),
         },
         note="risk anatomy — model-conditional mix (conditional premium 필드 없음; premium_levels 분리)",
+        sector_enabled=cal.sector_enabled,
     )
     write_artifact(
         "premium_levels",
@@ -247,6 +250,7 @@ def main() -> int:
             ),
         },
         note="conditional risk charge — $/t는 EV 독립, wacc_eq는 R4 통제",
+        sector_enabled=cal.sector_enabled,
     )
     write_artifact(
         "cost_vs_risk",
@@ -256,6 +260,7 @@ def main() -> int:
             "firms": claim(MODEL_CONDITIONAL, ANATOMY_DEPS, "평균 분해 vs 분산 분해 (A1)"),
         },
         note="cost vs risk shares — 평균으로 나누면 anatomy를 잘못 말한다",
+        sector_enabled=cal.sector_enabled,
     )
     write_artifact(
         "stranding",
@@ -269,6 +274,7 @@ def main() -> int:
         cal.param_status,
         claims={"assets": claim(MODEL_CONDITIONAL, ["firms_registry", "routes_sensitivity"])},
         note="no_feasible_route — priced-route 배치 풀을 소비하지 않음",
+        sector_enabled=cal.sector_enabled,
     )
     for f, l in zip(shares_out, levels_out):
         print(

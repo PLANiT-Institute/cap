@@ -71,6 +71,7 @@ def main() -> int:
             {
                 "firm_id": fid,
                 "firm": meta["firm"],
+                "sector": meta["sector"],
                 "cluster": {
                     "h2_dri": "h2_route",
                     "e_cracker": "electric_route",
@@ -94,6 +95,7 @@ def main() -> int:
         claims={"firms.envelope": claim(MODEL_CONDITIONAL, ANATOMY_DEPS,
                                         "노출 E base 고정 — 공분산 불확실성만; τ* 재계산 없음")},
         note="σ·ρ band draw 포락 — share가 캘리브레이션에 조건부임을 그대로 보여주는 장치",
+        sector_enabled=cal.sector_enabled,
     )
 
     # λ×p_bind 격자 — 수준 스윙 + share 불변성
@@ -138,6 +140,7 @@ def main() -> int:
                                       "가상 λ×p_bind 격자 위 conditional risk charge"),
         },
         note="P1 데모 — 고정 exposure에서 share 불변, 수준만 스윙. anatomy 전체의 calibration 독립 주장 아님",
+        sector_enabled=cal.sector_enabled,
     )
 
     # 클러스터 분리 (band draw 기반)
@@ -175,6 +178,7 @@ def main() -> int:
                                    "절반은 A4 배정의 귀결 — route 감응도 0 구성. "
                                    "S4 이후 두 클러스터 모두 탄소 지배 — separation_is_material 병독 필수")},
         note="두 클러스터 불교차 — 은폐하지 않음 (간격의 실질성도 병기)",
+        sector_enabled=cal.sector_enabled,
     )
 
     # λ_k 감응도 (R1): driver별 위험가격 허용 시 share 이동
@@ -188,6 +192,7 @@ def main() -> int:
         lam_rows.append(
             {
                 "firm_id": fid,
+                "sector": metas[fid]["sector"],
                 "shares_uniform_lambda": dict(zip(DRIVERS, uniform.tolist())),
                 "shares_lambda_k": dict(zip(DRIVERS, shifted.tolist())),
                 "max_shift": float(np.max(np.abs(shifted - uniform))),
@@ -200,6 +205,7 @@ def main() -> int:
         claims={"firms": claim(MODEL_CONDITIONAL, ANATOMY_DEPS + ["lambda"],
                                "A5 깨질 때 share 이동 — P1이 scalar 공통 λ에만 성립함을 보이는 스트레스")},
         note="R1 대응 λ_k 감응도",
+        sector_enabled=cal.sector_enabled,
     )
     print(
         f"OK — envelope {n_draws} draws, λ-grid share max dev {max_share_dev:.2e}, "

@@ -126,6 +126,16 @@
     "carbon_base_jp": "banded",
     "carbon_base_kr": "measured"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "interventions": [
     "h2_cfd",
     "ppa",
@@ -139,6 +149,7 @@
   "firms": [
     {
       "firm_id": "JFE",
+      "sector": "steel",
       "before": {
         "risk_result_contract": {
           "metric_id": "conditional_risk_charge_bps",
@@ -826,10 +837,12 @@
         "capex_subsidy": 0.0001797695,
         "carbon_reform": -13.6651044829
       },
-      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)"
+      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)",
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
+      "sector": "petrochemicals",
       "before": {
         "risk_result_contract": {
           "metric_id": "conditional_risk_charge_bps",
@@ -1517,10 +1530,12 @@
         "capex_subsidy": 0.0022963998,
         "carbon_reform": -4.6966919447
       },
-      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)"
+      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)",
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
+      "sector": "steel",
       "before": {
         "risk_result_contract": {
           "metric_id": "conditional_risk_charge_bps",
@@ -2208,10 +2223,12 @@
         "capex_subsidy": 0.0002466324,
         "carbon_reform": -7.9210527053
       },
-      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)"
+      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)",
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
+      "sector": "petrochemicals",
       "before": {
         "risk_result_contract": {
           "metric_id": "conditional_risk_charge_bps",
@@ -2899,10 +2916,12 @@
         "capex_subsidy": 0.0041278364,
         "carbon_reform": -3.8996209062
       },
-      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)"
+      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)",
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
+      "sector": "steel",
       "before": {
         "risk_result_contract": {
           "metric_id": "conditional_risk_charge_bps",
@@ -3590,10 +3609,12 @@
         "capex_subsidy": 0.0015241059,
         "carbon_reform": -4.3460004809
       },
-      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)"
+      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)",
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
+      "sector": "steel",
       "before": {
         "risk_result_contract": {
           "metric_id": "conditional_risk_charge_bps",
@@ -4281,7 +4302,8 @@
         "capex_subsidy": 0.0019856247,
         "carbon_reform": -7.7154981832
       },
-      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)"
+      "attribution_basis": "charge at fixed exposure window (package τ*); base→package timing effect is NOT distributed here — read delta.tau_star_years for it. Non-applicable instruments receive exactly 0 (null-player axiom)",
+      "headline_eligible": true
     }
   ],
   "perspective": "reform-priced (국가별 σ_reform 관점)"

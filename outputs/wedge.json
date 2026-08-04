@@ -27,6 +27,16 @@
     "routes_sensitivity": "assumed",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "t_required_source": "surrogate",
   "assets": [
     {
@@ -42,7 +52,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2049.969,
       "timing_gap_years": 2.969,
-      "tau_star_year_wacc_eq": 2049.8445
+      "tau_star_year_wacc_eq": 2049.8445,
+      "headline_eligible": true
     },
     {
       "asset_id": "A02",
@@ -57,7 +68,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2049.77175,
       "timing_gap_years": 11.77175,
-      "tau_star_year_wacc_eq": 2049.57625
+      "tau_star_year_wacc_eq": 2049.57625,
+      "headline_eligible": true
     },
     {
       "asset_id": "A06",
@@ -72,7 +84,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.0355,
       "timing_gap_years": 16.0355,
-      "tau_star_year_wacc_eq": 2049.89025
+      "tau_star_year_wacc_eq": 2049.89025,
+      "headline_eligible": true
     },
     {
       "asset_id": "A07",
@@ -87,7 +100,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.14275,
       "timing_gap_years": 8.14275,
-      "tau_star_year_wacc_eq": 2049.97975
+      "tau_star_year_wacc_eq": 2049.97975,
+      "headline_eligible": true
     },
     {
       "asset_id": "A03",
@@ -102,7 +116,8 @@
       "t_required_status": "UNAVAILABLE",
       "tau_star_year": null,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year_wacc_eq": null,
+      "headline_eligible": true
     },
     {
       "asset_id": "A08",
@@ -117,7 +132,8 @@
       "t_required_status": "UNAVAILABLE",
       "tau_star_year": null,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year_wacc_eq": null,
+      "headline_eligible": true
     },
     {
       "asset_id": "A04",
@@ -132,7 +148,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.43875,
       "timing_gap_years": 7.43875,
-      "tau_star_year_wacc_eq": 2050.83
+      "tau_star_year_wacc_eq": 2050.83,
+      "headline_eligible": true
     },
     {
       "asset_id": "A09",
@@ -147,7 +164,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.16675,
       "timing_gap_years": 15.16675,
-      "tau_star_year_wacc_eq": 2050.73625
+      "tau_star_year_wacc_eq": 2050.73625,
+      "headline_eligible": true
     },
     {
       "asset_id": "A05",
@@ -162,7 +180,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": null,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year_wacc_eq": null,
+      "headline_eligible": true
     },
     {
       "asset_id": "A10",
@@ -177,7 +196,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": null,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year_wacc_eq": null,
+      "headline_eligible": true
     },
     {
       "asset_id": "A11",
@@ -192,7 +212,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": null,
       "timing_gap_years": null,
-      "tau_star_year_wacc_eq": null
+      "tau_star_year_wacc_eq": null,
+      "headline_eligible": true
     },
     {
       "asset_id": "P01",
@@ -207,7 +228,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2039.00625,
       "timing_gap_years": 7.00625,
-      "tau_star_year_wacc_eq": 2038.988
+      "tau_star_year_wacc_eq": 2038.988,
+      "headline_eligible": false
     },
     {
       "asset_id": "P02",
@@ -222,7 +244,8 @@
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2039.8755,
       "timing_gap_years": 9.8755,
-      "tau_star_year_wacc_eq": 2039.36975
+      "tau_star_year_wacc_eq": 2039.36975,
+      "headline_eligible": false
     }
   ]
 }

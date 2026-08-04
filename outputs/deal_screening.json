@@ -83,6 +83,16 @@
     "sigma_h2": "banded",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "release_stage": "INTERNAL_RESEARCH_PREVIEW",
   "comparison_warning": "Project risk uses immediate base-year commissioning and is not directly comparable with enterprise transition-window bps unless basis_id matches.",
   "profile": {
@@ -189,7 +199,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -299,7 +310,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -417,7 +429,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -535,7 +548,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -652,7 +666,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -770,7 +785,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -887,7 +903,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -1004,7 +1021,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -1125,7 +1143,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -1238,7 +1257,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -1346,7 +1366,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -1464,7 +1485,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -1582,7 +1604,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -1699,7 +1722,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -1817,7 +1841,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -1934,7 +1959,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -2051,7 +2077,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -2171,7 +2198,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -2284,7 +2312,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -2392,7 +2421,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -2510,7 +2540,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -2628,7 +2659,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -2745,7 +2777,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -2863,7 +2896,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -2980,7 +3014,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -3097,7 +3132,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -3217,7 +3253,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -3274,7 +3311,8 @@
         "climate_equivalent_leader_feasibility": "CONFIGURED_ROUTE",
         "climate_equivalent_leader_npv_usd_m": -7041.1783223864,
         "note": "unconstrained leader may not provide equivalent decarbonization; alternative routes remain economics-only until technology, feedstock and infrastructure feasibility are validated"
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
@@ -3353,7 +3391,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": false
             },
             "risk": {
               "result_contract": {
@@ -3461,7 +3500,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -3579,7 +3619,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -3697,7 +3738,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -3814,7 +3856,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -3932,7 +3975,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -4051,7 +4095,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -4168,7 +4213,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -4289,7 +4335,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -4404,7 +4451,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": false
             },
             "risk": {
               "result_contract": {
@@ -4512,7 +4560,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -4630,7 +4679,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -4748,7 +4798,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -4865,7 +4916,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -4983,7 +5035,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -5102,7 +5155,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -5219,7 +5273,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -5340,7 +5395,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -5455,7 +5511,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": false
             },
             "risk": {
               "result_contract": {
@@ -5563,7 +5620,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -5681,7 +5739,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -5799,7 +5858,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -5916,7 +5976,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -6034,7 +6095,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -6153,7 +6215,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -6272,7 +6335,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -6394,7 +6458,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -6450,7 +6515,8 @@
         "climate_equivalent_leader_feasibility": "OPEN_NOT_TECHNICALLY_VALIDATED",
         "climate_equivalent_leader_npv_usd_m": 7.518383727,
         "note": "unconstrained leader may not provide equivalent decarbonization; alternative routes remain economics-only until technology, feedstock and infrastructure feasibility are validated"
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
@@ -6529,7 +6595,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -6639,7 +6706,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -6757,7 +6825,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -6875,7 +6944,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -6992,7 +7062,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -7110,7 +7181,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -7227,7 +7299,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -7344,7 +7417,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -7465,7 +7539,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -7578,7 +7653,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -7686,7 +7762,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -7804,7 +7881,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -7922,7 +8000,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -8039,7 +8118,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -8157,7 +8237,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -8274,7 +8355,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -8391,7 +8473,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -8511,7 +8594,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -8624,7 +8708,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -8732,7 +8817,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -8850,7 +8936,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -8968,7 +9055,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -9085,7 +9173,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -9203,7 +9292,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -9320,7 +9410,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -9437,7 +9528,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -9557,7 +9649,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -9614,7 +9707,8 @@
         "climate_equivalent_leader_feasibility": "CONFIGURED_ROUTE",
         "climate_equivalent_leader_npv_usd_m": -1905.2574561477,
         "note": "unconstrained leader may not provide equivalent decarbonization; alternative routes remain economics-only until technology, feedstock and infrastructure feasibility are validated"
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
@@ -9693,7 +9787,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": false
             },
             "risk": {
               "result_contract": {
@@ -9801,7 +9896,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -9919,7 +10015,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -10037,7 +10134,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -10154,7 +10252,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -10272,7 +10371,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -10391,7 +10491,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -10508,7 +10609,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -10629,7 +10731,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -10744,7 +10847,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": false
             },
             "risk": {
               "result_contract": {
@@ -10852,7 +10956,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -10970,7 +11075,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -11088,7 +11194,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -11205,7 +11312,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -11323,7 +11431,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -11442,7 +11551,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -11559,7 +11669,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -11680,7 +11791,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -11795,7 +11907,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": false
             },
             "risk": {
               "result_contract": {
@@ -11903,7 +12016,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -12021,7 +12135,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -12139,7 +12254,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -12256,7 +12372,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -12374,7 +12491,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -12493,7 +12611,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -12612,7 +12731,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -12734,7 +12854,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": false
               },
               "risk": {
                 "result_contract": {
@@ -12790,7 +12911,8 @@
         "climate_equivalent_leader_feasibility": "CONFIGURED_ROUTE",
         "climate_equivalent_leader_npv_usd_m": 58.145146007,
         "note": "unconstrained leader may not provide equivalent decarbonization; alternative routes remain economics-only until technology, feedstock and infrastructure feasibility are validated"
-      }
+      },
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
@@ -12869,7 +12991,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -12979,7 +13102,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -13097,7 +13221,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -13215,7 +13340,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -13332,7 +13458,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -13450,7 +13577,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -13567,7 +13695,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -13684,7 +13813,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -13805,7 +13935,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -13918,7 +14049,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -14026,7 +14158,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -14144,7 +14277,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -14262,7 +14396,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -14379,7 +14514,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -14497,7 +14633,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -14614,7 +14751,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -14731,7 +14869,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -14851,7 +14990,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -14964,7 +15104,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -15072,7 +15213,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -15190,7 +15332,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -15308,7 +15451,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -15425,7 +15569,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -15543,7 +15688,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -15660,7 +15806,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -15777,7 +15924,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -15897,7 +16045,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -15954,7 +16103,8 @@
         "climate_equivalent_leader_feasibility": "CONFIGURED_ROUTE",
         "climate_equivalent_leader_npv_usd_m": -24397.9648635605,
         "note": "unconstrained leader may not provide equivalent decarbonization; alternative routes remain economics-only until technology, feedstock and infrastructure feasibility are validated"
-      }
+      },
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
@@ -16033,7 +16183,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -16143,7 +16294,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -16261,7 +16413,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -16379,7 +16532,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -16496,7 +16650,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -16614,7 +16769,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -16731,7 +16887,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -16848,7 +17005,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -16969,7 +17127,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -17082,7 +17241,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -17190,7 +17350,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -17308,7 +17469,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -17426,7 +17588,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -17543,7 +17706,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -17661,7 +17825,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -17778,7 +17943,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -17895,7 +18061,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -18015,7 +18182,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -18129,7 +18297,8 @@
                 "annual_fee_usd_m": 0.0,
                 "upfront_fee_usd_m": 0.0,
                 "fee_pv_usd_m": 0.0
-              }
+              },
+              "headline_eligible": true
             },
             "risk": {
               "result_contract": {
@@ -18237,7 +18406,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -18355,7 +18525,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -18473,7 +18644,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -18590,7 +18762,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -18708,7 +18881,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -18825,7 +18999,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -18942,7 +19117,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -19062,7 +19238,8 @@
                   "annual_fee_usd_m": 0.0,
                   "upfront_fee_usd_m": 0.0,
                   "fee_pv_usd_m": 0.0
-                }
+                },
+                "headline_eligible": true
               },
               "risk": {
                 "result_contract": {
@@ -19119,7 +19296,8 @@
         "climate_equivalent_leader_feasibility": "CONFIGURED_ROUTE",
         "climate_equivalent_leader_npv_usd_m": -28844.2808151236,
         "note": "unconstrained leader may not provide equivalent decarbonization; alternative routes remain economics-only until technology, feedstock and infrastructure feasibility are validated"
-      }
+      },
+      "headline_eligible": true
     }
   ]
 }

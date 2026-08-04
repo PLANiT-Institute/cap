@@ -50,11 +50,22 @@
     "sigma_h2": "banded",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "wacc_eq": 0.0643181818,
   "firms": [
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
+      "sector": "steel",
       "premium_bps": 16.1539921781,
       "premium_reform_bps": 27.3302808735,
       "premium_usd_t": 2.9549985692,
@@ -65,11 +76,13 @@
       "p_bind": 0.5,
       "l_bind": 46.5,
       "sigma_b_usd_bn": 4.5232168243,
-      "sigma_b_reform_usd_bn": 7.652646163
+      "sigma_b_reform_usd_bn": 7.652646163,
+      "headline_eligible": true
     },
     {
       "firm_id": "JP_NCC",
       "firm": "Japan NCC archetype",
+      "sector": "petrochemicals",
       "premium_bps": 9.4057901046,
       "premium_reform_bps": 9.9642348043,
       "premium_usd_t": 7.2352231574,
@@ -80,11 +93,13 @@
       "p_bind": 0.5,
       "l_bind": 46.5,
       "sigma_b_usd_bn": 1.9251529332,
-      "sigma_b_reform_usd_bn": 2.0394539583
+      "sigma_b_reform_usd_bn": 2.0394539583,
+      "headline_eligible": false
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
+      "sector": "steel",
       "premium_bps": 9.3640297065,
       "premium_reform_bps": 15.8422040637,
       "premium_usd_t": 2.8812399097,
@@ -95,11 +110,13 @@
       "p_bind": 0.5,
       "l_bind": 46.5,
       "sigma_b_usd_bn": 1.3983923807,
-      "sigma_b_reform_usd_bn": 2.3658209286
+      "sigma_b_reform_usd_bn": 2.3658209286,
+      "headline_eligible": true
     },
     {
       "firm_id": "KR_NCC",
       "firm": "Korea NCC archetype",
+      "sector": "petrochemicals",
       "premium_bps": 9.5981699721,
       "premium_reform_bps": 10.1376319555,
       "premium_usd_t": 7.1986274791,
@@ -110,11 +127,13 @@
       "p_bind": 0.55,
       "l_bind": 53.1818181818,
       "sigma_b_usd_bn": 2.1183061276,
-      "sigma_b_reform_usd_bn": 2.2373648261
+      "sigma_b_reform_usd_bn": 2.2373648261,
+      "headline_eligible": false
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
+      "sector": "steel",
       "premium_bps": 5.5514107318,
       "premium_reform_bps": 8.7345132914,
       "premium_usd_t": 2.7757053659,
@@ -125,11 +144,13 @@
       "p_bind": 0.5,
       "l_bind": 46.5,
       "sigma_b_usd_bn": 4.1451440847,
-      "sigma_b_reform_usd_bn": 6.5219126907
+      "sigma_b_reform_usd_bn": 6.5219126907,
+      "headline_eligible": true
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
+      "sector": "steel",
       "premium_bps": 12.8637217678,
       "premium_reform_bps": 19.0424938593,
       "premium_usd_t": 3.5486129015,
@@ -140,7 +161,8 @@
       "p_bind": 0.55,
       "l_bind": 53.1818181818,
       "sigma_b_usd_bn": 7.1759169149,
-      "sigma_b_reform_usd_bn": 10.6226919591
+      "sigma_b_reform_usd_bn": 10.6226919591,
+      "headline_eligible": true
     }
   ]
 }

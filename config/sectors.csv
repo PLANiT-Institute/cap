@@ -1,0 +1,3 @@
+sector,headline_enabled,status,source,theory_anchor,note
+steel,1,banded,한·일 5사 11개 고로 — 자산 레지스트리가 공개 개별 설비에 대응 (data/raw/assets),#axiom-route-sensitivity,헤드라인 대상. 단 5사 조강의 약 1/3인 부분 함대 (DECISIONS X12)
+petrochemicals,0,assumed,RESTRUCTURE 2026-08 §2 W1 — 용량·EV·WACC·기술경제성·T_required 전부 assumed/provisional,#axiom-route-sensitivity,헤드라인 제외. 모델이 어떤 데이터를 요구하고 어떤 계약을 비교하는지 보여주는 계산 예시(archetype)이며 기업 실증 결과가 아니다. 산출에는 남기고 headline_eligible=false로 표기

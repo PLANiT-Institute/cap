@@ -23,6 +23,16 @@
     "routes_sensitivity": "assumed",
     "t_required": "provisional"
   },
+  "headline_scope": {
+    "headline_sectors": [
+      "steel"
+    ],
+    "archetype_sectors": [
+      "petrochemicals"
+    ],
+    "rule": "records carry headline_eligible; archetype sectors are calculation examples showing what data the model needs and which contracts it compares — never firm-level empirical findings. Do not aggregate them into headline figures",
+    "source": "config/sectors.csv (W1)"
+  },
   "firms": [
     {
       "result_contract": {
@@ -145,7 +155,8 @@
         0.0,
         0.0,
         0.0
-      ]
+      ],
+      "headline_eligible": true
     },
     {
       "result_contract": {
@@ -268,7 +279,8 @@
         251.4529550325,
         264.5236587415,
         277.6063678538
-      ]
+      ],
+      "headline_eligible": true
     },
     {
       "result_contract": {
@@ -377,7 +389,8 @@
         11.83,
         11.83,
         11.83
-      ]
+      ],
+      "headline_eligible": false
     },
     {
       "result_contract": {
@@ -486,7 +499,8 @@
         57.3052085021,
         60.2839740577,
         63.2654756008
-      ]
+      ],
+      "headline_eligible": true
     },
     {
       "result_contract": {
@@ -595,7 +609,8 @@
         18.72,
         18.72,
         18.72
-      ]
+      ],
+      "headline_eligible": false
     },
     {
       "result_contract": {
@@ -718,7 +733,8 @@
         148.8568386667,
         148.8568386667,
         148.8568386667
-      ]
+      ],
+      "headline_eligible": true
     },
     {
       "result_contract": {
@@ -869,7 +885,8 @@
         274.0837345491,
         274.0837345491,
         274.0837345491
-      ]
+      ],
+      "headline_eligible": true
     }
   ],
   "t_required_source": "surrogate"
