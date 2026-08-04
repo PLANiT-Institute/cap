@@ -549,10 +549,19 @@ def test_underwriting_translation_and_ranking():
             and row["spread_bps"] == pytest.approx(sensitivity_base["spread_bps"])
             for row in u["sensitivity"]["rows"]
         )
-        positive = [o for o in firm["contract_options"] if o["applicable"] and o["risk_cut_bps"] > 0]
+        # 재료성 문턱 위에서만 순위·최고 de-risker가 성립한다 (감사 2026-08-04):
+        # 이전에는 1e-4 bps 절감이 "최고 de-risker"로 보고됐다
+        cal_tol = json.loads((OUT / "calibration_resolved.json").read_text())
+        charge_tol = float(cal_tol["pathways"]["decision_class_charge_tol_bps"]["value"])
+        material = [
+            o for o in firm["contract_options"]
+            if o["applicable"] and o["risk_cut_bps"] > charge_tol
+        ]
         best = firm["decision_summary"]["best_de_risker"]
-        if positive:
-            assert best["risk_cut_bps"] == pytest.approx(max(o["risk_cut_bps"] for o in positive))
+        if material:
+            assert best["risk_cut_bps"] == pytest.approx(max(o["risk_cut_bps"] for o in material))
+        else:
+            assert best is None, "재료성 문턱 아래의 절감을 최고 de-risker로 보고하면 안 된다"
         for option in firm["contract_options"]:
             assert option["residual_charge_ratio"] > 0
 

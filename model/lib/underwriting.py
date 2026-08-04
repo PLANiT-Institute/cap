@@ -13,7 +13,6 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 
-import numpy as np
 import pandas as pd
 
 BPS_PER_UNIT = 1e4
@@ -32,13 +31,24 @@ def annual_charge_usd_m(spread_bps: float, enterprise_value_usd_bn: float) -> fl
     return float(spread_bps) / BPS_PER_UNIT * float(enterprise_value_usd_bn) * MILLION_PER_BILLION
 
 
-def classify_intervention(delta_charge_bps: float, delta_gap_mtco2: float) -> str:
-    """Keep de-risking and pathway alignment as separate decision dimensions."""
-    tol = float(np.sqrt(np.finfo(float).eps))
-    de_risks = delta_charge_bps < -tol
-    adds_risk = delta_charge_bps > tol
-    aligns = delta_gap_mtco2 < -tol
-    worsens_alignment = delta_gap_mtco2 > tol
+def classify_intervention(
+    delta_charge_bps: float,
+    delta_gap_mtco2: float,
+    *,
+    charge_tol_bps: float,
+    gap_tol_mtco2: float,
+) -> str:
+    """Keep de-risking and pathway alignment as separate decision dimensions.
+
+    Tolerances are **materiality** thresholds supplied by the caller from config,
+    not floating-point epsilon. Until the 2026-08-04 audit this used
+    sqrt(eps) ~ 1.5e-8, so a 1e-4 bps move was labelled `de_risking_only` and
+    could be ranked as a firm's best de-risking contract.
+    """
+    de_risks = delta_charge_bps < -charge_tol_bps
+    adds_risk = delta_charge_bps > charge_tol_bps
+    aligns = delta_gap_mtco2 < -gap_tol_mtco2
+    worsens_alignment = delta_gap_mtco2 > gap_tol_mtco2
     if de_risks and aligns:
         return "dual_benefit"
     if de_risks and worsens_alignment:

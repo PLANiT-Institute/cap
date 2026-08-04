@@ -189,13 +189,18 @@ def build(cal: CalibrationSet) -> dict:
                     "decision_class": classify_intervention(
                         float(iv["delta"]["risk_charge_bps"]),
                         float(iv["delta"]["cumulative_gap_mtco2"]),
+                        charge_tol_bps=float(cal.pathways["decision_class_charge_tol_bps"]),
+                        gap_tol_mtco2=float(cal.pathways["decision_class_gap_tol_mtco2"]),
                     ),
                     "double_count_warning": bool(iv["double_count_warning"]),
                 }
             )
 
+        # 재료성 문턱 위에서만 순위를 매긴다 — 1e-4 bps 절감이 "최고 de-risker"로
+        # 보고되던 문제 (감사 2026-08-04)
+        charge_tol = float(cal.pathways["decision_class_charge_tol_bps"])
         ranked = sorted(
-            [o for o in options if o["applicable"] and o["risk_cut_bps"] > 0],
+            [o for o in options if o["applicable"] and o["risk_cut_bps"] > charge_tol],
             key=lambda o: o["risk_cut_bps"],
             reverse=True,
         )

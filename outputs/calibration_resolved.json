@@ -544,6 +544,14 @@
       "value": 1.0,
       "status": "assumed"
     },
+    "decision_class_charge_tol_bps": {
+      "value": 0.01,
+      "status": "assumed"
+    },
+    "decision_class_gap_tol_mtco2": {
+      "value": 0.05,
+      "status": "assumed"
+    },
     "financing_channel_resolution_years": {
       "value": 0.02,
       "status": "assumed"

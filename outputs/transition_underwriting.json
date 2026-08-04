@@ -868,9 +868,8 @@
           "gap_risk_charge_after_bps": 14.5703520569,
           "gap_risk_charge_delta_bps": 0.0,
           "gap_charge_basis_warning": "separate from transition-cost spread; do not add",
-          "decision_class": "de_risking_only",
-          "double_count_warning": false,
-          "de_risking_rank": 1
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
         },
         {
           "intervention_id": "carbon_reform",
@@ -977,7 +976,7 @@
           "gap_risk_charge_after_bps": 16.5831435667,
           "gap_risk_charge_delta_bps": 2.0127915098,
           "gap_charge_basis_warning": "separate from transition-cost spread; do not add",
-          "decision_class": "risk_increasing",
+          "decision_class": "no_material_model_effect",
           "double_count_warning": false
         },
         {
@@ -1150,13 +1149,7 @@
         }
       ],
       "decision_summary": {
-        "best_de_risker": {
-          "intervention_id": "capex_subsidy",
-          "label": "CAPEX subsidy",
-          "risk_cut_bps": 0.0001438156,
-          "annual_risk_charge_value_usd_m": 0.0002157234,
-          "decision_class": "de_risking_only"
-        },
+        "best_de_risker": null,
         "dominant_unhedged_driver": "carbon",
         "explanation": "ranked by positive reduction in the model-implied conditional risk charge; contract price is not yet observed"
       },
@@ -2780,9 +2773,8 @@
           "gap_risk_charge_after_bps": 6.2259936143,
           "gap_risk_charge_delta_bps": 0.0,
           "gap_charge_basis_warning": "separate from transition-cost spread; do not add",
-          "decision_class": "de_risking_only",
-          "double_count_warning": false,
-          "de_risking_rank": 1
+          "decision_class": "no_material_model_effect",
+          "double_count_warning": false
         },
         {
           "intervention_id": "carbon_reform",
@@ -2889,7 +2881,7 @@
           "gap_risk_charge_after_bps": 7.086070779,
           "gap_risk_charge_delta_bps": 0.8600771648,
           "gap_charge_basis_warning": "separate from transition-cost spread; do not add",
-          "decision_class": "risk_increasing",
+          "decision_class": "no_material_model_effect",
           "double_count_warning": false
         },
         {
@@ -3062,13 +3054,7 @@
         }
       ],
       "decision_summary": {
-        "best_de_risker": {
-          "intervention_id": "capex_subsidy",
-          "label": "CAPEX subsidy",
-          "risk_cut_bps": 0.000197306,
-          "annual_risk_charge_value_usd_m": 0.0001578448,
-          "decision_class": "de_risking_only"
-        },
+        "best_de_risker": null,
         "dominant_unhedged_driver": "carbon",
         "explanation": "ranked by positive reduction in the model-implied conditional risk charge; contract price is not yet observed"
       },
