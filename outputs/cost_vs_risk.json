@@ -49,150 +49,150 @@
       "firm_id": "JFE",
       "firm": "JFE Steel",
       "cost_shares": {
-        "carbon": 0.7065932927,
+        "carbon": 0.9800557189,
         "h2": 0.0,
-        "elec": 0.2271624497,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0662442576
+        "capex": 0.0199442811
       },
       "risk_shares": {
-        "carbon": 0.9242061318,
+        "carbon": 0.9999409324,
         "h2": 0.0,
-        "elec": 0.0746939448,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0010999234
+        "capex": 5.90676e-05
       },
       "exposure_pv_usd_bn": {
-        "carbon": 8.0221045436,
+        "carbon": 11.3884092953,
         "h2": 0.0,
-        "elec": 2.5790238016,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.7520852033
+        "capex": 0.2317558398
       }
     },
     {
       "firm_id": "JP_NCC",
       "firm": "Japan NCC archetype",
       "cost_shares": {
-        "carbon": 0.0356695759,
+        "carbon": 0.1030610282,
         "h2": 0.0,
-        "elec": 0.0632122833,
-        "feedstock": 0.8650101931,
-        "capex": 0.0361079477
+        "elec": 0.0583315566,
+        "feedstock": 0.7982213003,
+        "capex": 0.0403861149
       },
       "risk_shares": {
-        "carbon": 0.0177580306,
+        "carbon": 0.0757020976,
         "h2": 0.0,
-        "elec": 0.0112598072,
-        "feedstock": 0.970385115,
-        "capex": 0.0005970471
+        "elec": 0.0126295914,
+        "feedstock": 0.9108669284,
+        "capex": 0.0008013826
       },
       "exposure_pv_usd_bn": {
-        "carbon": 0.5810907818,
+        "carbon": 0.9271634815,
         "h2": 0.0,
-        "elec": 1.0297872701,
-        "feedstock": 14.091825802,
-        "capex": 0.5882322695
+        "elec": 0.5247656654,
+        "feedstock": 7.1810038428,
+        "capex": 0.3633238625
       }
     },
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
       "cost_shares": {
-        "carbon": 0.6785015096,
+        "carbon": 0.9696425067,
         "h2": 0.0,
-        "elec": 0.2337397036,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0877587867
+        "capex": 0.0303574933
       },
       "risk_shares": {
-        "carbon": 0.9167192527,
+        "carbon": 0.9998602064,
         "h2": 0.0,
-        "elec": 0.0812116596,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0020690877
+        "capex": 0.0001397936
       },
       "exposure_pv_usd_bn": {
-        "carbon": 2.7569541646,
+        "carbon": 3.5206850687,
         "h2": 0.0,
-        "elec": 0.9497541866,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.3565901463
+        "capex": 0.1102253385
       }
     },
     {
       "firm_id": "KR_NCC",
       "firm": "Korea NCC archetype",
       "cost_shares": {
-        "carbon": 0.0446224185,
+        "carbon": 0.1156530275,
         "h2": 0.0,
-        "elec": 0.1063693096,
-        "feedstock": 0.7989517033,
-        "capex": 0.0500565685
+        "elec": 0.097896166,
+        "feedstock": 0.7353089802,
+        "capex": 0.0511418263
       },
       "risk_shares": {
-        "carbon": 0.0257755633,
+        "carbon": 0.0986226574,
         "h2": 0.0,
-        "elec": 0.0133611373,
-        "feedstock": 0.959540328,
-        "capex": 0.0013229714
+        "elec": 0.014858091,
+        "feedstock": 0.8850612894,
+        "capex": 0.0014579622
       },
       "exposure_pv_usd_bn": {
-        "carbon": 0.7722051906,
+        "carbon": 1.2194145333,
         "h2": 0.0,
-        "elec": 1.8407548442,
-        "feedstock": 13.8261141627,
-        "capex": 0.866244891
+        "elec": 1.0321909439,
+        "feedstock": 7.7529008674,
+        "capex": 0.5392257135
       }
     },
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
       "cost_shares": {
-        "carbon": 0.1008889424,
-        "h2": 0.674759208,
-        "elec": 0.1553990903,
+        "carbon": 0.5524282018,
+        "h2": 0.3168103706,
+        "elec": 0.0729623884,
         "feedstock": 0.0,
-        "capex": 0.0689527593
+        "capex": 0.0577990391
       },
       "risk_shares": {
-        "carbon": 0.0370898529,
-        "h2": 0.842784116,
-        "elec": 0.1181584444,
+        "carbon": 0.7966370424,
+        "h2": 0.163571028,
+        "elec": 0.038574733,
         "feedstock": 0.0,
-        "capex": 0.0019675868
+        "capex": 0.0012171966
       },
       "exposure_pv_usd_bn": {
-        "carbon": 3.9145849367,
-        "h2": 26.1812857676,
-        "elec": 6.0296294495,
+        "carbon": 9.2147585603,
+        "h2": 5.2845438827,
+        "elec": 1.21704647,
         "feedstock": 0.0,
-        "capex": 2.6754312871
+        "capex": 0.9641147736
       }
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
       "cost_shares": {
-        "carbon": 0.1969974008,
-        "h2": 0.6146556229,
-        "elec": 0.1117555678,
+        "carbon": 0.6698186322,
+        "h2": 0.2399134138,
+        "elec": 0.0436206207,
         "feedstock": 0.0,
-        "capex": 0.0765914086
+        "capex": 0.0466473333
       },
       "risk_shares": {
-        "carbon": 0.1445492027,
-        "h2": 0.8025026114,
-        "elec": 0.0499839163,
+        "carbon": 0.9198637273,
+        "h2": 0.0703439382,
+        "elec": 0.0091597099,
         "feedstock": 0.0,
-        "capex": 0.0029642697
+        "capex": 0.0006326247
       },
       "exposure_pv_usd_bn": {
-        "carbon": 9.7681163384,
-        "h2": 30.4776997519,
-        "elec": 5.5413999549,
+        "carbon": 17.2778462596,
+        "h2": 6.188521608,
+        "elec": 1.1251857469,
         "feedstock": 0.0,
-        "capex": 3.7977850808
+        "capex": 1.2032592336
       }
     }
   ]

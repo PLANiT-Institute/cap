@@ -6,7 +6,7 @@
 
 $$\sigma^2_{carbon} = \sigma^2_{diff} + \sum_j p_j(\ell_j - \bar\ell)^2/\bar\ell^2$$
 
-탄소는 **국가별 factor**다: carbon_kr(K-ETS)·carbon_jp(GX-ETS)에 CBAM 연계는 cbam_common 공통요인으로 태그된다. KR 시나리오 {SQ $12 · 0.45} · {MSR $35 · 0.35} · {CBAM $85 · 0.20} → σ 0.40→**0.88**, ℓ_bind 53.2; JP 시나리오 {SQ $5 · 0.50} · {GX_COMPLIANCE $30 · 0.35} · {CBAM $85 · 0.15} → σ→**1.13**, ℓ_bind 46.5. KR 시나리오를 JP 기업에 적용하지 않는다. POSCO 탄소 share는 개혁 가격화 시 14.5% → 27.5%.
+탄소는 **국가별 factor**다: carbon_kr(K-ETS)·carbon_jp(GX-ETS)에 CBAM 연계는 cbam_common 공통요인으로 태그된다. KR 시나리오 {SQ $12 · 0.45} · {MSR $35 · 0.35} · {CBAM $85 · 0.20} → σ 0.40→**0.88**, ℓ_bind 53.2; JP 시나리오 {SQ $5 · 0.50} · {GX_COMPLIANCE $30 · 0.35} · {CBAM $85 · 0.15} → σ→**1.13**, ℓ_bind 46.5. KR 시나리오를 JP 기업에 적용하지 않는다. POSCO 탄소 share는 개혁 가격화 시 92.0% → 96.2%.
 
 **p_bind 정의 (Option A)**: p_bind(country) = Σ prob(binds=1) — 시나리오에서 **파생**되며 별도 파라미터가 아니다. 현행 KR 0.55, JP 0.50. 혼합 금지를 스키마가 강제한다.
 

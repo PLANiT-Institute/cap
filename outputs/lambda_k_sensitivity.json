@@ -51,110 +51,110 @@
     {
       "firm_id": "JFE",
       "shares_uniform_lambda": {
-        "carbon": 0.9242061318,
+        "carbon": 0.9999409324,
         "h2": 0.0,
-        "elec": 0.0746939448,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0010999234
+        "capex": 5.90676e-05
       },
       "shares_lambda_k": {
-        "carbon": 0.9458162868,
+        "carbon": 0.9999645586,
         "h2": 0.0,
-        "elec": 0.0535083278,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0006753853
+        "capex": 3.54414e-05
       },
-      "max_shift": 0.021610155
+      "max_shift": 2.36262e-05
     },
     {
       "firm_id": "JP_NCC",
       "shares_uniform_lambda": {
-        "carbon": 0.0177580306,
+        "carbon": 0.0757020976,
         "h2": 0.0,
-        "elec": 0.0112598072,
-        "feedstock": 0.970385115,
-        "capex": 0.0005970471
+        "elec": 0.0126295914,
+        "feedstock": 0.9108669284,
+        "capex": 0.0008013826
       },
       "shares_lambda_k": {
-        "carbon": 0.0221337318,
+        "carbon": 0.0930324431,
         "h2": 0.0,
-        "elec": 0.009824011,
-        "feedstock": 0.967595759,
-        "capex": 0.0004464982
+        "elec": 0.0108646028,
+        "feedstock": 0.8955120491,
+        "capex": 0.000590905
       },
-      "max_shift": 0.0043757012
+      "max_shift": 0.0173303455
     },
     {
       "firm_id": "KOBE",
       "shares_uniform_lambda": {
-        "carbon": 0.9167192527,
+        "carbon": 0.9998602064,
         "h2": 0.0,
-        "elec": 0.0812116596,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0020690877
+        "capex": 0.0001397936
       },
       "shares_lambda_k": {
-        "carbon": 0.9404092265,
+        "carbon": 0.9999161191,
         "h2": 0.0,
-        "elec": 0.0583172391,
+        "elec": 0.0,
         "feedstock": 0.0,
-        "capex": 0.0012735344
+        "capex": 8.38809e-05
       },
-      "max_shift": 0.0236899739
+      "max_shift": 5.59128e-05
     },
     {
       "firm_id": "KR_NCC",
       "shares_uniform_lambda": {
-        "carbon": 0.0257755633,
+        "carbon": 0.0986226574,
         "h2": 0.0,
-        "elec": 0.0133611373,
-        "feedstock": 0.959540328,
-        "capex": 0.0013229714
+        "elec": 0.014858091,
+        "feedstock": 0.8850612894,
+        "capex": 0.0014579622
       },
       "shares_lambda_k": {
-        "carbon": 0.0320769362,
+        "carbon": 0.1205733889,
         "h2": 0.0,
-        "elec": 0.0116392817,
-        "feedstock": 0.9552959425,
-        "capex": 0.0009878396
+        "elec": 0.0127155696,
+        "feedstock": 0.8656415624,
+        "capex": 0.001069479
       },
-      "max_shift": 0.0063013728
+      "max_shift": 0.0219507315
     },
     {
       "firm_id": "NIPPON",
       "shares_uniform_lambda": {
-        "carbon": 0.0370898529,
-        "h2": 0.842784116,
-        "elec": 0.1181584444,
+        "carbon": 0.7966370424,
+        "h2": 0.163571028,
+        "elec": 0.038574733,
         "feedstock": 0.0,
-        "capex": 0.0019675868
+        "capex": 0.0012171966
       },
       "shares_lambda_k": {
-        "carbon": 0.0521708785,
-        "h2": 0.8298267305,
-        "elec": 0.1163418172,
+        "carbon": 0.8485067767,
+        "h2": 0.1219548964,
+        "elec": 0.0287604573,
         "feedstock": 0.0,
-        "capex": 0.0016605738
+        "capex": 0.0007778696
       },
-      "max_shift": 0.0150810255
+      "max_shift": 0.0518697342
     },
     {
       "firm_id": "POSCO",
       "shares_uniform_lambda": {
-        "carbon": 0.1445492027,
-        "h2": 0.8025026114,
-        "elec": 0.0499839163,
+        "carbon": 0.9198637273,
+        "h2": 0.0703439382,
+        "elec": 0.0091597099,
         "feedstock": 0.0,
-        "capex": 0.0029642697
+        "capex": 0.0006326247
       },
       "shares_lambda_k": {
-        "carbon": 0.1945301611,
-        "h2": 0.7559894594,
-        "elec": 0.0470868423,
+        "carbon": 0.9425839058,
+        "h2": 0.050456979,
+        "elec": 0.0065701651,
         "feedstock": 0.0,
-        "capex": 0.0023935373
+        "capex": 0.0003889501
       },
-      "max_shift": 0.0499809584
+      "max_shift": 0.0227201785
     }
   ]
 }

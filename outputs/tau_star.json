@@ -54,6 +54,7 @@
       "tau_star_year": 2049.969,
       "tau_star_year_wacc_eq": 2049.8445,
       "p_exercised": 0.54875,
+      "tau_threshold_fragile": true,
       "option_value_usd_t": 171.5547949435
     },
     {
@@ -69,6 +70,7 @@
       "tau_star_year": 2049.77175,
       "tau_star_year_wacc_eq": 2049.57625,
       "p_exercised": 0.56275,
+      "tau_threshold_fragile": true,
       "option_value_usd_t": 173.4950395132
     },
     {
@@ -84,6 +86,7 @@
       "tau_star_year": 2050.0355,
       "tau_star_year_wacc_eq": 2049.89025,
       "p_exercised": 0.55225,
+      "tau_threshold_fragile": true,
       "option_value_usd_t": 155.3117149842
     },
     {
@@ -99,6 +102,7 @@
       "tau_star_year": 2050.14275,
       "tau_star_year_wacc_eq": 2049.97975,
       "p_exercised": 0.55,
+      "tau_threshold_fragile": true,
       "option_value_usd_t": 171.0069012093
     },
     {
@@ -114,6 +118,7 @@
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
       "p_exercised": 0.24175,
+      "tau_threshold_fragile": false,
       "option_value_usd_t": 70.2571710052
     },
     {
@@ -129,6 +134,7 @@
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
       "p_exercised": 0.2605,
+      "tau_threshold_fragile": false,
       "option_value_usd_t": 64.6565355744
     },
     {
@@ -144,6 +150,7 @@
       "tau_star_year": 2050.43875,
       "tau_star_year_wacc_eq": 2050.83,
       "p_exercised": 0.5525,
+      "tau_threshold_fragile": true,
       "option_value_usd_t": 131.3009209893
     },
     {
@@ -159,6 +166,7 @@
       "tau_star_year": 2050.16675,
       "tau_star_year_wacc_eq": 2050.73625,
       "p_exercised": 0.5585,
+      "tau_threshold_fragile": true,
       "option_value_usd_t": 130.3875172058
     },
     {
@@ -174,6 +182,7 @@
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
       "p_exercised": 0.155,
+      "tau_threshold_fragile": false,
       "option_value_usd_t": 93.9387995669
     },
     {
@@ -189,6 +198,7 @@
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
       "p_exercised": 0.164,
+      "tau_threshold_fragile": false,
       "option_value_usd_t": 98.9493319528
     },
     {
@@ -204,6 +214,7 @@
       "tau_star_year": null,
       "tau_star_year_wacc_eq": null,
       "p_exercised": 0.1595,
+      "tau_threshold_fragile": false,
       "option_value_usd_t": 72.2827048195
     },
     {
@@ -219,6 +230,7 @@
       "tau_star_year": 2039.00625,
       "tau_star_year_wacc_eq": 2038.988,
       "p_exercised": 0.881,
+      "tau_threshold_fragile": false,
       "option_value_usd_t": 2400.5980363749
     },
     {
@@ -234,6 +246,7 @@
       "tau_star_year": 2039.8755,
       "tau_star_year_wacc_eq": 2039.36975,
       "p_exercised": 0.87475,
+      "tau_threshold_fragile": false,
       "option_value_usd_t": 3254.1460611569
     }
   ],

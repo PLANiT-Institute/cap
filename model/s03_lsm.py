@@ -168,6 +168,11 @@ def main() -> int:
             "tau_star_year": tau_year,
             "tau_star_year_wacc_eq": tau_year_eq,
             "p_exercised": res["p_exercised"],
+            # p_ex 절벽 감시: threshold±band 안이면 데이터 결정(X1·X3)으로
+            # τ* 위상(유한↔None)이 불연속 점프할 수 있다 — 서술 시 병기할 것
+            "tau_threshold_fragile": bool(
+                abs(res["p_exercised"] - thr) <= float(cal.lsm["tau_threshold_band"])
+            ),
             "option_value_usd_t": res["option_value"],
         }
         if p_bind_flag:

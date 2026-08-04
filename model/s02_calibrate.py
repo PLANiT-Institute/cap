@@ -397,7 +397,8 @@ def load_calibration() -> CalibrationSet:
     status["interventions"] = "assumed"
     status["transaction_assumptions"] = str(transaction_assumptions["status"].mode()[0])
     status["t_required"] = "provisional"
-    status["exposure_model"] = "model"  # 노출 정의·전환시점 규칙 — MODEL_CONDITIONAL 근원
+    # 노출 정의·전환시점 규칙 — MODEL_CONDITIONAL 근원. S4: t_sw = τ* (사적 경로 정합)
+    status["exposure_model"] = "model"
 
     capex = pd.read_parquet(PROCESSED / "capex_refs.parquet").set_index("item_id")
     k_off = float(capex.loc["K12", "mid"]) / float(capex.loc["K11", "mid"])

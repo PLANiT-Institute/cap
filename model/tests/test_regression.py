@@ -245,6 +245,36 @@ def test_private_steps_required_continuous(fresh, cal):
     assert np.sum(np.diff(priv) < -1e-9) <= 4
 
 
+# S4 수용 기준: 노출 전환연도 = τ* (사적 경로 정합, R-7 해소)
+def test_exposure_switch_year_is_tau_star(cal):
+    tau = art("tau_star")
+    sh = art("shares_by_firm")
+    horizon_end = float(cal.lsm["base_year"] + cal.lsm["horizon_years"])
+    tau_by_asset = {a["asset_id"]: a["tau_star_year"] for a in tau["assets"]}
+    for f in sh["firms"]:
+        g = cal.firms[
+            (cal.firms["firm_id"] == f["firm_id"])
+            & (cal.firms["category"] == "priced_route")
+        ]
+        expected = float(np.average(
+            [tau_by_asset[a] if tau_by_asset[a] is not None else horizon_end
+             for a in g["asset_id"]],
+            weights=g["capacity_mt_yr"],
+        ))
+        assert f["t_switch_year"] == pytest.approx(expected), (
+            f"{f['firm_id']}: t_switch_year가 τ*와 불일치 — S4 회귀"
+        )
+
+
+# p_ex 절벽 감시 (검토 2026-08-04): fragile 표기가 threshold band와 일치
+def test_tau_threshold_fragility_is_flagged(cal):
+    tau = art("tau_star")
+    thr = float(cal.lsm["tau_exercise_threshold"])
+    band = float(cal.lsm["tau_threshold_band"])
+    for a in tau["assets"]:
+        assert a["tau_threshold_fragile"] == (abs(a["p_exercised"] - thr) <= band)
+
+
 # S3 수용 기준: 풀 마지막 자산 T_required가 지평말에 고정되는 성질 제거 (R-6)
 def test_required_endpoint_artifact_removed(cal):
     horizon_end = float(cal.lsm["base_year"] + cal.lsm["horizon_years"])

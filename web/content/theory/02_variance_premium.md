@@ -6,7 +6,7 @@
 
 `status: AXIOM`
 
-이 공리의 경험적 발톱이 Figure 4다: POSCO의 탄소는 비용 share 19.7% vs 위험 share 14.5% — 평균으로 나누면 anatomy를 잘못 말한다. (`outputs/cost_vs_risk.json`)
+이 공리의 경험적 발톱이 Figure 4다: POSCO의 탄소는 비용 share 67.0% vs 위험 share 92.0% — 평균으로 나누면 anatomy를 잘못 말한다. (`outputs/cost_vs_risk.json`)
 
 ## 공리 A2 — 부호 규약 (단일 실패 지점) {#axiom-budget-binds}
 

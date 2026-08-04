@@ -72,9 +72,9 @@
       },
       "basis_separation": {
         "enterprise_transition_window": {
-          "before_bps": 20.4227302603,
-          "after_bps": 15.8592205777,
-          "delta_bps": -4.5635096826,
+          "before_bps": 19.0424938593,
+          "after_bps": 19.1031286949,
+          "delta_bps": 0.0606348356,
           "metric_id": "conditional_risk_charge_bps",
           "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
           "evidence_grade": "SCENARIO_CONDITIONAL",
@@ -105,7 +105,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "354fcae4535b8b94453e28e581e1a935e183238852c30f8da7a00166bf9cfe9c",
+        "input_fingerprint_sha256": "32f170ea575412494f884cff0b54c0578171c7c8d6e49244556933fd83682a2d",
         "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {
@@ -241,19 +241,19 @@
         "enterprise_fixed_exposure_pricing": [
           {
             "lambda": 0.25,
-            "risk_charge_reform_bps": 9.9120128611,
+            "risk_charge_reform_bps": 11.7889987323,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.4,
-            "risk_charge_reform_bps": 15.8592205777,
+            "risk_charge_reform_bps": 18.8623979717,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.55,
-            "risk_charge_reform_bps": 21.8064282944,
+            "risk_charge_reform_bps": 25.9357972111,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           }
@@ -308,9 +308,9 @@
       },
       "basis_separation": {
         "enterprise_transition_window": {
-          "before_bps": 12.5069286091,
-          "after_bps": 9.1093410007,
-          "delta_bps": -3.3975876084,
+          "before_bps": 8.7345132914,
+          "after_bps": 8.6713323974,
+          "delta_bps": -0.063180894,
           "metric_id": "conditional_risk_charge_bps",
           "basis_id": "enterprise_transition_window.reform_priced.full_counterfactual.ev_normalized",
           "evidence_grade": "SCENARIO_CONDITIONAL",
@@ -341,7 +341,7 @@
         "t_required_source": "surrogate"
       },
       "input_evidence": {
-        "input_fingerprint_sha256": "354fcae4535b8b94453e28e581e1a935e183238852c30f8da7a00166bf9cfe9c",
+        "input_fingerprint_sha256": "32f170ea575412494f884cff0b54c0578171c7c8d6e49244556933fd83682a2d",
         "pilot_generator_sha256": "3fee7b5eabb0a367ba16ef1e8eebda1286b3dc89ce230900065a807a927ba861",
         "assets": [
           {
@@ -463,19 +463,19 @@
         "enterprise_fixed_exposure_pricing": [
           {
             "lambda": 0.25,
-            "risk_charge_reform_bps": 5.6933381254,
+            "risk_charge_reform_bps": 5.3509478088,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.4,
-            "risk_charge_reform_bps": 9.1093410007,
+            "risk_charge_reform_bps": 8.5615164941,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           },
           {
             "lambda": 0.55,
-            "risk_charge_reform_bps": 12.5253438759,
+            "risk_charge_reform_bps": 11.7720851794,
             "basis_id": "enterprise_transition_window.reform_priced.fixed_exposure.ev_normalized",
             "interpretation": "price stress only; no path inference"
           }

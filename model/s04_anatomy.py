@@ -7,7 +7,10 @@
   시나리오·WACC·route 캘리브레이션에는 조건부다 → MODEL_CONDITIONAL.
 - 절대 수준은 conditional risk charge — λ·p_bind(파생)·k·EV·시나리오에 조건부.
 
-구조: 전환연도 t_sw = 자산별 min(τ*, T_required) (T_required 없으면 τ*),
+구조: 전환연도 t_sw = 자산별 τ* (S4 — 사적 경로 정합; τ*=None이면 지평말 =
+지평 내 미전환. View 1의 '못 움직인다'와 View 2의 노출이 같은 미래를 본다.
+R-7 자기모순 해소 — 이전의 min(τ*, T_required)는 required 시점 전환을 가정했다).
+τ*=None 기업의 탄소 지배 share는 퇴행이 아니라 **집중**(단일 노출)이라는 발견.
 자산별 노출 PV를 계산해 기업으로 합산 (기업 평균 연도 선계산 금지).
 탄소 수준은 국가별 ℓ_bind (KR 시나리오를 JP에 적용하지 않음).
 """
@@ -67,9 +70,9 @@ def firm_frame(cal: CalibrationSet, tau_map: dict[str, float | None] | None = No
         tau = base_tau.get(aid)
         tau_eff = tau if tau is not None else horizon_end
         treq = cal.t_required[aid]["year"]
-        t_switch = min(tau_eff, treq) if treq is not None else tau_eff
+        # S4: t_sw = τ* — 노출은 사적 경로를 따른다 (required 시점 전환 가정 제거)
         rows.append({**a.to_dict(), "tau_star_year": tau_eff, "t_required": treq,
-                     "t_switch_year": t_switch})
+                     "t_switch_year": tau_eff})
     return pd.DataFrame(rows)
 
 

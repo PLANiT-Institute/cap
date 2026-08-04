@@ -3,7 +3,7 @@
 이 섹션은 약점 은폐를 막는 장치다. 각 항목은 위 공리·주장의 `challenged-by`가 역참조하며, 해소되면 상태를 갱신한다.
 
 ## R1 {#referee-1}
-λ 균일성(A5)은 P1의 실질 전제다. Prop 1 자체는 동차성에 의한 항등식이라 trivial 비판 가능. → **대응**: s05 λ_k 감응도 모듈 (`outputs/lambda_k_sensitivity.json`, 최대 share 이동 5.0%), A5의 공리 승격(완료).
+λ 균일성(A5)은 P1의 실질 전제다. Prop 1 자체는 동차성에 의한 항등식이라 trivial 비판 가능. → **대응**: s05 λ_k 감응도 모듈 (`outputs/lambda_k_sensitivity.json`, 최대 share 이동 5.2%), A5의 공리 승격(완료).
 
 **2026-07 문헌조사 갱신 — "미검증"이 아니라 "반증 우세"다.** A5를 지지하는 문헌은 5개 도메인 조사에서 한 편도 나오지 않았고(`theory/refs.bib`의 `% unsupported:`), 반대 방향 증거만 7편이다: 팩터별 위험가격 차이(Chen–Roll–Ross 1986; Bolton–Kacperczyk 2021, 2023), 추정 취약성(Kan–Zhang 1999; Lewellen–Nagel–Shanken 2010), 그리고 [[ready2018]] — 성분별 λ의 **부호가 반대**인 사례로, 이 경우 share 불변성의 해석적 의미가 사라진다. λ_k 감응도는 부수 robustness가 아니라 주 결과로 승격되어야 한다.
 
