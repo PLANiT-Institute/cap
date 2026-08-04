@@ -90,9 +90,16 @@ class CalibrationSet:
 
     @property
     def required_path_provisional(self) -> bool:
-        """True when any priced asset still depends on a surrogate benchmark."""
+        """True when any **headline-eligible-candidate** asset depends on a surrogate.
+
+        석유화학 archetype은 설계상 영구 PROVISIONAL(투자주기 대용)이므로 이 플래그의
+        판정에서 제외한다 — 포함하면 X10의 GCAM 자료가 도착해도 플래그가 절대 내려가지
+        않아 artifact status와 claim이 엇갈린다 (감사 2026-08-04).
+        """
         return any(
-            row["status"] == PROVISIONAL for row in self.t_required.values()
+            row["status"] == PROVISIONAL
+            for row in self.t_required.values()
+            if row["pathway_kind"] != "INVESTMENT_CYCLE_SURROGATE"
         )
 
     def sigma(self, driver: str) -> float:
@@ -185,11 +192,10 @@ def _t_required(
     """route별 배치 풀로 T_required + 풀 연속 경로(q-곡선) 산출 (S3).
 
     - priced_route 자산만 풀에 들어간다 (no_feasible_route는 풀 소비 금지).
-    - h2_dri: GCAM H₂-DRI 곡선 (raw 있으면 raw, 없으면 logistic surrogate).
-      q(t) = min(curve/pool_cap, 1).
-    - 기타 철강 route: route별 경로 부재 → 동형 logistic의 **비율 곡선** q(t)=curve/L
-      사용 (endpoint 재정규화 금지 — 풀 마지막 자산 T_required가 지평말에 고정되던
-      아티팩트의 원인, FORMULA_LEDGER R-6). status=PROVISIONAL.
+    - 전 풀이 **동일한 비율 곡선** q(t) ∈ [0,1]을 공유한다 (pro_rata; `_pool_share_curve`).
+      풀 용량으로 나누지 않는다 — 그러면 작은 풀이 더 빠른 요구 경로를 갖는다.
+    - h2_dri KR: raw 있으면 raw 곡선, 없으면 logistic surrogate. 나머지는 surrogate.
+      endpoint 재정규화 금지 (FORMULA_LEDGER R-6), 기준연도 재기준 (감사 2026-08-04).
     - 자산별 T_required = q(t)가 자산 누적용량 **중점**(cum−cap/2)/pool_cap에 닿는
       첫 해 — 연속 풀 경로의 pro-rata 해석. 미도달이면 None (지평말 고정 아님).
     - required **배출 경로**는 자산 배정이 아니라 q(t)로 직접 계산한다
@@ -214,6 +220,19 @@ def _t_required(
     if raw_csv.exists():
         q = pd.read_csv(raw_csv).sort_values("year")
         years_raw, q_raw = q["year"].to_numpy(float), q["Q_h2dri_Mt"].to_numpy(float)
+        # X10 도착 시 조용히 깨지는 두 실패 모드를 fail-closed로 막는다 (감사 2026-08-04):
+        # ① 비단조 곡선이면 required 경로가 설비를 '역전환'시킨다 (E(t)가 오름)
+        # ② 지평을 못 덮으면 np.interp가 평평하게 외삽해 T_required를 조용히 왜곡한다
+        if (np.diff(q_raw) < -np.finfo(float).eps).any():
+            raise ValueError(
+                f"{raw_csv.relative_to(ROOT)}: Q_h2dri_Mt가 비단조 — required 경로가 "
+                "설비를 역전환시킨다. 원자료를 확인하거나 단조화 규약을 DECISIONS에 등록할 것"
+            )
+        if years_raw[0] > years[0] or years_raw[-1] < years[-1]:
+            raise ValueError(
+                f"{raw_csv.relative_to(ROOT)}: 연도 범위 [{years_raw[0]:.0f}, {years_raw[-1]:.0f}]가 "
+                f"모델 지평 [{years[0]:.0f}, {years[-1]:.0f}]을 덮지 않는다 — 외삽 금지"
+            )
         source = "mixed"  # KR H2 raw; JP and non-H2 pools remain surrogate until supplied
     else:
         years_raw, q_raw = years, surrogate_q

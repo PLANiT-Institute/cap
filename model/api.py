@@ -91,6 +91,7 @@ def _replace_scenarios(cal, country: str, rows: list[dict]) -> None:
 def _refresh_carbon_regimes(cal) -> None:
     """시나리오 또는 diffusion σ 변경 뒤 국가별 파생값을 전부 동기화한다."""
     sigma_diff = cal.sigma("carbon_diffusion")
+    anchor_years = float(cal.lsm["mu_anchor_years"])
     for country in COUNTRIES:
         reg = carbon_regime(cal.carbon_scenarios(country), sigma_diff)
         cal.l_bar[country] = reg.l_bar
@@ -98,6 +99,12 @@ def _refresh_carbon_regimes(cal) -> None:
         cal.p_bind[country] = reg.p_bind
         cal.sigma_carbon_reform[country] = reg.sigma_unconditional
         cal.sigma_carbon_binding[country] = reg.sigma_binding
+        # X9 파생 drift도 함께 갱신 — 오버라이드 후 stale 값이 남지 않게 (감사 2026-08-04).
+        # s03.build_spec은 유효 시나리오에서 직접 재계산하므로 계산에는 영향 없지만,
+        # 이 필드가 artifact·진단으로 새는 순간 거짓이 된다.
+        cal.mu_carbon[country] = float(
+            np.log(reg.l_bar / cal.pricing[f"carbon_base_{country.lower()}"]) / anchor_years
+        )
         jump_var = reg.sigma_unconditional**2 - sigma_diff**2
         bind_jump_var = reg.sigma_binding**2 - sigma_diff**2
         cal.carbon_var_decomp[country] = {
