@@ -38,13 +38,13 @@
     "t_required": "provisional"
   },
   "h2_route_carbon_share": {
-    "lo": 0.0305915521,
-    "hi": 0.3722213401
+    "lo": 0.0161258705,
+    "hi": 0.2711573325
   },
   "grid_route_carbon_share": {
-    "lo": 0.9509196531,
-    "hi": 0.9999180966
+    "lo": 0.8505236751,
+    "hi": 0.9774698871
   },
   "separated": true,
-  "gap": 0.578698313
+  "gap": 0.5793663425
 }

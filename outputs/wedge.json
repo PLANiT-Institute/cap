@@ -37,10 +37,10 @@
       "emission_intensity_tco2_t": 2.1,
       "country": "KR",
       "category": "priced_route",
-      "t_required": 2039.0,
+      "t_required": 2038.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2049.969,
-      "timing_gap_years": 10.969,
+      "timing_gap_years": 11.969,
       "tau_star_year_wacc_eq": 2049.8445
     },
     {
@@ -52,10 +52,10 @@
       "emission_intensity_tco2_t": 2.0,
       "country": "KR",
       "category": "priced_route",
-      "t_required": 2035.0,
+      "t_required": 2034.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2049.77175,
-      "timing_gap_years": 14.77175,
+      "timing_gap_years": 15.77175,
       "tau_star_year_wacc_eq": 2049.57625
     },
     {
@@ -67,10 +67,10 @@
       "emission_intensity_tco2_t": 2.0,
       "country": "KR",
       "category": "priced_route",
-      "t_required": 2032.0,
+      "t_required": 2029.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.0355,
-      "timing_gap_years": 18.0355,
+      "timing_gap_years": 21.0355,
       "tau_star_year_wacc_eq": 2049.89025
     },
     {
@@ -82,10 +82,10 @@
       "emission_intensity_tco2_t": 2.0,
       "country": "KR",
       "category": "priced_route",
-      "t_required": 2037.0,
+      "t_required": 2036.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.14275,
-      "timing_gap_years": 13.14275,
+      "timing_gap_years": 14.14275,
       "tau_star_year_wacc_eq": 2049.97975
     },
     {
@@ -127,10 +127,10 @@
       "emission_intensity_tco2_t": 1.9,
       "country": "JP",
       "category": "priced_route",
-      "t_required": 2036.0,
+      "t_required": 2034.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.43875,
-      "timing_gap_years": 14.43875,
+      "timing_gap_years": 16.43875,
       "tau_star_year_wacc_eq": 2050.83
     },
     {
@@ -142,10 +142,10 @@
       "emission_intensity_tco2_t": 1.9,
       "country": "JP",
       "category": "priced_route",
-      "t_required": 2031.0,
+      "t_required": 2029.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": 2050.16675,
-      "timing_gap_years": 19.16675,
+      "timing_gap_years": 21.16675,
       "tau_star_year_wacc_eq": 2050.73625
     },
     {
@@ -157,7 +157,7 @@
       "emission_intensity_tco2_t": 2.0,
       "country": "JP",
       "category": "priced_route",
-      "t_required": 2061.0,
+      "t_required": 2044.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": null,
       "timing_gap_years": null,
@@ -172,7 +172,7 @@
       "emission_intensity_tco2_t": 2.0,
       "country": "JP",
       "category": "priced_route",
-      "t_required": 2040.0,
+      "t_required": 2036.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": null,
       "timing_gap_years": null,
@@ -187,7 +187,7 @@
       "emission_intensity_tco2_t": 1.95,
       "country": "JP",
       "category": "priced_route",
-      "t_required": 2061.0,
+      "t_required": 2040.0,
       "t_required_status": "PROVISIONAL",
       "tau_star_year": null,
       "timing_gap_years": null,

@@ -54,17 +54,17 @@
     {
       "firm_id": "JFE",
       "firm": "JFE Steel",
-      "premium_bps": 14.3102859892,
-      "premium_reform_bps": 23.9912439207,
-      "premium_usd_t": 2.6177352419,
-      "premium_reform_usd_t": 4.3886421806,
-      "premium_bps_wacc_eq": 14.4289690482,
-      "premium_reform_bps_wacc_eq": 24.2084827106,
+      "premium_bps": 12.1481333553,
+      "premium_reform_bps": 19.9573309574,
+      "premium_usd_t": 2.2222195162,
+      "premium_reform_usd_t": 3.6507312727,
+      "premium_bps_wacc_eq": 12.3814289076,
+      "premium_reform_bps_wacc_eq": 20.4006294193,
       "wacc": 0.0575,
       "p_bind": 0.5,
       "l_bind": 46.5,
-      "sigma_b_usd_bn": 4.0069677905,
-      "sigma_b_reform_usd_bn": 6.7176953499
+      "sigma_b_usd_bn": 3.4015518003,
+      "sigma_b_reform_usd_bn": 5.5881749947
     },
     {
       "firm_id": "JP_NCC",
@@ -84,17 +84,17 @@
     {
       "firm_id": "KOBE",
       "firm": "Kobe Steel",
-      "premium_bps": 9.3640297065,
-      "premium_reform_bps": 15.8422040637,
-      "premium_usd_t": 2.8812399097,
-      "premium_reform_usd_t": 4.8745243273,
-      "premium_bps_wacc_eq": 9.3638644584,
-      "premium_reform_bps_wacc_eq": 15.8421063892,
+      "premium_bps": 7.874171757,
+      "premium_reform_bps": 12.8992899781,
+      "premium_usd_t": 2.4228220791,
+      "premium_reform_usd_t": 3.9690123009,
+      "premium_bps_wacc_eq": 7.9636409582,
+      "premium_reform_bps_wacc_eq": 13.086763973,
       "wacc": 0.0575,
       "p_bind": 0.5,
       "l_bind": 46.5,
-      "sigma_b_usd_bn": 1.3983923807,
-      "sigma_b_reform_usd_bn": 2.3658209286
+      "sigma_b_usd_bn": 1.1759020565,
+      "sigma_b_reform_usd_bn": 1.9263361381
     },
     {
       "firm_id": "KR_NCC",
@@ -114,32 +114,32 @@
     {
       "firm_id": "NIPPON",
       "firm": "Nippon Steel",
-      "premium_bps": 10.7022257597,
-      "premium_reform_bps": 11.3254277548,
-      "premium_usd_t": 5.3511128798,
-      "premium_reform_usd_t": 5.6627138774,
-      "premium_bps_wacc_eq": 10.3588704297,
-      "premium_reform_bps_wacc_eq": 11.0533062307,
+      "premium_bps": 12.1166299269,
+      "premium_reform_bps": 12.5069286091,
+      "premium_usd_t": 6.0583149634,
+      "premium_reform_usd_t": 6.2534643045,
+      "premium_bps_wacc_eq": 11.8063043924,
+      "premium_reform_bps_wacc_eq": 12.2406591882,
       "wacc": 0.0575,
       "p_bind": 0.5,
       "l_bind": 46.5,
-      "sigma_b_usd_bn": 7.9911701627,
-      "sigma_b_reform_usd_bn": 8.4565045053
+      "sigma_b_usd_bn": 9.0472817261,
+      "sigma_b_reform_usd_bn": 9.3387111216
     },
     {
       "firm_id": "POSCO",
       "firm": "POSCO",
-      "premium_bps": 17.0960186336,
-      "premium_reform_bps": 19.3415720651,
-      "premium_usd_t": 4.7161430713,
-      "premium_reform_usd_t": 5.3356060869,
-      "premium_bps_wacc_eq": 17.934709182,
-      "premium_reform_bps_wacc_eq": 19.8634415015,
+      "premium_bps": 18.7565096471,
+      "premium_reform_bps": 20.4227302603,
+      "premium_usd_t": 5.1742095578,
+      "premium_reform_usd_t": 5.6338566235,
+      "premium_bps_wacc_eq": 19.5997011624,
+      "premium_reform_bps_wacc_eq": 21.0257172612,
       "wacc": 0.075,
       "p_bind": 0.55,
       "l_bind": 53.1818181818,
-      "sigma_b_usd_bn": 9.5368674404,
-      "sigma_b_reform_usd_bn": 10.7895301724
+      "sigma_b_usd_bn": 10.4631581179,
+      "sigma_b_reform_usd_bn": 11.3926450034
     }
   ]
 }

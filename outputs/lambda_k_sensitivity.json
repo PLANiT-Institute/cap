@@ -51,20 +51,20 @@
     {
       "firm_id": "JFE",
       "shares_uniform_lambda": {
-        "carbon": 0.9769709146,
+        "carbon": 0.9242061318,
         "h2": 0.0,
-        "elec": 0.0227254411,
+        "elec": 0.0746939448,
         "feedstock": 0.0,
-        "capex": 0.0003036443
+        "capex": 0.0010999234
       },
       "shares_lambda_k": {
-        "carbon": 0.9837975745,
+        "carbon": 0.9458162868,
         "h2": 0.0,
-        "elec": 0.0160189658,
+        "elec": 0.0535083278,
         "feedstock": 0.0,
-        "capex": 0.0001834596
+        "capex": 0.0006753853
       },
-      "max_shift": 0.00682666
+      "max_shift": 0.021610155
     },
     {
       "firm_id": "JP_NCC",
@@ -87,20 +87,20 @@
     {
       "firm_id": "KOBE",
       "shares_uniform_lambda": {
-        "carbon": 0.9998602064,
+        "carbon": 0.9167192527,
         "h2": 0.0,
-        "elec": 0.0,
+        "elec": 0.0812116596,
         "feedstock": 0.0,
-        "capex": 0.0001397936
+        "capex": 0.0020690877
       },
       "shares_lambda_k": {
-        "carbon": 0.9999161191,
+        "carbon": 0.9404092265,
         "h2": 0.0,
-        "elec": 0.0,
+        "elec": 0.0583172391,
         "feedstock": 0.0,
-        "capex": 8.38809e-05
+        "capex": 0.0012735344
       },
-      "max_shift": 5.59128e-05
+      "max_shift": 0.0236899739
     },
     {
       "firm_id": "KR_NCC",
@@ -123,38 +123,38 @@
     {
       "firm_id": "NIPPON",
       "shares_uniform_lambda": {
-        "carbon": 0.066996279,
-        "h2": 0.8138866809,
-        "elec": 0.1171004025,
+        "carbon": 0.0370898529,
+        "h2": 0.842784116,
+        "elec": 0.1181584444,
         "feedstock": 0.0,
-        "capex": 0.0020166376
+        "capex": 0.0019675868
       },
       "shares_lambda_k": {
-        "carbon": 0.0930636724,
-        "h2": 0.7913916887,
-        "elec": 0.1138638676,
+        "carbon": 0.0521708785,
+        "h2": 0.8298267305,
+        "elec": 0.1163418172,
         "feedstock": 0.0,
-        "capex": 0.0016807713
+        "capex": 0.0016605738
       },
-      "max_shift": 0.0260673934
+      "max_shift": 0.0150810255
     },
     {
       "firm_id": "POSCO",
       "shares_uniform_lambda": {
-        "carbon": 0.2176007683,
-        "h2": 0.7320987691,
-        "elec": 0.0474802329,
+        "carbon": 0.1445492027,
+        "h2": 0.8025026114,
+        "elec": 0.0499839163,
         "feedstock": 0.0,
-        "capex": 0.0028202297
+        "capex": 0.0029642697
       },
       "shares_lambda_k": {
-        "carbon": 0.2844461152,
-        "h2": 0.6698958682,
-        "elec": 0.0434460666,
+        "carbon": 0.1945301611,
+        "h2": 0.7559894594,
+        "elec": 0.0470868423,
         "feedstock": 0.0,
-        "capex": 0.00221195
+        "capex": 0.0023935373
       },
-      "max_shift": 0.0668453469
+      "max_shift": 0.0499809584
     }
   ]
 }

@@ -58,21 +58,21 @@
       "route": "scrap_eaf",
       "cluster": "grid_route",
       "capacity_mt": 8.2,
-      "t_switch_year": 2051.5243902439,
+      "t_switch_year": 2040.3902439024,
       "residual_intensity_tco2_t": 0.4,
       "shares": {
-        "carbon": 0.9769709146,
+        "carbon": 0.9242061318,
         "h2": 0.0,
-        "elec": 0.0227254411,
+        "elec": 0.0746939448,
         "feedstock": 0.0,
-        "capex": 0.0003036443
+        "capex": 0.0010999234
       },
       "shares_reform": {
-        "carbon": 0.9872082148,
+        "carbon": 0.9599007658,
         "h2": 0.0,
-        "elec": 0.0126837523,
+        "elec": 0.0396916882,
         "feedstock": 0.0,
-        "capex": 0.0001080329
+        "capex": 0.000407546
       }
     },
     {
@@ -108,21 +108,21 @@
       "route": "ng_dri",
       "cluster": "grid_route",
       "capacity_mt": 2.6,
-      "t_switch_year": 2061.0,
+      "t_switch_year": 2040.0,
       "residual_intensity_tco2_t": 0.8,
       "shares": {
-        "carbon": 0.9998602064,
+        "carbon": 0.9167192527,
         "h2": 0.0,
-        "elec": 0.0,
+        "elec": 0.0812116596,
         "feedstock": 0.0,
-        "capex": 0.0001397936
+        "capex": 0.0020690877
       },
       "shares_reform": {
-        "carbon": 0.9999511593,
+        "carbon": 0.9561694212,
         "h2": 0.0,
-        "elec": 0.0,
+        "elec": 0.0430595741,
         "feedstock": 0.0,
-        "capex": 4.88407e-05
+        "capex": 0.0007710047
       }
     },
     {
@@ -158,21 +158,21 @@
       "route": "h2_dri",
       "cluster": "h2_route",
       "capacity_mt": 8.0,
-      "t_switch_year": 2034.25,
+      "t_switch_year": 2032.25,
       "residual_intensity_tco2_t": 0.1,
       "shares": {
-        "carbon": 0.066996279,
-        "h2": 0.8138866809,
-        "elec": 0.1171004025,
+        "carbon": 0.0370898529,
+        "h2": 0.842784116,
+        "elec": 0.1181584444,
         "feedstock": 0.0,
-        "capex": 0.0020166376
+        "capex": 0.0019675868
       },
       "shares_reform": {
-        "carbon": 0.1604921265,
-        "h2": 0.726779936,
-        "elec": 0.1109271318,
+        "carbon": 0.0913418371,
+        "h2": 0.791004014,
+        "elec": 0.1158074493,
         "feedstock": 0.0,
-        "capex": 0.0018008057
+        "capex": 0.0018466995
       }
     },
     {
@@ -183,21 +183,21 @@
       "route": "h2_dri",
       "cluster": "h2_route",
       "capacity_mt": 14.5,
-      "t_switch_year": 2035.9586206897,
+      "t_switch_year": 2034.5034482759,
       "residual_intensity_tco2_t": 0.1,
       "shares": {
-        "carbon": 0.2176007683,
-        "h2": 0.7320987691,
-        "elec": 0.0474802329,
+        "carbon": 0.1445492027,
+        "h2": 0.8025026114,
+        "elec": 0.0499839163,
         "feedstock": 0.0,
-        "capex": 0.0028202297
+        "capex": 0.0029642697
       },
       "shares_reform": {
-        "carbon": 0.385372456,
-        "h2": 0.5719737544,
-        "elec": 0.040450402,
+        "carbon": 0.275367806,
+        "h2": 0.6768974861,
+        "elec": 0.0452343961,
         "feedstock": 0.0,
-        "capex": 0.0022033876
+        "capex": 0.0025003117
       }
     }
   ]

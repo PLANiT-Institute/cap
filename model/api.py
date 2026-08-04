@@ -31,7 +31,7 @@ sys.path.insert(0, str(ROOT))
 
 from model.lib.interventions import apply_interventions, carbon_regime  # noqa: E402
 from model.lib.gap_pricing import price_alignment_gap  # noqa: E402
-from model.lib.pathways import condition_gap, firm_pathway  # noqa: E402
+from model.lib.pathways import condition_gap, firm_pathway, required_firm_pathway  # noqa: E402
 from model.lib.result_contract import (  # noqa: E402
     ALIGNMENT_GAP_LOSS_BASIS,
     ALIGNMENT_GAP_LOSS_METRIC,
@@ -183,12 +183,8 @@ def _pathway_summary(cal, firm_id: str, tau_map: dict[str, float | None]) -> dic
         years,
         residual,
     )
-    required = firm_pathway(
-        assets,
-        {asset_id: cal.t_required[asset_id]["year"] for asset_id in priced_ids},
-        years,
-        residual,
-    )
+    # S3: required는 풀 연속 q(t) — s06/s07과 동일 빌더
+    required = required_firm_pathway(assets, years, residual, cal.t_required, cal.required_pool_paths)
     gap = condition_gap(private["emissions_mtco2"], required["emissions_mtco2"], years)
     return {
         "cumulative_alignment_gap_mtco2": gap["cumulative_alignment_gap_mtco2"],

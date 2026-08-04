@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from model.lib.artifacts import MODEL_CONDITIONAL, PROVISIONAL, claim, write_artifact  # noqa: E402
-from model.lib.pathways import condition_gap, firm_pathway  # noqa: E402
+from model.lib.pathways import condition_gap, firm_pathway, required_firm_pathway  # noqa: E402
 from model.lib.result_contract import (  # noqa: E402
     ALIGNMENT_GAP_BASIS,
     ALIGNMENT_GAP_METRIC,
@@ -50,7 +50,7 @@ def build(cal: CalibrationSet) -> tuple[dict, dict]:
     base_year = int(cal.lsm["base_year"])
     years = np.arange(base_year, base_year + int(cal.lsm["horizon_years"]) + 1)
     residual = dict(zip(cal.routes["route"], cal.routes["residual_intensity_tco2_t"]))
-    private, required, interventions = switch_maps(cal)
+    private, _required, interventions = switch_maps(cal)
     prov = cal.required_path_provisional
 
     pathways_out: dict = {
@@ -81,15 +81,15 @@ def build(cal: CalibrationSet) -> tuple[dict, dict]:
         base0 = float(bau["emissions_mtco2"][0])
         priced_ids = set(g[g["category"] == "priced_route"]["asset_id"])
         pmap = {a: private.get(a) for a in priced_ids}
-        rmap = {a: required.get(a) for a in priced_ids}
         p_track = firm_pathway(g, pmap, years, residual)
-        r_track = firm_pathway(g, rmap, years, residual)
+        # S3: required는 풀 연속 q(t) — 자산 배정 계단이 아님 (사적 경로는 계단 유지)
+        r_track = required_firm_pathway(g, years, residual, cal.t_required, cal.required_pool_paths)
         gap = condition_gap(p_track["emissions_mtco2"], r_track["emissions_mtco2"], years)
 
         ivs = {}
         for iid, imap in interventions.items():
             iv_track = firm_pathway(g, {a: imap.get(a) for a in priced_ids}, years, residual)
-            iv_gap = condition_gap(iv_track["emissions_mtco2"], r_track["emissions_mtco2"], years)
+            iv_gap = condition_gap(iv_track["emissions_mtco2"], r_track["emissions_mtco2"], years)  # 동일 r_track
             ivs[iid] = {
                 **series(iv_track, base0),
                 "cumulative_alignment_gap_mtco2": iv_gap["cumulative_alignment_gap_mtco2"],
@@ -136,7 +136,7 @@ def build(cal: CalibrationSet) -> tuple[dict, dict]:
                                 "assumptions": "자산별 τ* (LSM)"},
                     "required": {**series(r_track, base0),
                                  "status": "PROVISIONAL" if prov else "EMPIRICAL",
-                                 "assumptions": "자산별 T_required (route별 풀; surrogate 시 PROVISIONAL)"},
+                                 "assumptions": "풀 연속 q(t) pro-rata (S3; surrogate 시 PROVISIONAL)"},
                     "interventions": ivs,
                 },
             }

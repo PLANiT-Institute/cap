@@ -231,13 +231,42 @@ def test_required_path_pools_never_mix_countries_and_surrogates_are_not_headline
             }
 
 
-# 12. 기업 평균 전환연도 방식 미사용 — 자산별 전환이 계단으로 나타남
-def test_asset_level_steps(fresh):
+# 12. 사적 경로는 자산 계단 유지, required는 풀 연속 q(t) (S3)
+def test_private_steps_required_continuous(fresh, cal):
     pathways, _ = fresh
     posco = next(f for f in pathways["firms"] if f["firm_id"] == "POSCO")
     req = np.array(posco["pathways"]["required"]["emissions_mtco2"])
-    drops = np.sum(np.diff(req) < -1e-9)
-    assert drops >= 2  # 자산 4개가 서로 다른 해에 전환 → 복수 계단
+    # 연속 경로: 감소 연도가 자산 수(4)보다 훨씬 많다 — 계단이면 ≤4
+    assert np.sum(np.diff(req) < -1e-9) > len(
+        cal.firms[(cal.firms["firm_id"] == "POSCO") & (cal.firms["category"] == "priced_route")]
+    )
+    # 사적 경로는 계단: 감소 연도 수 = 전환 자산 수 이하
+    priv = np.array(posco["pathways"]["private"]["emissions_mtco2"])
+    assert np.sum(np.diff(priv) < -1e-9) <= 4
+
+
+# S3 수용 기준: 풀 마지막 자산 T_required가 지평말에 고정되는 성질 제거 (R-6)
+def test_required_endpoint_artifact_removed(cal):
+    horizon_end = float(cal.lsm["base_year"] + cal.lsm["horizon_years"])
+    steel = cal.firms[
+        (cal.firms["sector"] == "steel") & (cal.firms["category"] == "priced_route")
+    ]
+    for aid in steel["asset_id"]:
+        year = cal.t_required[aid]["year"]
+        assert year is None or year < horizon_end, (
+            f"{aid}: T_required가 지평말({horizon_end})에 고정 — R-6 endpoint 아티팩트 회귀"
+        )
+    # 비H₂ 풀(JFE scrap_eaf, KOBE ng_dri)이 유한한 T_required를 갖는다
+    non_h2 = steel[steel["route"] != "h2_dri"]
+    assert all(
+        cal.t_required[aid]["year"] is not None and cal.t_required[aid]["year"] < horizon_end
+        for aid in non_h2["asset_id"]
+    )
+    # 풀 q-곡선이 존재하고 [0,1] 범위
+    for pool_id, pp in cal.required_pool_paths.items():
+        q = np.asarray(pp["q_fraction"])
+        assert (q >= 0).all() and (q <= 1 + 1e-12).all(), pool_id
+        assert (np.diff(q) >= -1e-12).all(), f"{pool_id}: q(t)가 단조 아님"
 
 
 # 13. intervention 후 residual risk가 근거 없이 0이 되지 않음

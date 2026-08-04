@@ -3,8 +3,9 @@
 모든 계산은 자산별로 수행한 뒤 기업 수준으로 합산한다 — 기업 평균 전환연도를
 먼저 만드는 방식 금지. 경로:
   BAU        전 지평 현행 강도 유지 (폐쇄·전환 없음 — 명시적 기준선)
-  private    자산별 τ*에 route 전환; τ* 없으면 미전환
-  required   자산별 T_required에 전환; T_required 없음(no_feasible)이면 미전환 유지
+  private    자산별 τ*에 route 전환; τ* 없으면 미전환 (자산 단위 계단)
+  required   풀 연속 q(t) pro-rata (S3, required_firm_pathway); 풀 곡선 없는
+             archetype·stranding은 계단 폴백
   intervention  τ*(C)로 private 재계산
 gap:
   timing_gap_i = τ*_i − T_required_i
@@ -54,6 +55,47 @@ def firm_pathway(
         if sw is not None:
             transitioned_cap += np.where(years >= sw, float(a["capacity_mt_yr"]), 0.0)
         per_asset[a["asset_id"]] = e
+    return {
+        "emissions_mtco2": total,
+        "cumulative_mtco2": np.cumsum(total),
+        "transitioned_capacity_mt": transitioned_cap,
+        "per_asset": per_asset,
+    }
+
+
+def required_firm_pathway(
+    assets: pd.DataFrame,
+    years: np.ndarray,
+    residual_by_route: dict[str, float],
+    t_required: dict[str, dict],
+    pool_paths: dict[str, dict],
+) -> dict:
+    """required 배출 경로 — 풀 연속 q(t) 기반 (S3, pro-rata).
+
+    자산이 속한 풀에 q-곡선이 있으면 E(t) = cap·[강도·(1−q) + 잔여강도·q] (연속),
+    없으면(석유화학 archetype·stranding) 자산 T_required 계단으로 폴백.
+    사적 경로(firm_pathway)는 자산 단위 계단을 유지한다 — required만 풀 수준.
+    """
+    total = np.zeros(len(years))
+    transitioned_cap = np.zeros(len(years))
+    per_asset = {}
+    for _, a in assets.iterrows():
+        aid = a["asset_id"]
+        info = t_required.get(aid, {})
+        pp = pool_paths.get(info.get("pool"))
+        cap = float(a["capacity_mt_yr"])
+        i_now = float(a["emission_intensity_tco2_t"])
+        i_after = residual_by_route.get(a["route"], i_now)
+        if pp is None:
+            sw = info.get("year")
+            e = asset_annual_emissions(cap, i_now, i_after, sw, years)
+            q = (years >= sw).astype(float) if sw is not None else np.zeros(len(years))
+        else:
+            q = np.interp(years, np.asarray(pp["years"], float), np.asarray(pp["q_fraction"], float))
+            e = cap * (i_now * (1.0 - q) + i_after * q)
+        total += e
+        transitioned_cap += cap * q
+        per_asset[aid] = e
     return {
         "emissions_mtco2": total,
         "cumulative_mtco2": np.cumsum(total),

@@ -30,7 +30,7 @@ from model.lib.artifacts import (  # noqa: E402
 )
 from model.lib.gap_pricing import price_alignment_gap  # noqa: E402
 from model.lib.interventions import apply_interventions  # noqa: E402
-from model.lib.pathways import condition_gap, firm_pathway  # noqa: E402
+from model.lib.pathways import condition_gap, firm_pathway, required_firm_pathway  # noqa: E402
 from model.lib.result_contract import (  # noqa: E402
     ALIGNMENT_GAP_BASIS,
     ALIGNMENT_GAP_LOSS_BASIS,
@@ -82,7 +82,8 @@ def firm_state(
     pmap = {asset_id: private_tau.get(asset_id) for asset_id in g_all["asset_id"]}
     rmap = {a: cal.t_required[a]["year"] for a in g_all["asset_id"]}
     p_track = firm_pathway(g_all, {a: pmap.get(a) for a in priced_ids}, years, residual)
-    r_track = firm_pathway(g_all, {a: rmap.get(a) for a in priced_ids}, years, residual)
+    # S3: required는 풀 연속 q(t) — s07과 동일 빌더 (basis 정합)
+    r_track = required_firm_pathway(g_all, years, residual, cal.t_required, cal.required_pool_paths)
     gap = condition_gap(p_track["emissions_mtco2"], r_track["emissions_mtco2"], years)
     country = str(g["country"].iloc[0])
     gap_loss = price_alignment_gap(

@@ -81,6 +81,9 @@ class CalibrationSet:
     mu_carbon: dict[str, float]
     k_offcycle_mult: float
     t_required: dict[str, dict]  # asset_id → {year, status, pool}
+    # S3: 풀 수준 연속 배치 경로 — pool_id → {years, q_fraction(0..1), ...}.
+    # required 배출 경로는 자산 배정 계단이 아니라 이 q(t)로 계산한다 (pro-rata).
+    required_pool_paths: dict[str, dict]
     t_required_source: str
     measured_overrides: list[str] = field(default_factory=list)
 
@@ -88,9 +91,7 @@ class CalibrationSet:
     def required_path_provisional(self) -> bool:
         """True when any priced asset still depends on a surrogate benchmark."""
         return any(
-            row["status"] == PROVISIONAL
-            for row in self.t_required.values()
-            if row["year"] is not None
+            row["status"] == PROVISIONAL for row in self.t_required.values()
         )
 
     def sigma(self, driver: str) -> float:
@@ -145,16 +146,23 @@ def _annualized_sigma(returns: pd.Series) -> float:
     return float(returns.std() * np.sqrt(TRADING_DAYS))
 
 
-def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, dict], str]:
-    """route별 배치 풀로 T_required 산출.
+def _t_required(
+    firms: pd.DataFrame, lsm: dict[str, float]
+) -> tuple[dict[str, dict], str, dict[str, dict]]:
+    """route별 배치 풀로 T_required + 풀 연속 경로(q-곡선) 산출 (S3).
 
     - priced_route 자산만 풀에 들어간다 (no_feasible_route는 풀 소비 금지).
     - h2_dri: GCAM H₂-DRI 곡선 (raw 있으면 raw, 없으면 logistic surrogate).
-    - 석유화학 archetype: 자산별 next investment cycle을 T_required로 쓰는 명시적
-      PROVISIONAL surrogate. 실제 사별 mandate나 sector pathway로 해석하지 않는다.
-    - 기타 철강 route: route별 GCAM 경로 부재 → h2 곡선을 자기 풀 용량으로
-      정규화한 동형 곡선 사용, 자산 status=PROVISIONAL(route pathway unavailable).
-    - 풀 내 배분은 reline 연도순 — LCOA merit order가 아니라 근사 (명시).
+      q(t) = min(curve/pool_cap, 1).
+    - 기타 철강 route: route별 경로 부재 → 동형 logistic의 **비율 곡선** q(t)=curve/L
+      사용 (endpoint 재정규화 금지 — 풀 마지막 자산 T_required가 지평말에 고정되던
+      아티팩트의 원인, FORMULA_LEDGER R-6). status=PROVISIONAL.
+    - 자산별 T_required = q(t)가 자산 누적용량 **중점**(cum−cap/2)/pool_cap에 닿는
+      첫 해 — 연속 풀 경로의 pro-rata 해석. 미도달이면 None (지평말 고정 아님).
+    - required **배출 경로**는 자산 배정이 아니라 q(t)로 직접 계산한다
+      (lib/pathways.required_firm_pathway). T_required는 wedge 보고용 파생값.
+    - 석유화학 archetype: 자산별 next investment cycle 계단 유지 (풀 곡선 없음).
+    - 풀 내 순서는 reline 연도순 — LCOA merit order가 아니라 근사 (명시).
     """
     raw_csv = RAW / "gcam" / "Q_gcam_h2dri.csv"
     legacy = yaml.safe_load((RAW / "legacy_config" / "model_parameters.yaml").read_text())
@@ -173,6 +181,7 @@ def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, d
         source = "surrogate"
 
     out: dict[str, dict] = {}
+    pool_paths: dict[str, dict] = {}
     priced = firms[firms["category"] == "priced_route"]
     for (sector, country, route), g in priced.groupby(["sector", "country", "route"]):
         pool_id = f"{sector}:{country}:{route}"
@@ -193,7 +202,7 @@ def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, d
             continue
         pool_cap = float(g["capacity_mt_yr"].sum())
         if route == "h2_dri" and country == "KR" and raw_csv.exists():
-            yrs, curve = years_raw, q_raw
+            yrs, q_frac = years_raw, np.clip(q_raw / pool_cap, 0.0, 1.0)
             route_status = EMPIRICAL
             benchmark_source = "GCAM-KAIST Q_gcam_h2dri.csv"
             intended_benchmark = "GCAM-KAIST"
@@ -201,7 +210,7 @@ def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, d
             headline_eligible = True
             pool_note = "Korean H2-DRI deployment curve (GCAM raw)"
         elif route == "h2_dri":
-            yrs, curve = years, surrogate_q
+            yrs, q_frac = years, np.clip(surrogate_q / pool_cap, 0.0, 1.0)
             route_status = PROVISIONAL
             benchmark_source = "legacy-config logistic H2-DRI surrogate"
             intended_benchmark = "GCAM-KAIST" if country == "KR" else "TZ-OSeMOSYS-STEEL"
@@ -209,32 +218,43 @@ def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, d
             headline_eligible = False
             pool_note = f"{country} H2-DRI logistic surrogate; intended IAM not supplied"
         else:
-            # 동형 곡선을 자기 풀 용량으로 정규화 — route별 경로 부재의 명시적 대용
+            # 동형 logistic의 비율 곡선 — endpoint 재정규화 금지 (S3, R-6 해소)
             yrs = years
-            curve = surrogate_q / max(surrogate_q[-1], np.finfo(float).tiny) * pool_cap
+            q_frac = surrogate_q / float(s["L_Mt"])
             route_status = PROVISIONAL
-            benchmark_source = "legacy-config H2 curve rescaled to route-country pool"
+            benchmark_source = "legacy-config H2 logistic fraction applied to route-country pool"
             intended_benchmark = "route-specific sector pathway not yet supplied"
             pathway_kind = "SURROGATE_RESCALED"
             headline_eligible = False
             pool_note = (
-                f"route pathway unavailable — H2 curve rescaled to {country}:{route} pool "
-                "(PROVISIONAL; endpoint/ranking partly constructed)"
+                f"route pathway unavailable — logistic fraction shape for {country}:{route} pool "
+                "(PROVISIONAL; shape constructed, saturation not pinned to horizon end)"
             )
+        pool_paths[pool_id] = {
+            "years": [float(y) for y in yrs],
+            "q_fraction": [float(v) for v in q_frac],
+            "status": route_status,
+            "pathway_kind": pathway_kind,
+            "allocation_rule": "pro_rata",
+        }
         ordered = g.sort_values("next_investment_year")
         cum = ordered["capacity_mt_yr"].cumsum()
         for (_, row), need in zip(ordered.iterrows(), cum):
-            reached = yrs[curve >= float(need)]
+            frac_need = (float(need) - float(row["capacity_mt_yr"]) / 2.0) / pool_cap
+            reached = yrs[q_frac >= frac_need]
             out[row["asset_id"]] = {
-                "year": float(reached[0]) if len(reached) else float(yrs[-1]),
+                "year": float(reached[0]) if len(reached) else None,
                 "status": route_status,
                 "pool": pool_id,
                 "benchmark_source": benchmark_source,
                 "intended_benchmark": intended_benchmark,
                 "pathway_kind": pathway_kind,
-                "allocation_rule": "country-route pool; next investment year order; cumulative capacity threshold",
+                "allocation_rule": (
+                    "pro_rata — continuous pool q(t); asset T_required = capacity-midpoint "
+                    "crossing (reporting derivative; emissions path uses q(t) directly)"
+                ),
                 "headline_eligible": headline_eligible,
-                "note": pool_note + " · investment-cycle allocation (approximation, not LCOA merit order)",
+                "note": pool_note + " · reline-order queue (approximation, not LCOA merit order)",
             }
     for _, row in firms[firms["category"] == "no_feasible_route"].iterrows():
         out[row["asset_id"]] = {
@@ -248,7 +268,7 @@ def _t_required(firms: pd.DataFrame, lsm: dict[str, float]) -> tuple[dict[str, d
             "headline_eligible": False,
             "note": "no_feasible_route — priced-route 풀을 소비하지 않음; stranding/closure branch",
         }
-    return out, source
+    return out, source, pool_paths
 
 
 def load_calibration() -> CalibrationSet:
@@ -382,7 +402,7 @@ def load_calibration() -> CalibrationSet:
     capex = pd.read_parquet(PROCESSED / "capex_refs.parquet").set_index("item_id")
     k_off = float(capex.loc["K12", "mid"]) / float(capex.loc["K11", "mid"])
 
-    t_required, t_source = _t_required(firms, lsm)
+    t_required, t_source, pool_paths = _t_required(firms, lsm)
 
     return CalibrationSet(
         sigmas=sigmas,
@@ -404,6 +424,7 @@ def load_calibration() -> CalibrationSet:
         mu_carbon=mu_carbon,
         k_offcycle_mult=k_off,
         t_required=t_required,
+        required_pool_paths=pool_paths,
         t_required_source=t_source,
         measured_overrides=measured,
     )
@@ -477,6 +498,12 @@ def main() -> int:
                 "t_required_source": cal.t_required_source,
                 "t_required_provisional": cal.required_path_provisional,
                 "t_required": cal.t_required,
+                "required_pool_paths": cal.required_pool_paths,
+                "required_pool_paths_definition": (
+                    "S3 — 풀 연속 배치 비율 q(t) (pro-rata). required 배출 경로는 "
+                    "자산 배정 계단이 아니라 q(t)로 계산; 자산 T_required는 "
+                    "용량 중점 교차의 보고용 파생값 (R-6 endpoint 아티팩트 해소)"
+                ),
             },
             "measured_overrides": cal.measured_overrides,
         },

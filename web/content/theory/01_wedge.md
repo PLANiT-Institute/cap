@@ -25,4 +25,4 @@ $$\text{timing gap}_i = \tau^*_i - T_i^{required}$$
 
 **코드 대응**: `model/s03_lsm.py`가 τ*(전 경로 기대 전환연도)를, route별 배치 풀(surrogate)이 T_required를 산출. no_feasible_route 자산은 풀을 소비하지 않는다. **Required pathway is a provisional surrogate and must not be interpreted as an empirically identified firm mandate.**
 
-**현행 수치**: `outputs/wedge.json`·`condition_gap.json` (POSCO 누적 gap 404 MtCO₂, 최초 이탈 2032). τ*는 예산 없는 measure — A2와 R5 참조. 사적 전환 확률이 문턱 미만인 자산(τ*=None)은 '지평 내 사적 전환 없음'으로 처리된다.
+**현행 수치**: `outputs/wedge.json`·`condition_gap.json` (POSCO 누적 gap 448 MtCO₂, 최초 이탈 2026). τ*는 예산 없는 measure — A2와 R5 참조. 사적 전환 확률이 문턱 미만인 자산(τ*=None)은 '지평 내 사적 전환 없음'으로 처리된다.
